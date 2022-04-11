@@ -1,0 +1,71 @@
+.container{
+    background-color: #fff;
+    padding: 1rem;
+    margin: 2rem 1rem;
+    h2, p{
+        text-align: center;
+        width: 100%;
+    }
+    p{
+        color: #413D3D;
+    }
+    a{
+        font-weight: bold;
+    }
+    .formWrapper{
+        .forgotPasswordWrapper{
+            color: #413D3D;
+            justify-content: space-between;
+            margin: 2rem 0rem;
+            font-size: 0.875rem;
+    
+            a{
+                color: #2C0085;
+            }
+    
+            .checkboxDiv{
+                input{
+                    margin-right: 0.25rem;
+                }
+            }
+        }
+        .submitBtnDiv{
+           justify-content: center;
+           margin: 1rem 0rem;
+    
+           button{
+               width: 100%;
+               color: white;
+           }
+        }
+        p{
+            font-size: 0.875rem;
+            a{
+                color: #2C0085;
+            }
+        }
+    }
+    
+}
+
+@media all and (min-width: 768px) {
+    .container{
+        margin: 2rem 8rem;
+        padding: 2rem 2rem;
+        justify-self: center;
+    }
+}
+
+@media all and (min-width: 991px) {
+    .container{
+        margin: 2rem 20rem;
+        padding: 4rem 2rem;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .container{
+        margin: 2rem 30rem;
+        padding: 4rem 3rem;
+    }
+}

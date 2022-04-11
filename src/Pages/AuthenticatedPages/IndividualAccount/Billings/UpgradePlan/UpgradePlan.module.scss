@@ -1,0 +1,87 @@
+.UpgradePlanContainer{
+    padding: 2rem 1rem;
+    p{
+        font-family: NunitoSans;
+    }
+
+    .header{
+        
+        h2{
+            line-height: 1;
+            margin: 0rem 0rem 0.75rem 0rem;
+        }  
+        
+        p:nth-of-type(2) {
+            margin: 2.5rem 0rem 0rem 0rem;
+        }
+    }
+    .cardWrapper{
+        padding: 0rem 0rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: space-evenly;
+        margin: 0rem 0rem;
+
+        .innerWrapper {
+            padding: 0rem;
+            margin: 0rem;
+            width: 100%;
+        }
+    }
+}
+
+@media all and (min-width: 768px) {
+    .UpgradePlanContainer{
+        padding: 2rem 1rem;
+
+        .header{
+            margin-bottom: 3rem;
+    
+            h2{
+                line-height: 1;
+                margin: 0rem 0rem 1rem 0rem;
+            }
+            p{
+                width: 75%;
+            }
+        }
+
+        .cardWrapper{
+            justify-content: space-between;
+            gap: 2rem;
+             .innerWrapper {
+            padding: 0rem;
+            width: 45%;
+            margin: 0rem;
+
+            section{
+                width: 100%;
+                margin: 0rem;
+            }
+        }
+        }
+       
+}
+}
+
+@media all and (min-width:991px){
+    .UpgradePlanContainer{
+        padding: 1rem 2rem 1rem 2rem;
+
+        .cardWrapper{
+            gap: 2.5rem;
+        }
+    }
+}
+
+@media all and (min-width:1200px){
+    .UpgradePlanContainer{
+        padding: 2rem 3rem 1rem 3rem;
+
+        .cardWrapper{
+        gap: 2.5rem;
+        // padding: 4rem 3rem;
+        }
+    }    
+}

@@ -1,0 +1,118 @@
+.container{
+    padding: 0.5rem 1rem;
+    p{
+        font-family: NunitoSans;
+    }
+
+    .header{
+        
+        h2{
+            line-height: 1;
+            margin: 0rem 0rem 1.5rem 0rem;
+        }  
+        .lowerLevel{
+            justify-content: space-between;
+            align-items: flex-end;
+
+            .dateDiv{
+                font-weight: bold;
+
+                p, small{
+                    margin: 0rem;
+                }
+                p{
+                    font-size: 0.875rem;
+                }
+                small{
+                    color: #C8C8C8;
+                }
+            }
+        }
+    }
+    .cardWrapper{
+        padding: 0rem 0rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: space-evenly;
+        margin: 0rem 0rem;
+
+        .innerWrapper {
+            padding: 0rem;
+            width: 100%;
+        }
+    }
+}
+
+@media all and (min-width: 768px) {
+    .container{
+        padding: 2rem 1rem;
+
+        .header{
+            flex-direction: row !important;
+            align-items: center !important;
+            margin-bottom: 3rem;
+    
+            h2{
+                line-height: 1;
+                margin: 0rem 5rem 0rem 0rem;
+            }
+            p{
+            }
+        }
+
+        .cardWrapper{
+            justify-content: space-between;
+            gap: 2rem;
+             .innerWrapper {
+            padding: 0rem;
+            width: 45%;
+            margin-bottom: 0rem;
+
+            section{
+                width: 100%;
+                margin: 0rem;
+            }
+        }
+        }
+       
+}
+}
+
+@media all and (min-width:991px){
+    .container{
+        padding: 1rem 2rem 1rem 2rem;
+
+        .cardWrapper{            
+            .innerWrapper {
+                padding: 0rem;
+                width: 50%;
+                margin-bottom: 0rem;
+    
+                section{
+                    width: 100%;
+                    margin: 0rem;
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width:1200px){
+    .container{
+        padding: 2rem 3rem 1rem 3rem;
+
+        .cardWrapper{
+            .innerWrapper {
+                padding: 0rem;
+                width: 35%;
+                margin-bottom: 0rem;
+    
+                section{
+                    width: 100%;
+                    margin: 0rem;
+                }
+            }
+        }
+    }    
+}

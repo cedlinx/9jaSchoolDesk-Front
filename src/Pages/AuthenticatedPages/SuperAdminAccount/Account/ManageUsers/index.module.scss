@@ -1,0 +1,288 @@
+.container{
+    padding: 0.5rem 1rem;
+
+    .header{
+        align-items: flex-end;
+        justify-content: space-between;
+
+        h2{
+            line-height: 1;
+            margin: 0rem 1rem 0rem 0rem;
+        }
+        button{
+            border: none;
+            background-color: #fff;
+            box-shadow: 0px 7px 15px rgba(38,105,93,0.04);
+            border: 1px solid #2C0085;
+            border-radius: 0.25rem;
+            padding: 0.125rem 1rem;
+
+            a{
+                font-size: 0.75rem;
+                margin: 0rem;
+                padding: 0rem;
+                line-height: 1;
+        }
+        }
+        
+    }
+
+    .dateSelectorWrapper{
+        justify-content: flex-end;
+        align-items: flex-end;
+        font-family: Poppins;
+        border-radius: 14px;
+        box-shadow: 0px 7px 15px rgba(38,105,93,0.04);
+        padding: 0.5rem 1rem;
+        margin: 2rem 0rem 2rem auto;
+
+        img{
+            margin-right: 0.5rem;
+        }
+        .datePickerWrapper{
+            width: 100%;
+            p{
+                font-size: 0.875rem;
+                font-weight: bold;
+                line-height: 1;
+                margin: 0rem 0rem 0.5rem 0rem;
+            }
+            .datePicker{
+                width: 100% !important;
+                border-radius: 0.25rem;
+                padding: 0.375rem 0.5rem;
+                font-size: 0.875rem;
+                text-align: center;
+                border: 1px solid #2C0085;
+            }
+        }
+    }
+
+    .assetCodeWrapper{
+        align-items: flex-end;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 0rem 0rem;
+
+        .codeDetailsWrapper{
+            align-items: flex-end;
+            width: auto;
+            img{
+                margin-right: 0.5rem;
+            }
+            div{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                gap: 0.5rem;
+                font-family: Poppins;
+                small{
+                    font-size: 0.75rem;
+                    color: #969BA0;
+                    line-height: 1;
+                }
+                p{
+                    margin: 0rem;
+                    padding: 0rem;
+                    line-height: 1;
+                    color: #194039;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .btnGroup{
+            width: auto;
+            gap: 1.25rem;
+        }
+    }
+
+    .tableWrapper{
+        margin-top: 1rem;
+    }
+}
+
+@media all and (min-width: 768px) {
+    .container{
+        padding: 2rem 1rem;
+
+        .header{
+            align-items: flex-end;
+            justify-content: flex-start;
+    
+            h2{
+                line-height: 1;
+                margin: 0rem 3rem 0rem 0rem;
+            }
+            button{
+                background-color: #fff;
+                box-shadow: 0px 7px 15px rgba(38,105,93,0.04);
+                border: 1px solid #2C0085;
+                padding: 0.125rem 1rem;
+    
+                a{
+                    font-size: 0.875rem;
+            }
+            }
+        }
+
+    .dateSelectorWrapper{
+        padding: 0.5rem 1rem;
+        margin: 0rem 0rem 2rem auto;
+        img{
+            margin-right: 0.5rem;
+        }
+        .datePickerWrapper{
+            width: 40%;
+            p{
+                font-size: 0.875rem;
+                margin: 0rem 0rem 0.5rem 0rem;
+            }
+            .datePicker{
+                width: 100% !important;
+                font-size: 0.875rem;
+                text-align: center;
+            }
+        }
+    }
+
+    .assetCodeWrapper{
+        align-items: flex-end;
+        .codeDetailsWrapper{
+            margin-right: auto;
+            img{
+                margin-right: 0.5rem;
+            }
+            div{
+                gap: 0.5rem;
+                small{
+                    font-size: 0.75rem;
+                    line-height: 1;
+                }
+                p{
+                    margin: 0rem;
+                    padding: 0rem;
+                }
+            }
+        }
+
+        .btnGroup{
+            width: auto;
+            gap: 1.25rem;
+        }
+    }
+
+    .tableWrapper{
+        margin-top: 1rem;
+    }
+}
+}
+
+@media all and (min-width:991px){
+    .container{
+        padding: 1rem 2rem 1rem 2rem;
+
+        .dateSelectorWrapper{
+            padding: 0.5rem 1rem;
+            margin: 0rem 0rem 2rem auto;
+            img{
+                margin-right: 0.5rem;
+            }
+            .datePickerWrapper{
+                p{
+                    font-size: 0.875rem;
+                    margin: 0rem 0rem 0.5rem 0rem;
+                }
+            }
+        }
+    
+        .assetCodeWrapper{
+            align-items: flex-end;
+            .codeDetailsWrapper{
+                margin-right: auto;
+                img{
+                    margin-right: 0.5rem;
+                }
+                div{
+                    gap: 0.5rem;
+                    small{
+                        font-size: 0.75rem;
+                        line-height: 1;
+                    }
+                    p{
+                        margin: 0rem;
+                        padding: 0rem;
+                    }
+                }
+            }
+    
+            .btnGroup{
+                width: auto;
+                gap: 1rem;
+            }
+        }
+    
+        .tableWrapper{
+        margin-top: 1rem;
+    }
+    }
+}
+
+@media all and (min-width:1200px){
+    .container{
+        padding: 2rem 3rem 1rem 3rem;
+
+        .dateSelectorWrapper{
+            padding: 0.5rem 1rem;
+            margin: 0rem 0rem 2rem auto;
+            img{
+                margin-right: 0.5rem;
+            }
+            .datePickerWrapper{
+                width: 27.5%;
+                p{
+                    font-size: 0.875rem;
+                    margin: 0rem 0rem 0.5rem 0rem;
+                }
+
+                .datePicker{
+                    width: 100% !important;
+                    font-size: 0.875rem;
+                    text-align: center;
+                }
+            }
+        }
+    
+        .assetCodeWrapper{
+            align-items: flex-end;
+            .codeDetailsWrapper{
+                margin-right: auto;
+                img{
+                    margin-right: 0.5rem;
+                }
+                div{
+                    gap: 0.5rem;
+                    small{
+                        font-size: 0.875rem;
+                        line-height: 1;
+                    }
+                    p{
+                        margin: 0rem;
+                        padding: 0rem;
+                        font-size: 1.25rem;
+                    }
+                }
+            }
+    
+            .btnGroup{
+                width: auto;
+                gap: 0.75rem;
+            }
+        }
+    
+        .tableWrapper{
+            margin-top: 5rem;
+        }
+    }    
+}

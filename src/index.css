@@ -1,0 +1,168 @@
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), 
+  url("./assets//fonts/Poppins-Regular.ttf") 
+  format('truetype');
+}
+@font-face {
+  font-family: 'NunitoSans';
+  src: local('NunitoSans'), 
+  url("./assets/fonts/NunitoSans-Regular.ttf") 
+  format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Poppins', "NunitoSans" 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #C4C4C4;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 1920px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+/* .row-no-padding {
+  margin-left: 0;
+  margin-right: 0;
+} */
+
+[class*="col-4"],  
+[class^="col-4"] { 
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* [class*="col-"],  
+[class^="col-"] { 
+  padding-left: 0;
+  padding-right: 0;
+} */
+
+/* [class*="row-"],  
+[class^="row-"] { 
+  padding-left: 0;
+  padding-right: 0;
+} */
+/* .no-gutter > [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+} */
+
+
+#root{
+  width: 100%;
+  margin: 0;
+  padding: 0rem;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+.flexCol-align-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flexCol-justify-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flexRow-fully-centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flexRow-left-centered{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flexCol-fully-centered{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flexRow-space-between{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+a:hover{
+  color: inherit;
+  text-decoration: none;
+
+}
+li{
+  list-style-type: none;
+}
+h1,h2,h3 {
+  font-family: Poppins;
+  font-weight: bold;
+}
+h1{
+  font-size: 1.5rem;
+}
+h2{
+  font-size: 1.375rem;
+}
+h3{
+  font-size: 1.25rem;
+}
+  
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid none;
+  -webkit-text-fill-color: none;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+button:disabled,
+button[disabled] {
+  background-color: #b3b9f7 !important;
+  color: gray !important;
+  cursor: not-allowed;
+  border: none;
+}
+
+@media all and (min-width: 991px){
+  h1{
+    font-size: 2.5rem;
+  }
+  h2{
+    font-size: clamp(28px, 2.25rem, 2.5rem);
+  }
+  h3{
+    font-size: 2rem;
+  }
+}

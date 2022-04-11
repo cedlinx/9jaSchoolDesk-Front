@@ -1,0 +1,61 @@
+.container{
+    // width: max-content;
+}
+.btn{
+    padding: 0.75rem 1rem;
+    border: none;
+    border: 0.5px solid;
+    font-family: Poppins;
+    font-size: 0.75rem;
+    width: max-content;
+    align-items: center;
+    justify-content: center;
+    input{
+        margin-right: 0.375rem;
+    }
+    a{
+        width: 100%;
+    }
+    .iconDiv{
+        margin-right: 0rem;
+        font-size: 1.25rem;
+    }
+}
+.fullyRounded{
+    border-radius: 1rem;
+}
+.mediumRounded{
+    border-radius: 0.75rem;
+}
+.lowRounded{
+    border-radius: 0.5rem;
+}
+
+
+@media all and (min-width:991px){
+
+    .btn{
+        padding: 0.875rem 2.25rem;
+        font-size: 0.75rem;
+    }
+    .fullyRounded{
+        border-radius: 2rem;
+    }
+    .mediumRounded{
+        border-radius: 1rem;
+    }
+}
+
+@media all and (min-width:1200px){
+
+    .btn{
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+    .fullyRounded{
+        border-radius: 2rem;
+    }
+    .mediumRounded{
+        border-radius: 1rem;
+    }
+}

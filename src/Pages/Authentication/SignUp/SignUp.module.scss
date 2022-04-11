@@ -1,0 +1,53 @@
+.signUpContainer{
+    background-color: #fff;
+    padding: 1rem;
+    margin: 2rem 1rem;
+    h2, p{
+        text-align: center;
+        width: 100%;
+
+    }
+    p{
+        color: #413D3D;
+        font-family: NunitoSans;
+    }
+    .formWrapper {
+          .submitBtnDiv{
+       justify-content: center;
+       margin: 1rem 0rem;
+
+       button{
+           width: 100%;
+           text-align: center;
+       }
+    }
+    p{
+        font-size: 0.875rem;
+        a{
+            color: #2C0085;
+        }
+    }
+    }
+}
+
+@media all and (min-width: 768px) {
+    .signUpContainer{
+        margin: 2rem 8rem;
+        padding: 2rem 2rem;
+        justify-self: center;
+    }
+}
+
+@media all and (min-width: 991px) {
+    .signUpContainer{
+        margin: 2rem 15rem;
+        padding: 4rem 4rem;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .signUpContainer{
+        margin: 2rem 25rem;
+        padding: 4rem 4rem;
+    }
+}

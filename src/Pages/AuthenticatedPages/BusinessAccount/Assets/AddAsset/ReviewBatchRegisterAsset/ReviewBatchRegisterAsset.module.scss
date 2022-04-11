@@ -1,0 +1,57 @@
+.container{
+    padding: 0.5rem 1rem;
+
+    h2{
+        margin-bottom: 1rem;
+    }
+    .btnGroup{
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+    .tableWrapper{
+        margin-top: 1rem;
+    }
+}
+
+@media all and (min-width: 768px) {
+    .container{
+        padding: 2rem 1rem;
+
+    .btnGroup{
+        
+    }
+    .tableWrapper{
+        margin-top: 1rem;
+    }
+}
+}
+
+@media all and (min-width:991px){
+    .container{
+        padding: 1rem 2rem 1rem 2rem;
+    
+        .btnGroup{
+            gap: 1rem;
+
+        }
+
+        .tableWrapper{
+        margin-top: 1rem;
+    }
+    }
+}
+
+@media all and (min-width:1200px){
+    .container{
+        padding: 2rem 3rem 1rem 3rem;
+
+        .btnGroup{
+
+        }        
+        
+        .tableWrapper{
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+    }    
+}

@@ -1,0 +1,365 @@
+.footerContainer{
+    width: 100%;
+    padding: 0rem 0rem;
+    margin: 0rem 0rem 0rem 0rem;
+
+    .topSection{
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .partnersLogosDiv{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+
+            img{
+                width: 45%;
+            }
+        }
+    }
+  
+    .appStoreDiv{
+        padding: 4rem 1rem;
+        background-color: #F6F7F9;
+    
+     
+        .appStoreContent{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            h2{
+                font-family: NunitoSans;
+            }
+    
+            .appStoreBtnDiv{
+                gap: 1rem;
+                margin-top: 1rem;
+                justify-content:center;
+                img{
+                    width: 7rem;
+                }
+            }
+        }
+        .imageDiv{
+            display: none;
+        }
+       
+    }
+    .lastSection{
+        display: flex;
+        flex-direction: column;
+        background-color: #F6F7F9;
+        padding: 0rem 1rem 3rem 1rem;
+    
+        .profileSummary{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 3rem;
+    
+            img{
+                width: 10rem;
+                margin-bottom: 2rem;
+            }
+            p{
+                font-size: 1rem;
+                font-family: Poppins;
+                color: #433C3C;
+                margin-bottom: 1rem;
+            }
+        }
+    
+        .informationLinks {
+            font-family: Poppins;
+            margin-bottom: 3rem;
+    
+            ul{
+                padding: 0rem;
+    
+                li{
+                    font-size: 1rem;
+                }
+            }
+    
+        }
+    
+        .contactDetails{
+            font-family: Poppins;
+    
+            p{
+                font-size: 1rem;
+                font-family: Poppins;
+                color: #433C3C;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+
+@media all and (min-width:768px){
+
+    .footerContainer{
+
+        .topSection{
+            padding: 5rem 1rem;
+        
+            .partnersLogosDiv{
+                gap: 1rem;
+                justify-content: space-evenly;
+    
+                img{
+                    width: 15%;
+                }
+            }
+        }
+
+     .appStoreDiv{
+        padding: 2rem 3rem;
+        position: relative;
+        justify-content: center;
+
+        .appStoreContent{   
+    
+            .appStoreBtnDiv{
+                margin-top: 1rem;
+                img{
+                    width: 7rem;
+                }
+            }
+        }
+
+        .imageDiv{
+            display: block;
+            
+            img {
+                width: 100%;
+            }
+        }
+       
+    }
+
+    .lastSection{
+        padding: 2rem 3rem;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .profileSummary{
+           width: auto;
+           margin-bottom: 1.5rem;
+    
+            img{
+                width: 10rem;
+                margin-bottom: 0.5rem;
+            }
+            p{
+                font-size: 1rem;
+                font-family: Poppins;
+                color: #433C3C;
+                margin-bottom: 1rem;
+            }
+        }
+    
+        .informationLinks {
+            font-family: Poppins;
+            margin-bottom: 1.5rem;
+    
+            ul{
+                padding: 0rem;
+    
+                li{
+                    font-size: 1rem;
+                }
+            }
+    
+        }
+    
+        .contactDetails{
+            font-family: Poppins;
+    
+            p{
+                font-size: 1rem;
+                font-family: Poppins;
+                color: #433C3C;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+  
+
+    }
+
+}
+
+@media all and (min-width:991px){
+
+    .footerContainer{
+
+        .topSection{
+            padding: 5rem 4rem;
+        
+            .partnersLogosDiv{
+                gap: 1rem;
+                justify-content: space-evenly;
+    
+                img{
+                    width: 15%;
+                }
+            }
+        }
+
+     .appStoreDiv{
+        padding: 2rem 3rem;
+       
+        .appStoreContent{   
+            .appStoreBtnDiv{
+                margin-top: 1.5rem;
+                gap: 2rem;
+                img{
+                    width: 7rem;
+                }
+            }
+        }
+       
+    }
+
+    .lastSection{
+        padding: 2rem 4rem;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .profileSummary{
+           width: 33%;
+           margin-bottom: 1.5rem;
+    
+            img{
+                width: 10rem;
+                margin-bottom: 0.5rem;
+            }
+            p{
+                font-size: 1rem;
+                font-family: Poppins;
+                color: #433C3C;
+                margin-bottom: 1rem;
+            }
+        }
+    
+        .informationLinks {
+            font-family: Poppins;
+            margin-bottom: 1.5rem;
+    
+            ul{
+                padding: 0rem;
+    
+                li{
+                    font-size: 1rem;
+                }
+            }
+    
+        }
+    
+        .contactDetails{
+            font-family: Poppins;
+    
+            p{
+                font-size: 1rem;
+                font-family: Poppins;
+                color: #433C3C;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+  
+
+    }
+
+}
+
+@media all and (min-width:1200px){
+    .footerContainer{
+
+        .topSection{
+            padding: 5rem 7rem;
+        
+            .partnersLogosDiv{
+                gap: 1rem;
+                justify-content: space-evenly;
+    
+                img{
+                    width: 15%;
+                }
+            }
+        }
+
+     .appStoreDiv{
+        padding: 2rem 7rem;
+       
+        .appStoreContent{   
+            .appStoreBtnDiv{
+                margin-top: 1.5rem;
+                gap: 2rem;
+                img{
+                    width: 7rem;
+                }
+            }
+        }
+       
+    }
+
+    .lastSection{
+        padding: 2rem 7rem;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .profileSummary{
+           width: 33%;
+           margin-bottom: 1.5rem;
+    
+            img{
+                width: 10rem;
+                margin-bottom: 0.5rem;
+            }
+            p{
+                font-size: 1rem;
+                font-family: Poppins;
+                color: #433C3C;
+                margin-bottom: 1rem;
+            }
+        }
+    
+        .informationLinks {
+            font-family: Poppins;
+            margin-bottom: 1.5rem;
+    
+            ul{
+                padding: 0rem;
+    
+                li{
+                    font-size: 1rem;
+                }
+            }
+    
+        }
+    
+        .contactDetails{
+            font-family: Poppins;
+    
+            p{
+                font-size: 1rem;
+                font-family: Poppins;
+                color: #433C3C;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+  
+
+    }
+}

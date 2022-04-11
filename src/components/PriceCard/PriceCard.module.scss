@@ -1,0 +1,271 @@
+.container {
+    margin: 0rem 0rem 0rem 0rem;
+    .wrapper {
+        // display: flex;
+        flex-direction: column;
+        align-items: center;
+        .topSection {
+            margin: 0rem 0rem 0rem 0rem;
+            border: 1px solid #B2CCFC;
+            padding: 2rem 1rem 1rem 1rem;
+            border-radius: 1rem;
+           
+            .amount{
+                color: #2C0085;
+                font-size: 1.375rem;
+                font-family: Poppins;
+                font-weight: bold;
+            }
+            .benefitsHeader{
+                font-size: 1rem;
+                color: #494E69;
+                font-family: NunitoSans;
+                text-align: left;
+                margin-top: 2rem;
+            }
+            .benefitsListWrapper{
+                margin: 1rem 0rem 3rem 0rem;
+                .listItemWrapper{
+                    display: flex;
+                    margin: 0.5rem 0rem;
+                    padding: 0rem;
+                    align-items: center;
+
+                    i{
+                        margin-right: 1rem;
+                    }
+                    .listItem{
+                        font-family: NunitoSans;
+                        color: #758FA4;
+                        font-size: 0.875rem;
+                        margin: 0rem;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+.pricingPageWidth{
+    width: 100%;
+    .wrapper{
+            width: 100% !important;
+            .benefitsListWrapper{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .pricingCardHeader{
+                    .title{
+                        color: #2C0085;
+                        font-size: 1.125rem;
+                        font-family: Poppins;
+                        font-weight: bold;
+                        margin: 0rem 0rem 0.5rem 0rem;
+
+                    }
+                    .amount{
+                        color: #494E69;
+                        font-size: 1rem;
+                        font-family: NunitoSans;
+                        font-weight: normal;
+                        margin: 0rem;
+                    }
+            }
+        }
+}
+
+@media all and (min-width: 768px){
+    .container {
+        margin: 3rem 0rem;
+        justify-content: center;
+        .wrapper {
+            width: 70%;
+            .topSection {
+                padding: 2rem 2rem 1rem 2rem;
+                .amount{
+                    font-size: 1.375rem;
+                }
+                .benefitsHeader{
+                    font-size: 1rem;
+                    margin-top: 2rem;
+                }
+                .benefitsListWrapper{
+                    margin: 1rem 0rem 3rem 0rem;
+                    .listItemWrapper{
+                        margin: 0.75rem 0rem;
+                        padding: 0rem;
+                        i{
+                            margin-right: 1rem;
+                        }
+                        .listItem{
+                            font-size: 0.875rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .pricingPageWidth{
+        width: 45%;
+        .wrapper{
+                width: 100% !important;
+
+                .pricingCardHeader{
+                    .title{
+                        color: #2C0085;
+                        font-size: 1.25rem;
+                        font-family: Poppins;
+                        font-weight: bold;
+                        margin: 0rem 0rem 0.75rem 0rem;
+
+                    }
+                    .amount{
+                        color: #494E69;
+                        font-size: 1rem;
+                        font-family: NunitoSans;
+                        font-weight: normal;
+                        margin: 0rem;
+                    }
+            }
+            }
+    }
+}
+
+@media all and (min-width: 991px){
+    .container {
+        margin: 3rem 0rem;
+        justify-content: center;
+        .wrapper {
+            width: 60%;
+            .topSection {
+                padding: 3rem 2rem 2rem 2rem;
+                .amount{
+                    font-size: 1.375rem;
+                }
+                .benefitsHeader{
+                    font-size: 1rem;
+                    margin-top: 2rem;
+                }
+                .benefitsListWrapper{
+                    margin: 1rem 0rem 3rem 0rem;
+                    .listItemWrapper{
+                        margin: 0.75rem 0rem;
+                        padding: 0rem;
+                        i{
+                            margin-right: 1rem;
+                        }
+                        .listItem{
+                            font-size: 0.875rem;
+                        }
+                    }
+                }
+            }
+        }
+       
+    } 
+    .pricingPageWidth{
+        width: 30%;
+        .wrapper{
+                width: 100% !important;
+                .pricingCardHeader{
+                    .title{
+                        color: #2C0085;
+                        font-size: 1.375rem;
+                        font-family: Poppins;
+                        font-weight: bold;
+                        margin: 0rem 0rem 0.5rem 0rem;
+
+                    }
+                    .amount{
+                        color: #494E69;
+                        font-size: 1.125rem;
+                        font-family: NunitoSans;
+                        font-weight: normal;
+                        margin: 0rem;
+                    }
+            }
+            }
+    }
+}
+
+@media all and (min-width: 1200px){
+    .container {
+        margin: 3rem 0rem;
+        justify-content: center;
+        .wrapper {
+            width: 50%;
+            .topSection {
+                padding: 3rem 3rem 2rem 3rem;
+                .amount{
+                    font-size: 1.5rem;
+                }
+                .benefitsHeader{
+                    font-size: 1rem;
+                    margin-top: 2rem;
+                }
+                .benefitsListWrapper{
+                    margin: 1rem 0rem 3rem 0rem;
+                    .listItemWrapper{
+                        margin: 1rem 0rem;
+                        padding: 0rem;
+                        i{
+                            margin-right: 1rem;
+                        }
+                        .listItem{
+                            font-size: 0.875rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .pricingPageWidth{
+        width: 25%;
+        .wrapper{
+                width: 100% !important;
+
+                .pricingCardHeader{
+                    .title{
+                        color: #2C0085;
+                        font-size: 1.5rem;
+                        font-family: Poppins;
+                        font-weight: bold;
+                        margin: 0rem 0rem 0.5rem 0rem;
+
+                    }
+                    .amount{
+                        color: #494E69;
+                        font-size: 1.25rem;
+                        font-family: NunitoSans;
+                        font-weight: normal;
+                        margin: 0rem;
+                    }
+            }
+                    .topSection {
+                        padding: 3rem 2rem 3rem 2rem;
+                        .amount{
+                            font-size: 1.5rem;
+                        }
+                        .benefitsHeader{
+                            font-size: 1rem;
+                            margin-top: 2rem;
+                        }
+                        .benefitsListWrapper{
+                            margin: 1rem 0rem 3rem 0rem;
+                    
+                            .listItemWrapper{
+                                margin: 0.75rem 0rem;
+                                padding: 0rem;
+                                i{
+                                    margin-right: 1rem;
+                                }
+                                .listItem{
+                                    font-size: 0.875rem;
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+}

@@ -1,0 +1,102 @@
+.container {
+    padding: 4rem 1rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 2.5rem;
+
+
+    h1, p{
+        text-align: center;
+    }
+    p{
+        margin-bottom: 2.5rem;
+    }
+    .btnDiv{
+        gap: 1rem;
+        justify-content: center;
+    }
+
+}
+
+@media all and (min-width: 768px){
+    .container{
+        padding: 4rem 0rem 4rem 0rem;
+        background-size: cover;
+        
+        background-repeat: no-repeat;
+        // min-height: 20rem;
+        p{
+            text-align: center;
+            width: 50%;
+            margin-bottom: 2rem;
+        }
+
+        .leftAligned{
+            padding-left: 2rem;
+
+            h1, p{
+                text-align: left;
+                width: 50%;
+            }
+
+            .btnDiv{
+                justify-content: flex-start;
+            }
+        }
+        .centerAligned{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+@media all and (min-width: 991px){
+    .container{
+        padding: 3rem 0rem 4rem 0rem;
+        background-size: cover;
+        // object-fit: contain;
+        background-repeat: no-repeat;
+
+        h1{
+            width: 80%;
+        }
+        p{
+            text-align: center;
+            width: 50%;
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+@media all and (min-width: 1200px){
+    .container{
+        padding: 5rem 5rem 4rem 12rem;
+        background-size: cover;
+        // object-fit: contain;
+        background-repeat: no-repeat;
+        min-height: 30rem;
+
+        .leftAligned{
+            padding-left: 2rem;
+
+            h1, p{
+                text-align: left;
+                width: 50%;
+            }
+
+            .btnDiv{
+                justify-content: flex-start;
+            }
+        }
+
+        h1{
+            width: fit-content;
+        }
+        p{
+            text-align: center;
+            width: 60%;
+            margin-bottom: 5rem;
+        }
+    }
+}

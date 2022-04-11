@@ -1,0 +1,25 @@
+@import "@/config/variables.scss";
+
+.text-area-wrapper {
+  textarea {
+    height: 167px;
+    background: #f6f6f6;
+    width: 100%;
+    padding: 10px;
+    font-family: Avenir;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #c1c7d0;
+    border: 1px solid #2C0085;
+
+    margin-bottom: 1rem;
+  }
+  label {
+    font-size: 14px;
+    color: $black100;
+    margin-bottom: 0.5rem;
+  }
+  textarea::placeholder {
+    color: $grey300;
+  }
+}

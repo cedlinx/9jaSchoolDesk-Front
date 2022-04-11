@@ -1,0 +1,44 @@
+.container {
+    background-color: #fff;
+}
+.contentArea{
+    overflow-y: auto;
+    width: 100%;
+    min-height: 100vh;
+
+    .header{
+        position: sticky; 
+        top: 0; 
+        left: 0; 
+        z-index: 99; 
+        height: 50px; 
+    }
+    .pageContent{
+        margin-top: 1rem;
+    }
+    .header, .pageContent{
+        width: 100%;
+    }
+}
+
+@media all and (min-width: 991px) {
+    .sidebar{
+        height: 100vh;
+        width: fit-content;
+        border: 1px solid #E9ECFF;
+        z-index: 100;
+    }
+    .contentArea{
+        height: 100vh;
+        overflow-y: auto;
+        width: 100%;
+
+        .pageContent{
+            margin-top: 1rem;
+        }
+
+        .header, .pageContent{
+            width: 100%;
+        }
+    }
+}

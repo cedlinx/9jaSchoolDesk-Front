@@ -1,0 +1,65 @@
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import cx from "classnames";
+import styles from "./MenuBar.module.scss";
+import Logo from "@/assets/images/Logo.svg";
+import Button from "@/components/Button/Button";
+import { Navbar, Nav, Dropdown, 
+	NavDropdown} from "react-bootstrap";
+
+
+const MenuBar = () => {
+
+	const navigate = useNavigate();
+	const [showMobileNav, setShowMobileNav] = useState(false);
+
+	const toggleNavbar = () => {
+		setShowMobileNav(!showMobileNav);
+	};
+
+
+
+	return (
+		<>
+			<Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
+				<Navbar.Brand className={cx(styles.siteLogo )}> 		
+					<Link to="/"><img src={Logo} alt="" /></Link>
+				</Navbar.Brand>
+				<Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
+				<Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
+					<Nav className={cx(styles.primaryNavigation, "ms-auto")}>
+						<Link to="/">Home</Link>
+						
+						{/* <Link to="/about">About</Link>				 */}
+						{/* <NavDropdown
+							title="Services"
+							className={cx(styles.dropdownBtn)}
+						>
+							<NavDropdown.Item><Link to="/individuals">Individuals</Link></NavDropdown.Item>
+							<NavDropdown.Item ><Link to="/individuals">Business</Link></NavDropdown.Item>
+							<NavDropdown.Item ><Link to="/agent">Agent</Link></NavDropdown.Item>
+							
+						</NavDropdown> */}
+						{/* <Link to="/how-it-works">How It Works</Link>
+						<Link to="/pricing">Pricing</Link>
+						<Link to="/contact">Contact</Link> */}
+
+						<Link to="/student">Student</Link>
+						<Link to="/parent">Parent</Link>
+						<Link to="/teacher">Teacher</Link>
+					</Nav>
+
+					<div className={cx(styles.btnGroup)} >
+						<Button onClick={()=>navigate("/signup")} title="Sign Up" borderRadiusType="fullyRounded" textColor="#fff"  bgColor="#2C0085" hoverBg="#fff" hoverColor="#2C0085" />
+
+						<Button onClick={()=>navigate("/login")} title="Sign In" borderRadiusType="fullyRounded" textColor="#fff"  bgColor="#2C0085" hoverBg="#fff" hoverColor="#2C0085" />
+					</div>
+					
+
+				</Navbar.Collapse>
+			</Navbar>
+		</>
+	);
+};
+
+export default MenuBar;

@@ -1,0 +1,318 @@
+.container{
+    padding: 0.5rem 1rem;
+
+    .dateSelectorWrapper{
+        justify-content: flex-end;
+        align-items: flex-end;
+        font-family: Poppins;
+        border-radius: 14px;
+        box-shadow: 0px 7px 15px rgba(38,105,93,0.04);
+        padding: 0.5rem 1rem;
+        width: fit-content;
+        margin: 2rem 0rem 2rem auto;
+        img{
+            margin-right: 0.5rem;
+        }
+        .datePickerWrapper{
+            p{
+                font-size: 0.875rem;
+                font-weight: bold;
+                line-height: 1;
+                margin: 0rem 0rem 0.5rem 0rem;
+            }
+        }
+    }
+
+    .cardWrapper {
+        justify-content: center;
+         gap:1rem;
+         flex-wrap: wrap;
+         margin-bottom: 2rem;
+    
+         .cardItem{
+            width: 18rem ;
+            border: none;
+            background-color: transparent;
+            box-shadow: 0px 7px 34px rgba(29, 30, 36, 0.05);
+            padding: 1rem 0.5rem;
+
+            .cardBody{
+                background-color: transparent;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                .textContent{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                      h3, p{
+                    line-height: 1;
+                    margin: 0rem;
+                    padding: 0rem;
+                    color: #1D1E24  ;
+                }
+                h3{
+                    font-size: 1.625rem;
+                    font-weight: bold;
+                } 
+                small{
+                    font-size: 0.625rem;
+                    color: #969BA0;
+                    font-weight: bold;
+                }
+                }
+                .chartDiv{
+                     img{
+                    width: 4rem;
+                    margin-left: 1rem;
+                }
+                }
+            }
+        }
+    }
+
+    .btnGroup{
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        div{
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            gap: 1rem;
+        }
+    }
+    .tableWrapper{
+        margin-top: 1rem;
+    }
+}
+
+@media all and (min-width: 768px) {
+    .container{
+        padding: 2rem 1rem;
+
+    .dateSelectorWrapper{
+        padding: 0.5rem 1rem;
+        margin: 0rem 0rem 2rem auto;
+        img{
+            margin-right: 0.5rem;
+        }
+        .datePickerWrapper{
+            p{
+                font-size: 0.875rem;
+                margin: 0rem 0rem 0.5rem 0rem;
+            }
+        }
+    }
+
+    .cardWrapper {
+        justify-content: center;
+         gap:2rem;
+         flex-wrap: wrap;
+         margin-bottom: 4rem;
+    
+         .cardItem{
+            width: 18rem ;
+            border: none;
+            height: 9rem;
+            background-color: transparent;
+            box-shadow: 0px 7px 34px rgba(29, 30, 36, 0.05);
+            padding: 1rem ;
+
+            
+            .cardBody{
+                padding: 0rem;
+
+                .textContent{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                      h3, p{
+                    line-height: 1;
+                    margin: 0rem;
+                    padding: 0rem;
+                    color: #1D1E24  ;
+                }
+                h3{
+                    font-size: 1.625rem;
+                    font-weight: bold;
+                } 
+                small{
+                    font-size: 0.625rem;
+                    color: #969BA0;
+                    font-weight: bold;
+                }
+                }
+                .chartDiv{
+                     img{
+                    width: 4rem;
+                    margin-left: 1rem;
+                }
+                }
+            }
+        }
+    }
+
+    .btnGroup{
+        flex-wrap: nowrap;
+        gap: 0rem;
+        justify-content: space-between;
+        width: 100%;
+        div{
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            gap: 1rem;
+        }
+        .leftGroup{
+            justify-content: flex-start;
+        }
+        .rightGroup{
+            justify-content: flex-end;
+            margin-left: auto;
+        }
+    }
+    .tableWrapper{
+        margin-top: 1rem;
+    }
+}
+}
+
+@media all and (min-width:991px){
+    .container{
+        padding: 1rem 2rem 1rem 2rem;
+
+        .dateSelectorWrapper{
+            padding: 0.5rem 1rem;
+            margin: 0rem 0rem 2rem auto;
+            img{
+                margin-right: 0.5rem;
+            }
+            .datePickerWrapper{
+                p{
+                    font-size: 0.875rem;
+                    margin: 0rem 0rem 0.5rem 0rem;
+                }
+            }
+        }
+    
+        .cardWrapper {
+            justify-content: center;
+             gap: 2rem;
+
+             flex-wrap: wrap;
+        
+             .cardItem{
+                width: 45.5%;
+            }
+        }
+    
+        .btnGroup{
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            width: 100%;
+            div{
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                gap: 1rem;
+            }
+            .leftGroup{
+                justify-content: center;
+                padding: 0rem 2rem;
+            }
+            .rightGroup{
+                justify-content: center;
+                margin-left: 0rem;
+            }
+        }
+
+        .tableWrapper{
+        margin-top: 1rem;
+    }
+    }
+}
+
+@media all and (min-width:1200px){
+    .container{
+        padding: 2rem 3rem 1rem 3rem;
+
+        .dateSelectorWrapper{
+            padding: 0.5rem 1rem;
+            margin: 0rem 0rem 2rem auto;
+            img{
+                margin-right: 0.5rem;
+            }
+            .datePickerWrapper{
+                p{
+                    font-size: 0.875rem;
+                    margin: 0rem 0rem 0.5rem 0rem;
+                }
+            }
+        }
+    
+        .cardWrapper {
+            margin-bottom: 5rem;
+             gap: 1rem;
+             flex-wrap: nowrap;
+             justify-content: flex-start;
+        
+             .cardItem{
+                width: 20% ;   
+                padding: 0rem 1rem;             
+                .cardBody{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    text-align: center;
+
+                    .textContent{
+                          p{
+                        font-size: 1rem;
+                    text-align: center;
+
+                    }
+                    small{
+                        font-size: 0.875rem;
+                    }
+                    }
+    
+                    .chartDiv{
+                        img{
+                            width: 4rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .btnGroup{
+            flex-wrap: nowrap;
+            gap: 0rem;
+            justify-content: space-between;
+            width: 100%;
+            div{
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                width: auto;
+            }
+            .leftGroup{
+                justify-content: center;
+                padding: 0rem 0rem;
+
+            }
+            .rightGroup{
+                margin-left: 0rem;
+            }
+        }        
+        
+        .tableWrapper{
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+    }    
+}

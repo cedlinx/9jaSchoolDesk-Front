@@ -1,0 +1,131 @@
+.navbarContainer{
+    padding: 0.5rem 0rem;
+    margin: 0rem;
+    justify-content: space-between;
+    background-color: #f6f7f9;
+    position: fixed !important;
+    top: 0rem;
+    z-index: 1000;
+}
+
+.navbarCollapse {
+    background-color: rgba(9, 0, 0, 0.95);
+    background-color: #f6f7f9;
+    padding: 2rem 0rem;
+    height: 90vh;
+}
+
+.navbarToggler{
+    font-size: 1rem;
+    margin: 0rem 0.5rem;
+    padding: 0rem;
+}
+.btnGroup{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+.siteLogo{
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 0.25rem;
+
+    img{
+        width: 50%;
+    }
+}
+.primaryNavigation{
+    gap: 1.5rem;
+    a {
+        color: #2D2828;
+        color: #000;
+        // color: #fff;
+        margin: 0rem 1rem;
+        font-family: Poppins, sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    a:active{
+        color: #2C0085
+    }
+
+    .dropdownBtn > a {
+        // color: white !important;
+        color: #000 !important;
+
+        font-size: 1rem !important;
+        padding: 0rem;
+        margin: 0rem 1rem;
+        font-family: Poppins, sans-serif;
+        font-weight: bold;
+
+    }
+
+    .dropdownBtn div{
+        background-color: rgba(9, 0, 0, 0.53);
+    background-color: #f6f7f9;
+
+    a:hover{
+        width: auto;
+    }
+
+    }
+
+}
+
+@media all and (min-width:991px){
+    .navbarContainer{
+        padding: 0.5rem 3rem 1rem 3rem;
+        justify-content: space-between;
+    }
+    .siteLogo{
+        img{
+            width: 80%;
+        }
+    }
+    .navbarCollapse {
+        background-color: transparent;
+        padding: 0rem 0rem;
+        height: auto;
+    }
+    .btnGroup{
+        justify-content: flex-end;
+        margin-top: 0rem;
+    }
+    .primaryNavigation{
+        margin: 0rem 3rem 0rem 0rem;
+        gap: 1rem;
+        a{
+            margin: 0rem 0.375rem;
+            font-size: 0.75rem;
+        }
+        .dropdownBtn > a {
+            font-size: 0.75rem !important;
+            margin: 0rem 0rem;
+            padding: 0rem;
+        }
+    
+        .dropdownBtn div{
+            background-color: rgba(9, 0, 0, 0.53);
+            background-color: #f6f7f9;
+
+        }
+    }
+}
+
+@media all and (min-width:1200px){
+    .navbarContainer{
+        padding: 0.75rem 1rem 1rem 1rem;
+        justify-content: space-between;
+
+        a{
+            margin: 0rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        .dropdownBtn > a {
+            font-size: 0.875rem !important;
+        }
+    
+    }
+}
