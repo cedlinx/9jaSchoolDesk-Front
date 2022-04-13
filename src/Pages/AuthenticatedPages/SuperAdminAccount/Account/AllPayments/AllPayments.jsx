@@ -114,8 +114,8 @@ const AllPayments = props => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to modify the asset ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-					<Button  onClick={() => modifyPaymentFxn()} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					<Button  onClick={() => modifyPaymentFxn()} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 				</div>
 			</div>
 		);
@@ -126,7 +126,7 @@ const AllPayments = props => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to delete the payment ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
 					<Button onClick={() => deletePaymentFxn()} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
 				</div>
 			</div>
@@ -228,7 +228,7 @@ const AllPayments = props => {
 			Cell: (row)=>{
 				let id = row.cell.row.values.id;
 				return <div onClick={()=>handleViewClick(id)}>
-					<Button  title="View" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="rgba(44,0,133,0.05)"/>
+					<Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
 				</div>;
 			}
 		}
@@ -284,7 +284,7 @@ const AllPayments = props => {
 
 			<div className={cx(styles.assetCodeWrapper, "flexRow")}>
 				<div>
-					<Button title="Subscription" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085"  />
+					<Button title="Subscription" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D"  />
 				</div>
 
 				<div className={cx(styles.codeDetailsWrapper, "flexRow")}>
@@ -297,8 +297,8 @@ const AllPayments = props => {
 
 				{/* <div className={cx(styles.btnGroup, "flexRow")}>
 
-					<div><Button title="Active" checked textColor="#2C0085" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div>
-					<div><Button title="Edit" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085"  bgColor="#fff" /></div>
+					<div><Button title="Active" checked textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div>
+					<div><Button title="Edit" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085"  bgColor="#fff" /></div>
 					<div onClick={()=>displayModal("show", "deletePayment")}><Button title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 					
 				</div> */}

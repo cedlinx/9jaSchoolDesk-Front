@@ -21,72 +21,48 @@ const Footer = () => {
 	return (
 		<div className={cx("flexCol", styles.footerContainer)}>
 
-			<div className={cx(styles.topSection)}>
-				<h1>Brands</h1>
-				<div className={cx(styles.partnersLogosDiv)}>
-					<img data-aos="flip-right" src={logo1}alt="" /><img data-aos="flip-right" src={logo2} alt="" /><img data-aos="flip-right" src={logo3} alt="" /><img data-aos="flip-right" src={logo4} alt="" />
-				</div>
-		
+			<div className={cx(styles.profileSummary)}>
+				<div><img src={siteLogo} alt="site-logo" /></div>
+				<p
+					data-aos="fade-up"
+					data-aos-delay="600"
+					data-aos-duration="3300"
+				>Become part of your child’s academic growth today with 9jaschoolDesk</p>
+				{/* <p
+					data-aos="fade-up"
+					data-aos-delay="800"
+					data-aos-duration="3300"
+				>© 2020 Skydash. All rights reserved.</p> */}
 			</div>
-
-			<div className={cx(styles.appStoreDiv, "flexRow", "row")}>
-				
-				
-				<div className={cx(styles.appStoreContent,  "col-md-6")}>
-					<h2>App is available for free on Google Play & App Store</h2>
-					<p className="main-caption">Intrinsicly predominate multimedia based leadership skills whereas long-term high-impact niche markets.</p>
-
-					<div className={cx(styles.appStoreBtnDiv, "flexRow")}>
-						<a href="#">
-							<img src={appleStore} alt="apple-store" />
-						</a>
-						<a href="#">
-							<img src={googleStore} alt="google-store" />
-						</a>
-					</div>
-
-				</div>
-
-				<div className={cx(styles.imageDiv, "col-md-6")}><img src={phone5} alt="" /></div>
-
+			<div className={cx(styles.productSection)}>
+				<p className={cx(styles.header)}>Product</p>
+				<ul>
+					<li>Students</li>
+					<li>Parents</li>
+					<li>Teachers</li>
+				</ul>
 			</div>
-
-			<div className={cx(styles.lastSection)}>
-
-				<div className={cx(styles.profileSummary)}>
-					<div><img src={siteLogo} alt="site-logo" /></div>
-					<p
-						data-aos="fade-up"
-						data-aos-delay="600"
-						data-aos-duration="3300"
-					>Skydah is a Central Switching System where all items can be registered and store information for Authentication, Verification and Validation purpose. This engine will connect all relevant players as far as securing of items is concerned.</p>
-					<p
-						data-aos="fade-up"
-						data-aos-delay="800"
-						data-aos-duration="3300"
-					>© 2020 Skydash. All rights reserved.</p>
-				</div>
-				<div className={cx(styles.informationLinks)}>
-					<h3>INFORMATION</h3>
-					<ul>
-						<li>Terms and Conditions</li>
-						<li>Privacy Policy</li>
-						<li>FAQ</li>
-						<li>Pricing</li>
-						<li>Contact</li>
-					</ul>
-				</div>
-				<div className={cx(styles.contactDetails)}>
-					<h3>LET'S TALK</h3>
-					<p>Lagos Nigeria Office <br />
-					63, Akowonjo Road, Akowonjo- Lagos <br />
-					Lagos, Nigeria</p>
-					<p>09026507900, 08032499776, 08066829665</p>
-					<p>info@skydah.com</p>
-					<p>www.skydah.com</p>
-				</div>
+			<div className={cx(styles.aboutSection)}>
+				<p className={cx(styles.header)}>About</p>
+				<ul>
+					<li>The Team</li>
+					<li>Features</li>
+					<li>FAQ</li>
+				</ul>
 			</div>
-
+			<div className={cx(styles.socialsSection)}>
+				<p className={cx(styles.header)}>Socials</p>
+				<ul>
+					<li>Twitter</li>
+					<li>LinkedIn</li>
+					<li>Facebook</li>
+				</ul>
+			</div>
+			<div className={cx(styles.contactSection)}>
+				<p className={cx(styles.header)}>Contact Us</p>
+				<p>info@9jaschooldesk.com</p>
+				<p>+234 904 342 4455</p>
+			</div>
 		</div>
 	);
 };

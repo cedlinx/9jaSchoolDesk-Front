@@ -62,7 +62,7 @@ const Social=()=>{
 					<div className={cx(styles.header, "flexRow")}>
 						<h3>Link Social Media Account</h3>
 						<div className={cx(styles.btnDiv)}>
-							<Button title="Save Changes" borderRadiusType="lowRounded" textColor="#fff" bgColor="#2C0085" />
+							<Button title="Save Changes" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" />
 						</div>
 					</div>
 

@@ -176,7 +176,7 @@ export const FormGroup = styled(Form.Group)`
     transition: 0.3s;
     background: #fff;
     &:focus{
-      border: 1px solid #2C0085;
+      border: 1px solid #D25B5D;
     }
     &:focus-within label{
       transform: translate(0, -12px) scale(0.7);
@@ -197,7 +197,7 @@ export const FormGroup = styled(Form.Group)`
     box-sizing: border-box;
     border-radius: 4px;
     border: 1px solid #c1c7d0;
-    border: 1px solid #2C0085;
+    border: 1px solid #D25B5D;
     color: #5e6c84;
     transition: 0.3s;
     background: #f4f5f7;

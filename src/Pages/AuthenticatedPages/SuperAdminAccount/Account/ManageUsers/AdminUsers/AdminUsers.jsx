@@ -171,8 +171,8 @@ const AdminUsers = props => {
 					/>
 
 					<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-						<Button loading={loading}  onClick={handleSubmit((data) => modifyUserFxn(data))} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+						<Button loading={loading}  onClick={handleSubmit((data) => modifyUserFxn(data))} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 					</div>
 				</form>	
 			</div>
@@ -184,7 +184,7 @@ const AdminUsers = props => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to delete the user ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
 					<Button onClick={() => deleteUserFxn()} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
 				</div>
 			</div>
@@ -310,7 +310,7 @@ const AdminUsers = props => {
 				let userId = row.cell.row.values.userId;
 				console.log(userId);
 				return <div onClick={()=>handleViewClick(userId)}>
-					<Button  title="View" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="rgba(44,0,133,0.05)"/>
+					<Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
 				</div>;
 			}
 		}
@@ -333,7 +333,7 @@ const AdminUsers = props => {
 	return (
 		<>
 			{showBtnGroup && <div style={{ justifyContent: "flex-end", gap: "1rem", marginBottom: "1rem"}} className={cx(styles.btnGroup, styles.left,  "flexRow")}>
-				<div onClick={() => displayModal("show", "modifyUser")}><Button title="Edit" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+				<div onClick={() => displayModal("show", "modifyUser")}><Button title="Edit" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 				<div onClick={() => displayModal("show", "deleteUser")}><Button title="Remove" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 			</div> }
 			

@@ -53,7 +53,7 @@ const UserDetailsModal = props => {
 					</div>
 				
 					<BtnGroup className={cx(styles.btnGroup)}>
-						<Button onClick={() => handleClick()} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#FFF" />
+						<Button onClick={() => handleClick()} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#FFF" />
 						<Button onClick={() => handleClick(dispatchAction)} title="Remove Admin" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="F52626" bgColor="#F52626" />
 					</BtnGroup>
 					
@@ -93,7 +93,7 @@ const ModalWrapper = styled.div`
 	}
 	div{
 		margin: 0.5rem 0rem;
-		border-bottom: 1px solid #2C0085;
+		border-bottom: 1px solid #D25B5D;
 
 		span{
 			font-size: 0.75rem;
@@ -111,7 +111,7 @@ const ModalWrapper = styled.div`
 		}
 		div{
 			margin: 0.75rem 0rem;
-			border-bottom: 1px solid #2C0085;
+			border-bottom: 1px solid #D25B5D;
 
 			span{
 				font-size: 0.875rem;

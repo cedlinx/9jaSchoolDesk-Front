@@ -139,7 +139,7 @@ const BulkTransfer = props => {
 
 				{upload && <div onClick={() => showImportedResult()} style={{display: "flex", flexDirection: "row", justifyContent: "center", margin: "1rem 0rem 1rem 1rem", width: "fit-content"}}>
 					
-					<Button title="Proceed To Import" borderRadiusType="lowRounded" textColor="#fff" bordercolor="#2C0085" bgColor="#2C0085" />
+					<Button title="Proceed To Import" borderRadiusType="lowRounded" textColor="#fff" bordercolor="#D25B5D" bgColor="#D25B5D" />
 				</div>}
 
 			</div>
@@ -258,14 +258,14 @@ const BulkTransfer = props => {
 			<div className={cx(styles.cardWrapper, "flexRow")}>
 				<Card onClick={()=> navigate(-1)} className={cx(styles.cardItem)}>
 					<Card.Body className={cx(styles.cardBody)}>
-						<Icon icon="uis:process" color="#2c0085" />		
+						<Icon icon="uis:process" color="#D25B5D" />		
 						<p>Single Transfer</p>
 					</Card.Body>
 				</Card>
 
 				<Card  className={cx(styles.cardItem, styles.active)}>
 					<Card.Body className={cx(styles.cardBody)}>
-						<Icon icon="uis:process" color="#2c0085" />		
+						<Icon icon="uis:process" color="#D25B5D" />		
 						<p>Bulk Transfer</p>
 					</Card.Body>
 				</Card>
@@ -276,7 +276,7 @@ const BulkTransfer = props => {
 				{displayImportBtn && <div className={cx(styles.previewDiv, "flexCol", "col-sm-4", "col-md-8", "col-lg-8", "col-xl-8")}>
 					<div onClick={() => displayModal("show", "csvImport")} style={{display: "flex", flexDirection: "row", justifyContent: "center", margin: "1rem 0rem 1rem 1rem", width: "fit-content"}}>
 					
-						<Button title="Bulk CSV Import" borderRadiusType="mediumRounded" textColor="#2C0085" bordercolor="#2C0085" bgColor="#fff" />
+						<Button title="Bulk CSV Import" borderRadiusType="mediumRounded" textColor="#D25B5D" bordercolor="#D25B5D" bgColor="#fff" />
 					</div>
 				</div>}
 
@@ -285,8 +285,8 @@ const BulkTransfer = props => {
 					
 
 					<div className={cx(styles.btnGroup,  "flexRow")}>
-						<div><Button onClick={() => displayModal("show", "csvImport")} title="Bulk CSV Import" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="#fff" bordercolor="2C0085" /></div>
-						<div><Button title="Edit" checked borderRadiusType="lowRounded" textColor="#2C0085" bgColor="#fff" bordercolor="2C0085" /></div>
+						<div><Button onClick={() => displayModal("show", "csvImport")} title="Bulk CSV Import" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="2C0085" /></div>
+						<div><Button title="Edit" checked borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="2C0085" /></div>
 						
 						<div><Button onClick={()=>transferAssets()} title="Transfer" textColor="#fff" borderRadiusType="lowRounded" bgColor="#3ED7A0" /></div>
 					</div>
@@ -334,7 +334,7 @@ const BulkTransfer = props => {
 
 						<div onClick={handleSubmit((data) => transferNewAsset(data))} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 					
-							<Button title="Enter Email" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+							<Button title="Enter Email" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 						</div>
 					</form>	
 				

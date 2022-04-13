@@ -151,7 +151,7 @@ const ReviewBatchRegisterAsset = props => {
 			<div className={cx(styles.modalWrapper, "flexCol-align-center")}>				<h2>Are you sure you want to delete the asset ?</h2>
 				
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")}title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085"  bgColor="#fff" />
+					<Button onClick={() => displayModal("hide")}title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085"  bgColor="#fff" />
 					<Button title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
 				</div>
 			</div>
@@ -252,7 +252,7 @@ const ReviewBatchRegisterAsset = props => {
 				let assetId = row.cell.row.values.nameId;
 				return <div>
 					<Icon icon="lucide:edit-2" color="#ff7b31" />
-					<Icon icon="ant-design:delete-outlined" color="#2c0085" />					
+					<Icon icon="ant-design:delete-outlined" color="#D25B5D" />					
 				</div>;
 			}
 		}
@@ -332,7 +332,7 @@ const ReviewBatchRegisterAsset = props => {
 
 			<div className={cx(styles.btnGroup, "flexRow")}>	
 
-				<div><Button title="Edit" checked textColor="#2C0085" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div>
+				<div><Button title="Edit" checked textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div>
 				
 				<div onClick={()=>displayModal("show", "deleteAsset")}><Button title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 				

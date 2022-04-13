@@ -118,8 +118,8 @@ const AllAssets = () => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to modify the asset ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<div><Button title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
-					<div onClick={() => modifyAssetFxn()} ><Button title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" /></div>
+					<div><Button title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+					<div onClick={() => modifyAssetFxn()} ><Button title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" /></div>
 				</div>
 			</div>
 		);
@@ -132,7 +132,7 @@ const AllAssets = () => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to delete the asset ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<div><Button title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+					<div><Button title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 					<div onClick={() => deleteAssetFxn()} ><Button title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 				</div>
 			</div>
@@ -146,7 +146,7 @@ const AllAssets = () => {
 				<p>Code Generated Successfully</p>
 				<img src={qrCodeImage} alt="" />
 				<p>#001245105KJ30091</p>
-				<Button title="OK" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+				<Button title="OK" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 			</div>
 		);
 	};
@@ -198,7 +198,7 @@ const AllAssets = () => {
 					
 					<div onClick={handleSubmit((data) => reportAssetFxn(data))} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 						
-						<Button title="Report Asset" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+						<Button title="Report Asset" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 					</div>
 				</form>	
 				
@@ -245,7 +245,7 @@ const AllAssets = () => {
 
 				<div className={cx(styles.btnGroup, "flexRow")}>
 
-					<div onClick={() => displayModal("show", "reportAsset")}><Button title="Report Asset" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+					<div onClick={() => displayModal("show", "reportAsset")}><Button title="Report Asset" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 
 				</div>
 			</div>

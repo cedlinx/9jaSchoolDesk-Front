@@ -210,7 +210,7 @@ const AllPayments = () => {
 			Cell: (row)=>{
 				let userId = row.cell.row.values.userId;
 				return <div onClick={()=>handleViewClick(userId)}>
-					<Button  title="View" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="rgba(44,0,133,0.05)"/>
+					<Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
 				</div>;
 			}
 		}

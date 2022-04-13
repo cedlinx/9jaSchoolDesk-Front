@@ -4,17 +4,14 @@ import {Link, useNavigate} from "react-router-dom";
 import cx from "classnames";
 import styles from "./AuthPageContainer.module.scss";
 import siteLogo from "@/assets/images/Logo.png";
-
+import MenuBar from "@/components/MenuBar/MenuBar";
 
 const AuthPageContainer = (props) => {
 	const { children } = props;
 	const navigate = useNavigate();
 	return (
 		<div className={cx(styles.container, "flexCol")}>
-			<div className={cx(styles.header, "flexRow")}>
-				<img onClick={()=>navigate("/")} src={siteLogo} alt="logo" />
-				<Link to="/">Back Home</Link>
-			</div>
+			<MenuBar />
 			<div>{children}</div>
 		</div>
 	);

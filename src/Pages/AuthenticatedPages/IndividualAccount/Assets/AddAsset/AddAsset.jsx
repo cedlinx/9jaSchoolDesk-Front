@@ -233,7 +233,7 @@ const AddAsset = () => {
 					
 					<div onClick={handleSubmit((data) => addNewAsset(data))} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 						
-						<Button loading={loading} title="Add Asset Now" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+						<Button loading={loading} title="Add Asset Now" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 					</div>
 				</form>	
 				

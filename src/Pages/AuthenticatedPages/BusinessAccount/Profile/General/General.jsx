@@ -101,8 +101,8 @@ const AccountInformation=()=>{
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to modify the details ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<div><Button title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
-					<div onClick={()=>modifyFxn()} ><Button title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" /></div>
+					<div><Button title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+					<div onClick={()=>modifyFxn()} ><Button title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" /></div>
 				</div>
 			</div>
 		);
@@ -116,7 +116,7 @@ const AccountInformation=()=>{
 					<div className={cx(styles.header, "flexRow")}>
 						<h3>Account Information</h3>
 						<div onClick={handleSubmit((data) => modifyUserDetailsFxn(data))} className={cx(styles.btnDiv)}>
-							<Button title="Edit Information" borderRadiusType="lowRounded" textColor="#fff" bgColor="#2C0085" />
+							<Button title="Edit Information" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" />
 						</div>
 					</div>
 

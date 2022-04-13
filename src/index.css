@@ -4,10 +4,25 @@
   url("./assets//fonts/Poppins-Regular.ttf") 
   format('truetype');
 }
+
+@font-face {
+  font-family: 'Kronika';
+  src: local('Kronika'), 
+  url("./assets//fonts/Kronika.ttf") 
+  format('truetype');
+}
+
 @font-face {
   font-family: 'NunitoSans';
   src: local('NunitoSans'), 
   url("./assets/fonts/NunitoSans-Regular.ttf") 
+  format('truetype');
+}
+
+@font-face {
+  font-family: 'KGCorneroftheSky';
+  src: local('KGCorneroftheSky'), 
+  url("./assets/fonts/KGCorneroftheSky.ttf") 
   format('truetype');
 }
 
@@ -16,7 +31,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Poppins', "NunitoSans" 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'KGCorneroftheSky', 'Poppins', "NunitoSans", 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -118,8 +133,11 @@ a:hover{
 li{
   list-style-type: none;
 }
+p{
+  font-family: NunitoSans;
+}
 h1,h2,h3 {
-  font-family: Poppins;
+  font-family: KGCorneroftheSky;
   font-weight: bold;
 }
 h1{

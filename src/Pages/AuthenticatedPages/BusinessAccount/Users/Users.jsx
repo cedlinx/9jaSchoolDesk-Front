@@ -116,8 +116,8 @@ const Users = props => {
 	const btnGroup = ()=>{
 		return (
 			<div className={cx(styles.btnGroup, styles.right,  "flexRow")}>
-				<div><Button title="Active" checked textColor="#2C0085" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div>
-				<div onClick={() => displayModal("show", "modifyAsset")}><Button title="Edit" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+				<div><Button title="Active" checked textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div>
+				<div onClick={() => displayModal("show", "modifyAsset")}><Button title="Edit" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 				<div onClick={() => displayModal("show", "deleteAsset")}><Button title="Remove" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 			</div>
 		);
@@ -148,8 +148,8 @@ const Users = props => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to edit the asset ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-					<Button onClick={() => modifyUserFxn()} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					<Button onClick={() => modifyUserFxn()} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 				</div>
 			</div>
 		);
@@ -162,7 +162,7 @@ const Users = props => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to delete the user profile ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
 					<Button onClick={() => deleteUserFxn()} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
 				</div>
 			</div>
@@ -249,7 +249,7 @@ const Users = props => {
 					
 						<div onClick={handleSubmit((data) => addNewUser(data))} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 						
-							<Button title="Add User" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+							<Button title="Add User" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 						</div>
 					</form>	
 				</div>
@@ -274,7 +274,7 @@ const Users = props => {
 
 			<div className={cx(styles.headerWrapper, "flexRow")}>
 				<div onClick={() => displayModal("show", "addUser")}>
-					<Button title="+Add User" textColor="#2C0085" borderRadiusType="lowRounded" bgColor="#fff" />
+					<Button title="+Add User" textColor="#D25B5D" borderRadiusType="lowRounded" bgColor="#fff" />
 				</div>
 
 				<InputField icon onChange={(e)=>handleInputChange(e)} 

@@ -35,7 +35,7 @@ const Input = ({
 	};
 
 	return (
-		<FormGroup marginbottom={marginbottom || "1.5rem"} border={border || "#2C0085"} required={required}>
+		<FormGroup marginbottom={marginbottom || "1.5rem"} border={border || "#D25B5D"} required={required}>
 			<div className="input-container">
 				{icon && <img src={searchIcon} alt="search icon" />}
 				<input

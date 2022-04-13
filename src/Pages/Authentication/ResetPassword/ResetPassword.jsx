@@ -15,6 +15,8 @@ import { useForm, Controller } from "react-hook-form";
 import { resetPasswordValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import siteLogo from "@/assets/images/Logo.svg";
+
 const ResetPassword = () => {
 
 	const dispatch = useDispatch();
@@ -51,8 +53,11 @@ const ResetPassword = () => {
 		<AuthPageContainer>
 			<section className={cx(styles.container, "flexCol")}>
 
+				<div>
+					<img src={siteLogo} alt="" />
+				</div>
+
 				<h2>Reset Password</h2>
-				<p className="main-caption">Gain Access To Your Account</p>
 
 				<div className={cx(styles.formWrapper, "flexCol")}>
 					<form
@@ -60,7 +65,7 @@ const ResetPassword = () => {
 						className="form flex text-white homepage-mc-form"
 					>
 
-						<Controller
+						{/* <Controller
 							name="email"
 							control={control}
 							render={({ field }) => (
@@ -73,7 +78,7 @@ const ResetPassword = () => {
 									
 								/>
 							)}
-						/>
+						/> */}
 
 						<Controller
 							name="password"
@@ -81,7 +86,7 @@ const ResetPassword = () => {
 							render={({ field }) => (
 								<InputField
 									{...field}
-									label={"Password"}
+									label={"Enter New Password"}
 									placeholder=""
 									type="password"
 									error={errors?.password && errors?.password?.message}
@@ -96,7 +101,7 @@ const ResetPassword = () => {
 							render={({ field }) => (
 								<InputField
 									{...field}
-									label={"Confirm Password"}
+									label={"Confirm New Password"}
 									placeholder=""
 									type="password"
 									error={errors?.password_confirmation && errors?.password_confirmation?.message}
@@ -106,12 +111,12 @@ const ResetPassword = () => {
 						/>
 
 						<div className={cx(styles.submitBtnDiv, "flexRow")}>
-							<Button onClick={handleSubmit((data) => handleReset(data))} title="Submit" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+							<Button onClick={handleSubmit((data) => handleReset(data))} title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 						</div>
 
-						<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+						{/* <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 
-						<p><Link to="/login">Sign In</Link> to continue</p>
+						<p><Link to="/login">Sign In</Link> to continue</p> */}
 
 					</form>
 				</div>

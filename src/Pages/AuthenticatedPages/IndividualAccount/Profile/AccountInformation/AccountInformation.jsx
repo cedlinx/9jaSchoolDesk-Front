@@ -62,8 +62,8 @@ const AccountInformation=()=>{
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to modify the details ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={()=>dispatch(showModal({ action: "hide"}))} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />			
-					<Button loading={loading} onClick={()=>modifyFxn()}  title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+					<Button onClick={()=>dispatch(showModal({ action: "hide"}))} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />			
+					<Button loading={loading} onClick={()=>modifyFxn()}  title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 				</div>
 			</div>
 		);
@@ -81,7 +81,7 @@ const AccountInformation=()=>{
 				<form onSubmit={handleSubmit((data) => modifyUserDetailsFxn(data))} >
 					<div className={cx(styles.header, "flexRow")}>
 						<h3>Account Information</h3>
-						<Button type="button" onClick={(e)=>enableInputEdit(e)} title="Edit Information" borderRadiusType="lowRounded" textColor="#fff" bgColor="#2C0085" />
+						<Button type="button" onClick={(e)=>enableInputEdit(e)} title="Edit Information" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" />
 					</div>
 
 					{loading ? <FormSkeleton /> : 
@@ -258,7 +258,7 @@ const AccountInformation=()=>{
 						</div>}
 
 					<div className={cx(styles.footer)}>
-						{showSaveBtn && <Button onClick={(data)=>modifyUserDetailsFxn(data)} title="Save" borderRadiusType="lowRounded" textColor="#fff" bgColor="#2C0085" />}
+						{showSaveBtn && <Button onClick={(data)=>modifyUserDetailsFxn(data)} title="Save" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" />}
 					</div>
 
 					{modalState === "show" ? <Modal show >{modalType ===  "modifyUserDetails" ? confirmModifyModal() : null}</Modal> : null}

@@ -215,7 +215,7 @@ const AddAsset = () => {
 					
 						<div onClick={handleSubmit((data) => addNewAsset(data))} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 						
-							<Button title="Add Asset Now" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+							<Button title="Add Asset Now" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 						</div>
 					</form>	
 				
@@ -224,10 +224,10 @@ const AddAsset = () => {
 					<p>QUICK ACTIONS</p>
 					<div className={cx("flexRow", styles.btnGroup)}>
 						<div onClick={() => navigate("batch-register")} className={cx(styles.btnDiv)}>
-							<Button title="Batch Register" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="#fff" bordercolor="2C0085" />
+							<Button title="Batch Register" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="2C0085" />
 						</div>
 						<div onClick={() => navigate("bulk-import")} className={cx(styles.btnDiv)}>
-							<Button title="Bulk Import" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+							<Button title="Bulk Import" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 						</div>
 						<div onClick={() => navigate("download-sample")} className={cx(styles.btnDiv)}>
 							<Button title="Download Sample" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#3ED7A0" />

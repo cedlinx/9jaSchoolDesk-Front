@@ -8,6 +8,8 @@ import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import SelectField from "@/components/Select/Select";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
+import PageContainer from "@/components/PageContainer/PageContainer";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { signUp } from "@/redux/User/user.action";
@@ -62,7 +64,7 @@ const SignUp = () => {
 	};
 
 	return (
-		<AuthPageContainer>
+		<PageContainer>
 			<section className={cx(styles.signUpContainer, "flexCol")}>
 
 				<h2>Getting Started</h2>
@@ -195,7 +197,7 @@ const SignUp = () => {
 						/>
 
 						<div className={cx(styles.submitBtnDiv, "flexRow")}>
-							<Button onClick={handleSubmit((data) => createUser(data))} type title="Sign Up" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+							<Button onClick={handleSubmit((data) => createUser(data))} type title="Sign Up" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 						</div>
 
 						<p>Already have an account? <Link to="/login">Sign In</Link></p>
@@ -204,7 +206,7 @@ const SignUp = () => {
 				</div>
 
 			</section>
-		</AuthPageContainer>
+		</PageContainer>
 	);
 };
 

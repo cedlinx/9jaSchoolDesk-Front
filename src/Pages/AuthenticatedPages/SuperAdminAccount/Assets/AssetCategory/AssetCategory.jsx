@@ -231,8 +231,8 @@ const AssetCategory = () => {
 					/>
 
 					<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-						<Button loading={loading}  onClick={handleSubmit((data) => modifyAssetCategoryFxn(data))} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+						<Button loading={loading}  onClick={handleSubmit((data) => modifyAssetCategoryFxn(data))} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 					</div>
 				</form>	
 			</div>
@@ -245,7 +245,7 @@ const AssetCategory = () => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to delete the asset category?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<div><Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+					<div><Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 					<div onClick={() => deleteAssetCategoryFxn(data)} ><Button title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 				</div>
 			</div>
@@ -316,8 +316,8 @@ const AssetCategory = () => {
 					/>
 
 					<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-						<Button loading={loading}  onClick={handleSubmit((data) => addNewCategoryFxn(data))} title="Add Category" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+						<Button loading={loading}  onClick={handleSubmit((data) => addNewCategoryFxn(data))} title="Add Category" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 					</div>
 				</form>	
 			</div>
@@ -340,7 +340,7 @@ const AssetCategory = () => {
 
 	const leftHeader = ()=>{
 		return(
-			<div onClick={() => displayModal("show", "modifyAssetCategory")}><Button title="Add Asset Category" textColor="#fff" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" /></div>
+			<div onClick={() => displayModal("show", "modifyAssetCategory")}><Button title="Add Asset Category" textColor="#fff" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" /></div>
 		);
 	};
 
@@ -439,14 +439,14 @@ const AssetCategory = () => {
 				let assetId = row?.cell?.row?.values?.hidden_id;
 				console.log(assetId, "asset id here");
 				return <div style={{paddingLeft: "1rem"}} onClick={() => displayUncheckedDelete("show", "deleteAssetCategory", assetId)}> 
-					<Icon icon="ant-design:delete-outlined" color="#2c0085" />
+					<Icon icon="ant-design:delete-outlined" color="#D25B5D" />
 				</div>; 
 			}
 
 			// Cell: (row)=>{
 			// 	let assetID = row.cell.row.values.assetID;
 			// 	return <div onClick={()=>handleViewClick(assetID)}>
-			// 		<Button  title="View" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="rgba(44,0,133,0.05)"/>
+			// 		<Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
 			// 	</div>;
 			// }
 		}
@@ -501,12 +501,12 @@ const AssetCategory = () => {
 
 			<div className={cx(styles.codeDetailsWrapper, "flexRow")}>
 				<div onClick={() => displayModal("show", "assetCategory")}>
-					<Button title="Add Asset Category" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+					<Button title="Add Asset Category" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 				</div>
 
 				{showBtnGroup && 
 				<div className={cx(styles.btnGroup, "flexRow")}>
-					<div onClick={() => displayModal("show", "modifyAssetCategory")}><Button title="Edit" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+					<div onClick={() => displayModal("show", "modifyAssetCategory")}><Button title="Edit" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 					<div onClick={() => displayModal("show", "deleteAssetCategory")}><Button title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 
 				</div> 

@@ -187,8 +187,8 @@ const ManageUsers = () => {
 					/>
 
 					<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-						<Button loading={loading}  onClick={handleSubmit((data) => addNewUserFxn(data))} title="Add User" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+						<Button loading={loading}  onClick={handleSubmit((data) => addNewUserFxn(data))} title="Add User" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 					</div>
 				</form>	
 			</div>
@@ -198,7 +198,7 @@ const ManageUsers = () => {
 	const leftHeader = ()=>{
 		return(
 			<div className={cx("flexRow", styles.assetCodeWrapper)}>
-				<div onClick={() => displayModal("show", "assetCategory")}><Button title="Add Admin" textColor="#fff" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" /></div>
+				<div onClick={() => displayModal("show", "assetCategory")}><Button title="Add Admin" textColor="#fff" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" /></div>
 
 				<div style={{ paddingRight: "1rem" }} className={cx(styles.codeDetailsWrapper, "flexRow")}>
 					<img src={emptyAvatar} alt="avatar" />
@@ -216,7 +216,7 @@ const ManageUsers = () => {
 	const btnGroup = ()=>{
 		return (
 			<div className={cx(styles.btnGroup, styles.right,  "flexRow")}>
-				<div onClick={() => displayModal("show", "modifyAsset")}><Button title="Edit" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+				<div onClick={() => displayModal("show", "modifyAsset")}><Button title="Edit" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 				<div onClick={() => displayModal("show", "deleteAsset")}><Button title="Remove" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 			</div>
 		);

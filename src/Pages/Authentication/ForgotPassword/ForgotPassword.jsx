@@ -7,6 +7,8 @@ import styles from "./ForgotPassword.module.scss";
 import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
+import PageContainer from "@/components/PageContainer/PageContainer";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {forgotPassword} from "@/redux/User/user.action";
@@ -14,6 +16,9 @@ import {forgotPassword} from "@/redux/User/user.action";
 import { useForm, Controller } from "react-hook-form";
 import { forgotPasswordValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+import siteLogo from "@/assets/images/Logo.svg";
+
 
 const ForgotPassword = () => {
 
@@ -33,11 +38,13 @@ const ForgotPassword = () => {
 
 	return (
 		<AuthPageContainer>
-			<ToastContainer />
 			<section className={cx(styles.container, "flexCol")}>
 
+				<div>
+					<img src={siteLogo} alt="" />
+				</div>
+
 				<h2>Forgot Password</h2>
-				<p className="main-caption">Gain Access To Your Account</p>
 
 				<div className={cx(styles.formWrapper, "flexCol")}>
 					<form
@@ -51,7 +58,7 @@ const ForgotPassword = () => {
 							render={({ field }) => (
 								<InputField
 									{...field}
-									label={"Email Address"}
+									label={"Enter email used to create account"}
 									placeholder=""
 									type="email"
 									error={errors?.email && errors?.email?.message}
@@ -61,7 +68,7 @@ const ForgotPassword = () => {
 						/>
 
 						<div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
-							<Button title="Submit" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+							<Button title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 						</div>
 
 						<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>

@@ -48,7 +48,7 @@ const StolenAssets = props => {
 				accessor: "assetCode",
 				Cell: (row)=>{
 					return <div>
-						<Icon icon="ci:qr-code-1" color="#2c0085" />				
+						<Icon icon="ci:qr-code-1" color="#D25B5D" />				
 					</div>;
 				}
 			},

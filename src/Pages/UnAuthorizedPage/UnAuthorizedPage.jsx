@@ -24,7 +24,7 @@ const Page404 = () => {
 					We are sorry, you do not have the administrator rights to access this page. Kindly verify the url or <Link onClick={()=> localStorage.clear()} to="/contact" >contact us by clicking this link</Link> .
 				</div>
 				<div>
-					<Button onClick={() => clearLocalStorage()} title="Go To The Homepage" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" />
+					<Button onClick={() => clearLocalStorage()} title="Go To The Homepage" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 				</div>
 			</div>
 		</section>

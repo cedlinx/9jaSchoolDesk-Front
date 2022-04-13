@@ -7,6 +7,8 @@ import styles from "./Login.module.scss";
 import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
+import PageContainer from "@/components/PageContainer/PageContainer";
+
 import { isAuthenticated, decodeToken, getToken } from "@/utils/auth";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -17,6 +19,8 @@ import { useForm, Controller } from "react-hook-form";
 import { signInValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import siteLogo from "@/assets/images/Logo.svg";
+
 const Login = () => {
 
 	const navigate = useNavigate();
@@ -26,7 +30,7 @@ const Login = () => {
 
 	useEffect(() => {
 		checkIsAuthenticated &&	navigate("/individual-dashboard"); 
-	},[]);
+	},[checkIsAuthenticated, navigate]);
 
 	const signIn= async (data)=>{
 		try {
@@ -54,62 +58,73 @@ const Login = () => {
 			{checkIsAuthenticated ? <Navigate replace to="/individual-dashboard" /> : 
 				<>
 					<AuthPageContainer>
-						<ToastContainer />
-						<section className={cx(styles.container, "flexCol")}>
-							<h2>Sign In</h2>
-							<p className="main-caption">Login To Access Your Account</p>
 
-							<div className={cx(styles.formWrapper, "flexCol")}>
-								<form onSubmit={handleSubmit((data) => signIn(data))} 
-									className="form flex text-white homepage-mc-form"
-								>
-									<Controller
-										name="email"
-										control={control}
-										render={({ field }) => (
-											<InputField
-												{...field}
-												label={"Email Address"}
-												placeholder=""
-												type="email"
-												error={errors?.email && errors?.email?.message}
-												
-											/>
-										)}
-									/>
+						<div className={cx(styles.loginWrapper, "row")}>
 
-									<Controller
-										name="password"
-										control={control}
-										render={({ field }) => (
-											<InputField
-												{...field}
-												label={"Password"}
-												placeholder=""
-												type="password"
-												error={errors?.password && errors?.password?.message}
-												
-											/>
-										)}
-									/>
-
-									<div className={cx(styles.forgotPasswordWrapper, "flexRow")}>
-										<div className={cx(styles.checkboxDiv, "flexRow-left-centered")}>
-											<input type="checkbox" /> Remember Me
-										</div>
-										<Link to='/forgot-password'>Forget Password</Link>
-									</div>
-
-									<div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow")}>
-										<Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085"  />
-									</div>
-
-									<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
-
-								</form>
+							<div className={cx(styles.leftCol, "col-md-6")}>
+								<h3>Sign In</h3>
+								<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis odio tempora cupiditate, iure consequatur molestias, nulla aut vel suscipit a ab dolore sunt quos minima ad alias ullam architecto aliquam?</p>
 							</div>
 
-						</section>
+							<section className={cx(styles.rightCol, "col-md-6", "flexCol")}>
+								<div>
+									<img src={siteLogo} alt="" />
+								</div>
+
+								<div className={cx(styles.formWrapper, "flexCol")}>
+									<form onSubmit={handleSubmit((data) => signIn(data))} 
+										className="form flex text-white homepage-mc-form"
+									>
+										<Controller
+											name="email"
+											control={control}
+											render={({ field }) => (
+												<InputField
+													{...field}
+													label={"Email"}
+													placeholder=""
+													type="email"
+													error={errors?.email && errors?.email?.message}
+												
+												/>
+											)}
+										/>
+
+										<Controller
+											name="password"
+											control={control}
+											render={({ field }) => (
+												<InputField
+													{...field}
+													label={"Password"}
+													placeholder=""
+													type="password"
+													error={errors?.password && errors?.password?.message}
+												
+												/>
+											)}
+										/>
+
+										<div className={cx(styles.forgotPasswordWrapper, "flexRow")}>
+											{/* <div className={cx(styles.checkboxDiv, "flexRow-left-centered")}>
+												<input type="checkbox" /> Remember Me
+											</div> */}
+											<Link to='/forgot-password'>Forgot Password</Link>
+										</div>
+
+										<div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow")}>
+											<Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
+										</div>
+
+										<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+
+									</form>
+								</div>
+
+							</section>
+						</div>
+
+						
 					</AuthPageContainer>
 				</>
 			}

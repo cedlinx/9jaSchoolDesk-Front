@@ -81,7 +81,7 @@ const VerifyEmail = () => {
 
 						<p>{verificationResponse}</p>
 						<small>You will be automatically redirected to the login page shortly.<br /> You can also click the button below to go to the login page</small>
-						<Button onClick={() => navigate("/login")} title="Login" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" />
+						<Button onClick={() => navigate("/login")} title="Login" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 					</div> }
 
 				{ displayVerified &&  
@@ -89,7 +89,7 @@ const VerifyEmail = () => {
 								<Icon icon="codicon:verified-filled" color="#28a745" />
 								<p>{verificationResponse}</p>
 								<small>You will be automatically redirected to the login page shortly.<br /> You can also click the button below to go to the login page</small>
-								<Button onClick={() => navigate("/login")} title="Login" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" />
+								<Button onClick={() => navigate("/login")} title="Login" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 							</div>
 				}
 							
@@ -97,7 +97,7 @@ const VerifyEmail = () => {
 				<div className={cx(styles.wrapper)}>
 					<Icon icon="icon-park-outline:email-fail" color="#dc3545" />
 					<p>{verificationResponse}</p>
-					<Button onClick={() => navigate("/request-verification-link")} title="Request New Link" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" />
+					<Button onClick={() => navigate("/request-verification-link")} title="Request New Link" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 				</div>
 							
 				}
@@ -106,7 +106,7 @@ const VerifyEmail = () => {
 				<div className={cx(styles.wrapper)}>
 					<Icon icon="bxs:user-x" color="#ffc107" />
 					<p>{verificationResponse}. Kindly create an account.</p>
-					<Button onClick={() => navigate("/signup")} title="Sign Up" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" />
+					<Button onClick={() => navigate("/signup")} title="Sign Up" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 				</div>
 							
 				}

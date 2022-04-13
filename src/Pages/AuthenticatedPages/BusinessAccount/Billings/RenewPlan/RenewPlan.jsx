@@ -54,8 +54,8 @@ const RenewPlan = props => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to renew your plan ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-					<Button onClick={() => renewPlanFxn()} title="Yes Renew" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					<Button onClick={() => renewPlanFxn()} title="Yes Renew" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 				</div>
 			</div>
 		);
@@ -74,7 +74,7 @@ const RenewPlan = props => {
 						<small>Date Value</small>
 					</div>
 					<div onClick={()=>displayModal("show", "renewPlanConfirmation" )}>
-						<Button title="Renew Plan" textColor="#fff" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" />
+						<Button title="Renew Plan" textColor="#fff" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 					</div>
 					
 				</div>

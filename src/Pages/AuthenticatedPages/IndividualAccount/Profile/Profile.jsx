@@ -42,7 +42,7 @@ const Profile = () => {
 					<p>{userDetails.plan.name.toUpperCase()}</p>
 				</div>
 				<div className={cx(styles.btnDiv)}>
-					<Button title="Change Profile" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="#fff" />
+					<Button title="Change Profile" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" />
 				</div>
 				
 			</section>

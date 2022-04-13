@@ -175,7 +175,7 @@ const ReportedStolen = props => {
 				let assetId = row.cell.row.values.hidden_id;
 				console.log(assetId);
 				return <div onClick={()=>handleViewClick(assetId)}>
-					<Button  title="View" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="rgba(44,0,133,0.05)"/>
+					<Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
 				</div>;
 			}
 		}

@@ -133,7 +133,7 @@ const Billings = props => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to delete the payment ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
 					<Button onClick={() => deletePaymentFxn()} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
 				</div>
 			</div>
@@ -234,7 +234,7 @@ const Billings = props => {
 			Cell: (row)=>{
 				let id = row.cell.row.values.id;
 				return <div onClick={()=>handleViewClick(id)}>
-					<Button  title="View" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="rgba(44,0,133,0.05)"/>
+					<Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
 				</div>;
 			}
 		}
@@ -309,16 +309,16 @@ const Billings = props => {
 
 				<div className={cx(styles.leftGroup, "flexRow")}>
 
-					<div onClick={()=> navigate("upgrade-plan")}><Button title="Upgrade Plan"  textColor="#fff" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#2C0085" /></div>
+					<div onClick={()=> navigate("upgrade-plan")}><Button title="Upgrade Plan"  textColor="#fff" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#D25B5D" /></div>
 
-					<div onClick={()=> navigate("renew-plan")}><Button title="Renew Plan"  textColor="#2C0085" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div>
+					<div onClick={()=> navigate("renew-plan")}><Button title="Renew Plan"  textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div>
 
 				</div>
 				<div className={cx(styles.rightGroup, "flexRow")}>
 					
 					<Button title="Download Sample" textColor="#fff" bordercolor="" borderRadiusType="lowRounded" bgColor="#3ED7A0" />
 
-					{/* <Button title="Active" checkedBtn checked={checkedValue} textColor="#2C0085" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /> */}
+					{/* <Button title="Active" checkedBtn checked={checkedValue} textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /> */}
 
 					<Button onClick={()=>displayModal("show", "deletePayment")} title="Remove" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
 				</div>

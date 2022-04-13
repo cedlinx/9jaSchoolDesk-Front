@@ -48,7 +48,7 @@ const ReportedAssets = props => {
 		return(
 			<div className={cx("flexRow")}>
 				<div className={cx(styles.codeDetailsWrapper, "flexRow")}>
-					<Icon icon="bi:patch-check" color="#2c0085" />	
+					<Icon icon="bi:patch-check" color="#D25B5D" />	
 					<div>
 						<small>Total Reported Stolen Assets</small>
 						<p>129</p>
@@ -63,8 +63,8 @@ const ReportedAssets = props => {
 	const btnGroup = ()=>{
 		return (
 			<div style={{ gap: "1rem"}} className={cx(styles.btnGroup, styles.right,  "flexRow")}>
-				{/* <div><Button title="Active" checked textColor="#2C0085" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div> */}
-				<div onClick={() => displayModal("show", "modifyAsset")}><Button title="Edit" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+				{/* <div><Button title="Active" checked textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /></div> */}
+				<div onClick={() => displayModal("show", "modifyAsset")}><Button title="Edit" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 				<div onClick={() => displayModal("show", "deleteAsset")}><Button title="Remove" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 			</div>
 		);
@@ -97,7 +97,7 @@ const ReportedAssets = props => {
 								<p>{element.heading}</p>
 							</Card.Header>
 							<Card.Body className={cx(styles.cardBody)}>
-								<Icon icon="bi:patch-check" color="#2c0085" />
+								<Icon icon="bi:patch-check" color="#D25B5D" />
 								<h3>{element.value}</h3>
 							</Card.Body>
 						</Card>

@@ -103,7 +103,7 @@ const RecoveredAssets = () => {
 			accessor: "assetCode",
 			Cell: (row)=>{
 				let skydahid = row.cell.row.values.assetid;
-				return <div style={{ textAlign: "center" }}>< QRCodeSVG  value={skydahid} fgColor="#2C0085" size={32} /></div>; 
+				return <div style={{ textAlign: "center" }}>< QRCodeSVG  value={skydahid} fgColor="#D25B5D" size={32} /></div>; 
 			}
 		},
 		{

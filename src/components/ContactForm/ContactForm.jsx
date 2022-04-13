@@ -84,7 +84,7 @@ const ContactForm = (props) => {
 				/>
 
 				<div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
-					<Button title="Send Message" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#2C0085" />
+					<Button title="Send Message" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#D25B5D" />
 				</div>
 
 				<div className="mail-status">

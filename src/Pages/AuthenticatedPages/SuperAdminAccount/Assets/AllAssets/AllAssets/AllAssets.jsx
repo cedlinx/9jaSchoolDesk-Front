@@ -148,7 +148,7 @@ const AllAssets = () => {
 			accessor: "qrCode",
 			Cell: (row)=>{
 				let skydahid = row.cell.row.values.nameID;
-				return <div style={{ textAlign: "center" }}>< QRCodeSVG  value={skydahid} fgColor="#2C0085" size={32} /></div>; 
+				return <div style={{ textAlign: "center" }}>< QRCodeSVG  value={skydahid} fgColor="#D25B5D" size={32} /></div>; 
 			}
 		},
 		{
@@ -165,7 +165,7 @@ const AllAssets = () => {
 			Cell: (row)=>{
 				let status = row.cell.row.values.status;
 				return <div>
-					<Icon icon="bi:patch-check" color="#2c0085" />				<span>{status}</span>	
+					<Icon icon="bi:patch-check" color="#D25B5D" />				<span>{status}</span>	
 				</div>;
 			}
 		},

@@ -50,9 +50,9 @@ const MenuBar = () => {
 					</Nav>
 
 					<div className={cx(styles.btnGroup)} >
-						<Button onClick={()=>navigate("/signup")} title="Sign Up" borderRadiusType="fullyRounded" textColor="#fff"  bgColor="#2C0085" hoverBg="#fff" hoverColor="#2C0085" />
+						<Button onClick={()=>navigate("/signup")} title="Sign Up" borderRadiusType="fullyRounded" textColor="#fff"  bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
 
-						<Button onClick={()=>navigate("/login")} title="Sign In" borderRadiusType="fullyRounded" textColor="#fff"  bgColor="#2C0085" hoverBg="#fff" hoverColor="#2C0085" />
+						<Button onClick={()=>navigate("/login")} title="Sign In" borderRadiusType="fullyRounded" textColor="#D25B5D"  bgColor="#FFF" hoverBg="#D25B5D" hoverColor="#FFF" bordercolor="#D25B5D" />
 					</div>
 					
 

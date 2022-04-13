@@ -47,7 +47,7 @@ const VerifyAssetSuccess = props => {
 					<div className={cx(styles.modalItem, "flexRow-space-between")}>
 						<span className={cx(styles.title)}>STATUS</span><span className={cx(styles.value)}>{data?.sos ? "Stolen" : "Not Stolen"}</span>
 					</div>
-					<Button onClick={() => handleClick(dispatchAction)} title="Verify another asset" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" />
+					<Button onClick={() => handleClick(dispatchAction)} title="Verify another asset" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 				</> : <div>An Error Occured, Please Try Again</div>}
 			
 
@@ -82,7 +82,7 @@ const ModalWrapper = styled.div`
 	}
 	div{
 		margin: 0.5rem 0rem;
-		border-bottom: 1px solid #2C0085;
+		border-bottom: 1px solid #D25B5D;
 
 		span{
 			font-size: 0.75rem;
@@ -101,7 +101,7 @@ const ModalWrapper = styled.div`
 		}
 		div{
 			margin: 0.75rem 0rem;
-			border-bottom: 1px solid #2C0085;
+			border-bottom: 1px solid #D25B5D;
 
 			span{
 				font-size: 0.875rem;

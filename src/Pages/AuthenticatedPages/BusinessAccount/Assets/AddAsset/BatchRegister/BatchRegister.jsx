@@ -208,7 +208,7 @@ const BatchRegisterAsset = props => {
 					
 					<div onClick={()=> navigate("review-batch-register")} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 						
-						<Button title="Next" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+						<Button title="Next" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 					</div>
 				</form>	
 				

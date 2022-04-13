@@ -32,9 +32,9 @@ const PriceCard = props => {
 						})}
 					</div>
 
-					{pricingPage && btnText && <div className="flexRow-fully-centered"><Button title={btnText} radiusType="fullyRounded" textColor="#2C0085" bordercolor = "#2C0085" bgColor="#fff" hoverBg="#2C0085" hoverColor="#FFF" /></div> }
+					{pricingPage && btnText && <div className="flexRow-fully-centered"><Button title={btnText} radiusType="fullyRounded" textColor="#D25B5D" bordercolor = "#D25B5D" bgColor="#fff" hoverBg="#D25B5D" hoverColor="#FFF" /></div> }
 				</div>
-				{ !pricingPage && btnText && <div className="flexRow-fully-centered" style={{marginTop: "2rem"}}><Button title={btnText} radiusType="fullyRounded" textColor="#2C0085" bordercolor = "#2C0085" bgColor="#fff" hoverBg="#2C0085" hoverColor="#FFF"  /></div> }
+				{ !pricingPage && btnText && <div className="flexRow-fully-centered" style={{marginTop: "2rem"}}><Button title={btnText} radiusType="fullyRounded" textColor="#D25B5D" bordercolor = "#D25B5D" bgColor="#fff" hoverBg="#D25B5D" hoverColor="#FFF"  /></div> }
 
 			</div>
 		</section>

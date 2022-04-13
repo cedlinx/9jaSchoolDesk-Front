@@ -166,8 +166,8 @@ const AllAssets = () => {
 			// <div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 			// 	<h2>Are you sure you want to modify the asset ?</h2>
 			// 	<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-			// 		<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-			// 		<Button  onClick={() => modifyAssetFxn()} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+			// 		<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+			// 		<Button  onClick={() => modifyAssetFxn()} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 			// 	</div>
 			// </div>
 			<div style={{ width: "100%", minHeight: "50vh" }} className={cx("")}>
@@ -304,12 +304,12 @@ const AllAssets = () => {
 					
 					{/* <div onClick={handleSubmit((data) => addNewAsset(data))} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 						
-						<Button loading={loading} title="Add Asset Now" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+						<Button loading={loading} title="Add Asset Now" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 					</div> */}
 
 					<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-						<Button loading={loading}  onClick={handleSubmit((data) => modifyAssetFxn(data))} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+						<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+						<Button loading={loading}  onClick={handleSubmit((data) => modifyAssetFxn(data))} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 					</div>
 				</form>	
 			</div>
@@ -321,7 +321,7 @@ const AllAssets = () => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to delete the asset ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<div><Button title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
+					<div><Button title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /></div>
 					<div onClick={() => deleteAssetFxn()} ><Button title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" /></div>
 				</div>
 			</div>
@@ -335,7 +335,7 @@ const AllAssets = () => {
 				<p>Code Generated Successfully</p>
 				<img src={qrCodeImage} alt="" />
 				<p>#001245105KJ30091</p>
-				<Button onClick={()=> displayModal("hide")} title="OK" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+				<Button onClick={()=> displayModal("hide")} title="OK" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 			</div>
 		);
 	};
@@ -428,7 +428,7 @@ const AllAssets = () => {
 			Cell: (row)=>{
 				let assetID = row.cell.row.values.assetID;
 				return <div onClick={()=>handleViewClick(assetID)}>
-					<Button  title="View" borderRadiusType="lowRounded" textColor="#2C0085" bgColor="rgba(44,0,133,0.05)"/>
+					<Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
 				</div>;
 			}
 		}
@@ -481,7 +481,7 @@ const AllAssets = () => {
 
 			<div className={cx(styles.assetCodeWrapper, "flexRow")}>
 				{/* <div onClick={() => displayModal("show", "accessCode")}>
-					<Button title="Generate Asset Code" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+					<Button title="Generate Asset Code" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 				</div>
 
 
@@ -496,8 +496,8 @@ const AllAssets = () => {
 				{showBtnGroup && 
 				<div className={cx(styles.btnGroup, "flexRow")}>
 
-					{/* <Button title="Active" checkedBtn checked={checkedValue} textColor="#2C0085" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /> */}
-					<Button onClick={() => displayModal("show", "modifyAsset")} disabled={disableModifyBtn} title="Modify" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					{/* <Button title="Active" checkedBtn checked={checkedValue} textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" /> */}
+					<Button onClick={() => displayModal("show", "modifyAsset")} disabled={disableModifyBtn} title="Modify" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
 					<Button onClick={() => displayModal("show", "deleteAsset")} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
 
 				</div>

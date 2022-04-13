@@ -20,7 +20,7 @@ const Page404 = () => {
 					name changed, has been removed or doesn’t exist.
 				</div>
 				<div>
-					<Button onClick={() => navigate("/")} title="Go To The Homepage" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#2C0085" />
+					<Button onClick={() => navigate("/")} title="Go To The Homepage" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 				</div>
 			</div>
 		</section>

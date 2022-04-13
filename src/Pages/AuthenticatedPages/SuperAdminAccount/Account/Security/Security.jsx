@@ -15,7 +15,7 @@ const Security=()=>{
 				<div className={cx(styles.header, "flexRow")}>
 					<h3>Account Security</h3>
 					<div className={cx(styles.btnDiv)}>
-						<Button title="Change Password" borderRadiusType="lowRounded" textColor="#fff" bgColor="#2C0085" />
+						<Button title="Change Password" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" />
 					</div>
 				</div>
 

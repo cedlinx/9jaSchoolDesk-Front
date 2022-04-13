@@ -61,7 +61,7 @@ const verificationLink = () => {
 						/>
 
 						<div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
-							<Button title="Submit" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+							<Button title="Submit" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 						</div>
 
 						<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>

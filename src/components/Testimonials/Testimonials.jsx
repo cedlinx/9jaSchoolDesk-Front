@@ -5,12 +5,11 @@ import {Link} from "react-router-dom";
 import styles from "./Testimonials.module.scss";
 import { Card} from "react-bootstrap";
 import { Icon } from "@iconify/react";
-import CoverFlowSlider from "@/components/Carousels/CoverFlowSlider/CoverFlowSlider";
+import NormalCarousel from "@/components/Carousels/NormalCarousel/NormalCarousel";
 
 
-import testimonialsAvatar1 from "@/assets/images/testimonialsAvatar1.png";
-import testimonialsAvatar2 from "@/assets/images/testimonialsAvatar2.png";
-import testimonialsAvatar3 from "@/assets/images/testimonialsAvatar3.png";
+import testimonialsAvatar from "@/assets/images/testimonialsAvatar.png";
+
 
 import testimonialsIcon from "@/assets/icons/testimonialsIcon.png";
 
@@ -19,7 +18,7 @@ const Testimonials = props => {
 
 	let testimonialData = [
 		{
-			avatar: testimonialsAvatar1,
+			avatar: testimonialsAvatar,
 			name: "Charles Patterson",
 			position: "Specialist In Mathematics",
 			icon: testimonialsIcon,
@@ -27,7 +26,7 @@ const Testimonials = props => {
 		},
 
 		{
-			avatar: testimonialsAvatar2,
+			avatar: testimonialsAvatar,
 			name: "Charles Patterson",
 			position: "Specialist In Mathematics",
 			icon: testimonialsIcon,
@@ -35,7 +34,7 @@ const Testimonials = props => {
 		},
 
 		{
-			avatar: testimonialsAvatar3,
+			avatar: testimonialsAvatar,
 			name: "Charles Patterson",
 			position: "Specialist In Mathematics",
 			icon: testimonialsIcon,
@@ -50,12 +49,12 @@ const Testimonials = props => {
 					<Card key={index} className={cx(styles.cardItem)}>
 						<Card.Header className={cx(styles.cardHeader)}>
 							<div>
-								<img className={cx(styles.avatar)} src={element.avatar} alt="" />
+								<p><span>{element.name}</span><span>({element.position}</span></p>
 							</div>
 							<div>
-								<p>{element.name}</p>
-								<p>{element.position}</p>
+								<img className={cx(styles.avatar)} src={element.avatar} alt="" />
 							</div>
+						
 							<div>
 								<i><img src={element.testimonialIcon} alt="" /></i>
 							</div>
@@ -77,13 +76,12 @@ const Testimonials = props => {
 			<div className={cx(styles.testimonialsContainer)}>
 				
 				<div className={cx(styles.header)}>
-					<h2>What The People Thinks</h2>
-					<p className="main-caption">Intrinsicly predominate multimedia based leadership skills whereas long-term high-impact niche markets.</p>
+					<h3>Here’s what people are <br /> saying about us</h3>
 				</div>
 			
 
 				<div className={cx(styles.cardWrapper)}>
-					<CoverFlowSlider carouselArray={testArray()} />		
+					<NormalCarousel carouselArray={testArray()} />		
 				</div> 
 
 				

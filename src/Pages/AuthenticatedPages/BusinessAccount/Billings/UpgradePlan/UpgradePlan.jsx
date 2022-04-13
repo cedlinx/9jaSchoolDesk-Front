@@ -63,8 +63,8 @@ const UpgradePlan = props => {
 			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
 				<h2>Are you sure you want to upgrade your plan ?</h2>
 				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#2C0085" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-					<Button onClick={() => upgradePlanFxn()} title="Yes Upgrade" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+					<Button onClick={() => upgradePlanFxn()} title="Yes Upgrade" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 				</div>
 			</div>
 		);
@@ -87,7 +87,7 @@ const UpgradePlan = props => {
 			<div className={cx(styles.cardWrapper, "flexRow")}>
 
 				{allSubscriptionPlans && allSubscriptionPlans.map((element, index) => {
-					return <div className={cx(styles.innerWrapper)} onClick={()=>handleCardClick(element, index)} key={index} style={{border: selectedPlan.index === index ? "2px solid #2C0085" : "", borderRadius: "1rem"}}>
+					return <div className={cx(styles.innerWrapper)} onClick={()=>handleCardClick(element, index)} key={index} style={{border: selectedPlan.index === index ? "2px solid #D25B5D" : "", borderRadius: "1rem"}}>
 						<PriceCard  pricingPage title={element.name} amount={element.amount} benefitsArray={benefitsArray} />
 					</div>;
 				})}
@@ -104,7 +104,7 @@ const UpgradePlan = props => {
 			</div> */}
 
 			{selectedPlan && <div onClick={()=>displayModal("show", "upgradePlanConfirmation" )} style={{marginTop: "2rem"}}>
-				<Button title="Continue With The Selected Plan?" textColor="#fff" borderRadiusType="lowRounded" bgColor="#2C0085" />
+				<Button title="Continue With The Selected Plan?" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 			</div>}
 			
 		

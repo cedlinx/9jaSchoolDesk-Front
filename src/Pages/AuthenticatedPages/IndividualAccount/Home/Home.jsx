@@ -42,7 +42,7 @@ const Home = () => {
 				label: "# of Assets",
 				data: [chartValues?.counts?.recovered_assets, chartValues?.counts?.missing_assets, chartValues?.counts?.transferred_assets],
 				backgroundColor: [
-					"#2C0085",
+					"#D25B5D",
 			  "#FF8001",
 			  
 			  "#09001B"
@@ -125,7 +125,7 @@ const Home = () => {
 			}
 		},
 		hoverRadius: 4,
-		hoverBackgroundColor: "#2C0085",
+		hoverBackgroundColor: "#D25B5D",
 		interaction: {
 			mode: "nearest",
 			intersect: false,
@@ -174,7 +174,7 @@ const Home = () => {
 			}
 		  },
 		  hoverRadius: 4,
-		  hoverBackgroundColor: "#2C0085",
+		  hoverBackgroundColor: "#D25B5D",
 		  interaction: {
 			mode: "nearest",
 			intersect: false,
@@ -270,7 +270,7 @@ const Home = () => {
 			heading: "Recovered",
 			value: chartValues?.counts?.recovered_assets,
 			data: recoveredData,
-			backgroundColor: "#2C0085"
+			backgroundColor: "#D25B5D"
 		},
 		{
 			heading: "Transferred",

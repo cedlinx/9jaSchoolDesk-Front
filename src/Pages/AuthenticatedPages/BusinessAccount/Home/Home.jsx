@@ -43,7 +43,7 @@ const Home = () => {
 				label: "# of Assets",
 				data: [chartValues?.counts?.recovered_assets, chartValues?.counts?.missing_assets, chartValues?.counts?.transferred_assets],
 				backgroundColor: [
-					"#2C0085",
+					"#D25B5D",
 			  "#FF8001",
 			  
 			  "#09001B"
@@ -128,7 +128,7 @@ const Home = () => {
 			}
 		  },
 		  hoverRadius: 4,
-		  hoverBackgroundColor: "#2C0085",
+		  hoverBackgroundColor: "#D25B5D",
 		  interaction: {
 			mode: "nearest",
 			intersect: false,
@@ -177,7 +177,7 @@ const Home = () => {
 			}
 		  },
 		  hoverRadius: 4,
-		  hoverBackgroundColor: "#2C0085",
+		  hoverBackgroundColor: "#D25B5D",
 		  interaction: {
 			mode: "nearest",
 			intersect: false,
@@ -341,7 +341,7 @@ const Home = () => {
 				</div>
 			</div>
 
-			<Button onClick={()=> navigate("")} title="View Ownership History"  textColor="#fff" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#2C0085" />
+			<Button onClick={()=> navigate("")} title="View Ownership History"  textColor="#fff" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#D25B5D" />
             
 		</div>
 	);

@@ -62,7 +62,7 @@ const Analysis = () => {
 				label: "# of Assets",
 				data: [chartValues?.counts?.recovered_assets, chartValues?.counts?.missing_assets, chartValues?.counts?.transferred_assets],
 				backgroundColor: [
-					"#2C0085",
+					"#D25B5D",
 			  "#FF8001",
 			  
 			  "#09001B"
@@ -180,7 +180,7 @@ const Analysis = () => {
 			}
 		  },
 		  hoverRadius: 4,
-		  hoverBackgroundColor: "#2C0085",
+		  hoverBackgroundColor: "#D25B5D",
 		  interaction: {
 			mode: "nearest",
 			intersect: false,
@@ -229,7 +229,7 @@ const Analysis = () => {
 			}
 		  },
 		  hoverRadius: 4,
-		  hoverBackgroundColor: "#2C0085",
+		  hoverBackgroundColor: "#D25B5D",
 		  interaction: {
 			mode: "nearest",
 			intersect: false,
@@ -275,7 +275,7 @@ const Analysis = () => {
 		  {
 				label: "# of Assets",
 				data: [chartValues?.counts?.recovered_assets],
-				backgroundColor: ["#2C0085"],
+				backgroundColor: ["#D25B5D"],
 				borderWidth: 0,
 				hoverOffset: 10,
 				hoverBorderWidth: 1,
@@ -290,7 +290,7 @@ const Analysis = () => {
 		  {
 				label: "# of Assets",
 				data: [chartValues?.counts?.missing_assets],
-				backgroundColor: ["#2C0085"],
+				backgroundColor: ["#D25B5D"],
 				borderWidth: 0,
 				hoverOffset: 10,
 				hoverBorderWidth: 1,
@@ -305,7 +305,7 @@ const Analysis = () => {
 		  {
 				label: "# of Assets",
 				data: [Number(chartValues?.counts?.transferred_assets)],
-				backgroundColor: ["#2C0085"],
+				backgroundColor: ["#D25B5D"],
 				borderWidth: 0,
 				hoverOffset: 10,
 				hoverBorderWidth: 1,
@@ -321,7 +321,7 @@ const Analysis = () => {
 		  {
 				label: "# of Assets",
 				data: [chartValues?.counts?.missing_assets],
-				backgroundColor: ["#2C0085"],
+				backgroundColor: ["#D25B5D"],
 				borderWidth: 0,
 				hoverOffset: 10,
 				hoverBorderWidth: 1,
@@ -385,7 +385,7 @@ const Analysis = () => {
 				<h2>Analysis</h2>
 				<div>
 					
-					<Button title="Download Report"  textColor="#fff" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#2C0085" icon={<Icon icon="ant-design:file-text-filled" color="white" />} /></div>
+					<Button title="Download Report"  textColor="#fff" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#D25B5D" icon={<Icon icon="ant-design:file-text-filled" color="white" />} /></div>
 			</div>
 
 			<div className={cx(styles.cardWrapper, "flexRow")}>

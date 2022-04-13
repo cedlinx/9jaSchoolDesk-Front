@@ -81,14 +81,14 @@ const TransferAsset = props => {
 			<div className={cx(styles.cardWrapper, "flexRow")}>
 				<Card className={cx(styles.cardItem, styles.active)}>
 					<Card.Body className={cx(styles.cardBody)}>
-						<Icon icon="uis:process" color="#2c0085" />		
+						<Icon icon="uis:process" color="#D25B5D" />		
 						<p>Single Transfer</p>
 					</Card.Body>
 				</Card>
 
 				<Card onClick={()=> navigate("bulk-transfer")} className={cx(styles.cardItem)}>
 					<Card.Body className={cx(styles.cardBody)}>
-						<Icon icon="uis:process" color="#2c0085" />		
+						<Icon icon="uis:process" color="#D25B5D" />		
 						<p>Bulk Transfer</p>
 					</Card.Body>
 				</Card>
@@ -159,7 +159,7 @@ const TransferAsset = props => {
 
 					<div onClick={handleSubmit((data) => transferNewAsset(data))} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 					
-						<Button title="Transfer Asset" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+						<Button title="Transfer Asset" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 					</div>
 				</form>	
 				

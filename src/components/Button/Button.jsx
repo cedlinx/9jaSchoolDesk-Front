@@ -14,11 +14,11 @@ const Button = props => {
 		console.log(props.borderRadiusType);
 		switch(props.borderRadiusType){
 		case "lowRounded":
-			return "0.5rem";
-		case "mediumRounded":
 			return "0.75rem";
-		case "fullyRounded":
+		case "mediumRounded":
 			return "1rem";
+		case "fullyRounded":
+			return "1.5rem";
 			
 		default:
 			return "0.25rem";
@@ -28,7 +28,7 @@ const Button = props => {
 	const ButtonComponent = styled.button`
 	padding: 0.5rem 1.125rem;
     border: 0.5px solid;
-    font-family: Poppins;
+    font-family: KGCorneroftheSky, NunitoSans;
     font-size: 0.875rem;
     width: max-content;
     align-items: center;
@@ -59,7 +59,7 @@ const Button = props => {
 
 	@media all and (min-width:1200px){
 		
-		padding: 0.625rem 1.25rem;
+		padding: 0.625rem 1.75rem;
         font-size: 1rem;
 	}
 }

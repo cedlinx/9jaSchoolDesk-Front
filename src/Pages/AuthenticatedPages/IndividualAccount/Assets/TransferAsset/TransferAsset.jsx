@@ -144,7 +144,7 @@ const TransferAsset = props => {
 
 					<div onClick={handleSubmit((data) => transferNewAsset(data))} style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "1rem"}}>
 					
-						<Button loading={loading} title="Transfer Asset" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#2C0085" />
+						<Button loading={loading} title="Transfer Asset" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 					</div>
 				</form>	
 				
