@@ -51,23 +51,24 @@ const HomePage = () => {
 				<div   className={cx(styles.heroWrapper)}>
 					
 					<h1 
+						className={cx(styles.heroHeader)}
 						data-aos="fade-up"
 						data-aos-anchor-placement="center-bottom"
 						data-aos-delay="600"
-					>The one place where Children, Parents and Teachers all come together.</h1>
-					<p className='main-caption'
+					>The one place where <span>Children</span>, <span>Parents</span> and <span>Teachers</span> all come together.</h1>
+					<p className={cx(styles.heroCaption)}
 						data-aos="fade-up"
 						data-aos-anchor-placement="center-bottom"
 						data-aos-delay="800"
 					>Become part of your child’s academic growth today with 9jaschoolDesk</p>
 					
-					<div className={cx(styles.btnDiv, "flexRow")}>
+					<div className={cx(styles.btnDiv, "flexRow-fully-centered")}>
 
-						<Button onClick={()=> navigate("/#")} title="Student" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#FF8001" fontweight="bold" />
+						<Button onClick={()=> navigate("/#")} title="Student" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 								
-						<Button onClick={()=> navigate("/#")} title="Parent" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#FF8001" fontweight="bold" />
+						<Button onClick={()=> navigate("/#")} title="Parent" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 
-						<Button onClick={()=> navigate("/#")} title="Teacher" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#FF8001" fontweight="bold" />
+						<Button onClick={()=> navigate("/#")} title="Teacher" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 						
 					</div>
 						
@@ -75,7 +76,7 @@ const HomePage = () => {
 			
 				<div className={cx(styles.mainContentWrapper, "flexCol-align-center")}>
 					
-					<div className={cx(styles.studentsSection, "row")}>
+					<div className={cx(styles.studentsSection, styles.sectionWrapper, "row")}>
 						<div data-aos="zoom-in-left"
 							// data-aos-delay="1200"
 							className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
@@ -88,13 +89,13 @@ const HomePage = () => {
 							// data-aos-delay="1000"
 							className={cx(styles.contentWrapper, "col-sm-6", "col-md-6")}
 						>
-							<small>Student</small>
+							<small>Students</small>
 							<h3>Learning never got <br /> smoother</h3>
 
 							<div className={cx(styles.pointsWrapper)}>
 								<div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
 								<div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-								<div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
+								<div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant</span> </div>
 								<div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
 							</div>
 
@@ -104,7 +105,7 @@ const HomePage = () => {
 						
 					</div>
 
-					<div className={cx(styles.parentsSection, "row")}>
+					<div className={cx(styles.parentsSection,styles.sectionWrapper, "row")}>
 						<div data-aos="zoom-in-left"
 							// data-aos-delay="1200"
 							className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
@@ -133,7 +134,7 @@ const HomePage = () => {
 						
 					</div>
 
-					<div className={cx(styles.teachersSection, "row")}>
+					<div className={cx(styles.teachersSection,styles.sectionWrapper, "row")}>
 						<div data-aos="zoom-in-left"
 							// data-aos-delay="1200"
 							className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
@@ -170,11 +171,11 @@ const HomePage = () => {
 				<section className={cx(styles.pricingWrapper, "flex-row")}>
 					<h3>Choose the perfect plan for you</h3>
 					<div className={cx(styles.cardWrapper)}>
-						<PriceCard pricingPage title="Starter" amount="100000" btnText="Subscribe Now" benefitsArray={pricingArray.starter} />
+						<PriceCard title="Starter" amount="100000" btnText="Subscribe" benefitsArray={pricingArray.starter} />
 
-						<PriceCard pricingPage title="Premium" amount="100000" btnText="Subscribe Now" benefitsArray={pricingArray.premium} />
+						<PriceCard title="Premium" amount="100000" btnText="Get 7 days Free Trial" benefitsArray={pricingArray.premium} />
 
-						<PriceCard pricingPage title="Basic" amount="100000" btnText="Subscribe Now" benefitsArray={pricingArray.basic} />
+						<PriceCard title="Basic" amount="100000" btnText="Subscribe" benefitsArray={pricingArray.basic} />
 					</div>
 					
 				</section>

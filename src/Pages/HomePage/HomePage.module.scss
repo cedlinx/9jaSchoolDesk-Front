@@ -5,205 +5,94 @@
    
 
     .heroWrapper{        
-        margin-top: 1rem;
+        margin-top: 6rem;
+        text-align: center;
+        color: #496690;
+        padding: 0rem 1rem 3rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-
-          .header {
-            position: absolute;
-            z-index: 100;
-            width: 100%;
+        .heroHeader{
+            span{
+                color: #D25B5D;
+            }
         }
-        .colLeft{
-            height: 10vh;
 
+        .heroCaption{
+            margin: 2rem 0rem;
+            font-weight: 450;
         }
 
-         .colRight{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-weight: bold;
-            // background-color: #ded9e84b;
-            padding: 2rem 1rem;
-            color: white;
-            // height: 100vh;
-
-            .btnDiv{
-                gap: 1rem; 
-                justify-content: center;
-                margin-top: 1.5rem;
-             }
-         }
+        .btnDiv{
+            gap: 0.75rem;
+        }
+     
     }
  
-    .servicesWrapper {
-        padding: 3rem 1rem;
-        h2{
-            text-align: center;
-        }
+   .mainContentWrapper{
+       padding: 3rem 1rem;
+       color: #496690;
+       gap: 2rem;
+       
+       .sectionWrapper {
+           padding: 0rem;
+           gap: 1.125rem;
 
-        .cardWrapper {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-             gap:2rem;
-             margin-bottom: 2rem;
-        
-             .cardItem{
-                width: 18rem ;
-                border: none;
-                border-radius: 10px;
-                box-shadow: 0px 35px 40px rgba(210, 213, 235, 0.2);
-                display: flex;
-                flex-wrap: nowrap;
-                flex-direction: row;
-                width: 100%;
-                
-                .cardHeader{
-                    background-color: transparent;
-                    border: none;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: flex-start;
-                    width: auto;
-                    padding: 1rem 0rem 0rem 1rem;
+           .imageDiv{
+               img{
+                   width: 100%;
+                   height: auto;
+               }
+           }
 
-                    svg{
-                        width: 2rem;
-                        font-size: 2rem;
-                    }
-                }
-                .cardBody{
-                    padding: 1rem;
-                    width: auto;
-                    text-align: left;
-                    font-size: 1rem;
+           .contentWrapper {
+               gap: 1rem;
+               display: flex;
+               flex-direction: column;
 
-                    .title{
-                        font-weight: bold;
-                    }
-                    .description{
-                        font-size: 0.875rem;
-                    }
-                }
-            }
-        }
-        .imageDiv{
-            img {
-                width: 100%;
-            }
-        }
-    }
+               small{
+                   font-weight: 600;
+               }
 
-    .whyChooseUsWrapper{
-        padding: 4rem 1rem;
-        
-        .smallCardWrapper{
-            justify-content: space-between;
-            font-family: Poppins;
-            gap: 1rem;
-            margin-top: 1.5rem;
+               .pointsWrapper {
+                   div{
+                       display: flex;
+                       flex-wrap: nowrap;
+                       gap: 0.75rem;
+                   }
+               }
+           }
+       }
+   }
 
-            .cardItem{
-                width: 90%;
-                border-radius: 10px;
-                box-shadow: 0px 18px 18px rgba(210, 213, 235, 0.44);
-        
-                .cardHeader{
-                    background-color: transparent;
-                    border: none;
-                    display: flex;
-                    justify-content: center;
-                    img{
-                        width: 50%;
-                        align-self: center;
-                    }
-                }
-                .cardBody{
-                    border: none;
-                    text-align: center;
-                    font-size: clamp(0.625rem, 0.75rem, 0.875rem);
-                    padding: 1rem 0.5rem;
-                }
-            }
-        }
+   .pricingWrapper {
+       padding: 3rem 0rem;
+       background-color: #E9F2FF;
 
-        .description{
-            margin-top: 1.5rem;
-            font-size: 0.875rem;
-            text-align: center;
-        }
-        .appStoreDiv{
-            gap: 1rem;
-            margin-top: 0.5rem;
-            justify-content: center;
-    
-            img{
-                width: 7rem;
-            }
-        }
-    }
+       h3{
+           padding: 0rem 1rem;
+           text-align: center;
+           color: #22467B;
+       }
 
-     .subscribeDiv{
-        padding: 3rem 1rem;
-        gap: 2rem;
-
-        .colLeft{
-            img{
-                width: 100%;
-            }
-        }
-
-        .colRight{
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            .subscribeInputDiv{
-                border: 1px solid gray;
-                padding: 0rem 0rem 0rem 0.25rem;
-                border-radius: 4px;
-                background-color:transparent;
-                width: 75%;
-                
-                input{
-                    padding: 0rem;
-                    border: none;
-                    background-color:transparent;
-                    color: white;
-                    outline: none;
-                    font-size: 0.75rem;
-                    padding: 0rem 1rem;
-                    width: 100%;
-        
-                    ::placeholder{
-                        color: white;
-                        font-size: 0.5rem;
-                    }
-                }
-                i img{
-                    width: 1.625rem;
-                    border-radius: 4px;
-                    padding: 0rem;
-                    height: 100%
-                }
-            }
-        }
-
-           
- 
-    }
+       .cardWrapper{
+              display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                margin-top: 2rem;
+                padding: 0rem 2rem;
+       }
+   }
  
 }
 
 
 @media all and (min-width: 768px){
     .homepageContainer{   
-        .heroWrapper{
-    
+     
+        .heroWrapper{       
             background: linear-gradient(
                 rgba(44,0,133, 0.25), 
                 rgba(44,0,133, 0.25)
@@ -211,467 +100,216 @@
 
             background-size: cover;
             background-position: center;
-            height: 75vh;
-
-            .colLeft{
-                height: 70vh;
-            }
-    
-             .colRight{
-                justify-content: center;
-                align-items: flex-start;
-                text-align: left;
-                font-weight: 450;
-                padding: 2rem 5rem 2rem 0rem;
-                color: white;
-    
-                .btnDiv{
-                    gap: 1rem; 
-                    justify-content: flex-start;
-                 }
-             }
-        }
-     
-        .servicesWrapper {
-            padding: 3rem 2rem;
-    
-            .cardWrapper {
-                justify-content: flex-start;
-                 gap:1rem;
-                 margin-bottom: 0rem;
-            
-                 .cardItem{                   
-                    .cardHeader{
-                        background-color: transparent;
-                        border: none;
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: flex-start;
-                        width: auto;
-                        padding: 0.25rem 0rem 0rem 0.25rem;
-    
-                        img{
-                            width: 1.75rem;
-                        }
-                    }
-                    .cardBody{
-                        padding: 0.25rem 1rem 0rem 0.25rem;
-                        width: auto;
-                        text-align: left;
-                        font-size: 1rem;
-    
-                        .title{
-                            padding: 0rem;
-                            margin: 0rem;
-                        }
-                        .description{
-                            font-size: 0.75rem;
-                            line-height: 1.125;
-                        }
-                    }
-                }
-            }
-            .imageDiv{    
-                img {
-                    width: 100%;
-                }
-            }
-        }
-    
-        .whyChooseUsWrapper{
-            padding: 3rem 3rem;
-            
-            .smallCardWrapper{
-                gap: 3rem;
-                justify-content: center;
-                margin-top: 1.5rem;
-    
-                .cardItem{
-                    width: 50%;
-                    border-radius: 10px;
-                    box-shadow: 0px 18px 18px rgba(210, 213, 235, 0.44);
-            
-                    .cardHeader{
-                        background-color: transparent;
-                        border: none;
-                        display: flex;
-                        justify-content: center;
-                        img{
-                            width: 30%;
-                            align-self: center;
-                        }
-                    }
-                    .cardBody{
-                        border: none;
-                        text-align: center;
-                        font-size: clamp(0.75rem, 0.875rem, 1rem);
-                        padding: 1rem 0.5rem;
-                    }
-                }
-            }
-    
-            .description{
-                margin-top: 2rem;
-                font-size: 1rem;
-                text-align: center;
-            }
-            .appStoreDiv{
-                gap: 1rem;
-                margin-top: 0.75rem;
+            height: 85vh;
+            margin-top: 1rem;
+            padding: 7rem 8rem 5rem 8rem;
         
-                img{
-                    width: 7rem;
+            .heroCaption{
+                margin: 2rem 0rem;
+            }
+    
+            .btnDiv{
+                gap: 0.875rem;
+            }
+         
+        }
+
+        .mainContentWrapper{
+            padding: 3rem 2rem;
+            gap: 3rem;
+            
+            .sectionWrapper {
+                padding: 0rem;
+                gap: 0rem;
+     
+                .imageDiv{
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 0.5rem;
+                    }
+                }
+     
+                .contentWrapper {
+                    gap: 1rem;
+                    display: flex;
+                    flex-direction: column;
+     
+                    small{
+                        font-weight: 600;
+                    }
+     
+                    .pointsWrapper {
+                        div{
+                            display: flex;
+                            flex-wrap: nowrap;
+                            gap: 0.75rem;
+                        }
+                    }
+                }            
+            }
+
+            .parentsSection{
+                .imageDiv{
+                    order: 1;
                 }
             }
         }
-    
-         .subscribeDiv{
-            padding: 3rem 3rem;
-            gap: 0rem;
-            align-items: center;
-    
-            .colLeft{
-                img{
-                    width: 100%;
-                }
-            }
-    
-            .colRight{
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-    
-                .subscribeInputDiv{
-                    border: 1px solid gray;
-                    padding: 0rem 0rem 0rem 0.25rem;
-                    border-radius: 4px;
-                    background-color:transparent;
-                    width: 75%;
-                    
-                    input{
-                        padding: 0rem;
-                        border: none;
-                        background-color:transparent;
-                        color: white;
-                        outline: none;
-                        font-size: 0.75rem;
-                        padding: 0rem 1rem;
-                        width: 100%;
-            
-                        ::placeholder{
-                            color: white;
-                            font-size: 0.5rem;
-                        }
-                    }
-                    i img{
-                        width: 1.625rem;
-                        border-radius: 4px;
-                        padding: 0rem;
-                        height: 100%
-                    }
-                }
-            }
-    
-               
+
+        .pricingWrapper {
+            padding: 3rem 2rem;
      
+            h3{
+                padding: 0rem 1rem;
+            }
+     
+            .cardWrapper{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 0.75rem;
+                margin-top: 2rem;
+                padding: 0rem 0rem;
+            }
         }
     }
 }
 
 @media all and (min-width: 991px){
     .homepageContainer{   
-        .heroWrapper{
-            // background: linear-gradient(
-            //     rgba(0,0,0, 0.3), 
-            //     rgba(0,0,0, 0.3)
-            //   ), url(../../assets/images/homepage_hero.png);
-    
-            background: linear-gradient(
-                rgba(44,0,133, 0.2), 
-                rgba(44,0,133, 0.2)
-              ), url(../../assets/images/homepage_hero.png);
-
-            background-size: cover;
-            height: 85vh;
-
-              .header {
-
-            }
-            .colLeft{
-                height: 90vh;
-            }
-    
-             .colRight{
-                justify-content: center;
-                align-items: flex-start;
-                text-align: left;
-                font-weight: 550;
-                padding: 2rem 3rem 1rem 1rem;
-                color: white;
-    
-                .btnDiv{
-                    gap: 1rem; 
-                    justify-content: flex-start;
-                    margin-top: 1.5rem;
-                 }
-             }
-        }
      
-        .servicesWrapper {
-            padding: 5rem 4rem;
-    
-            .cardWrapper {
-                justify-content: space-between;
-                 gap:1rem;
-            
-                 .cardItem{                   
-                    .cardHeader{
-                        background-color: transparent;
-                        border: none;
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: flex-start;
-                        width: auto;
-                        padding: 0.5rem 0rem 0rem 0.5rem;
-    
-                        img{
-                            width: 2rem;
-                        }
-                    }
-                    .cardBody{
-                        padding: 0.5rem 1rem 0rem 0.5rem;
-                        width: auto;
-                        text-align: left;
-                        font-size: 1.125rem;
-    
-                        .title{
-                            margin-bottom: 0.5rem;
-                        }
-                        .description{
-                            font-size: 1rem;
-                            line-height: 1.25;
-                        }
-                    }
-                }
-            }
-        }
-    
-        .whyChooseUsWrapper{
-            padding: 5rem 4rem;
-            
-            .smallCardWrapper{
-                gap: 3rem;
-                justify-content: center;
-                margin-top: 2rem;
-    
-                .cardItem{
-                    width: 50%;
-                   
-                    .cardHeader{
-                        background-color: transparent;
-                        border: none;
-                        display: flex;
-                        justify-content: center;
-                        img{
-                            width: 30%;
-                            align-self: center;
-                        }
-                    }
-                    .cardBody{
-                        border: none;
-                        text-align: center;
-                        font-size: clamp(0.75rem, 0.875rem, 1rem);
-                        padding: 1rem 0.5rem;
-                    }
-                }
-            }
-    
-            .description{
-                margin-top: 2.5rem;
-                font-size: 1rem;
-            }
-            .appStoreDiv{
-                gap: 2rem;
-                margin-top: 1rem;
+        .heroWrapper{       
+           
+            height: 70vh;
+            margin-top: 1rem;
+            padding: 7rem 10rem 5rem 10rem;
         
-                img{
-                    width: 7rem;
+            .heroCaption{
+                margin: 2rem 0rem;
+            }
+    
+            .btnDiv{
+                gap: 0.875rem;
+            }
+         
+        }
+
+        .mainContentWrapper{
+            padding: 3rem 2rem;
+            gap: 3rem;
+            
+            .sectionWrapper {
+                padding: 0rem;
+                gap: 0rem;
+     
+                .imageDiv{
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 0.5rem;
+                    }
                 }
+     
+                .contentWrapper {
+                    gap: 1rem;
+                    display: flex;
+                    flex-direction: column;
+     
+                    small{
+                        font-weight: 600;
+                    }
+     
+                    .pointsWrapper {
+                        div{
+                            display: flex;
+                            flex-wrap: nowrap;
+                            gap: 0.75rem;
+                        }
+                    }
+                }            
             }
         }
-    
-         .subscribeDiv{
-            padding: 4rem 4rem;
-    
-            .colRight{
-                .subscribeInputDiv{
-                    padding: 0rem 0rem 0rem 0.25rem;
-                    border-radius: 4px;
-                    width: 75%;
-                    
-                    input{
-                        font-size: 0.75rem;
-                        padding: 0rem 1rem;
-                       
-                    }
-                    i img{
-                        width: 1.625rem;
-                        border-radius: 4px;
-                        padding: 0rem;
-                        height: 100%
-                    }
-                }
+
+        .pricingWrapper {
+            padding: 3rem 2rem;
+     
+            h3{
+                padding: 0rem 1rem;
+            }
+     
+            .cardWrapper{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 2rem;
             }
         }
     }
-
 }
 
 @media all and (min-width: 1200px){
     .homepageContainer{   
-        .heroWrapper{
-            // background: linear-gradient(
-            //     rgba(0,0,0, 0.3), 
-            //     rgba(0,0,0, 0.3)
-            //   ), url(../../assets/images/homepage_hero.png);
-    
-            background: linear-gradient(
-                rgba(44,0,133, 0.2), 
-                rgba(44,0,133, 0.2)
-              ), url(../../assets/images/homepage_hero.png);
-
-            background-size: cover;
-            height: 100vh;
-
-              .header {
-
-            }
-            .colLeft{
-                height: 90vh;
-            }
-    
-             .colRight{
-                justify-content: center;
-                align-items: flex-start;
-                text-align: left;
-                font-weight: 550;
-                padding: 2rem 3rem 1rem 1rem;
-                color: white;
-    
-                .btnDiv{
-                    gap: 1rem; 
-                    justify-content: flex-start;
-                    margin-top: 1.5rem;
-                 }
-             }
-        }
      
-        .servicesWrapper {
-            padding: 5rem 7rem;
-    
-            .cardWrapper {
-                justify-content: space-between;
-                 gap:1rem;
-            
-                 .cardItem{                   
-                    .cardHeader{
-                        background-color: transparent;
-                        border: none;
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: flex-start;
-                        width: auto;
-                        padding: 0.75rem 0rem 0rem 0.75rem;
-    
-                        img{
-                            width: 2.5rem;
-                        }
-                    }
-                    .cardBody{
-                        padding: 0.75rem 1rem 0rem 0.75rem;
-                        width: auto;
-                        text-align: left;
-                        font-size: 1.25rem;
-    
-                        .title{
-                            margin-bottom: 0.75rem;
-                            font-size: 1.375rem;
-                        }
-                        .description{
-                            font-size: 1.125rem;
-                            line-height: 1.5;
-                        }
-                    }
-                }
+        .heroWrapper{   
+            align-items: center;    
+           
+            height: 95vh;
+            margin-top: 1rem;
+            padding: 7rem 10rem 5rem 10rem;
+
+            .heroHeader{ 
+                width: 50%;
             }
-        }
-    
-        .whyChooseUsWrapper{
-            padding: 5rem 7rem;
-            
-            .smallCardWrapper{
-                gap: 3rem;
-                justify-content: center;
-                margin-top: 2rem;
-    
-                .cardItem{
-                    width: 50%;
-                   
-                    .cardHeader{
-                        background-color: transparent;
-                        border: none;
-                        display: flex;
-                        justify-content: center;
-                        img{
-                            width: 30%;
-                            align-self: center;
-                        }
-                    }
-                    .cardBody{
-                        border: none;
-                        text-align: center;
-                        font-size: clamp(0.75rem, 0.875rem, 1rem);
-                        padding: 1rem 0.5rem;
-                    }
-                }
-            }
-    
-            .description{
-                margin-top: 2.5rem;
-                font-size: 1rem;
-            }
-            .appStoreDiv{
-                gap: 2rem;
-                margin-top: 1rem;
         
-                img{
-                    width: 7rem;
-                }
+            .heroCaption{
+                margin: 3rem 0rem;
+            }
+    
+            .btnDiv{
+                gap: 0.875rem;
+            }
+         
+        }
+
+        .mainContentWrapper{
+            padding: 3rem 2rem;
+            gap: 4rem;
+            
+            .sectionWrapper {
+                padding: 0rem;
+                gap: 0rem;
+                width: 100%;
+                align-items: center;
+     
+                .contentWrapper {
+                    gap: 1rem;
+                   
+                    small{
+                        font-weight: 600;
+                    }
+     
+                    .pointsWrapper {
+                        div{
+                            gap: 1rem;
+                        }
+                    }
+                }            
             }
         }
-    
-         .subscribeDiv{
-            padding: 4rem 7rem;
-    
-            .colRight{
-                .subscribeInputDiv{
-                    padding: 0rem 0rem 0rem 0.25rem;
-                    border-radius: 4px;
-                    width: 75%;
-                    
-                    input{
-                        font-size: 0.75rem;
-                        padding: 0rem 1rem;
-                       
-                    }
-                    i img{
-                        width: 1.625rem;
-                        border-radius: 4px;
-                        padding: 0rem;
-                        height: 100%
-                    }
-                }
+
+        .pricingWrapper {
+            padding: 3rem 7rem;
+     
+            h3{
+                padding: 0rem 1rem;
+            }
+     
+            .cardWrapper{
+                gap: 3rem;
+                margin-top: 2rem;
             }
         }
     }

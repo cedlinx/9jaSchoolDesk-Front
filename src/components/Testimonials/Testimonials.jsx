@@ -10,7 +10,6 @@ import NormalCarousel from "@/components/Carousels/NormalCarousel/NormalCarousel
 
 import testimonialsAvatar from "@/assets/images/testimonialsAvatar.png";
 
-
 import testimonialsIcon from "@/assets/icons/testimonialsIcon.png";
 
 
@@ -19,8 +18,8 @@ const Testimonials = props => {
 	let testimonialData = [
 		{
 			avatar: testimonialsAvatar,
-			name: "Charles Patterson",
-			position: "Specialist In Mathematics",
+			name: "Edeh Funmi",
+			position: "Parent",
 			icon: testimonialsIcon,
 			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 		},
@@ -28,15 +27,15 @@ const Testimonials = props => {
 		{
 			avatar: testimonialsAvatar,
 			name: "Charles Patterson",
-			position: "Specialist In Mathematics",
+			position: "Clergy",
 			icon: testimonialsIcon,
 			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 		},
 
 		{
 			avatar: testimonialsAvatar,
-			name: "Charles Patterson",
-			position: "Specialist In Mathematics",
+			name: "John Doe",
+			position: "Lawyer",
 			icon: testimonialsIcon,
 			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 		}
@@ -48,16 +47,14 @@ const Testimonials = props => {
 				 return(
 					<Card key={index} className={cx(styles.cardItem)}>
 						<Card.Header className={cx(styles.cardHeader)}>
-							<div>
-								<p><span>{element.name}</span><span>({element.position}</span></p>
+							<div className={cx(styles.userInfo)}>
+								<p><span>{element.name}</span><span>({element.position})</span></p>
 							</div>
-							<div>
+							<div className={cx(styles.avatarDiv)}>
 								<img className={cx(styles.avatar)} src={element.avatar} alt="" />
 							</div>
 						
-							<div>
-								<i><img src={element.testimonialIcon} alt="" /></i>
-							</div>
+							
 						</Card.Header>
 						<Card.Body className={cx(styles.cardBody)}>{element.comment}</Card.Body>	
 					</Card>

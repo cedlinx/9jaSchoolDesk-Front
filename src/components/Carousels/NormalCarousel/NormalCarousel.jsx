@@ -88,8 +88,8 @@ const App = ({carouselArray}) => {
 				className={cx(styles.mySwiper)}
 				{...params}
 			>
-				<div className="swiper-button-prev"><i className="fa fa-arrow-circle-left" aria-hidden="true" /></div>
-				<div className="swiper-button-next"><i className="fa fa-arrow-circle-right" aria-hidden="true" /></div>
+				<div className={cx(styles.prevBtn, "swiper-button-prev")}><i className="fa fa-arrow-circle-left" aria-hidden="true" /></div>
+				<div className={cx(styles.nextBtn, "swiper-button-next")}><i className="fa fa-arrow-circle-right" aria-hidden="true" /></div>
 
 				{carouselArray && carouselArray.map((item, index) => {
 					return (

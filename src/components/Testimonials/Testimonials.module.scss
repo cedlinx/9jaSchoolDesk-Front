@@ -1,14 +1,8 @@
 .testimonialsContainer{
     width: 100%;
-    padding: 0.5rem 0.75rem;
+    padding: 3rem 1rem;
     margin: 0rem 0rem 2rem 0rem;
-   
-    .header{
-        h2, p {
-                text-align: center;
-            }
-    }
-  
+    color: #D25B5D;  
 }
 
 .cardWrapper {
@@ -22,15 +16,33 @@
         border-radius: 10px;
         box-shadow: 0px 24px 28px rgba(210, 213, 235, 0.4);
         padding: 1rem 0rem;
+        color: #496690;
+        font-family: NunitoSans;
+        font-weight: 600;
         
         .cardHeader{
             background-color: transparent;
             border: none;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
             gap: 0.5rem;
-            font-family: Poppins;
-            text-align: center;
+
+            .userInfo{
+                text-align: left;
+
+                span:nth-child(1){
+                    font-weight: bold;
+                    padding: 0rem;
+                    margin: 0rem;
+                }
+                span:nth-child(2){
+                    color: #4967907f;
+                    padding: 0rem;
+                    margin: 0rem 0rem 0rem 0.5rem;
+                }
+            }
 
             .avatar{
                 width: 3rem;
@@ -38,82 +50,61 @@
             }
             i img{
                 width: 1rem;
-                // display: none;
-
             }
-            p:nth-child(1){
-                font-size: 1rem;
-                font-weight: bold;
-                color: #494E69;
-                padding: 0rem;
-                margin: 0rem;
-            }
-            p:nth-child(2){
-                font-size: 0.875rem;
-                color: #758FA4;
-                padding: 0rem;
-                margin: 0rem;
-            }
+          
         }
         .cardBody{
-            text-align: center;
+            text-align: justify;
             font-size: 1rem;
-            color: #758FA4;
-            font-family: NunitoSans;
         }
     }
 }
 
 @media all and (min-width:768px){
     .testimonialsContainer{
-        h2, p{
-            text-align: center;
+        .header{
+            padding: 0rem 0rem 1rem 1rem;
         }
-    }
-    .cardWrapper {
+
+        .cardWrapper {
         // gap: 1rem;
         // margin-top: 2rem;
+        padding: 0rem;
          .cardItem{
             width: 19rem ;
         }
     }
+    }
+   
 }
 
 @media all and (min-width: 991px){
 
     .testimonialsContainer{
-
-        .header{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            h2, p {
-                text-align: center
+    .cardWrapper {
+            // margin-top: 2rem;
+        padding: 0rem;
+            .cardItem{
+                width: 18rem ;
             }
         }
-
     }
-    .cardWrapper {
-        // margin-top: 2rem;
-    padding: 2.5rem;
-         .cardItem{
-            width: 18rem ;
-        }
-    }
+ 
 }
 
 @media all and (min-width: 1200px){
 
     .testimonialsContainer{
-
- 
-
-    }
-    .cardWrapper {
-        // margin-top: 2rem;
-    padding: 2.5rem;
-         .cardItem{
-            width: 21rem ;
+        .header{
+            padding: 0rem 0rem 1rem 2rem;
+        }
+        .cardWrapper {
+            // margin-top: 2rem;
+        padding: 2.5rem 0rem;
+            .cardItem{
+                width: 21rem ;
+            }
         }
     }
+
 }

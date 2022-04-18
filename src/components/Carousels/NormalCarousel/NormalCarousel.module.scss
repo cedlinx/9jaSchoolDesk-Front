@@ -2,6 +2,12 @@
     padding: 1rem 1rem;
     background-color: #f6f7f9;
 
+    .prevBtn{
+        left: -2.5px;
+    }
+    .nextBtn{
+        right: -2.5px;
+    }
 }
 
 @media all and (min-width: 1200px){

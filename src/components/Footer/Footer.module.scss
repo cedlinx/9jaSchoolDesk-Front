@@ -1,23 +1,44 @@
 .footerContainer{
     width: 100%;
-    padding: 0rem 0rem;
+    padding: 3rem 1rem;
     margin: 0rem 0rem 0rem 0rem;
+    gap: 2rem;
+    color: #496690;
 
-    .topSection{
-        padding: 2rem 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .partnersLogosDiv{
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-
+    .profileSummary{
+        div{
             img{
-                width: 45%;
+                width: 50%;
+            }
+        }
+        p{
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    :is(.productSection, .aboutSection, .socialsSection, .contactSection){
+        .header{
+            font-weight: 600;
+            color: #22467B;
+            margin-bottom: 1rem;
+        }
+        ul{
+            padding: 0rem;
+            li{
+                margin-bottom: 0.5rem;
+                cursor: pointer;
+
+                span:nth-child(1){
+                    margin-right: 0.5rem;
+                }
+                img{
+                    width: 1.125rem;
+                    
+                }
+
+                &:hover{
+                    font-weight: bold;
+                }
             }
         }
     }
@@ -105,261 +126,145 @@
 @media all and (min-width:768px){
 
     .footerContainer{
-
-        .topSection{
-            padding: 5rem 1rem;
-        
-            .partnersLogosDiv{
-                gap: 1rem;
-                justify-content: space-evenly;
+        padding: 3rem 2rem;
+        gap: 2rem;
     
-                img{
-                    width: 15%;
-                }
-            }
-        }
-
-     .appStoreDiv{
-        padding: 2rem 3rem;
-        position: relative;
-        justify-content: center;
-
-        .appStoreContent{   
-    
-            .appStoreBtnDiv{
-                margin-top: 1rem;
-                img{
-                    width: 7rem;
-                }
-            }
-        }
-
-        .imageDiv{
-            display: block;
-            
-            img {
-                width: 100%;
-            }
-        }
-       
-    }
-
-    .lastSection{
-        padding: 2rem 3rem;
-        justify-content: space-between;
-        flex-wrap: wrap;
-
         .profileSummary{
-           width: auto;
-           margin-bottom: 1.5rem;
-    
-            img{
-                width: 10rem;
+            div{
+                img{
+                    width: 20%;
+                }
+            }
+            p{
                 margin-bottom: 0.5rem;
             }
-            p{
-                font-size: 1rem;
-                font-family: Poppins;
-                color: #433C3C;
-                margin-bottom: 1rem;
-            }
         }
     
-        .informationLinks {
-            font-family: Poppins;
-            margin-bottom: 1.5rem;
-    
+        :is(.productSection, .aboutSection, .socialsSection, .contactSection){
+            .header{
+                font-weight: 600;
+                color: #22467B;
+                margin-bottom: 1rem;
+            }
             ul{
                 padding: 0rem;
-    
                 li{
-                    font-size: 1rem;
+                    margin-bottom: 0.5rem;
+                    cursor: pointer;
+    
+                    span:nth-child(1){
+                        margin-right: 0.5rem;
+                    }
+                    img{
+                        width: 1.125rem;
+                        
+                    }
+    
+                    &:hover{
+                        font-weight: bold;
+                    }
                 }
             }
-    
         }
-    
-        .contactDetails{
-            font-family: Poppins;
-    
-            p{
-                font-size: 1rem;
-                font-family: Poppins;
-                color: #433C3C;
-                margin-bottom: 1rem;
-            }
-        }
-    }
-  
-
     }
 
 }
 
 @media all and (min-width:991px){
-
     .footerContainer{
-
-        .topSection{
-            padding: 5rem 4rem;
-        
-            .partnersLogosDiv{
-                gap: 1rem;
-                justify-content: space-evenly;
-    
-                img{
-                    width: 15%;
-                }
-            }
-        }
-
-     .appStoreDiv{
-        padding: 2rem 3rem;
-       
-        .appStoreContent{   
-            .appStoreBtnDiv{
-                margin-top: 1.5rem;
-                gap: 2rem;
-                img{
-                    width: 7rem;
-                }
-            }
-        }
-       
-    }
-
-    .lastSection{
-        padding: 2rem 4rem;
+        padding: 3rem 2rem;
+        gap: 0rem;
+        flex-direction: row !important;
         justify-content: space-between;
-        flex-direction: row;
-        flex-wrap: wrap;
-
-        .profileSummary{
-           width: 33%;
-           margin-bottom: 1.5rem;
     
-            img{
-                width: 10rem;
+        .profileSummary{
+            width: 35%;
+            div{
+                img{
+                    width: 30%;
+                }
+            }
+            p{
                 margin-bottom: 0.5rem;
             }
-            p{
-                font-size: 1rem;
-                font-family: Poppins;
-                color: #433C3C;
-                margin-bottom: 1rem;
-            }
         }
     
-        .informationLinks {
-            font-family: Poppins;
-            margin-bottom: 1.5rem;
-    
+        :is(.productSection, .aboutSection, .socialsSection, .contactSection){
+            .header{
+                font-weight: 600;
+                color: #22467B;
+                margin-bottom: 1rem;
+            }
             ul{
                 padding: 0rem;
-    
                 li{
-                    font-size: 1rem;
+                    margin-bottom: 0.5rem;
+                    cursor: pointer;
+    
+                    span:nth-child(1){
+                        margin-right: 0.5rem;
+                    }
+                    img{
+                        width: 1.125rem;
+                        
+                    }
+    
+                    &:hover{
+                        font-weight: bold;
+                    }
                 }
             }
-    
-        }
-    
-        .contactDetails{
-            font-family: Poppins;
-    
-            p{
-                font-size: 1rem;
-                font-family: Poppins;
-                color: #433C3C;
-                margin-bottom: 1rem;
-            }
         }
     }
-  
-
-    }
-
 }
 
 @media all and (min-width:1200px){
     .footerContainer{
-
-        .topSection{
-            padding: 5rem 7rem;
-        
-            .partnersLogosDiv{
-                gap: 1rem;
-                justify-content: space-evenly;
-    
-                img{
-                    width: 15%;
-                }
-            }
-        }
-
-     .appStoreDiv{
-        padding: 2rem 7rem;
-       
-        .appStoreContent{   
-            .appStoreBtnDiv{
-                margin-top: 1.5rem;
-                gap: 2rem;
-                img{
-                    width: 7rem;
-                }
-            }
-        }
-       
-    }
-
-    .lastSection{
-        padding: 2rem 7rem;
+        padding: 7rem 2rem;
+        gap: 0rem;
+        flex-direction: row !important;
         justify-content: space-between;
-        flex-direction: row;
-        flex-wrap: wrap;
-
-        .profileSummary{
-           width: 33%;
-           margin-bottom: 1.5rem;
     
-            img{
-                width: 10rem;
-                margin-bottom: 0.5rem;
+        .profileSummary{
+            width: 30%;
+            div{
+                margin-bottom: 1rem;
+                img{
+                    width: 50%;
+                }
             }
             p{
+                margin-bottom: 0.5rem;
                 font-size: 1rem;
-                font-family: Poppins;
-                color: #433C3C;
-                margin-bottom: 1rem;
             }
         }
     
-        .informationLinks {
-            font-family: Poppins;
-            margin-bottom: 1.5rem;
-    
+        :is(.productSection, .aboutSection, .socialsSection, .contactSection){
+            .header{
+                font-weight: 600;
+                color: #22467B;
+                margin-bottom: 1rem;
+            }
             ul{
                 padding: 0rem;
-    
                 li{
                     font-size: 1rem;
+                    margin-bottom: 0.5rem;
+                    cursor: pointer;
+    
+                    span:nth-child(1){
+                        margin-right: 0.5rem;
+                    }
+                    img{
+                        width: 1.125rem;
+                        
+                    }
+    
+                    &:hover{
+                        font-weight: bold;
+                    }
                 }
             }
-    
         }
-    
-        .contactDetails{
-            font-family: Poppins;
-    
-            p{
-                font-size: 1rem;
-                font-family: Poppins;
-                color: #433C3C;
-                margin-bottom: 1rem;
-            }
-        }
-    }
-  
-
     }
 }

@@ -43,6 +43,7 @@ body {
   max-width: 1920px;
   margin: 0 auto;
   overflow-x: hidden;
+  font-size: calc(15px + 0.390625vw);
 }
 /* .row-no-padding {
   margin-left: 0;
@@ -135,19 +136,12 @@ li{
 }
 p{
   font-family: NunitoSans;
+  margin: 0rem;
+  padding: 0rem;
 }
 h1,h2,h3 {
   font-family: KGCorneroftheSky;
   font-weight: bold;
-}
-h1{
-  font-size: 1.5rem;
-}
-h2{
-  font-size: 1.375rem;
-}
-h3{
-  font-size: 1.25rem;
 }
   
 input:-webkit-autofill,
@@ -173,14 +167,38 @@ button[disabled] {
   border: none;
 }
 
-@media all and (min-width: 991px){
-  h1{
-    font-size: 2.5rem;
-  }
-  h2{
-    font-size: clamp(28px, 2.25rem, 2.5rem);
-  }
-  h3{
-    font-size: 2rem;
-  }
+h1, h2,h3,h4,h5,h6, p {
+  /* Font minimum, preferred and maximum value */
+  font-size: clamp(var(--min), var(--val), var(--max));
+}
+
+/* Font size variables */
+h1 {
+  --min: 1.8rem; /* minimum value */
+  --val: 5vw; /* preferred value = 5% viewport width */
+  --max: 2rem; /* maximum value */
+}
+h2 {
+  --min: 1.5rem;   /* minimum value */
+  --val: 4vw;     /* preferred value = 4% viewport width */
+  --max: 1.8rem;  /* maximum value */
+}
+h3 {
+  --min: 1.375rem;   /* minimum value */
+  --val: 3vw;     /* preferred value = 4% viewport width */
+  --max: 1.5rem;  /* maximum value */
+}
+
+p {
+  --min: 1rem;   /* minimum value */
+  --val: 2.5vw; /* preferred value = 2.5% viewport width */
+  --max: 1.125rem; /* maximum value */
+}
+
+
+/* Swiper Pagination Div */
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+  bottom: -5px;
+  left: 0;
+  width: 100%;
 }

@@ -2,39 +2,37 @@ import React from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./PriceCard.module.scss";
-import checkIcon from "@/assets/icons/check-icon.svg";
+import circleIcon from "@/assets/icons/circle_icon.svg";
+import filledCircle from "@/assets/icons/filled_circle.svg";
+
 import Button from "@/components/Button/Button";
 
 const PriceCard = props => {
-	const {benefitsHeader, amount, benefitsArray, btnText, pricingPage, title} = props;
+	const {benefitsArray, btnText, title} = props;
 	return (
 
-		<section className={pricingPage && pricingPage ? cx(styles.container, styles.pricingPageWidth, "flexRow") : cx(styles.container, "flexRow")}>
-
+		<section className={cx(styles.priceCardContainer, "flexRow")}>
 			<div section className={cx(styles.wrapper)}>
-				<div className={cx(styles.topSection)}>
-					<div className={cx("flexCol-fully-centered", pricingPage ? cx(styles.pricingCardHeader) : null)}>
-						<p className={cx(styles.title)}>{title}</p>
-						<p className={cx(styles.amount)}>NGN {amount}</p>
-					</div>
-					
-
-					{benefitsHeader ?<p className={cx(styles.benefitsHeader)}>Benefit Includes</p> : null}
-					
-					<div className={cx(styles.benefitsListWrapper, "row")}>
-						{benefitsArray && benefitsArray.map((element, index)=>{
-							return(
-								<div className={cx(styles.listItemWrapper, "col-xs-12", !pricingPage ? "col-md-6" : "col-md-12")} key={index}>
-									
-									<i><img src={checkIcon} alt="check-icon" /></i> <p className={cx(styles.listItem)}>{element}</p>
-								</div>
-							);
-						})}
-					</div>
-
-					{pricingPage && btnText && <div className="flexRow-fully-centered"><Button title={btnText} radiusType="fullyRounded" textColor="#D25B5D" bordercolor = "#D25B5D" bgColor="#fff" hoverBg="#D25B5D" hoverColor="#FFF" /></div> }
+				<div style={{backgroundColor: title === "Premium" ? "#22467B" : "#F9F9F9", color: title === "Premium" ? "#fff" : "#22467B"}} className={cx(styles.benefitsHeader, "flexRow-left-centered")}>
+					<img src={filledCircle} alt="icon" />
+					<p className={cx(styles.title)}>{title}</p>
 				</div>
-				{ !pricingPage && btnText && <div className="flexRow-fully-centered" style={{marginTop: "2rem"}}><Button title={btnText} radiusType="fullyRounded" textColor="#D25B5D" bordercolor = "#D25B5D" bgColor="#fff" hoverBg="#D25B5D" hoverColor="#FFF"  /></div> }
+									
+				<div className={cx(styles.benefitsListWrapper, "row")}>
+					{benefitsArray && benefitsArray.map((element, index)=>{
+						return(
+							<div className={cx(styles.listItemWrapper)} key={index}>
+									
+								<i><img src={circleIcon} alt="check-icon" /></i> <p className={cx(styles.listItem)}>{element}</p>
+							</div>
+						);
+					})}
+				</div>
+
+				{ title !== "Premium" ? <div className="flexRow-fully-centered" style={{marginTop: "2rem"}}><Button title={btnText} radiusType="fullyRounded" textColor="#22467B" bordercolor = "#22467B" bgColor="#fff" hoverBg="#22467B" hoverColor="#FFF"  /></div> 
+					
+					:
+					<div className="flexRow-fully-centered" style={{marginTop: "2rem"}}><Button title={btnText} radiusType="fullyRounded" textColor="#FFF" bordercolor = "#FFF" bgColor="#22467B" hoverBg="#FFF" hoverColor="#22467B"  /></div> }
 
 			</div>
 		</section>
