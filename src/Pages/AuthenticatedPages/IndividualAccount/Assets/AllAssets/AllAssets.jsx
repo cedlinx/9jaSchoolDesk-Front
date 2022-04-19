@@ -173,7 +173,7 @@ const AllAssets = () => {
 			<div style={{ width: "100%", minHeight: "50vh" }} className={cx("")}>
 				<form
 					onSubmit={handleSubmit((data) => modifyAssetFxn(data))} 
-					className="form flex text-white homepage-mc-form"
+					className=""
 				>
 					<Controller
 						name="type_id"

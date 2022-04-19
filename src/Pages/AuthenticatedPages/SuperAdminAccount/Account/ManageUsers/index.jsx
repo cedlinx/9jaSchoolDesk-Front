@@ -116,7 +116,7 @@ const ManageUsers = () => {
 				<h2 style={{ marginBottom: "2rem"}}>Add New Admin</h2>
 				<form
 					onSubmit={handleSubmit((data) => addNewUserFxn(data))} 
-					className="form flex text-white homepage-mc-form"
+					className=""
 				>
 					<Controller
 						name="name"

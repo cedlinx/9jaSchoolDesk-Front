@@ -39,7 +39,7 @@ const ContactForm = (props) => {
 
 		return (
 			<form
-				className="form flex text-white homepage-mc-form"
+				className=""
 				onSubmit={(e) => handleSubmit(e)}
 			>
 				<InputField

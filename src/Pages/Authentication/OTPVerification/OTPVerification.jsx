@@ -16,6 +16,7 @@ import { resetPasswordValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import siteLogo from "@/assets/images/Logo.svg";
+import OTPComponent from "@/components/OTP/OTP";
 
 const OTPVerification = () => {
 
@@ -51,18 +52,18 @@ const OTPVerification = () => {
 
 	return (
 		<AuthPageContainer>
-			<section className={cx(styles.container, "flexCol")}>
+			<section className={cx(styles.otpVerificationContainer, "flexCol")}>
 
 				<div>
 					<img src={siteLogo} alt="" />
 				</div>
 
-				<h2>OTP Verification</h2>
+				<h3>OTP Verification</h3>
 
 				<div className={cx(styles.formWrapper, "flexCol")}>
 					<form
 						onSubmit={handleSubmit((data) => handleReset(data))}
-						className="form flex text-white homepage-mc-form"
+						className=""
 					>
 
 						{/* <Controller
@@ -109,7 +110,9 @@ const OTPVerification = () => {
 								/>
 							)}
 						/> */}
-						<p>otp component here</p>
+						<OTPComponent numberOfInputs={4} />
+
+						<small style={{marginTop: "2rem"}}>Timer here - 40secs</small>
 
 						<div className={cx(styles.submitBtnDiv, "flexRow")}>
 							<Button onClick={handleSubmit((data) => handleReset(data))} title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />

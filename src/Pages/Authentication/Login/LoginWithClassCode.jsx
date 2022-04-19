@@ -18,6 +18,7 @@ import {loginUser, getUserInfo} from "@/redux/User/user.action";
 import { useForm, Controller } from "react-hook-form";
 import { signInValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import qrCode from "@/assets/images/qrCode.png";
 
 const LoginWithClassCode = () => {
 
@@ -53,59 +54,54 @@ const LoginWithClassCode = () => {
 
 	return (
 		<>
-			{checkIsAuthenticated ? <Navigate replace to="/individual-dashboard" /> : 
+			{checkIsAuthenticated ? <Navigate replace to="#" /> : 
 				<>
-					<PageContainer>
+					<AuthPageContainer>
 
-						<div className={cx(styles.loginWrapper, "row")}>
+						<div className={cx(styles.loginWithCodeWrapper, "row")}>
 
-							<div className={cx(styles.leftCol, "col-md-5")}>
-								<img src="" alt="img" />
+							<div className={cx(styles.leftCol, "flexCol", "col-md-5")}>
+								<img src={qrCode} alt="img" />
 								<p>Scan QR Code</p>
 							</div>
 
-							<div className={cx(styles.middleCol, "col-md-2")}>
+							<div className={cx(styles.middleCol, "flexCol", "col-md-2")}>
 								<p>or</p>
 							</div>
 
-
-
 							<section className={cx(styles.rightCol, "col-md-5", "flexCol")}>
 								
-								<div className={cx(styles.formWrapper, "flexCol")}>
-									<form onSubmit={handleSubmit((data) => signIn(data))} 
-										className="form flex text-white homepage-mc-form"
-									>
-										<Controller
-											name="accessCode"
-											control={control}
-											render={({ field }) => (
-												<InputField
-													{...field}
-													label={"Access Code"}
-													placeholder=""
-													type="text"
-													error={errors?.accessCode && errors?.accessCode?.message}
+								<form onSubmit={handleSubmit((data) => signIn(data))} 
+									className={cx("flexCol")}
+								>
+									<Controller
+										name="accessCode"
+										control={control}
+										render={({ field }) => (
+											<InputField
+												{...field}
+												label={"Enter Access Code"}
+												placeholder=""
+												type="text"
+												error={errors?.accessCode && errors?.accessCode?.message}
 												
-												/>
-											)}
-										/>
+											/>
+										)}
+									/>
 
-										<div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow")}>
-											<Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
-										</div>
+									<div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow-fully-centered")}>
+										<Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
+									</div>
 
-										<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+									<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 
-									</form>
-								</div>
-								<p className="main-caption">Enter Class Code</p>
-
+								</form>
+							
 							</section>
 						</div>
 
 						
-					</PageContainer>
+					</AuthPageContainer>
 				</>
 			}
 		</>	

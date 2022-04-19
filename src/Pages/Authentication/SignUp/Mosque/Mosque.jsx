@@ -21,7 +21,8 @@ import { signUpValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import siteLogo from "@/assets/images/Logo.svg";
-
+import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
+import TopDivWave from "@/components/WaveSvg/TopDivWave";
 
 const MosqueSignUp = () => {
 	const dispatch = useDispatch();
@@ -69,153 +70,158 @@ const MosqueSignUp = () => {
 	};
 
 	return (
-		<div className={cx(styles.signUpWrapper, "row")} >
-			<div className={cx(styles.leftCol, "col-md-6")}>
-				<h3>Sign Up</h3>
-				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis odio tempora cupiditate, iure consequatur molestias, nulla aut vel suscipit a ab dolore sunt quos minima ad alias ullam architecto aliquam?</p>
+		<div className={cx(styles.signUpWrapper)} >
+			<TopDivWave />
+
+			<div className={cx(styles.container, "row")}>
+				<div className={cx(styles.leftCol, "col-md-6")}>
+					<h3><span className={cx(styles.wordBreak)}>Sign <img className={cx(styles.floatingIcon)} src={curvedHamburgerFlipped} alt="icon" /></span> Up</h3>
+					<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis odio tempora cupiditate, iure consequatur molestias, nulla aut vel suscipit a ab dolore sunt quos minima ad alias ullam architecto aliquam?</p>
+				</div>
+
+				<section className={cx(styles.rightCol, "col-md-6", "flexCol")}>
+
+					<div>
+						<img src={siteLogo} alt="" />
+					</div>
+					<div className={cx(styles.formWrapper, "flexCol")}>
+						<form onSubmit={handleSubmit((data) => createUser(data))}
+							className="form"
+						>
+
+							<Controller
+								name="email"
+								control={control}
+								render={({ field }) => (
+									<InputField
+										{...field} 
+										placeholder={" "}
+										label={"Email Address"}
+										type="email"
+										error={errors?.email && errors?.email?.message}
+
+									/>
+								)}
+							/>
+
+							<Controller
+								name="name"
+								control={control}
+								render={({ field }) => (
+									<InputField
+										{...field} 
+										placeholder={" "}
+										label={"Full Name"}
+										type="text"
+										error={errors?.name && errors?.name?.message}
+
+									/>
+								)}
+							/>
+
+							<Controller
+								name="accountType"
+								control={control}
+								render={({ field }) => (
+									<SelectField
+										{...field}
+										label={"Account Type"}
+										type="text"
+										required={true}
+										error={errors?.accountType && errors?.accountType?.message}
+										options={[]}
+									/>
+								)}
+							/>
+
+							<Controller
+								name="password"
+								control={control}
+								render={({ field }) => (
+									<InputField
+										{...field} 
+										placeholder={" "}
+										label={"Password"}
+										type="password"
+										error={errors?.password && errors?.password?.message}
+
+									/>
+								)}
+							/>
+
+							<Controller
+								name="password_confirmation"
+								control={control}
+								render={({ field }) => (
+									<InputField
+										{...field} 
+										placeholder={" "}
+										label={"Confirm Password"}
+										type="password"
+										error={errors?.password_confirmation && errors?.password_confirmation?.message}
+
+									/>
+								)}
+							/>
+
+							{/* <Controller
+								name="pin"
+								control={control}
+								render={({ field }) => (
+									<InputField
+										{...field} 
+										placeholder={" "}
+										label={"Pin"}
+										type="number"
+										error={errors?.pin && errors?.pin?.message}
+
+										maxLength="4"
+									/>
+								)}
+							/>
+
+							<Controller
+								name="address"
+								control={control}
+								render={({ field }) => (
+									<InputField
+										{...field} 
+										placeholder={" "}
+										label={"Address"}
+										type="text"
+										error={errors?.address && errors?.address?.message}
+
+									/>
+								)}
+							/>
+
+							<Controller
+								name="phone"
+								control={control}
+								render={({ field }) => (
+									<InputField
+										{...field} 
+										placeholder={" "}
+										label={"Mobile Number"}
+										type="number"
+										error={errors?.phone && errors?.phone?.message}
+
+									/>
+								)}
+							/> */}
+
+							<div className={cx(styles.submitBtnDiv, "flexRow")}>
+								<Button onClick={handleSubmit((data) => createUser(data))} type title="Sign Up" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+							</div>
+
+							<p>Already have an account? <Link to="/login">Sign In</Link></p>
+
+						</form>
+					</div>
+
+				</section>
 			</div>
-
-			<section className={cx(styles.contentWrapper, "col-md-6", "flexCol")}>
-
-				<div>
-					<img src={siteLogo} alt="" />
-				</div>
-				<div className={cx(styles.formWrapper, "flexCol")}>
-					<form onSubmit={handleSubmit((data) => createUser(data))}
-						className="form"
-					>
-
-						<Controller
-							name="email"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field} 
-									placeholder={" "}
-									label={"Email Address"}
-									type="email"
-									error={errors?.email && errors?.email?.message}
-
-								/>
-							)}
-						/>
-
-						<Controller
-							name="name"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field} 
-									placeholder={" "}
-									label={"Full Name"}
-									type="text"
-									error={errors?.name && errors?.name?.message}
-
-								/>
-							)}
-						/>
-
-						<Controller
-							name="accountType"
-							control={control}
-							render={({ field }) => (
-								<SelectField
-									{...field}
-									label={"Account Type"}
-									type="text"
-									required={true}
-									error={errors?.accountType && errors?.accountType?.message}
-									options={[]}
-								/>
-							)}
-						/>
-
-						<Controller
-							name="password"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field} 
-									placeholder={" "}
-									label={"Password"}
-									type="password"
-									error={errors?.password && errors?.password?.message}
-
-								/>
-							)}
-						/>
-
-						<Controller
-							name="password_confirmation"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field} 
-									placeholder={" "}
-									label={"Confirm Password"}
-									type="password"
-									error={errors?.password_confirmation && errors?.password_confirmation?.message}
-
-								/>
-							)}
-						/>
-
-						<Controller
-							name="pin"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field} 
-									placeholder={" "}
-									label={"Pin"}
-									type="number"
-									error={errors?.pin && errors?.pin?.message}
-
-									maxLength="4"
-								/>
-							)}
-						/>
-
-						<Controller
-							name="address"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field} 
-									placeholder={" "}
-									label={"Address"}
-									type="text"
-									error={errors?.address && errors?.address?.message}
-
-								/>
-							)}
-						/>
-
-						<Controller
-							name="phone"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field} 
-									placeholder={" "}
-									label={"Mobile Number"}
-									type="number"
-									error={errors?.phone && errors?.phone?.message}
-
-								/>
-							)}
-						/>
-
-						<div className={cx(styles.submitBtnDiv, "flexRow")}>
-							<Button onClick={handleSubmit((data) => createUser(data))} type title="Sign Up" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
-						</div>
-
-						<p>Already have an account? <Link to="/login">Sign In</Link></p>
-
-					</form>
-				</div>
-
-			</section>
+			
 		</div>
 	);
 };

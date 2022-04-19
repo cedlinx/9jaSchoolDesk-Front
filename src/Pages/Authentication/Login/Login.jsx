@@ -19,6 +19,9 @@ import { useForm, Controller } from "react-hook-form";
 import { signInValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
+
+
 import siteLogo from "@/assets/images/Logo.svg";
 
 const Login = () => {
@@ -55,25 +58,24 @@ const Login = () => {
 
 	return (
 		<>
-			{checkIsAuthenticated ? <Navigate replace to="/individual-dashboard" /> : 
+			{checkIsAuthenticated ? <Navigate replace to="#" /> : 
 				<>
 					<AuthPageContainer>
 
 						<div className={cx(styles.loginWrapper, "row")}>
 
 							<div className={cx(styles.leftCol, "col-md-6")}>
-								<h3>Sign In</h3>
+								<h3><span className={cx(styles.wordBreak)}>Sign <img className={cx(styles.floatingIcon)} src={curvedHamburgerFlipped} alt="icon" /></span> In</h3>
 								<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis odio tempora cupiditate, iure consequatur molestias, nulla aut vel suscipit a ab dolore sunt quos minima ad alias ullam architecto aliquam?</p>
 							</div>
 
 							<section className={cx(styles.rightCol, "col-md-6", "flexCol")}>
-								<div>
-									<img src={siteLogo} alt="" />
-								</div>
-
+								
+								<img className={styles.logo} src={siteLogo} alt="" />
+								
 								<div className={cx(styles.formWrapper, "flexCol")}>
 									<form onSubmit={handleSubmit((data) => signIn(data))} 
-										className="form flex text-white homepage-mc-form"
+										className=""
 									>
 										<Controller
 											name="email"
@@ -115,6 +117,10 @@ const Login = () => {
 										<div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow")}>
 											<Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
 										</div>
+										<p>
+											<Link to="/login-with-class-code">Login With Class Code</Link>
+										</p>
+										
 
 										<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 

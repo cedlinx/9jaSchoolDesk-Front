@@ -5,14 +5,19 @@ import cx from "classnames";
 import styles from "./AuthPageContainer.module.scss";
 import siteLogo from "@/assets/images/Logo.png";
 import MenuBar from "@/components/MenuBar/MenuBar";
+import TopDivWave from "@/components/WaveSvg/TopDivWave";
+
 
 const AuthPageContainer = (props) => {
-	const { children } = props;
+	const { showTopDivWave = true, children } = props;
 	const navigate = useNavigate();
 	return (
-		<div className={cx(styles.container, "flexCol")}>
+		<div className={cx(styles.authPageContainer, "flexCol")}>
 			<MenuBar />
-			<div>{children}</div>
+			<div className={cx(styles.childrenContainer)}>
+				{showTopDivWave && <TopDivWave />}
+				{children}
+			</div>
 		</div>
 	);
 };

@@ -79,7 +79,7 @@ const Security = () => {
 				</div> */}
 
 				{loading ? <FormSkeleton /> :
-					<form onSubmit={handleSubmit((data) => changePasswordFxn(data))} className="form flex text-white homepage-mc-form">
+					<form onSubmit={handleSubmit((data) => changePasswordFxn(data))} className="">
 
 						<div className={cx(styles.header, "flexRow")}>
 							<h3>Account Security</h3>

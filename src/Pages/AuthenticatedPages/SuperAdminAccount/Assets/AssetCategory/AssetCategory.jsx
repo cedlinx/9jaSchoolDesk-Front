@@ -201,7 +201,7 @@ const AssetCategory = () => {
 			<div style={{ width: "100%", minHeight: "50vh", display: "flex", flexDirection: "column", justifyContent: "center"}} className={cx("")}>
 				<form
 					onSubmit={handleSubmit((data) => modifyAssetCategoryFxn(data))} 
-					className="form flex text-white homepage-mc-form"
+					className=""
 				>
 					<Controller
 						name="id"
@@ -258,7 +258,7 @@ const AssetCategory = () => {
 				<h2 style={{ marginBottom: "2rem"}}>Add New Category</h2>
 				<form
 					onSubmit={handleSubmit((data) => addNewCategoryFxn(data))} 
-					className="form flex text-white homepage-mc-form"
+					className=""
 				>
 					<Controller
 						name="type"

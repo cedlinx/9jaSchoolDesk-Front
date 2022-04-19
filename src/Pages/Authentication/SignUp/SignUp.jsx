@@ -22,10 +22,13 @@ const SignUp = () => {
 	];
 
 	return (
-		<AuthPageContainer>
-			<section className={cx(styles.tablistWrapper)}>
-				<Tabs background="#FFFFFF" tabs={tabsComponents}/>
+		<AuthPageContainer showTopDivWave={false}>
+			<section className={cx(styles.signUpContainer)}>
+				<div className={cx(styles.tablistWrapper, "flexCol")}>
+					<Tabs centralise={true} background="#FFFFFF" tabs={tabsComponents}/>
+				</div>
 			</section>
+			
 		</AuthPageContainer>
 	);
 };

@@ -42,7 +42,7 @@ const verificationLink = () => {
 				<div className={cx(styles.formWrapper, "flexCol")}>
 					<form
 						onSubmit={handleSubmit((data) => sendRequest(data))}
-						className="form flex text-white homepage-mc-form"
+						className=""
 					>
 
 						<Controller

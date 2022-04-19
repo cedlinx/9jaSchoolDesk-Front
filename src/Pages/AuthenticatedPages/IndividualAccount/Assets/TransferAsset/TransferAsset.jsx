@@ -81,7 +81,7 @@ const TransferAsset = props => {
 			
 			<div className={cx(styles.formDiv, "flexCol", "col-md-6", "col-lg-6", "col-xl-4")}>
 				<form
-					className="form flex text-white homepage-mc-form"
+					className=""
 					onSubmit={handleSubmit((data) => transferNewAsset(data))} 
 				>
 

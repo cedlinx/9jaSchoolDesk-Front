@@ -9,6 +9,7 @@ import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
 import PageContainer from "@/components/PageContainer/PageContainer";
 
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {forgotPassword} from "@/redux/User/user.action";
@@ -38,18 +39,18 @@ const ForgotPassword = () => {
 
 	return (
 		<AuthPageContainer>
-			<section className={cx(styles.container, "flexCol")}>
+			<section className={cx(styles.forgotPasswordContainer, "flexCol")}>
 
 				<div>
 					<img src={siteLogo} alt="" />
 				</div>
 
-				<h2>Forgot Password</h2>
+				<h3>Forgot Password</h3>
 
 				<div className={cx(styles.formWrapper, "flexCol")}>
 					<form
 						onSubmit={handleSubmit((data) => sendRequest(data))}
-						className="form flex text-white homepage-mc-form"
+						className=""
 					>
 
 						<Controller

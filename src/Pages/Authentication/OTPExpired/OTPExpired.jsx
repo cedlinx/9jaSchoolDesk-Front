@@ -51,19 +51,19 @@ const OTPExpired = () => {
 
 	return (
 		<AuthPageContainer>
-			<section className={cx(styles.container, "flexCol")}>
+			<section className={cx(styles.otpExpiredContainer, "flexCol")}>
 
 				<div>
 					<img src={siteLogo} alt="" />
 				</div>
 
-				<h2>OTP Expired</h2>
+				<h3>OTP Expired</h3>
 				<Button onClick={handleSubmit((data) => handleReset(data))} title="Resend OTP" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 
 				<div className={cx(styles.formWrapper, "flexCol")}>
 					<form
 						onSubmit={handleSubmit((data) => handleReset(data))}
-						className="form flex text-white homepage-mc-form"
+						className=""
 					>
 
 						{/* <Controller

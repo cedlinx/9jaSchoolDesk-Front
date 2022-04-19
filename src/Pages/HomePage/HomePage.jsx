@@ -11,26 +11,20 @@ import Button from "@/components/Button/Button";
 import MenuBar from "@/components/MenuBar/MenuBar";
 import { Icon } from "@iconify/react";
 import PriceCard from "@/components/PriceCard/PriceCard";
+import TopDivWave from "@/components/WaveSvg/TopDivWave";
+import BottomDivWave from "@/components/WaveSvg/BottomDivWave";
 
 import studentImage from "@/assets/images/Student Image.png";
 import teacherImage from "@/assets/images/Teacher Image.png";
 import parentsImage from "@/assets/images/Parents Image.png";
-// import manImage from "@/assets/images/man.png";
-// import homepageHeroImg from "@/assets/images/homepage_hero.png";
-// import whyChooseImage from "@/assets/images/whyChooseImage.png";
-// import whoToUseImage from "@/assets/images/whotouse.png";
-// import subscribeImage from "@/assets/images/subscribeImage.png";
-// import servicesIcon1 from "@/assets/icons/servicesIcon1.png";
-// import servicesIcon2 from "@/assets/icons/servicesIcon2.png";
-// import servicesIcon3 from "@/assets/icons/servicesIcon3.png";
-// import whyChooseIcon1 from "@/assets/icons/whyChooseIcon1.png";
-// import whyChooseIcon2 from "@/assets/icons/whyChooseIcon2.png";
-// import whyChooseIcon3 from "@/assets/icons/whyChooseIcon3.png";
-// import arrowUpIcon from "@/assets/icons/arrow-up.svg";
-import circleIcon from "@/assets/icons/circle_icon.svg";
-// import appleStore from "@/assets/images/Apple Store.png";
-// import googleStore from "@/assets/images/Google Play.png";
+import ruler from "@/assets/images/ruler.png";
+import book from "@/assets/images/book.png";
+import pencil from "@/assets/images/pencil.png";
+import idea from "@/assets/images/idea.png";
+import curvedHamburger from "@/assets/icons/curved-hamburger.svg";
+import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
 
+import circleIcon from "@/assets/icons/circle_icon.svg";
 
 
 const HomePage = () => {
@@ -49,6 +43,11 @@ const HomePage = () => {
 			<div className={cx(styles.homepageContainer)}>
 
 				<div   className={cx(styles.heroWrapper)}>
+
+					<img src={pencil} className={cx(styles.floatingImage, styles.pencil)} alt="icon" />
+					<img className={cx(styles.floatingImage, styles.book)} src={book} alt="icon" />
+					<img className={cx(styles.floatingImage, styles.ruler)} src={ruler} alt="icon" />
+					<img className={cx(styles.floatingImage, styles.idea)} src={idea} alt="icon" />
 					
 					<h1 
 						className={cx(styles.heroHeader)}
@@ -75,7 +74,9 @@ const HomePage = () => {
 				</div>
 			
 				<div className={cx(styles.mainContentWrapper, "flexCol-align-center")}>
-					
+
+					<TopDivWave />
+
 					<div className={cx(styles.studentsSection, styles.sectionWrapper, "row")}>
 						<div data-aos="zoom-in-left"
 							// data-aos-delay="1200"
@@ -90,7 +91,7 @@ const HomePage = () => {
 							className={cx(styles.contentWrapper, "col-sm-6", "col-md-6")}
 						>
 							<small>Students</small>
-							<h3>Learning never got <br /> smoother</h3>
+							<h3>Learning never <span className={cx(styles.wordBreak)}>got <img className={cx(styles.floatingIcon)} src={curvedHamburger} alt="icon" /></span> <br />  smoother</h3>
 
 							<div className={cx(styles.pointsWrapper)}>
 								<div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
@@ -105,7 +106,7 @@ const HomePage = () => {
 						
 					</div>
 
-					<div className={cx(styles.parentsSection,styles.sectionWrapper, "row")}>
+					<div className={cx(styles.parentsSection, styles.sectionWrapper, "row")}>
 						<div data-aos="zoom-in-left"
 							// data-aos-delay="1200"
 							className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
@@ -119,7 +120,7 @@ const HomePage = () => {
 							className={cx(styles.contentWrapper, "col-sm-6", "col-md-6")}
 						>
 							<small>Parents</small>
-							<h3>Become part of your kid’s <br /> learning process</h3>
+							<h3><span className={cx(styles.wordBreak)}>Become <img className={cx(styles.floatingIcon)} src={curvedHamburgerFlipped} alt="icon" /></span> part of your kid's <br /> learning process</h3>
 
 							<div className={cx(styles.pointsWrapper)}>
 								<div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
@@ -134,7 +135,7 @@ const HomePage = () => {
 						
 					</div>
 
-					<div className={cx(styles.teachersSection,styles.sectionWrapper, "row")}>
+					<div className={cx(styles.teachersSection, styles.sectionWrapper, "row")}>
 						<div data-aos="zoom-in-left"
 							// data-aos-delay="1200"
 							className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
@@ -148,7 +149,7 @@ const HomePage = () => {
 							className={cx(styles.contentWrapper, "col-sm-6", "col-md-6")}
 						>
 							<small>Teachers</small>
-							<h3>Cordinate and Manage your <br /> classroom efficiently</h3>
+							<h3>Cordinate and Manage <span className={cx(styles.wordBreak)}>your <img className={cx(styles.floatingIcon)} src={curvedHamburger} alt="icon" /></span> <br />  classroom efficiently</h3>
 
 							<div className={cx(styles.pointsWrapper)}>
 								<div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
@@ -163,6 +164,9 @@ const HomePage = () => {
 						
 					</div>
 				
+					<BottomDivWave />
+
+
 				
 				</div>
 

@@ -159,7 +159,7 @@ const AllAssetsIndex = () => {
 				<h2 style={{ marginBottom: "2rem"}}>Add New Category</h2>
 				<form
 					onSubmit={handleSubmit((data) => addNewCategoryFxn(data))} 
-					className="form flex text-white homepage-mc-form"
+					className=""
 				>
 					<Controller
 						name="type"

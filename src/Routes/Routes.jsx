@@ -4,9 +4,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../Pages/HomePage/HomePage";
 // import About from "../Pages/About/About";
 import Login from "../Pages/Authentication/Login/Login";
+import LoginWithClassCode from "../Pages/Authentication/Login/LoginWithClassCode";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
+import OtpExpired from "../Pages/Authentication/OTPExpired/OTPExpired";
+import OtpVerification from "../Pages/Authentication/OTPVerification/OTPVerification";
 import RequestVerificationLink from "../Pages/Authentication/RequestVerificationLink/RequestVerificationLink";
 import Page404 from "../Pages/Page404/Page404";
 import UnAuthorizedPage from "../Pages/UnAuthorizedPage/UnAuthorizedPage";
@@ -74,10 +77,13 @@ const RoutesComponent = () => {
 				<Route path="pricing" element={<Pricing />} />
 				<Route path="contact" element={<Contact />} /> */}
 				<Route path="login" element={<Login />} />
+				<Route path="login-with-class-code" element={<LoginWithClassCode />} />
 				<Route path="signup" element={<SignUp />} />
-				<Route path="verify_email/:token" element={<VerifyEmail />} />		
+				<Route path="verify-email/:token" element={<VerifyEmail />} />		
 				<Route  path="forgot-password" element={<ForgotPassword />} />
-				<Route  path="reset_password/:token" element={<ResetPassword />} />	
+				<Route  path="otp-expired" element={<OtpExpired />} />
+				<Route  path="otp-verification" element={<OtpVerification />} />
+				<Route  path="reset-password/:token" element={<ResetPassword />} />	
 				<Route  path="request-verification-link" element={<RequestVerificationLink />} />	
 				
 				<Route path="individual-dashboard" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>

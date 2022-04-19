@@ -88,7 +88,7 @@ const BatchRegisterAsset = props => {
 			<div className={cx(styles.formDiv, "flexCol", "col-md-6", "col-lg-6", "col-xl-4")}>
 				<form
 					onSubmit={handleSubmit((data) => addNewAsset(data))} 
-					className="form flex text-white homepage-mc-form"
+					className=""
 				>
 					<Controller
 						name="type_id"

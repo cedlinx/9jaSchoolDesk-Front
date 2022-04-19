@@ -141,7 +141,7 @@ const AdminUsers = props => {
 			<div style={{ width: "100%", minHeight: "50vh", display: "flex", flexDirection: "column", justifyContent: "center"}} className={cx("")}>
 				<form
 					onSubmit={handleSubmit((data) => modifyUserFxn(data))} 
-					className="form flex text-white homepage-mc-form"
+					className=""
 				>
 					<Controller
 						name="id"

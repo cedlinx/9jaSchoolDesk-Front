@@ -178,7 +178,7 @@ const Users = props => {
 				<div style={{width: "100%"}} className={cx(styles.formDiv, "flexCol", "col-md-6", "col-lg-6", "col-xl-4")}>
 					<form
 						onSubmit={handleSubmit((data) => addNewUser(data))} 
-						className="form flex text-white homepage-mc-form"
+						className=""
 					>
 						<Controller
 							name="email"

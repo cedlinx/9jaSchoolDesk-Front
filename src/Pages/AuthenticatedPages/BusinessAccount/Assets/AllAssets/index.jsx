@@ -166,7 +166,7 @@ const AllAssets = () => {
 
 				<form
 					onSubmit={handleSubmit((data) => reportAssetFxn(data))} 
-					className="form flex text-white homepage-mc-form"
+					className=""
 				>
 					<Controller
 						name="assetId"

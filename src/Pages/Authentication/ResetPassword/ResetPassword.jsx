@@ -51,18 +51,18 @@ const ResetPassword = () => {
 
 	return (
 		<AuthPageContainer>
-			<section className={cx(styles.container, "flexCol")}>
+			<section className={cx(styles.resetPasswordContainer, "flexCol")}>
 
 				<div>
 					<img src={siteLogo} alt="" />
 				</div>
 
-				<h2>Reset Password</h2>
+				<h3>Reset Password</h3>
 
 				<div className={cx(styles.formWrapper, "flexCol")}>
 					<form
 						onSubmit={handleSubmit((data) => handleReset(data))}
-						className="form flex text-white homepage-mc-form"
+						className=""
 					>
 
 						{/* <Controller

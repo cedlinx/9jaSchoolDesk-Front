@@ -14,8 +14,8 @@ const Select = ({
 	required
 }) => (
 	<div className="select-container">
-		<label className="select-label">{label}</label>
 		<div className="select-wrapper" >
+			<label className="select-label">{label}</label>
 			<select required={required} name={name} onChange={onChange} value={value}>
 				<option value="">{defaultSelect}</option>
 				{options.map((option, index) => (

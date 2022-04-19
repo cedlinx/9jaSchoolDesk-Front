@@ -130,7 +130,7 @@ export const FormGroup = styled(Form.Group)`
     display: block;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 0.875rem;
     line-height: 17px;
     color: #091e42;
     text-align: left;

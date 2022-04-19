@@ -19,7 +19,7 @@ const Tabs = ({ tabs, centralise, background, renderActionTab, formTab, leftHead
 	return (
 		<>
 			<TabWrapper formTab={formTab}>
-				<LeftTab>{leftHeader}</LeftTab>
+				{leftHeader && <LeftTab>{leftHeader}</LeftTab>}
 				<Tab centralise={centralise} background={background} formTab={formTab}>
 					{tabs.map((tab, index) => (
 						<TabItem
@@ -32,9 +32,9 @@ const Tabs = ({ tabs, centralise, background, renderActionTab, formTab, leftHead
 						</TabItem>
 					))}
 				</Tab>
-				<RightTab>{rightHeader}</RightTab>
+				{rightHeader && <RightTab>{rightHeader}</RightTab>}
 			</TabWrapper>
-			<Tab>{midSlot}</Tab>
+			{midSlot && <Tab>{midSlot}</Tab>}
 			<TabContent>
 				<ActiveTabComponent {...rest} />
 			</TabContent>

@@ -300,7 +300,7 @@ const BulkTransfer = props => {
 
 				<div className={cx(styles.formDiv, "flexCol", "col-sm-4", "col-md-4", "col-lg-4", "col-xl-4")}>
 					<form
-						className="form flex text-white homepage-mc-form"
+						className=""
 						onSubmit={handleSubmit((data) => transferNewAsset(data))} 
 					>
 
