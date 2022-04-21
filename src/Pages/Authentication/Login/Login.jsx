@@ -119,12 +119,12 @@ const Login = () => {
                     <div onClick={handleSubmit((data) => signIn(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
                       <Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
                     </div>
-                    <p>
+                    <p className={cx(styles.formText)}>
                       <Link to="/login-with-class-code">Login With Class Code</Link>
                     </p>
 
 
-                    <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+                    <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 
                   </form>
                 </div>

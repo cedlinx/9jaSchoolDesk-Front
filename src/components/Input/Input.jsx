@@ -50,7 +50,7 @@ const Input = ({
           <img src={eyeIcon} alt="eye-icon" className="eye-icon" onClick={handleVisibility}/>
         )}
       </div>
-      {error ? <p className="error">{error}</p> : ""}
+      {error ? <span className="error">{error}</span> : ""}
     </FormGroup>
   );
 };

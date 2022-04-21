@@ -66,60 +66,6 @@ const OTPExpired = () => {
             className=""
           >
 
-            {/* <Controller
-							name="email"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field}
-									label={"Email Address"}
-									placeholder=""
-									type="email"
-									error={errors?.email && errors?.email?.message}
-									
-								/>
-							)}
-						/> */}
-
-            {/* <Controller
-							name="password"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field}
-									label={"Enter New Password"}
-									placeholder=""
-									type="password"
-									error={errors?.password && errors?.password?.message}
-									
-								/>
-							)}
-						/>
-
-						<Controller
-							name="password_confirmation"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field}
-									label={"Confirm New Password"}
-									placeholder=""
-									type="password"
-									error={errors?.password_confirmation && errors?.password_confirmation?.message}
-									
-								/>
-							)}
-						/> */}
-            {/* <p>otp component here</p>
-
-						<div className={cx(styles.submitBtnDiv, "flexRow")}>
-							<Button onClick={handleSubmit((data) => handleReset(data))} title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
-						</div>
-
-						<p>Don't get OTP? <Link to="#">Resend OTP</Link></p> */}
-
-            {/* <p><Link to="/login">Sign In</Link> to continue</p> */}
-
           </form>
         </div>
 

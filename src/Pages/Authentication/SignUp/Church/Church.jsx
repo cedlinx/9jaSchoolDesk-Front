@@ -214,7 +214,7 @@ const ChurchSignUp = () => {
                 <Button onClick={handleSubmit((data) => createUser(data))} type title="Sign Up" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
               </div>
 
-              <p>Already have an account? <Link to="/login">Sign In</Link></p>
+              <p className={cx(styles.formText)}>Already have an account? <Link to="/login">Sign In</Link></p>
 
             </form>
           </div>

@@ -72,7 +72,7 @@ const ForgotPassword = () => {
               <Button title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
-            <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+            <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 
           </form>
         </div>
