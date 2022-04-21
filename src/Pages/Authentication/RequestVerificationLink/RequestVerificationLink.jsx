@@ -17,65 +17,65 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const verificationLink = () => {
 
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const resolver = yupResolver(requestVerificationLinkValidationSchema);
+  const resolver = yupResolver(requestVerificationLinkValidationSchema);
 
-	const defaultValues = {
-		email: ""
-	};
+  const defaultValues = {
+    email: ""
+  };
 
-	const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
+  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
 
-	const sendRequest =(data)=>{
-		dispatch(requestVerificationLink(data));
-	};
+  const sendRequest =(data)=>{
+    dispatch(requestVerificationLink(data));
+  };
 
-	return (
-		<AuthPageContainer>
-			<ToastContainer />
-			<section className={cx(styles.container, "flexCol")}>
+  return (
+    <AuthPageContainer>
+      <ToastContainer />
+      <section className={cx(styles.container, "flexCol")}>
 
-				<h2>Request New Verification Link</h2>
-				<p className="main-caption">Gain Access To Your Account</p>
+        <h2>Request New Verification Link</h2>
+        <p className="main-caption">Gain Access To Your Account</p>
 
-				<div className={cx(styles.formWrapper, "flexCol")}>
-					<form
-						onSubmit={handleSubmit((data) => sendRequest(data))}
-						className=""
-					>
+        <div className={cx(styles.formWrapper, "flexCol")}>
+          <form
+            onSubmit={handleSubmit((data) => sendRequest(data))}
+            className=""
+          >
 
-						<Controller
-							name="email"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field}
-									label={"Email Address"}
-									placeholder=""
-									type="email"
-									error={errors?.email && errors?.email?.message}
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <InputField
+                  {...field}
+                  label={"Email Address"}
+                  placeholder=""
+                  type="email"
+                  error={errors?.email && errors?.email?.message}
 									
-								/>
-							)}
-						/>
+                />
+              )}
+            />
 
-						<div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
-							<Button title="Submit" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
-						</div>
+            <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
+              <Button title="Submit" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+            </div>
 
-						<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+            <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 
-					</form>
-				</div>
+          </form>
+        </div>
 
-			</section>
-		</AuthPageContainer>
-	);
+      </section>
+    </AuthPageContainer>
+  );
 };
 
 verificationLink.propTypes = {
-	title: PropTypes.string
+  title: PropTypes.string
 };
 
 export default verificationLink;

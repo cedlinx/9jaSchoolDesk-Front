@@ -22,94 +22,94 @@ import qrCode from "@/assets/images/qrCode.png";
 
 const LoginWithClassCode = () => {
 
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-	const checkIsAuthenticated = isAuthenticated();
+  const checkIsAuthenticated = isAuthenticated();
 
-	useEffect(() => {
-		checkIsAuthenticated &&	navigate("/individual-dashboard"); 
-	},[checkIsAuthenticated, navigate]);
+  useEffect(() => {
+    checkIsAuthenticated &&	navigate("/individual-dashboard"); 
+  },[checkIsAuthenticated, navigate]);
 
-	const signIn= async (data)=>{
-		try {
-			let response = await dispatch(loginUser(data));
-			if(response?.payload?.status === 200){
-				dispatch(getUserInfo());
-				navigate("/individual-dashboard");
-			}
-		} catch (error) {
-			toast.error("An Error Occured, please try again");
-		}
-	};
+  const signIn= async (data)=>{
+    try {
+      let response = await dispatch(loginUser(data));
+      if(response?.payload?.status === 200){
+        dispatch(getUserInfo());
+        navigate("/individual-dashboard");
+      }
+    } catch (error) {
+      toast.error("An Error Occured, please try again");
+    }
+  };
 
-	const resolver = yupResolver(signInValidationSchema);
+  const resolver = yupResolver(signInValidationSchema);
 
-	const defaultValues = {
-		email: "",
-		password: ""
-	};
+  const defaultValues = {
+    email: "",
+    password: ""
+  };
   
-	const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
+  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
 
-	return (
-		<>
-			{checkIsAuthenticated ? <Navigate replace to="#" /> : 
-				<>
-					<AuthPageContainer>
+  return (
+    <>
+      {checkIsAuthenticated ? <Navigate replace to="#" /> : 
+        <>
+          <AuthPageContainer>
 
-						<div className={cx(styles.loginWithCodeWrapper, "row")}>
+            <div className={cx(styles.loginWithCodeWrapper, "row")}>
 
-							<div className={cx(styles.leftCol, "flexCol", "col-md-5")}>
-								<img src={qrCode} alt="img" />
-								<p>Scan QR Code</p>
-							</div>
+              <div className={cx(styles.leftCol, "flexCol", "col-md-5")}>
+                <img src={qrCode} alt="img" />
+                <p>Scan QR Code</p>
+              </div>
 
-							<div className={cx(styles.middleCol, "flexCol", "col-md-2")}>
-								<p>or</p>
-							</div>
+              <div className={cx(styles.middleCol, "flexCol", "col-md-2")}>
+                <p>or</p>
+              </div>
 
-							<section className={cx(styles.rightCol, "col-md-5", "flexCol")}>
+              <section className={cx(styles.rightCol, "col-md-5", "flexCol")}>
 								
-								<form onSubmit={handleSubmit((data) => signIn(data))} 
-									className={cx("flexCol")}
-								>
-									<Controller
-										name="accessCode"
-										control={control}
-										render={({ field }) => (
-											<InputField
-												{...field}
-												label={"Enter Access Code"}
-												placeholder=""
-												type="text"
-												error={errors?.accessCode && errors?.accessCode?.message}
+                <form onSubmit={handleSubmit((data) => signIn(data))} 
+                  className={cx("flexCol")}
+                >
+                  <Controller
+                    name="accessCode"
+                    control={control}
+                    render={({ field }) => (
+                      <InputField
+                        {...field}
+                        label={"Enter Access Code"}
+                        placeholder=""
+                        type="text"
+                        error={errors?.accessCode && errors?.accessCode?.message}
 												
-											/>
-										)}
-									/>
+                      />
+                    )}
+                  />
 
-									<div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow-fully-centered")}>
-										<Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
-									</div>
+                  <div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow-fully-centered")}>
+                    <Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
+                  </div>
 
-									<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+                  <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 
-								</form>
+                </form>
 							
-							</section>
-						</div>
+              </section>
+            </div>
 
 						
-					</AuthPageContainer>
-				</>
-			}
-		</>	
-	);
+          </AuthPageContainer>
+        </>
+      }
+    </>	
+  );
 };
 
 LoginWithClassCode.propTypes = {
-	title: PropTypes.string
+  title: PropTypes.string
 };
 
 export default LoginWithClassCode;

@@ -13,45 +13,45 @@ import { assetsList } from "@/redux/Assets/assets.action";
 import closeIcon from "@/assets/icons/close-icon.svg";
 
 const AssetDetailsModal = props => {
-	const {data, dispatchAction} = props;
-	console.log(data);
-	const dispatch = useDispatch();
+  const {data, dispatchAction} = props;
+  console.log(data);
+  const dispatch = useDispatch();
 
-	const handleClick=(dispatchActionData) => {
-		dispatch(showModal({action: "hide"}));
-		dispatchActionData === "assetsList" ? dispatch(assetsList()) : null;
-	};
+  const handleClick=(dispatchActionData) => {
+    dispatch(showModal({action: "hide"}));
+    dispatchActionData === "assetsList" ? dispatch(assetsList()) : null;
+  };
 
-	return (
-		<ModalWrapper className={cx(styles.modalWrapper, "flexCol-align-center")}>
-			{data ? 
-				<>
-					<div className={cx("modalHeader")}>
-						<img onClick={()=>handleClick(dispatchAction)} src={closeIcon} alt="close-icon" />
-					</div>
-					<img src={successCheckIcon} alt="" />
-					<p>Successful</p>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>ASSET</span><span className={cx(styles.value)}>{data?.name && titleCase(data?.name)}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>ASSET DESCRIPTION</span><span className={cx(styles.value)}>{data?.description}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>ASSET ID</span><span className={cx(styles.value)}>{data?.assetid}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>SKYDAH ID</span><span className={cx(styles.value)}>{data?.skydahid}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>CREATED</span><span className={cx(styles.value)}>{data?.created_at}</span>
-					</div>
-					<Button onClick={() => handleClick(dispatchAction)} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
-				</> : <div>An Error Occured, Please Try Again</div>}
+  return (
+    <ModalWrapper className={cx(styles.modalWrapper, "flexCol-align-center")}>
+      {data ? 
+        <>
+          <div className={cx("modalHeader")}>
+            <img onClick={()=>handleClick(dispatchAction)} src={closeIcon} alt="close-icon" />
+          </div>
+          <img src={successCheckIcon} alt="" />
+          <p>Successful</p>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>ASSET</span><span className={cx(styles.value)}>{data?.name && titleCase(data?.name)}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>ASSET DESCRIPTION</span><span className={cx(styles.value)}>{data?.description}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>ASSET ID</span><span className={cx(styles.value)}>{data?.assetid}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>SKYDAH ID</span><span className={cx(styles.value)}>{data?.skydahid}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>CREATED</span><span className={cx(styles.value)}>{data?.created_at}</span>
+          </div>
+          <Button onClick={() => handleClick(dispatchAction)} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
+        </> : <div>An Error Occured, Please Try Again</div>}
 			
 
-		</ModalWrapper>
-	);
+    </ModalWrapper>
+  );
 };
 
 AssetDetailsModal.propTypes = {

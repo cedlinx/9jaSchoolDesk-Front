@@ -13,35 +13,35 @@ import { assetsList } from "@/redux/Assets/assets.action";
 import closeIcon from "@/assets/icons/close-icon.svg";
 
 const ReportFoundAssetSuccess = props => {
-	const {data, dispatchAction} = props;
+  const {data, dispatchAction} = props;
 	
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const handleClick=(dispatchActionData) => {
-		dispatch(showModal({action: "hide"}));
-		dispatchActionData === "assetsList" ? dispatch(assetsList()) : null;
-	};
+  const handleClick=(dispatchActionData) => {
+    dispatch(showModal({action: "hide"}));
+    dispatchActionData === "assetsList" ? dispatch(assetsList()) : null;
+  };
 
-	console.log(data);
+  console.log(data);
 
-	return (
-		<ModalWrapper className={cx(styles.modalWrapper, "flexCol-align-center")}>
-			{data ? 
-				<>
-					{/* <div className={cx("modalHeader")}>
+  return (
+    <ModalWrapper className={cx(styles.modalWrapper, "flexCol-align-center")}>
+      {data ? 
+        <>
+          {/* <div className={cx("modalHeader")}>
 						<img onClick={()=>handleClick(dispatchAction)} src={closeIcon} alt="close-icon" />
 					</div> */}
-					<img src={successCheckIcon} alt="" />
-					<p>Successful</p>
+          <img src={successCheckIcon} alt="" />
+          <p>Successful</p>
 
-					<p style={{textAlign: "center" }} >{data.message}</p>
+          <p style={{textAlign: "center" }} >{data.message}</p>
 				
-					<Button onClick={() => handleClick(dispatchAction)} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
-				</> : <div>An Error Occured, Please Try Again</div>}
+          <Button onClick={() => handleClick(dispatchAction)} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
+        </> : <div>An Error Occured, Please Try Again</div>}
 			
 
-		</ModalWrapper>
-	);
+    </ModalWrapper>
+  );
 };
 ReportFoundAssetSuccess.propTypes = {
 

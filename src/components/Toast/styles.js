@@ -4,7 +4,7 @@ export const ToastContainer = styled.div`
     position: fixed;
     padding: 30px;
     width: 100%;
-    display: ${({ isOpen }) => isOpen ? 'grid':'none'};
+    display: ${({ isOpen }) => isOpen ? "grid":"none"};
     top: 0;
     left: 0;
     grid-template-columns: minmax(1fr, 400px);

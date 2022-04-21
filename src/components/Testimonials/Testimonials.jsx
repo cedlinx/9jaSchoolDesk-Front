@@ -12,46 +12,46 @@ import testimonialsAvatar from "@/assets/images/testimonialsAvatar.png";
 
 const Testimonials = props => {
 
-	let testimonialData = [
-		{
-			avatar: testimonialsAvatar,
-			name: "Edeh Funmi",
-			position: "Parent",
-			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-		},
+  let testimonialData = [
+    {
+      avatar: testimonialsAvatar,
+      name: "Edeh Funmi",
+      position: "Parent",
+      comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+    },
 
-		{
-			avatar: testimonialsAvatar,
-			name: "Charles Patterson",
-			position: "Clergy",
-			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-		},
+    {
+      avatar: testimonialsAvatar,
+      name: "Charles Patterson",
+      position: "Clergy",
+      comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+    },
 
-		{
-			avatar: testimonialsAvatar,
-			name: "John Doe",
-			position: "Lawyer",
-			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-		}
-	]; 
+    {
+      avatar: testimonialsAvatar,
+      name: "John Doe",
+      position: "Lawyer",
+      comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+    }
+  ]; 
 
 	  const testArray = ()=>{
 		  return (
 			 testimonialData.map((element, index)=>{
 				 return(
-					<Card key={index} className={cx(styles.cardItem)}>
-						<Card.Header className={cx(styles.cardHeader)}>
-							<div className={cx(styles.userInfo)}>
-								<p><span>{element.name}</span><span>({element.position})</span></p>
-							</div>
-							<div className={cx(styles.avatarDiv)}>
-								<img className={cx(styles.avatar)} src={element.avatar} alt="" />
-							</div>
+          <Card key={index} className={cx(styles.cardItem)}>
+            <Card.Header className={cx(styles.cardHeader)}>
+              <div className={cx(styles.userInfo)}>
+                <p><span>{element.name}</span><span>({element.position})</span></p>
+              </div>
+              <div className={cx(styles.avatarDiv)}>
+                <img className={cx(styles.avatar)} src={element.avatar} alt="" />
+              </div>
 						
 							
-						</Card.Header>
-						<Card.Body className={cx(styles.cardBody)}>{element.comment}</Card.Body>	
-					</Card>
+            </Card.Header>
+            <Card.Body className={cx(styles.cardBody)}>{element.comment}</Card.Body>	
+          </Card>
 				 );
 			 })
 
@@ -59,26 +59,26 @@ const Testimonials = props => {
 		  );
 	  };
 
-	return (
+  return (
 
 		
-		<section>
+    <section>
             
-			<div className={cx(styles.testimonialsContainer)}>
+      <div className={cx(styles.testimonialsContainer)}>
 				
-				<div className={cx(styles.header)}>
-					<h3>Here’s what people are <br /> saying about us</h3>
-				</div>
+        <div className={cx(styles.header)}>
+          <h3>Here’s what people are <br /> saying about us</h3>
+        </div>
 			
 
-				<div className={cx(styles.cardWrapper)}>
-					<NormalCarousel carouselArray={testArray()} />		
-				</div> 
+        <div className={cx(styles.cardWrapper)}>
+          <NormalCarousel carouselArray={testArray()} />		
+        </div> 
 
 				
-			</div>
-		</section>
-	);
+      </div>
+    </section>
+  );
 };
 
 Testimonials.propTypes = {

@@ -13,39 +13,39 @@ import { allAssetsTypes } from "@/redux/Assets/assets.action";
 import closeIcon from "@/assets/icons/close-icon.svg";
 
 const AddAssetCategorySuccess = props => {
-	const {data, dispatchAction} = props;
-	const dispatch = useDispatch();
+  const {data, dispatchAction} = props;
+  const dispatch = useDispatch();
 
-	const handleClick=(dispatchActionData) => {
-		dispatch(showModal({action: "hide"}));
-		dispatchActionData === "allAssetsTypes" ? dispatch(allAssetsTypes()) : null;
-	};
+  const handleClick=(dispatchActionData) => {
+    dispatch(showModal({action: "hide"}));
+    dispatchActionData === "allAssetsTypes" ? dispatch(allAssetsTypes()) : null;
+  };
 
-	return (
-		<ModalWrapper className={cx(styles.modalWrapper, "flexCol-align-center")}>
-			{data ? 
-				<>
-					{/* <div className={cx("modalHeader")}>
+  return (
+    <ModalWrapper className={cx(styles.modalWrapper, "flexCol-align-center")}>
+      {data ? 
+        <>
+          {/* <div className={cx("modalHeader")}>
 						<img onClick={()=>handleClick(dispatchAction)} src={closeIcon} alt="close-icon" />
 					</div> */}
-					<img src={successCheckIcon} alt="" />
-					<p>Successful</p>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>NAME</span><span className={cx(styles.value)}>{data?.name && titleCase(data?.name)}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>DATE</span><span className={cx(styles.value)}>{data?.created_at}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>SLUG</span><span className={cx(styles.value)}>{data?.slug}</span>
-					</div>
+          <img src={successCheckIcon} alt="" />
+          <p>Successful</p>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>NAME</span><span className={cx(styles.value)}>{data?.name && titleCase(data?.name)}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>DATE</span><span className={cx(styles.value)}>{data?.created_at}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>SLUG</span><span className={cx(styles.value)}>{data?.slug}</span>
+          </div>
 
-					<Button onClick={() => handleClick(dispatchAction)} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
-				</> : <div>An Error Occured, Please Try Again</div>}
+          <Button onClick={() => handleClick(dispatchAction)} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
+        </> : <div>An Error Occured, Please Try Again</div>}
 			
 
-		</ModalWrapper>
-	);
+    </ModalWrapper>
+  );
 };
 
 AddAssetCategorySuccess.propTypes = {

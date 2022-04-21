@@ -9,21 +9,21 @@ import TopDivWave from "@/components/WaveSvg/TopDivWave";
 
 
 const AuthPageContainer = (props) => {
-	const { showTopDivWave = true, children } = props;
-	const navigate = useNavigate();
-	return (
-		<div className={cx(styles.authPageContainer, "flexCol")}>
-			<MenuBar />
-			<div className={cx(styles.childrenContainer)}>
-				{showTopDivWave && <TopDivWave />}
-				{children}
-			</div>
-		</div>
-	);
+  const { showTopDivWave = true, children } = props;
+  const navigate = useNavigate();
+  return (
+    <div className={cx(styles.authPageContainer, "flexCol")}>
+      <MenuBar />
+      <div className={cx(styles.childrenContainer)}>
+        {showTopDivWave && <TopDivWave />}
+        {children}
+      </div>
+    </div>
+  );
 };
 
 AuthPageContainer.propTypes = {
-	children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired
 };
 
 export default AuthPageContainer;

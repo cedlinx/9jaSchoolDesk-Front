@@ -20,18 +20,21 @@
     .authPageContainer{    
         .childrenContainer{
         margin-top: 6rem;
-
         }
     }
 }
 
 @media all and (min-width:991px){
-
+    .authPageContainer{    
+        .childrenContainer{
+        margin-top: 7rem;
+        }
+    }
 }
 @media all and (min-width: 1200px) {
     .authPageContainer{    
         .childrenContainer{
-        margin-top: 6rem;
+        margin-top: 8rem;
         }
     }
 

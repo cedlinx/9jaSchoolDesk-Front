@@ -8,30 +8,30 @@ import closeIcon from "@/assets/icons/close-icon.svg";
 
 const ModalContainer = ({children}) => {
 
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const handleClose = (data) => {
-		dispatch(showModal({action: data}));
-	};
+  const handleClose = (data) => {
+    dispatch(showModal({action: data}));
+  };
 
-	return (
-		<>
-			<div className=''>
-				<Modal
-					show
-					onHide={handleClose}
-					scrollable={true}
-					centered
-					size='md'
-					dialogClassName='generic-modal-wrapper'
-				>
-					<Modal.Body className='generic-modal-body' >
-						{children}
-					</Modal.Body>
-				</Modal>
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div className=''>
+        <Modal
+          show
+          onHide={handleClose}
+          scrollable={true}
+          centered
+          size='md'
+          dialogClassName='generic-modal-wrapper'
+        >
+          <Modal.Body className='generic-modal-body' >
+            {children}
+          </Modal.Body>
+        </Modal>
+      </div>
+    </>
+  );
 };
 
 export default ModalContainer;

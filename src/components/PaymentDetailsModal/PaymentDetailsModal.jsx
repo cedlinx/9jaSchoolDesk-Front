@@ -11,36 +11,36 @@ import {titleCase} from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/modalState.action";
 
 const PaymentDetailsModal = props => {
-	const {data} = props;
-	const dispatch = useDispatch();
+  const {data} = props;
+  const dispatch = useDispatch();
 
-	return (
-		<ModalWrapper className={cx(styles.modalWrapper, "flexCol-align-center")}>
-			{data ? 
-				<>
-					<img src={successCheckIcon} alt="" />
-					<p>Successful</p>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>PAYMENT</span><span className={cx(styles.value)}>{data?.id && titleCase(data?.id)}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>PAYMENT DESCRIPTION</span><span className={cx(styles.value)}>{data?.description}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>PAYMENT ID</span><span className={cx(styles.value)}>{data?.assetid}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>SKYDAH ID</span><span className={cx(styles.value)}>{data?.skydahid}</span>
-					</div>
-					<div className={cx(styles.modalItem, "flexRow-space-between")}>
-						<span className={cx(styles.title)}>CREATED</span><span className={cx(styles.value)}>{data?.created_at}</span>
-					</div>
-					<Button onClick={() => dispatch(showModal("hide"))} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
-				</> : <div>An Error Occured, Please Try Again</div>}
+  return (
+    <ModalWrapper className={cx(styles.modalWrapper, "flexCol-align-center")}>
+      {data ? 
+        <>
+          <img src={successCheckIcon} alt="" />
+          <p>Successful</p>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>PAYMENT</span><span className={cx(styles.value)}>{data?.id && titleCase(data?.id)}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>PAYMENT DESCRIPTION</span><span className={cx(styles.value)}>{data?.description}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>PAYMENT ID</span><span className={cx(styles.value)}>{data?.assetid}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>SKYDAH ID</span><span className={cx(styles.value)}>{data?.skydahid}</span>
+          </div>
+          <div className={cx(styles.modalItem, "flexRow-space-between")}>
+            <span className={cx(styles.title)}>CREATED</span><span className={cx(styles.value)}>{data?.created_at}</span>
+          </div>
+          <Button onClick={() => dispatch(showModal("hide"))} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
+        </> : <div>An Error Occured, Please Try Again</div>}
 			
 
-		</ModalWrapper>
-	);
+    </ModalWrapper>
+  );
 };
 
 PaymentDetailsModal.propTypes = {

@@ -1,4 +1,4 @@
-.container{
+.dashboardHomeContainer{
     padding: 0.5rem 1rem;
 }
 
@@ -130,7 +130,7 @@
 }
 
 @media all and (min-width:991px){
-    .container{
+    .dashboardHomeContainer{
         padding: 1rem 2rem 1rem 2rem;
     }
         .cardWrapper {
@@ -154,7 +154,7 @@
 
 
 @media all and (min-width:1200px){
-    .container{
+    .dashboardHomeContainer{
         padding: 2rem 3rem 1rem 3rem;
     }
     .headerWrapper{

@@ -10,50 +10,66 @@ import profilePicture from "@/assets/images/default-avatar.png";
 import { getUserInfo } from "@/redux/User/user.action";
 import { titleCase } from "@/helpers/textTransform";
 import InputField from "@/components/Input/Input";
+import { Icon } from "@iconify/react";
+import { useNavigate, Link } from "react-router-dom";
+import Logo from "@/assets/images/Logo.svg";
+import Button from "@/components/Button/Button";
+import { Navbar, Nav, Dropdown, 
+  NavDropdown} from "react-bootstrap";
 
 
 const Header = (props) => {
-	const {showSearchComponent, handleToggleSidebar} = props;
+  const {handleToggleSidebar} = props;
+  const navigate = useNavigate();
 	
-	const dispatch = useDispatch();
-	const unreadNotifications = useSelector((state)=>state?.notifications?.notificationSummaryData?.data?.unread);
-	const userDetails = useSelector((state)=>state?.user?.getUserInfoData?.data?.data);
+  const dispatch = useDispatch();
+  const unreadNotifications = useSelector((state)=>state?.notifications?.notificationSummaryData?.data?.unread);
+  const userDetails = useSelector((state)=>state?.user?.getUserInfoData?.data?.data);
 
-	useEffect(() => {
-		dispatch(notificationSummary());
-		dispatch(getUserInfo());
-	},[]);
+  useEffect(() => {
+    // dispatch(notificationSummary());
+    // dispatch(getUserInfo());
+  },[]);
 
 
-	return (
-		<section className={cx(styles.container, "flexRow", "")}>
+  return (
+    <section className={cx(styles.dashboardHeaderContainer, "flexRow", "")}>
 
-			<div
-				className={cx(styles.dashboardToggler, "btn-toggle")}
-				onClick={() => handleToggleSidebar(true)}
-			>
-				<FaBars />
-			</div>
+      <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
+        <Navbar.Brand className={cx(styles.siteLogo )}> 		
+          <Link to="/"><img src={Logo} alt="" /></Link>
+        </Navbar.Brand>
 
-			<div className={cx(styles.notificationsDiv, "flexRow")}>
-				{/* <div className={cx(styles.searchComponentDiv)}>
-					<InputField
-						icon
-						placeholder={"Search here"}
-						type="text"
-						marginbottom={"0px"}
-						border={"#c1c7d0"}
-					/>
-				</div> */}
-				<div className={cx("flexRow", styles.notificationsWrapper)}><span><img src={messageCountIcon} alt="" /><sup>{unreadNotifications}</sup></span>
-					<span><img src={notificationIcon} alt="" /><sup>{unreadNotifications}</sup></span></div>
+        <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
+					
+          <div className={cx(styles.notificationsDiv, "flexRow")}>
+            <div className={cx(styles.searchComponentDiv)}>
+              <InputField
+                icon
+                placeholder={"Search here"}
+                type="text"
+                marginbottom={"0px"}
+                border={"#c1c7d0"}
+              />
+            </div>
+            <div className={cx("flexRow", styles.notificationsWrapper)}>
+              <span><img style={{transform: "rotate(45deg)"}} src={notificationIcon} alt="" /><sup>{unreadNotifications}</sup></span></div>
 				
-				<div className={cx("flexRow")}><span>{userDetails && titleCase(userDetails.name)}</span>
-					<img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" /></div>
+            <div className={cx("flexRow")}>
+              <span>My Classes</span>
+              <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
+              <Icon icon="clarity:caret-line" rotate={2} />
+            </div>
 
-			</div>
-		</section>
-	);
+          </div>
+
+        </Navbar.Collapse>
+      </Navbar>
+
+   
+    </section>
+  );
 };
 
 export default Header;

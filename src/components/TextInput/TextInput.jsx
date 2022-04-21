@@ -10,7 +10,7 @@ export default function TextInput({
   onBlur,
   name,
   value,
-  containerClassName,
+  containerClassName
 }) {
   return (
     <div className={`form-group text-area-wrapper ${containerClassName}`}>

@@ -12,12 +12,12 @@ const CustomToast = {
         fontSize: "14px",
         lineHeight: "19px",
         padding: "5px 15px",
-        boxShadow: "none",
+        boxShadow: "none"
       },
       hideProgressBar: true,
       progressClassName: css({
-        display: 'none'
-      }),
+        display: "none"
+      })
     });
   },
   error(msg, options = {}) {
@@ -25,13 +25,13 @@ const CustomToast = {
       ...options,
       className: {
         minHeight: "34px",
-        background: "rgba(21, 164, 18, 0.2)",
+        background: "rgba(21, 164, 18, 0.2)"
       },
       progressClassName: css({
-        display: 'none',
-      }),
+        display: "none"
+      })
     });
-  },
+  }
 };
 
 export default CustomToast;

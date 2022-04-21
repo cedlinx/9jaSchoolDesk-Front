@@ -12,17 +12,17 @@ checkAuth(store);
 
 
 AOS.init({
-	offset: 200,
-	duration: 600,
-	delay: 100
+  offset: 200,
+  duration: 600,
+  delay: 100
 });
 
 const App = () => (
-	<Provider store={store}>
-		<ToastProvider autoClose={3000}>
-			<Routes />
-		</ToastProvider>
-	</Provider>
+  <Provider store={store}>
+    <ToastProvider autoClose={3000}>
+      <Routes />
+    </ToastProvider>
+  </Provider>
 );
 
 export default App;

@@ -14,44 +14,44 @@ import { titleCase } from "@/helpers/textTransform";
 
 const Profile = () => {
 
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const userDetails = JSON.parse(localStorage.getItem("userDetails")).data;
+  const userDetails = JSON.parse(localStorage.getItem("userDetails")).data;
 
-	const RenderAccountInformation = () => <AccountInformation />;
-	const RenderNotification = () => <Notification />;
-	const RenderSecurity = () => <Security />;
-	const RenderSocial = () => <Social />;
-	const RenderPaymentHistory = () => <PaymentHistory />;
+  const RenderAccountInformation = () => <AccountInformation />;
+  const RenderNotification = () => <Notification />;
+  const RenderSecurity = () => <Security />;
+  const RenderSocial = () => <Social />;
+  const RenderPaymentHistory = () => <PaymentHistory />;
 	
-	const tabsComponents = [
-		{ name: "Account Information", component: RenderAccountInformation },
-		{ name: "Notification", component: RenderNotification },
-		{ name: "Security", component: RenderSecurity },
-		{ name: "Social", component: RenderSocial}, 
-		{ name: "Payment History", component: RenderPaymentHistory }
-	];
+  const tabsComponents = [
+    { name: "Account Information", component: RenderAccountInformation },
+    { name: "Notification", component: RenderNotification },
+    { name: "Security", component: RenderSecurity },
+    { name: "Social", component: RenderSocial}, 
+    { name: "Payment History", component: RenderPaymentHistory }
+  ];
 
 
-	return (
-		<div className={cx(styles.container)}>
+  return (
+    <div className={cx(styles.container)}>
 
-			<section className={cx(styles.pageHeader, "flexRow")}>
-				<div className={cx(styles.nameDiv)}>
-					<h3>{titleCase(userDetails.name)}</h3>
-					<p>{userDetails.plan.name.toUpperCase()}</p>
-				</div>
-				<div className={cx(styles.btnDiv)}>
-					<Button title="Change Profile" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" />
-				</div>
+      <section className={cx(styles.pageHeader, "flexRow")}>
+        <div className={cx(styles.nameDiv)}>
+          <h3>{titleCase(userDetails.name)}</h3>
+          <p>{userDetails.plan.name.toUpperCase()}</p>
+        </div>
+        <div className={cx(styles.btnDiv)}>
+          <Button title="Change Profile" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" />
+        </div>
 				
-			</section>
+      </section>
 
-			<section className={cx(styles.tablistWrapper)}>
-				<Tabs background="#FFFFFF" tabs={tabsComponents}/>
-			</section>
-		</div>
-	);
+      <section className={cx(styles.tablistWrapper)}>
+        <Tabs background="#FFFFFF" tabs={tabsComponents}/>
+      </section>
+    </div>
+  );
 };
 
 Profile.propTypes = {

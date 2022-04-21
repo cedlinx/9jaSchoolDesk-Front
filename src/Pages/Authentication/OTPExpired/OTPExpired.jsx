@@ -19,54 +19,54 @@ import siteLogo from "@/assets/images/Logo.svg";
 
 const OTPExpired = () => {
 
-	const dispatch = useDispatch();
-	const params = useParams();
-	const navigate = useNavigate();
-	const [verificationResponse, setVerificationResponse] = useState("");
+  const dispatch = useDispatch();
+  const params = useParams();
+  const navigate = useNavigate();
+  const [verificationResponse, setVerificationResponse] = useState("");
 
-	const sendRequest =(data)=>{
-		dispatch(resetPassword(data));
-	};
+  const sendRequest =(data)=>{
+    dispatch(resetPassword(data));
+  };
 
-	const resolver = yupResolver(resetPasswordValidationSchema);
+  const resolver = yupResolver(resetPasswordValidationSchema);
 
-	const defaultValues = {
-		email: "",
-		password: "",
-		password_confirmation: ""
-	};
+  const defaultValues = {
+    email: "",
+    password: "",
+    password_confirmation: ""
+  };
 
-	const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
+  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
 
-	const handleReset = async (data)=>{
-		const response = await dispatch(resetPassword({...data, token: params.token}));
-		const message = response.payload.data.message;
-		if (message.includes("successful")) {
-			toast.success(`${response.payload.data.message}. Kindly Login`);
-			reset();
-		} else {
-			toast.error(response.payload.data.message);
-		}
-	};
+  const handleReset = async (data)=>{
+    const response = await dispatch(resetPassword({...data, token: params.token}));
+    const message = response.payload.data.message;
+    if (message.includes("successful")) {
+      toast.success(`${response.payload.data.message}. Kindly Login`);
+      reset();
+    } else {
+      toast.error(response.payload.data.message);
+    }
+  };
 
-	return (
-		<AuthPageContainer>
-			<section className={cx(styles.otpExpiredContainer, "flexCol")}>
+  return (
+    <AuthPageContainer>
+      <section className={cx(styles.otpExpiredContainer, "flexCol")}>
 
-				<div>
-					<img src={siteLogo} alt="" />
-				</div>
+        <div>
+          <img src={siteLogo} alt="" />
+        </div>
 
-				<h3>OTP Expired</h3>
-				<Button onClick={handleSubmit((data) => handleReset(data))} title="Resend OTP" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+        <h3>OTP Expired</h3>
+        <Button onClick={handleSubmit((data) => handleReset(data))} title="Resend OTP" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 
-				<div className={cx(styles.formWrapper, "flexCol")}>
-					<form
-						onSubmit={handleSubmit((data) => handleReset(data))}
-						className=""
-					>
+        <div className={cx(styles.formWrapper, "flexCol")}>
+          <form
+            onSubmit={handleSubmit((data) => handleReset(data))}
+            className=""
+          >
 
-						{/* <Controller
+            {/* <Controller
 							name="email"
 							control={control}
 							render={({ field }) => (
@@ -81,7 +81,7 @@ const OTPExpired = () => {
 							)}
 						/> */}
 
-						{/* <Controller
+            {/* <Controller
 							name="password"
 							control={control}
 							render={({ field }) => (
@@ -110,7 +110,7 @@ const OTPExpired = () => {
 								/>
 							)}
 						/> */}
-						{/* <p>otp component here</p>
+            {/* <p>otp component here</p>
 
 						<div className={cx(styles.submitBtnDiv, "flexRow")}>
 							<Button onClick={handleSubmit((data) => handleReset(data))} title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
@@ -118,18 +118,18 @@ const OTPExpired = () => {
 
 						<p>Don't get OTP? <Link to="#">Resend OTP</Link></p> */}
 
-						{/* <p><Link to="/login">Sign In</Link> to continue</p> */}
+            {/* <p><Link to="/login">Sign In</Link> to continue</p> */}
 
-					</form>
-				</div>
+          </form>
+        </div>
 
-			</section>
-		</AuthPageContainer>
-	);
+      </section>
+    </AuthPageContainer>
+  );
 };
 
 OTPExpired.propTypes = {
-	title: PropTypes.string
+  title: PropTypes.string
 };
 
 export default OTPExpired;

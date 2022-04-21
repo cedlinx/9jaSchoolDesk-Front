@@ -25,146 +25,146 @@ import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg"
 import TopDivWave from "@/components/WaveSvg/TopDivWave";
 
 const MosqueSignUp = () => {
-	const dispatch = useDispatch();
-	// const navigate = useNavigate();
-	const signUpSuccess = useSelector((state) => state.user.signUpData);
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  const signUpSuccess = useSelector((state) => state.user.signUpData);
 
-	useEffect(() => {
-		// signUpSuccess && navigate("/login");
-		signUpSuccess && reset();
-	}, [signUpSuccess]);
+  useEffect(() => {
+    // signUpSuccess && navigate("/login");
+    signUpSuccess && reset();
+  }, [signUpSuccess]);
 
-	const resolver = yupResolver(signUpValidationSchema);
+  const resolver = yupResolver(signUpValidationSchema);
 
-	const defaultValues = {
-		email: "",
-		name: "",
-		password: "",
-		password_confirmation: "",
-		address: "",
-		phone: "",
-		pin: ""
-		// accountType: ""
-	};
+  const defaultValues = {
+    email: "",
+    name: "",
+    password: "",
+    password_confirmation: "",
+    address: "",
+    phone: "",
+    pin: ""
+    // accountType: ""
+  };
 
-	const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-	// const selectOptions = [        
-	// 	{label:"Account One", value:"Account One"},
-	// 	{label:"Account Two", value:"Account Two"},
-	// 	{label:"Account Three", value:"Account Three"},
-	// 	{label:"Account Four", value:"Account Four"},
-	// 	{label:"Account Five", value:"Account Five"}
-	// ];
+  // const selectOptions = [        
+  // 	{label:"Account One", value:"Account One"},
+  // 	{label:"Account Two", value:"Account Two"},
+  // 	{label:"Account Three", value:"Account Three"},
+  // 	{label:"Account Four", value:"Account Four"},
+  // 	{label:"Account Five", value:"Account Five"}
+  // ];
 
-	const createUser = async (data) => {
-		const response = await dispatch(signUp(data));
-		if (response.payload.status === 201) {
-			toast.success("Account created successfully. Please Login");
-			reset();
-		} else {
-			dispatch({
-				type: "USER_INIT_STATE"
-			});
-		}
-	};
+  const createUser = async (data) => {
+    const response = await dispatch(signUp(data));
+    if (response.payload.status === 201) {
+      toast.success("Account created successfully. Please Login");
+      reset();
+    } else {
+      dispatch({
+        type: "USER_INIT_STATE"
+      });
+    }
+  };
 
-	return (
-		<div className={cx(styles.signUpWrapper)} >
-			<TopDivWave />
+  return (
+    <div className={cx(styles.signUpWrapper)} >
+      <TopDivWave />
 
-			<div className={cx(styles.container, "row")}>
-				<div className={cx(styles.leftCol, "col-md-6")}>
-					<h3><span className={cx(styles.wordBreak)}>Sign <img className={cx(styles.floatingIcon)} src={curvedHamburgerFlipped} alt="icon" /></span> Up</h3>
-					<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis odio tempora cupiditate, iure consequatur molestias, nulla aut vel suscipit a ab dolore sunt quos minima ad alias ullam architecto aliquam?</p>
-				</div>
+      <div className={cx(styles.container, "row")}>
+        <div className={cx(styles.leftCol, "col-md-6")}>
+          <h3><span className={cx(styles.wordBreak)}>Sign <img className={cx(styles.floatingIcon)} src={curvedHamburgerFlipped} alt="icon" /></span> Up</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis odio tempora cupiditate, iure consequatur molestias, nulla aut vel suscipit a ab dolore sunt quos minima ad alias ullam architecto aliquam?</p>
+        </div>
 
-				<section className={cx(styles.rightCol, "col-md-6", "flexCol")}>
+        <section className={cx(styles.rightCol, "col-md-6", "flexCol")}>
 
-					<div>
-						<img src={siteLogo} alt="" />
-					</div>
-					<div className={cx(styles.formWrapper, "flexCol")}>
-						<form onSubmit={handleSubmit((data) => createUser(data))}
-							className="form"
-						>
+          <div>
+            <img src={siteLogo} alt="" />
+          </div>
+          <div className={cx(styles.formWrapper, "flexCol")}>
+            <form onSubmit={handleSubmit((data) => createUser(data))}
+              className="form"
+            >
 
-							<Controller
-								name="email"
-								control={control}
-								render={({ field }) => (
-									<InputField
-										{...field} 
-										placeholder={" "}
-										label={"Email Address"}
-										type="email"
-										error={errors?.email && errors?.email?.message}
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Email Address"}
+                    type="email"
+                    error={errors?.email && errors?.email?.message}
 
-									/>
-								)}
-							/>
+                  />
+                )}
+              />
 
-							<Controller
-								name="name"
-								control={control}
-								render={({ field }) => (
-									<InputField
-										{...field} 
-										placeholder={" "}
-										label={"Full Name"}
-										type="text"
-										error={errors?.name && errors?.name?.message}
+              <Controller
+                name="name"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Full Name"}
+                    type="text"
+                    error={errors?.name && errors?.name?.message}
 
-									/>
-								)}
-							/>
+                  />
+                )}
+              />
 
-							<Controller
-								name="accountType"
-								control={control}
-								render={({ field }) => (
-									<SelectField
-										{...field}
-										label={"Account Type"}
-										type="text"
-										required={true}
-										error={errors?.accountType && errors?.accountType?.message}
-										options={[]}
-									/>
-								)}
-							/>
+              <Controller
+                name="accountType"
+                control={control}
+                render={({ field }) => (
+                  <SelectField
+                    {...field}
+                    label={"Account Type"}
+                    type="text"
+                    required={true}
+                    error={errors?.accountType && errors?.accountType?.message}
+                    options={[]}
+                  />
+                )}
+              />
 
-							<Controller
-								name="password"
-								control={control}
-								render={({ field }) => (
-									<InputField
-										{...field} 
-										placeholder={" "}
-										label={"Password"}
-										type="password"
-										error={errors?.password && errors?.password?.message}
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Password"}
+                    type="password"
+                    error={errors?.password && errors?.password?.message}
 
-									/>
-								)}
-							/>
+                  />
+                )}
+              />
 
-							<Controller
-								name="password_confirmation"
-								control={control}
-								render={({ field }) => (
-									<InputField
-										{...field} 
-										placeholder={" "}
-										label={"Confirm Password"}
-										type="password"
-										error={errors?.password_confirmation && errors?.password_confirmation?.message}
+              <Controller
+                name="password_confirmation"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Confirm Password"}
+                    type="password"
+                    error={errors?.password_confirmation && errors?.password_confirmation?.message}
 
-									/>
-								)}
-							/>
+                  />
+                )}
+              />
 
-							{/* <Controller
+              {/* <Controller
 								name="pin"
 								control={control}
 								render={({ field }) => (
@@ -210,24 +210,24 @@ const MosqueSignUp = () => {
 								)}
 							/> */}
 
-							<div className={cx(styles.submitBtnDiv, "flexRow")}>
-								<Button onClick={handleSubmit((data) => createUser(data))} type title="Sign Up" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
-							</div>
+              <div className={cx(styles.submitBtnDiv, "flexRow")}>
+                <Button onClick={handleSubmit((data) => createUser(data))} type title="Sign Up" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+              </div>
 
-							<p>Already have an account? <Link to="/login">Sign In</Link></p>
+              <p>Already have an account? <Link to="/login">Sign In</Link></p>
 
-						</form>
-					</div>
+            </form>
+          </div>
 
-				</section>
-			</div>
+        </section>
+      </div>
 			
-		</div>
-	);
+    </div>
+  );
 };
 
 MosqueSignUp.propTypes = {
-	title: PropTypes.string
+  title: PropTypes.string
 };
 
 export default MosqueSignUp;

@@ -16,71 +16,71 @@ import FormSkeleton from "@/components/SkeletonLoader/FormSkeleton";
 
 const Social=()=>{
 
-	const dispatch = useDispatch();
-	const loading = useSelector((state)=>state?.user?.loading);
-	const userSocialData = useSelector((state)=>state?.user?.getUserSocialData?.data);
-	const modalState = useSelector((state) => state.modalState.action);
-	const modalType = useSelector((state) => state.modalState.type);
-	const userDetails = useSelector((state)=>state?.user?.getUserInfoData?.data);
-	const [modifiedDetails, setModifiedDetails] = useState({});
-	const [disabledFields, setDisabledFields] = useState(true);
-	const [showSaveBtn, setShowSaveBtn] = useState(false);
+  const dispatch = useDispatch();
+  const loading = useSelector((state)=>state?.user?.loading);
+  const userSocialData = useSelector((state)=>state?.user?.getUserSocialData?.data);
+  const modalState = useSelector((state) => state.modalState.action);
+  const modalType = useSelector((state) => state.modalState.type);
+  const userDetails = useSelector((state)=>state?.user?.getUserInfoData?.data);
+  const [modifiedDetails, setModifiedDetails] = useState({});
+  const [disabledFields, setDisabledFields] = useState(true);
+  const [showSaveBtn, setShowSaveBtn] = useState(false);
 
-	useEffect(()=>{
-		dispatch(getUserSocial());
-		dispatch(getUserInfo());
-	},[]);
+  useEffect(()=>{
+    dispatch(getUserSocial());
+    dispatch(getUserInfo());
+  },[]);
 
-	const resolver = yupResolver(modifyUserValidationSchema);
-	const defaultValues = {
-		// firstName: userDetails?.data?.name,
-		// secondName: userDetails?.data?.name,
-		// lastName: userDetails?.data?.name,
-		// stateOfResidence: "",
-		// city: "",
-		// nearestBusStop: ""
-		name: userDetails && userDetails?.data?.name,
-		email: userDetails && userDetails?.data?.email,
-		phone: userDetails && userDetails?.data?.phone,
-		address: userDetails && userDetails?.data?.address
-	};
+  const resolver = yupResolver(modifyUserValidationSchema);
+  const defaultValues = {
+    // firstName: userDetails?.data?.name,
+    // secondName: userDetails?.data?.name,
+    // lastName: userDetails?.data?.name,
+    // stateOfResidence: "",
+    // city: "",
+    // nearestBusStop: ""
+    name: userDetails && userDetails?.data?.name,
+    email: userDetails && userDetails?.data?.email,
+    phone: userDetails && userDetails?.data?.phone,
+    address: userDetails && userDetails?.data?.address
+  };
 
-	const {handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
+  const {handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
 
-	const enableInputEdit = (e)=>{
-		e.preventDefault();
-		setDisabledFields(false);
-		setShowSaveBtn(true);
-	};
+  const enableInputEdit = (e)=>{
+    e.preventDefault();
+    setDisabledFields(false);
+    setShowSaveBtn(true);
+  };
 
-	console.log(userSocialData);
-	return(
-		<div className={cx(styles.container)}>
-			<section className={cx(styles.socialWrapper)}>
+  console.log(userSocialData);
+  return(
+    <div className={cx(styles.container)}>
+      <section className={cx(styles.socialWrapper)}>
 
-				<form>
-					<div className={cx(styles.header, "flexRow")}>
-						<h3>Link Social Media Account</h3>
-						<div className={cx(styles.btnDiv)}>
-							<Button title="Save Changes" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" />
-						</div>
-					</div>
+        <form>
+          <div className={cx(styles.header, "flexRow")}>
+            <h3>Link Social Media Account</h3>
+            <div className={cx(styles.btnDiv)}>
+              <Button title="Save Changes" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" />
+            </div>
+          </div>
 
-					<div className={cx(styles.body, "row")}>
-						<div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Facebook" /></div>
-						<div className="col-md-4 col-xs-12"><InputField type="text" placeholder="LinkedIn" /></div>
-						<div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Tiktok" /></div>
-						<div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Instagram" /></div>
-						<div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Twitter" /></div>
-						<div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Youtube" /></div>
-					</div>
-				</form>
+          <div className={cx(styles.body, "row")}>
+            <div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Facebook" /></div>
+            <div className="col-md-4 col-xs-12"><InputField type="text" placeholder="LinkedIn" /></div>
+            <div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Tiktok" /></div>
+            <div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Instagram" /></div>
+            <div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Twitter" /></div>
+            <div className="col-md-4 col-xs-12"><InputField type="text" placeholder="Youtube" /></div>
+          </div>
+        </form>
 			
 
 
-			</section>
-		</div>
-	);
+      </section>
+    </div>
+  );
 };
 
 export default Social;

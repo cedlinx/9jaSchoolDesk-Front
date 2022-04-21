@@ -4,22 +4,22 @@ import {ListGroup} from "react-bootstrap";
 
 const ListGroupComponent = ({ children }) => {
 
-	const handleClick=(data)=>{
+  const handleClick=(data)=>{
 
-	};
+  };
 
-	return (
-		<ListGroup>
-			{children.map((element, index) => {
-				return(
-					<li key={index} className="list-group-item" onClick={() => handleClick(index)}>
-						{element}
-					</li>
-				);
-			})}
-		</ListGroup>
+  return (
+    <ListGroup>
+      {children.map((element, index) => {
+        return(
+          <li key={index} className="list-group-item" onClick={() => handleClick(index)}>
+            {element}
+          </li>
+        );
+      })}
+    </ListGroup>
 		
-	);
+  );
 };
 
 ListGroupComponent.propTypes = {

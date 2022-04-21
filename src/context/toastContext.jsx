@@ -6,19 +6,19 @@ import "react-toastify/dist/ReactToastify.min.css";
 const ToastContext = React.createContext();
 
 function ToastProvider(props) {
-	return (
-		<ToastContext.Provider value {...props}>
-			<ToastContainer
-				autoClose={5000}
-				position="top-right"
-			/>
-			{props.children}
-		</ToastContext.Provider>
-	);
+  return (
+    <ToastContext.Provider value {...props}>
+      <ToastContainer
+        autoClose={5000}
+        position="top-right"
+      />
+      {props.children}
+    </ToastContext.Provider>
+  );
 }
 
 ToastProvider.propTypes = {
-	// children: PropTypes.string
+  // children: PropTypes.string
 };
 
 const useToast = () => React.useContext(ToastContext);

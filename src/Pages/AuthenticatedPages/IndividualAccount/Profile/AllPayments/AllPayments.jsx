@@ -37,303 +37,303 @@ import {getAllPayments} from "@/redux/Billings/billings.action";
 
 const AllPayments = props => {
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const modalState = useSelector((state) => state.modalState.action);
-	const modalType = useSelector((state) => state.modalState.type);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const modalState = useSelector((state) => state.modalState.action);
+  const modalType = useSelector((state) => state.modalState.type);
 
-	// const allPaymentsData = useSelector((state) => state?.billings?.allPaymentsData.data);
-	const user_id = JSON.parse(localStorage.getItem("userDetails")).data?.id;
-	const paymentsLoading = useSelector((state) => state.billings.loading);
-	const [modalPaymentId, setModalPaymentId] = useState("");
-	const [selectedRows, setSelectedRows] = useState("");
-	const [checkedValue, setCheckedValue] = useState(false);
-	const [disableModifyBtn, setDisableModifyBtn] = useState(false);
-	const [showBtnGroup, setShowBtnGroup] = useState(false);
-
-
-	// Test payment data 
-
-	let allPaymentsData = [
-		{
-			id: "123",
-			created_at: "2015-01-01",
-			plan: "Basic",
-			amount: 1000,
-			status: "Successful"
-		}
-	];
-
-	useEffect(() => {
-		dispatch(getAllPayments({user_id: user_id}));
-	}, [dispatch, user_id]);
+  // const allPaymentsData = useSelector((state) => state?.billings?.allPaymentsData.data);
+  const user_id = JSON.parse(localStorage.getItem("userDetails")).data?.id;
+  const paymentsLoading = useSelector((state) => state.billings.loading);
+  const [modalPaymentId, setModalPaymentId] = useState("");
+  const [selectedRows, setSelectedRows] = useState("");
+  const [checkedValue, setCheckedValue] = useState(false);
+  const [disableModifyBtn, setDisableModifyBtn] = useState(false);
+  const [showBtnGroup, setShowBtnGroup] = useState(false);
 
 
-	const displayModal = (action, type) => {
-		if(type === "deleteAsset" && selectedRows.length === 0) {
-			toast.error("Kindly select at least one asset to perform this action");
-			return;
-		}
-		else if( type === "modifyAsset" && selectedRows.length === 0) {
-			toast.error("Kindly select at least one asset to perform this action");
-			return;
-		}
+  // Test payment data 
+
+  let allPaymentsData = [
+    {
+      id: "123",
+      created_at: "2015-01-01",
+      plan: "Basic",
+      amount: 1000,
+      status: "Successful"
+    }
+  ];
+
+  useEffect(() => {
+    dispatch(getAllPayments({user_id: user_id}));
+  }, [dispatch, user_id]);
+
+
+  const displayModal = (action, type) => {
+    if(type === "deleteAsset" && selectedRows.length === 0) {
+      toast.error("Kindly select at least one asset to perform this action");
+      return;
+    }
+    else if( type === "modifyAsset" && selectedRows.length === 0) {
+      toast.error("Kindly select at least one asset to perform this action");
+      return;
+    }
  
-		dispatch(showModal({ action, type }));
-	};
+    dispatch(showModal({ action, type }));
+  };
 
-	const handleViewClick =(id)=>{
-		setModalPaymentId(id);
-		displayModal("show", "paymentDetails");
-	};
+  const handleViewClick =(id)=>{
+    setModalPaymentId(id);
+    displayModal("show", "paymentDetails");
+  };
 
-	const getPaymentDetails = (data) => {
-		return allPaymentsData.filter(payment=> payment.id === data)[0];
-	};
+  const getPaymentDetails = (data) => {
+    return allPaymentsData.filter(payment=> payment.id === data)[0];
+  };
 
-	const deleteAssetFxn = async () => {
-		if(selectedRows.length === 1){
-			const assetID = selectedRows[0].original.assetID;
-			let result =await dispatch(deleteAsset({id: assetID}));
-			displayModal("hide");
+  const deleteAssetFxn = async () => {
+    if(selectedRows.length === 1){
+      const assetID = selectedRows[0].original.assetID;
+      let result =await dispatch(deleteAsset({id: assetID}));
+      displayModal("hide");
 			
-			result.payload.status === 200 && dispatch(assetsList());	
-		}
-		else{
-			const assetIDs = [];
-			selectedRows.map(element=>{
-				assetIDs.push(element.original.assetID);
-			});
-			// dispatch(deleteBulkAsset({id: assetIDs}));
-			displayModal("hide");
-		}
-	};
+      result.payload.status === 200 && dispatch(assetsList());	
+    }
+    else{
+      const assetIDs = [];
+      selectedRows.map(element=>{
+        assetIDs.push(element.original.assetID);
+      });
+      // dispatch(deleteBulkAsset({id: assetIDs}));
+      displayModal("hide");
+    }
+  };
 
-	const modifyAssetFxn = () => {
-		const assetID = selectedRows[0].original.assetID;
-		dispatch(modifyAsset({id: assetID}));
-		displayModal("hide");
-	};	
+  const modifyAssetFxn = () => {
+    const assetID = selectedRows[0].original.assetID;
+    dispatch(modifyAsset({id: assetID}));
+    displayModal("hide");
+  };	
 	
-	const confirmModifyModal = () => {
-		return (
-			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
-				<h2>Are you sure you want to modify the asset ?</h2>
-				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-					<Button  onClick={() => modifyAssetFxn()} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
-				</div>
-			</div>
-		);
-	};
+  const confirmModifyModal = () => {
+    return (
+      <div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
+        <h2>Are you sure you want to modify the asset ?</h2>
+        <div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
+          <Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+          <Button  onClick={() => modifyAssetFxn()} title="Modify" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
+        </div>
+      </div>
+    );
+  };
 
-	const confirmDeleteModal = (data) => {
-		return (
-			<div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
-				<h2>Are you sure you want to delete the asset ?</h2>
-				<div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
-					<Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
-					<Button onClick={() => deleteAssetFxn()} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
-				</div>
-			</div>
-		);
-	};
+  const confirmDeleteModal = (data) => {
+    return (
+      <div style={{ textAlign: "center" }} className={cx(styles.modalWrapper, "flexCol-align-center")}>				
+        <h2>Are you sure you want to delete the asset ?</h2>
+        <div style={{ gap: "1rem", marginTop: "2rem" }} className={cx(styles.btnDiv, "flexRow-fully-centered")}>
+          <Button onClick={() => displayModal("hide")} title="Cancel" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" />
+          <Button onClick={() => deleteAssetFxn()} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
+        </div>
+      </div>
+    );
+  };
 
-	const viewCodeGenerated = (data) => {
-		return (
-			<div className={cx(styles.modalWrapper, "flexCol-align-center")}>
-				<img src={successCheckIcon} alt="" />
-				<p>Code Generated Successfully</p>
-				{/* <img src={qrCodeImage} alt="" /> */}
-				<p>#001245105KJ30091</p>
-				<Button onClick={()=>displayModal("hide")} title="OK" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
-			</div>
-		);
-	};
+  const viewCodeGenerated = (data) => {
+    return (
+      <div className={cx(styles.modalWrapper, "flexCol-align-center")}>
+        <img src={successCheckIcon} alt="" />
+        <p>Code Generated Successfully</p>
+        {/* <img src={qrCodeImage} alt="" /> */}
+        <p>#001245105KJ30091</p>
+        <Button onClick={()=>displayModal("hide")} title="OK" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
+      </div>
+    );
+  };
 
-	const viewAssetResult = (data) => {
-		let detailsObj = getPaymentDetails(data);
-		return (
-			<PaymentDetailsModal data={detailsObj} />
-		);
-	};
+  const viewAssetResult = (data) => {
+    let detailsObj = getPaymentDetails(data);
+    return (
+      <PaymentDetailsModal data={detailsObj} />
+    );
+  };
 
-	let shortenDate=(value)=>{
-		let date = new Date(value);
-		return date.toDateString();
-	};
+  let shortenDate=(value)=>{
+    let date = new Date(value);
+    return date.toDateString();
+  };
 
-	const dateOptions = {
-		maxDate: new Date(),
-		mode: "range",
-		dateFormat: "F J 'y",
-		onChange: function(selectedDates, dateStr, instance) {
-		}
-	};
+  const dateOptions = {
+    maxDate: new Date(),
+    mode: "range",
+    dateFormat: "F J 'y",
+    onChange: function(selectedDates, dateStr, instance) {
+    }
+  };
 
-	const columnsHeader = [
-		{
-			Header: () => (
-				<div
-					style={{
-						width: "4rem"
-					}}
-				>
+  const columnsHeader = [
+    {
+      Header: () => (
+        <div
+          style={{
+            width: "4rem"
+          }}
+        >
 	ID
-				</div>
-			),
-			accessor: "id"				
-		},
+        </div>
+      ),
+      accessor: "id"				
+    },
                 
-		{
-			Header: () => (
-				<div
-					style={{
-						minWidth: "5rem"
-					}}
-				>
+    {
+      Header: () => (
+        <div
+          style={{
+            minWidth: "5rem"
+          }}
+        >
                            PAYMENT DATE
-				</div>
-			),
-			accessor: "payment_date"
-		},
-		{
-			Header: () => (
-				<div
-					style={{
-						minWidth: "4rem"
-					}}
-				>
+        </div>
+      ),
+      accessor: "payment_date"
+    },
+    {
+      Header: () => (
+        <div
+          style={{
+            minWidth: "4rem"
+          }}
+        >
                            PLAN
-				</div>
-			),
-			accessor: "plan"
-		},
-		{
-			Header: () => (
-				<div
-					style={{
-						minWidth: "5rem"
-					}}
-				>
+        </div>
+      ),
+      accessor: "plan"
+    },
+    {
+      Header: () => (
+        <div
+          style={{
+            minWidth: "5rem"
+          }}
+        >
                            AMOUNT
-				</div>
-			),
-			accessor: "amount"
-		},
-		{
-			Header: () => (
-				<div
-					style={{
-						minWidth: "6rem"
-					}}
-				>
+        </div>
+      ),
+      accessor: "amount"
+    },
+    {
+      Header: () => (
+        <div
+          style={{
+            minWidth: "6rem"
+          }}
+        >
                            STATUS
-				</div>
-			),
-			accessor: "status",
-			Cell: (row)=>{
-				let status = row.cell.row.values.status;
-				return <p style={{color: status.toLowerCase() === "successful" ? "green" : "red", marginBottom: "0rem", fontWeight: "bold"}}>
-					{titleCase(status)}
-				</p>;
-			}
-		},
-		{
-			Header: "ACTIONS",
-			accessor: "actions",
-			Cell: (row)=>{
-				let id = row.cell.row.values.id;
-				return <div onClick={()=>handleViewClick(id)}>
-					<Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
-				</div>;
-			}
-		}
-	];
+        </div>
+      ),
+      accessor: "status",
+      Cell: (row)=>{
+        let status = row.cell.row.values.status;
+        return <p style={{color: status.toLowerCase() === "successful" ? "green" : "red", marginBottom: "0rem", fontWeight: "bold"}}>
+          {titleCase(status)}
+        </p>;
+      }
+    },
+    {
+      Header: "ACTIONS",
+      accessor: "actions",
+      Cell: (row)=>{
+        let id = row.cell.row.values.id;
+        return <div onClick={()=>handleViewClick(id)}>
+          <Button  title="View" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="rgba(44,0,133,0.05)"/>
+        </div>;
+      }
+    }
+  ];
 
-	let getTableData = (data) => {
-		let result =[];
+  let getTableData = (data) => {
+    let result =[];
 
-		data  && data.map((item) =>{
-			result.push({
-				id: item?.id && item?.id,
-				payment_date: item?.created_at && shortenDate(item?.created_at),
-				plan: item?.plan && titleCase(item?.plan),
-				amount: item?.amount && item?.amount,
-				status: item?.status && item?.status,
-				action: ""
-			});
-		});
-		return result;
-	};
+    data  && data.map((item) =>{
+      result.push({
+        id: item?.id && item?.id,
+        payment_date: item?.created_at && shortenDate(item?.created_at),
+        plan: item?.plan && titleCase(item?.plan),
+        amount: item?.amount && item?.amount,
+        status: item?.status && item?.status,
+        action: ""
+      });
+    });
+    return result;
+  };
 
-	const selectedRowsData=(data)=>{
-		if(data.length === 0){
-			setCheckedValue(false);
-			setShowBtnGroup(false);
-		}
-		else{
-			setCheckedValue(true);
-			setShowBtnGroup(true);
-		}
-		data.length > 1 ? setDisableModifyBtn(true) : setDisableModifyBtn(false);
-		setSelectedRows(data);
-	};
+  const selectedRowsData=(data)=>{
+    if(data.length === 0){
+      setCheckedValue(false);
+      setShowBtnGroup(false);
+    }
+    else{
+      setCheckedValue(true);
+      setShowBtnGroup(true);
+    }
+    data.length > 1 ? setDisableModifyBtn(true) : setDisableModifyBtn(false);
+    setSelectedRows(data);
+  };
 
-	return (
-		<div className={cx(styles.container)}>
-			<div className={cx(styles.header, "flexRow")}>
-				<h2>All Payments</h2>
-				<button onClick={() => navigate(-1)}>
+  return (
+    <div className={cx(styles.container)}>
+      <div className={cx(styles.header, "flexRow")}>
+        <h2>All Payments</h2>
+        <button onClick={() => navigate(-1)}>
 					Back
-				</button>
-			</div>
+        </button>
+      </div>
 
-			<div className={cx(styles.dateSelectorWrapper, "flexRow")}>
-				<img src={calendarIcon} alt="calendar" />
-				<div className={cx(styles.datePickerWrapper)}>
-					<p>Change Period</p>
-					<Flatpickr  placeholder= "Select Date Range"
-						options={dateOptions} className={cx(styles.datePicker)}
-					/>
-				</div>
-			</div>
+      <div className={cx(styles.dateSelectorWrapper, "flexRow")}>
+        <img src={calendarIcon} alt="calendar" />
+        <div className={cx(styles.datePickerWrapper)}>
+          <p>Change Period</p>
+          <Flatpickr  placeholder= "Select Date Range"
+            options={dateOptions} className={cx(styles.datePicker)}
+          />
+        </div>
+      </div>
 
-			<div className={cx(styles.assetCodeWrapper, "flexRow")}>
-				<div onClick={()=>navigate("/individual-dashboard/billings")}>
-					<Button title="Subscription" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D"  />
-				</div>
+      <div className={cx(styles.assetCodeWrapper, "flexRow")}>
+        <div onClick={()=>navigate("/individual-dashboard/billings")}>
+          <Button title="Subscription" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D"  />
+        </div>
 
-				<div className={cx(styles.codeDetailsWrapper, "flexRow")}>
-					<img src={emptyAvatar} alt="avatar" />
-					<div>
-						<small>Total Payment Made</small>
-						<p><span>NGN</span> 129.000</p>
-					</div>
-				</div>
+        <div className={cx(styles.codeDetailsWrapper, "flexRow")}>
+          <img src={emptyAvatar} alt="avatar" />
+          <div>
+            <small>Total Payment Made</small>
+            <p><span>NGN</span> 129.000</p>
+          </div>
+        </div>
 
-				{showBtnGroup && 
+        {showBtnGroup && 
 				<div className={cx(styles.btnGroup, "flexRow")}>
 
-					<Button title="Active" checkedBtn checked={checkedValue} textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" />
-					{/* <Button onClick={() => displayModal("show", "modifyAsset")} disabled={disableModifyBtn} title="Modify" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /> */}
-					<Button onClick={() => displayModal("show", "deleteAsset")} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
+				  <Button title="Active" checkedBtn checked={checkedValue} textColor="#D25B5D" bordercolor="2C0085" borderRadiusType="lowRounded" bgColor="#fff" />
+				  {/* <Button onClick={() => displayModal("show", "modifyAsset")} disabled={disableModifyBtn} title="Modify" textColor="#D25B5D" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#fff" /> */}
+				  <Button onClick={() => displayModal("show", "deleteAsset")} title="Delete" textColor="#fff" borderRadiusType="lowRounded" bgColor="#FF2C45" />
 
 				</div>
-				}
+        }
 
 				
-			</div>
+      </div>
 			
-			<div className={cx(styles.tableWrapper, "flexCol")}>
-				{paymentsLoading ? <TableSkeleton /> : 
-					<TableComponent columnsHeader={columnsHeader} tableData={getTableData(allPaymentsData)} selectedRowsData={selectedRowsData} />}
-			</div>
+      <div className={cx(styles.tableWrapper, "flexCol")}>
+        {paymentsLoading ? <TableSkeleton /> : 
+          <TableComponent columnsHeader={columnsHeader} tableData={getTableData(allPaymentsData)} selectedRowsData={selectedRowsData} />}
+      </div>
 
-			{modalState === "show" ? <Modal show >{modalType === "paymentDetails" ? viewAssetResult(modalPaymentId) : modalType === "accessCode" ? viewCodeGenerated() : modalType === "deleteAsset" ? confirmDeleteModal() : modalType === "modifyAsset" ? confirmModifyModal() : null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "paymentDetails" ? viewAssetResult(modalPaymentId) : modalType === "accessCode" ? viewCodeGenerated() : modalType === "deleteAsset" ? confirmDeleteModal() : modalType === "modifyAsset" ? confirmModifyModal() : null}</Modal> : null}
 			
-		</div>
-	);
+    </div>
+  );
 };
 
 AllPayments.propTypes = {

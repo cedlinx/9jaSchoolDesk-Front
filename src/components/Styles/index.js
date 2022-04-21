@@ -135,14 +135,14 @@ export const FormGroup = styled(Form.Group)`
     color: #091e42;
     text-align: left;
     ${({ required }) => required
-		? `
+    ? `
       ::after {
         content: '*';
         color: red;
         padding-left: 5px;
       }
       `
-		: ""}
+    : ""}
   }
   
   input {

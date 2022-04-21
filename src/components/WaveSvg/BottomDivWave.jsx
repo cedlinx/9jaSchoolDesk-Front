@@ -4,9 +4,9 @@ import wavesImg from "@/assets/images/waves.svg";
 
 
 const BottomDivWave =()=>{
-	return(
-		<Image src={wavesImg} alt="" />
-	);
+  return(
+    <Image src={wavesImg} alt="" />
+  );
 
 };
 

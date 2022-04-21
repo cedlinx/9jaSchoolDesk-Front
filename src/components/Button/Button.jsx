@@ -7,23 +7,23 @@ import styled from "styled-components";
 
 const Button = props => {
 
-	const {title, type="button", borderRadiusType, textColor, bgColor, bordercolor, routePath, checked, checkedBtn, icon, disabled = false, loading, onClick, hoverBg, hoverColor} = props;
+  const {title, type="button", borderRadiusType, textColor, bgColor, bordercolor, routePath, checked, checkedBtn, icon, disabled = false, loading, onClick, hoverBg, hoverColor} = props;
 
-	const borderRadiusValue =()=>{
-		switch(props.borderRadiusType){
-		case "lowRounded":
-			return "0.75rem";
-		case "mediumRounded":
-			return "1rem";
-		case "fullyRounded":
-			return "1.5rem";
+  const borderRadiusValue =()=>{
+    switch(props.borderRadiusType){
+    case "lowRounded":
+      return "0.75rem";
+    case "mediumRounded":
+      return "1rem";
+    case "fullyRounded":
+      return "1.5rem";
 			
-		default:
-			return "0.25rem";
-		}
-	};
+    default:
+      return "0.25rem";
+    }
+  };
 
-	const ButtonComponent = styled.button`
+  const ButtonComponent = styled.button`
 	padding: 0.625rem 1.125rem;
     border: 0.5px solid;
     font-family: KGCorneroftheSky, NunitoSans;
@@ -64,37 +64,38 @@ const Button = props => {
 }
 `;
 
-	return (	
-		<ButtonComponent type onClick={onClick} disabled={disabled} className={cx( "flexRow"  )} style={{ color: `${textColor}`, backgroundColor: `${bgColor}`, borderColor: `${bordercolor}`, border: bordercolor ? "1px solid" : `1px solid ${bgColor}`}}>
-			{loading ? ( <img
-				src={imageLoader}
-				height="18" />) : (
-				<>
-					<span>{icon && icon}</span>
-					{checkedBtn && <input checked={checked} type="checkbox" />}
-					{title}
-				</>
-			)}
+  return (	
+    <ButtonComponent type onClick={onClick} disabled={disabled} className={cx( "flexRow"  )} style={{ color: `${textColor}`, backgroundColor: `${bgColor}`, borderColor: `${bordercolor}`, border: bordercolor ? "1px solid" : `1px solid ${bgColor}`}}>
+      {loading ? ( <img
+        src={imageLoader}
+        height="18"
+                   />) : (
+        <>
+          <span>{icon && icon}</span>
+          {checkedBtn && <input checked={checked} type="checkbox" />}
+          {title}
+        </>
+      )}
 			
-		</ButtonComponent>	
-	);
+    </ButtonComponent>	
+  );
 };
 
 Button.defaultProps = {
-	borderRadiusType: "fullyRounded",
-	title: "",
-	textColor: "",
-	bgColor: "",
-	bordercolor: "",
-	routePath: "#"   
+  borderRadiusType: "fullyRounded",
+  title: "",
+  textColor: "",
+  bgColor: "",
+  bordercolor: "",
+  routePath: "#"   
 };
 Button.propTypes = {
-	borderRadiusType: PropTypes.string,
-	title: PropTypes.string,
-	textColor: PropTypes.string,
-	bgColor: PropTypes.string,  
-	bordercolor: PropTypes.string,
-	routePath: PropTypes.string  
+  borderRadiusType: PropTypes.string,
+  title: PropTypes.string,
+  textColor: PropTypes.string,
+  bgColor: PropTypes.string,  
+  bordercolor: PropTypes.string,
+  routePath: PropTypes.string  
 };
 
 export default Button;

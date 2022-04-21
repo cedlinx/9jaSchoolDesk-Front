@@ -8,31 +8,26 @@ import DashboardHeader from "../DashboardHeader/DashboardHeader";
 
 
 const DashboardContainer = (props) => {
-	const { children } = props;
+  const { children } = props;
 
-	const [toggled, setToggled] = useState(false);
-	const handleToggleSidebar = (value) => {
-		setToggled(value); 
-	};
+  const [toggled, setToggled] = useState(false);
+  const handleToggleSidebar = (value) => {
+    setToggled(value); 
+  };
 
-	return (
-		<div className={cx(styles.container, "flexRow", "")}>
+  return (
+    <div className={cx(styles.container, "flexRow")}>
+      <div className={cx(styles.contentArea)}>
+        <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
+        <div className={cx(styles.pageContent)}>{children}</div>
+      </div>
 			
-			<div className={cx(styles.sidebar, "")}>
-				<SideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
-			</div>
-
-			<div className={cx(styles.contentArea, "", "")}>
-				<div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
-				<div className={cx(styles.pageContent)}>{children}</div>
-			</div>
-			
-		</div>
-	);
+    </div>
+  );
 };
 
 DashboardContainer.propTypes = {
-	children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired
 };
 
 export default DashboardContainer;

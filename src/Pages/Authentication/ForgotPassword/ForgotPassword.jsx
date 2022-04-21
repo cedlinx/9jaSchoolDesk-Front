@@ -23,67 +23,67 @@ import siteLogo from "@/assets/images/Logo.svg";
 
 const ForgotPassword = () => {
 
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const sendRequest =(data)=>{
-		dispatch(forgotPassword(data));
-	};
+  const sendRequest =(data)=>{
+    dispatch(forgotPassword(data));
+  };
 
-	const resolver = yupResolver(forgotPasswordValidationSchema);
+  const resolver = yupResolver(forgotPasswordValidationSchema);
 
-	const defaultValues = {
-		email: ""
-	};
+  const defaultValues = {
+    email: ""
+  };
 
-	const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
+  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
 
-	return (
-		<AuthPageContainer>
-			<section className={cx(styles.forgotPasswordContainer, "flexCol")}>
+  return (
+    <AuthPageContainer>
+      <section className={cx(styles.forgotPasswordContainer, "flexCol")}>
 
-				<div>
-					<img src={siteLogo} alt="" />
-				</div>
+        <div>
+          <img src={siteLogo} alt="" />
+        </div>
 
-				<h3>Forgot Password</h3>
+        <h3>Forgot Password</h3>
 
-				<div className={cx(styles.formWrapper, "flexCol")}>
-					<form
-						onSubmit={handleSubmit((data) => sendRequest(data))}
-						className=""
-					>
+        <div className={cx(styles.formWrapper, "flexCol")}>
+          <form
+            onSubmit={handleSubmit((data) => sendRequest(data))}
+            className=""
+          >
 
-						<Controller
-							name="email"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field}
-									label={"Enter email used to create account"}
-									placeholder=""
-									type="email"
-									error={errors?.email && errors?.email?.message}
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <InputField
+                  {...field}
+                  label={"Enter email used to create account"}
+                  placeholder=""
+                  type="email"
+                  error={errors?.email && errors?.email?.message}
 									
-								/>
-							)}
-						/>
+                />
+              )}
+            />
 
-						<div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
-							<Button title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
-						</div>
+            <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
+              <Button title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+            </div>
 
-						<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+            <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 
-					</form>
-				</div>
+          </form>
+        </div>
 
-			</section>
-		</AuthPageContainer>
-	);
+      </section>
+    </AuthPageContainer>
+  );
 };
 
 ForgotPassword.propTypes = {
-	title: PropTypes.string
+  title: PropTypes.string
 };
 
 export default ForgotPassword;

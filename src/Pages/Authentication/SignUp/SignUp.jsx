@@ -10,31 +10,31 @@ import Mosque from "./Mosque/Mosque";
 
 const SignUp = () => {
 
-	const RenderSchool = () => <School />;
-	const RenderChurch = () => <Church />;
-	const RenderMosque = () => <Mosque />;
+  const RenderSchool = () => <School />;
+  const RenderChurch = () => <Church />;
+  const RenderMosque = () => <Mosque />;
 	
 	
-	const tabsComponents = [
-		{ name: "School", component: RenderSchool },
-		{ name: "Church", component: RenderChurch },
-		{ name: "Mosque", component: RenderMosque }
-	];
+  const tabsComponents = [
+    { name: "School", component: RenderSchool },
+    { name: "Church", component: RenderChurch },
+    { name: "Mosque", component: RenderMosque }
+  ];
 
-	return (
-		<AuthPageContainer showTopDivWave={false}>
-			<section className={cx(styles.signUpContainer)}>
-				<div className={cx(styles.tablistWrapper, "flexCol")}>
-					<Tabs centralise={true} background="#FFFFFF" tabs={tabsComponents}/>
-				</div>
-			</section>
+  return (
+    <AuthPageContainer showTopDivWave={false}>
+      <section className={cx(styles.signUpContainer)}>
+        <div className={cx(styles.tablistWrapper, "flexCol")}>
+          <Tabs centralise={true} background="#FFFFFF" tabs={tabsComponents}/>
+        </div>
+      </section>
 			
-		</AuthPageContainer>
-	);
+    </AuthPageContainer>
+  );
 };
 
 SignUp.propTypes = {
-	title: PropTypes.string
+  title: PropTypes.string
 };
 
 export default SignUp;
