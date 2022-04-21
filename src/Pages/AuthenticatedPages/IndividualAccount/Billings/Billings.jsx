@@ -16,7 +16,7 @@ import {showModal} from "@/redux/ModalState/modalState.action";
 import successCheckIcon from "@/assets/icons/success-check-icon.svg";
 import { titleCase } from "@/helpers/textTransform";
 
-import pieChart from "@/assets/images/pie-chart.png";
+// import pieChart from "@/assets/images/pie-chart.png";
 import PaymentDetailsModal from "@/components/PaymentDetailsModal/PaymentDetailsModal";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 

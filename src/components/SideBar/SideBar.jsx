@@ -15,7 +15,7 @@ import {
 import {logout} from "@/redux/User/user.action";
 
 // import "react-pro-sidebar/dist/css/styles.css";
-import logo from "@/assets/images/Transparent logo.png";
+// import logo from "@/assets/images/Transparent logo.png";
 import dashboardIcon from "@/assets/icons/dashboard-icon.svg";
 import assetIcon from "@/assets/icons/asset-icon.svg";
 import profileIcon from "@/assets/icons/profile-icon.svg";
@@ -63,7 +63,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
 				<div className="sidebar-header" >
 					<div className="flexRow" >
 						<img
-							src={logo}
+							src={""}
 							alt="logo"
 							className="user-image"
 							onClick={()=>navigate("/")}

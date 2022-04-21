@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FormGroup } from "../Styles";
 import eyeIcon from "@/assets/icons/eye.svg";
 import searchIcon from "@/assets/icons/search-icon.svg";
-import PropTypes from "prop-types";
 
 const Input = ({
 	label,
@@ -19,14 +18,9 @@ const Input = ({
 }) => {
 	const [inputType, setInputType] = useState(type);
 	const [isActive, setIsActive] = useState(false);
-	// const [value, setValue] = useState("");
-	console.log(props);
 	const handleTextChange = (e)=>{
-		console.log(e.target.value);
 		e.target.value !== "" ? setIsActive(true) : setIsActive(false);
-		// setValue(e.target.value);
 	};
-	// console.log(value);
 	const handleVisibility = () => {
 		if (inputType === "password") {
 			return setInputType("text");
@@ -34,8 +28,12 @@ const Input = ({
 		return setInputType("password");
 	};
 
+	useEffect(() => {
+		props.value !== "" && setIsActive(true);
+	},[props.value]);
+
 	return (
-		<FormGroup marginbottom={marginbottom || "1.5rem"} border={border || "#D25B5D"} required={required}>
+		<FormGroup marginbottom={marginbottom || "2rem"} border={border || "#022B69"} required={required}>
 			<div className="input-container">
 				{icon && <img src={searchIcon} alt="search icon" />}
 				<input
@@ -44,9 +42,8 @@ const Input = ({
 					required={required}
 					onChange={onChange}
 					onBlur = {(e)=>handleTextChange(e)}
-					// value={value}
-					// onChange={(e) => handleTextChange(e.target.value)}
 					{...props}
+					autoComplete="new-password"
 				/>
 				<label  onClick={(e)=>handleTextChange(e)} className={isActive ? "Active" : ""}>{label}</label>
 				{type === "password" && (

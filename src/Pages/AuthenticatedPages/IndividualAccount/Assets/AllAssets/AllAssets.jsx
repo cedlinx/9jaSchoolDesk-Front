@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 
 import { showModal } from "@/redux/ModalState/modalState.action";
 import successCheckIcon from "@/assets/icons/success-check-icon.svg";
-import qrCodeImage from "@/assets/images/qrCodeImage.svg";
+// import qrCodeImage from "@/assets/images/qrCodeImage.svg";
 import { titleCase } from "@/helpers/textTransform";
 import TableComponent from "@/components/Table/Table";
 
@@ -333,7 +333,7 @@ const AllAssets = () => {
 			<div className={cx(styles.modalWrapper, "flexCol-align-center")}>
 				<img src={successCheckIcon} alt="" />
 				<p>Code Generated Successfully</p>
-				<img src={qrCodeImage} alt="" />
+				{/* <img src={qrCodeImage} alt="" /> */}
 				<p>#001245105KJ30091</p>
 				<Button onClick={()=> displayModal("hide")} title="OK" textColor="#fff" borderRadiusType="lowRounded" bgColor="#D25B5D" />
 			</div>

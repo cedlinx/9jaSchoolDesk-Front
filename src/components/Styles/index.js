@@ -130,7 +130,7 @@ export const FormGroup = styled(Form.Group)`
     display: block;
     font-style: normal;
     font-weight: normal;
-    font-size: 0.875rem;
+    font-size: 16px;
     line-height: 17px;
     color: #091e42;
     text-align: left;
@@ -176,7 +176,7 @@ export const FormGroup = styled(Form.Group)`
     transition: 0.3s;
     background: #fff;
     &:focus{
-      border: 1px solid #D25B5D;
+      border: 1px solid #022B69;
     }
     &:focus-within label{
       transform: translate(0, -12px) scale(0.7);
@@ -197,7 +197,7 @@ export const FormGroup = styled(Form.Group)`
     box-sizing: border-box;
     border-radius: 4px;
     border: 1px solid #c1c7d0;
-    border: 1px solid #D25B5D;
+    border: 1px solid #022B69;
     color: #5e6c84;
     transition: 0.3s;
     background: #f4f5f7;
@@ -211,9 +211,9 @@ export const FormGroup = styled(Form.Group)`
   .error {
     font-size: 12px;
     color: #eb5757;
-    // position: absolute;
-    // left: 0;
-    // bottom: -50%;
+    position: absolute;
+    left: 0;
+    bottom: -30%;
     text-align: left;
     padding: 0.25rem 0px 0px 0px;
     margin: 0px;

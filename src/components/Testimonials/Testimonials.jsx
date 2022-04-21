@@ -7,10 +7,7 @@ import { Card} from "react-bootstrap";
 import { Icon } from "@iconify/react";
 import NormalCarousel from "@/components/Carousels/NormalCarousel/NormalCarousel";
 
-
 import testimonialsAvatar from "@/assets/images/testimonialsAvatar.png";
-
-import testimonialsIcon from "@/assets/icons/testimonialsIcon.png";
 
 
 const Testimonials = props => {
@@ -20,7 +17,6 @@ const Testimonials = props => {
 			avatar: testimonialsAvatar,
 			name: "Edeh Funmi",
 			position: "Parent",
-			icon: testimonialsIcon,
 			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 		},
 
@@ -28,7 +24,6 @@ const Testimonials = props => {
 			avatar: testimonialsAvatar,
 			name: "Charles Patterson",
 			position: "Clergy",
-			icon: testimonialsIcon,
 			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 		},
 
@@ -36,7 +31,6 @@ const Testimonials = props => {
 			avatar: testimonialsAvatar,
 			name: "John Doe",
 			position: "Lawyer",
-			icon: testimonialsIcon,
 			comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 		}
 	]; 

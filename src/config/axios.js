@@ -3,7 +3,7 @@ import axios from "axios";
 import { getToken } from "../utils/auth";
 
 const instance = axios.create({
-	baseURL: "https://www.skydah.online/api/"
+	baseURL: "#"
 	// baseURL: "https://skydah.com/api"
 });
 
