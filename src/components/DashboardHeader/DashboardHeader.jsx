@@ -43,23 +43,25 @@ const Header = (props) => {
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
 					
-          <div className={cx(styles.notificationsDiv, "flexRow")}>
+          <div className={cx(styles.contentWrapper, "flexRow")}>
             <div className={cx(styles.searchComponentDiv)}>
               <InputField
-                icon
-                placeholder={"Search here"}
+                
+                label={"Search here"}
+                placeholder={""}
                 type="text"
                 marginbottom={"0px"}
                 border={"#c1c7d0"}
               />
             </div>
-            <div className={cx("flexRow", styles.notificationsWrapper)}>
-              <span><img style={{transform: "rotate(45deg)"}} src={notificationIcon} alt="" /><sup>{unreadNotifications}</sup></span></div>
 				
-            <div className={cx("flexRow")}>
-              <span>My Classes</span>
-              <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
-              <Icon icon="clarity:caret-line" rotate={2} />
+            <div className={cx(styles.profileDiv, "flexRow")}>
+              <span className={cx(styles.notificationIconSpan)}><img src={notificationIcon} alt="" /><sup>{unreadNotifications || "9"}</sup></span>
+              <span className={cx(styles.dashboardTitle)}>My Classes</span>
+              <span className={cx(styles.avatarDiv)}>
+                <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
+                <Icon icon="clarity:caret-line" rotate={2} />
+              </span>
             </div>
 
           </div>
