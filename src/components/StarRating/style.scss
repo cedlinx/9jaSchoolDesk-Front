@@ -1,0 +1,34 @@
+.staring-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .star{
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+  .star-rating-filled{
+    fill: gold;
+  }
+  .star-rating-default{
+    fill: white;
+  }
+}
+
+.full-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.full-page {
+  .loader {
+    width: 50px;
+    height: 50px;
+  }
+  .loader--small {
+    width: 20px;
+    height: 20px;
+  }
+}
+
