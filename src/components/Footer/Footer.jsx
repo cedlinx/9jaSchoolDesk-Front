@@ -49,8 +49,11 @@ const Footer = () => {
       </div>
       <div className={cx(styles.contactSection)}>
         <p className={cx(styles.header)}>Contact Us</p>
-        <p>info@9jaschooldesk.com</p>
-        <p>+234 904 342 4455</p>
+        <ul>
+
+          <li>info@9jaschooldesk.com</li>
+          <li>+234 904 342 4455</li>
+        </ul>
       </div>
     </div>
   );

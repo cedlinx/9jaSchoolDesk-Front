@@ -56,7 +56,7 @@ const Header = (props) => {
             </div>
 				
             <div className={cx(styles.profileDiv, "flexRow")}>
-              <span className={cx(styles.notificationIconSpan)}><img src={notificationIcon} alt="" /><sup>{unreadNotifications || "9"}</sup></span>
+              <span className={cx(styles.notificationIconSpan)}><img src={notificationIcon} alt="" /><sup>{unreadNotifications || "0"}</sup></span>
               <span className={cx(styles.dashboardTitle)}>My Classes</span>
               <span className={cx(styles.avatarDiv)}>
                 <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />

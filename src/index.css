@@ -188,13 +188,20 @@ h3 {
   --val: 4vw;     /* preferred value = 5% viewport width */
   --max: 1.25rem;  /* maximum value */
 }
-
+h5 {
+  --min: 0.875rem;   /* minimum value */
+  --val: 4vw;     /* preferred value = 5% viewport width */
+  --max: 1rem;  /* maximum value */
+}
 p {
   --min: 1rem;   /* minimum value */
   --val: 2.5vw; /* preferred value = 2.5% viewport width */
   --max: 1.125rem; /* maximum value */
 }
+small{
+  font-size: clamp(0.625rem, 0.75rem, 0.875rem);
 
+}
 
 /* Swiper Pagination Div */
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {

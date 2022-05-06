@@ -104,10 +104,10 @@ const Home = () => {
             </div>
 
             <div className={cx(styles.body, "flexCol")}>
-              <div><span><img src={curiosityIcon} alt="" /></span><span>Curiosity</span><span>2pts</span></div>
-              <div><span><img src={gratitudeIcon} alt="" /></span><span>Gratitude</span><span>2pts</span></div>
-              <div><span><img src={teamworkIcon} alt="" /></span><span>Teamwork</span><span>2pts</span></div>
-              <div><span><img src={persistenceIcon} alt="" /></span><span>Persistence</span><span>2pts</span></div>
+              <div><span><img src={curiosityIcon} alt="" /></span><span>Curiosity</span><span>2 pts</span></div>
+              <div><span><img src={gratitudeIcon} alt="" /></span><span>Gratitude</span><span>2 pts</span></div>
+              <div><span><img src={teamworkIcon} alt="" /></span><span>Teamwork</span><span>2 pts</span></div>
+              <div><span><img src={persistenceIcon} alt="" /></span><span>Persistence</span><span>2 pts</span></div>
             </div>
 
           </div>
@@ -132,7 +132,10 @@ const Home = () => {
                                 
       <section className={cx(styles.lowerSection, "row")}>
         <div className={cx(styles.lowerSectionLeft, "col-md-12", "col-xl-6")}>
-          <h5>Assessment Report</h5>
+          <div className={cx(styles.header, "flexRow-space-between")}>
+            <h5>Assessment Feedback</h5>
+            <small>View all</small>
+          </div>
           <div className={cx(styles.assessmentDiv)}>table here</div>
         </div>
 

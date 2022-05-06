@@ -17,11 +17,11 @@ export const signUpValidationSchema = Yup.object().shape({
 
   password: Yup.string()
     .required("Password is required")
-    .min(8, "Must Contain at least 8 Characters and a mixture of Uppercase, Lowercase, Numbers and Special case characters"),
+    .min(8, "Must Contain at least 8 Characters"),
 
   password_confirmation: Yup.string()
     .required("Password is required")
-    .min(8, "Must Contain at least 8 Characters and a mixture of Uppercase, Lowercase, Numbers and Special case characters")
+    .min(8, "Must Contain at least 8 Characters")
     .oneOf([Yup.ref("password")], "Passwords must and should match"),
 
   email: Yup.string()
@@ -373,11 +373,11 @@ export const resetPasswordValidationSchema = Yup.object().shape({
 
   password: Yup.string()
     .required("Password is required")
-    .min(8, "Must Contain at least 8 Characters and a mixture of Uppercase, Lowercase, Numbers and Special case characters"),
+    .min(8, "Must Contain at least 8 Characters"),
 
   password_confirmation: Yup.string()
     .required("Password is required")
-    .min(8, "Must Contain at least 8 Characters and a mixture of Uppercase, Lowercase, Numbers and Special case characters")
+    .min(8, "Must Contain at least 8 Characters")
     .oneOf([Yup.ref("password")], "Passwords must and should match")
 });
 
@@ -397,10 +397,10 @@ export const changePasswordValidationSchema = Yup.object().shape({
     .min(8, "Must be at least 8 Characters"),
   password: Yup.string()
     .required("Password is required")
-    .min(8, "Must Contain at least 8 Characters and a mixture of Uppercase, Lowercase, Numbers and Special case characters"),
+    .min(8, "Must Contain at least 8 Characters"),
 
   password_confirmation: Yup.string()
     .required("Password is required")
-    .min(8, "Must Contain at least 8 Characters and a mixture of Uppercase, Lowercase, Numbers and Special case characters")
+    .min(8, "Must Contain at least 8 Characters")
     .oneOf([Yup.ref("password")], "Passwords must and should match")
 });
