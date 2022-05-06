@@ -2,7 +2,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../Pages/HomePage/HomePage";
-// import About from "../Pages/About/About";
 import Login from "../Pages/Authentication/Login/Login";
 import LoginWithClassCode from "../Pages/Authentication/Login/LoginWithClassCode";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
@@ -13,11 +12,6 @@ import OtpVerification from "../Pages/Authentication/OTPVerification/OTPVerifica
 import RequestVerificationLink from "../Pages/Authentication/RequestVerificationLink/RequestVerificationLink";
 import Page404 from "../Pages/Page404/Page404";
 import UnAuthorizedPage from "../Pages/UnAuthorizedPage/UnAuthorizedPage";
-// import Individuals from "../Pages/Individuals/Individuals";
-// import Business from "../Pages/Business/Business";
-// import Pricing from "../Pages/Pricing/Pricing";
-// import Agent from "../Pages/Agent/Agent";
-// import Contact from "../Pages/Contact/Contact";
 import DashboardWrapper from "../Pages/Dashboard/Dashboard";
 import VerifyEmail from "../Pages/VerifyEmail/VerifyEmail";
 import AuthenticatedRoute from "../components/AuthenticatedRoute/AuthenticatedRoutes";
@@ -25,16 +19,13 @@ import AuthenticatedRoute from "../components/AuthenticatedRoute/AuthenticatedRo
 
 import {Role} from "@/constants/constants";
 
-// Individual User Section
-import DashboardIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Home/Home";
-import AddAssetIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Assets/AddAsset/AddAsset";
-import TransferAssetIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Assets/TransferAsset/TransferAsset";
-import AllAssetsIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Assets/AllAssets/AllAssets";
-import ProfileIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Profile/Profile";
-import AllPaymentsIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Profile/AllPayments/AllPayments";
-import BillingsIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Billings/Billings";
-import RenewPlanIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Billings/RenewPlan/RenewPlan";
-import UpgradePlanIndividual from "../Pages/AuthenticatedPages/IndividualAccount/Billings/UpgradePlan/UpgradePlan";
+// Student Section
+import DashboardStudent from "../Pages/AuthenticatedPages/StudentAccount/Home/Home";
+import AssessmentFeedbackStudent from "../Pages/AuthenticatedPages/StudentAccount/AssessmentFeedback/AssessmentFeedback";
+import MyLessonsStudent from "../Pages/AuthenticatedPages/StudentAccount/MyLessons/MyLessons";
+import ProfileStudent from "../Pages/AuthenticatedPages/StudentAccount/Profile/Profile";
+
+
 
 
 const RoutesComponent = () => {
@@ -42,12 +33,6 @@ const RoutesComponent = () => {
     <BrowserRouter className="App">
       <Routes>
         <Route index path="" element={<HomePage  />} />
-        {/* <Route path="about" element={<About  />} />
-				<Route path="individuals" element={<Individuals />} />
-				<Route path="business" element={<Business />} />
-				<Route path="agent" element={<Agent />} />
-				<Route path="pricing" element={<Pricing />} />
-				<Route path="contact" element={<Contact />} /> */}
         <Route path="login" element={<Login />} />
         <Route path="login-with-class-code" element={<LoginWithClassCode />} />
         <Route path="signup" element={<SignUp />} />
@@ -58,21 +43,14 @@ const RoutesComponent = () => {
         <Route  path="reset-password/:token" element={<ResetPassword />} />	
         <Route  path="request-verification-link" element={<RequestVerificationLink />} />	
 				
-        <Route path="individual-dashboard" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="student-dashboard" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
 
-          <Route index path="" element={<DashboardIndividual  />} />
-          <Route  path="add-new-asset" element={<AddAssetIndividual  />} />
-          <Route  path="transfer-asset" element={<TransferAssetIndividual  />} />
-          <Route  path="all-assets" element={<AllAssetsIndividual  />} />
-          <Route  path="profile">
-            <Route  index path="" element={<ProfileIndividual />} />
-            <Route  path="all-payments" element={<AllPaymentsIndividual />} />
-          </Route>
-          <Route  path="billings">
-            <Route  index path="" element={<BillingsIndividual />} />
-            <Route  path="renew-plan" element={<RenewPlanIndividual />} />
-            <Route  path="upgrade-plan" element={<UpgradePlanIndividual />} />
-          </Route>
+          <Route index path="" element={<DashboardStudent  />} />
+          <Route path="profile" element={<ProfileStudent  />} />
+          <Route path="assessment-feedback" element={<AssessmentFeedbackStudent  />} />
+          <Route path="my-lessons" element={<MyLessonsStudent  />} />
+
+
         </Route>			
 									
         <Route  path="unauthorized-page" element={<UnAuthorizedPage />} />

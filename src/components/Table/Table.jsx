@@ -110,38 +110,38 @@ const Table = ({ columns, data, selectedRowsData })=> {
     },
     usePagination,
     useRowSelect,
-    useRowState,
-    hooks => {
-      hooks.visibleColumns.push(columns => [
-        // Let's make a column for selection
-        {
-          id: "selection",
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox
-          Header: ({ getToggleAllPageRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
-            </div>
-          ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
-          Cell: ({ row }) => {
-            return <div >
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>;
-          }	
-        },
-        ...columns
-      ]);
-    }
+    useRowState
+    // hooks => {
+    //   hooks.visibleColumns.push(columns => [
+    //     // Let's make a column for selection
+    //     {
+    //       id: "selection",
+    //       // The header can use the table's getToggleAllRowsSelectedProps method
+    //       // to render a checkbox
+    //       Header: ({ getToggleAllPageRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
+    //         </div>
+    //       ),
+    //       // The cell can use the individual row's getToggleRowSelectedProps method
+    //       // to the render a checkbox
+    //       Cell: ({ row }) => {
+    //         return <div >
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>;
+    //       }	
+    //     },
+    //     ...columns
+    //   ]);
+    // }
   );
-  selectedRowsData(selectedFlatRows);
+  selectedRowsData && selectedRowsData(selectedFlatRows);
 
   // Render the UI for your table
   return (
     <>
       <table {...getTableProps()}>
-        <thead>
+        {/* <thead>
           {headerGroups.map((headerGroup, index) => (
             <tr key={index} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column, idx) => (
@@ -149,7 +149,7 @@ const Table = ({ columns, data, selectedRowsData })=> {
               ))}
             </tr>
           ))}
-        </thead>
+        </thead> */}
         <tbody {...getTableBodyProps()}>
           {page.map((row, i) => {
             prepareRow(row);
@@ -167,7 +167,7 @@ const Table = ({ columns, data, selectedRowsData })=> {
         Pagination can be built however you'd like. 
         This is just a very basic UI implementation:
       */}
-      <div className="pagination flexRow-space-between">
+      <div style={{display: "none"}} className="pagination flexRow-space-between">
         <div className="pagination-summary">
                     Showing <span>{pageSize > data.length ? data.length : pageSize}</span> from <span>{data.length}</span> data
         </div>

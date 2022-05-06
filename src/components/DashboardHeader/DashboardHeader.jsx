@@ -37,7 +37,7 @@ const Header = (props) => {
 
       <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
         <Navbar.Brand className={cx(styles.siteLogo )}> 		
-          <Link to="/"><img src={Logo} alt="" /></Link>
+          <Link to="/student-dashboard"><img src={Logo} alt="" /></Link>
         </Navbar.Brand>
 
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
@@ -57,7 +57,7 @@ const Header = (props) => {
 				
             <div className={cx(styles.profileDiv, "flexRow")}>
               <span className={cx(styles.notificationIconSpan)}><img src={notificationIcon} alt="" /><sup>{unreadNotifications || "0"}</sup></span>
-              <span className={cx(styles.dashboardTitle)}>My Classes</span>
+              <span onClick={()=>navigate("my-lessons")} className={cx(styles.dashboardTitle)}>My Classes</span>
               <span className={cx(styles.avatarDiv)}>
                 <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
                 <Icon icon="clarity:caret-line" rotate={2} />

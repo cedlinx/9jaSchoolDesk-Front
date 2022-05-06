@@ -2,7 +2,7 @@ table{
     border: 1px solid #E9ECFF;
     margin-bottom: 2rem;
     border-radius: 1rem !important;
-    font-family: Poppins;
+    font-family: NunitoSans;
 }
 
 table th, table td{
@@ -19,7 +19,7 @@ table th, table td{
 .pagination{
     flex-direction: column;
     gap: 1rem;
-    font-family: Poppins;
+    font-family: NunitoSans;
     width: 100%;
     font-size: 0.875rem;
 }

@@ -32,17 +32,17 @@ const Login = () => {
   const checkIsAuthenticated = isAuthenticated();
 
   useEffect(() => {
-    checkIsAuthenticated && navigate("/individual-dashboard");
+    checkIsAuthenticated && navigate("/student-dashboard");
   }, [checkIsAuthenticated, navigate]);
 
   const signIn = async (data) => {
-    navigate("/individual-dashboard");
+    navigate("/student-dashboard");
 
     try {
       let response = await dispatch(loginUser(data));
       if (response?.payload?.status === 200) {
         dispatch(getUserInfo());
-        navigate("/individual-dashboard");
+        navigate("/student-dashboard");
       }
     } catch (error) {
       toast.error("An Error Occured, please try again");
@@ -60,7 +60,7 @@ const Login = () => {
 
   return (
     <>
-      {checkIsAuthenticated ? <Navigate replace to="/individual-dashboard" /> :
+      {checkIsAuthenticated ? <Navigate replace to="/student-dashboard" /> :
         <>
           <AuthPageContainer>
 
