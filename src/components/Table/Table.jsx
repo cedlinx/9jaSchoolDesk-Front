@@ -141,7 +141,7 @@ const Table = ({ columns, data, selectedRowsData })=> {
   return (
     <>
       <table {...getTableProps()}>
-        {/* <thead>
+        <thead>
           {headerGroups.map((headerGroup, index) => (
             <tr key={index} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column, idx) => (
@@ -149,7 +149,7 @@ const Table = ({ columns, data, selectedRowsData })=> {
               ))}
             </tr>
           ))}
-        </thead> */}
+        </thead>
         <tbody {...getTableBodyProps()}>
           {page.map((row, i) => {
             prepareRow(row);

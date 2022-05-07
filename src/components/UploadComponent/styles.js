@@ -34,6 +34,7 @@ export const PageWrapper = styled.div`
   }
   img{
     width: 4rem;
+    margin-bottom: 1.5rem;
   }
 `;
 

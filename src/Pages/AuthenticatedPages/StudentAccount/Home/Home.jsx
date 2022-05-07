@@ -22,17 +22,21 @@ import addIcon from "@/assets/icons/add-icon.svg";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/assessmentData";
+import {assessmentData} from "@/helpers/sampleData";
+
+import EditProfileModal from "@/components/Modals/EditProfile/EditProfile";
+import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
+import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";
+import Modal from "@/components/Modals/ModalContainer/ModalContainer";
+import { showModal } from "@/redux/ModalState/modalState.action";
 
 
 const Home = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   dispatch(allAssetsTypes());
-  //   dispatch(chartData());
-  // }, [dispatch]);
+  const modalState = useSelector((state) => state.modalState.action);
+  const modalType = useSelector((state) => state.modalState.type);
 
   const teachersArray = [
     {
@@ -178,6 +182,24 @@ const Home = () => {
     });
     return result;
   };
+
+  const editProfileModal = () => {
+    return (
+      <EditProfileModal />
+    );
+  };
+
+  const submitAssessmentModal = () => {
+    return (
+      <SubmitAssessmentModal />
+    );
+  };
+
+  const uploadActivityModal = () => {
+    return (
+      <UploadActivityModal />
+    );
+  };
   
   return (
     <div className={cx(styles.dashboardHomeContainer)}>
@@ -192,7 +214,11 @@ const Home = () => {
 
       <section className={cx(styles.upperSection, "row")}>
         <div className={cx(styles.upperSectionLeft, "col-sm-12", "col-md-12", "col-xl-5")}>
-          <h5>Activities</h5>
+          <div className={cx("flexRow-space-between")}>
+            <h5>Activities</h5>
+            <small style={{cursor: "pointer"}} onClick={()=>dispatch(showModal({ action: "show", type: "submitAssessment" }))}>Submit Test</small>
+            <small style={{cursor: "pointer"}} onClick={()=>dispatch(showModal({ action: "show", type: "uploadActivity" }))}>Upload Activity Test</small>
+          </div>
           <div className={cx(styles.contentWrapper)}>
             {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(assessmentData)} />}
           </div>
@@ -230,7 +256,7 @@ const Home = () => {
             <div className={cx(styles.body, "flexCol")}>
               <p>Chisimdi Coker</p>
               <small>coker@gmail.com</small>
-              <img onClick={()=>navigate("profile")} src={editIcon} alt="" />
+              <img onClick={()=>dispatch(showModal({ action: "show", type: "editProfile" }))} src={editIcon} alt="" />
             </div>
           </div>
         </div>
@@ -281,6 +307,8 @@ const Home = () => {
         </div>
 
       </section>
+
+      {modalState === "show" ? <Modal show >{modalType === "editProfile" ? editProfileModal() : modalType === "submitAssessment" ? submitAssessmentModal() : modalType === "uploadActivity" ? uploadActivityModal()  : null}</Modal> : null}
             
     </div>
   );

@@ -1,0 +1,129 @@
+.editProfileContainer{
+    width: 100%;
+    background-color: #fff;
+    background-color: transparent;
+    gap: 1rem;
+
+    .header{
+        align-items: flex-end;
+        padding-bottom: 0rem;
+        line-height: 1;
+        color: #fff;
+
+        p{
+            line-height: 1;
+            width: 100%;
+        }
+        svg{
+            cursor: pointer;
+        }
+
+    }
+    .formWrapper{
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        gap: 3rem;
+        .header {
+            position: relative;
+            height: 4rem;
+
+            .bgImage {
+                position: absolute;
+                background-repeat: no-repeat;
+                object-fit: cover;
+                background-position: center;
+                border-radius: 0.5rem;
+                width: 100%;
+                height: 100%;
+            }
+            .profilePic{
+                position: absolute;
+                left: 1rem;
+                bottom: -35%;
+                width: 3rem;
+            }
+            .editIcon{
+                position: absolute;
+                left: 2.5rem;
+                bottom: -45%;
+                width: 1.5rem;
+            }
+        }
+
+        form{    
+            .btnDiv{
+                justify-content: center;
+                padding-top: 1rem;
+             }
+        }
+    }
+}
+
+@media all and (min-width: 768px){
+    .editProfileContainer{
+        gap: 1rem;
+    
+        .header{
+        }
+        .formWrapper{
+            gap: 3rem;
+            .header {
+                height: 5rem;
+    
+                .profilePic{
+                    left: 1rem;
+                    bottom: -35%;
+                    width: 4rem;
+                }
+                .editIcon{
+                    left: 3rem;
+                    bottom: -45%;
+                    width: 1.75rem;
+                }
+            }
+    
+            form{    
+                .btnDiv{
+                    justify-content: center;
+                    padding-top: 0rem;
+                 }
+            }
+        }
+    }
+}
+
+
+@media all and (min-width: 991px){
+    .editProfileContainer{
+        gap: 1rem;
+    
+        .header{
+        }
+        .formWrapper{
+            gap: 4rem;
+            .header {
+                height: 7rem;
+    
+                .profilePic{
+                    left: 1rem;
+                    bottom: -35%;
+                    width: 4rem;
+                }
+                .editIcon{
+                    left: 3rem;
+                    bottom: -45%;
+                    width: 1.75rem;
+                }
+            }
+    
+            form{    
+                .btnDiv{
+                    justify-content: center;
+                    padding-top: 0rem;
+                 }
+            }
+        }
+    }
+}
+

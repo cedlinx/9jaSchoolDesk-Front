@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import uploadIcon from "@/assets/icons/upload-cloud.svg";
+import uploadIcon from "@/assets/icons/upload-icon.svg";
 import { useDropzone } from "react-dropzone";
 import { PageWrapper, Label } from "./styles";
 import { ToastError } from "@/components/Toast";
@@ -56,16 +56,16 @@ const UploadComponent = ({
           </span>
         ) : (
           <span className="drop-file">
-            Drop file here or{" "}
+            Drop your file here or{" "}
             <span className="browse-file" {...getRootProps()}>
               browse
             </span>
           </span>
         )}
         {/* <span className="size-limit">Size limit: 2MB</span> */}
-        <span className="size-limit">Size limit: 2MB (pdf, docs or images)</span>
+        {/* <span className="size-limit">Size limit: 2MB (pdf, docs or images)</span> */}
         {/* <span className="size-limit">Upload other document  ( optional )</span> */}
-        {fileDescription && <span>{fileDescription}</span> }
+        {fileDescription && <span className="size-limit">{fileDescription}</span> }
       </PageWrapper>
       <ToastError
         message={errorToastMessage}

@@ -1,0 +1,39 @@
+.submitAssessmentContainer{
+    width: 100%;
+    background-color: #fff;
+    background-color: transparent;
+    gap: 1rem;
+
+    .header{
+        align-items: flex-end;
+        padding-bottom: 0rem;
+        line-height: 1;
+        color: #fff;
+
+        p{
+            line-height: 1;
+            width: 100%;
+        }
+        svg{
+            cursor: pointer;
+        }
+
+    }
+    .formWrapper{
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+
+        form{    
+            justify-content: space-between;
+
+            .btnDiv{
+                justify-content: center;
+                padding-top: 2rem;
+             }
+        }
+    }
+}
+
+
+

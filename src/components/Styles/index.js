@@ -130,9 +130,9 @@ export const FormGroup = styled(Form.Group)`
     display: block;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 10px;
     line-height: 17px;
-    color: #091e42;
+    color: #A0A4A8;
     text-align: left;
     ${({ required }) => required
     ? `
@@ -170,7 +170,7 @@ export const FormGroup = styled(Form.Group)`
     flex-direction: row;
     padding: 15px 10px 7.5px 10px;
     box-sizing: border-box;
-    border-radius: 4px;
+    border-radius: 1.5rem;
     border: ${({ border }) => (`1px solid ${border}`)};
     color: #5e6c84;
     transition: 0.3s;

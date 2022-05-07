@@ -23,6 +23,7 @@ import {Role} from "@/constants/constants";
 import DashboardStudent from "../Pages/AuthenticatedPages/StudentAccount/Home/Home";
 import AssessmentFeedbackStudent from "../Pages/AuthenticatedPages/StudentAccount/AssessmentFeedback/AssessmentFeedback";
 import MyLessonsStudent from "../Pages/AuthenticatedPages/StudentAccount/MyLessons/MyLessons";
+import ViewLessonStudent from "../Pages/AuthenticatedPages/StudentAccount/MyLessons/ViewLesson/ViewLesson";
 import ProfileStudent from "../Pages/AuthenticatedPages/StudentAccount/Profile/Profile";
 
 
@@ -48,7 +49,10 @@ const RoutesComponent = () => {
           <Route index path="" element={<DashboardStudent  />} />
           <Route path="profile" element={<ProfileStudent  />} />
           <Route path="assessment-feedback" element={<AssessmentFeedbackStudent  />} />
-          <Route path="my-lessons" element={<MyLessonsStudent  />} />
+          <Route path="my-lessons">
+            <Route index path="" element={<MyLessonsStudent  />} />
+            <Route path="view-lesson/:id" element={<ViewLessonStudent  />} />
+          </Route>
 
 
         </Route>			

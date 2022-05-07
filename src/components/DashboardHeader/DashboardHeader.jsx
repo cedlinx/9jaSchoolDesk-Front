@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { FaBars } from "react-icons/fa";
 import {useSelector, useDispatch} from "react-redux";
 import {notificationSummary} from "@/redux/Notifications/notifications.action";
@@ -14,8 +14,13 @@ import { Icon } from "@iconify/react";
 import { useNavigate, Link } from "react-router-dom";
 import Logo from "@/assets/images/Logo.svg";
 import Button from "@/components/Button/Button";
-import { Navbar, Nav, Dropdown, 
-  NavDropdown} from "react-bootstrap";
+import { Navbar} from "react-bootstrap";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
 
 const Header = (props) => {
@@ -30,6 +35,14 @@ const Header = (props) => {
     // dispatch(notificationSummary());
     // dispatch(getUserInfo());
   },[]);
+
+  
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = (e) => {
+    console.log(e.target.name);
+    setDropdownOpen(!dropdownOpen);
+  };
 
 
   return (
@@ -58,10 +71,21 @@ const Header = (props) => {
             <div className={cx(styles.profileDiv, "flexRow")}>
               <span className={cx(styles.notificationIconSpan)}><img src={notificationIcon} alt="" /><sup>{unreadNotifications || "0"}</sup></span>
               <span onClick={()=>navigate("my-lessons")} className={cx(styles.dashboardTitle)}>My Classes</span>
-              <span className={cx(styles.avatarDiv)}>
-                <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
-                <Icon icon="clarity:caret-line" rotate={2} />
-              </span>
+
+              <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
+                <DropdownToggle name="profile-toggler" className={cx(styles.dropdownToggler)}>
+
+                  <span className={cx(styles.avatarDiv, styles.logoutDropdown)}>
+                    <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
+                    <Icon icon="clarity:caret-line" color="#000" rotate={2} />
+                  </span>
+                </DropdownToggle>
+                <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+
+                  <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem>
+                  <DropdownItem>Logout</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </div>
 
           </div>

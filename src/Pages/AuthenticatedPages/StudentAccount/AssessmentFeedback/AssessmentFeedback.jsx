@@ -6,7 +6,7 @@ import styles from "./AssessmentFeedback.module.scss";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/assessmentData";
+import {assessmentData} from "@/helpers/sampleData";
 import { Icon } from "@iconify/react";
 
 const AssessmentFeedback = () => {
@@ -21,6 +21,7 @@ const AssessmentFeedback = () => {
     let dateValue = date.toLocaleDateString("en-US", options);
     return `${dateValue}`;
   };
+
   const columnsHeader = [                
     {
       Header: () => (
@@ -42,7 +43,7 @@ const AssessmentFeedback = () => {
           style={{
             minWidth: "auto"
           }}
-        />
+        >Teacher</div>
       ),
       accessor: "imageUrl",
       Cell: (row) => {
@@ -63,7 +64,7 @@ const AssessmentFeedback = () => {
       accessor: "teacherDetails",
       Cell: (row) => {
         let details = row.cell.row.values.teacherDetails;
-        return <div>
+        return <div  style={{width: "10rem"}}>
           <p style={{fontWeight: "500", color: "#4f4f4f"}}>{titleCase(details.name)}</p>
           <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{titleCase(details.subject)}</p>
           
@@ -76,7 +77,7 @@ const AssessmentFeedback = () => {
           style={{
             minWidth: "15rem"
           }}
-        />
+        >Feedback</div>
       ),
       accessor: "description",
       Cell: (row) => {
@@ -93,7 +94,7 @@ const AssessmentFeedback = () => {
           style={{
             minWidth: "5rem"
           }}
-        />
+        >Date </div>
       ),
       accessor: "date",
       Cell: (row) => {
@@ -123,7 +124,14 @@ const AssessmentFeedback = () => {
   };
 
   return (
-    <div>
+    <div className={cx(styles.assessmentFeedbackContainer, "flexCol")}>
+      <div className={cx(styles.header)}>
+        <h5>Assessment Feedback</h5>
+      </div>
+      <div className={cx(styles.filterSection, "flexRow")}>
+        <input type="date" name="" id="" />
+        <button>Filter</button>
+      </div>
       {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(assessmentData)} />}
     </div>
   );

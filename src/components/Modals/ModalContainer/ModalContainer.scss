@@ -2,18 +2,24 @@
   background-color: transparent;
 }
 .generic-modal-wrapper .modal-content{
-  background-color: #fff;
+  // background-color: #fff;
+  background-color: transparent;
+
   border: none;
   // height: 75vh;
   height: auto;
-  padding: 1.5rem 1rem;
+  padding: 1rem 1rem;
   width: 100%;
 }
 .generic-modal-wrapper .generic-modal-header{
   border: none;
   display: flex;
   justify-content:flex-end;
-  padding: 1rem 1rem 0rem 1rem;
+  padding: 0rem 0rem 0rem 0rem;
+
+  img{
+    cursor: pointer;
+  }
 }
 .generic-modal-wrapper .generic-modal-body{
   background-color: transparent;
@@ -22,7 +28,7 @@
   flex-direction: column;
   align-items:center;
   justify-content:center;
-  padding: 2rem 1rem;
+  padding: 2rem 0rem;
 }
 
 @media all and (min-width: 768px){
