@@ -6,12 +6,15 @@ export const loginApi = async (data) => {
 };
 
 export const signUpApi = async (data) => {
-  const request = await axios.post("register", data);
+  console.log(data);
+  const request = await axios.post("auth/signup", data);
+  console.log(request);
   return request;
 };
 
 export const emailVerificationApi = async (data) => {
-  const request = await axios.put("verify/user/email", data);
+  console.log(data);
+  const request = await axios.get(`email/verify/1/${data.token}`, data);
   return request;
 };
 

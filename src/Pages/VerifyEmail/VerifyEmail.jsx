@@ -20,11 +20,12 @@ const VerifyEmail = () => {
   const [displayVerified, setDisplayVerified] = useState(false);
   const [displayFailed, setDisplayFailed] = useState(false);
   const [displayUserNotFound, setDisplayUserNotFound] = useState(false);
+  console.log(params.token);
 	
   useEffect(() => {
 
     (async()=>{
-      const response = await dispatch(emailVerification({verification_token: params.token}));
+      const response = await dispatch(emailVerification({token: params.token}));
 
       if(response.type.toLowerCase().includes("failure")){
         setVerificationResponse(response?.payload);
@@ -105,7 +106,7 @@ const VerifyEmail = () => {
         { displayUserNotFound && 
 				<div className={cx(styles.wrapper)}>
 				  <Icon icon="bxs:user-x" color="#ffc107" />
-				  <p>{verificationResponse}. Kindly create an account.</p>
+				  <p>{verificationResponse} Kindly create an account.</p>
 				  <Button onClick={() => navigate("/signup")} title="Sign Up" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 				</div>
 							

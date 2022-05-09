@@ -37,7 +37,7 @@ const RoutesComponent = () => {
         <Route path="login" element={<Login />} />
         <Route path="login-with-class-code" element={<LoginWithClassCode />} />
         <Route path="signup" element={<SignUp />} />
-        <Route path="verify-email/:token" element={<VerifyEmail />} />		
+        <Route path="email/verify/3/:token" element={<VerifyEmail />} />		
         <Route  path="forgot-password" element={<ForgotPassword />} />
         <Route  path="otp-expired" element={<OtpExpired />} />
         <Route  path="otp-verification" element={<OtpVerification />} />

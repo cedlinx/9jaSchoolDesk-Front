@@ -38,14 +38,22 @@ export const signUpValidationSchema = Yup.object().shape({
     )
     .min(10, "Must be above 10 digits"),
 
-  pin: Yup.string()
-    .required("Pin is Required")
-    .matches(
-      /^\d{4}$/, 
-      "Enter Four (4) Digits"
-    ),
+  gender: Yup.string()
+    .required("Gender is required"),
 
-  address: Yup.string()
+  state: Yup.string()
+    .required("State is required"),
+
+  city: Yup.string()
+    .required("City is required"),
+
+  zipCode: Yup.string()
+    .required("Zipcode is required"),
+
+  country: Yup.string()
+    .required("Country is required"),
+
+  addressLine1: Yup.string()
     .required("Address is required")
     .min(5, "Must be above 5 characters!")
 });

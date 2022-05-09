@@ -43,21 +43,16 @@ const SchoolSignUp = () => {
     name: "",
     password: "",
     password_confirmation: "",
-    address: "",
+    addressLine1: "",
+    state: "",
+    zipCode: "",
+    city: "",
     phone: "",
-    pin: ""
-    // accountType: ""
+    country: "",
+    gender: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
-
-  // const selectOptions = [        
-  // 	{label:"Account One", value:"Account One"},
-  // 	{label:"Account Two", value:"Account Two"},
-  // 	{label:"Account Three", value:"Account Three"},
-  // 	{label:"Account Four", value:"Account Four"},
-  // 	{label:"Account Five", value:"Account Five"}
-  // ];
 
   const createUser = async (data) => {
     const response = await dispatch(signUp(data));
@@ -71,6 +66,16 @@ const SchoolSignUp = () => {
     }
   };
 
+  const getGenderOptions = () => {
+    return(
+      [
+        { label: "Male",
+          value: "Male" },
+        { label: "Female",
+          value: "Female" }
+      ]
+    );
+  };
   return (
     <div className={cx(styles.signUpWrapper)} >
       <TopDivWave />
@@ -122,16 +127,16 @@ const SchoolSignUp = () => {
               />
 
               <Controller
-                name="accountType"
+                name="gender"
                 control={control}
                 render={({ field }) => (
                   <SelectField
                     {...field}
-                    label={"Account Type"}
+                    label={"Gender"}
                     type="text"
                     required={true}
-                    error={errors?.accountType && errors?.accountType?.message}
-                    options={[]}
+                    error={errors?.gender && errors?.gender?.message}
+                    options={getGenderOptions()}
                   />
                 )}
               />
@@ -166,51 +171,98 @@ const SchoolSignUp = () => {
                 )}
               />
 
-              {/* <Controller
-								name="pin"
-								control={control}
-								render={({ field }) => (
-									<InputField
-										{...field} 
-										placeholder={" "}
-										label={"Pin"}
-										type="number"
-										error={errors?.pin && errors?.pin?.message}
+              <Controller
+                name="phone"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Mobile Number"}
+                    type="number"
+                    error={errors?.phone && errors?.phone?.message}
 
-										maxLength="4"
-									/>
-								)}
-							/>
+                  />
+                )}
+              />
 
-							<Controller
-								name="address"
-								control={control}
-								render={({ field }) => (
-									<InputField
-										{...field} 
-										placeholder={" "}
-										label={"Address"}
-										type="text"
-										error={errors?.address && errors?.address?.message}
+              <Controller
+                name="addressLine1"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Address Line 1"}
+                    type="text"
+                    error={errors?.addressLine1 && errors?.addressLine1?.message}
 
-									/>
-								)}
-							/>
+                  />
+                )}
+              />
 
-							<Controller
-								name="phone"
-								control={control}
-								render={({ field }) => (
-									<InputField
-										{...field} 
-										placeholder={" "}
-										label={"Mobile Number"}
-										type="number"
-										error={errors?.phone && errors?.phone?.message}
+              <Controller
+                name="city"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"City"}
+                    type="text"
+                    error={errors?.city && errors?.city?.message}
 
-									/>
-								)}
-							/> */}
+                  />
+                )}
+              />
+
+              <Controller
+                name="state"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"State"}
+                    type="text"
+                    error={errors?.state && errors?.state?.message}
+
+                  />
+                )}
+              />
+
+              <Controller
+                name="zipCode"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Zip Code"}
+                    type="number"
+                    error={errors?.zipCode && errors?.zipCode?.message}
+
+                  />
+                )}
+              />
+
+              <Controller
+                name="country"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Country"}
+                    type="text"
+                    error={errors?.country && errors?.country?.message}
+
+                  />
+                )}
+              />
+
+
+         
 
               <div className={cx(styles.submitBtnDiv, "flexRow")}>
                 <Button onClick={handleSubmit((data) => createUser(data))} type title="Sign Up" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
