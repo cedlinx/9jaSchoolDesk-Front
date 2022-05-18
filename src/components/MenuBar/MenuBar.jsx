@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import cx from "classnames";
 import styles from "./MenuBar.module.scss";
-import Logo from "@/assets/images/Logo.svg";
+import Logo from "@/assets/images/Logo.png";
 import Button from "@/components/Button/Button";
 import { Navbar, Nav, Dropdown, 
   NavDropdown} from "react-bootstrap";
@@ -10,8 +10,10 @@ import { Navbar, Nav, Dropdown,
 
 const MenuBar = () => {
 
-  const navigate = useNavigate();
-
+  const handleClick=(e)=>{
+    console.log(e.target.id);
+  };
+  
   return (
     <>
       <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
@@ -20,19 +22,12 @@ const MenuBar = () => {
         </Navbar.Brand>
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
-          <Nav className={cx(styles.primaryNavigation, "ms-auto")}>
-            <Link to="/">Home</Link>
-            <Link to="/student">Student</Link>
-            <Link to="/parent">Parent</Link>
-            <Link to="/teacher">Teacher</Link>
-          </Nav>
-
-          <div className={cx(styles.btnGroup)} >
-            <Button onClick={()=>navigate("/signup")} title="Sign Up" borderRadiusType="fullyRounded" textColor="#fff"  bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
-
-            <Button onClick={()=>navigate("/login")} title="Sign In" borderRadiusType="fullyRounded" textColor="#D25B5D"  bgColor="#FFF" hoverBg="#D25B5D" hoverColor="#FFF" bordercolor="#D25B5D" />
-          </div>
-					
+          <Nav className={cx(styles.primaryNavigation)}>
+            <Link onClick={(e) =>handleClick(e)} id="home" to="#">Home</Link>
+            <Link onClick={(e) =>handleClick(e)} id="student" to="#">Student</Link>
+            <Link onClick={(e) =>handleClick(e)} id="parent" to="#">Parent</Link>
+            <Link onClick={(e) =>handleClick(e)} id="teacher" to="#">Teacher</Link>
+          </Nav>				
 
         </Navbar.Collapse>
       </Navbar>

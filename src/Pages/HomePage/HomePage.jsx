@@ -1,10 +1,11 @@
 import React, {useRef, useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import PageContainer from "@/components/PageContainer/PageContainer";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import cx from "classnames";
 import styles from "./HomePage.module.scss";
+import menuBarStyles from "./MenuBar.module.scss";
 import { Card} from "react-bootstrap";
 // import heroImage from "@/assets/images/hero-image.png";
 import Button from "@/components/Button/Button";
@@ -14,6 +15,10 @@ import PriceCard from "@/components/PriceCard/PriceCard";
 import TopDivWave from "@/components/WaveSvg/TopDivWave";
 import BottomDivWave from "@/components/WaveSvg/BottomDivWave";
 
+import { Navbar, Nav, Dropdown, 
+  NavDropdown} from "react-bootstrap";
+import Logo from "@/assets/images/Logo.png";
+  
 import studentImage from "@/assets/images/Student Image.png";
 import teacherImage from "@/assets/images/Teacher Image.png";
 import parentsImage from "@/assets/images/Parents Image.png";
@@ -29,6 +34,26 @@ import circleIcon from "@/assets/icons/circle_icon.svg";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const studentsRef = useRef();
+  const parentsRef = useRef();
+  const teachersRef = useRef();
+
+  const gotoSection = (value) =>{
+    switch(value.target.id){
+    case "student":
+      studentsRef.current.scrollIntoView({behavior: "smooth"});
+      break;
+    case "parent":
+      parentsRef.current.scrollIntoView({behavior: "smooth"});
+      break;
+    case "teacher":
+      teachersRef.current.scrollIntoView({behavior: "smooth"});
+      break;
+    default:
+      window.scrollTo({top: 0, behavior: "smooth"});
+      break;
+    }
+  };
 
   const pricingArray = {
     basic: [ "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant."],
@@ -38,7 +63,23 @@ const HomePage = () => {
 
 	
   return (
-    <PageContainer showHeader={true}>
+    <PageContainer showHeader={false}>
+
+      <Navbar collapseOnSelect expand="lg" className={cx(menuBarStyles.navbarContainer, "flexRow")}>
+        <Navbar.Brand className={cx(menuBarStyles.siteLogo )}> 		
+          <Link to="/"><img src={Logo} alt="" /></Link>
+        </Navbar.Brand>
+        <Navbar.Toggle className={cx(menuBarStyles.navbarToggler)} aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse className={cx(menuBarStyles.navbarCollapse)} id="responsive-navbar-nav" >
+          <Nav className={cx(menuBarStyles.primaryNavigation)}>
+            <Link onClick={(e) =>gotoSection(e)} id="home" to="#">Home</Link>
+            <Link onClick={(e) =>gotoSection(e)} id="student" to="#">Student</Link>
+            <Link onClick={(e) =>gotoSection(e)} id="parent" to="#">Parent</Link>
+            <Link onClick={(e) =>gotoSection(e)} id="teacher" to="#">Teacher</Link>
+          </Nav>				
+
+        </Navbar.Collapse>
+      </Navbar>
 
       <div className={cx(styles.homepageContainer)}>
 
@@ -54,20 +95,24 @@ const HomePage = () => {
             data-aos="fade-up"
             data-aos-anchor-placement="center-bottom"
             data-aos-delay="600"
-          >The one place where <span>Children</span>, <span>Parents</span> and <span>Teachers</span> all come together.</h1>
+          >The one place where <span>Children</span>, <br /> <span>Parents</span> and <span>Teachers</span> all come <br /> together.</h1>
           <p className={cx(styles.heroCaption)}
             data-aos="fade-up"
             data-aos-anchor-placement="center-bottom"
             data-aos-delay="800"
-          >Become part of your child’s academic growth today with 9jaschoolDesk</p>
+          >Become part of your child’s academic growth today<br /> with 9jaschoolDesk</p>
+
+          <small style={{color: "black", margin: "1rem 0rem"}}>Get started as</small>
 					
           <div className={cx(styles.btnDiv, "flexRow-fully-centered")}>
 
-            <Button onClick={()=> navigate("/#")} title="Student" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
+            <Button onClick={()=> navigate("/login-with-class-code", {state:{category: "student"}})} title="Student" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 								
-            <Button onClick={()=> navigate("/#")} title="Parent" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
+            <Button onClick={()=> navigate("/login", {state:{category: "parent"}})} title="Parent" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 
-            <Button onClick={()=> navigate("/#")} title="Teacher" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
+            <Button onClick={()=> navigate("/login", {state:{category: "teacher"}})} title="Teacher" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
+
+            <Button onClick={()=> navigate("/signup", {state:{category: "administrator"}})} title="Administrator" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 						
           </div>
 						
@@ -77,7 +122,7 @@ const HomePage = () => {
 
           <TopDivWave />
 
-          <div className={cx(styles.studentsSection, styles.sectionWrapper, "row")}>
+          <div ref={studentsRef} className={cx(styles.studentsSection, styles.sectionWrapper, "row")}>
             <div data-aos="zoom-in-left"
               // data-aos-delay="1200"
               className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
@@ -106,7 +151,7 @@ const HomePage = () => {
 						
           </div>
 
-          <div className={cx(styles.parentsSection, styles.sectionWrapper, "row")}>
+          <div ref={parentsRef} className={cx(styles.parentsSection, styles.sectionWrapper, "row")}>
             <div data-aos="zoom-in-left"
               // data-aos-delay="1200"
               className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
@@ -135,7 +180,7 @@ const HomePage = () => {
 						
           </div>
 
-          <div className={cx(styles.teachersSection, styles.sectionWrapper, "row")}>
+          <div ref={teachersRef} className={cx(styles.teachersSection, styles.sectionWrapper, "row")}>
             <div data-aos="zoom-in-left"
               // data-aos-delay="1200"
               className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}

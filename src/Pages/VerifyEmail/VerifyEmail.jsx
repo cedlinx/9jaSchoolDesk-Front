@@ -2,37 +2,64 @@ import React,{useEffect, useState} from "react";
 import cx from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import styles from "./VerifyEmail.module.scss";
-import {useParams, useNavigate} from "react-router-dom";
+import {useParams, useNavigate, useSearchParams} from "react-router-dom";
 import Button from "@/components/Button/Button";
 import MenuBar from "@/components/MenuBar/MenuBar";
 import { Icon } from "@iconify/react";
 import {emailVerification} from "@/redux/User/user.action";
 import { CirclesWithBar } from  "react-loader-spinner";
+import { urlParameters } from "@/helpers/urlParameters";
 
 
 const VerifyEmail = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  console.log(searchParams.get("signature"));
   const [verificationResponse, setVerificationResponse] = useState("");
   const [defaultDisplay, setDefaultDisplay] = useState(true);
   const [displaySuccess, setDisplaySuccess] = useState(false);
   const [displayVerified, setDisplayVerified] = useState(false);
   const [displayFailed, setDisplayFailed] = useState(false);
   const [displayUserNotFound, setDisplayUserNotFound] = useState(false);
-  console.log(params.token);
 	
   useEffect(() => {
 
+    
     (async()=>{
-      const response = await dispatch(emailVerification({token: params.token}));
+      const data = {
+        signature: searchParams.get("signature"),
+        token: params.token,
+        expires: searchParams.get("expires"),
+        id: params.id
+      };
+      console.log(data);
+      const response = await dispatch(emailVerification(data));
+      console.log(response);
+      console.log(response.payload);
+      console.log(response.payload.data);
 
-      if(response.type.toLowerCase().includes("failure")){
+      // if(response.type.toLowerCase().includes("failure")){
+      //   setVerificationResponse(response?.payload);
+      //   if(response?.payload.includes("verified")){
+      //     setDisplayVerified(true);
+      //     setTimeout(() => {
+      //       navigate("/login");
+      //     }, 5000);
+      //   }else if(response?.payload.includes("expired")){
+      //     setDisplayFailed(true);
+      //   }else{
+      //     setDisplayUserNotFound(true);
+      //   }
+      //   setDefaultDisplay(false);
+      // }
+      if(response.status === 200){
         setVerificationResponse(response?.payload);
         if(response?.payload.includes("verified")){
           setDisplayVerified(true);
           setTimeout(() => {
-            navigate("/login");
+            // navigate("/login");
           }, 5000);
         }else if(response?.payload.includes("expired")){
           setDisplayFailed(true);
@@ -45,7 +72,7 @@ const VerifyEmail = () => {
         setVerificationResponse(response?.payload?.data?.message);
         setDisplaySuccess(true);
         setTimeout(() => {
-          navigate("/login");
+          // navigate("/login");
         }, 5000);
         setDefaultDisplay(false);
       }
@@ -53,7 +80,7 @@ const VerifyEmail = () => {
 			
     })();
 
-  },[]);
+  },[dispatch, navigate, params.id, params.token, searchParams]);
 		
   return (
     <section className={cx(styles["error-page-container"])}>
@@ -106,7 +133,7 @@ const VerifyEmail = () => {
         { displayUserNotFound && 
 				<div className={cx(styles.wrapper)}>
 				  <Icon icon="bxs:user-x" color="#ffc107" />
-				  <p>{verificationResponse} Kindly create an account.</p>
+				  <p>{verificationResponse}<br />Kindly create an account.</p>
 				  <Button onClick={() => navigate("/signup")} title="Sign Up" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
 				</div>
 							

@@ -3,7 +3,7 @@ import axios from "axios";
 import { getToken } from "../utils/auth";
 
 const instance = axios.create({
-  baseURL: "https://naijaschooldesk.frb.io/api/"
+  baseURL: "https://9jaschooldesk.com/api/"
 });
 
 instance.interceptors.request.use(

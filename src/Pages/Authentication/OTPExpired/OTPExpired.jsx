@@ -15,7 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 import { resetPasswordValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import siteLogo from "@/assets/images/Logo.svg";
+import siteLogo from "@/assets/images/Logo.png";
 
 const OTPExpired = () => {
 
@@ -64,9 +64,7 @@ const OTPExpired = () => {
           <form
             onSubmit={handleSubmit((data) => handleReset(data))}
             className=""
-          >
-
-          </form>
+          />
         </div>
 
       </section>

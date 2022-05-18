@@ -1,7 +1,12 @@
 import axios from "@/config/axios";
 
 export const loginApi = async (data) => {
-  const request = await axios.post("login", data);
+  const request = await axios.post("auth/login", data);
+  return request;
+};
+
+export const loginWithOtpApi = async (data) => {
+  const request = await axios.post("auth/otp/login", data);
   return request;
 };
 
@@ -14,7 +19,8 @@ export const signUpApi = async (data) => {
 
 export const emailVerificationApi = async (data) => {
   console.log(data);
-  const request = await axios.get(`email/verify/1/${data.token}`, data);
+  const request = await axios.get(`email/verify/${data.id}/${data.token}?expires=${data.expires}&signature=${data.signature}`);
+  console.log(request);
   return request;
 };
 
@@ -54,7 +60,7 @@ export const getWebsiteInfoApi = async () => {
 };
 
 export const requestVerificationLinkApi =  async (data) => {
-  const request = await axios.post(`resend/email/verification?email=${data.email}`, data);
+  const request = await axios.post("auth/resend/email/verification", data);
   return request;
 };
 

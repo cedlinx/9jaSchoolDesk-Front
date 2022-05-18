@@ -12,7 +12,7 @@ import { titleCase } from "@/helpers/textTransform";
 import InputField from "@/components/Input/Input";
 import { Icon } from "@iconify/react";
 import { useNavigate, Link } from "react-router-dom";
-import Logo from "@/assets/images/Logo.svg";
+import Logo from "@/assets/images/Logo.png";
 import Button from "@/components/Button/Button";
 import { Navbar} from "react-bootstrap";
 import {

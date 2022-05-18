@@ -93,7 +93,7 @@ const LoginWithClassCode = () => {
                     <Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
                   </div>
 
-                  <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+                  {/* <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p> */}
 
                 </form>
 							

@@ -9,13 +9,13 @@ export const TabWrapper = styled.div`
   justify-content: center;
   padding-left: 0rem;
   width: 100%;
-  overflow-y: scroll !important;
+  // overflow-y: scroll !important;
 
   
   @media screen and (max-width: 997px) {
     left: 0;
     z-index: 1;
-    overflow-y: scroll !important;
+    // overflow-y: scroll !important;
     }
 `;
 

@@ -6,6 +6,9 @@
     background-color: #FFF2F2;
     width: 100%;
 
+    small{
+        color: #22467B;
+    }
     .container{
         padding: 1rem 2rem !important;
            .leftCol{
@@ -44,7 +47,19 @@
     .formWrapper{
         width: 100%;
         form{
-            
+            small{
+                display: block;
+                margin-bottom: 1rem;
+                color: #828282;
+            }
+            .resetOTPLink{
+                cursor: pointer;
+                color: #D25B5D;
+                text-align: center;
+                text-decoration: underline;
+                font-size: 0.875rem;
+                font-weight: bold;
+            }
         .formText{
             color: #413D3D;
             font-size: 0.875rem;
@@ -65,6 +80,10 @@
             justify-content: space-between;
             margin: 0rem 0rem;
             font-size: 0.875rem;
+            a{
+                font-size: 0.875rem;
+                font-weight: 450;
+            }
     
             .checkboxDiv{
                 input{
@@ -153,7 +172,7 @@
 @media all and (min-width: 991px) {
     .signUpWrapper{
         .container{
-            padding: 3rem 8rem !important;
+            padding: 1rem 8rem 5rem 8rem !important;
                   .leftCol{
             padding: 3rem;
             border-radius: 0.5rem 0rem 0rem 0.5rem;
@@ -195,7 +214,7 @@
             }
             .submitBtnDiv{
                justify-content: center;
-               margin: 1.25rem 0rem;
+               margin: 5rem 0rem 1.25rem 0rem;
         
                button{
                    width: 100%;
@@ -212,9 +231,8 @@
 
 @media all and (min-width: 1200px) {
     .signUpWrapper{
-
     .container{
-        padding: 3rem 13rem !important;
+        padding: 1rem 13rem 8rem 13rem !important;
 
                .leftCol{
             padding: 3rem;

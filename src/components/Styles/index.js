@@ -118,7 +118,9 @@ export const Wrapper = styled.div`
 export const FormGroup = styled(Form.Group)` 
   display: block;
   position: relative;
-  margin-bottom: ${({ marginbottom }) => (marginbottom)};
+  // margin-bottom: ${({ marginbottom }) => (marginbottom)};
+  margin-bottom: 1.625rem;
+
   label {
     position: absolute;
     transform: translate(0px, 0px) scale(1);
@@ -152,7 +154,7 @@ export const FormGroup = styled(Form.Group)`
     color: #555A6E;
     transition: 0.3s;
     background: #fff;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0.125rem 0rem 0rem 0rem;
     &:focus {
       outline: none;
@@ -164,11 +166,9 @@ export const FormGroup = styled(Form.Group)`
   }
   .input-container {
     position: relative;
-
-    
     display: flex;
     flex-direction: row;
-    padding: 15px 10px 7.5px 10px;
+    padding: 7.5px 10px 7.5px 10px;
     box-sizing: border-box;
     border-radius: 1.5rem;
     border: ${({ border }) => (`1px solid ${border}`)};
@@ -186,7 +186,7 @@ export const FormGroup = styled(Form.Group)`
     }
    
     .Active {
-      transform: translate(0, -12px) scale(0.7);
+      transform: translate(0, -12px) scale(0.875);
     }
   }
   textarea {
@@ -209,7 +209,7 @@ export const FormGroup = styled(Form.Group)`
     }
   }
   .error {
-    font-size: 12px;
+    font-size: 10px;
     color: #eb5757;
     position: absolute;
     left: 0;

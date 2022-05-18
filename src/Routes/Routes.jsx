@@ -5,6 +5,7 @@ import HomePage from "../Pages/HomePage/HomePage";
 import Login from "../Pages/Authentication/Login/Login";
 import LoginWithClassCode from "../Pages/Authentication/Login/LoginWithClassCode";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
+import ParentSignUp from "../Pages/Authentication/SignUp/ParentSignUp/ParentSignUp";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
 import OtpExpired from "../Pages/Authentication/OTPExpired/OTPExpired";
@@ -37,7 +38,8 @@ const RoutesComponent = () => {
         <Route path="login" element={<Login />} />
         <Route path="login-with-class-code" element={<LoginWithClassCode />} />
         <Route path="signup" element={<SignUp />} />
-        <Route path="email/verify/3/:token" element={<VerifyEmail />} />		
+        <Route path="parent-signup" element={<ParentSignUp />} />
+        <Route path="api/email/verify/:id/:token" element={<VerifyEmail />} />		
         <Route  path="forgot-password" element={<ForgotPassword />} />
         <Route  path="otp-expired" element={<OtpExpired />} />
         <Route  path="otp-verification" element={<OtpVerification />} />

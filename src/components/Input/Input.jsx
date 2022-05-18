@@ -11,6 +11,7 @@ const Input = ({
   onChange,
   error,
   icon,
+  suffixIcon,
   marginbottom,
   border,
   onBlur,
@@ -43,12 +44,15 @@ const Input = ({
           onChange={onChange}
           onBlur = {(e)=>handleTextChange(e)}
           {...props}
-          autoComplete="new-password"
+          // autoComplete="new-password"
+          autoComplete="none"
+
         />
         <label  onClick={(e)=>handleTextChange(e)} className={isActive ? "Active" : ""}>{label}</label>
         {type === "password" && (
           <img src={eyeIcon} alt="eye-icon" className="eye-icon" onClick={handleVisibility}/>
         )}
+        {suffixIcon && suffixIcon}
       </div>
       {error ? <span className="error">{error}</span> : ""}
     </FormGroup>

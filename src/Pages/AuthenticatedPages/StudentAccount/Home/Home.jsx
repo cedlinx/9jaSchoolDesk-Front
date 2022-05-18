@@ -213,58 +213,7 @@ const Home = () => {
       </section>
 
       <section className={cx(styles.upperSection, "row")}>
-        <div className={cx(styles.upperSectionLeft, "col-sm-12", "col-md-12", "col-xl-5")}>
-          <div className={cx("flexRow-space-between")}>
-            <h5>Activities</h5>
-            <small style={{cursor: "pointer"}} onClick={()=>dispatch(showModal({ action: "show", type: "submitAssessment" }))}>Submit Test</small>
-            <small style={{cursor: "pointer"}} onClick={()=>dispatch(showModal({ action: "show", type: "uploadActivity" }))}>Upload Activity Test</small>
-          </div>
-          <div className={cx(styles.contentWrapper)}>
-            {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(assessmentData)} />}
-          </div>
-        </div>
-        <div className={cx(styles.upperSectionMiddle, "col-sm-12", "col-md-6", "col-xl-4")}>
-          <h5>Behavioural Feedback</h5>
-          <div className={cx(styles.contentWrapper, "flexCol")}>
-            <div className={cx(styles.header, "flexRow")}>
-              <div className={cx(styles.imageDiv)}>
-                <img src={behaviouralCardImage} alt="img" />
-              </div>
-              <div className={cx(styles.pointsDiv)}>
-                <small>Total points earned</small>
-                <p>10</p>
-              </div>
-            </div>
-
-            <div className={cx(styles.body, "flexCol")}>
-              <div><span><img src={curiosityIcon} alt="" /></span><span>Curiosity</span><span>2 pts</span></div>
-              <div><span><img src={gratitudeIcon} alt="" /></span><span>Gratitude</span><span>2 pts</span></div>
-              <div><span><img src={teamworkIcon} alt="" /></span><span>Teamwork</span><span>2 pts</span></div>
-              <div><span><img src={persistenceIcon} alt="" /></span><span>Persistence</span><span>2 pts</span></div>
-            </div>
-
-          </div>
-        </div>
-
-        <div className={cx(styles.upperSectionRight, "col-sm-12", "col-md-6", "col-xl-3")}>
-          <h5>Profile</h5>
-          <div className={cx(styles.contentWrapper)}>
-            <div className={cx(styles.header)}>
-              <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
-              <img className={cx(styles.profilePic)}src={studentProfilePic} alt="profile pic" />
-            </div>
-            <div className={cx(styles.body, "flexCol")}>
-              <p>Chisimdi Coker</p>
-              <small>coker@gmail.com</small>
-              <img onClick={()=>dispatch(showModal({ action: "show", type: "editProfile" }))} src={editIcon} alt="" />
-            </div>
-          </div>
-        </div>
-
-      </section>     
-                                
-      <section className={cx(styles.lowerSection, "row")}>
-        <div className={cx(styles.lowerSectionLeft, "col-md-12", "col-xl-6")}>
+        <div className={cx(styles.upperSectionLeft, "col-md-12", "col-xl-6")}>
           <div className={cx(styles.header, "flexRow-space-between")}>
             <h5>Assessment Feedback</h5>
             <small onClick={() => navigate("assessment-feedback")}>View all</small>
@@ -274,7 +223,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className={cx(styles.lowerSectionRight, "col-md-12", "col-xl-6")}>
+        <div className={cx(styles.upperSectionRight, "col-md-12", "col-xl-6")}>
           <h5>Rate Your Teacher</h5>
           <div className={cx(styles.ratingsDiv)}>
             <div className={cx(styles.body, "flexCol")}>
@@ -307,6 +256,59 @@ const Home = () => {
         </div>
 
       </section>
+      
+      <section className={cx(styles.lowerSection, "row")}>
+        <div className={cx(styles.lowerSectionLeft, "col-sm-12", "col-md-12", "col-xl-5")}>
+          <div className={cx("flexRow-space-between")}>
+            <h5>Activities</h5>
+            <small style={{cursor: "pointer"}} onClick={()=>dispatch(showModal({ action: "show", type: "submitAssessment" }))}>Submit Test</small>
+            <small style={{cursor: "pointer"}} onClick={()=>dispatch(showModal({ action: "show", type: "uploadActivity" }))}>Upload Activity Test</small>
+          </div>
+          <div className={cx(styles.contentWrapper)}>
+            {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(assessmentData)} />}
+          </div>
+        </div>
+        <div className={cx(styles.lowerSectionMiddle, "col-sm-12", "col-md-6", "col-xl-4")}>
+          <h5>Behavioural Feedback</h5>
+          <div className={cx(styles.contentWrapper, "flexCol")}>
+            <div className={cx(styles.header, "flexRow")}>
+              <div className={cx(styles.imageDiv)}>
+                <img src={behaviouralCardImage} alt="img" />
+              </div>
+              <div className={cx(styles.pointsDiv)}>
+                <small>Total points earned</small>
+                <p>10</p>
+              </div>
+            </div>
+
+            <div className={cx(styles.body, "flexCol")}>
+              <div><span><img src={curiosityIcon} alt="" /></span><span>Curiosity</span><span>2 pts</span></div>
+              <div><span><img src={gratitudeIcon} alt="" /></span><span>Gratitude</span><span>2 pts</span></div>
+              <div><span><img src={teamworkIcon} alt="" /></span><span>Teamwork</span><span>2 pts</span></div>
+              <div><span><img src={persistenceIcon} alt="" /></span><span>Persistence</span><span>2 pts</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div className={cx(styles.lowerSectionRight, "col-sm-12", "col-md-6", "col-xl-3")}>
+          <h5>Profile</h5>
+          <div className={cx(styles.contentWrapper)}>
+            <div className={cx(styles.header)}>
+              <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
+              <img className={cx(styles.profilePic)}src={studentProfilePic} alt="profile pic" />
+            </div>
+            <div className={cx(styles.body, "flexCol")}>
+              <p>Chisimdi Coker</p>
+              <small>coker@gmail.com</small>
+              <img onClick={()=>dispatch(showModal({ action: "show", type: "editProfile" }))} src={editIcon} alt="" />
+            </div>
+          </div>
+        </div>
+
+      </section>     
+                                
+    
 
       {modalState === "show" ? <Modal show >{modalType === "editProfile" ? editProfileModal() : modalType === "submitAssessment" ? submitAssessmentModal() : modalType === "uploadActivity" ? uploadActivityModal()  : null}</Modal> : null}
             

@@ -1,0 +1,236 @@
+.profileContainer{
+    padding: 1rem 0rem 4rem 0rem;
+    gap: 1rem;
+    background-color: #fff;
+    hr{
+        margin: 0rem;
+        color: #E2E2E2;
+        border: 1px solid #E2E2E2;
+    }
+
+    .header{
+        padding: 0.5rem 0rem;
+        h3{
+          text-align: center;  
+          line-height: 1;
+          margin: 0rem;
+          padding: 0rem;
+          color: #22467B;
+          font-weight: normal;
+
+        }
+    }
+    .mainHeader{
+        padding: 2rem 0rem 1rem 0rem;
+    }
+    .body{
+    padding: 1rem 1rem 4rem 1rem;
+
+        .tabContainer{
+            gap: 1rem;
+            padding: 0rem 0.25rem;
+            .tabList{
+                display: flex;
+                justify-content: center;
+            }
+
+            .tabPanelContainer{
+                border-radius: 0.5rem;
+                box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.1);
+                .panelContent{
+                    gap: 1rem;
+                    padding: 2rem 0rem;
+                    .header{
+                        text-align: center;
+                        small{
+                            color: #828282;
+                        }
+                    }
+                    
+                    .imageSection{
+                        align-items: center;
+                        gap: 1rem;
+
+                        .imageDiv{
+                            img{
+                                border-radius: 50%;
+                                width: clamp(3rem, 4rem, 5rem);
+                            }
+                        }
+                    }
+
+                    .formWrapper{
+                        form{
+                            width: 100%;
+                            .submitBtnDiv{
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width:768px) {
+    .profileContainer{
+        padding: 1rem 0rem 4rem 0rem;        
+        gap: 1rem;
+
+        .header{
+            h3{
+              text-align: left;  
+              line-height: 1;
+              margin: 0rem;
+              padding: 0rem;
+              color: #22467B;
+    
+            }
+        }
+        .body{
+            padding: 0rem 2rem 0rem 2rem;
+            .tabContainer{
+                gap: 0rem;
+                padding-top: 2rem;
+                .tabList{
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    gap: 1rem;
+                }
+    
+                .tabPanelContainer{
+                  padding: 2rem;
+                    .panelContent{
+                        gap: 1.5rem;
+                        padding: 0rem 0rem 2rem 0rem;
+
+                        .header{
+                            text-align: left;
+                        }
+                        
+                        .imageSection{
+                            gap: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width:991px) {
+    .profileContainer{
+        padding: 1rem 0rem 4rem 0rem;        
+        gap: 1rem;
+
+        .header{
+            h3{
+              text-align: left;  
+              line-height: 1;
+              margin: 0rem;
+              padding: 0rem;
+              color: #22467B;
+    
+            }
+        }
+        .body{
+            padding: 0rem 6rem 0rem 6rem;
+            .tabContainer{
+                gap: 0rem;
+                padding-top: 2rem;
+                .tabList{
+                    gap: 1rem;
+                    padding-right: 2rem;
+                }
+    
+                .tabPanelContainer{
+                  padding: 2rem;
+                    .panelContent{
+                        gap: 1.5rem;
+
+                        .header{
+                            text-align: left;
+                        }
+                        
+                        .imageSection{
+                            gap: 1rem;
+                        }
+
+                        .formWrapper{
+                            form{
+                                .inputsWrapper{
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    justify-content: space-between;
+                                    gap: 1rem;
+                                    &>div{
+                                        width: 47.5%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width:1200px) {
+    .profileContainer{
+        padding: 1rem 0rem 4rem 0rem;        
+        gap: 1rem;
+
+        .header{
+            h3{
+              text-align: left;  
+              line-height: 1;
+              margin: 0rem;
+              padding: 0rem;
+              color: #22467B;
+    
+            }
+        }
+        .body{
+            padding: 0rem 9rem 0rem 9rem;
+            .tabContainer{
+                gap: 0rem;
+                padding-top: 2rem;
+                .tabList{
+                    gap: 1rem;
+                    padding-right: 4rem;
+                }
+    
+                .tabPanelContainer{
+                  padding: 2rem;
+                    .panelContent{
+                        gap: 1.5rem;
+
+                        .header{
+                            text-align: left;
+                        }
+                        
+                        .imageSection{
+                            gap: 1rem;
+                        }
+
+                        .formWrapper{
+                            form{
+                                .inputsWrapper{
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    justify-content: space-between;
+                                    gap: 1rem;
+                                    &>div{
+                                        width: 47.5%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

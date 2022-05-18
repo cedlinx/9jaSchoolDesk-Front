@@ -1,11 +1,15 @@
 import { setAuthToken } from "@/utils/setAuthToken";
-import { loginApi, signUpApi, emailVerificationApi, forgotPasswordApi, resetPasswordApi, logoutApi, modifyProfileInfoApi, getUserInfoApi, modifyWebsiteInfoApi, getWebsiteInfoApi, requestVerificationLinkApi, deleteUserApi, getAllUsersApi, getAllAdminUsersApi, getUserSocialApi, addSocialAccountApi, modifySocialAccountApi, deleteSocialAccountApi, linkSocialAccountApi, unlinkSocialAccountApi } from "../api/user";
+import { loginApi, loginWithOtpApi, signUpApi, emailVerificationApi, forgotPasswordApi, resetPasswordApi, logoutApi, modifyProfileInfoApi, getUserInfoApi, modifyWebsiteInfoApi, getWebsiteInfoApi, requestVerificationLinkApi, deleteUserApi, getAllUsersApi, getAllAdminUsersApi, getUserSocialApi, addSocialAccountApi, modifySocialAccountApi, deleteSocialAccountApi, linkSocialAccountApi, unlinkSocialAccountApi } from "../api/user";
 import { toast } from "react-toastify";
 
 import {
   LOGIN_USER_START,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+
+  LOGIN_WITH_OTP_START,
+  LOGIN_WITH_OTP_SUCCESS,
+  LOGIN_WITH_OTP_ERROR,
 
   LOGOUT_START,
   LOGOUT_SUCCESS,
@@ -104,11 +108,35 @@ export const loginUser = (data) => async (dispatch) => {
 		
     dispatch(startLogin());
     const response = await loginApi(data);
-    setToken(response.data.token);
     return dispatch(successLogin(response));
   } catch (e) {
     toast.warn(e.response.data.message);
     return dispatch(errorLogin(e.response.data.message));
+  }
+};
+
+const startLoginWithOtp = () => ({
+  type: LOGIN_WITH_OTP_START
+});
+const successLoginWithOtp = (payload) => ({
+  type: LOGIN_WITH_OTP_SUCCESS,
+  payload
+});
+const errorLoginWithOtp = (payload) => ({
+  type: LOGIN_WITH_OTP_ERROR,
+  payload
+});
+
+export const loginWithOtp = (data) => async (dispatch) => {
+  try {
+		
+    dispatch(startLoginWithOtp());
+    const response = await loginWithOtpApi(data);
+    setToken(response.data.token);
+    return dispatch(successLoginWithOtp(response));
+  } catch (e) {
+    toast.warn(e.response.data.message);
+    return dispatch(errorLoginWithOtp(e.response.data.message));
   }
 };
 
@@ -129,11 +157,12 @@ export const signUp = (data) => async (dispatch) => {
   try {
     dispatch(signupRequest());
     const response = await signUpApi(data);
+    setToken(response.data.token);
     toast.success(response.data.message);
     return dispatch(signupSuccess(response));
   } catch (e) {
-    toast.error("An error occurred, please try again");
-    return dispatch(signupFailure(e.response.data.message));
+    toast.error(e.message);
+    return dispatch(signupFailure(e.message));
   }
 };
 
@@ -157,7 +186,8 @@ export const emailVerification = (data) => async (dispatch) => {
     const response = await emailVerificationApi(data);
     return dispatch(emailVerificationSuccess(response));
   } catch (e) {
-    return dispatch(emailVerificationFailure(e.response.data.message));
+    console.log(e.message);
+    return dispatch(emailVerificationFailure(e.message));
   }
 };
 

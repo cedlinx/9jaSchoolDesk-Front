@@ -13,7 +13,10 @@ const AuthPageContainer = (props) => {
   const navigate = useNavigate();
   return (
     <div className={cx(styles.authPageContainer, "flexCol")}>
-      <MenuBar />
+      {/* <MenuBar /> */}
+      <div className={cx(styles.header, "flexRow-fully-centered")}>
+        <img onClick={()=>navigate("/")} src={siteLogo} alt="" />
+      </div>
       <div className={cx(styles.childrenContainer)}>
         {showTopDivWave && <TopDivWave />}
         {children}

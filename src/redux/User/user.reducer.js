@@ -3,6 +3,10 @@ import {
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
 
+  LOGIN_WITH_OTP_START,
+  LOGIN_WITH_OTP_ERROR,
+  LOGIN_WITH_OTP_SUCCESS,
+
   SIGNUP_REQUEST,
   SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
@@ -88,6 +92,7 @@ const initialState = {
 	
   data: {},
   loginData: false,
+  loginWithOtpData:{},
   signUpData: false,
   emailVerificationData: false,
   forgotPasswordData: {},
@@ -120,13 +125,32 @@ const reducer = (state = initialState, action) => {
       loading: true
     };
   case LOGIN_USER_SUCCESS:
-    localStorage.setItem("loginData", JSON.stringify(action.payload.data));
+    // localStorage.setItem("loginData", JSON.stringify(action.payload.data));
     return {
       ...state,
       loading: false,
       loginData: action.payload
     };
   case LOGIN_USER_ERROR:
+    return {
+      ...state,
+      loading: false,
+      error: true
+    };
+
+  case LOGIN_WITH_OTP_START:
+    return {
+      ...state,
+      loading: true
+    };
+  case LOGIN_WITH_OTP_SUCCESS:
+    localStorage.setItem("loginData", JSON.stringify(action.payload.data));
+    return {
+      ...state,
+      loading: false,
+      loginWithOtpData: action.payload
+    };
+  case LOGIN_WITH_OTP_ERROR:
     return {
       ...state,
       loading: false,

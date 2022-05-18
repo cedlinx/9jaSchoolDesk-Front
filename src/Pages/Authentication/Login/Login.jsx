@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
 import cx from "classnames";
 import styles from "./Login.module.scss";
 import Button from "@/components/Button/Button";
@@ -22,12 +22,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
 
 
-import siteLogo from "@/assets/images/Logo.svg";
+import siteLogo from "@/assets/images/Logo.png";
 
 const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const userCategory = location?.state?.category;
 
   const checkIsAuthenticated = isAuthenticated();
 
@@ -123,8 +125,8 @@ const Login = () => {
                       <Link to="/login-with-class-code">Login With Class Code</Link>
                     </p>
 
-
-                    <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+                    {userCategory === "parent" && 
+                    <p className={cx(styles.formText)}>Don't have an account? <Link to="/parent-signup">Sign Up</Link></p> }
 
                   </form>
                 </div>
