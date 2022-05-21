@@ -28,6 +28,13 @@ import ViewClassStudent from "../Pages/AuthenticatedPages/StudentAccount/MyClass
 import ProfileStudent from "../Pages/AuthenticatedPages/StudentAccount/Profile/Profile";
 import ClassGistStudent from "../Pages/AuthenticatedPages/StudentAccount/ClassGist/ClassGist";
 
+// Parent Section
+import DashboardParent from "../Pages/AuthenticatedPages/ParentAccount/Home/Home";
+import AssessmentFeedbackParent from "../Pages/AuthenticatedPages/ParentAccount/AssessmentFeedback/AssessmentFeedback";
+import ProfileParent from "../Pages/AuthenticatedPages/ParentAccount/Profile/Profile";
+import MessagesParent from "../Pages/AuthenticatedPages/ParentAccount/Messages/Messages";
+
+
 const RoutesComponent = () => {
   return (
     <BrowserRouter className="App">
@@ -57,7 +64,18 @@ const RoutesComponent = () => {
 
 
         </Route>			
-									
+
+
+        <Route path="parent-experience" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+
+          <Route index path="dashboard" element={<DashboardParent  />} />
+          <Route path="profile" element={<ProfileParent  />} />
+          <Route path="messages" element={<MessagesParent  />} />
+          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackParent  />} />
+
+        </Route>	
+
+
         <Route  path="unauthorized-page" element={<UnAuthorizedPage />} />
         <Route  path="*" element={<Page404 />} />
       </Routes>

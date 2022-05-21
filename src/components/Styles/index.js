@@ -165,6 +165,9 @@ export const FormGroup = styled(Form.Group)`
     &:-webkit-autofill ~ label{
       transform: translate(0, -12px) scale(0.7);
     }
+    &::placeholder {
+      text-align: right;
+    }
   }
   .input-container {
     position: relative;
@@ -172,7 +175,7 @@ export const FormGroup = styled(Form.Group)`
     flex-direction: row;
     padding: 7.5px 10px 7.5px 10px;
     box-sizing: border-box;
-    border-radius: 1.5rem;
+    border-radius: ${({ borderradius }) => borderradius ? borderradius : "1.5rem"}; 
     border: ${({ border }) => (`1px solid ${border}`)};
     color: #5e6c84;
     transition: 0.3s;
@@ -185,6 +188,8 @@ export const FormGroup = styled(Form.Group)`
     }
     img{
       margin-right: 0.25rem;
+    padding: 0.75rem 0rem 0rem 0rem;
+
     }
    
     .Active {

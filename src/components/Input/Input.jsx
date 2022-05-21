@@ -15,6 +15,8 @@ const Input = ({
   marginbottom,
   border,
   onBlur,
+  borderradius,
+  rightPlaceholder,
   ...props
 }) => {
   const [inputType, setInputType] = useState(type);
@@ -34,7 +36,7 @@ const Input = ({
   },[props.value]);
 
   return (
-    <FormGroup marginbottom={marginbottom || "1.625rem"} border={border || "#DBDDE0"} required={required}>
+    <FormGroup marginbottom={marginbottom || "1.625rem"} border={border || "#DBDDE0"} required={required} borderradius={borderradius} rightPlaceholder={rightPlaceholder}>
       <label >{label}</label>
       <div className="input-container">
         {icon && <img src={searchIcon} alt="search icon" />}

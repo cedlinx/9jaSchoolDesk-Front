@@ -12,6 +12,12 @@ import classGistIcon from "@/assets/icons/classGist-icon.svg";
 import classGistIconActive from "@/assets/icons/classGist-icon-active.svg";
 import myClassesIcon from "@/assets/icons/myClasses-icon.svg";
 import myClassesIconActive from "@/assets/icons/myClasses-icon-active.svg";
+
+import messagesIcon from "@/assets/icons/messages-icon.svg";
+import messagesIconActive from "@/assets/icons/messages-icon-active.svg";
+
+import unreadNotificationsIcon from "@/assets/icons/unread-notifications-icon.svg";
+import notificationIcon from "@/assets/icons/notification-icon.svg";
 import { titleCase } from "@/helpers/textTransform";
 import InputField from "@/components/Input/Input";
 import { Icon } from "@iconify/react";
@@ -33,6 +39,8 @@ const Header = (props) => {
 
 
   let rootPath = location.pathname.split("/")[2];
+  let userCategory = location.pathname.split("/")[1];
+  console.log(userCategory);
   console.log(rootPath);
 	
   const dispatch = useDispatch();
@@ -69,10 +77,12 @@ const Header = (props) => {
               <InputField
                 
                 label={"Search here"}
-                placeholder={""}
+                // placeholder={"Search here"}
                 type="text"
                 marginbottom={"0px"}
                 border={"#c1c7d0"}
+                borderradius="0.25rem"
+                icon
               />
             </div>
 				
@@ -87,7 +97,7 @@ const Header = (props) => {
                 )}
               </NavLink>
 
-              <NavLink to="class-gist">
+              { userCategory === "student-experience" && <> <NavLink to="class-gist">
                 {({ isActive }) => (
                   <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                     <div><img src={isActive ? classGistIconActive : classGistIcon} alt="" /></div>
@@ -104,6 +114,23 @@ const Header = (props) => {
                   </div>
                 )}
               </NavLink>
+              </>
+              }
+
+              { userCategory === "parent-experience" && 
+              <> 
+                <NavLink to="messages">
+                  {({ isActive }) => (
+                    <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                      <div><img src={isActive ? messagesIconActive : messagesIcon} alt="" /></div>
+                      <span>Messages</span>
+                    </div>
+                  )}
+                </NavLink>
+            
+                <div><img src={unreadNotificationsIcon} alt="" /></div>
+              </>
+              }
 
               <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
                 <DropdownToggle name="profile-toggler" className={cx(styles.dropdownToggler)}>
