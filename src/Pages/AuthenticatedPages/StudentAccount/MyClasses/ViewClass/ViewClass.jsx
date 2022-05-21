@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
-import styles from "./ViewLesson.module.scss";
+import styles from "./ViewClass.module.scss";
 import cx from "classnames";
 import {videoLessonsData} from "@/helpers/sampleData";
 import VideoCard from "@/components/VideoCard/VideoCard";
@@ -8,7 +8,7 @@ import { Icon } from "@iconify/react";
 
 
 
-const ViewLesson = () => {
+const ViewClass = () => {
   const {id} = useParams();
   const [product, setProduct] = React.useState(null);
 
@@ -20,7 +20,7 @@ const ViewLesson = () => {
   }, [id]);
 
   return (
-    <div className={cx(styles.viewLessonContainer, "flexCol")}>
+    <div className={cx(styles.viewClassContainer, "flexCol")}>
       <div className={cx(styles.lessonDetails, "flexRow-space-between")}>
         <p><span className={cx(styles.title)}>{product && product.name}</span><Icon icon="ci:dot-01-xs" color="#828282" width="12" /><small>Subject</small></p>
       </div>
@@ -53,4 +53,4 @@ const ViewLesson = () => {
   );
 };
 
-export default ViewLesson;
+export default ViewClass;

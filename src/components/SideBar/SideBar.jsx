@@ -78,8 +78,8 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         <Menu iconShape="">
 
           <MenuItem
-            active={actualPath === "student-dashboard" || actualPath === "enterprise-dashboard" || actualPath === "superAdmin-dashboard" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "student-dashboard" || actualPath === "enterprise-dashboard" || actualPath === "superAdmin-dashboard" ? dashboardIconActive : dashboardIcon} alt="" /></span>}
+            active={actualPath === "student-experience" || actualPath === "enterprise-dashboard" || actualPath === "superAdmin-dashboard" ? "true" : ""}
+            prefix={<span className="menuIcon"><img src={actualPath === "student-experience" || actualPath === "enterprise-dashboard" || actualPath === "superAdmin-dashboard" ? dashboardIconActive : dashboardIcon} alt="" /></span>}
           >
             <NavLink to={""}>
 							Dashboard

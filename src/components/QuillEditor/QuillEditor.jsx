@@ -10,16 +10,14 @@ const QuillEditor = ({placeholder}) => {
   const  modules  = {
     toolbar: [
       [{ font: [] }],
-      ["bold", "italic", "underline", "strike"],
-      [{ color: [] }, { background: [] }],
-      [{ script:  "sub" }, { script:  "super" }],
-      [{ list:  "ordered" }, { list:  "bullet" }],
-      [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
+      // ["bold", "italic", "underline", "strike"],
+      // [{ color: [] }, { background: [] }],
+      // [{ script:  "sub" }, { script:  "super" }],
+      // [{ list:  "ordered" }, { list:  "bullet" }],
+      // [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
       ["link", "image", "video"]
     ]
   };
-
-  console.log(value);
 
 
   return (

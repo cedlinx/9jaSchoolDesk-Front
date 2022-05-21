@@ -28,7 +28,7 @@ span{
   }
 &:hover{ 
   background-color: ${props => props.hoverBg} !important;; 
-  color: ${props => props.hoverColor} !important;; 
+  color: ${props => props.hoverColor} !important; 
 }
 
 @media all and (min-width:991px){

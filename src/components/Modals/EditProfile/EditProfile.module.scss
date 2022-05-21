@@ -42,6 +42,8 @@
                 left: 1rem;
                 bottom: -35%;
                 width: 3rem;
+                height: 3rem;
+                object-fit: contain;
             }
             .editIcon{
                 position: absolute;
@@ -108,7 +110,9 @@
                 .profilePic{
                     left: 1rem;
                     bottom: -35%;
-                    width: 4rem;
+                    width: 5rem;
+                    height: 5rem;
+                    object-fit: contain;
                 }
                 .editIcon{
                     left: 3rem;

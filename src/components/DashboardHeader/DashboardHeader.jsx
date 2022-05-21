@@ -1,17 +1,20 @@
 import React, {useEffect, useState} from "react";
 import { FaBars } from "react-icons/fa";
+import { useNavigate, Link, NavLink, useLocation } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {notificationSummary} from "@/redux/Notifications/notifications.action";
 import cx from "classnames";
 import styles from "./DashboardHeader.module.scss";
-import messageCountIcon from "@/assets/icons/message-count.svg";
-import notificationIcon from "@/assets/icons/notification.svg";
+
 import profilePicture from "@/assets/images/default-avatar.png";
-import { getUserInfo } from "@/redux/User/user.action";
+import dashboardIcon from "@/assets/icons/dashboard-icon.svg";
+import dashboardIconActive from "@/assets/icons/dashboard-icon-active.svg";
+import classGistIcon from "@/assets/icons/classGist-icon.svg";
+import classGistIconActive from "@/assets/icons/classGist-icon-active.svg";
+import myClassesIcon from "@/assets/icons/myClasses-icon.svg";
+import myClassesIconActive from "@/assets/icons/myClasses-icon-active.svg";
 import { titleCase } from "@/helpers/textTransform";
 import InputField from "@/components/Input/Input";
 import { Icon } from "@iconify/react";
-import { useNavigate, Link } from "react-router-dom";
 import Logo from "@/assets/images/Logo.png";
 import Button from "@/components/Button/Button";
 import { Navbar} from "react-bootstrap";
@@ -26,6 +29,11 @@ import {
 const Header = (props) => {
   const {handleToggleSidebar} = props;
   const navigate = useNavigate();
+  const location = useLocation();
+
+
+  let rootPath = location.pathname.split("/")[2];
+  console.log(rootPath);
 	
   const dispatch = useDispatch();
   const unreadNotifications = useSelector((state)=>state?.notifications?.notificationSummaryData?.data?.unread);
@@ -50,7 +58,7 @@ const Header = (props) => {
 
       <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
         <Navbar.Brand className={cx(styles.siteLogo )}> 		
-          <Link to="/student-dashboard"><img src={Logo} alt="" /></Link>
+          <Link to="/student-experience/dashboard"><img src={Logo} alt="" /></Link>
         </Navbar.Brand>
 
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
@@ -69,13 +77,38 @@ const Header = (props) => {
             </div>
 				
             <div className={cx(styles.profileDiv, "flexRow")}>
-              <span className={cx(styles.notificationIconSpan)}><img src={notificationIcon} alt="" /><sup>{unreadNotifications || "0"}</sup></span>
-              <span onClick={()=>navigate("my-lessons")} className={cx(styles.dashboardTitle)}>My Classes</span>
+            
+              <NavLink to="dashboard">
+                {({ isActive }) => (
+                  <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                    <div><img src={isActive ? dashboardIconActive : dashboardIcon} alt="" /></div>
+                    <span>Dashboard</span>
+                  </div>
+                )}
+              </NavLink>
+
+              <NavLink to="class-gist">
+                {({ isActive }) => (
+                  <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                    <div><img src={isActive ? classGistIconActive : classGistIcon} alt="" /></div>
+                    <span>Class Gist</span>
+                  </div>
+                )}
+              </NavLink>
+            
+              <NavLink to="my-classes">
+                {({ isActive }) => (
+                  <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                    <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                    <span>My Classes</span>
+                  </div>
+                )}
+              </NavLink>
 
               <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
                 <DropdownToggle name="profile-toggler" className={cx(styles.dropdownToggler)}>
 
-                  <span className={cx(styles.avatarDiv, styles.logoutDropdown)}>
+                  <span className={cx(styles.avatarDiv, styles.logoutDropdown, "flexRow")}>
                     <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
                     <Icon icon="clarity:caret-line" color="#000" rotate={2} />
                   </span>

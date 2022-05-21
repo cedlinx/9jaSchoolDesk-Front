@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: auto;
 
     h5{
         color: #22467B;
@@ -46,15 +47,6 @@
         gap: 1.5rem;
        
         .lowerSectionLeft{
-            .contentWrapper{
-                background-color: #fff;
-                padding: 0rem;
-                border-radius: 0.5rem;
-                overflow-y: auto;
-                height: 20rem;
-            }
-        }
-        .lowerSectionMiddle{
             .contentWrapper {
                 background-color: #fff;
                 padding: 1rem;
@@ -118,92 +110,11 @@
                 }
 
             }
-        }
-        .lowerSectionRight{
-            .contentWrapper{
-                    gap: 1rem;
-                    background-color: #fff;
-                    border-radius: 0.5rem;
-                    height: 20rem;
-                    justify-content: space-between;
-                    padding: 1rem;
 
-                    .header {
-                        position: relative;
-                        height: 40%;
-
-
-                        .bgImage {
-                            position: absolute;
-                            background-repeat: no-repeat;
-                            object-fit: cover;
-                            background-position: center;
-                            border-radius: 0.5rem;
-                            width: 100%;
-                            height: 100%;
-                        }
-                        .profilePic{
-                            position: absolute;
-                            left: 37.5%;
-                            bottom: -25%;
-                            width: 4rem;
-                        }
-                    }
-
-                    .body{
-                        text-align: center;
-                        align-items: center;
-                        justify-content: space-evenly;
-                        padding-top: 2.5rem;
-                        height: 60%;
-                        p, small {
-                            line-height: 1;
-                            padding: 0rem;
-                            margin: 0rem;
-                            font-size: clamp(1rem, 2.5vw, 1.125rem);
-                            font-family: NunitoSans;
-                            font-weight: 500;
-                        }
-                        img{
-                            cursor: pointer;
-                            width: 2.5rem;
-                        }
-                    }
-            }
+     
 
         }
-    }
-
-    .upperSection {
-        gap: 1.5rem;
-        .upperSectionLeft {
-            .header{
-                align-items: flex-end;
-                line-height: 1;
-                margin-bottom: 0.75rem;
-
-                h5, small{
-                    padding: 0rem;
-                    margin: 0rem;
-                }
-                small{
-                    cursor: pointer;
-                    text-decoration: underline;
-                    font-size: clamp(0.625rem, 0.75rem, 0.875rem);
-
-                }
-            }
-            .assessmentDiv{
-                background-color: #fff;
-                padding: 0rem;
-                border-radius: 0.5rem;
-                height: 20rem;
-                justify-content: space-between;
-                overflow-y: auto;
-            }
-        }
-
-        .upperSectionRight {
+        .lowerSectionMiddle{
             .ratingsDiv{
                 background-color: #fff;
                 border-radius: 0.5rem;
@@ -269,6 +180,103 @@
                 }
             }
         }
+        .lowerSectionRight{
+            .contentWrapper{
+                    gap: 1rem;
+                    background-color: #fff;
+                    border-radius: 0.5rem;
+                    height: 20rem;
+                    justify-content: space-between;
+                    padding: 1rem;
+
+                    .header {
+                        position: relative;
+                        height: 40%;
+
+
+                        .bgImage {
+                            position: absolute;
+                            background-repeat: no-repeat;
+                            object-fit: cover;
+                            background-position: center;
+                            border-radius: 0.5rem;
+                            width: 100%;
+                            height: 100%;
+                        }
+                        .profilePic{
+                            position: absolute;
+                            left: 37.5%;
+                            bottom: -25%;
+                            width: 4rem;
+                        }
+                    }
+
+                    .body{
+                        text-align: center;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        padding-top: 2.5rem;
+                        height: 60%;
+                        p, small {
+                            line-height: 1;
+                            padding: 0rem;
+                            margin: 0rem;
+                            font-size: clamp(1rem, 2.5vw, 1.125rem);
+                            font-family: NunitoSans;
+                            font-weight: 500;
+                        }
+                        img{
+                            cursor: pointer;
+                            width: 2.5rem;
+                        }
+                    }
+            }
+
+        }
+    }
+
+    .upperSection {
+        gap: 1.5rem;
+        .upperSectionLeft {
+  
+            .contentWrapper{
+                background-color: #fff;
+                padding: 0rem;
+                border-radius: 0.5rem;
+                overflow-y: auto;
+                height: 20rem;
+            }
+
+
+        }
+
+        .upperSectionRight {
+ 
+            .header{
+                align-items: flex-end;
+                line-height: 1;
+                margin-bottom: 0.75rem;
+
+                h5, small{
+                    padding: 0rem;
+                    margin: 0rem;
+                }
+                small{
+                    cursor: pointer;
+                    text-decoration: underline;
+                    font-size: clamp(0.625rem, 0.75rem, 0.875rem);
+
+                }
+            }
+            .assessmentDiv{
+                background-color: #fff;
+                padding: 0rem;
+                border-radius: 0.5rem;
+                height: 20rem;
+                justify-content: space-between;
+                overflow-y: auto;
+            }
+        }
     }
 }
 
@@ -297,12 +305,6 @@
             gap: 0rem;
            
             .lowerSectionLeft{
-                margin-bottom: 1.5rem;
-                .contentWrapper{
-                    height: 25rem;
-                }
-            }
-            .lowerSectionMiddle{
                 .contentWrapper {
                     gap: 1rem;
                     padding: 1rem;
@@ -349,44 +351,10 @@
                     }
     
                 }
-            }
-            .lowerSectionRight{
 
-                .contentWrapper{
-                        height: 20rem;
-    
-                        .header {
-                            position: relative;
-                            height: 40%;
-    
-                            .profilePic{
-                                left: 37.5%;
-                                bottom: -25%;
-                                width: 4rem;
-                            }
-                        }
-    
-                        .body{
-                            padding-top: 3rem;
-                            
-                            img{
-                                width: 3.5rem;
-                            }
-                        }
-                }
-    
             }
-        }
-    
-        .upperSection {
-            gap: 1.5rem;
-            .upperSectionLeft {
-                .assessmentDiv{
-                    height: 20rem;
-                }
-            }
-    
-            .upperSectionRight {
+            .lowerSectionMiddle{
+     
                 .ratingsDiv{
                     padding: 1rem;
                     height: 20rem;
@@ -420,6 +388,48 @@
                     }
                 }
             }
+            .lowerSectionRight{
+
+                .contentWrapper{
+                        height: 20rem;
+    
+                        .header {
+                            position: relative;
+                            height: 40%;
+    
+                            .profilePic{
+                                left: 37.5%;
+                                bottom: -25%;
+                                width: 4rem;
+                            }
+                        }
+    
+                        .body{
+                            padding-top: 3rem;
+                            
+                            img{
+                                width: 3.5rem;
+                            }
+                        }
+                }
+    
+            }
+        }
+    
+        .upperSection {
+            gap: 1.5rem;
+            .upperSectionLeft {
+                margin-bottom: 1.5rem;
+                .contentWrapper{
+                    height: 25rem;
+                }
+            }
+    
+            .upperSectionRight {
+                .assessmentDiv{
+                    height: 20rem;
+                }
+            }
         }
     }
 
@@ -427,7 +437,7 @@
 
 @media all and (min-width:991px){
     .dashboardHomeContainer{
-        padding: 0rem 2rem 4rem 2rem;
+        padding: 3rem 2rem 4rem 2rem;
         gap: 2.5rem;
     
         h5{
@@ -449,12 +459,6 @@
             gap: 0rem;
            
             .lowerSectionLeft{
-                .contentWrapper{
-                    height: 25rem;
-                }
-
-            }
-            .lowerSectionMiddle{
                 .contentWrapper {
                     height: 20rem;
                     .header {
@@ -493,41 +497,11 @@
                     }
     
                 }
-            }
-            .lowerSectionRight{
 
-                .contentWrapper{
-                        height: 20rem;
-    
-                        .header {
-                            position: relative;
-    
-                            .profilePic{
-                                left: 42.5%;
-                                bottom: -20%;
-                                width: 4rem;
-                            }
-                        }
-    
-                        .body{
-                            img{
-                                width: 3.5rem;
-                            }
-                        }
-                }
-    
+             
+
             }
-        }
-    
-        .upperSection {
-            gap: 1.5rem;
-            .upperSectionLeft {
-                .assessmentDiv{
-                    height: 25rem;
-                }
-            }
-    
-            .upperSectionRight {
+            .lowerSectionMiddle{
                 .ratingsDiv{
                     height: 25rem;
                     .body{
@@ -560,6 +534,47 @@
                     }
                 }
             }
+            .lowerSectionRight{
+
+                .contentWrapper{
+                        height: 20rem;
+    
+                        .header {
+                            position: relative;
+    
+                            .profilePic{
+                                left: 42.5%;
+                                bottom: -20%;
+                                width: 4rem;
+                            }
+                        }
+    
+                        .body{
+                            img{
+                                width: 3.5rem;
+                            }
+                        }
+                }
+    
+            }
+        }
+    
+        .upperSection {
+            gap: 1.5rem;
+            .upperSectionLeft {
+   
+
+                .contentWrapper{
+                    height: 25rem;
+                }
+            
+            }
+    
+            .upperSectionRight {
+                .assessmentDiv{
+                    height: 25rem;
+                }
+            }
         }
     }
 
@@ -568,7 +583,7 @@
 
 @media all and (min-width:1200px){
     .dashboardHomeContainer{
-        padding: 0rem 2rem 4rem 2rem;
+        padding: 3rem 2rem 4rem 2rem;
         gap: 2.5rem;
     
         h5{
@@ -590,12 +605,6 @@
             gap: 0rem;
            
             .lowerSectionLeft{
-                margin-bottom: 0rem;
-                .contentWrapper{
-                    height: 20rem;
-                }
-            }
-            .lowerSectionMiddle{
                 .contentWrapper {
                     height: 20rem;
                     .header {
@@ -631,42 +640,10 @@
                     }
     
                 }
-            }
-            .lowerSectionRight{
 
-                .contentWrapper{
-                        height: 20rem;
-    
-                        .header {
-                           
-                            .profilePic{
-                                left: 37.5%;
-                                bottom: -20%;
-                                width: 4rem;
-                            }
-                        }
-    
-                        .body{
-                           
-                            img{
-                                width: 3.5rem;
-                            }
-                        }
-                }
-    
+         
             }
-        }
-    
-        .upperSection {
-            gap: 0rem;
-            .upperSectionLeft {
-
-                .assessmentDiv{
-                    height: 20rem;
-                }
-            }
-    
-            .upperSectionRight {
+            .lowerSectionMiddle{
                 .ratingsDiv{
                     height: 20rem;
     
@@ -703,7 +680,49 @@
                     }
                 }
             }
+            .lowerSectionRight{
+
+                .contentWrapper{
+                        height: 20rem;
+    
+                        .header {
+                           
+                            .profilePic{
+                                left: 37.5%;
+                                bottom: -20%;
+                                width: 4rem;
+                            }
+                        }
+    
+                        .body{
+                           
+                            img{
+                                width: 3.5rem;
+                            }
+                        }
+                }
+    
+            }
+        }
+    
+        .upperSection {
+            gap: 0rem;
+            .upperSectionLeft {
+
+
+                margin-bottom: 0rem;
+                .contentWrapper{
+                    height: 20rem;
+                }
+         
+            }
+    
+            .upperSectionRight {
+           .assessmentDiv{
+                    height: 20rem;
+                }
+            }
         }
     }
   
-}
+}       

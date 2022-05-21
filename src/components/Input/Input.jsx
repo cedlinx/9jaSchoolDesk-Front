@@ -34,7 +34,8 @@ const Input = ({
   },[props.value]);
 
   return (
-    <FormGroup marginbottom={marginbottom || "2rem"} border={border || "#DBDDE0"} required={required}>
+    <FormGroup marginbottom={marginbottom || "1.625rem"} border={border || "#DBDDE0"} required={required}>
+      <label >{label}</label>
       <div className="input-container">
         {icon && <img src={searchIcon} alt="search icon" />}
         <input
@@ -42,13 +43,13 @@ const Input = ({
           placeholder={placeholder}
           required={required}
           onChange={onChange}
-          onBlur = {(e)=>handleTextChange(e)}
+          onBlur = {onBlur}
           {...props}
           // autoComplete="new-password"
           autoComplete="none"
 
         />
-        <label  onClick={(e)=>handleTextChange(e)} className={isActive ? "Active" : ""}>{label}</label>
+        
         {type === "password" && (
           <img src={eyeIcon} alt="eye-icon" className="eye-icon" onClick={handleVisibility}/>
         )}

@@ -1,4 +1,4 @@
-.viewLessonContainer{
+.viewClassContainer{
     margin: 0rem;
     padding: 0.5rem;
     gap: 1rem;
@@ -37,6 +37,7 @@
             }
         }
         .transcriptArea{
+            margin-top: 1rem;
             h5{
                 color: #22467B;
             }
@@ -53,7 +54,7 @@
 }
 
 @media all and (min-width: 768px){
-    .viewLessonContainer{
+    .viewClassContainer{
         margin: 0rem;
         padding: 1rem;
         .mainContent{
@@ -81,8 +82,8 @@
 }
 
 @media all and (min-width: 991px){
-    .viewLessonContainer{
-        margin: 0rem;
+    .viewClassContainer{
+        margin: 2rem 0rem;
         padding: 1rem;
         .container{
 

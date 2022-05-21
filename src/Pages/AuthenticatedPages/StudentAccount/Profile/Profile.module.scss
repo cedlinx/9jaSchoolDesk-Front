@@ -21,13 +21,13 @@
         }
     }
     .mainHeader{
-        padding: 2rem 0rem 1rem 0rem;
+        padding: 0rem 0rem 0rem 0rem;
     }
     .body{
-    padding: 1rem 1rem 4rem 1rem;
+    padding: 0rem 1rem 4rem 1rem;
 
         .tabContainer{
-            gap: 1rem;
+            gap: 0rem;
             padding: 0rem 0.25rem;
             .tabList{
                 display: flex;
@@ -39,7 +39,7 @@
                 box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.1);
                 .panelContent{
                     gap: 1rem;
-                    padding: 2rem 0rem;
+                    padding: 1rem 0rem;
                     .header{
                         text-align: center;
                         small{
@@ -55,6 +55,8 @@
                             img{
                                 border-radius: 50%;
                                 width: clamp(3rem, 4rem, 5rem);
+                                height: clamp(3rem, 4rem, 5rem);
+                                object-fit: contain;
                             }
                         }
                     }
@@ -64,6 +66,19 @@
                             width: 100%;
                             .submitBtnDiv{
                                 justify-content: center;
+                            }
+                        }
+
+                        .passwordFormContainer{
+                            width: 100%;
+                            margin: 0 auto;
+                            // gap: 1rem;
+
+                            small{
+                                color: #A0A4A8;
+                                text-transform: uppercase;
+                                margin: 0.5rem 0rem 0.25rem 0rem;
+                                font-size: 10px;
                             }
                         }
                     }
@@ -121,7 +136,7 @@
 
 @media all and (min-width:991px) {
     .profileContainer{
-        padding: 1rem 0rem 4rem 0rem;        
+        padding: 3rem 0rem 4rem 0rem;        
         gap: 1rem;
 
         .header{
@@ -135,7 +150,7 @@
             }
         }
         .body{
-            padding: 0rem 6rem 0rem 6rem;
+            padding: 0rem 9rem 0rem 9rem;
             .tabContainer{
                 gap: 0rem;
                 padding-top: 2rem;
@@ -169,6 +184,19 @@
                                     }
                                 }
                             }
+
+                            .passwordFormContainer{
+                                width: 60%;
+                                margin: 0 auto;
+                                // gap: 1rem;
+
+                                small{
+                                    color: #A0A4A8;
+                                    text-transform: uppercase;
+                                    margin: 0.5rem 0rem 0.25rem 0rem;
+                                    font-size: 10px;
+                                }
+                            }
                         }
                     }
                 }
@@ -179,7 +207,7 @@
 
 @media all and (min-width:1200px) {
     .profileContainer{
-        padding: 1rem 0rem 4rem 0rem;        
+        padding: 3rem 0rem 4rem 0rem;        
         gap: 1rem;
 
         .header{
@@ -193,7 +221,7 @@
             }
         }
         .body{
-            padding: 0rem 9rem 0rem 9rem;
+            padding: 0rem 15rem 0rem 15rem;
             .tabContainer{
                 gap: 0rem;
                 padding-top: 2rem;

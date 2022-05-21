@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState, useCallback} from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -15,6 +15,8 @@ import { Icon } from "@iconify/react";
 import studentProfilePic from "@/assets/images/student-profile-pic.png";
 import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
 import heroImage from "@/assets/images/student-dashboard-hero-image.png";
+import { useDropzone } from "react-dropzone";
+
 import editIcon from "@/assets/icons/edit-icon.svg";
 
 import { forgotPassword } from "@/redux/User/user.action";
@@ -45,6 +47,22 @@ const EditProfile = () => {
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
+  const [imgData, setImgData] = useState({
+    file: "",
+    imagePreviewUrl: ""
+  });
+
+  const onDrop = useCallback(acceptedFiles => {
+    let file = (acceptedFiles[0]);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImgData({file: file, imagePreviewUrl: reader.result});
+    };
+    reader.readAsDataURL(file);
+  }, []);
+
+  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
+
   return (
 
     <section className={cx(styles.editProfileContainer, "flexCol")}>
@@ -58,8 +76,8 @@ const EditProfile = () => {
       <div className={cx(styles.formWrapper, "flexCol")}>
 	  <div className={cx(styles.header)}>
           <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
-          <img className={cx(styles.profilePic)} src={studentProfilePic} alt="profile pic" />
-		  <img className={cx(styles.editIcon)}  src={editIcon} alt="" />
+          <img {...getRootProps()} className={cx(styles.profilePic)} src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : studentProfilePic} alt="profile pic" />
+		  <img {...getRootProps()}  className={cx(styles.editIcon)}  src={editIcon} alt="" />
 		  {/* <Icon icon="prime:pencil" color="white" /> */}
         </div>
         <form

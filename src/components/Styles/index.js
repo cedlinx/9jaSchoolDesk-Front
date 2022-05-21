@@ -118,22 +118,24 @@ export const Wrapper = styled.div`
 export const FormGroup = styled(Form.Group)` 
   display: block;
   position: relative;
-  // margin-bottom: ${({ marginbottom }) => (marginbottom)};
-  margin-bottom: 1.625rem;
+  margin-bottom: ${({ marginbottom }) => (marginbottom)};
 
   label {
     position: absolute;
-    transform: translate(0px, 0px) scale(1);
-    margin-bottom: 0px;
-    transform-origin: top left;
-    transition: all 0.2s ease-out;
+    // transform: translate(0px, 0px) scale(1);
+    // margin-bottom: 0px;
+    // transform-origin: top left;
+    // transition: all 0.2s ease-out;
+    left: 16px;
+    top: 2px;
+    z-index: 3;
 
 
     display: block;
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
-    line-height: 17px;
+    line-height: 16px;
     color: #A0A4A8;
     text-align: left;
     ${({ required }) => required
@@ -155,7 +157,7 @@ export const FormGroup = styled(Form.Group)`
     transition: 0.3s;
     background: #fff;
     font-size: 14px;
-    padding: 0.125rem 0rem 0rem 0rem;
+    padding: 0.75rem 0rem 0rem 0rem;
     &:focus {
       outline: none;
       color: #344563;

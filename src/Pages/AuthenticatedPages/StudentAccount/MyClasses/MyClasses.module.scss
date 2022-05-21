@@ -1,4 +1,4 @@
-.myLessonsContainer{
+.myClassesContainer{
     width: 100%;
     padding: 0rem;
     align-items: center;
@@ -38,7 +38,7 @@
 }
 
 @media all and (min-width: 768px) {
-    .myLessonsContainer{
+    .myClassesContainer{
         width: 100%;
         padding: 0rem;
         align-items: center;
@@ -59,9 +59,24 @@
     }
 }
 
+@media all and (min-width: 991px) {
+    .myClassesContainer{
+        margin-top: 2.5rem;
+    
+        .body{
+            gap: 1.75rem;
+            .sectionWrapper{
+                .subGroupContainer{
+                    padding: 1rem 1rem;
+                }
+            }
+        }
+    }
+
+}
+
 @media all and (min-width: 1200px) {
-    .myLessonsContainer{
-        margin-top: 1.5rem;
+    .myClassesContainer{
     
         .body{
             gap: 1.75rem;

@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import cx from "classnames";
 import styles from "./Home.module.scss";
-import {Card, Tabs, Tab} from "react-bootstrap";
 import { Icon } from "@iconify/react";
 import { allAssetsTypes, chartData } from "@/redux/Assets/assets.action";
 import StarRating from "@/components/StarRating";
@@ -12,6 +11,7 @@ import curiosityIcon from "@/assets/icons/curiosity.svg";
 import persistenceIcon from "@/assets/icons/persistence.svg";
 import teamworkIcon from "@/assets/icons/teamwork.svg";
 import gratitudeIcon from "@/assets/icons/gratitude.svg";
+import expandIcon from "@/assets/icons/expand-icon.svg";
 import behaviouralCardImage from "@/assets/images/behavioral-card-image.png";
 import studentProfilePic from "@/assets/images/student-profile-pic.png";
 import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
@@ -30,6 +30,11 @@ import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAs
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/modalState.action";
 
+import Tabs from "@/components/Tabs/TabsV2";
+import Tests from "./Tests/Tests";
+import Tasks from "./Tasks/Tasks";
+import Assignments from "./Assignments/Assignments";
+
 
 const Home = () => {
 
@@ -37,6 +42,16 @@ const Home = () => {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+
+  const RenderTests = () => <Tests />;
+  const RenderAssignments = () => <Assignments />;
+  const RenderTasks = () => <Tasks />;
+
+  const tabsComponents = [
+    { name: "Tests", component: RenderTests },
+    { name: "Assignments", component: RenderAssignments },
+    { name: "Tasks", component: RenderTasks }
+  ];
 
   const teachersArray = [
     {
@@ -90,7 +105,9 @@ const Home = () => {
     let dateValue = date.toLocaleDateString("en-US", options);
     return `${dateValue}`;
   };
-  const columnsHeader = [                
+
+
+  const columnsHeaderAssessment = [                
     {
       Header: () => (
         <div
@@ -143,8 +160,7 @@ const Home = () => {
       Cell: (row) => {
         let description = row.cell.row.values.description;
         return <div  style={{width: "15rem"}}>
-          <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{titleCase(description)}</p>
-          
+          <p className={cx("flexRow-space-between")} ><span style={{fontWeight: "500", color: "#828282", fontSize: "14px",   whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "15rem", marginRight: "0.5rem"}}>{description}</span><span><img style={{cursor: "pointer"}} src={expandIcon} alt="" /></span></p>          
         </div>;
       }
     },
@@ -213,62 +229,33 @@ const Home = () => {
       </section>
 
       <section className={cx(styles.upperSection, "row")}>
+
         <div className={cx(styles.upperSectionLeft, "col-md-12", "col-xl-6")}>
+          <div className={cx("flexRow-space-between")}>
+            <h5>Activities</h5>
+          </div>
+          <div className={cx(styles.contentWrapper)}>
+            <Tabs tabs={tabsComponents} />
+          </div>
+        </div>
+        
+        <div className={cx(styles.upperSectionRight, "col-md-12", "col-xl-6")}>
           <div className={cx(styles.header, "flexRow-space-between")}>
             <h5>Assessment Feedback</h5>
             <small onClick={() => navigate("assessment-feedback")}>View all</small>
           </div>
           <div className={cx(styles.assessmentDiv)}>
-            {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(assessmentData)} />}
+            {<TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(assessmentData)} />}
           </div>
         </div>
 
-        <div className={cx(styles.upperSectionRight, "col-md-12", "col-xl-6")}>
-          <h5>Rate Your Teacher</h5>
-          <div className={cx(styles.ratingsDiv)}>
-            <div className={cx(styles.body, "flexCol")}>
-              {teachersArray.map((teacher, index) => {
-                return(
-                  <div key={index}>
-                    <span> 
-                      {teacher.profilePic ? <img src={teacher.profilePic} alt="profile pic" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(teacher.name)}</span>}
-                      
-                    </span>
-                    <div>
-                      <p>{teacher.name}</p>
-                      <small>{teacher.subject}</small>
-                    </div>
-                    <span> 
-                      <StarRating
-                        numberOfSelectedStar={teacher.rating}
-                        numberOfStar={5}
-                        onSelectStar={(value) => {
-                          console.log(value, index);
-                        }}
-                      />
-                    </span>
-                  </div>
-                );
-              })}
-              <img className={cx(styles.addIcon)} src={addIcon} alt="add" />
-            </div>
-          </div>
-        </div>
+      
 
       </section>
       
       <section className={cx(styles.lowerSection, "row")}>
-        <div className={cx(styles.lowerSectionLeft, "col-sm-12", "col-md-12", "col-xl-5")}>
-          <div className={cx("flexRow-space-between")}>
-            <h5>Activities</h5>
-            <small style={{cursor: "pointer"}} onClick={()=>dispatch(showModal({ action: "show", type: "submitAssessment" }))}>Submit Test</small>
-            <small style={{cursor: "pointer"}} onClick={()=>dispatch(showModal({ action: "show", type: "uploadActivity" }))}>Upload Activity Test</small>
-          </div>
-          <div className={cx(styles.contentWrapper)}>
-            {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(assessmentData)} />}
-          </div>
-        </div>
-        <div className={cx(styles.lowerSectionMiddle, "col-sm-12", "col-md-6", "col-xl-4")}>
+        <div className={cx(styles.lowerSectionLeft, "col-sm-12", "col-md-12", "col-xl-3")}>
+
           <h5>Behavioural Feedback</h5>
           <div className={cx(styles.contentWrapper, "flexCol")}>
             <div className={cx(styles.header, "flexRow")}>
@@ -288,6 +275,41 @@ const Home = () => {
               <div><span><img src={persistenceIcon} alt="" /></span><span>Persistence</span><span>2 pts</span></div>
             </div>
 
+          </div>
+
+        
+  
+        </div>
+
+
+        <div className={cx(styles.lowerSectionMiddle, "col-sm-12", "col-md-6", "col-xl-6")}>
+          <h5>Rate Your Teacher</h5>
+          <div className={cx(styles.ratingsDiv)}>
+            <div className={cx(styles.body, "flexCol")}>
+              {teachersArray.map((teacher, index) => {
+                return(
+                  <div key={index}>
+                    <span> 
+                      {teacher.profilePic ? <img src={teacher.profilePic} alt="profile pic" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(teacher.name)}</span>}
+                      
+                    </span>
+                    <div>
+                      <p>{teacher.name}</p>
+                      <small>{teacher.subject}</small>
+                    </div>
+                    <span> 
+                      <StarRating
+                        numberOfSelectedStar={teacher.rating}
+                        numberOfStar={5}
+                        onSelectStar={(value) => {
+                        }}
+                      />
+                    </span>
+                  </div>
+                );
+              })}
+              {/* <img className={cx(styles.addIcon)} src={addIcon} alt="add" /> */}
+            </div>
           </div>
         </div>
 

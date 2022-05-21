@@ -2,26 +2,26 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import cx from "classnames";
-import styles from "./MyLessons.module.scss";
+import styles from "./MyClasses.module.scss";
 import {videoLessonsData} from "@/helpers/sampleData";
 import {useNavigate} from "react-router-dom";
 import VideoCard from "@/components/VideoCard/VideoCard";
 
 
 
-const MyLessons = () => {
+const MyClasses = () => {
 
   const navigate = useNavigate();
   console.log(videoLessonsData);
 
   const handleClick = (product) => {
     console.log(product);
-    navigate(`view-lesson/${product.id}`);
+    navigate(`view-class/${product.id}`);
   };
 
       
   return (
-    <div className={cx(styles.myLessonsContainer)}>
+    <div className={cx(styles.myClassesContainer)}>
       <div className={cx(styles.header)}>
         <h5>My Lessons</h5>
       </div>
@@ -60,4 +60,4 @@ const MyLessons = () => {
   );
 };
 
-export default MyLessons;
+export default MyClasses;

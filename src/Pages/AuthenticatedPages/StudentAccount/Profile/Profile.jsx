@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import cx from "classnames";
@@ -18,6 +18,8 @@ import { useForm, Controller } from "react-hook-form";
 import { signUpValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import studentProfilePic from "@/assets/images/student-profile-pic.png";
+
+import { useDropzone } from "react-dropzone";
 
 
 
@@ -52,6 +54,22 @@ const Profile = () => {
     }
   };
 
+  const [imgData, setImgData] = useState({
+    file: "",
+    imagePreviewUrl: ""
+  });
+
+  const onDrop = useCallback(acceptedFiles => {
+    let file = (acceptedFiles[0]);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImgData({file: file, imagePreviewUrl: reader.result});
+    };
+    reader.readAsDataURL(file);
+  }, []);
+
+  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
+
   return (
     <div className={cx(styles.profileContainer, "flexCol")}>
       <div className={cx(styles.header, styles.mainHeader)}>
@@ -80,9 +98,11 @@ const Profile = () => {
                 </div>
                 <div className={cx(styles.imageSection, "flexRow")}>
                   <div className={cx(styles.imageDiv)}>
-                    <img src={studentProfilePic} alt="" />
+                    <img src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : studentProfilePic} alt="" />
                   </div>
-                  <Button  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
+
+                  <Button {...getRootProps()}  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
+                 
                   <Button  type title="Remove" borderRadiusType="fullyRounded" textColor="#828282" bgColor="#fff" bordercolor="#828282" />
                 </div>
 
@@ -170,10 +190,26 @@ const Profile = () => {
                 </div>
                 <div className={cx(styles.formWrapper, "flexCol")}>
                   <form onSubmit={handleSubmit((data) => createUser(data))}
-                    className="form"
+                    className={cx(styles.passwordFormContainer, "flexCol")}
                   >    
+                    <>
+                      <small>PASSWORD</small>
+                      <Controller
+                        name="password"
+                        control={control}
+                        render={({ field }) => (
+                          <InputField
+                            {...field} 
+                            placeholder={" "}
+                            // label={"Current Password"}
+                            type="password"
+                            error={errors?.password && errors?.password?.message}
 
-
+                          />
+                        )}
+                      />
+                    </>
+                    <small>NEW PASSWORD</small>
                     <Controller
                       name="password"
                       control={control}
@@ -181,7 +217,7 @@ const Profile = () => {
                         <InputField
                           {...field} 
                           placeholder={" "}
-                          label={"Current Password"}
+                          // label={"New Password"}
                           type="password"
                           error={errors?.password && errors?.password?.message}
 
@@ -189,6 +225,7 @@ const Profile = () => {
                       )}
                     />
 
+                    <small>CONFIRM NEW PASSWORD</small>
                     <Controller
                       name="password"
                       control={control}
@@ -196,22 +233,7 @@ const Profile = () => {
                         <InputField
                           {...field} 
                           placeholder={" "}
-                          label={"New Password"}
-                          type="password"
-                          error={errors?.password && errors?.password?.message}
-
-                        />
-                      )}
-                    />
-
-                    <Controller
-                      name="password"
-                      control={control}
-                      render={({ field }) => (
-                        <InputField
-                          {...field} 
-                          placeholder={" "}
-                          label={"Confirm New Password"}
+                          // label={"Confirm New Password"}
                           type="password"
                           error={errors?.password && errors?.password?.message}
 

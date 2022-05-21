@@ -1,0 +1,276 @@
+.classGistContainer{
+    width: 100%;
+    gap: 2rem;
+    align-items: center;
+    margin: 2rem 0rem 3rem 0rem;
+    padding: 1rem;
+
+    .formWrapper{
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        width: 100%;
+
+        form{    
+            justify-content: space-between;
+
+            .btnDiv{
+                justify-content: flex-end;
+                padding-top: 0.5rem;
+             }
+        }
+    }
+
+    .body{
+
+        .postContainer{
+            gap: 1rem;
+            border-top: 1px solid #E2E2E2;
+            padding: 1rem 0rem;
+            .header{
+                gap: 1rem;
+                align-items: center;
+
+                .userImageDiv{
+                    img{
+                        border-radius: 50%;
+                        width: clamp(2rem, 3rem, 4rem);
+                        height: clamp(2rem, 3rem, 4rem);
+                        object-fit: contain;
+                    }
+                }
+
+                p{
+                    color: #000000;
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                }
+            }
+
+            .introText{
+                color: #4F4F4F;
+                font-size: 0.875rem;
+            }
+
+            .courseCoverImageDiv{
+                img{
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                    border-radius: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 768px){
+    .classGistContainer{
+        width: 70%;
+        gap: 2rem;
+        align-items: center;
+        margin: 0rem auto;
+        padding: 2rem 0rem 0rem 0rem;
+        border:  1px solid #E2E2E2;
+        justify-self: center;
+    
+        .formWrapper{
+            background-color: #fff;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            width: 95%;
+    
+            form{    
+                justify-content: space-between;
+    
+                .btnDiv{
+                    justify-content: flex-end;
+                    padding-top: 0.5rem;
+                 }
+            }
+        }
+    
+        .body{
+    
+            .postContainer{
+                gap: 1rem;
+                border-top: 1px solid #E2E2E2;
+                padding: 1rem 1rem;
+                .header{
+                    gap: 1rem;
+                    align-items: center;
+    
+                    .userImageDiv{
+                        img{
+                            border-radius: 50%;
+                            width: clamp(2rem, 3rem, 4rem);
+                            height: clamp(2rem, 3rem, 4rem);
+                            object-fit: contain;
+                        }
+                    }
+    
+                    p{
+                        color: #000000;
+                        font-size: 0.875rem;
+                        font-weight: bold;
+                    }
+                }
+    
+                .introText{
+                    color: #4F4F4F;
+                    font-size: 0.875rem;
+                }
+    
+                .courseCoverImageDiv{
+                    img{
+                        width: 100%;
+                        height: auto;
+                        object-fit: contain;
+                        border-radius: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 991px){
+    .classGistContainer{
+        width: 50%;
+        gap: 2rem;
+        align-items: center;
+        padding: 2rem 0rem 0rem 0rem;
+        border:  1px solid #E2E2E2;
+        align-self: center;
+    
+        .formWrapper{
+            background-color: #fff;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            width: 90%;
+    
+            form{    
+                justify-content: space-between;
+    
+                .btnDiv{
+                    justify-content: flex-end;
+                    padding-top: 0.5rem;
+                 }
+            }
+        }
+    
+        .body{
+    
+            .postContainer{
+                gap: 1rem;
+                border-top: 1px solid #E2E2E2;
+                padding: 1rem 2rem;
+                .header{
+                    gap: 1rem;
+                    align-items: center;
+    
+                    .userImageDiv{
+                        img{
+                            border-radius: 50%;
+                            width: clamp(2rem, 3rem, 4rem);
+                            height: clamp(2rem, 3rem, 4rem);
+                            object-fit: contain;
+                        }
+                    }
+    
+                    p{
+                        color: #000000;
+                        font-size: 0.875rem;
+                        font-weight: bold;
+                    }
+                }
+    
+                .introText{
+                    color: #4F4F4F;
+                    font-size: 0.875rem;
+                }
+    
+                .courseCoverImageDiv{
+                    img{
+                        width: 100%;
+                        height: auto;
+                        object-fit: contain;
+                        border-radius: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 1200px){
+    .classGistContainer{
+        width: 35%;
+        gap: 2rem;
+        align-items: center;
+        padding: 2rem 0rem 0rem 0rem;
+        border:  1px solid #E2E2E2;
+        align-self: center;
+    
+        .formWrapper{
+            background-color: #fff;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            width: 90%;
+    
+            form{    
+                justify-content: space-between;
+    
+                .btnDiv{
+                    justify-content: flex-end;
+                    padding-top: 0.5rem;
+                 }
+            }
+        }
+    
+        .body{
+    
+            .postContainer{
+                gap: 1rem;
+                border-top: 1px solid #E2E2E2;
+                padding: 1rem 2rem;
+                .header{
+                    gap: 1rem;
+                    align-items: center;
+    
+                    .userImageDiv{
+                        img{
+                            border-radius: 50%;
+                            width: clamp(2rem, 3rem, 4rem);
+                            height: clamp(2rem, 3rem, 4rem);
+                            object-fit: contain;
+                        }
+                    }
+    
+                    p{
+                        color: #000000;
+                        font-size: 0.875rem;
+                        font-weight: bold;
+                    }
+                }
+    
+                .introText{
+                    color: #4F4F4F;
+                    font-size: 0.875rem;
+                }
+    
+                .courseCoverImageDiv{
+                    img{
+                        width: 100%;
+                        height: auto;
+                        object-fit: contain;
+                        border-radius: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}

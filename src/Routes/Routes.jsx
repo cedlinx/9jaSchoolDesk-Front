@@ -23,12 +23,10 @@ import {Role} from "@/constants/constants";
 // Student Section
 import DashboardStudent from "../Pages/AuthenticatedPages/StudentAccount/Home/Home";
 import AssessmentFeedbackStudent from "../Pages/AuthenticatedPages/StudentAccount/AssessmentFeedback/AssessmentFeedback";
-import MyLessonsStudent from "../Pages/AuthenticatedPages/StudentAccount/MyLessons/MyLessons";
-import ViewLessonStudent from "../Pages/AuthenticatedPages/StudentAccount/MyLessons/ViewLesson/ViewLesson";
+import MyClassesStudent from "../Pages/AuthenticatedPages/StudentAccount/MyClasses/MyClasses";
+import ViewClassStudent from "../Pages/AuthenticatedPages/StudentAccount/MyClasses/ViewClass/ViewClass";
 import ProfileStudent from "../Pages/AuthenticatedPages/StudentAccount/Profile/Profile";
-
-
-
+import ClassGistStudent from "../Pages/AuthenticatedPages/StudentAccount/ClassGist/ClassGist";
 
 const RoutesComponent = () => {
   return (
@@ -46,15 +44,16 @@ const RoutesComponent = () => {
         <Route  path="reset-password/:token" element={<ResetPassword />} />	
         <Route  path="request-verification-link" element={<RequestVerificationLink />} />	
 				
-        <Route path="student-dashboard" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="student-experience" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
 
-          <Route index path="" element={<DashboardStudent  />} />
+          <Route index path="dashboard" element={<DashboardStudent  />} />
           <Route path="profile" element={<ProfileStudent  />} />
-          <Route path="assessment-feedback" element={<AssessmentFeedbackStudent  />} />
-          <Route path="my-lessons">
-            <Route index path="" element={<MyLessonsStudent  />} />
-            <Route path="view-lesson/:id" element={<ViewLessonStudent  />} />
+          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackStudent  />} />
+          <Route path="my-classes">
+            <Route index path="" element={<MyClassesStudent  />} />
+            <Route path="view-class/:id" element={<ViewClassStudent  />} />
           </Route>
+          <Route path="class-gist" element={<ClassGistStudent  />} />
 
 
         </Route>			
