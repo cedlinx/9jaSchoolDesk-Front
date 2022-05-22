@@ -206,122 +206,118 @@ const Home = () => {
     <div className={cx(styles.dashboardHomeContainer)}>
 
       <div className={cx(styles.heading, "flexRow")}>
-        <div>Select ward account to view</div>
+        <p>Select ward account to view</p>
         <div className={cx(styles.studentsWrapper, "flexRow")}>
+
           <div className={cx(styles.studentContainer, "flexRow-align-center")}>
             <img src={studentProfilePic} alt="arrow" />
             <small>Chisimdi</small>
           </div>
+
+          <div className={cx(styles.studentContainer, "flexRow-align-center")}>
+            <img src={studentProfilePic} alt="arrow" />
+            <small>Tochi</small>
+          </div>
+
         </div>
       </div>
 
-      <section className={cx(styles.heroImageSection)}>
-        <img className={cx(styles.bgImage)} src={heroImage} alt="img" />
-        <div className={cx(styles.heroImageText, "flexCol")}>
-          <h3>Welcome Chisimdi</h3>
-          <p>Where will you like to start off today?</p>
-        </div>
-      </section>
+      <div className={cx(styles.body, "row")}> 
+        <div className={cx(styles.leftSection, "col-lg-8", "col-xl-9")}>
+          <section className={cx(styles.heroImageSection)}>
+            <img className={cx(styles.bgImage)} src={heroImage} alt="img" />
+            <div className={cx(styles.heroImageText, "flexCol")}>
+              <h3>Welcome Chisimdi</h3>
+              <p>Where will you like to start off today?</p>
+            </div>
+          </section>
 
-      <section className={cx(styles.upperSection, "row")}>
+          <section className={cx(styles.upperSection, "row")}>
 
-        <div className={cx(styles.upperSectionLeft, "col-md-12", "col-xl-6")}>
-          <div className={cx("flexRow-space-between")}>
-            <h5>Activities</h5>
-          </div>
-     
-        </div>
-        
-        <div className={cx(styles.upperSectionRight, "col-md-12", "col-xl-6")}>
-          <div className={cx(styles.header, "flexRow-space-between")}>
-            <h5>Assessment Feedback</h5>
-            <small onClick={() => navigate("assessment-feedback")}>View all</small>
-          </div>
-          <div className={cx(styles.assessmentDiv)}>
-            {<TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(assessmentData)} />}
-          </div>
-        </div>
-
-      
-
-      </section>
-      
-      <section className={cx(styles.lowerSection, "row")}>
-        <div className={cx(styles.lowerSectionLeft, "col-sm-12", "col-md-12", "col-xl-3")}>
-
-          <h5>Behavioural Feedback</h5>
-          <div className={cx(styles.contentWrapper, "flexCol")}>
-            <div className={cx(styles.header, "flexRow")}>
-              <div className={cx(styles.imageDiv)}>
-                <img src={behaviouralCardImage} alt="img" />
+            <div className={cx(styles.upperSectionLeft, "col-md-12", "col-xl-6")}>
+              <div className={cx(styles.header, "flexRow-space-between")}>
+                <h5>Assessment Feedback</h5>
+                <small onClick={() => navigate("assessment-feedback")}>View all</small>
               </div>
-              <div className={cx(styles.pointsDiv)}>
-                <small>Total points earned</small>
-                <p>10</p>
+              <div className={cx(styles.tableDiv)}>
+                {<TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(assessmentData)} />}
               </div>
             </div>
+            
+            <div className={cx(styles.upperSectionRight, "col-md-12", "col-xl-6")}>
+              <div className={cx(styles.header, "flexRow-space-between")}>
+                <h5>Notice Board</h5>             
+              </div>
+              <div className={cx(styles.tableDiv)}>
+                {<TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(assessmentData)} />}
 
-            <div className={cx(styles.body, "flexCol")}>
-              <div><span><img src={curiosityIcon} alt="" /></span><span>Curiosity</span><span>2 pts</span></div>
-              <div><span><img src={gratitudeIcon} alt="" /></span><span>Gratitude</span><span>2 pts</span></div>
-              <div><span><img src={teamworkIcon} alt="" /></span><span>Teamwork</span><span>2 pts</span></div>
-              <div><span><img src={persistenceIcon} alt="" /></span><span>Persistence</span><span>2 pts</span></div>
+              </div>
+
             </div>
 
-          </div>
-
-        
-  
+          </section>
+          
         </div>
-
-
-        <div className={cx(styles.lowerSectionMiddle, "col-sm-12", "col-md-6", "col-xl-6")}>
-          <h5>Rate Your Teacher</h5>
-          <div className={cx(styles.ratingsDiv)}>
-            <div className={cx(styles.body, "flexCol")}>
-              {teachersArray.map((teacher, index) => {
-                return(
-                  <div key={index}>
-                    <span> 
-                      {teacher.profilePic ? <img src={teacher.profilePic} alt="profile pic" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(teacher.name)}</span>}
+        <div className={cx(styles.rightSection, "col-lg-4", "col-xl-3")}>
+          <section className={cx(styles.rightSectionInnerContainer, "row")}>
+         
+            <div className={cx(styles.studentProfileDiv, "col-md-6", "col-lg-12")}>
+              <h5>Profile</h5>
+              <div className={cx(styles.contentWrapper)}>
+                <div className={cx(styles.header)}>
+                  <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
+                  <img className={cx(styles.profilePic)}src={studentProfilePic} alt="profile pic" />
+                </div>
+                <div className={cx(styles.body, "flexCol")}>
+                  <p>Chisimdi Coker</p>
+                  <small>coker@gmail.com</small>
+                  <img onClick={()=>dispatch(showModal({ action: "show", type: "editProfile" }))} src={editIcon} alt="" />
+                </div>
+              </div>
+            </div>
+            
+            <div className={cx(styles.teacherRatingsDiv, "col-md-6", "col-lg-12")}>
+              <h5>Rate Your Teacher</h5>
+              <div className={cx(styles.ratingsDiv)}>
+                <div className={cx(styles.body, "flexCol")}>
+                  {teachersArray.map((teacher, index) => {
+                    return(
+                      <div key={index}>
+                        <span> 
+                          {teacher.profilePic ? <img src={teacher.profilePic} alt="profile pic" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(teacher.name)}</span>}
                       
-                    </span>
-                    <div>
-                      <p>{teacher.name}</p>
-                      <small>{teacher.subject}</small>
-                    </div>
-                    <span> 
-                      <StarRating
-                        numberOfSelectedStar={teacher.rating}
-                        numberOfStar={5}
-                        onSelectStar={(value) => {
-                        }}
-                      />
-                    </span>
-                  </div>
-                );
-              })}
-              {/* <img className={cx(styles.addIcon)} src={addIcon} alt="add" /> */}
+                        </span>
+                        <div>
+                          <p className={cx(styles.teacherName)}>{teacher.name}</p>
+                          <small className={cx(styles.teacherSubject)}>{teacher.subject}</small>
+                        </div>
+                        <span> 
+                          <StarRating
+                            numberOfSelectedStar={teacher.rating}
+                            numberOfStar={5}
+                            onSelectStar={(value) => {
+                            }}
+                          />
+                        </span>
+                      </div>
+                    );
+                  })}
+                  {/* <img className={cx(styles.addIcon)} src={addIcon} alt="add" /> */}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className={cx(styles.lowerSectionRight, "col-sm-12", "col-md-6", "col-xl-3")}>
-          <h5>Profile</h5>
-          <div className={cx(styles.contentWrapper)}>
-            <div className={cx(styles.header)}>
-              <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
-              <img className={cx(styles.profilePic)}src={studentProfilePic} alt="profile pic" />
-            </div>
-            <div className={cx(styles.body, "flexCol")}>
-              <p>Chisimdi Coker</p>
-              <small>coker@gmail.com</small>
-              <img onClick={()=>dispatch(showModal({ action: "show", type: "editProfile" }))} src={editIcon} alt="" />
-            </div>
-          </div>
-        </div>
+         
 
-      </section>     
+          </section>   
+        </div>
+      </div>
+
+     
+
+   
+      
+     
                                 
     
 
