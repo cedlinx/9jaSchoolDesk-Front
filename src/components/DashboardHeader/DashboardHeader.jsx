@@ -17,7 +17,7 @@ import messagesIcon from "@/assets/icons/messages-icon.svg";
 import messagesIconActive from "@/assets/icons/messages-icon-active.svg";
 
 import unreadNotificationsIcon from "@/assets/icons/unread-notifications-icon.svg";
-import notificationIcon from "@/assets/icons/notification-icon.svg";
+import notificationIcon from "@/assets/icons/notifications-icon.svg";
 import { titleCase } from "@/helpers/textTransform";
 import InputField from "@/components/Input/Input";
 import { Icon } from "@iconify/react";

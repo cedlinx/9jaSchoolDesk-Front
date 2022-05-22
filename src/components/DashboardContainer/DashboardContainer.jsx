@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./DashboardContainer.module.scss";
 
-import SideBar from "../SideBar/SideBar";
 import DashboardHeader from "../DashboardHeader/DashboardHeader";
 
 
