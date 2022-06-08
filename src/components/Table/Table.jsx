@@ -3,10 +3,6 @@ import {useDispatch} from "react-redux";
 import styled from "styled-components";
 import { useTable, usePagination, useRowSelect, useRowState } from "react-table";
 import "./Table.css";
-import Button from "../Button/Button";
-import qrCodeIcon from "@/assets/icons/qrcode-icon.svg";
-import {modalAssetId} from "@/redux/Assets/assets.action";
-import {showModal} from "@/redux/ModalState/modalState.action";
 import { Icon } from "@iconify/react";
 
 const Styles = styled.div`

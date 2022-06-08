@@ -129,8 +129,8 @@ const AssessmentFeedback = () => {
         <h5>Assessment Feedback</h5>
       </div>
       <div className={cx(styles.filterSection, "flexRow")}>
-        <input type="date" name="" id="" />
-        <button>Filter</button>
+        {/* <input type="date" name="" id="" /> */}
+        {/* <button>Filter</button> */}
       </div>
       {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(assessmentData)} />}
     </div>
