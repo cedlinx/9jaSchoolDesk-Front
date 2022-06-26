@@ -33,7 +33,7 @@ import {
 
 
 const Header = (props) => {
-  const {handleToggleSidebar} = props;
+  const {handleToggleSidebar, showLinks=true} = props;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -64,9 +64,17 @@ const Header = (props) => {
   return (
     <section className={cx(styles.dashboardHeaderContainer, "flexRow", "")}>
 
+ 
+
       <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
+        <div
+          className={cx(styles.dashboardToggler, "btn-toggle")}
+          onClick={() => handleToggleSidebar(true)}
+        >
+          <FaBars />
+        </div>
         <Navbar.Brand className={cx(styles.siteLogo )}> 		
-          <Link to="/student-experience/dashboard"><img src={Logo} alt="" /></Link>
+          <Link to={`/${userCategory}/dashboard`}><img src={Logo} alt="" /></Link>
         </Navbar.Brand>
 
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
@@ -86,6 +94,7 @@ const Header = (props) => {
               />
             </div>
 				
+            {userCategory !== "teacher-experience" &&
             <div className={cx(styles.profileDiv, "flexRow")}>
             
               <NavLink to="dashboard">
@@ -147,7 +156,7 @@ const Header = (props) => {
                 </DropdownMenu>
               </Dropdown>
             </div>
-
+            }
           </div>
 
         </Navbar.Collapse>

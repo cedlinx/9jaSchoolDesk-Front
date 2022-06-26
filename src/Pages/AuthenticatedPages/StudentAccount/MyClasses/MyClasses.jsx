@@ -8,7 +8,6 @@ import {useNavigate} from "react-router-dom";
 import VideoCard from "@/components/VideoCard/VideoCard";
 
 
-
 const MyClasses = () => {
 
   const navigate = useNavigate();

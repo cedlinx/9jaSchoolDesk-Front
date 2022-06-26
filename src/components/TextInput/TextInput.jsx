@@ -14,7 +14,7 @@ export default function TextInput({
 }) {
   return (
     <div className={`form-group text-area-wrapper ${containerClassName}`}>
-      <label htmlFor="text-area-component">{label}</label>
+      {label && <label htmlFor="text-area-component">{label}</label>}
       <textarea
         className="form-control"
         id="text-area-component"

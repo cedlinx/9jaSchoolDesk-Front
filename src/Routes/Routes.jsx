@@ -35,6 +35,14 @@ import ProfileParent from "../Pages/AuthenticatedPages/ParentAccount/Profile/Pro
 import MessagesParent from "../Pages/AuthenticatedPages/ParentAccount/Messages/Messages";
 
 
+// Teacher Section
+import DashboardTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Home/Home";
+import TasksAndActivitiesTeacher from "../Pages/AuthenticatedPages/TeacherAccount/TasksAndActivities/TasksAndActivities";
+import ProfileTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Profile/Profile";
+import LessonsTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lessons/Lessons";
+import LoungeTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lounge/Lounge";
+
+
 const RoutesComponent = () => {
   return (
     <BrowserRouter className="App">
@@ -74,6 +82,16 @@ const RoutesComponent = () => {
           <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackParent  />} />
 
         </Route>	
+
+        <Route path="teacher-experience" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+
+          <Route index path="dashboard" element={<DashboardTeacher  />} />
+          <Route path="profile" element={<ProfileTeacher  />} />
+          <Route path="tasks-and-activities" element={<TasksAndActivitiesTeacher  />} />
+          <Route path="lessons" element={<LessonsTeacher  />} />
+          <Route path="lounge" element={<LoungeTeacher  />} />
+
+        </Route>
 
 
         <Route  path="unauthorized-page" element={<UnAuthorizedPage />} />

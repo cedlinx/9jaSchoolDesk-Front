@@ -22,7 +22,7 @@ const ModalContainer = ({ children}) => {
           onHide={handleClose}
           scrollable={true}
           centered
-          size='md'
+          size='lg'
           dialogClassName='generic-modal-wrapper'
         >
           {/* <Modal.Header className="generic-modal-header">

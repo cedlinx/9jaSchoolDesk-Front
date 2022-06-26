@@ -1,13 +1,20 @@
 import React, {useState} from "react";
+import {useLocation, useParams} from "react-router-dom";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./DashboardContainer.module.scss";
 
 import DashboardHeader from "../DashboardHeader/DashboardHeader";
+import SideBar from "@/components/SideBar/SideBar";
 
 
 const DashboardContainer = (props) => {
   const { children } = props;
+  const location = useLocation();
+  const rootPath = location.pathname.split("/")[1];
+  console.log(rootPath);
+  const actualPath = location.pathname.split("/").pop();
+
 
   const [toggled, setToggled] = useState(false);
   const handleToggleSidebar = (value) => {
@@ -15,9 +22,14 @@ const DashboardContainer = (props) => {
   };
 
   return (
-    <div className={cx(styles.container, "flexRow")}>
+    <div className={cx(styles.dashboardContainer, "flexCol", "")}>
+			
+      <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
+
       <div className={cx(styles.contentArea)}>
-        <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
+        {rootPath === "teacher-experience" && actualPath !== "profile" ? <div className={cx(styles.sidebar, "")}>
+          <SideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
+        </div> : null}
         <div className={cx(styles.pageContent)}>{children}</div>
       </div>
 			

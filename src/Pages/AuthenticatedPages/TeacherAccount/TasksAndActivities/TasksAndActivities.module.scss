@@ -1,0 +1,63 @@
+.tasksAndActivitiesContainer{
+    width: 100%;
+    padding: 0rem;
+    // align-items: center;
+    padding: 1rem;
+    background-color: #fff;
+    gap: 1rem;
+    min-height: calc(100% - 50px);
+
+    .header{
+        text-align: center;
+        color: #22467B;
+        justify-content: space-between;
+        padding: 0rem 0rem;
+        align-items: center;
+
+        h5{
+        line-height: 1;
+            margin: 0rem;
+        }
+    }
+
+    .body{
+        gap: 1.5rem;
+        color: #22467B;
+
+    }
+
+
+}
+
+@media all and (min-width: 768px) {
+    .tasksAndActivitiesContainer{
+       
+        .body{
+            gap: 1.5rem;
+            padding: 1rem 0rem;
+
+        }
+    }
+}
+
+@media all and (min-width: 991px) {
+    .tasksAndActivitiesContainer{
+    
+        .body{
+            gap: 1.75rem;
+
+        }
+    }
+
+}
+
+@media all and (min-width: 1200px) {
+    .tasksAndActivitiesContainer{
+    
+        .body{
+            gap: 1.75rem;
+ 
+        }
+    }
+
+}

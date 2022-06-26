@@ -21,7 +21,7 @@ const Footer = () => {
           <img src={siteLogo} alt="site-logo" />
         </div>
         <p >Become part of your child’s academic growth today with 9jaschoolDesk</p>
-        <p >© 2020 9jaSchoolDesk. All rights reserved.</p>
+        <p >© {new Date.getFullYear()} 9jaSchoolDesk. All rights reserved.</p>
       </div>
       <div className={cx(styles.productSection)}>
         <p className={cx(styles.header)}>Product</p>

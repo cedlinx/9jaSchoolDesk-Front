@@ -12,6 +12,7 @@ const initialState = {
   showModalSuccess: false,
   action: "",
   type: "",
+  modalData: {},
 
   error: false
 };
@@ -30,7 +31,8 @@ const reducer = (state = initialState, action) => {
       loading: false,
       showModalSuccess: action.payload === "show" ? true : false,
       action: action.payload.action,
-      type: action.payload.type
+      type: action.payload.type,
+      modalData: action.payload.modalData
     };
   case SHOW_MODAL_FAILURE:
     return {

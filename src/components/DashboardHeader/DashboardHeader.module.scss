@@ -14,10 +14,16 @@
         z-index: 1000;
         border-bottom: 1px solid #E2E2E2;
 
+        .dashboardToggler{
+            margin-right: 0.5rem;
+            display: flex;
+        }
+
         .siteLogo{
             justify-content: flex-start;
             align-items: center;
             padding-left: 0.25rem;
+            margin-right: auto;
         
             img{
                 width: 75%;
@@ -50,6 +56,7 @@
                 .profileDiv{
                     gap: 0.5rem;
                     justify-content: center;
+                    flex-wrap: wrap;
 
                     .navLinkActive, .navLink {
                         display: flex;
@@ -199,6 +206,10 @@
         .navbarContainer{
             padding: 0rem 2rem;
             justify-content: space-between;
+
+            .dashboardToggler{
+               display: none;
+            }
     
             .siteLogo{
                 justify-content: flex-start;
