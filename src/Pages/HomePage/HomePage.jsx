@@ -108,11 +108,11 @@ const HomePage = () => {
 
             <Button onClick={()=> navigate("/login-with-class-code", {state:{category: "student"}})} title="Student" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 								
-            <Button onClick={()=> navigate("/login", {state:{category: "parent"}})} title="Parent" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
+            <Button onClick={()=> navigate("/login/parent", {state:{category: "parent"}})} title="Parent" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 
-            <Button onClick={()=> navigate("/login", {state:{category: "teacher"}})} title="Teacher" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
+            <Button onClick={()=> navigate("/login/teacher", {state:{category: "teacher"}})} title="Teacher" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 
-            <Button onClick={()=> navigate("/signup", {state:{category: "administrator"}})} title="Administrator" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
+            <Button onClick={()=> navigate("/login/proprietor", {state:{category: "proprietor"}})} title="Administrator" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 						
           </div>
 						

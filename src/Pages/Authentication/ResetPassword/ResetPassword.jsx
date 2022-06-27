@@ -9,7 +9,7 @@ import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {resetPassword} from "@/redux/User/user.action";
+import {resetPassword} from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { resetPasswordValidationSchema } from "@/helpers/validation";

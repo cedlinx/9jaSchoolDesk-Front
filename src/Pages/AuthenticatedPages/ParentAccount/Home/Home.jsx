@@ -4,7 +4,6 @@ import {useNavigate} from "react-router-dom";
 import cx from "classnames";
 import styles from "./Home.module.scss";
 import { Icon } from "@iconify/react";
-import { allAssetsTypes, chartData } from "@/redux/Assets/assets.action";
 import StarRating from "@/components/StarRating";
 import {initialsCase} from "@/helpers/textTransform";
 import curiosityIcon from "@/assets/icons/curiosity.svg";
@@ -28,7 +27,7 @@ import EditProfileModal from "@/components/Modals/EditProfile/EditProfile";
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
 import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
 const Home = () => {

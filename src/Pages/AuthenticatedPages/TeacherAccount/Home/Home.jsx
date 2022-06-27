@@ -6,7 +6,6 @@ import styles from "./Home.module.scss";
 import Button from "@/components/Button/Button";
 
 import { Icon } from "@iconify/react";
-import { allAssetsTypes, chartData } from "@/redux/Assets/assets.action";
 import {initialsCase} from "@/helpers/textTransform";
 import curiosityIcon from "@/assets/icons/curiosity.svg";
 import persistenceIcon from "@/assets/icons/persistence.svg";
@@ -31,7 +30,7 @@ import ViewStudentProfileModal from "@/components/Modals/ViewStudentProfile/View
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
 import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 import AttendanceCard from "@/components/Cards/AttendanceCard/AttendanceCard";
 
 const Home = () => {

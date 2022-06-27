@@ -4,7 +4,7 @@ import styles from "./AttendanceCard.module.scss";
 import presentIcon from "@/assets/icons/present-icon.svg";
 import absentIcon from "@/assets/icons/absent-icon.svg";
 import {initialsCase} from "@/helpers/textTransform";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 import { useDispatch } from "react-redux";
 
 

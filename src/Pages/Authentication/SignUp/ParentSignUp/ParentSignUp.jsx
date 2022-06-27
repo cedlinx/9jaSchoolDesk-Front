@@ -14,7 +14,7 @@ import PageContainer from "@/components/PageContainer/PageContainer";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { signUp } from "@/redux/User/user.action";
+import { parentSignUp } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { signUpValidationSchema } from "@/helpers/validation";
@@ -29,7 +29,7 @@ import TopDivWave from "@/components/WaveSvg/TopDivWave";
 const ParentSignUp = () => {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
-  const signUpSuccess = useSelector((state) => state.user.signUpData);
+  const signUpSuccess = useSelector((state) => state?.auth?.signUpData);
 
   useEffect(() => {
     // signUpSuccess && navigate("/login");

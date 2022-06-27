@@ -188,7 +188,7 @@ export const FormGroup = styled(Form.Group)`
     }
     img{
       margin-right: 0.25rem;
-    padding: 0.75rem 0rem 0rem 0rem;
+    padding: 0rem 0rem 0rem 0rem;
 
     }
    

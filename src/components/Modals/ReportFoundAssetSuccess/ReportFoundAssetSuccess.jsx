@@ -8,7 +8,7 @@ import cx from "classnames";
 import styles from "./ReportFoundAssetSuccess.module.scss";
 import Button from "@/components/Button/Button";
 import {titleCase} from "@/helpers/textTransform";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 import { assetsList } from "@/redux/Assets/assets.action";
 import closeIcon from "@/assets/icons/close-icon.svg";
 

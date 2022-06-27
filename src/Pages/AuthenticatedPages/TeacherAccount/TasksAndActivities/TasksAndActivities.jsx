@@ -4,7 +4,7 @@ import cx from "classnames";
 import {useNavigate} from "react-router-dom";
 import styles from "./TasksAndActivities.module.scss";
 import Button from "@/components/Button/Button";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import CreateActivityModal from "@/components/Modals/CreateActivity/CreateActivity";
 import Tabs from "@/components/Tabs/Tabs";

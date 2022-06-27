@@ -8,7 +8,7 @@ import { Icon } from "@iconify/react";
 import singleSubmissionIcon from "@/assets/icons/single-submission-icon.svg";
 import multiSubmissionIcon from "@/assets/icons/multi-submission-icon.svg";
 import Button from "@/components/Button/Button";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
 

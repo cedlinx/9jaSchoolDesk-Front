@@ -12,7 +12,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "./react-tabs.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Icon } from "@iconify/react";
-import { signUp } from "@/redux/User/user.action";
+import { proprietorSignUp } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { signUpValidationSchema } from "@/helpers/validation";

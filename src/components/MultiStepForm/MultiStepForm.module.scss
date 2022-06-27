@@ -1,0 +1,38 @@
+.multiStepFormContainer{
+    padding: 0rem 0rem;
+    gap: 0rem;
+    
+    .stepIndicator{
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .wrapper{
+            background-color: #fff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            min-width: 20%;
+            svg{
+                margin-right: 0.5rem;
+                color: #22467B;
+            }
+            span{
+                color: #22467B;
+                font-size: 0.875rem;
+                font-weight: lighter;
+            }
+        }
+
+        .activeStep{
+            background-color: #22467B ;
+                    span{
+                color: #fff ;
+            }
+            svg{
+                color: #fff;
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@ import {
   SidebarContent
 } from "react-pro-sidebar";
 
-import {logout} from "@/redux/User/user.action";
+import {logout} from "@/redux/Auth/AuthSlice";
 
 import logo from "@/assets/images/testimonialsAvatar.png";
 import rightCaret from "@/assets/icons/right-caret.svg";
@@ -22,7 +22,7 @@ import loungeIcon from "@/assets/icons/lounge-icon.svg";
 import lessonsIcon from "@/assets/icons/lessons-icon.svg";
 
 
-import { getUserInfo } from "@/redux/User/user.action";
+// import { getUserInfo } from "@/redux/Auth/AuthSlice";
 
 
 const Aside = ({ rtl, toggled, handleToggleSidebar }) => {

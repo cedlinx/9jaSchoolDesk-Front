@@ -8,8 +8,8 @@ import cx from "classnames";
 import styles from "./PaymentDetails.module.scss";
 import Button from "@/components/Button/Button";
 import {titleCase} from "@/helpers/textTransform";
-import { showModal } from "@/redux/ModalState/modalState.action";
-import {getAllUsers, getAllAdminUsers} from "@/redux/User/user.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
+import {getAllUsers, getAllAdminUsers} from "@/redux/Auth/AuthSlice";
 import closeIcon from "@/assets/icons/close-icon.svg";
 
 const UserDetailsModal = props => {

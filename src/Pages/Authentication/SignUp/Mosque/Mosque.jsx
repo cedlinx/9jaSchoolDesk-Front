@@ -14,7 +14,7 @@ import PageContainer from "@/components/PageContainer/PageContainer";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { signUp } from "@/redux/User/user.action";
+import { proprietorSignUp } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { signUpValidationSchema } from "@/helpers/validation";
@@ -278,7 +278,7 @@ const MosqueSignUp = () => {
                 <Button onClick={handleSubmit((data) => createUser(data))} type title="Next" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
               </div>
 
-              <p className={cx(styles.formText)}>Already have an account? <Link to="/login" state={{category: "administrator"}}>Sign In</Link></p>
+              <p className={cx(styles.formText)}>Already have an account? <Link to="/login" state={{category: "proprietor"}}>Sign In</Link></p>
             
             </form>
           </div>

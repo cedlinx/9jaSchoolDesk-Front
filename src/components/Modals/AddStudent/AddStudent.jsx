@@ -10,7 +10,7 @@ import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 import closeIcon from "@/assets/icons/closeIcon.svg";
 import { Icon } from "@iconify/react";
 import studentProfilePic from "@/assets/images/student-profile-pic.png";
@@ -20,7 +20,7 @@ import { useDropzone } from "react-dropzone";
 
 import editIcon from "@/assets/icons/edit-icon.svg";
 
-import { forgotPassword } from "@/redux/User/user.action";
+import { forgotPassword } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { forgotPasswordValidationSchema } from "@/helpers/validation";

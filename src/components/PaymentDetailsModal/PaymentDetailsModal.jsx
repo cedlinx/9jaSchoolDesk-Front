@@ -8,7 +8,7 @@ import cx from "classnames";
 import styles from "./PaymentDetailsModal.module.scss";
 import Button from "@/components/Button/Button";
 import {titleCase} from "@/helpers/textTransform";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 
 const PaymentDetailsModal = props => {
   const {data} = props;

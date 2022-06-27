@@ -1,0 +1,72 @@
+.finalStepContainer{
+    padding: 1.5rem 1rem 1rem 1rem;
+
+    .leftSection, .rightSection{
+        gap: 0.5rem;
+
+        .wrapper{
+            gap: 0.25rem;
+
+            .infoItem{
+                small{
+                    font-size: 0.75rem;
+                }
+                p{
+                    font-size: 1.125rem;
+                }
+            }
+        }
+    }
+
+    .btnDiv{
+        margin-top: 2.5rem;
+        justify-content: center;
+        gap: 2rem;
+    }
+}
+
+@media all and (min-width: 768px){
+    .finalStepContainer{
+        padding: 1.5rem 3rem 1rem 3rem;
+    
+        .leftSection, .rightSection{
+            gap: 0.5rem;
+    
+            .wrapper{
+                gap: 0.25rem;
+    
+                .infoItem{
+                    small{
+                        font-size: 0.75rem;
+                    }
+                    p{
+                        font-size: 1.125rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 1200px){
+    .finalStepContainer{
+        padding: 4rem 9rem 1rem 9rem;
+    
+        .leftSection, .rightSection{
+            gap: 0.5rem;
+    
+            .wrapper{
+                gap: 0.25rem;
+    
+                .infoItem{
+                    small{
+                        font-size: 0.75rem;
+                    }
+                    p{
+                        font-size: 1.125rem;
+                    }
+                }
+            }
+        }
+    }
+}

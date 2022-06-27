@@ -10,6 +10,12 @@ export const signInValidationSchema = Yup.object().shape({
     .min(6, "Must be above 6 characters")
 });
 
+export const preSignUpValidationSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+  otp: Yup.string()
+    .required("OTP is required")
+});
+
 export const signUpValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Name should be at least 2 characters long.")
@@ -411,4 +417,54 @@ export const changePasswordValidationSchema = Yup.object().shape({
     .required("Password is required")
     .min(8, "Must Contain at least 8 Characters")
     .oneOf([Yup.ref("password")], "Passwords must and should match")
+});
+
+export const stepOneValidationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("First Name is required")
+    .min(2, "First Name should be at least 2 characters"),
+
+  lastName: Yup.string()
+    .required("Last Name is required")    
+    .min(2, "Last Name should be at least 2 characters"),
+
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+
+  phone: Yup.string()
+    .required("Phone Number is Required")
+    .matches(
+      /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/,
+      "Phone number is not valid"
+    ),
+
+  password: Yup.string()
+    .required("Password is required")
+    .min(8, "Must Contain at least 8 Characters"),
+
+  password_confirmation: Yup.string()
+    .required("Password is required")
+    .min(8, "Must Contain at least 8 Characters")
+    .oneOf([Yup.ref("password")], "Passwords must and should match")
+});
+
+export const stepTwoValidationSchema = Yup.object().shape({
+  addressLine1: Yup.string()
+    .required("Address is required")    
+    .min(2, "Last Name should be at least 2 characters"),
+
+  country: Yup.string()
+    .nullable()
+    .required("Country is required"),
+
+  state: Yup.string()
+    .required("State is required"),
+
+  city: Yup.string()
+    .required("City is required")
+
+});
+
+export const stepThreeValidationSchema = Yup.object().shape({
+  uploadedImage: Yup.mixed()
+    
 });

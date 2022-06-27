@@ -1,0 +1,51 @@
+.stepThreeContainer{
+    gap: 1rem;
+    align-items: center;
+
+    .body{
+       
+        .imageDiv{
+            display: flex;
+            border: 1px solid #eaeaea80;
+            padding: 0.5rem 0.5rem;
+            width: 15rem;
+            height: 15rem;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+    
+
+            label{
+                font-size: 0.875rem;
+                font-weight: bold;
+            }
+
+            input{
+                border: none;
+                background-color: transparent;
+                padding: 0.5rem 0rem;
+                outline: none;
+                color: #CCD3D6;
+                font-size: 1.125rem;
+            }
+        }
+
+        .nameDiv{
+            border: 1px solid #eaeaea80;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            color: #CCD3D6;
+        }
+    }
+    .btnDiv{
+        width: 100%;
+        margin: 2rem 0rem;
+        gap: 2rem;
+        button{
+            width: 100%;
+        }
+    }
+}

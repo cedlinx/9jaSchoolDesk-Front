@@ -5,16 +5,17 @@ import HomePage from "../Pages/HomePage/HomePage";
 import Login from "../Pages/Authentication/Login/Login";
 import LoginWithClassCode from "../Pages/Authentication/Login/LoginWithClassCode";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
+import PreSignUp from "../Pages/Authentication/PreSignUp/PreSignUp";
 import ParentSignUp from "../Pages/Authentication/SignUp/ParentSignUp/ParentSignUp";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
 import OtpExpired from "../Pages/Authentication/OTPExpired/OTPExpired";
 import OtpVerification from "../Pages/Authentication/OTPVerification/OTPVerification";
-import RequestVerificationLink from "../Pages/Authentication/RequestVerificationLink/RequestVerificationLink";
+// import RequestVerificationLink from "../Pages/Authentication/RequestVerificationLink/RequestVerificationLink";
 import Page404 from "../Pages/Page404/Page404";
 import UnAuthorizedPage from "../Pages/UnAuthorizedPage/UnAuthorizedPage";
 import DashboardWrapper from "../Pages/Dashboard/Dashboard";
-import VerifyEmail from "../Pages/VerifyEmail/VerifyEmail";
+// import VerifyEmail from "../Pages/VerifyEmail/VerifyEmail";
 import AuthenticatedRoute from "../components/AuthenticatedRoute/AuthenticatedRoutes";
 
 
@@ -48,16 +49,16 @@ const RoutesComponent = () => {
     <BrowserRouter className="App">
       <Routes>
         <Route index path="" element={<HomePage  />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login/:user" element={<Login />} />
         <Route path="login-with-class-code" element={<LoginWithClassCode />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="parent-signup" element={<ParentSignUp />} />
-        <Route path="api/email/verify/:id/:token" element={<VerifyEmail />} />		
+        <Route path="pre-signup/:user" element={<PreSignUp />} />
+        <Route path="signup/:user" element={<SignUp />} />
+        {/* <Route path="api/email/verify/:id/:token" element={<VerifyEmail />} />		 */}
         <Route  path="forgot-password" element={<ForgotPassword />} />
         <Route  path="otp-expired" element={<OtpExpired />} />
         <Route  path="otp-verification" element={<OtpVerification />} />
         <Route  path="reset-password/:token" element={<ResetPassword />} />	
-        <Route  path="request-verification-link" element={<RequestVerificationLink />} />	
+        {/* <Route  path="request-verification-link" element={<RequestVerificationLink />} />	 */}
 				
         <Route path="student-experience" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
 

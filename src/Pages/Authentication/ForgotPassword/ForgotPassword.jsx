@@ -12,7 +12,7 @@ import PageContainer from "@/components/PageContainer/PageContainer";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {forgotPassword} from "@/redux/User/user.action";
+import {forgotPassword} from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { forgotPasswordValidationSchema } from "@/helpers/validation";

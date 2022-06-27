@@ -6,7 +6,7 @@ import {videoLessonsData} from "@/helpers/sampleData";
 import {useNavigate} from "react-router-dom";
 import VideoCard from "@/components/VideoCard/VideoCard";
 import Button from "@/components/Button/Button";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import UploadLessonModal from "@/components/Modals/UploadLesson/UploadLesson";
 

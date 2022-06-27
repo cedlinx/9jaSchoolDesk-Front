@@ -3,7 +3,7 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "./ModalContainer.scss";
 import { useDispatch } from "react-redux";
-import { showModal } from "@/redux/ModalState/modalState.action";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 import closeIcon from "@/assets/icons/closeIcon.svg";
 
 const ModalContainer = ({ children}) => {

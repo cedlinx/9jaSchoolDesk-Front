@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, Navigate, useLocation, useParams } from "react-router-dom";
 import cx from "classnames";
 import styles from "./Login.module.scss";
 import Button from "@/components/Button/Button";
@@ -13,7 +13,7 @@ import { isAuthenticated, decodeToken, getToken } from "@/utils/auth";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginUser, getUserInfo } from "@/redux/User/user.action";
+// import { loginUser, getUserInfo } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { signInValidationSchema } from "@/helpers/validation";
@@ -29,26 +29,27 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const userCategory = location?.state?.category;
+  const {user} = useParams();
+  const rootPath = location.pathname.split("/")[1];
+  const actualPath = location.pathname.split("/").pop();
+
 
   const checkIsAuthenticated = isAuthenticated();
 
   useEffect(() => {
-    checkIsAuthenticated && navigate("/student-experience/dashboard");
-  }, [checkIsAuthenticated, navigate]);
+    checkIsAuthenticated && navigate(`/${rootPath}/dashboard`);
+  }, [checkIsAuthenticated, navigate, rootPath]);
 
   const signIn = async (data) => {
-    navigate("/student-experience/dashboard");
-
-    try {
-      let response = await dispatch(loginUser(data));
-      if (response?.payload?.status === 200) {
-        dispatch(getUserInfo());
-        navigate("/student-experience/dashboard");
-      }
-    } catch (error) {
-      toast.error("An Error Occured, please try again");
-    }
+    // try {
+    //   let response = await dispatch(loginUser(data));
+    //   if (response?.payload?.status === 200) {
+    //     dispatch(getUserInfo());
+    //     navigate(`/${rootPath}/dashboard`);
+    //   }
+    // } catch (error) {
+    //   toast.error("An Error Occured, please try again");
+    // }
   };
 
   const resolver = yupResolver(signInValidationSchema);
@@ -62,7 +63,7 @@ const Login = () => {
 
   return (
     <>
-      {checkIsAuthenticated ? <Navigate replace to="/student-experience/dashboard" /> :
+      {checkIsAuthenticated ? <Navigate replace to={`/${rootPath}/dashboard`} /> :
         <>
           <AuthPageContainer>
 
@@ -125,8 +126,11 @@ const Login = () => {
                       <Link to="/login-with-class-code">Login With Class Code</Link>
                     </p>
 
-                    {userCategory === "parent" && 
-                    <p className={cx(styles.formText)}>Don't have an account? <Link to="/parent-signup">Sign Up</Link></p> }
+                    {/* {user === "parent" && 
+                    <p className={cx(styles.formText)}>Don't have an account? <Link to="/parent-signup">Sign Up</Link></p> } */}
+
+ 
+                    { user !== "teacher" &&  <p className={cx(styles.formText)}>Don't have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p> }
 
                   </form>
                 </div>

@@ -13,7 +13,7 @@ import { isAuthenticated, decodeToken, getToken } from "@/utils/auth";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {loginUser, getUserInfo} from "@/redux/User/user.action";
+// import {loginUser, getUserInfo} from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { signInValidationSchema } from "@/helpers/validation";
@@ -31,17 +31,17 @@ const LoginWithClassCode = () => {
     checkIsAuthenticated &&	navigate("/student-experience"); 
   },[checkIsAuthenticated, navigate]);
 
-  const signIn= async (data)=>{
-    try {
-      let response = await dispatch(loginUser(data));
-      if(response?.payload?.status === 200){
-        dispatch(getUserInfo());
-        navigate("/student-experience");
-      }
-    } catch (error) {
-      toast.error("An Error Occured, please try again");
-    }
-  };
+  // const signIn= async (data)=>{
+  //   try {
+  //     let response = await dispatch(loginUser(data));
+  //     if(response?.payload?.status === 200){
+  //       dispatch(getUserInfo());
+  //       navigate("/student-experience");
+  //     }
+  //   } catch (error) {
+  //     toast.error("An Error Occured, please try again");
+  //   }
+  // };
 
   const resolver = yupResolver(signInValidationSchema);
 
