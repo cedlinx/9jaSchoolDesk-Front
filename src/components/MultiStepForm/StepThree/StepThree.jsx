@@ -7,7 +7,7 @@ import { useForm, Controller } from "react-hook-form";
 import { stepThreeValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDropzone } from "react-dropzone";
-import imagePlaceholder from "@/assets/images/upload-image-placeholder.svg";
+// import imagePlaceholder from "@/assets/images/upload-image-placeholder.svg";
 
 const StepThree = ({nextStep, handleFormData, values, prevStep}) => {
 
@@ -60,7 +60,7 @@ const StepThree = ({nextStep, handleFormData, values, prevStep}) => {
               name="uploadedImage"
               control={control}
               render={({field }) => (
-                <img {...field} {...getRootProps()} src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : imagePlaceholder} alt="" />
+                <img {...field} {...getRootProps()} src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : ""} alt="" />
               )}
             />
           </div>

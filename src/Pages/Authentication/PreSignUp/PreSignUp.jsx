@@ -71,6 +71,10 @@ const PreSignUp = () => {
     setValue(e.target.name, e.target.value);
   };
 
+  const handleNumberInputChange = (e, inputName) => {
+    let value = e.target.value.replace(/[^0-9]/g, "");
+    setValue(inputName, value);
+  };
 
   return (
     <AuthPageContainer showTopDivWave={false}>
@@ -115,9 +119,11 @@ const PreSignUp = () => {
                       {...field} 
                       placeholder={" "}
                       label={"Enter OTP sent to email"}
-                      type="number"
+                      type="text"
                       error={errors?.otp && errors?.otp?.message}
                       suffixIcon={<img style={{cursor: "pointer", width: "4.5rem"}} src={sendOtpBtn} onClick={()=>requestOTP()} alt="sendOtpBtn" />}
+                      onChange={(e) => handleNumberInputChange(e, "otp")}
+                      maxLength={6}
                     />
                   )}
                 />
