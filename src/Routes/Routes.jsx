@@ -60,7 +60,7 @@ const RoutesComponent = () => {
         <Route  path="reset-password/:token" element={<ResetPassword />} />	
         {/* <Route  path="request-verification-link" element={<RequestVerificationLink />} />	 */}
 				
-        <Route path="student-experience" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="student" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
 
           <Route index path="dashboard" element={<DashboardStudent  />} />
           <Route path="profile" element={<ProfileStudent  />} />
@@ -75,7 +75,7 @@ const RoutesComponent = () => {
         </Route>			
 
 
-        <Route path="parent-experience" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="parent" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
 
           <Route index path="dashboard" element={<DashboardParent  />} />
           <Route path="profile" element={<ProfileParent  />} />
@@ -84,7 +84,7 @@ const RoutesComponent = () => {
 
         </Route>	
 
-        <Route path="teacher-experience" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="teacher" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
 
           <Route index path="dashboard" element={<DashboardTeacher  />} />
           <Route path="profile" element={<ProfileTeacher  />} />

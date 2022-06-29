@@ -58,7 +58,7 @@ const CreateActivity = () => {
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
-        <h3>Create Activity</h3>
+        <h3 className={cx(styles.title)}>Create Activity</h3>
 
         <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
@@ -71,7 +71,7 @@ const CreateActivity = () => {
               <SelectField 
                 defaultSelect="Task Category"
                 options={[{value: "", label: ""}]}
-              
+                marginbottom="1rem"
               />
 
               <TextArea 
@@ -83,9 +83,7 @@ const CreateActivity = () => {
 
               <SelectField 
                 defaultSelect="Assigned to entire class"
-              
                 options={[{value: "", label: ""}]}
-            
               />
 
               <label htmlFor="docType">Response Type</label>

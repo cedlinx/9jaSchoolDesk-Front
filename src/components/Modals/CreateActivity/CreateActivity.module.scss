@@ -3,6 +3,7 @@
     background-color: #fff;
     background-color: transparent;
     gap: 1rem;
+    font-family: Jost;
 
     .header{
         align-items: flex-end;
@@ -16,14 +17,15 @@
         }
 
     }
+
     .formWrapper{
         background-color: #fff;
         padding: 1rem;
         border-radius: 0.5rem;
         gap: 1rem;
 
-        h3{
-            font-size: 1rem;
+        .title{
+            font-size: 1.25rem;
             text-align: center;
             color: #D25B5D;
         }
@@ -31,41 +33,33 @@
         form{    
             
             .wrapper{
-                gap: 2rem;
+                gap: 1.5rem;
 
                 .leftSection{
-                    gap: 1rem;
+                    gap: 0rem;
 
+                  textarea{
+                      border-radius: 1rem;
+                    border: 1px solid #E0E0E0;
+                    padding: 0.5rem;
+                    background-color: #FFFF;
+                    font-family: Jost;
+
+                    &:focus{
+                        box-shadow: none ;
+                    }
+                  }
+                }
+
+                .rightSection{
+                    >label{
+                        font-size: 1rem;
+                        color: #000;
+                    }
                     .radioButtonGroup{
                         gap: 1.5rem;
                         font-size: 0.875rem;
-                    }
-
-                    .fileUploadDiv{
-                        height: 7rem;
-                        border: 1px dashed #D25B5D;
-                        white-space: nowrap;
-                        font-size: 0.75rem;
-                        border-radius: 0.5rem;
-                        background-color: #d6777917;
-                    }
-
-                    .thumbnailDiv{
-                        p{
-                            font-size: 1rem;
-                            color: #000;
-                            margin: 0rem;
-                            line-height: 1;
-
-                            svg{
-                                cursor: pointer;
-                                margin-left: 2rem;
-                            }
-                        }
-                        small{
-                            font-size: 0.75rem;
-                            color: #828282;
-                        }
+                        margin: 1rem 0rem;
                     }
                 }
             }

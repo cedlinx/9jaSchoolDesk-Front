@@ -1,6 +1,8 @@
 import jwtDecode from "jwt-decode";
 import { setAuthToken } from "./setAuthToken";
 
+
+
 export const isAuthenticated = () => {
   const token = getToken();
   return !!token;

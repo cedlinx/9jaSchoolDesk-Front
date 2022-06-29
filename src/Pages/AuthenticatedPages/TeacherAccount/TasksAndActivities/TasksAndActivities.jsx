@@ -34,7 +34,7 @@ const TasksAndActivities = () => {
   return (
     <div className={cx(styles.tasksAndActivitiesContainer)}>
       <div className={cx(styles.header, "flexRow")}>
-        <h5>Activities</h5>
+        <h3 className={cx(styles.title)}>Activities</h3>
         <Button  onClick={()=> dispatch(showModal({action: "show", type:"createActivity"}))} title="Create Activity" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
       </div>
 
@@ -42,7 +42,7 @@ const TasksAndActivities = () => {
         <Tabs centralise tabs={tabsComponents} />
       </div>
       
-      {modalState === "show" ? <Modal show >{modalType === "createActivity" ?<CreateActivityModal /> : modalType === "viewSubmission" ?<ViewSubmissionModal /> :  null}</Modal> : null}
+      {modalState === "show" ? <Modal size="lg" show >{modalType === "createActivity" ?<CreateActivityModal /> : modalType === "viewSubmission" ?<ViewSubmissionModal /> :  null}</Modal> : null}
     </div>
   );
 };

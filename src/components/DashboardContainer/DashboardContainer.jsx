@@ -27,7 +27,7 @@ const DashboardContainer = (props) => {
       <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
 
       <div className={cx(styles.contentArea)}>
-        {rootPath === "teacher-experience" && actualPath !== "profile" ? <div className={cx(styles.sidebar, "")}>
+        {rootPath === "teacher" && actualPath !== "profile" ? <div className={cx(styles.sidebar, "")}>
           <SideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
         </div> : null}
         <div className={cx(styles.pageContent)}>{children}</div>

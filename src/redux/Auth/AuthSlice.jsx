@@ -1,5 +1,6 @@
 import { loginWithCodeApi, loginApi, parentSignUpApi, forgotPasswordApi, resetPasswordApi, getOTPApi, verifyOTPApi, proprietorSignUpApi, getQRCodeApi, changePasswordApi, signUpApi  } from "../api/auth";
 import { toast } from "react-toastify";
+import {Navigate} from "react-router-dom";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { setToken } from "@/utils/auth";
@@ -90,6 +91,11 @@ export const authSlice = createSlice({
 
     signUpAction: (state, action) => {
       state.signUpData = action.payload;
+      state.loading = false;
+    },
+
+    logoutAction: (state, action) => {
+      state.logoutData = action.payload;
       state.loading = false;
     }
   }
@@ -249,8 +255,9 @@ export const logout = () => async (dispatch) => {
   try {
     localStorage.clear();
     setAuthToken(false);
+    window.location.href = ("/");
   } catch (e) {
-    return dispatch(hasError(e.response.message));
+    return dispatch(hasError(e.message));
   }
 };
 

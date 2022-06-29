@@ -25,7 +25,7 @@ const AllTasks = () => {
       Header: () => (
         <div
           style={{
-            minWidth: "auto"
+            minWidth: "12.5rem"
           }}
         >Task</div>
       ),
@@ -33,7 +33,7 @@ const AllTasks = () => {
       Cell: (row) => {
         let task = row.cell.row.values.task;
         return <div>
-          <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{titleCase(task)}</p>
+          <p style={{fontWeight: "500", color: "#4F4F4F", fontSize: "1rem"}}>{titleCase(task)}</p>
               
         </div>;
       }
@@ -42,7 +42,7 @@ const AllTasks = () => {
       Header: () => (
         <div
           style={{
-            minWidth: "15rem"
+            minWidth: "auto"
           }}
         >Category</div>
       ),
@@ -50,7 +50,7 @@ const AllTasks = () => {
       Cell: (row) => {
         let category = row.cell.row.values.category;
         return <div>
-          <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{titleCase(category)}</p>
+          <p style={{fontWeight: "500", color: "#4F4F4F", fontSize: "1rem"}}>{titleCase(category)}</p>
                 
         </div>;
       }
@@ -59,7 +59,7 @@ const AllTasks = () => {
       Header: () => (
         <div
           style={{
-            minWidth: "auto"
+            minWidth: "10rem"
           }}
         >Assigned To</div>
       ),
@@ -67,7 +67,7 @@ const AllTasks = () => {
       Cell: (row) => {
         let assignedTo = row.cell.row.values.assignedTo;
         return <div>
-          <img style={{borderRadius: "50%", width: "3rem"}} src={assignedTo?.imageUrl} alt="img" /><span>{assignedTo?.name}</span>
+          <img style={{borderRadius: "50%", width: "3rem", marginRight: "0.5rem"}} src={assignedTo?.imageUrl} alt="img" /><span style={{color: "#4F4F4F", fontSize: "1rem"}}>{assignedTo?.name}</span>
         </div>;
       }
     },
@@ -83,7 +83,7 @@ const AllTasks = () => {
       Cell: (row) => {
         let date = row.cell.row.values.date;
         return <div>
-          <p style={{fontWeight: "500", color: "#BDBDBD", fontSize: "12px"}}>{date}</p>
+          <p style={{fontWeight: "500", color: "#4f4f4f", fontSize: "1rem"}}>{date}</p>
               
         </div>;
       }

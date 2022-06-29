@@ -44,7 +44,9 @@
                     .fileUploadDiv{
                         height: 7rem;
                         border: 1px dashed #D25B5D;
-                        white-space: nowrap;
+                        white-space: wrap;
+                        padding: 0.5rem;
+                        text-align: center;
                         font-size: 0.75rem;
                         border-radius: 0.5rem;
                         background-color: #d6777917;

@@ -8,7 +8,7 @@ import styled from "styled-components";
 const ButtonComponent = styled.button`
 padding: 0.625rem 1.125rem;
   border: 0.5px solid;
-  font-family: KGCorneroftheSky, NunitoSans;
+  // font-family: KGCorneroftheSky, NunitoSans;
   font-size: 0.75rem;
   width: max-content;
   align-items: center;

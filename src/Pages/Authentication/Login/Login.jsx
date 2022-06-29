@@ -33,7 +33,7 @@ const Login = () => {
   const rootPath = location.pathname.split("/")[1];
   const actualPath = location.pathname.split("/").pop();
 
-
+  console.log(rootPath, actualPath);
   const checkIsAuthenticated = isAuthenticated();
 
   useEffect(() => {
@@ -41,6 +41,7 @@ const Login = () => {
   }, [checkIsAuthenticated, navigate, rootPath]);
 
   const signIn = async (data) => {
+    navigate(`/${actualPath}/dashboard`);
     // try {
     //   let response = await dispatch(loginUser(data));
     //   if (response?.payload?.status === 200) {

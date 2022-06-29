@@ -30,12 +30,12 @@ const AccordionComponent =(props)=>{
                   <AccordionItemButton>
                     <img src={singleSubmissionIcon} alt="icon" />
                     {item.title}
-                    <Button title="Leave Feedback" />
+                    <Button bgColor="#D25B5D" textColor="#fff" title="Leave Feedback" />
                   </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                   <TextArea placeholder="Leave a feedback for the student" />
-                  <Button title="Send" />
+                  <Button title="Send" bgColor="#BDBDBD" textColor="#fff" />
               
                 </AccordionItemPanel>
               </AccordionItem>

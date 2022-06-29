@@ -28,7 +28,7 @@ const LoginWithClassCode = () => {
   const checkIsAuthenticated = isAuthenticated();
 
   useEffect(() => {
-    checkIsAuthenticated &&	navigate("/student-experience"); 
+    checkIsAuthenticated &&	navigate("/student"); 
   },[checkIsAuthenticated, navigate]);
 
   // const signIn= async (data)=>{
@@ -36,7 +36,7 @@ const LoginWithClassCode = () => {
   //     let response = await dispatch(loginUser(data));
   //     if(response?.payload?.status === 200){
   //       dispatch(getUserInfo());
-  //       navigate("/student-experience");
+  //       navigate("/student");
   //     }
   //   } catch (error) {
   //     toast.error("An Error Occured, please try again");

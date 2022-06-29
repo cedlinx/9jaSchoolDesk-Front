@@ -126,7 +126,7 @@ const ViewSubmission = () => {
             </div>
             <div className={cx(styles.rightSection, "col-sm-12", "col-md-12", "col-lg-6")}>
 
-              {/* {<div className={cx(styles.singleSubmissionDiv)}>
+              {<div className={cx(styles.singleSubmissionDiv)}>
                 <small>Submission</small>
                 <p>
                   <img src={singleSubmissionIcon} alt="icon" />
@@ -135,11 +135,14 @@ const ViewSubmission = () => {
                 </p>
 
                 <label htmlFor="feedback">Feedback</label>
-                <TextArea 
-                  placeholder={"Leave a feedback for the student"}
-                />
-                <Button title="Send" />
-              </div>} */}
+                <div className={cx(styles.textAreaDiv, "flexCol")}>
+                  <TextArea 
+                    placeholder={"Leave a feedback for the student"}
+                  />
+                  <Button  title="Send" bgColor="#BDBDBD" textColor="#fff" />
+                </div>
+              
+              </div>}
 
               {
                 <div className={cx(styles.multiSubmissionDiv)}>

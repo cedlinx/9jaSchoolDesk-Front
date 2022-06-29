@@ -5,17 +5,20 @@
     padding: 1rem;
     background-color: #fff;
     gap: 1rem;
+    font-family: Jost;
 
     .header{
         text-align: center;
-        color: #22467B;
         justify-content: space-between;
         padding: 0rem 0rem;
         align-items: center;
 
-        h5{
+        .title{
         line-height: 1;
             margin: 0rem;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #000;
         }
     }
 

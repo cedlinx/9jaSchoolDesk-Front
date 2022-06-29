@@ -221,7 +221,7 @@ const Home = () => {
     <div className={cx(styles.dashboardHomeContainer)}>
 
       <div className={cx(styles.heading, "flexRow")}>
-        <p>Classroom</p>
+        <h3 className={cx(styles.title)}>Classroom</h3>
         <div className={cx(styles.btnGroup, "flexRow")}>
           <Button onClick={()=>setTakeAttendance(true)} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
           <Button onClick={() => dispatch(showModal({action: "show", type: "addStudent"}))} type title="Add Student" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />

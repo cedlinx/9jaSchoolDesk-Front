@@ -6,6 +6,7 @@
     background-color: #fff;
     gap: 1rem;
     min-height: calc(100% - 50px);
+    font-family: Jost;
 
     .header{
         text-align: center;
@@ -14,9 +15,13 @@
         padding: 0rem 0rem;
         align-items: center;
 
-        h5{
+        .title{
         line-height: 1;
             margin: 0rem;
+            color: #000;
+            font-size: 1.5rem;
+            font-weight: bold;
+
         }
     }
 

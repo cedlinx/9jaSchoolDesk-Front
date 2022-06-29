@@ -28,7 +28,7 @@ const Lessons = () => {
   return (
     <div className={cx(styles.lessonsContainer, "flexCol")}>
       <div className={cx(styles.header, "flexRow")}>
-        <h5>My Lessons</h5>
+        <h3 className={cx(styles.title)}>My Lessons</h3>
         <Button  onClick={()=> dispatch(showModal({action: "show", type:"uploadLesson"}))} title="Upload Lesson" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
       </div>
       <div className={cx(styles.body, "flexCol")}>
@@ -46,7 +46,7 @@ const Lessons = () => {
         </div>
    
       </div>
-      {modalState === "show" ? <Modal show >{modalType === "uploadLesson" ?<UploadLessonModal /> :  null}</Modal> : null}
+      {modalState === "show" ? <Modal size="lg" show >{modalType === "uploadLesson" ?<UploadLessonModal /> :  null}</Modal> : null}
     </div>
   );
 };

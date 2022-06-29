@@ -6,6 +6,13 @@
 }
 
 @font-face {
+  font-family: 'Jost';
+  src: local('Jost'), 
+  url("./assets//fonts/Jost-Regular.ttf") 
+  format('truetype');
+}
+
+@font-face {
   font-family: 'Kronika';
   src: local('Kronika'), 
   url("./assets//fonts/Kronika.ttf") 
@@ -36,7 +43,7 @@ html{
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'KGCorneroftheSky', 'Poppins', "NunitoSans", 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, "Jost", 'KGCorneroftheSky', 'Poppins', "NunitoSans", 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -146,12 +153,12 @@ li{
   list-style-type: none;
 }
 p{
-  font-family: NunitoSans;
+  /* font-family: NunitoSans; */
   margin: 0rem;
   padding: 0rem;
 }
 h1,h2,h3 {
-  font-family: KGCorneroftheSky;
+  /* font-family: KGCorneroftheSky; */
   /* font-weight: bold; */
 }
   

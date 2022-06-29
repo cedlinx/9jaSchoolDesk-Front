@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import closeIcon from "@/assets/icons/closeIcon.svg";
 
-const ModalContainer = ({ children}) => {
-
+const ModalContainer = ({ children, size="md"}) => {
+  // const {size="md"} = props;
   const dispatch = useDispatch();
 
   const handleClose = (data) => {
@@ -22,7 +22,7 @@ const ModalContainer = ({ children}) => {
           onHide={handleClose}
           scrollable={true}
           centered
-          size='lg'
+          size={size}
           dialogClassName='generic-modal-wrapper'
         >
           {/* <Modal.Header className="generic-modal-header">

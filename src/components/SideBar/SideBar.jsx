@@ -39,8 +39,8 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
     // dispatch(getUserInfo());
   });
 
-  const userDetails = JSON.parse(localStorage.getItem("loginData")).logged_in_user;
-  const userRole = userDetails?.group?.name;
+  // const userDetails = JSON.parse(localStorage.getItem("loginData")).logged_in_user;
+  // const userRole = userDetails?.group?.name;
 	
   const handleLogout=()=>{
     dispatch(logout());

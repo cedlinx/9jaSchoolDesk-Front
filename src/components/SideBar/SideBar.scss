@@ -154,6 +154,14 @@ main header {
       // color: #0066F5;
     }
   }
+
+  .pro-inner-item{
+    &:hover{
+    background-color: #D25B5D;
+    border-radius: 4px;
+
+    }
+  }
 }
 
 @media (max-width: 990px) {
@@ -205,7 +213,11 @@ main header {
 }
 
 .pro-sidebar .pro-menu a{
-  font-size: 12px;
+  font-size: 1rem;
+
+  &:hover{
+    color: #fff !important;
+  }
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {

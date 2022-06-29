@@ -31,6 +31,8 @@ import {
   DropdownItem
 } from "reactstrap";
 
+import { logout } from "@/redux/Auth/AuthSlice";
+
 
 const Header = (props) => {
   const {handleToggleSidebar, showLinks=true} = props;
@@ -46,11 +48,6 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const unreadNotifications = useSelector((state)=>state?.notifications?.notificationSummaryData?.data?.unread);
   const userDetails = useSelector((state)=>state?.user?.getUserInfoData?.data?.data);
-
-  useEffect(() => {
-    // dispatch(notificationSummary());
-    // dispatch(getUserInfo());
-  },[]);
 
   
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -94,39 +91,39 @@ const Header = (props) => {
               />
             </div>
 				
-            {userCategory !== "teacher-experience" &&
-            <div className={cx(styles.profileDiv, "flexRow")}>
+            {
+              <div className={cx(styles.profileDiv, "flexRow")}>
             
-              <NavLink to="dashboard">
-                {({ isActive }) => (
-                  <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                    <div><img src={isActive ? dashboardIconActive : dashboardIcon} alt="" /></div>
-                    <span>Dashboard</span>
-                  </div>
-                )}
-              </NavLink>
+                { userCategory !== "teacher" && <NavLink to="dashboard">
+                  {({ isActive }) => (
+                    <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                      <div><img src={isActive ? dashboardIconActive : dashboardIcon} alt="" /></div>
+                      <span>Dashboard</span>
+                    </div>
+                  )}
+                </NavLink>}
 
-              { userCategory === "student-experience" && <> <NavLink to="class-gist">
-                {({ isActive }) => (
-                  <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                    <div><img src={isActive ? classGistIconActive : classGistIcon} alt="" /></div>
-                    <span>Class Gist</span>
-                  </div>
-                )}
-              </NavLink>
+                { userCategory === "student" && <> <NavLink to="class-gist">
+                  {({ isActive }) => (
+                    <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                      <div><img src={isActive ? classGistIconActive : classGistIcon} alt="" /></div>
+                      <span>Class Gist</span>
+                    </div>
+                  )}
+                </NavLink>
             
-              <NavLink to="my-classes">
-                {({ isActive }) => (
-                  <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                    <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
-                    <span>My Classes</span>
-                  </div>
-                )}
-              </NavLink>
-              </>
-              }
+                <NavLink to="my-classes">
+                  {({ isActive }) => (
+                    <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                      <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                      <span>My Classes</span>
+                    </div>
+                  )}
+                </NavLink>
+                </>
+                }
 
-              { userCategory === "parent-experience" && 
+                { userCategory === "parent" && 
               <> 
                 <NavLink to="messages">
                   {({ isActive }) => (
@@ -139,23 +136,23 @@ const Header = (props) => {
             
                 <div><img src={unreadNotificationsIcon} alt="" /></div>
               </>
-              }
+                }
 
-              <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
-                <DropdownToggle name="profile-toggler" className={cx(styles.dropdownToggler)}>
+                <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
+                  <DropdownToggle name="profile-toggler" className={cx(styles.dropdownToggler)}>
 
-                  <span className={cx(styles.avatarDiv, styles.logoutDropdown, "flexRow")}>
-                    <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
-                    <Icon icon="clarity:caret-line" color="#000" rotate={2} />
-                  </span>
-                </DropdownToggle>
-                <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+                    <span className={cx(styles.avatarDiv, styles.logoutDropdown, "flexRow")}>
+                      <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
+                      <Icon icon="clarity:caret-line" color="#000" rotate={2} />
+                    </span>
+                  </DropdownToggle>
+                  <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
 
-                  <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem>
-                  <DropdownItem>Logout</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </div>
+                    <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem>
+                    <DropdownItem onClick={() => dispatch(logout())}>Logout</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
             }
           </div>
 

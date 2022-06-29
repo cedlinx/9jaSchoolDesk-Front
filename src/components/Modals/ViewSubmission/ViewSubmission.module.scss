@@ -3,7 +3,8 @@
     background-color: #fff;
     background-color: transparent;
     gap: 1rem;
-    padding-top: 3rem;
+    padding-top: 0rem;
+    font-family: Jost;
 
     .header{
         align-items: flex-end;
@@ -15,7 +16,6 @@
         svg{
             cursor: pointer;
         }
-
     }
     .formWrapper{
         background-color: #fff;
@@ -24,48 +24,94 @@
         gap: 1rem;
 
         h3{
-            font-size: 1rem;
+            font-size: 1.25rem;
             text-align: center;
             color: #D25B5D;
         }
 
         form{    
-            
             .wrapper{
                 gap: 2rem;
 
                 .leftSection{
-                    gap: 1rem;
-
-                    .radioButtonGroup{
-                        gap: 1.5rem;
+                    label{
                         font-size: 0.875rem;
+                        color: #A0A4A8;
                     }
+                    p{
+                        font-size: 1rem;
+                        margin-bottom: 0.5rem;
+                        display: flex;
+                        align-items: center;
+                        font-weight: bold;
+                        color: #4F4F4F;
 
-                    .fileUploadDiv{
-                        height: 7rem;
-                        border: 1px dashed #D25B5D;
-                        white-space: nowrap;
-                        font-size: 0.75rem;
-                        border-radius: 0.5rem;
-                        background-color: #d6777917;
+                        img{
+                            margin-right: 0.5rem;
+                        }
                     }
+                }
 
-                    .thumbnailDiv{
-                        p{
+                .rightSection{
+                    .singleSubmissionDiv{
+                        padding-bottom: 2rem;
+                        small{
+                            color: #A0A4A8;
                             font-size: 1rem;
-                            color: #000;
-                            margin: 0rem;
-                            line-height: 1;
+                        }
+                        p{
+                            display: flex;
+                            gap: 1rem;
+                            margin: 0.5rem 0rem 1rem 0rem;
+                            align-items: center;
 
-                            svg{
-                                cursor: pointer;
-                                margin-left: 2rem;
+                            span{
+                                color: #4F4F4F;
                             }
                         }
-                        small{
-                            font-size: 0.75rem;
-                            color: #828282;
+
+                        label{
+                            color: #4F4F4F;
+                            
+                        }
+                        .textAreaDiv{
+                            border-radius: 1rem;
+                            border: 1px solid #E0E0E0;
+                            padding: 0.5rem;
+                            background-color: #FFFF;
+
+                               textarea{
+                            border: none;
+                            color: #A0A4A8;
+                            background-color: transparent;
+                            outline: none;
+                            padding: 0rem;
+                            font-family: Jost;
+
+                            &:focus{
+                                box-shadow: none ;
+                            }
+                        }
+
+                        button{
+                            align-self: flex-end;
+                            padding: 0.25rem 1rem;
+                        }
+                        }
+                    }
+
+                    .multiSubmissionDiv{
+                        height: 100%;
+
+                        p{
+                            color: #A0A4A8;
+
+                            span{
+                                margin-left: 0.5rem;
+                                color: #D25B5D;
+                                border-bottom: 1px solid #D25B5D;
+                                cursor: pointer;
+                            }
                         }
                     }
                 }
