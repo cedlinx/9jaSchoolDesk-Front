@@ -13,7 +13,7 @@ import { isAuthenticated, decodeToken, getToken } from "@/utils/auth";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { loginUser, getUserInfo } from "@/redux/Auth/AuthSlice";
+import { login } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { signInValidationSchema } from "@/helpers/validation";
@@ -32,25 +32,28 @@ const Login = () => {
   const {user} = useParams();
   const rootPath = location.pathname.split("/")[1];
   const actualPath = location.pathname.split("/").pop();
+  const isOTPVerified = localStorage.getItem("userData")?.hasverifiedotp;
 
-  console.log(rootPath, actualPath);
   const checkIsAuthenticated = isAuthenticated();
 
   useEffect(() => {
-    checkIsAuthenticated && navigate(`/${rootPath}/dashboard`);
-  }, [checkIsAuthenticated, navigate, rootPath]);
+    checkIsAuthenticated && isOTPVerified && navigate(`/${user}/dashboard`);
+  }, [checkIsAuthenticated, isOTPVerified, navigate, user]);
 
   const signIn = async (data) => {
-    navigate(`/${actualPath}/dashboard`);
-    // try {
-    //   let response = await dispatch(loginUser(data));
-    //   if (response?.payload?.status === 200) {
-    //     dispatch(getUserInfo());
-    //     navigate(`/${rootPath}/dashboard`);
-    //   }
-    // } catch (error) {
-    //   toast.error("An Error Occured, please try again");
-    // }
+    // navigate(`/${actualPath}/dashboard`);
+    console.log(data);
+    try {
+      let response = await dispatch(login({payload:  {email: data.email, password: data.password}, user: user}));
+      console.log(response?.payload);
+      if (response?.payload?.success) {
+        toast.success(response?.payload?.message);
+        // dispatch(getUserInfo());
+        navigate("otp-verification", { state: { email: data.email } });
+      }
+    } catch (error) {
+      toast.error("An Error Occured, please try again");
+    }
   };
 
   const resolver = yupResolver(signInValidationSchema);
@@ -64,7 +67,7 @@ const Login = () => {
 
   return (
     <>
-      {checkIsAuthenticated ? <Navigate replace to={`/${rootPath}/dashboard`} /> :
+      {checkIsAuthenticated && isOTPVerified ? <Navigate replace to={`/${user}/dashboard`} /> :
         <>
           <AuthPageContainer>
 
@@ -123,15 +126,15 @@ const Login = () => {
                     <div onClick={handleSubmit((data) => signIn(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
                       <Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
                     </div>
-                    <p className={cx(styles.formText)}>
+                    {/* <p className={cx(styles.formText)}>
                       <Link to="/login-with-class-code">Login With Class Code</Link>
-                    </p>
+                    </p> */}
 
-                    {/* {user === "parent" && 
-                    <p className={cx(styles.formText)}>Don't have an account? <Link to="/parent-signup">Sign Up</Link></p> } */}
+                    {/* {user === "guardian" && 
+                    <p className={cx(styles.formText)}>Don't have an account? <Link to="/guardian-signup">Sign Up</Link></p> } */}
 
  
-                    { user !== "teacher" &&  <p className={cx(styles.formText)}>Don't have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p> }
+                    { user === "guardian" &&  <p className={cx(styles.formText)}>Don't have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p> }
 
                   </form>
                 </div>

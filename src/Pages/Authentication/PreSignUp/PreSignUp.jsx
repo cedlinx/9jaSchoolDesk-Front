@@ -24,7 +24,7 @@ import siteLogo from "@/assets/images/Logo.png";
 import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
 import TopDivWave from "@/components/WaveSvg/TopDivWave";
 import sendOtpBtn from "@/assets/images/send-otp-btn.svg";
-import {getOTP, signUp, parentSignUp, proprietorSignUp} from "@/redux/Auth/AuthSlice";
+import {getOTP, verifyOTP} from "@/redux/Auth/AuthSlice";
 
 
 
@@ -32,18 +32,18 @@ const PreSignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const verifyOTPData = useSelector((state) => state?.auth?.verifyOTPData?.message);
+  const verifyOTPData = useSelector((state) => state?.auth?.verifyOTPData?.data?.message);
   const [emailValue, setEmailValue] = useState("");
   const params = useParams();
   const user = params?.user;
-  console.log(user);
+  console.log(verifyOTPData);
 
   useEffect(() => {
     if (verifyOTPData) {
       toast.success(verifyOTPData);
-      navigate(`/signup/${user}`);
+      navigate(`/signup/${user}`, { state: { email: emailValue } });
     }
-  }, [navigate, user, verifyOTPData]);
+  }, [emailValue, navigate, user, verifyOTPData]);
 
 
   const resolver = yupResolver(preSignUpValidationSchema);
@@ -56,13 +56,12 @@ const PreSignUp = () => {
   const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
   const sendRequest = (data) => {
-    dispatch(signUp({payload: data, user: user}));
-    navigate(`/signup/${user}`);
-
+    dispatch(verifyOTP(data));
+    // navigate(`/signup/${user}`);
   };
 
   const requestOTP = () => {
-    dispatch(getOTP({payload: emailValue, user:user}));
+    dispatch(getOTP({payload: {email: emailValue}, user:user}));
   };
 
   const handleInputChange = (e) => {
@@ -106,6 +105,7 @@ const PreSignUp = () => {
                       label={"Enter Email"}
                       type="email"
                       error={errors?.email && errors?.email?.message}
+                      suffixIcon={<img style={{cursor: "pointer", width: "4.5rem"}} src={sendOtpBtn} onClick={()=>requestOTP()} alt="sendOtpBtn" />}
                       onChange={(e) => handleInputChange(e)}
                     />
                   )}
@@ -121,7 +121,7 @@ const PreSignUp = () => {
                       label={"Enter OTP sent to email"}
                       type="text"
                       error={errors?.otp && errors?.otp?.message}
-                      suffixIcon={<img style={{cursor: "pointer", width: "4.5rem"}} src={sendOtpBtn} onClick={()=>requestOTP()} alt="sendOtpBtn" />}
+                      
                       onChange={(e) => handleNumberInputChange(e, "otp")}
                       maxLength={6}
                     />

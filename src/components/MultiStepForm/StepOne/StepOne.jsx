@@ -15,14 +15,14 @@ import PhoneInput, {isValidPhoneNumber } from "react-phone-number-input";
 import "./PhoneInput.scss";
 
 
-const StepOne = ({ nextStep, handleFormData, values }) => {
+const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
   const navigate = useNavigate();
   const { user } = useParams();
 
   const resolver = yupResolver(stepOneValidationSchema);
-
+  console.log(signUpEmail);
   const defaultValues = {
-    email: values.email,
+    email: signUpEmail || values.email,
     firstName: values.firstName,
     lastName: values.lastName,
     phone: values.phone,

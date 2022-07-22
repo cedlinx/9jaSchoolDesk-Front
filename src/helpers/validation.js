@@ -10,6 +10,14 @@ export const signInValidationSchema = Yup.object().shape({
     .min(6, "Must be above 6 characters")
 });
 
+export const loginWithOTPCodeValidationSchema = Yup.object().shape({
+  otp: Yup.string().required("OTP is required")
+});
+
+export const loginWithClassCodeValidationSchema = Yup.object().shape({
+  accessCode: Yup.string().required("Access code is required")
+});
+
 export const preSignUpValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address").required("Email is required"),
   otp: Yup.string()

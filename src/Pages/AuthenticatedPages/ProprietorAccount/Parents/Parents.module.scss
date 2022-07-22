@@ -1,0 +1,133 @@
+.parentsHomeContainer{
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: auto;
+    background-color: #fff;
+    // min-height: (100vh);
+    font-family: Jost;
+
+    .heading{
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 1rem 1rem 1rem 1rem;
+        align-items: center;
+        width: 100%;
+        
+        .title{
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1;
+            margin: 0rem;
+            color: #22467B;
+        }
+
+        .btnGroup{
+            width: auto;
+            gap: 1rem;
+            button{
+                padding: 0.5rem 1rem;
+            }
+        }
+    }
+
+    .body{
+        gap: 1rem;
+
+       .summaryDiv{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+            gap: 1rem;
+            padding: 0rem 0rem;
+
+            .card{
+                border: 1px solid #e2e2e29a;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+
+                .leftSection{
+                    gap: 0.5rem;
+                    p{
+                        color: #828282;
+                        font-size: 1rem;
+                    }
+                    h3{
+                        color: #4F4F4F;
+                        font-size: 1.25rem;
+                    }
+                }
+
+                .rightSection{
+                    .cardIconDiv{
+                        img{
+                            width: 2rem;
+                            height: 2rem;
+                            padding: 0.25rem;
+                            border-radius: 50%;
+                            background-color: #D25B5D14;
+                        }
+                    }
+                }
+            }
+       }
+
+       .tableSection{
+        .title{
+            color: #22467B;
+        }
+       }
+    }
+}
+
+@media all and (min-width: 768px){
+    .parentsHomeContainer{
+        padding: 0rem 0rem 1rem 0rem;
+        width: auto;
+        min-height: (100vh);
+    
+        .heading{
+            padding: 1rem 1rem 1rem 1rem;
+          
+            p{
+                font-size: 1.25rem;
+            }
+    
+            .btnGroup{
+                width: auto;
+                gap: 1rem;
+                button{
+                    padding: 0.5rem 1rem;
+                }
+            }
+        }
+    
+        .body{
+            padding: 0rem 1rem;
+            gap: 2rem;
+        }
+    }
+}
+
+@media all and (min-width:991px){
+    .parentsHomeContainer{
+    
+        .heading{
+            padding: 1rem 1rem;
+          
+            p{
+                font-size: 1.25rem;
+            }
+        }
+    
+        .body{
+            gap: 3rem;
+        }
+    }
+
+    }
+
+
+@media all and (min-width:1200px){
+
+}       

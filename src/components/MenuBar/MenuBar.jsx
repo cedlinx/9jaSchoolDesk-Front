@@ -25,7 +25,7 @@ const MenuBar = () => {
           <Nav className={cx(styles.primaryNavigation)}>
             <Link onClick={(e) =>handleClick(e)} id="home" to="#">Home</Link>
             <Link onClick={(e) =>handleClick(e)} id="student" to="#">Student</Link>
-            <Link onClick={(e) =>handleClick(e)} id="parent" to="#">Parent</Link>
+            <Link onClick={(e) =>handleClick(e)} id="guardian" to="#">Guardian</Link>
             <Link onClick={(e) =>handleClick(e)} id="teacher" to="#">Teacher</Link>
           </Nav>				
 

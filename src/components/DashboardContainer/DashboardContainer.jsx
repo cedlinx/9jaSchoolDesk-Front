@@ -5,7 +5,8 @@ import cx from "classnames";
 import styles from "./DashboardContainer.module.scss";
 
 import DashboardHeader from "../DashboardHeader/DashboardHeader";
-import SideBar from "@/components/SideBar/SideBar";
+import GeneralSideBar from "@/components/SideBars/General/SideBar";
+import ProprietorSideBar from "@/components/SideBars/Proprietor/SideBar";
 
 
 const DashboardContainer = (props) => {
@@ -22,16 +23,31 @@ const DashboardContainer = (props) => {
   };
 
   return (
-    <div className={cx(styles.dashboardContainer, "flexCol", "")}>
+    <div className={cx(styles.dashboardContainer, "flexCol")}>
 			
-      <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
+      { rootPath !== "proprietor" ? 
+        <div className={cx(styles.generalLayout, "flexCol")}>
+          <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
 
-      <div className={cx(styles.contentArea)}>
-        {rootPath === "teacher" && actualPath !== "profile" ? <div className={cx(styles.sidebar, "")}>
-          <SideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
-        </div> : null}
-        <div className={cx(styles.pageContent)}>{children}</div>
-      </div>
+          <div className={cx(styles.contentArea)}>
+            {rootPath === "teacher" && actualPath !== "profile" ? <div className={cx(styles.sidebar, "")}>
+              <GeneralSideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
+            </div> : null}
+            <div className={cx(styles.pageContent)}>{children}</div>
+          </div>
+        </div> 
+        :
+        <div className={cx(styles.proprietorLayout, "flexRow")}>
+          <div className={cx(styles.sidebar)}>
+            <ProprietorSideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
+          </div>
+       
+          <div className={cx(styles.contentArea, "flexCol")}>
+            <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
+            <div className={cx(styles.pageContent)}>{children}</div>
+          </div>
+        </div>
+      }
 			
     </div>
   );

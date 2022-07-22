@@ -5,7 +5,7 @@
     border: 1px solid #E9ECFF;
 
     .navbarContainer{
-        padding: 0rem 0.5rem;
+        padding: 0.75rem 0.5rem;
         margin: 0rem;
         justify-content: space-between;
         background-color: #fff;
@@ -52,6 +52,20 @@
 
                 .searchComponentDiv{
                     width: 100%;
+                    border: 1px solid rgba(128, 128, 128, 0.418);
+                    padding: 0.25rem;
+                    border-radius: 0.25rem;
+
+                    input{
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        margin-left: 0.25rem;
+
+                        &::placeholder{
+                            font-size: 1rem;
+                        }
+                    }
                 }
                 .profileDiv{
                     gap: 0.5rem;
@@ -126,7 +140,7 @@
         padding: 1rem 0rem;
     
         .navbarContainer{
-            padding: 0rem 1rem;
+            padding: 0.75rem 1rem;
             justify-content: space-between;
     
             .siteLogo{
@@ -331,7 +345,7 @@
                     padding: 0rem 0rem;
     
                     .searchComponentDiv{
-                        width: 75%;
+                        width: 70%;
                     }
                     .profileDiv{
                         gap: 1.5rem;

@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useCallback} from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./AddStudent.module.scss";
 import Button from "@/components/Button/Button";
@@ -29,6 +29,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const AddStudent = () => {
 
   const dispatch = useDispatch();
+  const modalData = useSelector((state) => state.modalState.modalData);
 
   const sendRequest = (data) => {
     dispatch(forgotPassword(data));
@@ -88,8 +89,7 @@ const AddStudent = () => {
               <Select
                 {...field}
                 label={"Select Student"}
-                placeholder=""
-                type="studentId"
+                defaultSelect="Select Student"
                 error={errors?.studentId && errors?.studentId?.message}
                 options={[{label: "", value: ""}]}
               />
@@ -97,6 +97,28 @@ const AddStudent = () => {
           />
 
           <small>Upload Student List</small>
+
+          { modalData?.user && modalData?.user.toLowerCase() === "proprietor" && 
+            <>
+
+              <Controller
+                name="studentClass"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    label={"Assign To Class"}
+                    defaultSelect="Assign To Class"
+                    error={errors?.studentId && errors?.studentId?.message}
+                    options={[{label: "", value: ""}]}
+                  />
+                )}
+              />
+              <span>
+              *This can be done by the teacher as well on their class dashboards so you can skip if you want to
+              </span>
+            </>
+          }
 
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
             <Button title="Add Student" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />

@@ -70,24 +70,29 @@ const Header = (props) => {
         >
           <FaBars />
         </div>
-        <Navbar.Brand className={cx(styles.siteLogo )}> 		
+        {userCategory !== "proprietor" && <Navbar.Brand className={cx(styles.siteLogo )}> 		
           <Link to={`/${userCategory}/dashboard`}><img src={Logo} alt="" /></Link>
-        </Navbar.Brand>
+        </Navbar.Brand>}
 
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
 					
           <div className={cx(styles.contentWrapper, "flexRow")}>
-            <div className={cx(styles.searchComponentDiv)}>
-              <InputField
+            <div className={cx(styles.searchComponentDiv, "flexRow")}>
+              {/* <InputField
                 
                 label={"Search here"}
-                // placeholder={"Search here"}
+                placeholder={"Search"}
                 type="text"
                 marginbottom={"0px"}
                 border={"#c1c7d0"}
                 borderradius="0.25rem"
                 icon
+              /> */}
+              <Icon icon="ei:search" color="#c4c4c4" width="28" />
+              <input
+                placeholder={"Search"}
+                type = "text"
               />
             </div>
 				
@@ -123,7 +128,7 @@ const Header = (props) => {
                 </>
                 }
 
-                { userCategory === "parent" && 
+                { userCategory === "guardian" && 
               <> 
                 <NavLink to="messages">
                   {({ isActive }) => (

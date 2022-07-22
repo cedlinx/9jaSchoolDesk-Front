@@ -1,19 +1,37 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import cx from "classnames";
 import styles from "./FinalStep.module.scss";
 import Button from "@/components/Button/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { titleCase } from "@/helpers/textTransform";
+import { signUp } from "@/redux/Auth/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 
 
 const FinalStep = ({ values }) => {
   const navigate = useNavigate();
   const { user } = useParams();
+  const dispatch = useDispatch();
+  const signUpSuccess = useSelector((state) => state?.auth?.signUpData?.data?.verified);
+ 
 
-  console.log(values);
   let {firstName, lastName, ...rest} = values;
   let payload = {...rest, name: `${titleCase(firstName)} ${titleCase(lastName)}`};
   console.log(payload);
+
+  const handleSubmit = () => {
+    dispatch(signUp({payload: payload, user: user}));
+  };
+
+  useEffect(() => {
+    if (signUpSuccess) {
+      navigate(`/${user}/dashboard`);
+    }
+  }
+  , [navigate, signUpSuccess, user]);
+
+
 
   return (
     <div className={cx(styles.finalStepContainer, "flexCol")}>
@@ -79,7 +97,7 @@ const FinalStep = ({ values }) => {
       <div className={cx(styles.btnDiv, "flexRow")}>
         <Button onClick={()=>navigate(`/login/${user}`)} title="Cancel" borderRadiusType="lowRounded" bordercolor="transparent" textColor="#f4f4f4" bgColor="gray" hoverColor="#1A3B4A" hoverBg="#f4f4f4" />
 
-        <Button title="Sign Up" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" hoverColor="#f4f4f4" hoverBg="transparent" bordercolor="transparent" />
+        <Button onClick={()=>handleSubmit()} title="Sign Up" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" hoverColor="#f4f4f4" hoverBg="transparent" bordercolor="transparent" />
       </div>
 
     </div>

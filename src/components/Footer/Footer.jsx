@@ -27,7 +27,7 @@ const Footer = () => {
         <p className={cx(styles.header)}>Product</p>
         <ul>
           <li onClick={() => navigate("#")}>Students</li>
-          <li onClick={() => navigate("#")}>Parents</li>
+          <li onClick={() => navigate("#")}>Guardians</li>
           <li onClick={() => navigate("#")}>Teachers</li>
         </ul>
       </div>

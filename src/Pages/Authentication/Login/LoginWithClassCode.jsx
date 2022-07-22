@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate, Navigate, useParams } from "react-router-dom";
 import cx from "classnames";
 import styles from "./LoginWithClassCode.module.scss";
 import Button from "@/components/Button/Button";
@@ -13,48 +13,41 @@ import { isAuthenticated, decodeToken, getToken } from "@/utils/auth";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import {loginUser, getUserInfo} from "@/redux/Auth/AuthSlice";
+import {loginWithClassCode} from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
-import { signInValidationSchema } from "@/helpers/validation";
+import { loginWithClassCodeValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import qrCode from "@/assets/images/qrCode.png";
 
-const LoginWithClassCode = () => {
+const LoginWithClassCodeComponent = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isOTPVerified = localStorage.getItem("userData")?.hasverifiedotp;
 
   const checkIsAuthenticated = isAuthenticated();
 
   useEffect(() => {
-    checkIsAuthenticated &&	navigate("/student"); 
-  },[checkIsAuthenticated, navigate]);
+    checkIsAuthenticated && isOTPVerified && navigate("/student/dashboard");
+  }, [checkIsAuthenticated, isOTPVerified, navigate]);
 
-  // const signIn= async (data)=>{
-  //   try {
-  //     let response = await dispatch(loginUser(data));
-  //     if(response?.payload?.status === 200){
-  //       dispatch(getUserInfo());
-  //       navigate("/student");
-  //     }
-  //   } catch (error) {
-  //     toast.error("An Error Occured, please try again");
-  //   }
-  // };
+  const signIn= async (data)=>{
+    let response = await dispatch(loginWithClassCode({code: data?.accessCode}));
+    console.log(response);
+  };
 
-  const resolver = yupResolver(signInValidationSchema);
+  const resolver = yupResolver(loginWithClassCodeValidationSchema);
 
   const defaultValues = {
-    email: "",
-    password: ""
+    accessCode: ""
   };
   
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
 
   return (
     <>
-      {checkIsAuthenticated ? <Navigate replace to="#" /> : 
+      {checkIsAuthenticated && isOTPVerified ? <Navigate replace to={"/student/dashboard"} /> :
         <>
           <AuthPageContainer>
 
@@ -108,8 +101,8 @@ const LoginWithClassCode = () => {
   );
 };
 
-LoginWithClassCode.propTypes = {
+LoginWithClassCodeComponent.propTypes = {
   title: PropTypes.string
 };
 
-export default LoginWithClassCode;
+export default LoginWithClassCodeComponent;

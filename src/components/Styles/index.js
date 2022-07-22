@@ -134,7 +134,7 @@ export const FormGroup = styled(Form.Group)`
     display: block;
     font-style: normal;
     font-weight: normal;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 16px;
     color: #A0A4A8;
     text-align: left;
@@ -166,7 +166,7 @@ export const FormGroup = styled(Form.Group)`
       transform: translate(0, -12px) scale(0.7);
     }
     &::placeholder {
-      text-align: right;
+      // text-align: right;
     }
   }
   .input-container {

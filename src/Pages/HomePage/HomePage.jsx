@@ -21,7 +21,7 @@ import Logo from "@/assets/images/Logo.png";
   
 import studentImage from "@/assets/images/Student Image.png";
 import teacherImage from "@/assets/images/Teacher Image.png";
-import parentsImage from "@/assets/images/Parents Image.png";
+import guardiansImage from "@/assets/images/Parents Image.png";
 import ruler from "@/assets/images/ruler.png";
 import book from "@/assets/images/book.png";
 import pencil from "@/assets/images/pencil.png";
@@ -35,7 +35,7 @@ import circleIcon from "@/assets/icons/circle_icon.svg";
 const HomePage = () => {
   const navigate = useNavigate();
   const studentsRef = useRef();
-  const parentsRef = useRef();
+  const guardiansRef = useRef();
   const teachersRef = useRef();
 
   const gotoSection = (value) =>{
@@ -43,8 +43,8 @@ const HomePage = () => {
     case "student":
       studentsRef.current.scrollIntoView({behavior: "smooth"});
       break;
-    case "parent":
-      parentsRef.current.scrollIntoView({behavior: "smooth"});
+    case "guardian":
+      guardiansRef.current.scrollIntoView({behavior: "smooth"});
       break;
     case "teacher":
       teachersRef.current.scrollIntoView({behavior: "smooth"});
@@ -74,7 +74,7 @@ const HomePage = () => {
           <Nav className={cx(menuBarStyles.primaryNavigation)}>
             <Link onClick={(e) =>gotoSection(e)} id="home" to="#">Home</Link>
             <Link onClick={(e) =>gotoSection(e)} id="student" to="#">Student</Link>
-            <Link onClick={(e) =>gotoSection(e)} id="parent" to="#">Parent</Link>
+            <Link onClick={(e) =>gotoSection(e)} id="guardian" to="#">Guardian</Link>
             <Link onClick={(e) =>gotoSection(e)} id="teacher" to="#">Teacher</Link>
           </Nav>				
 
@@ -108,7 +108,7 @@ const HomePage = () => {
 
             <Button onClick={()=> navigate("/login-with-class-code", {state:{category: "student"}})} title="Student" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 								
-            <Button onClick={()=> navigate("/login/parent", {state:{category: "parent"}})} title="Parent" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
+            <Button onClick={()=> navigate("/login/guardian", {state:{category: "guardian"}})} title="Guardian" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 
             <Button onClick={()=> navigate("/login/teacher", {state:{category: "teacher"}})} title="Teacher" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" fontweight="bold" />
 
@@ -151,12 +151,12 @@ const HomePage = () => {
 						
           </div>
 
-          <div ref={parentsRef} className={cx(styles.parentsSection, styles.sectionWrapper, "row")}>
+          <div ref={guardiansRef} className={cx(styles.guardiansSection, styles.sectionWrapper, "row")}>
             <div data-aos="zoom-in-left"
               // data-aos-delay="1200"
               className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
             >
-              <img src={parentsImage} alt="img" />
+              <img src={guardiansImage} alt="img" />
             </div>
 
             <div
@@ -164,7 +164,7 @@ const HomePage = () => {
               // data-aos-delay="1000"
               className={cx(styles.contentWrapper, "col-sm-6", "col-md-6")}
             >
-              <small>Parents</small>
+              <small>Guardians</small>
               <h3><span className={cx(styles.wordBreak)}>Become <img className={cx(styles.floatingIcon)} src={curvedHamburgerFlipped} alt="icon" /></span> part of your kid's <br /> learning process</h3>
 
               <div className={cx(styles.pointsWrapper)}>

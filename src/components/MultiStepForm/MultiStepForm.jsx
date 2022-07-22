@@ -14,7 +14,7 @@ import FinalStep from "./FinalStep/FinalStep";
 
 
 
-const MultiStepForm = () => {
+const MultiStepForm = ({signUpEmail}) => {
 
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalState.action);
@@ -57,7 +57,7 @@ const MultiStepForm = () => {
     // case 1 to show stepOne form and passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
     case 1:
       return (
-        <StepOne nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+        <StepOne signUpEmail={signUpEmail} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
       );
       // case 2 to show stepTwo form passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
     case 2:

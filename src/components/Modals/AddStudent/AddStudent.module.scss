@@ -52,6 +52,16 @@
                 border-bottom: 1px solid #D25B5D;
                 cursor: pointer;
              }
+
+             span{
+                align-self: center;
+                text-align: center;
+                color: #D25B5D;
+                font-weight: bold;
+                line-height: 1.5;
+                font-size: 1rem;
+                margin-bottom: 1rem;
+             }
         }
     }
 }

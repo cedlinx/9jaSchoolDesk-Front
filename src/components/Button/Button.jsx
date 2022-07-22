@@ -65,7 +65,7 @@ const Button = props => {
   };
 
   return (	
-    <ButtonComponent type onClick={onClick} disabled={disabled} className={cx( "flexRow"  )} style={{ color: `${textColor}`, backgroundColor: `${bgColor}`, borderColor: `${bordercolor}`, border: bordercolor ? "1px solid" : `1px solid ${bgColor}`, borderRadius: `${borderRadiusValue()}` }}>
+    <ButtonComponent type onClick={onClick} disabled={disabled} className={cx( "flexRow"  )} style={{ color: `${textColor}`, backgroundColor: `${bgColor}`, borderColor: `${bordercolor}`, border: bordercolor ? `1px solid ${bordercolor}` : `1px solid ${bgColor}`, borderRadius: `${borderRadiusValue()}` }}>
       {loading ? ( <img
         src={imageLoader}
         height="18"

@@ -255,3 +255,162 @@ export const videoLessonsData = [
     variations: [42, 46, 47]
   }
 ];
+
+export const newSignUpsData = [
+  {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  },
+  {
+    id: 2,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    email: "john44don@gmail.com",
+    phone: "1234567666"
+  },
+  {
+    id: 3,
+    firstName: "John",
+    lastName: "Doe",
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  }
+];
+
+export const allStudentsData = [
+  {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    studentId: "1122wa",
+    class: "JSS 1A",
+    parentName: "Parent John",
+    parentImage: "https://picsum.photos/200", 
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  },
+  {
+    id: 2,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    studentId: "1122wb",
+    class: "JSS 1B",
+    parentName: "Parent Jane",
+    parentImage: "https://picsum.photos/200", 
+    email: "john44don@gmail.com",
+    phone: "1234567666"
+  },
+  {
+    id: 3,
+    firstName: "John",
+    lastName: "Doe",
+    studentId: "1122wc",
+    class: "JSS 1C",
+    parentName: "Parent Doe",
+    parentImage: "https://picsum.photos/200", 
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  },
+  {
+    id: 4,
+    firstName: "John",
+    lastName: "Doe",
+    studentId: "1122wd",
+    class: "JSS 1A",
+    parentName: "Parent John",
+    parentImage: "https://picsum.photos/200", 
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  },
+  {
+    id: 5,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    studentId: "1122we",
+    class: "JSS 1B",
+    parentName: "Parent Jane",
+    parentImage: "https://picsum.photos/200", 
+    email: "john44don@gmail.com",
+    phone: "1234567666"
+  },
+  {
+    id: 6,
+    firstName: "John",
+    lastName: "Doe",
+    studentId: "1122wf",
+    class: "JSS 1C",
+    parentName: "Parent Doe",
+    parentImage: "https://picsum.photos/200", 
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  },
+  {
+    id: 7,
+    firstName: "John",
+    lastName: "Doe",
+    studentId: "1122wg",
+    class: "JSS 1A",
+    parentName: "Parent John",
+    parentImage: "https://picsum.photos/200", 
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  },
+  {
+    id: 8,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    studentId: "1122wh",
+    class: "JSS 1B",
+    parentName: "Parent Jane",
+    parentImage: "https://picsum.photos/200", 
+    email: "john44don@gmail.com",
+    phone: "1234567666"
+  },
+  {
+    id: 9,
+    firstName: "John",
+    lastName: "Doe",
+    studentId: "1122wt",
+    class: "JSS 1C",
+    parentName: "Parent Doe",
+    parentImage: "https://picsum.photos/200", 
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  },
+  {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    studentId: "1122ww",
+    class: "JSS 1A",
+    parentName: "Parent John",
+    parentImage: "https://picsum.photos/200", 
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  },
+  {
+    id: 2,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    studentId: "1122wx",
+    class: "JSS 1B",
+    parentName: "Parent Jane",
+    parentImage: "https://picsum.photos/200", 
+    email: "john44don@gmail.com",
+    phone: "1234567666"
+  },
+  {
+    id: 3,
+    firstName: "John",
+    lastName: "Doe",
+    studentId: "1122wq",
+    class: "JSS 1C",
+    parentName: "Parent Doe",
+    parentImage: "https://picsum.photos/200", 
+    email: "johndon@gmail.com",
+    phone: "123456789"
+  }
+];

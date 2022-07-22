@@ -6,7 +6,6 @@ import Login from "../Pages/Authentication/Login/Login";
 import LoginWithClassCode from "../Pages/Authentication/Login/LoginWithClassCode";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import PreSignUp from "../Pages/Authentication/PreSignUp/PreSignUp";
-import ParentSignUp from "../Pages/Authentication/SignUp/ParentSignUp/ParentSignUp";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
 import OtpExpired from "../Pages/Authentication/OTPExpired/OTPExpired";
@@ -29,11 +28,11 @@ import ViewClassStudent from "../Pages/AuthenticatedPages/StudentAccount/MyClass
 import ProfileStudent from "../Pages/AuthenticatedPages/StudentAccount/Profile/Profile";
 import ClassGistStudent from "../Pages/AuthenticatedPages/StudentAccount/ClassGist/ClassGist";
 
-// Parent Section
-import DashboardParent from "../Pages/AuthenticatedPages/ParentAccount/Home/Home";
-import AssessmentFeedbackParent from "../Pages/AuthenticatedPages/ParentAccount/AssessmentFeedback/AssessmentFeedback";
-import ProfileParent from "../Pages/AuthenticatedPages/ParentAccount/Profile/Profile";
-import MessagesParent from "../Pages/AuthenticatedPages/ParentAccount/Messages/Messages";
+// Guardian Section
+import DashboardGuardian from "../Pages/AuthenticatedPages/GuardianAccount/Home/Home";
+import AssessmentFeedbackGuardian from "../Pages/AuthenticatedPages/GuardianAccount/AssessmentFeedback/AssessmentFeedback";
+import ProfileGuardian from "../Pages/AuthenticatedPages/GuardianAccount/Profile/Profile";
+import MessagesGuardian from "../Pages/AuthenticatedPages/GuardianAccount/Messages/Messages";
 
 
 // Teacher Section
@@ -43,6 +42,16 @@ import ProfileTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Profile/P
 import LessonsTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lessons/Lessons";
 import LoungeTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lounge/Lounge";
 
+// Proprietor Section
+import DashboardProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Home/Home";
+import ClassesProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Classes/Classes";
+import SubjectsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Subjects/Subjects";
+import ParentsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Parents/Parents";
+import TeachersProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Teachers/Teachers";
+import StudentsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/Students";
+import StudentReportProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/StudentReport/StudentReport";
+import SettingsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Settings/Settings";
+import ProfileProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Profile/Profile";
 
 const RoutesComponent = () => {
   return (
@@ -56,11 +65,11 @@ const RoutesComponent = () => {
         {/* <Route path="api/email/verify/:id/:token" element={<VerifyEmail />} />		 */}
         <Route  path="forgot-password" element={<ForgotPassword />} />
         <Route  path="otp-expired" element={<OtpExpired />} />
-        <Route  path="otp-verification" element={<OtpVerification />} />
+        <Route  path="login/:user/otp-verification" element={<OtpVerification />} />
         <Route  path="reset-password/:token" element={<ResetPassword />} />	
         {/* <Route  path="request-verification-link" element={<RequestVerificationLink />} />	 */}
 				
-        <Route path="student" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="student" element={<AuthenticatedRoute roles={[Role.Student]}><DashboardWrapper /></AuthenticatedRoute>}>
 
           <Route index path="dashboard" element={<DashboardStudent  />} />
           <Route path="profile" element={<ProfileStudent  />} />
@@ -70,27 +79,41 @@ const RoutesComponent = () => {
             <Route path="view-class/:id" element={<ViewClassStudent  />} />
           </Route>
           <Route path="class-gist" element={<ClassGistStudent  />} />
-
-
         </Route>			
 
 
-        <Route path="parent" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="guardian" element={<AuthenticatedRoute roles={[Role.Guardian]}><DashboardWrapper /></AuthenticatedRoute>}>
 
-          <Route index path="dashboard" element={<DashboardParent  />} />
-          <Route path="profile" element={<ProfileParent  />} />
-          <Route path="messages" element={<MessagesParent  />} />
-          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackParent  />} />
+          <Route index path="dashboard" element={<DashboardGuardian  />} />
+          <Route path="profile" element={<ProfileGuardian  />} />
+          <Route path="messages" element={<MessagesGuardian  />} />
+          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackGuardian  />} />
 
         </Route>	
 
-        <Route path="teacher" element={<AuthenticatedRoute roles={[Role.Individual, Role.SuperAdmin, Role.Enterprise, Role.Guest]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="teacher" element={<AuthenticatedRoute roles={[Role.Teacher]}><DashboardWrapper /></AuthenticatedRoute>}>
 
           <Route index path="dashboard" element={<DashboardTeacher  />} />
           <Route path="profile" element={<ProfileTeacher  />} />
           <Route path="tasks-and-activities" element={<TasksAndActivitiesTeacher  />} />
           <Route path="lessons" element={<LessonsTeacher  />} />
           <Route path="lounge" element={<LoungeTeacher  />} />
+
+        </Route>
+
+        <Route path="proprietor" element={<AuthenticatedRoute roles={[Role.Student, Role.Teacher, Role.Guardian, Role.Proprietor]}><DashboardWrapper /></AuthenticatedRoute>}>
+
+          <Route index path="dashboard" element={<DashboardProprietor  />} />
+          <Route path="classes" element={<ClassesProprietor  />} />
+          <Route  path="students" >
+            <Route index path="" element={<StudentsProprietor  />} />
+            <Route path="student-report/:studentId" element={<StudentReportProprietor  />} />
+          </Route>
+          <Route path="teachers" element={<TeachersProprietor  />} />
+          <Route path="parents" element={<ParentsProprietor  />} />
+          <Route path="settings" element={<SettingsProprietor  />} />
+          <Route path="subjects" element={<SubjectsProprietor  />} />
+          <Route path="profile" element={<ProfileProprietor  />} />
 
         </Route>
 

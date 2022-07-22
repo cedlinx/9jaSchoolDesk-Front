@@ -1,6 +1,5 @@
-import { loginWithCodeApi, loginApi, parentSignUpApi, forgotPasswordApi, resetPasswordApi, getOTPApi, verifyOTPApi, proprietorSignUpApi, getQRCodeApi, changePasswordApi, signUpApi  } from "../api/auth";
+import { loginWithOTPCodeApi, loginWithClassCodeApi, loginApi,  forgotPasswordApi, resetPasswordApi, getOTPApi, verifyOTPApi,  getQRCodeApi, changePasswordApi, signUpApi  } from "../api/auth";
 import { toast } from "react-toastify";
-import {Navigate} from "react-router-dom";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { setToken } from "@/utils/auth";
@@ -11,14 +10,13 @@ const initialState = {
   loading: false,
   error: {},
   
-  loginWithCodeData: {},
+  loginWithOTPCodeData: {},
+  loginWithClassCodeData: {},
   loginData: {},
-  parentSignUpData: {},
   forgotPasswordData: {},
   resetPasswordData: {},
   getOTPData: {},
   verifyOTPData: {},
-  proprietorSignUpData: {},
   getQRCodeData: {},
   changePasswordData: {},
   signUpData: {}
@@ -39,18 +37,18 @@ export const authSlice = createSlice({
       state.loading = false;
     },
 
-    loginWithCodeAction: (state, action) => {
-      state.loginWithCodeData = action.payload;
+    loginWithOTPCodeAction: (state, action) => {
+      state.loginWithOTPCodeData = action.payload;
+      state.loading = false;
+    },
+
+    loginWithClassCodeAction: (state, action) => {
+      state.loginWithClassCodeData = action.payload;
       state.loading = false;
     },
 
     loginAction: (state, action) => {
       state.loginData = action.payload;
-      state.loading = false;
-    },
-
-    parentSignUpAction: (state, action) => {
-      state.parentSignUpData = action.payload;
       state.loading = false;
     },
  
@@ -71,11 +69,6 @@ export const authSlice = createSlice({
 
     verifyOTPAction: (state, action) => {
       state.verifyOTPData = action.payload;
-      state.loading = false;
-    },
-
-    proprietorSignUpAction: (state, action) => {
-      state.proprietorSignUpData = action.payload;
       state.loading = false;
     },
 
@@ -103,16 +96,33 @@ export const authSlice = createSlice({
 export default authSlice.reducer;
 
 // Actions
-const { startLoading, hasError, loginWithCodeAction, loginAction, parentSignUpAction, forgotPasswordAction, resetPasswordAction, getOTPAction, verifyOTPAction, proprietorSignUpAction, getQRCodeAction, changePasswordAction, signUpAction} = authSlice.actions;
+const { startLoading, hasError, loginWithOTPCodeAction, loginWithClassCodeAction, loginAction, forgotPasswordAction, resetPasswordAction, getOTPAction, verifyOTPAction, getQRCodeAction, changePasswordAction, signUpAction} = authSlice.actions;
 
-export const loginWithCode = (data) => async (dispatch) => {
+export const loginWithOTPCode = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
-    const response = await loginWithCodeApi(data);
-    return dispatch(loginWithCodeAction(response?.data));
+    const response = await loginWithOTPCodeApi(data);
+    console.log(response, "login with code");
+    let token = response?.data?.user?.token;
+    setToken(token);
+    let userData = response?.data?.user;
+    localStorage.setItem("userData", JSON.stringify(userData));
+    return dispatch(loginWithOTPCodeAction(response?.data));
   } catch (e) {
-    toast.error(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
+  }
+};
+
+export const loginWithClassCode = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await loginWithClassCodeApi(data);
+    console.log(response, "login with class code");
+    return dispatch(loginWithClassCodeAction(response?.data));
+  } catch (e) {
+    toast.error(e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
   }
 };
 
@@ -120,24 +130,13 @@ export const login = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await loginApi(data);
-    let token = response?.data?.result;
+    let token = response?.data?.token;
     setToken(token);
-
-    let basicUserData = {
-      firstname: response?.data?.result?.firstname,
-      lastname: response?.data?.result?.lastname,
-      email: response?.data?.result?.email,
-      phone: response?.data?.result?.phone,
-      bankId: response?.data?.result?.bankId,
-      image: response?.data?.result?.image,
-      lastLogin: response?.data?.result?.lastLogin
-    };
-    localStorage.setItem("basicUserData", JSON.stringify(basicUserData));
 
     return dispatch(loginAction(response?.data));
   } catch (e) {
-    toast.error(e.response.message);
-    return dispatch(hasError(e.response.message));
+    toast.error(e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
   }
 };
 
@@ -145,14 +144,13 @@ export const getOTP = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getOTPApi(data);
-    console.log(response, "get otp response");
     toast.success(response.data.message);
     let token = response?.data?.token;
     setToken(token);
-    return dispatch(getOTPAction(response));
+    return dispatch(getOTPAction(response?.data));
   } catch (e) {
-    toast.error(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
   }
 };
 
@@ -163,8 +161,8 @@ export const getQRCode = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(getQRCodeAction(response));
   } catch (e) {
-    toast.error(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
   }
 };
 
@@ -172,11 +170,10 @@ export const verifyOTP = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await verifyOTPApi(data);
-    toast.success(response.data.message);
     return dispatch(verifyOTPAction(response));
   } catch (e) {
-    toast.error(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
   }
 };
 
@@ -185,34 +182,12 @@ export const signUp = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await signUpApi(data);
     toast.success(response.data.message);
+    let token = response?.data?.token;
+    setToken(token);
     return dispatch(signUpAction(response));
   } catch (e) {
-    toast.error(e.message);
-    return dispatch(hasError(e.message));
-  }
-};
-
-export const parentSignUp = (data) => async (dispatch) => {
-  try {
-    dispatch(startLoading());
-    const response = await parentSignUpApi(data);
-    toast.success(response.data.message);
-    return dispatch(parentSignUpAction(response));
-  } catch (e) {
-    toast.error(e.message);
-    return dispatch(hasError(e.message));
-  }
-};
-
-export const proprietorSignUp = (data) => async (dispatch) => {
-  try {
-    dispatch(startLoading());
-    const response = await proprietorSignUpApi(data);
-    toast.success(response.data.message);
-    return dispatch(proprietorSignUpAction(response));
-  } catch (e) {
-    toast.error(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
   }
 };
 
