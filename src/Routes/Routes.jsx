@@ -44,14 +44,13 @@ import LoungeTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lounge/Lou
 
 // Proprietor Section
 import DashboardProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Home/Home";
-import ClassesProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Classes/Classes";
+import ClassesProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/AllClasses/AllClasses";
 import SubjectsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Subjects/Subjects";
 import ParentsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Parents/Parents";
 import TeachersProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Teachers/Teachers";
 import StudentsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/Students";
 import StudentReportProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/StudentReport/StudentReport";
 import SettingsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Settings/Settings";
-import ProfileProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Profile/Profile";
 
 const RoutesComponent = () => {
   return (
@@ -113,7 +112,6 @@ const RoutesComponent = () => {
           <Route path="parents" element={<ParentsProprietor  />} />
           <Route path="settings" element={<SettingsProprietor  />} />
           <Route path="subjects" element={<SubjectsProprietor  />} />
-          <Route path="profile" element={<ProfileProprietor  />} />
 
         </Route>
 

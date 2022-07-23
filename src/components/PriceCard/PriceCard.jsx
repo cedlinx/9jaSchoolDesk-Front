@@ -1,4 +1,6 @@
 import React from "react";
+import {useLocation} from "react-router-dom";
+
 import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./PriceCard.module.scss";
@@ -9,6 +11,12 @@ import Button from "@/components/Button/Button";
 
 const PriceCard = props => {
   const {benefitsArray, btnText, title} = props;
+
+  const location = useLocation();
+  const rootPath = location.pathname.split("/")[1];
+    
+  console.log(rootPath);
+
   return (
 
     <section className={cx(styles.priceCardContainer, "flexRow")}>
@@ -33,6 +41,10 @@ const PriceCard = props => {
 					
           :
           <div className="flexRow-fully-centered" style={{marginTop: "2rem"}}><Button title={btnText} radiusType="fullyRounded" textColor="#FFF" bordercolor = "#FFF" bgColor="#22467B" hoverBg="#FFF" hoverColor="#22467B"  /></div> }
+
+        {rootPath.toLowerCase() === "proprietor" && <div className={cx(styles.editPlanDiv, "flexRow")}>
+          <p onClick={() => alert(title)}>Edit Plan</p>
+        </div>}
 
       </div>
     </section>

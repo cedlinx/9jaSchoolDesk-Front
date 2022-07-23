@@ -9,13 +9,13 @@ export const TabWrapper = styled.div`
   justify-content: flex-start;
   padding-left: 0rem;
   width: 100%;
-  // overflow-y: scroll !important;
+  overflow-y: scroll !important;
 
   
   @media screen and (max-width: 997px) {
     left: 0;
     z-index: 1;
-    // overflow-y: scroll !important;
+    overflow-y: scroll !important;
     }
 `;
 
@@ -37,7 +37,7 @@ export const TabItem = styled.p`
   cursor: pointer;
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 16px;
   display: grid;
   // background-color: ${({ isActive }) => (isActive ? "#D25B5D" : "#FFF")};

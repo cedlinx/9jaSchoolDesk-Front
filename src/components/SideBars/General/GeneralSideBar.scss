@@ -1,3 +1,5 @@
+.general-sidebar{
+
 
 .sidebar-btn-wrapper {
   display: flex;
@@ -23,7 +25,7 @@
   font-size: 13px;
 }
 .sidebar-btn-wrapper .sidebar-btn:hover {
-  color: #d8d8d8;
+  color: #d8d8d8 !important;
 }
 .collapsed .sidebar-btn {
   display: inline-block;
@@ -146,20 +148,18 @@ main header {
 
   .active .pro-inner-item {
     border: none;
-    background-color: #D25B5D14;
-    ;
+    background-color: #D25B5D;
     border-radius: 4px;
     // margin: 0rem 1rem;
 
     a, img{
-    color: #D25B5D !important;
-
+      // color: #0066F5;
     }
   }
 
   .pro-inner-item{
     &:hover{
-    background-color: #D25B5D14;
+    background-color: #D25B5D !important;
     border-radius: 4px;
 
     }
@@ -187,14 +187,15 @@ main header {
 .pro-sidebar-content,
 .pro-sidebar > .pro-sidebar-inner,
 .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
-  background-color: #fff;
-  color: #ACACAC !important;
+  background-color: #22467B;
+  color: #fff !important;
 }
 
 
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header, .pro-sidebar-footer {
   border-bottom: 0px !important;
   border-top: 0px !important;
+  color: #fff;
 }
 
 .pro-sidebar-header {
@@ -217,7 +218,7 @@ main header {
   font-size: 1rem;
 
   &:hover{
-    color: #000 !important;
+    color: #fff !important;
   }
 }
 
@@ -227,12 +228,12 @@ main header {
 }
 
 
+}
 
 
-
-$sidebar-bg-color: #fff !default;
-$sidebar-color: #ACACAC !default;
-$sidebar-width: 270px !default;
+$sidebar-bg-color: #22467B !default;
+$sidebar-color: #fff !default;
+$sidebar-width: 240px !default;
 $sidebar-collapsed-width: 80px !default;
 $highlight-color: #0066F5 !default;
 $submenu-bg-color: #fff !default;
@@ -246,6 +247,7 @@ $breakpoint-md: 990px !default;
 // $breakpoint-lg: 992px !default;
 // $breakpoint-xl: 1200px !default;
 // $breakpoint-xxl: 1600px !default;
+
 
 
 @import 'react-pro-sidebar/dist/scss/styles.scss';

@@ -4,7 +4,7 @@ import styles from "./Subjects.module.scss";
 
 const Subjects = () => {
   return (
-    <div>Subjects</div>
+    <div className={cx(styles.subject)}>Subjects</div>
   );
 };
 

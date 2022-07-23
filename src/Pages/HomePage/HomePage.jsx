@@ -30,6 +30,7 @@ import curvedHamburger from "@/assets/icons/curved-hamburger.svg";
 import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
 
 import circleIcon from "@/assets/icons/circle_icon.svg";
+import PricingModule from "@/components/PricingModule/PricingModule";
 
 
 const HomePage = () => {
@@ -53,12 +54,6 @@ const HomePage = () => {
       window.scrollTo({top: 0, behavior: "smooth"});
       break;
     }
-  };
-
-  const pricingArray = {
-    basic: [ "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant."],
-    premium: ["Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant."],
-    starter: ["Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant.", "Lorem ipsum uspendisse habitant."]
   };
 
 	
@@ -217,16 +212,8 @@ const HomePage = () => {
 
         <Testimonials  />
 
-        <section className={cx(styles.pricingWrapper, "flex-row")}>
-          <h3>Choose the perfect plan for you</h3>
-          <div className={cx(styles.cardWrapper)}>
-            <PriceCard title="Starter" amount="100000" btnText="Subscribe" benefitsArray={pricingArray.starter} />
-
-            <PriceCard title="Premium" amount="100000" btnText="Get 7 days Free Trial" benefitsArray={pricingArray.premium} />
-
-            <PriceCard title="Basic" amount="100000" btnText="Subscribe" benefitsArray={pricingArray.basic} />
-          </div>
-					
+        <section className={cx(styles.pricingWrapper)}>
+          <PricingModule />
         </section>
 
       </div>

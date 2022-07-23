@@ -1,0 +1,128 @@
+.settingsTabItemContainer{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+
+   .panelContent{
+    gap: 1.5rem;
+    padding: 1rem 0rem;
+    .header{
+        text-align: center;
+        small{
+            color: #828282;
+        }
+    }
+    
+    .imageSection{
+        align-items: center;
+        gap: 1rem;
+
+        .imageDiv{
+            img{
+                border-radius: 50%;
+                width: clamp(3rem, 4rem, 5rem);
+                height: clamp(3rem, 4rem, 5rem);
+                object-fit: contain;
+            }
+        }
+    }
+
+    .formWrapper{
+        form{
+            width: 100%;
+            .submitBtnDiv{
+                margin-top: 2rem;
+                justify-content: center;
+            }
+        }
+    }
+} 
+}
+
+
+@media all and (min-width:768px) {
+
+    .settingsTabItemContainer{
+        .panelContent{
+                width: 75%;
+        gap: 1.5rem;
+        padding: 0rem 0rem 2rem 0rem;
+
+        .header{
+            // text-align: left;
+        }
+        
+        .imageSection{
+            gap: 1rem;
+        }
+    }
+    }
+
+
+}
+
+@media all and (min-width:991px) {
+    .settingsTabItemContainer{
+        
+        .panelContent{
+            width: 50%;
+            gap: 1.5rem;
+    
+            .header{
+                // text-align: left;
+            }
+            
+            .imageSection{
+                gap: 1rem;
+            }
+    
+            .formWrapper{
+                form{
+                    .inputsWrapper{
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        gap: 1rem;
+                        &>div{
+                            width: 47.5%;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+   
+}
+
+@media all and (min-width:1200px) {
+    .settingsTabItemContainer{
+           .panelContent{
+            width: 50%;
+        gap: 1.5rem;
+
+        .header{
+            text-align: left;
+        }
+        
+        .imageSection{
+            gap: 1rem;
+        }
+
+        .formWrapper{
+            form{
+                .inputsWrapper{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    &>div{
+                        width: 47.5%;
+                    }
+                }
+            }
+        }
+    }
+    }
+ 
+}

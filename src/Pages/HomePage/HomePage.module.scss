@@ -116,26 +116,9 @@
    }
 
    }
-
-   .pricingWrapper {
-       padding: 3rem 0rem;
-       background-color: #E9F2FF;
-
-       h3{
-           padding: 0rem 1rem;
-           text-align: center;
-           color: #22467B;
-       }
-
-       .cardWrapper{
-              display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 2rem;
-                margin-top: 2rem;
-                padding: 0rem 2rem;
-       }
-   }
+.pricingWrapper{
+    background-color: #E9F2FF;
+}
  
 }
 
@@ -220,22 +203,6 @@
             }
         }
 
-        .pricingWrapper {
-            padding: 3rem 2rem;
-     
-            h3{
-                padding: 0rem 1rem;
-            }
-     
-            .cardWrapper{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                gap: 0.75rem;
-                margin-top: 2rem;
-                padding: 0rem 0rem;
-            }
-        }
     }
 }
 
@@ -314,22 +281,6 @@
                 }            
             }
         }
-
-        .pricingWrapper {
-            padding: 3rem 2rem;
-     
-            h3{
-                padding: 0rem 1rem;
-            }
-     
-            .cardWrapper{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                gap: 1rem;
-                margin-top: 2rem;
-            }
-        }
     }
 }
 
@@ -398,19 +349,6 @@
                         }
                     }
                 }            
-            }
-        }
-
-        .pricingWrapper {
-            padding: 3rem 7rem;
-     
-            h3{
-                padding: 0rem 1rem;
-            }
-     
-            .cardWrapper{
-                gap: 3rem;
-                margin-top: 2rem;
             }
         }
     }

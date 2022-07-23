@@ -414,3 +414,200 @@ export const allStudentsData = [
     phone: "123456789"
   }
 ];
+
+export const approvedParentsData = [
+  {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    wards: ["https://picsum.photos/200", "https://picsum.photos/200", "https://picsum.photos/200"]
+  },
+  {
+    id: 2,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    email: "john44don@gmail.com",
+    phone: "1234567666",
+    wards: []
+  },
+  {
+    id: 3,
+    firstName: "John",
+    lastName: "Doe",
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    wards: ["https://picsum.photos/200", "https://picsum.photos/200"]
+  }
+];
+
+export const allTeachersData = [
+  {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    subjectTaught: ["1122wa", "1122wb", "1122wc"],
+    classTaught: ["JSS 1A", "JSS 1B", "JSS 1C"],
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    status: "Active"
+  },
+  {
+    id: 2,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    subjectTaught: ["1122wb", "1122wc"],
+    classTaught: ["JSS 1B", "JSS 1C"],
+    email: "john44don@gmail.com",
+    phone: "1234567666",
+    status: "Active"
+  },
+  {
+    id: 3,
+    firstName: "John",
+    lastName: "Doe",
+    subjectTaught: ["1122wc"],
+    classTaught: ["JSS 1C"],
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    status: "Active"
+
+  },
+  {
+    id: 4,
+    firstName: "John",
+    lastName: "Doe",
+    subjectTaught: ["1122wd", "1122we", "1122wf"],
+    classTaught: ["JSS 1A", "JSS 1C"],
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    status: "InActive"
+  },
+  {
+    id: 5,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    subjectTaught: ["1122we", "1122wf"],
+    classTaught: ["JSS 1C"],
+    email: "john44don@gmail.com",
+    phone: "1234567666",
+    status: "InActive"
+  },
+  {
+    id: 6,
+    firstName: "John",
+    lastName: "Doe",
+    subjectTaught:[ "1122wf"],
+    classTaught: ["JSS 1C"], 
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    status: "Active"
+  },
+  {
+    id: 7,
+    firstName: "John",
+    lastName: "Doe",
+    subjectTaught: ["1122wg"],
+    classTaught: ["JSS 1A"],
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    status: "Active"
+  },
+  {
+    id: 8,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    subjectTaught:[ "1122wh"],
+    classTaught: ["JSS 1B"],
+    email: "john44don@gmail.com",
+    phone: "1234567666",
+    status: "Active"
+  },
+  {
+    id: 9,
+    firstName: "John",
+    lastName: "Doe",
+    subjectTaught: ["1122wt"],
+    classTaught:[ "JSS 1C"],
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    status: "InActive"
+  },
+  {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    subjectTaught: ["1122ww"],
+    classTaught: ["JSS 1A"],
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    status: "Active"
+  },
+  {
+    id: 2,
+    firstName: "Jane",
+    lastName: "Deeoe",
+    subjectTaught:[ "1122wx"],
+    classTaught: ["JSS 1B"],
+    email: "john44don@gmail.com",
+    phone: "1234567666",
+    status: "Active"
+  },
+  {
+    id: 3,
+    firstName: "John",
+    lastName: "Doe",
+    subjectTaught: ["1122wq"],
+    classTaught: ["JSS 1C"],
+    email: "johndon@gmail.com",
+    phone: "123456789",
+    status: "Active"
+  }
+];
+
+export const allClassesData = [
+  {
+    id: 1,
+    teacherName: "John John",
+    class: "JSS 1A",
+    numberOfStudents: "30"
+  },
+  {
+    id: 2,
+    teacherName: "John Doe",
+    class: "JSS 1B",
+    numberOfStudents: "35"
+  },
+  {
+    id: 3,
+    teacherName: "Jane John",
+    class: "JSS 5A",
+    numberOfStudents: "30"
+  },
+  {
+    id: 4,
+    teacherName: "Jane Jane",
+    class: "JSS 3J",
+    numberOfStudents: "30"
+  }
+];
+
+export const performanceIndicatorData=[
+  {
+    name: "Curiosity",
+    imageUrl: "https://picsum.photos/200"
+  },
+  {
+    name: "Gratitude",
+    imageUrl: "https://picsum.photos/200"
+  },
+  {
+    name: "Teamwork",
+    imageUrl: "https://picsum.photos/200"
+  },
+  {
+    name: "Persistence",
+    imageUrl: "https://picsum.photos/200"
+  }
+];

@@ -1,0 +1,120 @@
+.addTeacherContainer{
+    width: 100%;
+    background-color: #fff;
+    background-color: transparent;
+    gap: 1rem;
+
+    .header{
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-bottom: 0rem;
+        line-height: 1;
+        color: #fff;
+
+        p{
+            line-height: 1;
+            width: 100%;
+        }
+        svg{
+            cursor: pointer;
+        }
+
+    }
+    .formWrapper{
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        gap: 3rem;
+        .header {
+            position: relative;
+
+            p{
+               color: #D25B5D;
+               font-size: 1.25rem;
+               text-align: center;
+            }
+        }
+
+        form{    
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            .inputsWrapper{
+                flex-wrap: wrap;
+                gap: 0.5rem;
+
+                >div{
+                width: 49%;
+                margin-bottom: 1.625rem !important;
+            } 
+            }
+
+            .btnDiv{
+                justify-content: center;
+                padding-top: 1rem;
+             }
+
+             small{
+                text-align: center;
+                color: #D25B5D;
+                font-weight: bold;
+                text-decoration: underline;
+                cursor: pointer;
+                font-size: 1rem;
+             }
+
+             span{
+                align-self: center;
+                text-align: center;
+                font-weight: bold;
+                line-height: 1;
+                font-size: 1rem;
+                margin: 0rem;
+             }
+        }
+    }
+}
+
+@media all and (min-width: 768px){
+    .addTeacherContainer{
+        gap: 1rem;
+    
+        .header{
+        }
+        .formWrapper{
+            gap: 3rem;
+            .header {
+    
+            }
+    
+            form{    
+                .btnDiv{
+                    justify-content: center;
+                    padding-top: 0rem;
+                 }
+            }
+        }
+    }
+}
+
+
+@media all and (min-width: 991px){
+    .addTeacherContainer{
+        gap: 1rem;
+    
+        .header{
+        }
+        .formWrapper{
+            gap: 2rem;
+            .header {
+
+            }
+    
+            form{    
+
+            }
+        }
+    }
+}
+

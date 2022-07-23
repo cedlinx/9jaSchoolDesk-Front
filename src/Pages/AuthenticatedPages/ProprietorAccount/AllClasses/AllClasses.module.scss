@@ -1,4 +1,4 @@
-.teachersHomeContainer{
+.allClassesHomeContainer{
     padding: 1rem 0.5rem;
     display: flex;
     flex-direction: column;
@@ -7,6 +7,7 @@
     background-color: #fff;
     // min-height: (100vh);
     font-family: Jost;
+
 
     .heading{
         flex-wrap: wrap;
@@ -81,7 +82,7 @@
 }
 
 @media all and (min-width: 768px){
-    .teachersHomeContainer{
+    .allClassesHomeContainer{
         padding: 0rem 0rem 1rem 0rem;
         width: auto;
         min-height: (100vh);
@@ -110,7 +111,7 @@
 }
 
 @media all and (min-width:991px){
-    .teachersHomeContainer{
+    .allClassesHomeContainer{
     
         .heading{
             padding: 1rem 1rem;

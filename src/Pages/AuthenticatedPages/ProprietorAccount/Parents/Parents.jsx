@@ -8,12 +8,13 @@ import {useNavigate} from "react-router-dom";
 import ApprovedAccounts from "./ApprovedAccounts/ApprovedAccounts";
 import RejectedAccounts from "./RejectedAccounts/RejectedAccounts";
 import PendingAccounts from "./PendingAccounts/PendingAccounts";
-import Tabs from "@/components/Tabs/Tabs";
+import Tabs from "@/components/Tabs/TabsV2";
 import Button from "@/components/Button/Button";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import InviteParentModal from "@/components/Modals/InviteParent/InviteParent";
 import ActivateParentModal from "@/components/Modals/ActivateParent/ActivateParent";
+import AddNewWardModal from "@/components/Modals/AddNewWard/AddNewWard";
 
 
 
@@ -38,13 +39,13 @@ const Parents = () => {
   return (
     <div className={cx(styles.parentsHomeContainer)}>
       <div className={cx(styles.heading, "flexRow-space-between")}>
-        <h3 className={cx(styles.title)}>Dashboard</h3>
+        <h3 className={cx(styles.title)}>Parents</h3>
         <Button onClick={() => dispatch(showModal({action: "show", type: "inviteParent"}))} type title="Invite Parent" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
       </div>
 
       <Tabs centralise tabs={tabsComponents} />
 
-      {modalState === "show" ? <Modal show >{modalType === "inviteParent" ? <InviteParentModal /> : modalType === "activateParent" ? <ActivateParentModal /> :   null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "inviteParent" ? <InviteParentModal /> : modalType === "activateParent" ? <ActivateParentModal /> : modalType === "addNewWard" ? <AddNewWardModal /> :   null}</Modal> : null}
     </div>
   );
 };

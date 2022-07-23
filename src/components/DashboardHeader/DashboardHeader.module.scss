@@ -253,11 +253,11 @@
                     flex-direction: row;
                     justify-content: space-between;
                     gap: 1rem;
-                    width: 100%;
+                    // width: calc(100% - 240px);
                     padding: 0rem 0rem;
     
                     .searchComponentDiv{
-                        width: 55%;
+                        width: 50%;
                     }
                     .profileDiv{
                         gap: 1rem;
@@ -330,22 +330,18 @@
     
             .navbarCollapse {
                 padding: 1rem 0rem;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: flex-start;
                 background-color: transparent;
                 padding: 0.75rem 0rem;
                 height: auto;
     
                 .contentWrapper{
-                    align-items: center;
-                    flex-direction: row;
-                    justify-content: space-between;
                     gap: 1.5rem;
-                    width: 100%;
                     padding: 0rem 0rem;
     
                     .searchComponentDiv{
-                        width: 70%;
+                        width: 50%;
                     }
                     .profileDiv{
                         gap: 1.5rem;

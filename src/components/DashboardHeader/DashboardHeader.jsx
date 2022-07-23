@@ -16,6 +16,9 @@ import myClassesIconActive from "@/assets/icons/myClasses-icon-active.svg";
 import messagesIcon from "@/assets/icons/messages-icon.svg";
 import messagesIconActive from "@/assets/icons/messages-icon-active.svg";
 
+import { FormCheck } from "react-bootstrap";
+
+
 import unreadNotificationsIcon from "@/assets/icons/unread-notifications-icon.svg";
 import notificationIcon from "@/assets/icons/notifications-icon.svg";
 import { titleCase } from "@/helpers/textTransform";
@@ -57,6 +60,12 @@ const Header = (props) => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const toggleChangeFxn=(e)=>{
+    console.log(e.target.checked);
+    alert("navigate to teacher");
+  };
+
+
 
   return (
     <section className={cx(styles.dashboardHeaderContainer, "flexRow", "")}>
@@ -77,7 +86,7 @@ const Header = (props) => {
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
 					
-          <div className={cx(styles.contentWrapper, "flexRow")}>
+          <div style={{width: userCategory === "proprietor" ? "calc(100% - 240px)" : "100%"}} className={cx(styles.contentWrapper, "flexRow")}>
             <div className={cx(styles.searchComponentDiv, "flexRow")}>
               {/* <InputField
                 
@@ -95,8 +104,18 @@ const Header = (props) => {
                 type = "text"
               />
             </div>
+
+            {rootPath === "teachers" && <div style={{width: "100%", display: "flex", gap: "1rem"}}>
+              <p style={{color: "#828282"}} >Switch to Teacher Experience</p>
+              <div className={cx(styles.togglerDiv)}>
+                <FormCheck
+                  type="switch"
+                  onChange={(e) => toggleChangeFxn(e)}
+                />
+              </div>
+            </div>}
 				
-            {
+            { 
               <div className={cx(styles.profileDiv, "flexRow")}>
             
                 { userCategory !== "teacher" && <NavLink to="dashboard">
@@ -153,7 +172,8 @@ const Header = (props) => {
                   </DropdownToggle>
                   <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
 
-                    <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem>
+                    {userCategory !== "proprietor" ? <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem> : 
+                      <DropdownItem onClick={() => navigate("settings")}>Settings</DropdownItem>}
                     <DropdownItem onClick={() => dispatch(logout())}>Logout</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

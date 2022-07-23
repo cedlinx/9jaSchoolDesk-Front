@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import "./SideBar.scss";
+import "./GeneralSideBar.scss";
 import {useDispatch, useSelector} from "react-redux"; 
 import cx from "classnames";
 import { NavLink, useNavigate, useLocation, Navigate } from "react-router-dom";
@@ -53,6 +53,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
       toggled={toggled}
       breakPoint="md"
       onToggle={handleToggleSidebar}
+      className="general-sidebar"
     >
       <SidebarHeader>
         <div className="sidebar-header" >

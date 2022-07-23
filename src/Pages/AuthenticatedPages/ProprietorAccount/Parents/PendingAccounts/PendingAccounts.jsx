@@ -1,29 +1,19 @@
 import React from "react";
-import cx from "classnames";
-import styles from "./PendingAccounts.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-
 
 import Button from "@/components/Button/Button";
-
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
 import {newSignUpsData} from "@/helpers/sampleData";
-import ActivateParentModal from "@/components/Modals/ActivateParent/ActivateParent";
-
 import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
 const PendingAccounts = () => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const modalState = useSelector((state) => state.modalState.action);
-  const modalType = useSelector((state) => state.modalState.type);
 
-  const columnsHeaderAssessment = [                
+  const columnsHeader = [                
     {
       Header: () => (
         <div
@@ -133,9 +123,9 @@ const PendingAccounts = () => {
   };
     
   return (
-    <div className={cx(styles.dashboardHomeContainer)}>
-      <TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(newSignUpsData)} showHeader={true}/>                
-    </div>
+
+    <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(newSignUpsData)} showHeader={true}/>                
+ 
   );
 };
 

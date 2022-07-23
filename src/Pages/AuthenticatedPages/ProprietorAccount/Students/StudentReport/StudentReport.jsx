@@ -39,7 +39,7 @@ const StudentReport = () => {
     return `${dateValue}`;
   };
   
-  const columnsHeaderAssessment = [                
+  const columnsHeader = [                
     {
       Header: () => (
         <div
@@ -160,14 +160,14 @@ const StudentReport = () => {
     <div className={cx(styles.studentReportContainer)}>
 
       <div className={cx(styles.heading, "flexRow-space-between")}>
-        <h3 className={cx(styles.title)}>Students / View Report</h3>
+        <h3 className={cx(styles.title)}><span onClick={() => navigate(-1)}style={{cursor: "pointer", fontSize: "1.125rem"}} >Students</span> / View Report</h3>
       </div>
 
       <div className={cx(styles.body, "flexCol")}> 
 
         <div className={cx(styles.tableSection)}>
           <h3 className={cx(styles.title)}>{basicStudentData?.firstName && titleCase(basicStudentData?.firstName)} {basicStudentData?.lastName && titleCase(basicStudentData?.lastName)}</h3>
-          {<TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(allStudentsData)} showHeader={true} />}
+          {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(allStudentsData)} showHeader={true} />}
         </div>
    
       </div>              

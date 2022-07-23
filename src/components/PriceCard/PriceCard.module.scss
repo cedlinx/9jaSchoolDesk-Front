@@ -54,6 +54,17 @@
                     }
                 }
             }
+
+            .editPlanDiv{
+                justify-content: center;
+                margin-top: 2rem;
+
+                p{
+                    color: #D25B5D;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
         
     }
 }
