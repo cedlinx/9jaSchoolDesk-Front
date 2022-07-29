@@ -1,12 +1,11 @@
 import React from "react";
-// import FormError from 'components/Errors/FormError';
 import "./TextInput.scss";
 
 export default function TextInput({
   label,
   placeholder,
   onChange,
-  errorMessage,
+  error,
   onBlur,
   name,
   value,
@@ -24,7 +23,7 @@ export default function TextInput({
         onBlur={onBlur}
         value={value}
       />
-      {/* <FormError errorMessage={errorMessage} /> */}
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 }

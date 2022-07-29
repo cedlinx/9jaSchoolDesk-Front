@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import cx from "classnames";
 import styles from "./Settings.module.scss";
 
@@ -13,10 +13,16 @@ import Tabs from "@/components/Tabs/TabsV2";
 import Button from "@/components/Button/Button";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
-import InviteParentModal from "@/components/Modals/InviteParent/InviteParent";
-import ActivateParentModal from "@/components/Modals/ActivateParent/ActivateParent";
+import InviteParentModal from "@/components/Modals/InviteGuardian/InviteGuardian";
+import ActivateParentModal from "@/components/Modals/ActivateGuardian/ActivateGuardian";
 import AddNewWardModal from "@/components/Modals/AddNewWard/AddNewWard";
 import AddPerformanceIndicatorModal from "@/components/Modals/AddPerformanceIndicator/AddPerformanceIndicator";
+import DeleteIndicatorModal from "@/components/Modals/DeleteKPIIndicator/DeleteKPIIndicator";
+import ModifyKPIIndicatorModal from "@/components/Modals/ModifyKPIIndicator/ModifyKPIIndicator";
+import KPIIndicatorDetailsModal from "@/components/Modals/KPIIndicatorDetails/KPIIndicatorDetails";
+import { getAllKPIs } from "@/redux/Proprietor/ProprietorSlice";
+
+
 
 const Settings = () => {
 
@@ -24,6 +30,11 @@ const Settings = () => {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+
+  useEffect(() => {
+    console.log("got here");
+    dispatch(getAllKPIs());
+  }, [dispatch]);
 
   const RenderSubscriptions = () => <Subscriptions />;
   const RenderAccount = () => <Account />;
@@ -34,7 +45,7 @@ const Settings = () => {
     { name: "Subscriptions", component: RenderSubscriptions },
     { name: "Account", component: RenderAccount },
     { name: "Password", component: RenderPassword },
-    { name: "Perfornance Indicator", component: RenderPerformanceIndicator }
+    { name: "Performance Indicator", component: RenderPerformanceIndicator }
   ];
 
 
@@ -46,7 +57,7 @@ const Settings = () => {
 
       <Tabs centralise tabs={tabsComponents} />
 
-      {modalState === "show" ? <Modal show >{modalType === "inviteParent" ? <InviteParentModal /> : modalType === "activateParent" ? <ActivateParentModal /> : modalType === "addNewWard" ? <AddNewWardModal /> : modalType === "addPerformanceIndicator" ? <AddPerformanceIndicatorModal /> :   null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "inviteParent" ? <InviteParentModal /> : modalType === "activateParent" ? <ActivateParentModal /> : modalType === "addNewWard" ? <AddNewWardModal /> : modalType === "addPerformanceIndicator" ? <AddPerformanceIndicatorModal /> : modalType === "deleteIndicator" ? <DeleteIndicatorModal /> : modalType === "modifyKPIIndicator" ? <ModifyKPIIndicatorModal /> : modalType === "KPIIndicatorDetails" ? <KPIIndicatorDetailsModal /> :  null}</Modal> : null}
     </div>
   );
 };

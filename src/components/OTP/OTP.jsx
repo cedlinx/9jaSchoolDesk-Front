@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import OtpInput from "react-otp-input";
+import styles from "./OTP.module.scss";
+import cx from "classnames";
 
 const OTPComponent =({numberOfInputs, handleInputChange})=> {
 
@@ -11,12 +13,15 @@ const OTPComponent =({numberOfInputs, handleInputChange})=> {
   };    
 
   return (
-    <OtpInput
-      value={state.otp}
-      onChange={onChange}
-      numInputs={numberOfInputs}
-      separator={<span>-</span>}
-    />
+    <div className={cx(styles.otpContainer)}>
+      <OtpInput
+        value={state.otp}
+        onChange={onChange}
+        numInputs={numberOfInputs}
+        separator={<span>{" "}&nbsp;&nbsp;&nbsp;</span>}
+      />
+    </div>
+  
   );
 
 };

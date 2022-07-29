@@ -1,17 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
+import cx from "classnames";
+import styles from "./PendingAccounts.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-
+import { Icon } from "@iconify/react";
 import Button from "@/components/Button/Button";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
 import {newSignUpsData} from "@/helpers/sampleData";
 import { showModal } from "@/redux/ModalState/ModalSlice";
+import { Dropdown, DropdownToggle, DropdownMenu,  DropdownItem } from "reactstrap";
+
 
 
 const PendingAccounts = () => {
 
   const dispatch = useDispatch();
+  const allGuardiansData = useSelector((state) => state?.proprietor?.getAllGuardiansData);
+
+  console.log(allGuardiansData);
 
   const columnsHeader = [                
     {
@@ -95,13 +102,50 @@ const PendingAccounts = () => {
             fontSize: "1rem",
             textAlign: "center"
           }}
-        >Action</div>
+        >Actions</div>
       ),
       accessor: "action",
       Cell: (row) => {
         let action = row.cell.row.values.action;
-        return <div  style={{ display: "flex", justifyContent: "center" }}>
-          <Button onClick={() => dispatch(showModal({action: "show", type: "activateParent", modalData:"id"}))} title="Activate" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+        return <div  style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+          <Button onClick={() => dispatch(showModal({action: "show", type: "activateGuardian", modalData:"id"}))} title="Activate" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF6A00" />
+
+          <Button onClick={() => dispatch(showModal({action: "show", type: "rejectGuardian", modalData:"id"}))} title="Reject Application" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF6A00" />
+
+        </div>;
+      }
+    },
+    {
+      Header: () => (
+        <div
+          style={{
+            width: "3rem",
+            color: "#747474",
+            fontSize: "1rem",
+            textAlign: "center"
+          }}
+        />
+      ),
+      accessor: "options",
+      Cell: (row) => {
+        const [dropdownOpen, setDropdownOpen] = useState(false);
+
+        const toggle = () => {
+          setDropdownOpen(prevState => !prevState);
+        };
+
+        let data = row.cell.row.original.allData;
+
+        return <div>
+          <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle style={{backgroundColor: "transparent"}} name="" className={cx(styles.dropdownToggler)}>
+              <Icon style={{cursor: "pointer"}} icon="bx:dots-vertical-rounded" color="black" />
+            </DropdownToggle>
+            <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "rejectGuardian", modalData:"id"}))}>Reject Application</DropdownItem>  
+              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "guardianDetails", modalData: data}))}>View Details</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>;
       }
     }
@@ -116,7 +160,8 @@ const PendingAccounts = () => {
         firstName: item?.firstName && titleCase(item?.firstName),
         lastName: item?.lastName && titleCase(item?.lastName),
         email: item?.email && item?.email,
-        action: ""
+        action: "",
+        allData: item
       });
     });
     return result;

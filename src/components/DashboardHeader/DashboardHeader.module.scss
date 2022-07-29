@@ -98,6 +98,12 @@
                         margin-left: 1rem;
                         outline: none;
 
+                        &:focus{
+                            outline: none;
+                            border: none;
+                            box-shadow: none !important;
+                        }
+
                         
                     }
                         .dropdownMenuWrapper{

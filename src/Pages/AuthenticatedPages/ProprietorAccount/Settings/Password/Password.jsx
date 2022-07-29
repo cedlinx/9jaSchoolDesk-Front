@@ -10,56 +10,31 @@ import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
 
 import { useForm, Controller } from "react-hook-form";
-import { signUpValidationSchema } from "@/helpers/validation";
+import { changePasswordValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
+
+import { changePassword } from "@/redux/Auth/AuthSlice";
+import useGetUser from "@/utils/useGetUser";
 
 const Password = () => {
 
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.loading);
+  const user = useGetUser();
 
-  const resolver = yupResolver(signUpValidationSchema);
+  const resolver = yupResolver(changePasswordValidationSchema);
 
   const defaultValues = {
-    email: "",
-    name: "",
     password: "",
     password_confirmation: "",
-    address: "",
-    phone: "",
-    pin: ""
-    // accountType: ""
+    current_password: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const createUser = async (data) => {
-    const response = await dispatch(signUp(data));
-    if (response.payload.status === 201) {
-      toast.success("Account created successfully. Please Login");
-      reset();
-    } else {
-      dispatch({
-        type: "USER_INIT_STATE"
-      });
-    }
+  const submitRequest = (data) => {
+    dispatch(changePassword({user: user, payload: data}));
   };
-
-  const [imgData, setImgData] = useState({
-    file: "",
-    imagePreviewUrl: ""
-  });
-
-  const onDrop = useCallback(acceptedFiles => {
-    let file = (acceptedFiles[0]);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
-    };
-    reader.readAsDataURL(file);
-  }, []);
-
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
 
   return (
     <div className={cx(styles.settingsTabItemContainer)}>
@@ -69,35 +44,33 @@ const Password = () => {
           <small>Please enter your current password to change your password.</small>
         </div>
         <div className={cx(styles.formWrapper, "flexCol")}>
-          <form onSubmit={handleSubmit((data) => createUser(data))}
+          <form onSubmit={handleSubmit((data) => submitRequest(data))}
             className={cx(styles.passwordFormContainer, "flexCol")}
           >    
             <>
-              <small>PASSWORD</small>
+              {/* <small>PASSWORD</small> */}
               <Controller
-                name="password"
+                name="current_password"
                 control={control}
                 render={({ field }) => (
                   <InputField
                     {...field} 
-                    placeholder={" "}
-                    // label={"Current Password"}
+                    label={"Current Password"}
                     type="password"
-                    error={errors?.password && errors?.password?.message}
+                    error={errors?.current_password && errors?.current_password?.message}
 
                   />
                 )}
               />
             </>
-            <small>NEW PASSWORD</small>
+            {/* <small>NEW PASSWORD</small> */}
             <Controller
               name="password"
               control={control}
               render={({ field }) => (
                 <InputField
                   {...field} 
-                  placeholder={" "}
-                  // label={"New Password"}
+                  label={"New Password"}
                   type="password"
                   error={errors?.password && errors?.password?.message}
 
@@ -105,24 +78,23 @@ const Password = () => {
               )}
             />
 
-            <small>CONFIRM NEW PASSWORD</small>
+            {/* <small>CONFIRM NEW PASSWORD</small> */}
             <Controller
-              name="password"
+              name="password_confirmation"
               control={control}
               render={({ field }) => (
                 <InputField
                   {...field} 
-                  placeholder={" "}
-                  // label={"Confirm New Password"}
+                  label={"Confirm New Password"}
                   type="password"
-                  error={errors?.password && errors?.password?.message}
+                  error={errors?.password_confirmation && errors?.password_confirmation?.message}
 
                 />
               )}
             />
 
             <div className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button onClick={handleSubmit((data) => createUser(data))} type title="Save Changes" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+              <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => submitRequest(data))} type title="Save Changes" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
           </form>

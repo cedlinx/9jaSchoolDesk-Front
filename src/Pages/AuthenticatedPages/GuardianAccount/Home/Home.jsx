@@ -28,6 +28,7 @@ import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivi
 import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
+import { getDashboard } from "@/redux/Guardian/GuardianSlice";
 
 
 const Home = () => {
@@ -36,6 +37,13 @@ const Home = () => {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+  const dashboardData = useSelector((state) => state.guardian.getDashboardData);
+
+  console.log(dashboardData);
+
+  useEffect(() => {
+    dispatch(getDashboard());
+  }, [dispatch]);
 
   const teachersArray = [
     {

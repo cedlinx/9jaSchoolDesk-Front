@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
-import styles from "./InviteParent.module.scss";
+import styles from "./InviteGuardian.module.scss";
 import Button from "@/components/Button/Button";
 import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
@@ -20,58 +20,40 @@ import { useDropzone } from "react-dropzone";
 
 import editIcon from "@/assets/icons/edit-icon.svg";
 
-import { forgotPassword } from "@/redux/Auth/AuthSlice";
+import { inviteGuardian } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
-import { forgotPasswordValidationSchema } from "@/helpers/validation";
+import { inviteGuardianValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TextInput from "@/components/TextInput/TextInput";
 
-const InviteParent = () => {
+const InviteGuardian = () => {
 
   const dispatch = useDispatch();
-  const modalData = useSelector((state) => state.modalState.modalData);
 
-  const sendRequest = (data) => {
-    dispatch(forgotPassword(data));
-    dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
+  const sendRequest = async (data) => {
+    let response = await dispatch(inviteGuardian(data));
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide", type: "inviteGuardian" }));
+    }
   };
 
-  const showLoginModal = (e) => {
-    e.preventDefault();
-    dispatch(showModal({ action: "show", type: "logIn" }));
-  };
-
-  const resolver = yupResolver(forgotPasswordValidationSchema);
+  const resolver = yupResolver(inviteGuardianValidationSchema);
 
   const defaultValues = {
-    email: ""
+    email: "",
+    name: "",
+    message: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [imgData, setImgData] = useState({
-    file: "",
-    imagePreviewUrl: ""
-  });
-
-  const onDrop = useCallback(acceptedFiles => {
-    let file = (acceptedFiles[0]);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
-    };
-    reader.readAsDataURL(file);
-  }, []);
-
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
-
   return (
 
-    <section className={cx(styles.inviteParentContainer, "flexCol")}>
+    <section className={cx(styles.inviteGuardianContainer, "flexCol")}>
 
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "inviteParent" }))} icon="carbon:close-filled" color="white" />
+        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "inviteGuardian" }))} icon="carbon:close-filled" color="white" />
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
@@ -80,53 +62,51 @@ const InviteParent = () => {
         </div>
         <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
-          className=""
         >
 
           <Controller
-            name="studentId"
+            name="name"
             control={control}
             render={({ field }) => (
               <InputField
                 {...field}
                 label={"Name"}
                 placeholder="Name"
-                error={errors?.studentId && errors?.studentId?.message}
+                error={errors?.name && errors?.name?.message}
                 options={[{label: "", value: ""}]}
               />
             )}
           />
 
           <Controller
-            name="studentId"
+            name="email"
             control={control}
             render={({ field }) => (
               <InputField
                 {...field}
                 label={"Email"}
                 placeholder="Enter Email"
-                error={errors?.studentId && errors?.studentId?.message}
+                error={errors?.email && errors?.email?.message}
                 options={[{label: "", value: ""}]}
               />
             )}
           />
 
           <Controller
-            name="studentId"
+            name="message"
             control={control}
             render={({ field }) => (
               <TextInput
                 {...field}
                 placeholder="Enter Message"
-                error={errors?.studentId && errors?.studentId?.message}
-                options={[{label: "", value: ""}]}
+                error={errors?.message && errors?.message?.message}
               />
             )}
           />
 
 
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button title="Invite" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            <Button title="Invite" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
 
      
@@ -138,8 +118,8 @@ const InviteParent = () => {
   );
 };
 
-InviteParent.propTypes = {
+InviteGuardian.propTypes = {
   title: PropTypes.string
 };
 
-export default InviteParent;
+export default InviteGuardian;

@@ -174,10 +174,11 @@
             }
         }
         .body{
-            padding: 0rem 9rem 0rem 9rem;
+            padding: 0rem 2rem 0rem 2rem;
             .tabContainer{
                 gap: 0rem;
                 padding-top: 2rem;
+
                 .tabList{
                     gap: 1rem;
                     padding-right: 2rem;
@@ -185,6 +186,8 @@
     
                 .tabPanelContainer{
                   padding: 2rem;
+                // align-items: center;
+
                     .panelContent{
                         gap: 1.5rem;
 
@@ -223,6 +226,11 @@
                             }
                         }
                     }
+
+                    .innerWrapper{
+                        width: 100%;
+                       margin: 0 auto;
+                    }
                 }
             }
         }
@@ -245,7 +253,7 @@
             }
         }
         .body{
-            padding: 0rem 15rem 0rem 15rem;
+            padding: 0rem 3rem 0rem 3rem;
             .tabContainer{
                 gap: 0rem;
                 padding-top: 2rem;
@@ -280,6 +288,10 @@
                                 }
                             }
                         }
+                    }
+                    .innerWrapper{
+                        width: 50%;
+                       margin: 0 auto;
                     }
                 }
             }

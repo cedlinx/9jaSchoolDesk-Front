@@ -36,16 +36,13 @@ export const loginWithClassCodeApi = async (data) => {
 };
 
 export const forgotPasswordApi = async (data) => {
-  const request = await axios.post("noauth/forgot/password", data);
-  return request;
+  return await axios.post(`${data.user}/noauth/forgot/password`, data.payload);
 };
 
 export const resetPasswordApi =  async (data) => {
-  const request = await axios.post(`noauth/reset/password/${data.token}`, data);
-  return request;
+  return await axios.post(`${data.user}/noauth/reset/password/${data.token}`, data.payload);
 };
 
 export const changePasswordApi =  async (data) => {
-  const request = await axios.post(`${data.user}/auth/change/password`, data);
-  return request;
+  return await axios.post(`${data.user}/auth/change/password`, data.payload);
 };

@@ -72,6 +72,55 @@ export const signUpValidationSchema = Yup.object().shape({
     .min(5, "Must be above 5 characters!")
 });
 
+export const addIndicatorValidationSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Name should be at least 2 characters long.")
+    .required("Name is required"),
+
+  category: Yup.string()
+    .required("Category is Required"),
+
+  type: Yup.string()
+    .required("Type is required"),
+
+  weight: Yup.string()
+    .required("Weight is required"),
+
+  min_score: Yup.string()
+    .required("Minimum score is required"),
+
+  max_score: Yup.string()
+    .required("Maximum score is required"),
+
+  uploadedFile: Yup.string()
+    .required("Indicator icon is required")
+}); 
+
+export const modifyKPIIndicatorValidationSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Name should be at least 2 characters long.")
+    .required("Name is required"),
+
+  category: Yup.string()
+    .required("Category is Required"),
+
+  type: Yup.string()
+    .required("Type is required"),
+
+  weight: Yup.string()
+    .required("Weight is required"),
+
+  min_score: Yup.string()
+    .required("Minimum score is required"),
+
+  max_score: Yup.string()
+    .required("Maximum score is required"),
+
+  uploadedFile: Yup.string()
+    .nullable()
+    .required("Indicator icon is required")
+}); 
+
 export const addAssetValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Name should be at least 2 characters long.")
@@ -378,6 +427,12 @@ export const forgotPasswordValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address").required()
 });
 
+export const studentLoginValidationSchema = Yup.object().shape({
+  password: Yup.string()
+    .required("Password is required")
+    .min(8, "Must Contain at least 8 Characters")
+});
+
 export const requestVerificationLinkValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address").required()
 });
@@ -407,12 +462,6 @@ export const formatDate = (date) => {
   return moment(date, "hh:mm A").format("\"hh:mm A\"");
 };
 
-const getAdayBeforeToday = () => {
-  let today = new Date();
-  today.setDate(today.getDate() - 1);
-  return today;
-};
-
 export const changePasswordValidationSchema = Yup.object().shape({
   current_password: Yup.string()
     .required("The Current Password is required")
@@ -425,6 +474,42 @@ export const changePasswordValidationSchema = Yup.object().shape({
     .required("Password is required")
     .min(8, "Must Contain at least 8 Characters")
     .oneOf([Yup.ref("password")], "Passwords must and should match")
+});
+
+export const urgentInfoValidationSchema = Yup.object().shape({
+  message: Yup.string()
+    .required("Message content is required"),
+
+  user: Yup.array()
+    .min(1, "Kindly select at least one (1) user")
+    .nullable()
+    .required("Kindly select at least one (1) user")
+});
+
+export const addNewWardValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .required("Email is required"),
+
+  student_id: Yup.string()
+    .required("Kindly select at least one (1) user")
+});
+
+
+
+export const inviteGuardianValidationSchema = Yup.object().shape({
+  message: Yup.string(),
+
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .required("Email is required"),
+
+  name: Yup.string()
+    .required("Kindly provide a name")
 });
 
 export const stepOneValidationSchema = Yup.object().shape({

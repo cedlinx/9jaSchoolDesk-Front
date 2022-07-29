@@ -1,0 +1,90 @@
+.KPIIndicatorDetailsContainer{
+    width: 100%;
+    background-color: #fff;
+    background-color: transparent;
+    gap: 1rem;
+
+    .header{
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-bottom: 0rem;
+        line-height: 1;
+        color: #fff;
+
+        p{
+            line-height: 1;
+            width: 100%;
+        }
+        svg{
+            cursor: pointer;
+        }
+
+    }
+
+    .body{
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        gap: 3rem;
+        .header {
+            position: relative;
+
+            p{
+               color: #D25B5D;
+               font-size: 1.25rem;
+               text-align: center;
+            }
+        }
+
+        .modalItem{
+            display: flex;
+            align-items: center;
+
+            .title{
+                width: 50%;
+                font-size: 1rem;
+                line-height: 1;
+                font-weight: bold;
+            }
+            .value{
+                width: 50%;
+                font-size: 1.25rem;
+                line-height: 1;
+            }
+        }
+
+        button{
+            align-self: center;
+        }
+
+    }
+}
+
+@media all and (min-width: 768px){
+    .KPIIndicatorDetailsContainer{
+        gap: 1rem;
+    
+        .header{
+        }
+        .body{
+            gap: 3rem;
+            .header {
+    
+            }
+        }
+    }
+}
+
+
+@media all and (min-width: 991px){
+    .KPIIndicatorDetailsContainer{
+        gap: 1rem;
+    
+        .header{
+        }
+        .body{
+            gap: 2rem;
+        }
+    }
+}
+

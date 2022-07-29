@@ -1,4 +1,4 @@
-.inviteParentContainer{
+.guardianDetailsContainer{
     width: 100%;
     background-color: #fff;
     background-color: transparent;
@@ -20,7 +20,8 @@
         }
 
     }
-    .formWrapper{
+
+    .body{
         background-color: #fff;
         padding: 1rem;
         border-radius: 0.5rem;
@@ -35,54 +36,40 @@
             }
         }
 
-        form{    
+        .modalItem{
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            align-items: center;
 
-            .btnDiv{
-                justify-content: center;
-                padding-top: 1rem;
-             }
-
-             small{
-                align-self: flex-end;
-                color: #D25B5D;
-                font-weight: bold;
-                border-bottom: 1px solid #D25B5D;
-                cursor: pointer;
-             }
-
-             span{
-                align-self: center;
-                text-align: center;
-                color: #D25B5D;
-                font-weight: bold;
-                line-height: 1.5;
+            .title{
+                width: 50%;
                 font-size: 1rem;
-                margin-bottom: 1rem;
-             }
+                line-height: 1;
+                font-weight: bold;
+            }
+            .value{
+                width: 50%;
+                font-size: 1.25rem;
+                line-height: 1;
+            }
         }
+
+        button{
+            align-self: center;
+        }
+
     }
 }
 
 @media all and (min-width: 768px){
-    .inviteParentContainer{
+    .guardianDetailsContainer{
         gap: 1rem;
     
         .header{
         }
-        .formWrapper{
+        .body{
             gap: 3rem;
             .header {
     
-            }
-    
-            form{    
-                .btnDiv{
-                    justify-content: center;
-                    padding-top: 0rem;
-                 }
             }
         }
     }
@@ -90,20 +77,13 @@
 
 
 @media all and (min-width: 991px){
-    .inviteParentContainer{
+    .guardianDetailsContainer{
         gap: 1rem;
     
         .header{
         }
-        .formWrapper{
+        .body{
             gap: 2rem;
-            .header {
-
-            }
-    
-            form{    
-
-            }
         }
     }
 }

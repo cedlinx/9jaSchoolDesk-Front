@@ -35,6 +35,7 @@ const LoginWithClassCodeComponent = () => {
   const signIn= async (data)=>{
     let response = await dispatch(loginWithClassCode({code: data?.accessCode}));
     console.log(response);
+    navigate("/select-account/student");
   };
 
   const resolver = yupResolver(loginWithClassCodeValidationSchema);

@@ -20,6 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import studentProfilePic from "@/assets/images/student-profile-pic.png";
 
 import { useDropzone } from "react-dropzone";
+import PricingModule from "@/components/PricingModule/PricingModule";
 
 
 
@@ -89,10 +90,13 @@ const Profile = () => {
             <Tab>
               <p>Password</p>
             </Tab>
+            <Tab>
+              <p>Subscription</p>
+            </Tab>
            
           </TabList>
 
-          <div className={cx(styles.tabPanelContainer, "col-sm-9")}>
+          <div className={cx(styles.tabPanelContainer, "flexCol", "col-sm-9")}>
             <TabPanel>
               <div className={cx(styles.panelContent, "flexCol")}>
                 <div className={cx(styles.header)}>
@@ -186,7 +190,7 @@ const Profile = () => {
               </div>
             </TabPanel>
             <TabPanel>
-              <div className={cx(styles.panelContent, "flexCol")}>
+              <div className={cx(styles.panelContent, styles.innerWrapper, "flexCol")}>
                 <div className={cx(styles.header)}>
                   <h3>Notification</h3>
                   <small>How do you want to be communicated</small>
@@ -198,7 +202,7 @@ const Profile = () => {
                     <div className={cx(styles.inputWrapper, "flexRow-align-center")}>
                       <div className={cx(styles.leftSection, "flexRow-align-center")}>
                         <div><Icon icon="logos:google-gmail" color="#1d1e24" width="28" height="28" /></div>
-                        <span>Gmail</span>
+                        <span>Email</span>
                       </div>
                       <div className={cx(styles.rightSection, "flexRow-align-center")}>
                         <Controller
@@ -249,7 +253,7 @@ const Profile = () => {
                     
                     <div className={cx(styles.inputWrapper, "flexRow-align-center")}>
                       <div className={cx(styles.leftSection, "flexRow-align-center")}>
-                        <div><Icon icon="logos:whatsapp" color="#1d1e24" width="28" height="28" /></div>
+                        <div><Icon icon="logos:whatsapp-icon" color="#1d1e24" width="28" height="28" /></div>
                         <span>WhatsApp</span>
                       </div>
                       <div className={cx(styles.rightSection, "flexRow-align-center")}>
@@ -284,7 +288,7 @@ const Profile = () => {
               </div>
             </TabPanel>
             <TabPanel>
-              <div className={cx(styles.panelContent, "flexCol")}>
+              <div className={cx(styles.panelContent, styles.innerWrapper, "flexCol")}>
                 <div className={cx(styles.header)}>
                   <h3>Password</h3>
                   <small>Please enter your current password to change your password.</small>
@@ -350,7 +354,11 @@ const Profile = () => {
                 </div>
               </div>
             </TabPanel>
-
+            <TabPanel>
+              <div className={cx(styles.panelContent, "flexCol")}>
+                <PricingModule />
+              </div>
+            </TabPanel>
           </div>
           
         </Tabs>

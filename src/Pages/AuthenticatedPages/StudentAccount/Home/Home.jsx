@@ -10,6 +10,8 @@ import curiosityIcon from "@/assets/icons/curiosity.svg";
 import persistenceIcon from "@/assets/icons/persistence.svg";
 import teamworkIcon from "@/assets/icons/teamwork.svg";
 import gratitudeIcon from "@/assets/icons/gratitude.svg";
+import Button from "@/components/Button/Button";
+
 import expandIcon from "@/assets/icons/expand-icon.svg";
 import behaviouralCardImage from "@/assets/images/behavioral-card-image.png";
 import studentProfilePic from "@/assets/images/student-profile-pic.png";
@@ -21,19 +23,20 @@ import addIcon from "@/assets/icons/add-icon.svg";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/sampleData";
+import {assessmentData, teachersRatingArray} from "@/helpers/sampleData";
 
 import EditProfileModal from "@/components/Modals/EditProfile/EditProfile";
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
 import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-
 import Tabs from "@/components/Tabs/TabsV2";
 import Tests from "./Tests/Tests";
 import Tasks from "./Tasks/Tasks";
 import Assignments from "./Assignments/Assignments";
 
+import shortenDate from "@/helpers/shortenDate";
+import useGenerateColor from "@/utils/useGenerateColor";
 
 const Home = () => {
 
@@ -52,58 +55,7 @@ const Home = () => {
     { name: "Tasks", component: RenderTasks }
   ];
 
-  const teachersArray = [
-    {
-      name: "Emenike Chidi",
-      subject: "Mathematics",
-      rating: 4,
-      profilePic: studentProfilePic
-    },
-    {
-      name: "George Saim",
-      subject: "Basic Technology",
-      rating: 0,
-      profilePic: studentProfilePic
-    },
-    {
-      name: "Fred Anderson",
-      subject: "Home Economics",
-      rating: 0,
-      profilePic: studentProfilePic
-    },
-    {
-      name: "John Doe",
-      subject: "Civic Education",
-      rating: 3,
-      profilePic: studentProfilePic
-    },
-    {
-      name: "John Doe",
-      subject: "Civic Education",
-      rating: 0,
-      profilePic: null
-    }
-  ];
-
-  const generateColor = () => {
-    const letters = "123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
-  let shortenDate=(value)=>{
-    let date = new Date(value);
-    const options = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    };
-    let dateValue = date.toLocaleDateString("en-US", options);
-    return `${dateValue}`;
-  };
+  const generateColor = useGenerateColor();
 
 
   const columnsHeaderAssessment = [                
@@ -197,24 +149,6 @@ const Home = () => {
     });
     return result;
   };
-
-  const editProfileModal = () => {
-    return (
-      <EditProfileModal />
-    );
-  };
-
-  const submitAssessmentModal = () => {
-    return (
-      <SubmitAssessmentModal />
-    );
-  };
-
-  const uploadActivityModal = () => {
-    return (
-      <UploadActivityModal />
-    );
-  };
   
   return (
     <div className={cx(styles.dashboardHomeContainer)}>
@@ -248,8 +182,6 @@ const Home = () => {
           </div>
         </div>
 
-      
-
       </section>
       
       <section className={cx(styles.lowerSection, "row")}>
@@ -273,11 +205,7 @@ const Home = () => {
               <div><span><img src={teamworkIcon} alt="" /></span><span>Teamwork</span><span>2 pts</span></div>
               <div><span><img src={persistenceIcon} alt="" /></span><span>Persistence</span><span>2 pts</span></div>
             </div>
-
           </div>
-
-        
-  
         </div>
 
 
@@ -285,11 +213,11 @@ const Home = () => {
           <h5>Rate Your Teacher</h5>
           <div className={cx(styles.ratingsDiv)}>
             <div className={cx(styles.body, "flexCol")}>
-              {teachersArray.map((teacher, index) => {
+              {teachersRatingArray.map((teacher, index) => {
                 return(
                   <div key={index}>
                     <span> 
-                      {teacher.profilePic ? <img src={teacher.profilePic} alt="profile pic" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(teacher.name)}</span>}
+                      {teacher.profilePic ? <img src={teacher.profilePic} alt="profile pic" /> : <span style={{backgroundColor: generateColor}}>{initialsCase(teacher.name)}</span>}
                       
                     </span>
                     <div>
@@ -331,14 +259,10 @@ const Home = () => {
                                 
     
 
-      {modalState === "show" ? <Modal show >{modalType === "editProfile" ? editProfileModal() : modalType === "submitAssessment" ? submitAssessmentModal() : modalType === "uploadActivity" ? uploadActivityModal()  : null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "editProfile" ? <EditProfileModal /> : modalType === "submitAssessment" ? <SubmitAssessmentModal /> : modalType === "uploadActivity" ? <UploadActivityModal />  : null}</Modal> : null}
             
     </div>
   );
-};
-
-Home.propTypes = {
-    
 };
 
 export default Home;

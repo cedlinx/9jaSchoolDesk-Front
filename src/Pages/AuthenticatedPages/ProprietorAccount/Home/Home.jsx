@@ -19,6 +19,9 @@ import classIcon from "@/assets/icons/class-icon-active.svg";
 import studentIcon from "@/assets/icons/student-icon-active.svg";
 import teacherIcon from "@/assets/icons/teacher-icon-active.svg";
 import parentIcon from "@/assets/icons/parent-icon-active.svg";
+import { getDashboard } from "@/redux/Proprietor/ProprietorSlice";
+
+
 
 
 const Home = () => {
@@ -27,7 +30,14 @@ const Home = () => {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+  const dashboardData = useSelector((state) => state.proprietor.getDashboardData);
 
+  console.log(dashboardData);
+
+  useEffect(() =>{
+    dispatch(getDashboard());
+  }
+  , [dispatch]);
 
   let shortenDate=(value)=>{
     let date = new Date(value);

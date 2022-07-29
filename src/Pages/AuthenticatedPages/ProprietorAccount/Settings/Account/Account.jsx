@@ -17,12 +17,14 @@ import studentProfilePic from "@/assets/images/student-profile-pic.png";
 const Account = () => {
 
   const dispatch = useDispatch();
+  const userDetails = JSON.parse(localStorage.getItem("userData"));
+  console.log(userDetails);
 
   const resolver = yupResolver(signUpValidationSchema);
 
   const defaultValues = {
-    email: "",
-    name: "",
+    email: userDetails?.email || "",
+    name: userDetails?.name || "",
     password: "",
     password_confirmation: "",
     address: "",
@@ -70,7 +72,7 @@ const Account = () => {
         </div>
         <div className={cx(styles.imageSection, "flexRow")}>
           <div className={cx(styles.imageDiv)}>
-            <img src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : studentProfilePic} alt="" />
+            <img src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : userDetails?.avatar} alt="" />
           </div>
 
           <Button {...getRootProps()}  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />

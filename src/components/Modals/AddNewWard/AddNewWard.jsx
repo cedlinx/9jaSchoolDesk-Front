@@ -20,10 +20,10 @@ import { useDropzone } from "react-dropzone";
 
 import editIcon from "@/assets/icons/edit-icon.svg";
 
-import { forgotPassword } from "@/redux/Auth/AuthSlice";
+import { assignGuardianToSingleStudent } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
-import { forgotPasswordValidationSchema } from "@/helpers/validation";
+import { addNewWardValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const AddNewWard = () => {
@@ -31,39 +31,24 @@ const AddNewWard = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
 
-  const sendRequest = (data) => {
-    dispatch(forgotPassword(data));
-    dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
+  const sendRequest = async (data) => {
+    alert("attach ward");
+    console.log(data);
+    // let response = await dispatch(assignGuardianToSingleStudent(data));
+    // if(response.payload.success){
+    //   dispatch(showModal({ action: "hide", type: "addNewWard" }));
+    //   dispatch(getAllGuardians())
+    // }
   };
 
-  const showLoginModal = (e) => {
-    e.preventDefault();
-    dispatch(showModal({ action: "show", type: "logIn" }));
-  };
-
-  const resolver = yupResolver(forgotPasswordValidationSchema);
+  const resolver = yupResolver(addNewWardValidationSchema);
 
   const defaultValues = {
-    email: ""
+    email: modalData.email,
+    student_id: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
-
-  const [imgData, setImgData] = useState({
-    file: "",
-    imagePreviewUrl: ""
-  });
-
-  const onDrop = useCallback(acceptedFiles => {
-    let file = (acceptedFiles[0]);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
-    };
-    reader.readAsDataURL(file);
-  }, []);
-
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
 
   return (
 
@@ -82,7 +67,22 @@ const AddNewWard = () => {
           className=""
         >
 
+          
           <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                {...field}
+                label={"GUARDIAN EMAIL"}
+                placeholder="Email"
+                readOnly={true}
+                error={errors?.email && errors?.email?.message}
+              />
+            )}
+          />
+
+          {/* <Controller
             name="studentId"
             control={control}
             render={({ field }) => (
@@ -93,18 +93,18 @@ const AddNewWard = () => {
                 error={errors?.studentId && errors?.studentId?.message}
               />
             )}
-          />
+          /> */}
 
           <Controller
-            name="studentClass"
+            name="student_id"
             control={control}
             render={({ field }) => (
               <Select
                 {...field}
                 label={"SELECT WARD TO ATTACH"}
                 defaultSelect="Select Ward"
-                error={errors?.studentId && errors?.studentId?.message}
-                options={[{label: "", value: ""}]}
+                error={errors?.student_id && errors?.student_id?.message}
+                options={[{label: "Tolu", value: "1"}, {label: "Tope", value: "2"}]}
               />
             )}
           />

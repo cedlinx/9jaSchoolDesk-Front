@@ -10,6 +10,7 @@
         text-align: center;
         small{
             color: #828282;
+            font-size: 1rem;
         }
     }
     
@@ -22,7 +23,7 @@
                 border-radius: 50%;
                 width: clamp(3rem, 4rem, 5rem);
                 height: clamp(3rem, 4rem, 5rem);
-                object-fit: contain;
+                object-fit: cover;
             }
         }
     }

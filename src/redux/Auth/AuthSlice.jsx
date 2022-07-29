@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { setToken } from "@/utils/auth";
 import { setAuthToken } from "@/utils/setAuthToken";
-
+import formatArrayList from "@/helpers/formatArrayList";
 
 const initialState = {
   loading: false,
@@ -196,10 +196,10 @@ export const forgotPassword = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await forgotPasswordApi(data);
     toast.success(response.data.message);
-    return dispatch(forgotPasswordAction(response));
+    return dispatch(forgotPasswordAction(response?.data));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -208,28 +208,29 @@ export const changePassword = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await changePasswordApi(data);
     toast.success(response.data.message);
-    return dispatch(changePasswordAction(response));
+    return dispatch(changePasswordAction(response?.data));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
+    return dispatch(hasError(e.response.data));
   }
 };
 
 export const resetPassword = (data) => async (dispatch) => {
+  console.log(data);
   try {
     dispatch(startLoading());
     const response = await resetPasswordApi(data);
-    return dispatch(resetPasswordAction(response));
+    return dispatch(resetPasswordAction(response?.data));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
+    return dispatch(hasError(e.response.data));
   }
 };
 
-export const logout = () => async (dispatch) => {
+export const logout = () => (dispatch) => {
   try {
-    localStorage.clear();
     setAuthToken(false);
+    window.localStorage.clear();
     window.location.href = ("/");
   } catch (e) {
     return dispatch(hasError(e.message));

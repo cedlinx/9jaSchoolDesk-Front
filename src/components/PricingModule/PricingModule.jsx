@@ -18,11 +18,11 @@ const PricingModule = () => {
     <section className={cx(styles.pricingWrapper, "flex-row")}>
       <h3>Choose the perfect plan for you</h3>
       <div className={cx(styles.cardWrapper)}>
-        <PriceCard title="Starter" amount="100000" btnText="Subscribe" benefitsArray={pricingArray.starter} />
+        <PriceCard currency="N" title="Starter" amount="10000" btnText="Subscribe" benefitsArray={pricingArray.starter} />
 
-        <PriceCard title="Premium" amount="100000" btnText="Get 7 days Free Trial" benefitsArray={pricingArray.premium} />
+        <PriceCard currency="N" title="Premium" amount="200000" btnText="Get 7 days Free Trial" benefitsArray={pricingArray.premium} />
 
-        <PriceCard title="Basic" amount="100000" btnText="Subscribe" benefitsArray={pricingArray.basic} />
+        <PriceCard currency="N" title="Basic" amount="50000" btnText="Subscribe" benefitsArray={pricingArray.basic} />
       </div>
     </section>
   );

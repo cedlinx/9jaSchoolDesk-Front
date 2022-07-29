@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import cx from "classnames";
-import imageLoader from "@/assets/icons/loading.svg";
+import imageLoader from "@/assets/icons/spin-loader.svg";
 import styled from "styled-components";
 
 const ButtonComponent = styled.button`

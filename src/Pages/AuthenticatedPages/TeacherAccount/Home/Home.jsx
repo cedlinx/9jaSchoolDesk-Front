@@ -179,26 +179,6 @@ const Home = () => {
     }
   ];
 
-  const generateColor = () => {
-    const letters = "123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
-  let shortenDate=(value)=>{
-    let date = new Date(value);
-    const options = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    };
-    let dateValue = date.toLocaleDateString("en-US", options);
-    return `${dateValue}`;
-  };
-
   const editProfileModal = () => {
     return (
       <EditProfileModal />

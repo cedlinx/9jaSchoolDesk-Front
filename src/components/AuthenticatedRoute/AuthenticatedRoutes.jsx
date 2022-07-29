@@ -11,18 +11,18 @@ const AuthenticatedRoute = ({ children, roles }) => {
   const checkIsAuthenticated = isAuthenticated();
   const params = useParams();
   const user = params?.user;
-  const userDetails = JSON.parse(localStorage.getItem("userData"));
   const token = getToken();
+  const userDetails = JSON.parse(localStorage.getItem("userData"));
   console.log(userDetails);
 
-  // isExpired(token) && <Navigate to={`/login/${user}`} state={{ from: location }} />;
+  isExpired(token) && <Navigate to={`/login/${user}`} state={{ from: location }} />;
 	
-  // const userHasRequiredRole = userDetails && roles.includes(userDetails?.role) ? true : false;
-  // console.log(userHasRequiredRole);
+  const userHasRequiredRole = userDetails && roles.includes(userDetails?.role) ? true : false;
+  console.log(userHasRequiredRole);
 
-  // const isOTPVerified = userDetails?.hasverifiedotp === 1 ? true : false;
+  const isOTPVerified = userDetails?.hasverifiedotp === 1 ? true : false;
 
-  // console.log(isOTPVerified);
+  console.log(isOTPVerified);
 
   // if (!checkIsAuthenticated) {
   //   return <Navigate to={`/login/${user}`} state={{ from: location }} />;

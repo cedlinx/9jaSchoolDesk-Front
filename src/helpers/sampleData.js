@@ -289,6 +289,7 @@ export const allStudentsData = [
     class: "JSS 1A",
     parentName: "Parent John",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "https://picsum.photos/200",
     email: "johndon@gmail.com",
     phone: "123456789"
   },
@@ -300,6 +301,7 @@ export const allStudentsData = [
     class: "JSS 1B",
     parentName: "Parent Jane",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "https://picsum.photos/201",
     email: "john44don@gmail.com",
     phone: "1234567666"
   },
@@ -311,6 +313,7 @@ export const allStudentsData = [
     class: "JSS 1C",
     parentName: "Parent Doe",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "https://picsum.photos/202",
     email: "johndon@gmail.com",
     phone: "123456789"
   },
@@ -322,6 +325,7 @@ export const allStudentsData = [
     class: "JSS 1A",
     parentName: "Parent John",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "",
     email: "johndon@gmail.com",
     phone: "123456789"
   },
@@ -333,6 +337,7 @@ export const allStudentsData = [
     class: "JSS 1B",
     parentName: "Parent Jane",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "https://picsum.photos/205",
     email: "john44don@gmail.com",
     phone: "1234567666"
   },
@@ -343,7 +348,8 @@ export const allStudentsData = [
     studentId: "1122wf",
     class: "JSS 1C",
     parentName: "Parent Doe",
-    parentImage: "https://picsum.photos/200", 
+    parentImage: "https://picsum.photos/200",
+    studentImage: "", 
     email: "johndon@gmail.com",
     phone: "123456789"
   },
@@ -355,6 +361,7 @@ export const allStudentsData = [
     class: "JSS 1A",
     parentName: "Parent John",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "https://picsum.photos/200",
     email: "johndon@gmail.com",
     phone: "123456789"
   },
@@ -366,6 +373,7 @@ export const allStudentsData = [
     class: "JSS 1B",
     parentName: "Parent Jane",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "https://picsum.photos/200",
     email: "john44don@gmail.com",
     phone: "1234567666"
   },
@@ -399,6 +407,7 @@ export const allStudentsData = [
     class: "JSS 1B",
     parentName: "Parent Jane",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "https://picsum.photos/200",
     email: "john44don@gmail.com",
     phone: "1234567666"
   },
@@ -410,6 +419,7 @@ export const allStudentsData = [
     class: "JSS 1C",
     parentName: "Parent Doe",
     parentImage: "https://picsum.photos/200", 
+    studentImage: "https://picsum.photos/210",
     email: "johndon@gmail.com",
     phone: "123456789"
   }
@@ -593,21 +603,54 @@ export const allClassesData = [
   }
 ];
 
-export const performanceIndicatorData=[
+// export const performanceIndicatorData=[
+//   {
+//     name: "Curiosity",
+//     imageUrl: "https://picsum.photos/200"
+//   },
+//   {
+//     name: "Gratitude",
+//     imageUrl: "https://picsum.photos/200"
+//   },
+//   {
+//     name: "Teamwork",
+//     imageUrl: "https://picsum.photos/200"
+//   },
+//   {
+//     name: "Persistence",
+//     imageUrl: "https://picsum.photos/200"
+//   }
+// ];
+
+export const teachersRatingArray = [
   {
-    name: "Curiosity",
-    imageUrl: "https://picsum.photos/200"
+    name: "Emenike Chidi",
+    subject: "Mathematics",
+    rating: 4,
+    profilePic: "https://picsum.photos/200"
   },
   {
-    name: "Gratitude",
-    imageUrl: "https://picsum.photos/200"
+    name: "George Saim",
+    subject: "Basic Technology",
+    rating: 0,
+    profilePic: "https://picsum.photos/201"
   },
   {
-    name: "Teamwork",
-    imageUrl: "https://picsum.photos/200"
+    name: "Fred Anderson",
+    subject: "Home Economics",
+    rating: 0,
+    profilePic: "https://picsum.photos/202"
   },
   {
-    name: "Persistence",
-    imageUrl: "https://picsum.photos/200"
+    name: "John Doe",
+    subject: "Civic Education",
+    rating: 3,
+    profilePic: "https://picsum.photos/203"
+  },
+  {
+    name: "John Doe",
+    subject: "Civic Education",
+    rating: 0,
+    profilePic: null
   }
 ];

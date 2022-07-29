@@ -40,6 +40,17 @@
             background-color: rgba(22, 245, 41, 0.215);
             height: 100%;
             width: 100%;
+            
+            h3{
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin: 0rem;
+            }
+
+            p{
+                font-size: 1.25rem;
+                margin: 0rem;
+            }
         }
     }
 
@@ -138,6 +149,7 @@
                             img{
                                 width: 2.5rem;
                                 padding: 0rem;
+                                border-radius: 50%;
                             }
                             span{
                                 display: inline-block;

@@ -24,6 +24,7 @@ import {Role} from "@/constants/constants";
 import DashboardStudent from "../Pages/AuthenticatedPages/StudentAccount/Home/Home";
 import AssessmentFeedbackStudent from "../Pages/AuthenticatedPages/StudentAccount/AssessmentFeedback/AssessmentFeedback";
 import MyClassesStudent from "../Pages/AuthenticatedPages/StudentAccount/MyClasses/MyClasses";
+import SelectAccountStudent from "../Pages/Authentication/Login/SelectAccount/SelectAccount";
 import ViewClassStudent from "../Pages/AuthenticatedPages/StudentAccount/MyClasses/ViewClass/ViewClass";
 import ProfileStudent from "../Pages/AuthenticatedPages/StudentAccount/Profile/Profile";
 import ClassGistStudent from "../Pages/AuthenticatedPages/StudentAccount/ClassGist/ClassGist";
@@ -62,10 +63,11 @@ const RoutesComponent = () => {
         <Route path="pre-signup/:user" element={<PreSignUp />} />
         <Route path="signup/:user" element={<SignUp />} />
         {/* <Route path="api/email/verify/:id/:token" element={<VerifyEmail />} />		 */}
-        <Route  path="forgot-password" element={<ForgotPassword />} />
+        <Route  path="/:user/forgot-password" element={<ForgotPassword />} />
         <Route  path="otp-expired" element={<OtpExpired />} />
         <Route  path="login/:user/otp-verification" element={<OtpVerification />} />
-        <Route  path="reset-password/:token" element={<ResetPassword />} />	
+        <Route  path="/:user/reset/password/:token" element={<ResetPassword />} />	
+        <Route path="select-account/:user" element={<SelectAccountStudent  />} />
         {/* <Route  path="request-verification-link" element={<RequestVerificationLink />} />	 */}
 				
         <Route path="student" element={<AuthenticatedRoute roles={[Role.Student]}><DashboardWrapper /></AuthenticatedRoute>}>

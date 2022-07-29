@@ -1,53 +1,53 @@
-import React, {useEffect, useState, useCallback} from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React, {useState, useCallback} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./AddPerformanceIndicator.module.scss";
 import Button from "@/components/Button/Button";
 import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
-import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import closeIcon from "@/assets/icons/closeIcon.svg";
 import { Icon } from "@iconify/react";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
-import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
-import heroImage from "@/assets/images/student-dashboard-hero-image.png";
 import { useDropzone } from "react-dropzone";
-
-import editIcon from "@/assets/icons/edit-icon.svg";
-
-import { forgotPassword } from "@/redux/Auth/AuthSlice";
+import { addKPI } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
-import { forgotPasswordValidationSchema } from "@/helpers/validation";
+import { addIndicatorValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const AddPerformanceIndicator = () => {
 
   const dispatch = useDispatch();
-  const modalData = useSelector((state) => state.modalState.modalData);
+  const loading = useSelector((state) => state.proprietor.loading);
 
-  const sendRequest = (data) => {
-    dispatch(forgotPassword(data));
-    dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
+  const sendRequest = async (data) => {
+    let formData = new FormData();
+    formData.append("photo", imgData.file);
+    formData.append("name", data.name);
+    formData.append("category", data.category);
+    formData.append("type", data.type);
+    formData.append("min_score", data.min_score);
+    formData.append("max_score", data.max_score);
+    formData.append("weight", data.weight);
+
+    let response = await dispatch(addKPI(formData));
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide", type: "addPerformanceIndicator" }));
+    }
   };
 
-  const showLoginModal = (e) => {
-    e.preventDefault();
-    dispatch(showModal({ action: "show", type: "logIn" }));
-  };
-
-  const resolver = yupResolver(forgotPasswordValidationSchema);
+  const resolver = yupResolver(addIndicatorValidationSchema);
 
   const defaultValues = {
-    email: ""
+    name: "",
+    category: "",
+    type: "",
+    weight: "",
+    min_score: "",
+    max_score: "",
+    uploadedFile: ""
   };
 
-  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+  const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
   const [imgData, setImgData] = useState({
     file: "",
@@ -59,9 +59,10 @@ const AddPerformanceIndicator = () => {
     const reader = new FileReader();
     reader.onloadend = () => {
       setImgData({file: file, imagePreviewUrl: reader.result});
+      setValue("uploadedFile", file);
     };
     reader.readAsDataURL(file);
-  }, []);
+  }, [setValue]);
 
   const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
 
@@ -79,35 +80,118 @@ const AddPerformanceIndicator = () => {
         </div>
         <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
-          className=""
         >
 
           <Controller
-            name="studentId"
+            name="name"
             control={control}
             render={({ field }) => (
               <InputField
                 {...field}
                 label={"INDICATOR NAME"}
                 placeholder="Name"
-                error={errors?.studentId && errors?.studentId?.message}
+                error={errors?.name && errors?.name?.message}
               />
             )}
           />
 
-          <div className={cx(styles.imageSection, "flexRow")}>
-            <p>Upload Image</p>
-            <div {...getRootProps()}  className={cx(styles.imageDiv)}>
-              {imgData?.imagePreviewUrl ? <img src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : studentProfilePic} alt="" />
-                :
-                <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>              
-              }
-            </div>
-          </div>
+          <Controller
+            name="category"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                label={"CATEGORY"}
+                defaultSelect="Select"
+                options={[
+                  { value: "Non-academic", label: "Non-academic" },
+                  { value: "Academic", label: "Academic" }
+                ]}
+                error={errors?.category && errors?.category?.message}
+              />
+            )}
+          />
+
+          <Controller
+            name="type"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                label={"TYPE"}
+                defaultSelect="Select"
+                options={[
+                  { value: "Positive", label: "Positive" },
+                  { value: "Negative", label: "Negative" }
+                ]}
+                error={errors?.type && errors?.type?.message}
+              />
+            )}
+          />
+
+          <Controller
+            name="weight"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                {...field}
+                label={"WEIGHT"}
+                placeholder="Weight"
+                error={errors?.weight && errors?.weight?.message}
+              />
+            )}
+          />
+
+          <Controller
+            name="min_score"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                {...field}
+                label={"MINIMUM SCORE"}
+                placeholder="Minimum Score"
+                error={errors?.min_score && errors?.min_score?.message}
+              />
+            )}
+          />
+
+          <Controller
+            name="max_score"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                {...field}
+                label={"MAXIMUM SCORE"}
+                placeholder="Maximum Score"
+                error={errors?.max_score && errors?.max_score?.message}
+              />
+            )}
+          />
+
+          <Controller 
+            name="uploadedFile"
+            control={control}
+            render={({ field }) => (
+              <>
+                <div className={cx(styles.imageSection, "flexRow")}>
+                  <p>Upload Image</p>
+                  <div {...getRootProps()}   {...field} className={cx(styles.imageDiv)}>
+                    {imgData?.imagePreviewUrl ? <img src={imgData?.imagePreviewUrl && imgData?.imagePreviewUrl} alt=""/>
+                      :
+                      <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>              
+                    }
+                  </div>
+                </div>
+                <span style={{color: "tomato", fontSize: "0.75rem"}} >{errors?.uploadedFile && errors?.uploadedFile?.message}</span>
+              </>
+            )}
+          />
+          
+          <small style={{color: "#D25B5D"}}>*Only upload png, jpg, jpeg files</small>
   
     
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button title="Save" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            <Button loading={loading} disabled={loading} title="Save" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
 
         </form>
@@ -115,10 +199,6 @@ const AddPerformanceIndicator = () => {
 
     </section>
   );
-};
-
-AddPerformanceIndicator.propTypes = {
-  title: PropTypes.string
 };
 
 export default AddPerformanceIndicator;

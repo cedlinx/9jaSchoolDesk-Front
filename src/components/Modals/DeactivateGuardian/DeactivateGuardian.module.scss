@@ -1,4 +1,4 @@
-.activateParentContainer{
+.deactivateGuardianContainer{
     width: 100%;
     background-color: #fff;
     background-color: transparent;
@@ -52,7 +52,7 @@
 }
 
 @media all and (min-width: 768px){
-    .activateParentContainer{
+    .deactivateGuardianContainer{
         gap: 1rem;
     
         .header{
@@ -68,7 +68,7 @@
 
 
 @media all and (min-width: 991px){
-    .activateParentContainer{
+    .deactivateGuardianContainer{
         gap: 1rem;
     
         .header{

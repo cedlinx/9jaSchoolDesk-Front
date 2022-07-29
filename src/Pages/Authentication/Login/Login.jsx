@@ -120,7 +120,7 @@ const Login = () => {
                       {/* <div className={cx(styles.checkboxDiv, "flexRow-left-centered")}>
 												<input type="checkbox" /> Remember Me
 											</div> */}
-                      <Link to='/forgot-password'>Forgot Password</Link>
+                      <Link to={`/${user}/forgot-password`}>Forgot Password</Link>
                     </div>
 
                     <div onClick={handleSubmit((data) => signIn(data))} className={cx(styles.submitBtnDiv, "flexRow")}>

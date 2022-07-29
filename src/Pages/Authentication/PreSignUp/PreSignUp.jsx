@@ -128,10 +128,12 @@ const PreSignUp = () => {
                   )}
                 />
 
-                <p className={cx(styles.resetOTPLink)}>Resend OTP</p>
+              
                 <div className={cx(styles.submitBtnDiv, "flexRow")}>
                   <Button onClick={handleSubmit((data) => sendRequest(data))} type title="Next" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
                 </div>
+
+                <p className={cx(styles.resetOTPLink)}>Resend OTP</p>
 
                 <p className={cx(styles.formText)}>Already have an account? <Link to={`/login/${user}`} state={{category: "proprietor"}}>Sign In</Link></p>
               

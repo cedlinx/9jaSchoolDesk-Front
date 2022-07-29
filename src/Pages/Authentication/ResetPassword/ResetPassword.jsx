@@ -39,14 +39,8 @@ const ResetPassword = () => {
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
 
   const handleReset = async (data)=>{
-    const response = await dispatch(resetPassword({...data, token: params.token}));
-    const message = response.payload.data.message;
-    if (message.includes("successful")) {
-      toast.success(`${response.payload.data.message}. Kindly Login`);
-      reset();
-    } else {
-      toast.error(response.payload.data.message);
-    }
+    const response = await dispatch(resetPassword({user: params.user, payload: data, token: params.token}));
+    console.log(response);
   };
 
   return (
@@ -65,20 +59,20 @@ const ResetPassword = () => {
             className=""
           >
 
-            {/* <Controller
-							name="email"
-							control={control}
-							render={({ field }) => (
-								<InputField
-									{...field}
-									label={"Email Address"}
-									placeholder=""
-									type="email"
-									error={errors?.email && errors?.email?.message}
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <InputField
+                  {...field}
+                  label={"Email Address"}
+                  placeholder=""
+                  type="email"
+                  error={errors?.email && errors?.email?.message}
 									
-								/>
-							)}
-						/> */}
+                />
+              )}
+            />
 
             <Controller
               name="password"

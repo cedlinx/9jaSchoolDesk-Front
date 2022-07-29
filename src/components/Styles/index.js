@@ -216,11 +216,11 @@ export const FormGroup = styled(Form.Group)`
     }
   }
   .error {
-    font-size: 10px;
+    font-size: 0.875rem;
     color: #eb5757;
     position: absolute;
     left: 0;
-    bottom: -30%;
+    bottom: -35%;
     text-align: left;
     padding: 0.25rem 0px 0px 0px;
     margin: 0px;

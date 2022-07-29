@@ -1,13 +1,15 @@
-import React from "react";
-
+import React, {useState, useEffect} from "react";
+import cx from "classnames";
+import styles from "./ApprovedAccounts.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-
+import { Icon } from "@iconify/react";
 import Button from "@/components/Button/Button";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
 import {approvedParentsData} from "@/helpers/sampleData";
 import { showModal } from "@/redux/ModalState/ModalSlice";
+import { Dropdown, DropdownToggle, DropdownMenu,  DropdownItem } from "reactstrap";
 
 const ApprovedAccounts = () => {
   const dispatch = useDispatch();
@@ -118,9 +120,44 @@ const ApprovedAccounts = () => {
       ),
       accessor: "action",
       Cell: (row) => {
-        let action = row.cell.row.values.action;
-        return <div  style={{ display: "flex", justifyContent: "center" }}>
-          <Button onClick={() => dispatch(showModal({action: "show", type: "addNewWard", modalData:"id"}))} title="Add New Ward +" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+        let data = row.cell.row.original.allData;
+
+        return <div  style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+          <Button onClick={() => dispatch(showModal({action: "show", type: "addNewWard", modalData: data}))} title="Add New Ward +" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+        </div>;
+      }
+    },
+    {
+      Header: () => (
+        <div
+          style={{
+            width: "3rem",
+            color: "#747474",
+            fontSize: "1rem",
+            textAlign: "center"
+          }}
+        />
+      ),
+      accessor: "options",
+      Cell: (row) => {
+        const [dropdownOpen, setDropdownOpen] = useState(false);
+
+        const toggle = () => {
+          setDropdownOpen(prevState => !prevState);
+        };
+
+        let data = row.cell.row.original.allData;
+
+        return <div>
+          <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle style={{backgroundColor: "transparent"}} name="" className={cx(styles.dropdownToggler)}>
+              <Icon style={{cursor: "pointer"}} icon="bx:dots-vertical-rounded" color="black" />
+            </DropdownToggle>
+            <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "deactivateGuardian", modalData: data}))}>Deactivate Guardian</DropdownItem>  
+              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "guardianDetails", modalData: data}))}>View Details</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>;
       }
     }
@@ -136,7 +173,8 @@ const ApprovedAccounts = () => {
         lastName: item?.lastName && titleCase(item?.lastName),
         email: item?.email && item?.email,
         action: "",
-        wards: item?.wards && item?.wards
+        wards: item?.wards && item?.wards,
+        allData: item
       });
     });
     return result;
