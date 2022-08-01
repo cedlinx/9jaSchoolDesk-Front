@@ -76,6 +76,32 @@
         .title{
             color: #22467B;
         }
+
+        .dropdown{
+            .dropdownToggler{
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            padding: 0rem;
+            margin-left: 1rem;
+            outline: none;
+
+            &:focus{
+                outline: none;
+                border: none;
+                box-shadow: none !important;
+            }
+            
+        }
+            .dropdownMenuWrapper{
+                margin-top: 1rem;
+                 outline: none;
+
+               button{
+                   padding: 0.5rem 1rem;
+               }                   
+            }
+        }
        }
     }
 }

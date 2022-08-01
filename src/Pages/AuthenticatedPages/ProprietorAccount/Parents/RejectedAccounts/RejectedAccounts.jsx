@@ -1,12 +1,16 @@
 import React from "react";
-
+import {useDispatch, useSelector} from "react-redux";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {newSignUpsData} from "@/helpers/sampleData";
+// import {newSignUpsData} from "@/helpers/sampleData";
 
 
 const RejectedAccounts = () => {
+
+  const allRejectedGuardians = useSelector((state) => state?.proprietor?.getGuardianStatusData.terminatedList);
+
+  console.log(allRejectedGuardians);
   
   const columnsHeader = [                
     {
@@ -119,7 +123,7 @@ const RejectedAccounts = () => {
   };
       
   return (
-    <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(newSignUpsData)} showHeader={true}/>                
+    <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(allRejectedGuardians)} showHeader={true}/>                
   );
 };
 

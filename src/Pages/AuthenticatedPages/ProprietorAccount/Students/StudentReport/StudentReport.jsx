@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import cx from "classnames";
 import styles from "./StudentReport.module.scss";
 
@@ -8,22 +8,36 @@ import Button from "@/components/Button/Button";
 
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
-import { titleCase } from "@/helpers/textTransform";
+import {initialsCase, titleCase} from "@/helpers/textTransform";
+
 import {allStudentsData} from "@/helpers/sampleData";
 
 import UrgentInfoModal from "@/components/Modals/UrgentInfo/UrgentInfo";
-import AddStudentModal from "@/components/Modals/AddStudent/AddStudent";
+import AddStudentModal from "@/components/Modals/AddNewStudent/AddNewStudent";
 import ActivateNewSignUpModal from "@/components/Modals/ActivateNewSignUp/ActivateNewSignUp";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
+import useGenerateColor from "@/utils/useGenerateColor";
+import { viewStudentRecord } from "@/redux/Proprietor/ProprietorSlice";
+
 
 const StudentReport = () => {
 
+  const dispatch = useDispatch();
   const location = useLocation();
   const basicStudentData = location.state.studentData;
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+  const color = useGenerateColor();
+
+  const allStudentRecord = useSelector((state) => state.proprietor.viewStudentRecordData);
+
+  console.log(allStudentRecord);
+
+  useEffect(() => {
+    dispatch(viewStudentRecord(basicStudentData?.id));
+  }, [dispatch, basicStudentData]);
+
 
   console.log(basicStudentData);
   
@@ -72,7 +86,7 @@ const StudentReport = () => {
         let parentName = row.cell.row.values.parent.parentName;
         let parentImage = row.cell.row.values.parent.parentImage;
         return <div  style={{display: "flex", gap: "0.25rem", alignItems: "center"}}>
-          <img style={{width: "2.5rem", height: "2.5rem", borderRadius: "50%"}} src={parentImage} alt="img" />
+          {parentImage ? <img style={{width: "2.5rem", height: "2.5rem", borderRadius: "50%"}} src={parentImage} alt="img" /> : <span style={{backgroundColor: color, borderRadius: "50%", fontSize: "1.25rem", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", textAlign: "center"}}>{initialsCase(parentName)}</span>}
           <p style={{ color: "#4F4F4F"}}>{parentName}</p>         
         </div>;
       }

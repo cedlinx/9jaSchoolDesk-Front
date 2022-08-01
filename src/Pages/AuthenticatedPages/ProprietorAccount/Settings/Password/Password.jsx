@@ -94,7 +94,7 @@ const Password = () => {
             />
 
             <div className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => submitRequest(data))} type title="Save Changes" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+              <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => submitRequest(data))} type title="Save Changes" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
           </form>

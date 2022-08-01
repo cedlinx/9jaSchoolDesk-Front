@@ -4,14 +4,18 @@ import styles from "./Home.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import Button from "@/components/Button/Button";
-
+import { Icon } from "@iconify/react";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {newSignUpsData} from "@/helpers/sampleData";
-
+// import {newSignUpsData} from "@/helpers/sampleData";
+import { Dropdown, DropdownToggle, DropdownMenu,  DropdownItem } from "reactstrap";
 import UrgentInfoModal from "@/components/Modals/UrgentInfo/UrgentInfo";
 import ActivateNewSignUpModal from "@/components/Modals/ActivateNewSignUp/ActivateNewSignUp";
+import ActivateGuardianModal from "@/components/Modals/ActivateGuardian/ActivateGuardian";
+import DeactivateGuardianModal from "@/components/Modals/DeactivateGuardian/DeactivateGuardian";
+import RejectGuardianModal from "@/components/Modals/RejectGuardian/RejectGuardian";
+import GuardianDetailsModal from "@/components/Modals/GuardianDetails/GuardianDetails";
 
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
@@ -19,9 +23,7 @@ import classIcon from "@/assets/icons/class-icon-active.svg";
 import studentIcon from "@/assets/icons/student-icon-active.svg";
 import teacherIcon from "@/assets/icons/teacher-icon-active.svg";
 import parentIcon from "@/assets/icons/parent-icon-active.svg";
-import { getDashboard } from "@/redux/Proprietor/ProprietorSlice";
-
-
+import { getDashboard, getNewGuardianSignups } from "@/redux/Proprietor/ProprietorSlice";
 
 
 const Home = () => {
@@ -31,44 +33,34 @@ const Home = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const dashboardData = useSelector((state) => state.proprietor.getDashboardData);
-
-  console.log(dashboardData);
+  const newSignUpsData = useSelector((state) => state.proprietor.getNewGuardianSignupsData.new_signups);
+  const loading = useSelector((state) => state.proprietor.loading);
 
   useEffect(() =>{
     dispatch(getDashboard());
+    dispatch(getNewGuardianSignups());
   }
   , [dispatch]);
-
-  let shortenDate=(value)=>{
-    let date = new Date(value);
-    const options = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    };
-    let dateValue = date.toLocaleDateString("en-US", options);
-    return `${dateValue}`;
-  };
 
   const cardData = [
     {
       title: "Students",
-      value: "1500",
+      value: dashboardData?.total_students,
       icon: studentIcon
     },
     {
       title: "Parents",
-      value: "1500",
+      value: dashboardData?.total_parents,
       icon: parentIcon
     },
     {
       title: "Teachers",
-      value: "100",
+      value: dashboardData?.total_teachers,
       icon: teacherIcon
     },
     {
       title: "Classes",
-      value: "500",
+      value: dashboardData?.total_classes,
       icon: classIcon
     }
   ];
@@ -154,13 +146,48 @@ const Home = () => {
             color: "#747474",
             fontSize: "1rem"
           }}
-        >Action</div>
+        >Status</div>
+      ),
+      accessor: "status",
+      Cell: (row) => {
+        let status = row.cell.row.values.status;
+        return <div>
+          <p style={{color: status==="Active" ? "green" : status === "Suspended" ? "orange" : "tomato"}}>{status}</p>         
+        </div>;
+      }
+    },
+    {
+      Header: () => (
+        <div
+          style={{
+            minWidth: "auto",
+            color: "#747474",
+            fontSize: "1rem"
+          }}
+        />
       ),
       accessor: "action",
       Cell: (row) => {
-        let action = row.cell.row.values.action;
+        const [dropdownOpen, setDropdownOpen] = useState(false);
+
+        const toggle = () => {
+          setDropdownOpen(prevState => !prevState);
+        };
+
+        let data = row.cell.row.original.allData;
+
         return <div>
-          <Button onClick={() => dispatch(showModal({action: "show", type: "activateSignUp", modalData:"id"}))} title="Activate" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+          <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle style={{backgroundColor: "transparent"}} name="" className={cx(styles.dropdownToggler)}>
+              <Icon style={{cursor: "pointer"}} icon="bx:dots-vertical-rounded" color="black" />
+            </DropdownToggle>
+            <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "activateGuardian", modalData: data}))}>Activate Guardian</DropdownItem>
+              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "deactivateGuardian", modalData: data}))}>Deactivate Guardian</DropdownItem>  
+              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "rejectGuardian", modalData: data}))}>Reject Application</DropdownItem> 
+              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "guardianDetails", modalData: data}))}>View Details</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>;
       }
     }
@@ -175,6 +202,8 @@ const Home = () => {
         firstName: item?.firstName && titleCase(item?.firstName),
         lastName: item?.lastName && titleCase(item?.lastName),
         email: item?.email && item?.email,
+        allData: item,
+        status: item?.pivot?.status && titleCase(item?.pivot?.status),
         action: ""
       });
     });
@@ -211,12 +240,13 @@ const Home = () => {
 
         <div className={cx(styles.tableSection)}>
           <h3 className={cx(styles.title)}>New SignUps</h3>
-          {<TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(newSignUpsData)} showHeader={true} />}
+          {loading ? <TableSkeleton /> : 
+            <TableComponent loading={loading} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(newSignUpsData)} showHeader={true} />}
         </div>
      
       </div>              
 
-      {modalState === "show" ? <Modal show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> :  null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> : modalType === "activateGuardian" ? <ActivateGuardianModal /> : modalType === "deactivateGuardian" ? <DeactivateGuardianModal /> : modalType === "guardianDetails" ? <GuardianDetailsModal /> : modalType === "rejectGuardian" ? <RejectGuardianModal /> : null}</Modal> : null}
             
     </div>
   );

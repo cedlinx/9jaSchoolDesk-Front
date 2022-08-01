@@ -25,6 +25,7 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
     email: signUpEmail || values.email,
     firstName: values.firstName,
     lastName: values.lastName,
+    otherNames: values.otherNames,
     phone: values.phone,
     password: values.password,
     password_confirmation: values.password_confirmation
@@ -33,7 +34,6 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
 
   const register = (data) => {
-    console.log(data);
     handleFormData(data);
     nextStep();
   };
@@ -99,6 +99,23 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
                         label={"Last Name"}
                         type="text"
                         error={errors?.lastName && errors?.lastName?.message}
+
+                      />
+                    )}
+                  />
+                </div>
+
+                <div className={cx(styles.inputWrapper)}>
+                  <Controller
+                    name="otherNames"
+                    control={control}
+                    render={({ field }) => (
+                      <InputField
+                        {...field} 
+                        placeholder={" "}
+                        label={"Other Names"}
+                        type="text"
+                        error={errors?.otherNames && errors?.otherNames?.message}
 
                       />
                     )}

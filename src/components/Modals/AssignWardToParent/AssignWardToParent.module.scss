@@ -1,4 +1,4 @@
-.addTeacherContainer{
+.assignWardToParentContainer{
     width: 100%;
     background-color: #fff;
     background-color: transparent;
@@ -38,46 +38,18 @@
         form{    
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-
-            .inputsWrapper{
-                flex-wrap: wrap;
-                gap: 0.5rem;
-
-                >div{
-                width: 49%;
-                margin-bottom: 1.625rem !important;
-            } 
-            }
+            gap: 1rem;
 
             .btnDiv{
                 justify-content: center;
                 padding-top: 1rem;
-             }
-
-             .small{
-                text-align: center;
-                color: #D25B5D;
-                font-weight: bold;
-                text-decoration: underline;
-                cursor: pointer;
-                font-size: 1rem;
-             }
-
-             .span{
-                align-self: center;
-                text-align: center;
-                font-weight: bold;
-                line-height: 1;
-                font-size: 1rem;
-                margin: 0rem;
              }
         }
     }
 }
 
 @media all and (min-width: 768px){
-    .addTeacherContainer{
+    .assignWardToParentContainer{
         gap: 1rem;
     
         .header{
@@ -100,7 +72,7 @@
 
 
 @media all and (min-width: 991px){
-    .addTeacherContainer{
+    .assignWardToParentContainer{
         gap: 1rem;
     
         .header{

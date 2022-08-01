@@ -8,7 +8,7 @@ import InputField from "@/components/Input/Input";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import { useDropzone } from "react-dropzone";
-import { addKPI } from "@/redux/Proprietor/ProprietorSlice";
+import { addKPI, getAllKPIs } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { addIndicatorValidationSchema } from "@/helpers/validation";
@@ -32,6 +32,7 @@ const AddPerformanceIndicator = () => {
     let response = await dispatch(addKPI(formData));
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "addPerformanceIndicator" }));
+      dispatch(getAllKPIs());
     }
   };
 

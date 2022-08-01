@@ -15,12 +15,12 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import InviteParentModal from "@/components/Modals/InviteGuardian/InviteGuardian";
 import ActivateParentModal from "@/components/Modals/ActivateGuardian/ActivateGuardian";
-import AddNewWardModal from "@/components/Modals/AddNewWard/AddNewWard";
+import AssignWardToParentModal from "@/components/Modals/AssignWardToParent/AssignWardToParent";
 import AddPerformanceIndicatorModal from "@/components/Modals/AddPerformanceIndicator/AddPerformanceIndicator";
 import DeleteIndicatorModal from "@/components/Modals/DeleteKPIIndicator/DeleteKPIIndicator";
 import ModifyKPIIndicatorModal from "@/components/Modals/ModifyKPIIndicator/ModifyKPIIndicator";
 import KPIIndicatorDetailsModal from "@/components/Modals/KPIIndicatorDetails/KPIIndicatorDetails";
-import { getAllKPIs } from "@/redux/Proprietor/ProprietorSlice";
+import { getAllKPIs, getDashboard } from "@/redux/Proprietor/ProprietorSlice";
 
 
 
@@ -32,8 +32,8 @@ const Settings = () => {
   const modalType = useSelector((state) => state.modalState.type);
 
   useEffect(() => {
-    console.log("got here");
     dispatch(getAllKPIs());
+    dispatch(getDashboard());
   }, [dispatch]);
 
   const RenderSubscriptions = () => <Subscriptions />;
@@ -57,7 +57,7 @@ const Settings = () => {
 
       <Tabs centralise tabs={tabsComponents} />
 
-      {modalState === "show" ? <Modal show >{modalType === "inviteParent" ? <InviteParentModal /> : modalType === "activateParent" ? <ActivateParentModal /> : modalType === "addNewWard" ? <AddNewWardModal /> : modalType === "addPerformanceIndicator" ? <AddPerformanceIndicatorModal /> : modalType === "deleteIndicator" ? <DeleteIndicatorModal /> : modalType === "modifyKPIIndicator" ? <ModifyKPIIndicatorModal /> : modalType === "KPIIndicatorDetails" ? <KPIIndicatorDetailsModal /> :  null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "inviteParent" ? <InviteParentModal /> : modalType === "activateParent" ? <ActivateParentModal /> : modalType === "assignWardToParent" ? <AssignWardToParentModal /> : modalType === "addPerformanceIndicator" ? <AddPerformanceIndicatorModal /> : modalType === "deleteIndicator" ? <DeleteIndicatorModal /> : modalType === "modifyKPIIndicator" ? <ModifyKPIIndicatorModal /> : modalType === "KPIIndicatorDetails" ? <KPIIndicatorDetailsModal /> :  null}</Modal> : null}
     </div>
   );
 };

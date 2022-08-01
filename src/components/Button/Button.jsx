@@ -27,7 +27,7 @@ span{
       font-size: 1.25rem;
   }
 &:hover{ 
-  background-color: ${props => props.hoverBg} !important;; 
+  background-color: ${props => props.hoverBg} !important;
   color: ${props => props.hoverColor} !important; 
 }
 
@@ -48,7 +48,7 @@ span{
 
 const Button = props => {
 
-  const {title, type="button", borderRadiusType, textColor, bgColor, bordercolor, routePath, checked, checkedBtn, icon, disabled = false, loading, onClick, hoverBg, hoverColor} = props;
+  const {title, type="button", borderRadiusType, textColor, bgColor, bordercolor, checked, checkedBtn, icon, disabled = false, loading, onClick, hoverBg, hoverColor} = props;
 
   const borderRadiusValue =()=>{
     switch(borderRadiusType){
@@ -65,7 +65,7 @@ const Button = props => {
   };
 
   return (	
-    <ButtonComponent type onClick={onClick} disabled={disabled} className={cx( "flexRow"  )} style={{ color: `${textColor}`, backgroundColor: `${bgColor}`, borderColor: `${bordercolor}`, border: bordercolor ? `1px solid ${bordercolor}` : `1px solid ${bgColor}`, borderRadius: `${borderRadiusValue()}` }}>
+    <ButtonComponent type onClick={onClick} hoverBg={hoverBg} hoverColor={hoverColor} disabled={disabled} className={cx( "flexRow"  )} style={{ color: `${textColor}`, backgroundColor: `${bgColor}`, borderColor: `${bordercolor}`, border: bordercolor ? `1px solid ${bordercolor}` : `1px solid ${bgColor}`, borderRadius: `${borderRadiusValue()}` }}>
       {loading ? ( <img
         src={imageLoader}
         height="18"

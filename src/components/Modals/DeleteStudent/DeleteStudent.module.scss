@@ -1,4 +1,4 @@
-.addNewWardContainer{
+.deleteStudentContainer{
     width: 100%;
     background-color: #fff;
     background-color: transparent;
@@ -18,38 +18,41 @@
         svg{
             cursor: pointer;
         }
-
     }
+
     .formWrapper{
         background-color: #fff;
         padding: 1rem;
         border-radius: 0.5rem;
-        gap: 3rem;
-        .header {
-            position: relative;
+        gap: 2rem;
 
+        .header {
+            align-items: center;
+            gap: 1rem;
             p{
                color: #D25B5D;
                font-size: 1.25rem;
                text-align: center;
             }
+
+            small{
+                color: #D25B5D;
+               text-align: center;
+                font-size: 0.875rem;
+            }
         }
 
-        form{    
-            display: flex;
-            flex-direction: column;
+        .btnGroup{
+            justify-content: center;
+            padding-top: 1rem;
             gap: 1rem;
-
-            .btnDiv{
-                justify-content: center;
-                padding-top: 1rem;
-             }
-        }
+         }
+        
     }
 }
 
 @media all and (min-width: 768px){
-    .addNewWardContainer{
+    .deleteStudentContainer{
         gap: 1rem;
     
         .header{
@@ -59,20 +62,13 @@
             .header {
     
             }
-    
-            form{    
-                .btnDiv{
-                    justify-content: center;
-                    padding-top: 0rem;
-                 }
-            }
         }
     }
 }
 
 
 @media all and (min-width: 991px){
-    .addNewWardContainer{
+    .deleteStudentContainer{
         gap: 1rem;
     
         .header{
@@ -80,10 +76,6 @@
         .formWrapper{
             gap: 2rem;
             .header {
-
-            }
-    
-            form{    
 
             }
         }

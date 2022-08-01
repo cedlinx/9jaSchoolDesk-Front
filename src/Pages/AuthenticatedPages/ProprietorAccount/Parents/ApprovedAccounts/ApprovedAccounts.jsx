@@ -5,14 +5,16 @@ import {useDispatch, useSelector} from "react-redux";
 import { Icon } from "@iconify/react";
 import Button from "@/components/Button/Button";
 import TableComponent from "@/components/Table/Table";
-import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {approvedParentsData} from "@/helpers/sampleData";
+// import {approvedParentsData} from "@/helpers/sampleData";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Dropdown, DropdownToggle, DropdownMenu,  DropdownItem } from "reactstrap";
 
 const ApprovedAccounts = () => {
   const dispatch = useDispatch();
+  const approvedParentsData = useSelector((state) => state?.proprietor?.getGuardianStatusData.activeList);
+
+  console.log(approvedParentsData);
 
   const columnsHeader = [                
     {
@@ -123,7 +125,7 @@ const ApprovedAccounts = () => {
         let data = row.cell.row.original.allData;
 
         return <div  style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
-          <Button onClick={() => dispatch(showModal({action: "show", type: "addNewWard", modalData: data}))} title="Add New Ward +" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+          <Button onClick={() => dispatch(showModal({action: "show", type: "assignWardToParent", modalData: data}))} title="Add New Ward +" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
         </div>;
       }
     },

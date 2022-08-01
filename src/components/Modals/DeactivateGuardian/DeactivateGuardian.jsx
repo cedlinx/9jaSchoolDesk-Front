@@ -7,7 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 
-// import { deactivateGuardian } from "@/redux/Proprietor/ProprietorSlice";
+import { guardianStatusUpdate, getAllGuardians, getGuardianStatus, getNewGuardianSignups } from "@/redux/Proprietor/ProprietorSlice";
+
 
 const DeactivateGuardian = () => {
 
@@ -15,11 +16,13 @@ const DeactivateGuardian = () => {
   const modalData = useSelector((state) => state.modalState.modalData);
 
   const sendRequest = async () => {
-    alert("Deactivate Guardian");
-    // let response = await dispatch(deactivateGuardian(modalData));
-    // if(response.payload.success){
-    //   dispatch(showModal({ action: "hide", type: "deactivateGuardian" }));
-    // }
+    let response = await dispatch(guardianStatusUpdate({ guardian_id: modalData.id, status: "Suspended" }));
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide", type: "deactivateGuardian" }));
+      dispatch(getAllGuardians());
+      dispatch(getGuardianStatus());
+      dispatch(getNewGuardianSignups());
+    }
   };
 
   return (

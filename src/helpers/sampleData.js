@@ -288,7 +288,7 @@ export const allStudentsData = [
     studentId: "1122wa",
     class: "JSS 1A",
     parentName: "Parent John",
-    parentImage: "https://picsum.photos/200", 
+    parentImage: "", 
     studentImage: "https://picsum.photos/200",
     email: "johndon@gmail.com",
     phone: "123456789"

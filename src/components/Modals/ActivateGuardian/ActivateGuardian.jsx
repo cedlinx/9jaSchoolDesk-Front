@@ -1,27 +1,28 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./ActivateGuardian.module.scss";
 import Button from "@/components/Button/Button";
-import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 
-// import { activateGuardian } from "@/redux/Proprietor/ProprietorSlice";
+import { guardianStatusUpdate, getAllGuardians, getGuardianStatus, getNewGuardianSignups } from "@/redux/Proprietor/ProprietorSlice";
 
 
 const ActivateGuardian = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
+  const loading = useSelector((state) => state?.proprietor?.loading);
 
   const sendRequest = async () => {
-    alert("Activate Guardian");
-    // let response = await dispatch(activateGuardian(modalData));
-    // if(response.payload.success){
-    //   dispatch(showModal({ action: "hide", type: "activateGuardian" }));
-    // }
+    let response = await dispatch(guardianStatusUpdate({ guardian_id: modalData.id, status: "Active" }));
+    if(response.payload.success){
+      dispatch(getNewGuardianSignups());
+      dispatch(showModal({ action: "hide", type: "activateGuardian" }));
+      dispatch(getAllGuardians());
+      dispatch(getGuardianStatus());
+    }
   };
 
   return (
@@ -43,17 +44,13 @@ const ActivateGuardian = () => {
 
         <div className={cx(styles.btnGroup, "flexRow")}>
           <Button onClick={() => dispatch(showModal({action: "hide", type: "activateGuardian"}))} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
-          <Button onClick={()=>sendRequest()} type title="Activate" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+          <Button loading={loading} disabled={loading} onClick={()=>sendRequest()} type title="Activate" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
         </div>
 
       </div>
 
     </section>
   );
-};
-
-ActivateGuardian.propTypes = {
-  title: PropTypes.string
 };
 
 export default ActivateGuardian;

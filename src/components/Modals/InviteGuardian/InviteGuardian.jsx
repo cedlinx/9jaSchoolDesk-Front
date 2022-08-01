@@ -1,35 +1,21 @@
 import React, {useEffect, useState, useCallback} from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./InviteGuardian.module.scss";
 import Button from "@/components/Button/Button";
-import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
-import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import closeIcon from "@/assets/icons/closeIcon.svg";
 import { Icon } from "@iconify/react";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
-import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
-import heroImage from "@/assets/images/student-dashboard-hero-image.png";
-import { useDropzone } from "react-dropzone";
-
-import editIcon from "@/assets/icons/edit-icon.svg";
-
 import { inviteGuardian } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { inviteGuardianValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import TextInput from "@/components/TextInput/TextInput";
 
 const InviteGuardian = () => {
 
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.proprietor.loading);
 
   const sendRequest = async (data) => {
     let response = await dispatch(inviteGuardian(data));
@@ -43,6 +29,9 @@ const InviteGuardian = () => {
   const defaultValues = {
     email: "",
     name: "",
+    // firstName: "",
+    // lastName: "",
+    // otherNames: "",
     message: ""
   };
 
@@ -73,10 +62,48 @@ const InviteGuardian = () => {
                 label={"Name"}
                 placeholder="Name"
                 error={errors?.name && errors?.name?.message}
-                options={[{label: "", value: ""}]}
               />
             )}
           />
+
+          {/* <Controller
+            name="firstName"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                {...field}
+                label={"First Name"}
+                placeholder="First Name"
+                error={errors?.firstName && errors?.firstName?.message}
+              />
+            )}
+          />
+
+          <Controller
+            name="lastName"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                {...field}
+                label={"Last Name"}
+                placeholder="Last Name"
+                error={errors?.lastName && errors?.lastName?.message}
+              />
+            )}
+          />
+
+          <Controller
+            name="otherNames"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                {...field}
+                label={"Other Names"}
+                placeholder="Other Names"
+                error={errors?.otherNames && errors?.otherNames?.message}
+              />
+            )}
+          /> */}
 
           <Controller
             name="email"
@@ -87,12 +114,11 @@ const InviteGuardian = () => {
                 label={"Email"}
                 placeholder="Enter Email"
                 error={errors?.email && errors?.email?.message}
-                options={[{label: "", value: ""}]}
               />
             )}
           />
 
-          <Controller
+          {/* <Controller
             name="message"
             control={control}
             render={({ field }) => (
@@ -102,24 +128,17 @@ const InviteGuardian = () => {
                 error={errors?.message && errors?.message?.message}
               />
             )}
-          />
+          /> */}
 
 
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button title="Invite" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            <Button loading={loading} disabled={loading}title="Invite" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
-
-     
-
         </form>
       </div>
 
     </section>
   );
-};
-
-InviteGuardian.propTypes = {
-  title: PropTypes.string
 };
 
 export default InviteGuardian;

@@ -340,26 +340,9 @@ export const modifyUserValidationSchema = Yup.object().shape({
 
 });
 
-export const modifyWebsiteDetailsValidationSchema = Yup.object().shape({
-  websiteName: Yup.string()
-    .required("Website Name is required"),
-  email: Yup.string()
-    .email("Invalid email address")
-    .min(5, "Must be above 5 characters!")
-    .max(225, "Too Long!")
-    .required("Email is required"),
-  phone: Yup.string()
-    .required("Phone Number is Required")
-    .matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      "Phone number is not valid"
-    )
-    .min(10, "Must be above 10 digits"),
+export const modifyStudentValidationSchema = Yup.object().shape({
 
-  tagline: Yup.string().required("Tagline is required"),
-
-  copyright: Yup.string().required("Copyright info is required")
-	
+  class_id: Yup.string().required("Student class is required")
 });
 
 export const verifyAssetValidationSchema = Yup.object().shape({
@@ -480,6 +463,24 @@ export const urgentInfoValidationSchema = Yup.object().shape({
   message: Yup.string()
     .required("Message content is required"),
 
+  recipients: Yup.string()
+    .when("user", {
+      is: (value) => {
+        return value && value.includes("recipients");
+      },
+      then: (rule) => rule.required("Recipients is required")
+    }
+    ) 
+  // .test("recipients", "Recipients is required", function(value, allData) {
+  //   console.log(value);
+  //   let selectedUsers = allData.parent.user;
+  //   console.log(selectedUsers);
+  //   let result =  selectedUsers && selectedUsers.includes("recipients");
+  //   console.log(result);
+  //   return result;
+  // }
+  // )
+  ,
   user: Yup.array()
     .min(1, "Kindly select at least one (1) user")
     .nullable()
@@ -497,7 +498,86 @@ export const addNewWardValidationSchema = Yup.object().shape({
     .required("Kindly select at least one (1) user")
 });
 
+export const assignWardToParentValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .required("Email is required"),
 
+  student_id: Yup.string()
+    .required("Kindly select at least one (1) user")
+});
+
+export const addStudentValidationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("Kindly provide student first name"),
+
+  lastName: Yup.string()
+    .required("Kindly provide student last name"),
+
+  otherNames: Yup.string(),
+
+  gender: Yup.string().required("Gender is required"),
+
+  phone: Yup.string().required("Phone is required"),
+
+  class_id: Yup.string().required("Class is required"),
+
+  guardian_id: Yup.string().required("Guardian / Parent is required")
+});
+
+
+
+export const addTeacherValidationSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("Kindly provide teacher's first name"),
+
+  lastName: Yup.string()
+    .required("Kindly provide teacher's last name"),
+
+  otherNames: Yup.string(),
+
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .required("Email is required"),
+
+  phone: Yup.string().required("Phone is required")
+
+});
+
+export const modifyTeacherValidationSchema = Yup.object().shape({
+  name: Yup.string()
+    .required("Kindly provide a name")
+
+  // email: Yup.string()
+  //   .email("Invalid email address")
+  //   .min(5, "Must be above 5 characters!")
+  //   .max(225, "Too Long!")
+  //   .required("Email is required"),
+
+  // phone: Yup.string().required("Phone is required")
+
+});
+
+export const modifyProprietorValidationSchema = Yup.object().shape({
+  firstName: Yup.string(),
+
+  lastName: Yup.string(),
+
+  otherNames: Yup.string(),
+
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .required("Email is required")
+
+  // phone: Yup.string().required("Phone is required")
+
+});
 
 export const inviteGuardianValidationSchema = Yup.object().shape({
   message: Yup.string(),
@@ -510,6 +590,16 @@ export const inviteGuardianValidationSchema = Yup.object().shape({
 
   name: Yup.string()
     .required("Kindly provide a name")
+
+  // firstName: Yup.string()
+  //   .required("First Name is required")
+  //   .min(2, "First Name should be at least 2 characters"),
+
+  // lastName: Yup.string()
+  //   .required("Last Name is required")    
+  //   .min(2, "Last Name should be at least 2 characters"),
+
+  // otherNames: Yup.string()
 });
 
 export const stepOneValidationSchema = Yup.object().shape({
@@ -520,6 +610,8 @@ export const stepOneValidationSchema = Yup.object().shape({
   lastName: Yup.string()
     .required("Last Name is required")    
     .min(2, "Last Name should be at least 2 characters"),
+
+  otherNames: Yup.string(),
 
   email: Yup.string().email("Invalid email address").required("Email is required"),
 

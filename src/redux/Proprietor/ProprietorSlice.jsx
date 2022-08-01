@@ -1,4 +1,4 @@
-import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstitutionApi, deleteInstitutionApi, switchInstitutionApi, addClassApi, getAllClassesApi, modifyClassApi, deleteClassApi, reAssignTeacherApi, enableClassSubscriptionApi, disableClassSubscriptionApi, addTeacherApi, getAllTeachersApi, modifyTeacherApi, deleteTeacherApi, addStudentApi, getAllStudentsApi, modifyStudentApi, deleteStudentApi, enableStudentSubscriptionApi, disableStudentSubscriptionApi, getAllGuardiansApi, viewGuardianDetailsApi, inviteGuardianApi, assignGuardianToSingleStudentApi, assignGuardianToBulkStudentsApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, viewKPIForInstitutionApi   } from "../api/proprietor";
+import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstitutionApi, deleteInstitutionApi, switchInstitutionApi, addClassApi, getAllClassesApi, modifyClassApi, deleteClassApi, reAssignTeacherApi, enableClassSubscriptionApi, disableClassSubscriptionApi, addTeacherApi, getAllTeachersApi, modifyTeacherApi, deleteTeacherApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, enableStudentSubscriptionApi, disableStudentSubscriptionApi, getAllGuardiansApi, viewGuardianDetailsApi, inviteGuardianApi, assignGuardianToSingleStudentApi, assignGuardianToBulkStudentsApi, guardianStatusUpdateApi, getGuardianStatusApi, getNewGuardianSignupsApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, viewKPIForInstitutionApi, sendNotificationApi   } from "../api/proprietor";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -27,6 +27,7 @@ const initialState = {
   deleteTeacherData: {},
   addStudentData: {},
   getAllStudentsData: {},
+  viewStudentRecordData: {},
   modifyStudentData: {},
   deleteStudentData: {},
   enableStudentSubscriptionData: {},
@@ -36,14 +37,17 @@ const initialState = {
   inviteGuardianData: {},
   assignGuardianToSingleStudentData: {},
   assignGuardianToBulkStudentsData: {},
+  guardianStatusUpdateData: {},
+  getGuardianStatusData: {},
+  getNewGuardianSignupsData: {},
   addKPIData: {},
   deleteKPIData: {},
   modifyKPIData: {},
   getAllKPIsData: {},
   viewKPIDetailsData: {},
   viewKPIForClassData: {},
-  viewKPIForInstitutionData: {}
-
+  viewKPIForInstitutionData: {},
+  sendNotificationData: {}
 };
 
 export const proprietorSlice = createSlice({
@@ -157,6 +161,11 @@ export const proprietorSlice = createSlice({
       state.loading = false;
     },
 
+    viewStudentRecordAction: (state, action) => {
+      state.viewStudentRecordData = action.payload;
+      state.loading = false;
+    },
+
     modifyStudentAction: (state, action) => {
       state.modifyStudentData = action.payload;
       state.loading = false;
@@ -202,6 +211,21 @@ export const proprietorSlice = createSlice({
       state.loading = false;
     },
 
+    guardianStatusUpdateAction: (state, action) => {
+      state.guardianStatusUpdateData = action.payload;
+      state.loading = false;
+    },
+
+    getGuardianStatusAction: (state, action) => {
+      state.getGuardianStatusData = action.payload;
+      state.loading = false;
+    },
+
+    getNewGuardianSignupsAction: (state, action) => {
+      state.getNewGuardianSignupsData = action.payload;
+      state.loading = false;
+    },
+
     addKPIAction: (state, action) => {
       state.addKPIData = action.payload;
       state.loading = false;
@@ -235,14 +259,18 @@ export const proprietorSlice = createSlice({
     viewKPIForInstitutionAction: (state, action) => {
       state.viewKPIForInstitutionData = action.payload;
       state.loading = false;
-    }
+    },
 
+    sendNotificationAction: (state, action) => {
+      state.sendNotificationData = action.payload;
+      state.loading = false;
+    }
   }
 });
 export default proprietorSlice.reducer;
 
 // Actions
-const { startLoading, hasError, getDashboardAction, addInstitutionAction, getAllInstitutionsAction, modifyInstitutionAction, deleteInstitutionAction, switchInstitutionAction, addClassAction, getAllClassesAction, modifyClassAction, deleteClassAction, reAssignTeacherAction, enableClassSubscriptionAction, disableClassSubscriptionAction, addTeacherAction, getAllTeachersAction, modifyTeacherAction, deleteTeacherAction, addStudentAction, getAllStudentsAction, modifyStudentAction, deleteStudentAction, enableStudentSubscriptionAction, disableStudentSubscriptionAction, getAllGuardiansAction, viewGuardianDetailsAction, inviteGuardianAction, assignGuardianToSingleStudentAction, assignGuardianToBulkStudentsAction, addKPIAction, deleteKPIAction, modifyKPIAction, getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction, viewKPIForInstitutionAction } = proprietorSlice.actions; 
+const { startLoading, hasError, getDashboardAction, addInstitutionAction, getAllInstitutionsAction, modifyInstitutionAction, deleteInstitutionAction, switchInstitutionAction, addClassAction, getAllClassesAction, modifyClassAction, deleteClassAction, reAssignTeacherAction, enableClassSubscriptionAction, disableClassSubscriptionAction, addTeacherAction, getAllTeachersAction, modifyTeacherAction, deleteTeacherAction, addStudentAction, getAllStudentsAction, viewStudentRecordAction, modifyStudentAction, deleteStudentAction, enableStudentSubscriptionAction, disableStudentSubscriptionAction, getAllGuardiansAction, viewGuardianDetailsAction, inviteGuardianAction, assignGuardianToSingleStudentAction, assignGuardianToBulkStudentsAction, guardianStatusUpdateAction, getGuardianStatusAction, getNewGuardianSignupsAction, addKPIAction, deleteKPIAction, modifyKPIAction, getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction, viewKPIForInstitutionAction, sendNotificationAction } = proprietorSlice.actions; 
 
 
 
@@ -263,8 +291,8 @@ export const addInstitution = (data) => async (dispatch) => {
     const response = await addInstitutionApi(data);
     return dispatch(addInstitutionAction(response?.data));
   } catch (e) {
-    toast.error(e.response.message);
-    return dispatch(hasError(e.response.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -346,8 +374,8 @@ export const modifyInstitution = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(modifyInstitutionAction(response));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -358,8 +386,8 @@ export const deleteClass = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(deleteClassAction(response));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -369,8 +397,8 @@ export const deleteInstitution = (data) => async (dispatch) => {
     const response = await deleteInstitutionApi(data);
     return dispatch(deleteInstitutionAction(response));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -392,8 +420,8 @@ export const disableClassSubscription = (data) => async (dispatch) => {
     const response = await disableClassSubscriptionApi(data);
     return dispatch(disableClassSubscriptionAction(response?.data));
   } catch (e) {
-    toast.error(e.response.message);
-    return dispatch(hasError(e.response.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -401,7 +429,7 @@ export const addTeacher = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await addTeacherApi(data);
-    return dispatch(addTeacherAction(response));
+    return dispatch(addTeacherAction(response?.data));
   } catch (e) {
     toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
     return dispatch(hasError(e.response.data));
@@ -412,8 +440,7 @@ export const getAllTeachers = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getAllTeachersApi(data);
-    toast.success(response.data.message);
-    return dispatch(getAllTeachersAction(response));
+    return dispatch(getAllTeachersAction(response?.data));
   } catch (e) {
     toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
     return dispatch(hasError(e.response.data));
@@ -461,7 +488,19 @@ export const getAllStudents = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await getAllStudentsApi(data);
     toast.success(response.data.message);
-    return dispatch(getAllStudentsAction(response));
+    return dispatch(getAllStudentsAction(response?.data));
+  } catch (e) {
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const viewStudentRecord = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await viewStudentRecordApi(data);
+    toast.success(response.data.message);
+    return dispatch(viewStudentRecordAction(response?.data));
   } catch (e) {
     toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
     return dispatch(hasError(e.response.data));
@@ -473,10 +512,10 @@ export const modifyStudent = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await modifyStudentApi(data);
     toast.success(response.data.message);
-    return dispatch(modifyStudentAction(response));
+    return dispatch(modifyStudentAction(response?.data));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -487,8 +526,8 @@ export const deleteStudent = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(deleteStudentAction(response));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -498,8 +537,8 @@ export const enableStudentSubscription = (data) => async (dispatch) => {
     const response = await enableStudentSubscriptionApi(data);
     return dispatch(enableStudentSubscriptionAction(response));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -520,8 +559,8 @@ export const getAllGuardians = (data) => async (dispatch) => {
     const response = await getAllGuardiansApi(data);
     return dispatch(getAllGuardiansAction(response?.data));
   } catch (e) {
-    toast.error(e.response.message);
-    return dispatch(hasError(e.response.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -553,7 +592,7 @@ export const assignGuardianToSingleStudent = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await assignGuardianToSingleStudentApi(data);
     toast.success(response.data.message);
-    return dispatch(assignGuardianToSingleStudentAction(response));
+    return dispatch(assignGuardianToSingleStudentAction(response?.data));
   } catch (e) {
     toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
     return dispatch(hasError(e.response.data));
@@ -565,7 +604,41 @@ export const assignGuardianToBulkStudents = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await assignGuardianToBulkStudentsApi(data);
     toast.success(response.data.message);
-    return dispatch(assignGuardianToBulkStudentsAction(response));
+    return dispatch(assignGuardianToBulkStudentsAction(response?.data));
+  } catch (e) {
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const guardianStatusUpdate = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await guardianStatusUpdateApi(data);
+    toast.success(response.data.message);
+    return dispatch(guardianStatusUpdateAction(response?.data));
+  } catch (e) {
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getGuardianStatus = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getGuardianStatusApi(data);
+    return dispatch(getGuardianStatusAction(response?.data));
+  } catch (e) {
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getNewGuardianSignups = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getNewGuardianSignupsApi(data);
+    return dispatch(getNewGuardianSignupsAction(response?.data));
   } catch (e) {
     toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
     return dispatch(hasError(e.response.data));
@@ -599,7 +672,6 @@ export const getAllKPIs = (data) => async (dispatch) => {
 export const modifyKPI = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
-    console.log(data);
     const response = await modifyKPIApi(data);
     toast.success(response.data.message);
     return dispatch(modifyKPIAction(response?.data));
@@ -614,7 +686,7 @@ export const deleteKPI = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await deleteKPIApi(data);
     toast.success(response.data.message);
-    return dispatch(deleteKPIAction(response));
+    return dispatch(deleteKPIAction(response?.data));
   } catch (e) {
     toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
     return dispatch(hasError(e.response.data));
@@ -641,8 +713,8 @@ export const viewKPIForClass = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(viewKPIForClassAction(response));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -651,9 +723,21 @@ export const viewKPIForInstitution = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await viewKPIForInstitutionApi(data);
     toast.success(response.data.message);
-    return dispatch(viewKPIForInstitutionAction(response));
+    return dispatch(viewKPIForInstitutionAction(response?.data));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const sendNotification = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await sendNotificationApi(data);
+    toast.success(response.data.message);
+    return dispatch(sendNotificationAction(response?.data));
+  } catch (e) {
+    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    return dispatch(hasError(e.response.data));
   }
 };

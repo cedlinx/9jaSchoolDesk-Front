@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { useTable, usePagination, useRowSelect, useRowState } from "react-table";
 import "./Table.css";
 import { Icon } from "@iconify/react";
+import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
+
 
 const Styles = styled.div`
   /* This is required to make the table full-width */
@@ -76,7 +78,7 @@ const IndeterminateCheckbox = forwardRef(
 );
 IndeterminateCheckbox.displayName = "Search";
 
-const Table = ({ columns, data, selectedRowsData })=> {
+const Table = ({ columns, data, selectedRowsData, loading })=> {
 	
   // Use the state and functions returned from useTable to build your UI
   const {
@@ -146,24 +148,27 @@ const Table = ({ columns, data, selectedRowsData })=> {
             </tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr key={i} {...row.getRowProps()}>
-                {row.cells.map((cell, index) => {
-                  return <td  key={index} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
+        {loading ? <TableSkeleton /> :
+          <tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr key={i} {...row.getRowProps()}>
+                  {row.cells.map((cell, index) => {
+                    return <td  key={index} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                  })}
+                </tr>
+              );
+            })}
+          </tbody> 
+        }
       </table>
+      {page.length === 0 ? <div style={{width: "100%", padding: "1rem 0rem", textAlign: "center", minHeight: "50vh", color: "black"}} >Data Not Found</div> : ""}
       {/* 
         Pagination can be built however you'd like. 
         This is just a very basic UI implementation:
       */}
-      <div style={{display: "none"}} className="pagination flexRow-space-between">
+      <div className="pagination flexRow-space-between">
         <div className="pagination-summary">
                     Showing <span>{pageSize > data.length ? data.length : pageSize}</span> from <span>{data.length}</span> data
         </div>
@@ -225,14 +230,14 @@ const Table = ({ columns, data, selectedRowsData })=> {
   );
 };
 
-const TableComponent = ({columnsHeader, tableData, selectedRowsData}) => {
+const TableComponent = ({columnsHeader, tableData, selectedRowsData, loading}) => {
   const columns = useMemo(()=>columnsHeader, []);
   const data = useMemo(()=>tableData, []);
 
   return (
     <Styles>
       <div className="tableWrap">
-        <Table columns={columns} data={data} selectedRowsData={selectedRowsData} />
+        <Table columns={columns} data={data} selectedRowsData={selectedRowsData} loading={loading} />
       </div>
     </Styles>
   );

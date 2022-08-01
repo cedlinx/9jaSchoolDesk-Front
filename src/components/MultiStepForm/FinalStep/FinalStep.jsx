@@ -14,14 +14,9 @@ const FinalStep = ({ values }) => {
   const { user } = useParams();
   const dispatch = useDispatch();
   const signUpSuccess = useSelector((state) => state?.auth?.signUpData?.data?.verified);
- 
-
-  let {firstName, lastName, ...rest} = values;
-  let payload = {...rest, name: `${titleCase(firstName)} ${titleCase(lastName)}`};
-  console.log(payload);
 
   const handleSubmit = () => {
-    dispatch(signUp({payload: payload, user: user}));
+    dispatch(signUp({payload: values, user: user}));
   };
 
   useEffect(() => {
@@ -30,7 +25,6 @@ const FinalStep = ({ values }) => {
     }
   }
   , [navigate, signUpSuccess, user]);
-
 
 
   return (
@@ -48,6 +42,11 @@ const FinalStep = ({ values }) => {
             <div className={cx(styles.infoItem)}>
               <small>Last Name</small>
               <p>{titleCase(values?.lastName)}</p>
+            </div>
+
+            <div className={cx(styles.infoItem)}>
+              <small>Other Names</small>
+              <p>{titleCase(values?.otherNames)}</p>
             </div>
 
             <div className={cx(styles.infoItem)}>

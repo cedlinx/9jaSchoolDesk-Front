@@ -25,7 +25,7 @@ import { titleCase } from "@/helpers/textTransform";
 import {assessmentData} from "@/helpers/sampleData";
 
 import EditProfileModal from "@/components/Modals/EditProfile/EditProfile";
-import AddStudentModal from "@/components/Modals/AddStudent/AddStudent";
+import AddStudentModal from "@/components/Modals/AddNewStudent/AddNewStudent";
 import ViewStudentProfileModal from "@/components/Modals/ViewStudentProfile/ViewStudentProfile";
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
 import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";

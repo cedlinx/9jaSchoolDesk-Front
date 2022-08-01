@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
+
 import { Icon } from "@iconify/react";
 
 
@@ -20,6 +21,7 @@ import { useForm, Controller } from "react-hook-form";
 import { studentLoginValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {initialsCase, titleCase} from "@/helpers/textTransform";
+import useGenerateColor from "@/utils/useGenerateColor";
 
 const StudentLogin = () => {
 
@@ -28,6 +30,7 @@ const StudentLogin = () => {
   const modalData = useSelector((state) => state.modalState.modalData);
 
   console.log(modalData);
+  const color = useGenerateColor();
 
   const sendRequest = (data) => {
     console.log(data);
@@ -45,17 +48,6 @@ const StudentLogin = () => {
 
   console.log(errors);
   
-  const generateColor = () => {
-    const letters = "123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
-
-
   return (
 
     <section className={cx(styles.studentLoginContainer, "flexCol")}>
@@ -67,7 +59,7 @@ const StudentLogin = () => {
       <div className={cx(styles.formWrapper, "flexCol")}>
 	  <div className={cx(styles.header, "flexCol")}>
           <p>{`${titleCase(modalData.firstName)} ${titleCase(modalData.lastName)}`}</p>
-          {modalData.studentImage ? <img src={modalData.studentImage} alt="img" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> }
+          {modalData.studentImage ? <img src={modalData.studentImage} alt="img" /> : <span style={{backgroundColor: color}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> }
         </div>
         
         <form

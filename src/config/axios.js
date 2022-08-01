@@ -10,6 +10,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   async (config) => {
     const token = getToken();
+    config.headers["Content-Type"] = "application/json";
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

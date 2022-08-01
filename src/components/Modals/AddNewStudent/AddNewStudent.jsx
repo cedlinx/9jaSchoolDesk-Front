@@ -1,61 +1,55 @@
 import React, {useEffect, useState, useCallback} from "react";
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
-import styles from "./AddTeacher.module.scss";
+import styles from "./AddNewStudent.module.scss";
 import Button from "@/components/Button/Button";
 import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
-
-import { addTeacher, getAllTeachers } from "@/redux/Proprietor/ProprietorSlice";
+import { addStudent } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
-import { addTeacherValidationSchema } from "@/helpers/validation";
+import { addStudentValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const AddTeacher = () => {
+const AddNewStudent = () => {
 
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.proprietor.loading);
-
-  const proprietorDetails = JSON.parse(localStorage.getItem("userData"));
-  console.log(proprietorDetails);
-  let institution_id = proprietorDetails.institution_id;
-  console.log(institution_id);
 
   const sendRequest = async (data) => {
-    let response = await dispatch(addTeacher({...data, institution_id: institution_id}));
+    let response = await dispatch(addStudent(data));
+
     if(response.payload.success) {
-      dispatch(getAllTeachers());
-      dispatch(showModal({ action: "hide", type: "addTeacher" }));
+      dispatch(showModal({ action: "hide", type: "addNewStudent" }));
     }
   };
 
-  const resolver = yupResolver(addTeacherValidationSchema);
+  const resolver = yupResolver(addStudentValidationSchema);
 
   const defaultValues = {
     fistName: "",
     lastName: "",
     otherNames: "",
-    email: "",
-    phone: ""
+    gender: "",
+    phone: "",
+    class_id: "",
+    guardian_id: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
   return (
 
-    <section className={cx(styles.addTeacherContainer, "flexCol")}>
+    <section className={cx(styles.addNewStudentContainer, "flexCol")}>
 
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "addTeacher" }))} icon="carbon:close-filled" color="white" />
+        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "addNewStudent" }))} icon="carbon:close-filled" color="white" />
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
 	  <div className={cx(styles.header)}>
-          <p>Add New Teacher</p>
+          <p>Add New Student</p>
         </div>
         <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
@@ -101,18 +95,18 @@ const AddTeacher = () => {
                   error={errors?.otherNames && errors?.otherNames?.message}
                 />
               )}
-            />       
+            />
 
             <Controller
-              name="email"
+              name="gender"
               control={control}
               render={({ field }) => (
-                <InputField
+                <Select
                   {...field}
-                  label={"EMAIL"}
-                  placeholder="email@email.com"
-                  error={errors?.email && errors?.email?.message}
-                  options={[{label: "", value: ""}]}
+                  label={"GENDER"}
+                  defaultSelect="Select"
+                  error={errors?.gender && errors?.gender?.message}
+                  options={[{label: "Male", value: "male"}, {label: "Female", value: "female"}]}
                 />
               )}
             />
@@ -123,25 +117,46 @@ const AddTeacher = () => {
               render={({ field }) => (
                 <InputField
                   {...field}
-                  label={"PHONE NUMBER"}
+                  label={"PHONE"}
                   placeholder="Phone Number"
                   error={errors?.phone && errors?.phone?.message}
+                />
+              )}
+            />
+
+            <Controller
+              name="guardian_id"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  label={"SELECT GUARDIAN"}
+                  defaultSelect="Select"
+                  error={errors?.guardian_id && errors?.guardian_id?.message}
+                  options={[{label: "", value: ""}]}
+                />
+              )}
+            />
+
+            <Controller
+              name="class_id"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  label={"ASSIGN CLASS"}
+                  defaultSelect="Select"
+                  error={errors?.class_id && errors?.class_id?.message}
+                  options={[{label: "", value: ""}]}
                 />
               )}
             />
             
           </div>
 
-       
-          <span className={cx(styles.span)}>Or</span>
-          <small className={cx(styles.small)}>Add from Teacher Database</small>
-
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button loading={loading} disabled={loading}title="Add Teacher" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            <Button title="Add Student" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
-
-     
-
         </form>
       </div>
 
@@ -149,4 +164,4 @@ const AddTeacher = () => {
   );
 };
 
-export default AddTeacher;
+export default AddNewStudent;

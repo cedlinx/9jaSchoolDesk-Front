@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "@/components/Button/Button";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
+import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 
 
 const PerformanceIndicator = () => {
   const dispatch = useDispatch();
   const performanceIndicatorData = useSelector((state) => state?.proprietor?.getAllKPIsData?.kpis);
+  const loading = useSelector((state) => state?.proprietor?.loading);
 
   const handleDelete = (data) =>{
     dispatch(showModal({ action: "show", type: "deleteIndicator", modalData: data}));
@@ -32,31 +34,33 @@ const PerformanceIndicator = () => {
         </div>
 
         <div className={cx(styles.body)}>
-          {performanceIndicatorData && performanceIndicatorData.map((indicator, index) => {
-            return (
-              <div key={index} className={cx(styles.sectionContainer, "flexCol")}>
-                <div onClick={() =>showDetails(indicator)}className={cx(styles.indicatorWrapper, "flexRow")} >
-                  <span className={cx(styles.iconSpan)}><img src={indicator.avatar} alt="img" /></span><span className={cx(styles.value)}>{indicator.name}</span>
-                </div>
-                <div className={cx(styles.btnGroup, "flexRow-space-between")}>
-                  <div onClick={()=>handleModify(indicator)}  className={cx(styles.wrapper, "flexRow")}>
-                    <Icon icon="clarity:note-edit-line" />
-                    <span>
+          {loading ? <TableSkeleton /> : 
+            performanceIndicatorData && performanceIndicatorData.map((indicator, index) => {
+              return (
+                <div key={index} className={cx(styles.sectionContainer, "flexCol")}>
+                  <div onClick={() =>showDetails(indicator)}className={cx(styles.indicatorWrapper, "flexRow")} >
+                    <span className={cx(styles.iconSpan)}><img src={indicator.avatar} alt="img" /></span><span className={cx(styles.value)}>{indicator.name}</span>
+                  </div>
+                  <div className={cx(styles.btnGroup, "flexRow-space-between")}>
+                    <div onClick={()=>handleModify(indicator)}  className={cx(styles.wrapper, "flexRow")}>
+                      <Icon icon="clarity:note-edit-line" />
+                      <span>
                       Modify
-                    </span>
-                  </div>
+                      </span>
+                    </div>
 
-                  <div onClick={()=>handleDelete(indicator.id)} className={cx(styles.wrapper, "flexRow")}>
-                    <Icon icon="fluent:delete-24-filled" color="#d25b5d" />
-                    <span>
+                    <div onClick={()=>handleDelete(indicator.id)} className={cx(styles.wrapper, "flexRow")}>
+                      <Icon icon="fluent:delete-24-filled" color="#d25b5d" />
+                      <span>
                       Delete
-                    </span>
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+              );
+            }
+            )
           }
-          )}
         </div>
 
         <div className={cx(styles.footer, "flexRow")}>

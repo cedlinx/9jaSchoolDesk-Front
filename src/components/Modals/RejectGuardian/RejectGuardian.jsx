@@ -7,19 +7,22 @@ import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 
-// import { rejectGuardian } from "@/redux/Proprietor/ProprietorSlice";
+import { guardianStatusUpdate, getGuardianStatus, getNewGuardianSignups } from "@/redux/Proprietor/ProprietorSlice";
 
 const RejectGuardian = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
+  const loading = useSelector((state) => state?.proprietor?.loading);
+
 
   const sendRequest = async () => {
-    alert("Reject Guardian Application");
-    // let response = await dispatch(rejectGuardian(modalData));
-    // if(response.payload.success){
-    //   dispatch(showModal({ action: "hide", type: "rejectGuardian" }));
-    // }
+    let response = await dispatch(guardianStatusUpdate({ guardian_id: modalData.id, status: "Terminated" }));
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide", type: "rejectGuardian" }));
+      dispatch(getGuardianStatus());
+      dispatch(getNewGuardianSignups());
+    }
   };
 
   return (
@@ -41,7 +44,7 @@ const RejectGuardian = () => {
 
         <div className={cx(styles.btnGroup, "flexRow")}>
           <Button onClick={() => dispatch(showModal({action: "hide", type: "rejectGuardian"}))} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
-          <Button onClick={()=>sendRequest()} type title="Reject Application" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+          <Button loading={loading} disabled={loading}onClick={()=>sendRequest()} type title="Reject Application" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
         </div>
 
       </div>

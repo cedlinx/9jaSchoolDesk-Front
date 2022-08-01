@@ -4,47 +4,46 @@ import styles from "./Account.module.scss";
 
 import {useDispatch, useSelector} from "react-redux";
 import InputField from "@/components/Input/Input";
-import SelectField from "@/components/Select/Select";
 import Button from "@/components/Button/Button";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
+import { getDashboard } from "@/redux/Proprietor/ProprietorSlice";
+
 
 import { useForm, Controller } from "react-hook-form";
-import { signUpValidationSchema } from "@/helpers/validation";
+import { modifyProprietorValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
+
 
 const Account = () => {
 
   const dispatch = useDispatch();
-  const userDetails = JSON.parse(localStorage.getItem("userData"));
-  console.log(userDetails);
+  const userDetails = useSelector((state) => state?.proprietor?.getDashboardData?.proprietor);
+  const loading = useSelector((state) => state?.proprietor?.loading);
 
-  const resolver = yupResolver(signUpValidationSchema);
+  const resolver = yupResolver(modifyProprietorValidationSchema);
 
   const defaultValues = {
-    email: userDetails?.email || "",
-    name: userDetails?.name || "",
-    password: "",
-    password_confirmation: "",
-    address: "",
-    phone: "",
-    pin: ""
-    // accountType: ""
+    email: userDetails?.email,
+    firstName: userDetails?.firstName || "",
+    lastName: userDetails?.lastName || "",
+    otherNames: userDetails?.otherNames || ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const createUser = async (data) => {
-    const response = await dispatch(signUp(data));
-    if (response.payload.status === 201) {
-      toast.success("Account created successfully. Please Login");
-      reset();
-    } else {
-      dispatch({
-        type: "USER_INIT_STATE"
-      });
-    }
+  const sendRequest = async (data) => {
+    let formData = new FormData();
+    imgData.file && formData.append("photo", imgData.file);
+    formData.append("firstName", data.firstName);
+    formData.append("lastName", data.lastName);
+    formData.append("otherNames", data.otherNames);
+    formData.append("email", data.email);
+
+    // let response = await dispatch(modifyProprietor(formData));
+    // if(response.payload.success){
+    //   dispatch(getDashboard());
+    // }
   };
 
   const [imgData, setImgData] = useState({
@@ -75,19 +74,19 @@ const Account = () => {
             <img src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : userDetails?.avatar} alt="" />
           </div>
 
-          <Button {...getRootProps()}  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
+          <Button {...getRootProps()}  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
      
-          <Button  type title="Remove" borderRadiusType="fullyRounded" textColor="#828282" bgColor="#fff" bordercolor="#828282" />
+          <Button  type title="Remove" borderRadiusType="fullyRounded" textColor="#828282" bgColor="#fff" bordercolor="#828282" hoverBg="#828282" hoverColor="#fff" />
         </div>
 
         <div className={cx(styles.formWrapper, "flexCol")}>
-          <form onSubmit={handleSubmit((data) => createUser(data))}
+          <form onSubmit={handleSubmit((data) => sendRequest(data))}
             className="form"
           >
 
             <div className={cx(styles.inputsWrapper)}>
               <Controller
-                name="name"
+                name="firstName"
                 control={control}
                 render={({ field }) => (
                   <InputField
@@ -95,14 +94,14 @@ const Account = () => {
                     placeholder={" "}
                     label={"First Name"}
                     type="text"
-                    error={errors?.name && errors?.name?.message}
+                    error={errors?.firstName && errors?.firstName?.message}
 
                   />
                 )}
               />
 
               <Controller
-                name="name"
+                name="lastName"
                 control={control}
                 render={({ field }) => (
                   <InputField
@@ -110,7 +109,22 @@ const Account = () => {
                     placeholder={" "}
                     label={"Last Name"}
                     type="text"
-                    error={errors?.name && errors?.name?.message}
+                    error={errors?.lastName && errors?.lastName?.message}
+
+                  />
+                )}
+              />
+
+              <Controller
+                name="otherNames"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field} 
+                    placeholder={" "}
+                    label={"Other Names"}
+                    type="text"
+                    error={errors?.otherNames && errors?.otherNames?.message}
 
                   />
                 )}
@@ -124,32 +138,19 @@ const Account = () => {
                     {...field} 
                     placeholder={" "}
                     label={"Email Address"}
-                    type="email"
+                    type="text"
+                    readOnly
                     error={errors?.email && errors?.email?.message}
 
                   />
                 )}
               />
 
-              <Controller
-                name="accountType"
-                control={control}
-                render={({ field }) => (
-                  <SelectField
-                    {...field}
-                    label={"Account Type"}
-                    type="text"
-                    required={true}
-                    error={errors?.accountType && errors?.accountType?.message}
-                    options={[]}
-                  />
-                )}
-              />
             </div>
      
 
             <div className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button onClick={handleSubmit((data) => createUser(data))} type title="Save Changes" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+              <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => sendRequest(data))} type title="Save Changes" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
             </div>
   
           </form>

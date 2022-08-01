@@ -1,7 +1,7 @@
 import axios from "@/config/axios";
 
 export const getDashboardApi = async () => {
-  return await axios.post("proprietor/auth/dashboard");
+  return await axios.get("proprietor/auth/dashboard");
 };
 
 export const addInstitutionApi = async (data) => {
@@ -17,7 +17,7 @@ export const modifyInstitutionApi = async (data) => {
 };
 
 export const deleteInstitutionApi = async (data) => {
-  return await axios.delete("proprietor/auth/institution/delete", data);
+  return await axios.post("proprietor/auth/institution/delete", data);
 };
 
 export const switchInstitutionApi = async (data) => {
@@ -37,11 +37,11 @@ export const modifyClassApi = async (data) => {
 };
 
 export const deleteClassApi = async (data) => {
-  return await axios.delete("proprietor/auth/class/delete", data);
+  return await axios.post("proprietor/auth/class/delete", data);
 };
 
 export const reAssignTeacherApi = async (data) => {
-  return await axios.delete("proprietor/auth/class/assign/teacher", data);
+  return await axios.post("proprietor/auth/class/assign/teacher", data);
 };
 
 export const enableClassSubscriptionApi = async (data) => {
@@ -65,7 +65,7 @@ export const modifyTeacherApi = async (data) => {
 };
 
 export const deleteTeacherApi = async (data) => {
-  return await axios.delete("proprietor/auth/teacher/delete", data);
+  return await axios.post("proprietor/auth/teacher/delete", data);
 };
 
 export const addStudentApi = async (data) => {
@@ -76,12 +76,16 @@ export const getAllStudentsApi = async (data) => {
   return await axios.get("proprietor/auth/student/list", data);
 };
 
+export const viewStudentRecordApi = async (data) => {
+  return await axios.get(`proprietor/auth/student/view?id=${data}`);
+};
+
 export const modifyStudentApi = async (data) => {
   return await axios.put("proprietor/auth/student/modify", data);
 };
 
 export const deleteStudentApi = async (data) => {
-  return await axios.delete("proprietor/auth/student/delete", data);
+  return await axios.post("proprietor/auth/student/delete", data);
 };
 
 export const enableStudentSubscriptionApi = async (data) => {
@@ -112,6 +116,18 @@ export const assignGuardianToBulkStudentsApi = async (data) => {
   return await axios.post("proprietor/auth/guardian/assign/bulk", data);
 };
 
+export const guardianStatusUpdateApi = async (data) => {
+  return await axios.post("proprietor/auth/guardian/update/status", data);
+};
+
+export const getGuardianStatusApi = async (data) => {
+  return await axios.get("proprietor/auth/guardian/list/guardians", data);
+};
+
+export const getNewGuardianSignupsApi = async (data) => {
+  return await axios.get("proprietor/auth/guardian/list/new", data);
+};
+
 export const addKPIApi = async (data) => {
   return await axios.post("proprietor/auth/kpi/add", data);
 };
@@ -125,7 +141,7 @@ export const modifyKPIApi = async (data) => {
 };
 
 export const deleteKPIApi = async (data) => {
-  return await axios.delete("proprietor/auth/kpi/delete", data);
+  return await axios.post("proprietor/auth/kpi/delete", data);
 };
 
 export const viewKPIDetailsApi = async (data) => {
@@ -138,5 +154,9 @@ export const viewKPIForClassApi = async (data) => {
 
 export const viewKPIForInstitutionApi = async (data) => {
   return await axios.get(`proprietor/auth/kpi/list?institution_id=${data}`);
+};
+
+export const sendNotificationApi = async (data) => {
+  return await axios.post("proprietor/auth/notification/bc", data);
 };
 

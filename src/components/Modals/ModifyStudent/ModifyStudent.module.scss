@@ -1,4 +1,4 @@
-.assignToClassContainer{
+.modifyStudentContainer{
     width: 100%;
     background-color: #fff;
     background-color: transparent;
@@ -67,7 +67,7 @@
 }
 
 @media all and (min-width: 768px){
-    .assignToClassContainer{
+    .modifyStudentContainer{
         gap: 1rem;
     
         .header{
@@ -90,7 +90,7 @@
 
 
 @media all and (min-width: 991px){
-    .assignToClassContainer{
+    .modifyStudentContainer{
         gap: 1rem;
     
         .header{

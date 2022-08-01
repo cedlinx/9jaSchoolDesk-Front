@@ -44,7 +44,7 @@ const PriceCard = props => {
           :
           <div className="flexRow-fully-centered" style={{marginTop: "2rem"}}><Button title={btnText} radiusType="fullyRounded" textColor="#FFF" bordercolor = "#FFF" bgColor="#22467B" hoverBg="#FFF" hoverColor="#22467B"  /></div> }
 
-        {rootPath.toLowerCase() === "proprietor" && <div className={cx(styles.editPlanDiv, "flexRow")}>
+        {rootPath.toLowerCase() === "admin" && <div className={cx(styles.editPlanDiv, "flexRow")}>
           <p onClick={() => alert(title)}>Edit Plan</p>
         </div>}
 

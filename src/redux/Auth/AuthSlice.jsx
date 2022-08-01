@@ -170,7 +170,7 @@ export const verifyOTP = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await verifyOTPApi(data);
-    return dispatch(verifyOTPAction(response));
+    return dispatch(verifyOTPAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.message);
     return dispatch(hasError(e?.response?.data));
@@ -220,6 +220,12 @@ export const resetPassword = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await resetPasswordApi(data);
+    if(response?.data?.success){
+      toast.success(response.data.message);
+    }
+    else{
+      toast.error(response.data.message);
+    }
     return dispatch(resetPasswordAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );

@@ -7,7 +7,7 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import TextInput from "@/components/TextInput/TextInput";
 
-// import { urgentInfo } from "@/redux/Proprietor/ProprietorSlice";
+import { sendNotification } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { urgentInfoValidationSchema } from "@/helpers/validation";
@@ -19,17 +19,19 @@ const UrgentInfo = () => {
 
   const sendRequest = async (data) => {
     console.log(data);
-    // let response = dispatch(urgentInfo(data));
-    // if(response.payload.success){
-    //   dispatch(showModal({ action: "hide", type: "urgentInfo" }));
-    // }
+    let group = data.user.includes("guardian") ? "guardian" :  data.user.includes("teacher") ? "teacher" : "";
+    let response = dispatch(sendNotification({group: group, message: data.message, recipients: [`${data.recipients}`]}));
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide", type: "urgentInfo" }));
+    }
   };
 
   const resolver = yupResolver(urgentInfoValidationSchema);
 
   const defaultValues = {
     message: "",
-    user: ""
+    user: "",
+    recipients: ""
   };
 
   const { handleSubmit, register, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
@@ -66,16 +68,49 @@ const UrgentInfo = () => {
           <small>Will be received by</small>
 
           <div>
+            {/* <div className={cx("flexRow", styles.recipientsWrapper)}>
+              <div className={cx(styles.radioWrapper)}>
+                <input type="radio" name="group" id="group" />
+                <label htmlFor="group">Group</label>
+              </div>
+           
+            </div> */}
+
+            {/* <div className={cx("flexRow",  styles.recipientsWrapper)}>
+              <div className={cx(styles.radioWrapper)}>
+                <input type="radio" name="group" id="individuals" />
+                <label htmlFor="individuals">Individuals</label>
+              </div>
+              <div className={cx(styles.recipientsDiv)}>
+                recipients here
+              </div>
+            </div> */}
+
             <div className={cx(styles.checkboxDiv)}>
-              <input type="checkbox" value="guardians" {...register("user")} /> <label htmlFor="user">Parents</label>
-              <input type="checkbox" value="students" {...register("user")} /> <label htmlFor="user">Students</label>
-              <input type="checkbox" value="teachers" {...register("user")} /> <label htmlFor="user">Teachers</label>
+              <input type="radio" value="guardian" {...register("user")} /> <label htmlFor="user">Parents</label>
+              <input type="radio" value="teacher" {...register("user")} /> <label htmlFor="user">Teachers</label>
+              <input type="checkbox" value="recipients" {...register("user")} /> <label htmlFor="user">Recipients</label>
             </div>
             {errors?.user && <span style={{color: "red", fontSize: "0.875rem"}}>{errors?.user?.message}</span>}
+
+            <Controller
+              name="recipients"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  label="Recipients Email"
+                  placeholder="Enter recipient(s) email separated by commas"
+                  error={errors?.recipients && errors?.recipients?.message}
+                />
+              )}
+            />
+          
+           
           </div>
                
-          <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button title="Send" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#D25B5D" hoverBg="#fff" />
+          <div  className={cx(styles.btnDiv, "flexRow")}>
+            <Button onClick={handleSubmit((data) => sendRequest(data))} title="Send" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#D25B5D" hoverBg="#fff" />
           </div>
 
         </form>

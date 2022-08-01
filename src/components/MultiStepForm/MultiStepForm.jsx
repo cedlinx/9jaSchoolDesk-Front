@@ -25,6 +25,7 @@ const MultiStepForm = ({signUpEmail}) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    otherNames: "",
     phone: "",
     addressLine1: "",
     email: "",

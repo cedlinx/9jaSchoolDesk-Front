@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
-import styles from "./AddNewWard.module.scss";
+import styles from "./AssignWardToParent.module.scss";
 import Button from "@/components/Button/Button";
 import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
@@ -23,10 +23,10 @@ import editIcon from "@/assets/icons/edit-icon.svg";
 import { assignGuardianToSingleStudent } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
-import { addNewWardValidationSchema } from "@/helpers/validation";
+import { assignWardToParentValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const AddNewWard = () => {
+const AssignWardToParent = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
@@ -36,12 +36,12 @@ const AddNewWard = () => {
     console.log(data);
     // let response = await dispatch(assignGuardianToSingleStudent(data));
     // if(response.payload.success){
-    //   dispatch(showModal({ action: "hide", type: "addNewWard" }));
+    //   dispatch(showModal({ action: "hide", type: "assignWardToParent" }));
     //   dispatch(getAllGuardians())
     // }
   };
 
-  const resolver = yupResolver(addNewWardValidationSchema);
+  const resolver = yupResolver(assignWardToParentValidationSchema);
 
   const defaultValues = {
     email: modalData.email,
@@ -52,10 +52,10 @@ const AddNewWard = () => {
 
   return (
 
-    <section className={cx(styles.addNewWardContainer, "flexCol")}>
+    <section className={cx(styles.assignWardToParentContainer, "flexCol")}>
 
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "addNewWard" }))} icon="carbon:close-filled" color="white" />
+        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "assignWardToParent" }))} icon="carbon:close-filled" color="white" />
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
@@ -121,8 +121,8 @@ const AddNewWard = () => {
   );
 };
 
-AddNewWard.propTypes = {
+AssignWardToParent.propTypes = {
   title: PropTypes.string
 };
 
-export default AddNewWard;
+export default AssignWardToParent;
