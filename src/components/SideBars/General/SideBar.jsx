@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import "./GeneralSideBar.scss";
 import {useDispatch, useSelector} from "react-redux"; 
 import cx from "classnames";
+import styles from "./GeneralSideBar.module.scss";
 import { NavLink, useNavigate, useLocation, Navigate } from "react-router-dom";
 import {
   ProSidebar,
@@ -72,7 +73,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         </div>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent style={{backgroundColor: "#22467B"}}>
 
         <Menu iconShape="">
           <MenuItem

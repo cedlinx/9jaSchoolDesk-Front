@@ -86,7 +86,7 @@ const Header = (props) => {
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
 					
-          <div style={{width: userCategory === "proprietor" ? "calc(100% - 240px)" : "100%"}} className={cx(styles.contentWrapper, "flexRow")}>
+          <div className={cx(styles.contentWrapper, "flexRow", userCategory === "proprietor" ? styles.reducedWidth : styles.fullWidth)}>
             <div className={cx(styles.searchComponentDiv, "flexRow")}>
               {/* <InputField
                 

@@ -1,5 +1,14 @@
 .proprietor-sidebar{
 
+  .pro-sidebar-header {
+    position: relative;
+    border: none !important;
+    padding-top: 1rem;
+    color: #fff !important;
+    background-color: #fff !important;
+  }
+
+}
 
 .sidebar-btn-wrapper {
   display: flex;
@@ -154,16 +163,15 @@ main header {
     // margin: 0rem 1rem;
 
     a, img{
-    color: #D25B5D !important;
+    color: #D25B5D;
 
     }
   }
 
   .pro-inner-item{
     &:hover{
-    background-color: #D25B5D14 !important;
+    background-color: #D25B5D14;
     border-radius: 4px;
-
     }
   }
 }
@@ -199,9 +207,13 @@ main header {
   border-top: 0px !important;
 }
 
-.pro-sidebar-header {
-  position: relative;
-}
+// .pro-sidebar-header {
+//   position: relative;
+//   border: none !important;
+//   padding-top: 1rem;
+//   color: #fff !important;
+//   background-color: #fff !important;
+// }
 
 .bottom-0 {
   bottom: 0;
@@ -219,7 +231,7 @@ main header {
   font-size: 1rem;
 
   &:hover{
-    color: #000 !important;
+    color: #000;
   }
 }
 
@@ -229,22 +241,24 @@ main header {
 }
 
 
-}
+
 
 
 $sidebar-bg-color: #fff !default;
 $sidebar-color: #ACACAC !default;
 $sidebar-width: 240px !default;
 $sidebar-collapsed-width: 80px !default;
-$highlight-color: #0066F5 !default;
+$highlight-color: #22467B !default;
 $submenu-bg-color: #fff !default;
 $submenu-bg-color-collapsed: #fff !default;
 $icon-bg-color: #fff !default;
 $icon-size: 35px !default;
 $submenu-indent: 24px !default;
+$breakpoint-md: 990px !default;
+
+
 // $breakpoint-xs: 480px !default;
 // $breakpoint-sm: 576px !default;
-$breakpoint-md: 990px !default;
 // $breakpoint-lg: 992px !default;
 // $breakpoint-xl: 1200px !default;
 // $breakpoint-xxl: 1600px !default;

@@ -1,41 +1,5 @@
 .general-sidebar{
 
-  background-color: #22467B !important;
-
-
-  a{
-    color: #fff !important;
-
-    &:hover{
-      color: #fff !important;
-    }
-  }
-
-  .pro-sidebar-header {
-    position: relative;
-    background-color: #22467B !important;
-    border: 1px solid transparent !important;
-    padding-top: 1rem;
-    color: #fff !important;
-  }
-
-  .active .pro-inner-item {
-    border: none;
-    background-color: #D25B5D !important;
-    border-radius: 4px;
-    // margin: 0rem 1rem;
-  }
-
-  .pro-inner-item{
-    padding: 8px 4px !important;
-    &:hover{
-    background-color: #D25B5D !important;
-    border-radius: 4px;
-
-    }
-  }
-}
-
 .sidebar-btn-wrapper {
   display: flex;
   align-items: center;
@@ -181,20 +145,25 @@ main header {
   max-width: 240px;
   min-width: 240px;
 
-  // .active .pro-inner-item {
-  //   border: none;
-  //   background-color: #D25B5D;
-  //   border-radius: 4px;
-  //   // margin: 0rem 1rem;
-  // }
+  .active .pro-inner-item {
+    border: none;
+    background-color: #D25B5D;
+    border-radius: 4px;
+    // margin: 0rem 1rem;
 
-  // .pro-inner-item{
-  //   &:hover{
-  //   background-color: #D25B5D !important;
-  //   border-radius: 4px;
+    a, img{
+      // color: #0066F5;
+    }
+  }
 
-  //   }
-  // }
+  .pro-inner-item{
+    
+    &:hover{
+    background-color: #D25B5D !important;
+    border-radius: 4px;
+
+    }
+  }
 }
 
 @media (max-width: 990px) {
@@ -229,13 +198,13 @@ main header {
   color: #fff !important;
 }
 
-// .pro-sidebar-header {
-//   position: relative;
-//   background-color: #22467B !important;
-//   border: 1px solid transparent !important;
-//   padding-top: 1rem;
-//   color: #fff !important;
-// }
+.pro-sidebar-header {
+  position: relative;
+  background-color: #22467B;
+  border: 1px solid transparent !important;
+  padding-top: 1rem;
+  color: #fff !important;
+}
 
 .bottom-0 {
   bottom: 0;
@@ -252,6 +221,10 @@ main header {
 .pro-sidebar .pro-menu a{
   font-size: 1rem;
 
+
+  &:hover{
+    color: #fff !important;
+  }
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
@@ -260,7 +233,7 @@ main header {
 }
 
 
-
+}
 
 
 $sidebar-bg-color: #22467B !default;
