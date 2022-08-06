@@ -45,149 +45,113 @@ const Home = () => {
 
   const studentsArray = [
     {
+      id: 1,
       name: "Emenike Chidi Michael",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 2,
       name: "George Saim",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 3,
       name: "Fred Anderson",
       attendanceStatus: "absent",
       profilePic: studentProfilePic
     },
     {
+      id: 4,
       name: "John Doe",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 5,
       name: "George Saim",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 6,
       name: "Fred Anderson",
       attendanceStatus: "absent",
       profilePic: studentProfilePic
     },
     {
+      id: 7,
       name: "John Doe",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 8,
       name: "George Saim",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 9,
       name: "Fred Anderson",
       attendanceStatus: "absent",
       profilePic: studentProfilePic
     },
     {
+      id: 10,
       name: "John Doe",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 11,
       name: "George Saim",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 12,
       name: "Fred Anderson",
       attendanceStatus: "absent",
       profilePic: studentProfilePic
     },
     {
+      id: 13,
       name: "John Doe",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 14,
       name: "Emenike Chidi Michael",
       attendanceStatus: "present",
       profilePic: studentProfilePic
     },
     {
+      id: 15,
       name: "George Saim",
       attendanceStatus: "present",
       profilePic: studentProfilePic
-    },
-    {
-      name: "Fred Anderson",
-      attendanceStatus: "absent",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "John Doe",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "George Saim",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "Fred Anderson",
-      attendanceStatus: "absent",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "John Doe",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "George Saim",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "Fred Anderson",
-      attendanceStatus: "absent",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "John Doe",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "George Saim",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "Fred Anderson",
-      attendanceStatus: "absent",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "John Doe",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      name: "Jane Doe",
-      attendanceStatus: "absent",
-      profilePic: null
     }
+
   ];
 
   const attendanceStatus = (status) => {
     console.log(status);
-    // setStudentAttendanceStatus.map((student) => {
-    //   if (student.name === status.name) {
-    //     student.attendanceStatus = status.status;
-    //   }
-    // });
+    let studentsArr = [...studentAttendanceStatus];
+    let result = studentsArr.find((student) => {
+      return student.id === status.id;
+    });
+    let answer = studentsArr.indexOf(result);
+    if (answer === -1) {
+      studentsArr.push(status);
+    } else {
+      studentsArr.splice(answer, 1);
+      studentsArr.push(status);
+    }
+    console.log(studentsArr);
+    setStudentAttendanceStatus(studentsArr);
   };
 
   return (

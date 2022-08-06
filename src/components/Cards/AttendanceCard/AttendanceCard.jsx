@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import cx from "classnames";
 import styles from "./AttendanceCard.module.scss";
 import presentIcon from "@/assets/icons/present-icon.svg";
@@ -25,7 +25,7 @@ const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
   const handleClick = () => {
     if (takeAttendance) {
       setStatus(status === "present" ? "absent" : "present");
-      attendanceStatus({ status, cardData });
+      attendanceStatus({ status: status === "present" ? "absent" : "present", id: cardData.id });
     } else {
       dispatch(showModal({ action: "show", type: "viewStudentProfile", modalData: cardData }));
     }
