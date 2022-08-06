@@ -12,6 +12,18 @@ table th, table td{
     padding-top: 0.5rem !important;
     padding-bottom: 0.5rem !important;
 }
+thead{
+    background-color: #4967904d;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2b9;
+}
+
+tr:hover {
+    background-color: #d25b5d0e;
+}
+
 .tableWrap{
     border-bottom: none;
 }
@@ -22,6 +34,8 @@ table th, table td{
     font-family: NunitoSans;
     width: 100%;
     font-size: 0.875rem;
+    background-color: #4967904d;
+
 }
 .pagination-summary{
     text-align: center;

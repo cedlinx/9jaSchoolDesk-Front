@@ -19,11 +19,21 @@ const UrgentInfo = () => {
 
   const sendRequest = async (data) => {
     console.log(data);
-    let group = data.user.includes("guardian") ? "guardian" :  data.user.includes("teacher") ? "teacher" : "";
-    let response = dispatch(sendNotification({group: group, message: data.message, recipients: [`${data.recipients}`]}));
+    let group = data.user.includes("guardian") ? "guardian" :  data.user.includes("teacher") ? "teacher" : "all";
+    let response = await dispatch(sendNotification({group: group, message: data.message, recipients: convertStringToArray(data.recipients)}));
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "urgentInfo" }));
     }
+  };
+
+  const convertStringToArray =(data)=>{
+    let arr = [];
+    let strArr = data.split(",");
+    strArr.forEach(element => {
+      arr.push(element.trim());
+    }
+    );
+    return arr;
   };
 
   const resolver = yupResolver(urgentInfoValidationSchema);

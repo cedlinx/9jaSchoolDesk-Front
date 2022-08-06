@@ -1,22 +1,24 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import cx from "classnames";
 import styles from "./ApprovedAccounts.module.scss";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "@iconify/react";
 import Button from "@/components/Button/Button";
 import TableComponent from "@/components/Table/Table";
-import { titleCase } from "@/helpers/textTransform";
 // import {approvedParentsData} from "@/helpers/sampleData";
+import { initialsCase, titleCase } from "@/helpers/textTransform";
+import useGenerateColor from "@/utils/useGenerateColor";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import { Dropdown, DropdownToggle, DropdownMenu,  DropdownItem } from "reactstrap";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 const ApprovedAccounts = () => {
   const dispatch = useDispatch();
   const approvedParentsData = useSelector((state) => state?.proprietor?.getGuardianStatusData.activeList);
+  const color = useGenerateColor();
 
   console.log(approvedParentsData);
 
-  const columnsHeader = [                
+  const columnsHeader = [
     {
       Header: () => (
         <div
@@ -26,12 +28,12 @@ const ApprovedAccounts = () => {
             fontSize: "1rem"
           }}
         >
-            S/No</div>
+          S/No</div>
       ),
       accessor: "serialNumber",
       Cell: (row) => {
         let serialNumber = row.cell.row.values.serialNumber;
-        return <span style={{ color: "#4F4F4F"}}>{serialNumber}</span>;
+        return <span style={{ color: "#4F4F4F" }}>{serialNumber}</span>;
       }
     },
     {
@@ -47,7 +49,7 @@ const ApprovedAccounts = () => {
       accessor: "firstName",
       Cell: (row) => {
         let firstName = row.cell.row.values.firstName;
-        return <div style={{ color: "#4F4F4F"}}>
+        return <div style={{ color: "#4F4F4F" }}>
           {firstName}
         </div>;
       }
@@ -65,9 +67,9 @@ const ApprovedAccounts = () => {
       accessor: "lastName",
       Cell: (row) => {
         let lastName = row.cell.row.values.lastName;
-        return <div style={{ color: "#4F4F4F"}} >
+        return <div style={{ color: "#4F4F4F" }} >
           {lastName}
-            
+
         </div>;
       }
     },
@@ -84,8 +86,8 @@ const ApprovedAccounts = () => {
       accessor: "email",
       Cell: (row) => {
         let email = row.cell.row.values.email;
-        return <div  style={{width: "15rem"}}>
-          <p style={{ color: "#4F4F4F"}}>{email}</p>         
+        return <div style={{ width: "15rem" }}>
+          <p style={{ color: "#4F4F4F" }}>{email}</p>
         </div>;
       }
     },
@@ -102,10 +104,10 @@ const ApprovedAccounts = () => {
       accessor: "wards",
       Cell: (row) => {
         let wards = row.cell.row.values.wards;
-        return <div  style={{width: "15rem"}}>
-          {wards && wards.map((ward, index) =>{
-            return <img style={{width: "3rem", height: "3rem", borderRadius: "50%", padding: "0.25rem", marginLeft: "-0.625rem", backgroundColor:"white", cursor: "pointer"}} key={index} src={ward} alt="img" />;
-          })}      
+        return <div style={{ width: "15rem" }}>
+          {Array.isArray(wards) && wards.map((ward, index) => {
+            return (ward.avatar ? <img style={{ width: "3rem", height: "3rem", borderRadius: "50%", padding: "0.25rem", marginLeft: "-0.625rem", backgroundColor: "white", cursor: "pointer" }} key={index} src={ward} alt="img" /> : ward.firstName && <p style={{ backgroundColor: color, whiteSpace: "nowrap", border: "1px solid #FF7E3F0D", borderRadius: "50%", fontSize: "1.25rem", width: "3rem", height: "3rem", lineHeight: "3rem", textAlign: "center", marginLeft: "-0.625rem", cursor: "pointer" }}>{ward.firstName && initialsCase(`${ward.firstName} ${ward?.lastName}`)}</p>);
+          })}
         </div>;
       }
     },
@@ -124,8 +126,8 @@ const ApprovedAccounts = () => {
       Cell: (row) => {
         let data = row.cell.row.original.allData;
 
-        return <div  style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
-          <Button onClick={() => dispatch(showModal({action: "show", type: "assignWardToParent", modalData: data}))} title="Add New Ward +" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+        return <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+          <Button onClick={() => dispatch(showModal({ action: "show", type: "assignWardToParent", modalData: data }))} title="Add New Ward +" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
         </div>;
       }
     },
@@ -152,25 +154,25 @@ const ApprovedAccounts = () => {
 
         return <div>
           <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle style={{backgroundColor: "transparent"}} name="" className={cx(styles.dropdownToggler)}>
-              <Icon style={{cursor: "pointer"}} icon="bx:dots-vertical-rounded" color="black" />
+            <DropdownToggle style={{ backgroundColor: "transparent" }} name="" className={cx(styles.dropdownToggler)}>
+              <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
-              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "deactivateGuardian", modalData: data}))}>Deactivate Guardian</DropdownItem>  
-              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "guardianDetails", modalData: data}))}>View Details</DropdownItem>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "deactivateGuardian", modalData: data }))}>Deactivate Guardian</DropdownItem>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "guardianDetails", modalData: data }))}>View Details</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>;
       }
     }
   ];
-  
+
   let getTableData = (data) => {
-    let result =[];
-  
-    data  && data.map((item, index) =>{
+    let result = [];
+
+    data && data.map((item, index) => {
       result.push({
-        serialNumber: index+1,
+        serialNumber: index + 1,
         firstName: item?.firstName && titleCase(item?.firstName),
         lastName: item?.lastName && titleCase(item?.lastName),
         email: item?.email && item?.email,
@@ -181,9 +183,9 @@ const ApprovedAccounts = () => {
     });
     return result;
   };
-      
+
   return (
-    <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(approvedParentsData)} showHeader={true}/>                
+    <TableComponent columnsHeader={columnsHeader} tableData={getTableData(approvedParentsData)} showHeader={true} />
   );
 };
 

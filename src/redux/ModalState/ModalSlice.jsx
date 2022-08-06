@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   error: {},
-  
+
   action: "",
   type: "",
   modalData: ""
@@ -30,7 +30,7 @@ export const modalSlice = createSlice({
       state.modalData = action.payload.modalData;
       state.loading = false;
     }
- 
+
   }
 });
 export default modalSlice.reducer;
@@ -48,4 +48,4 @@ export const showModal = (data) => async (dispatch) => {
   }
 };
 
-  
+

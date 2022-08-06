@@ -33,7 +33,7 @@ export const getAllClassesApi = async (data) => {
 };
 
 export const modifyClassApi = async (data) => {
-  return await axios.put("proprietor/auth/class/modify", data);
+  return await axios.post("proprietor/auth/class/modify", data);
 };
 
 export const deleteClassApi = async (data) => {
@@ -61,7 +61,7 @@ export const getAllTeachersApi = async (data) => {
 };
 
 export const modifyTeacherApi = async (data) => {
-  return await axios.put("proprietor/auth/teacher/modify", data);
+  return await axios.post("proprietor/auth/teacher/modify", data);
 };
 
 export const deleteTeacherApi = async (data) => {
@@ -81,7 +81,7 @@ export const viewStudentRecordApi = async (data) => {
 };
 
 export const modifyStudentApi = async (data) => {
-  return await axios.put("proprietor/auth/student/modify", data);
+  return await axios.post("proprietor/auth/student/modify", data);
 };
 
 export const deleteStudentApi = async (data) => {
@@ -97,7 +97,7 @@ export const disableStudentSubscriptionApi = async (data) => {
 };
 
 export const getAllGuardiansApi = async (data) => {
-  return await axios.get("proprietor/auth/guardian/list", data);
+  return await axios.get("proprietor/auth/guardian/dropdown", data);
 };
 
 export const viewGuardianDetailsApi = async (data) => {
@@ -121,7 +121,7 @@ export const guardianStatusUpdateApi = async (data) => {
 };
 
 export const getGuardianStatusApi = async (data) => {
-  return await axios.get("proprietor/auth/guardian/list/guardians", data);
+  return await axios.get("proprietor/auth/guardian/list/all", data);
 };
 
 export const getNewGuardianSignupsApi = async (data) => {
@@ -160,3 +160,34 @@ export const sendNotificationApi = async (data) => {
   return await axios.post("proprietor/auth/notification/bc", data);
 };
 
+export const updateProfileApi = async (data) => {
+  return await axios.post("proprietor/auth/profile/update", data);
+};
+
+export const addSubjectApi = async (data) => {
+  return await axios.post("proprietor/auth/subject/add", data);
+};
+
+export const getAllSubjectsApi = async (data) => {
+  return await axios.get("proprietor/auth/subject/list/all", data);
+};
+
+export const modifySubjectApi = async (data) => {
+  return await axios.post("proprietor/auth/subject/modify", data);
+};
+
+// export const deleteSubjectApi = async (data) => {
+//   return await axios.post("proprietor/auth/subject/delete", data);
+// };
+
+export const viewSubjectDetailsApi = async (data) => {
+  return await axios.get(`proprietor/auth/subject/view?id=${data}`);
+};
+
+export const assignSubjectToTeacherApi = async (data) => {
+  return await axios.get("proprietor/auth/subject/teacher/save", data);
+};
+
+export const assignSubjectToStudentApi = async (data) => {
+  return await axios.get("proprietor/auth/subject/student/save", data);
+};

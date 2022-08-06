@@ -1,50 +1,54 @@
-import React, {useEffect, useState, useCallback} from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./AddClass.module.scss";
 import Button from "@/components/Button/Button";
 import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
-import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import closeIcon from "@/assets/icons/closeIcon.svg";
 import { Icon } from "@iconify/react";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
-import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
-import heroImage from "@/assets/images/student-dashboard-hero-image.png";
 import { useDropzone } from "react-dropzone";
-
-import editIcon from "@/assets/icons/edit-icon.svg";
-
-import { forgotPassword } from "@/redux/Auth/AuthSlice";
+import { addClass, getAllClasses } from "@/redux/Proprietor/ProprietorSlice";
+import useGetInstitutionID from "@/utils/useGetInstitutionID";
 
 import { useForm, Controller } from "react-hook-form";
-import { forgotPasswordValidationSchema } from "@/helpers/validation";
+import { addClassValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import useGetAllTeachers from "@/utils/useGetAllTeachers";
+import SelectAutoComplete from "@/components/SelectAutoComplete";
+// import schoolSubjects from "@/helpers/schoolSubjects";
+import useGetAllSubjects from "@/utils/useGetAllSubjects";
+
+
+
 
 const AddClass = () => {
 
   const dispatch = useDispatch();
-  const modalData = useSelector((state) => state.modalState.modalData);
+  let institution_id = useGetInstitutionID();
+  const loading = useSelector((state) => state.proprietor.loading);
+  const allTeachersData = useGetAllTeachers();
+  const schoolSubjects = useGetAllSubjects();
 
-  const sendRequest = (data) => {
-    dispatch(forgotPassword(data));
-    dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
+  const sendRequest = async (data) => {
+    let subjectArray = [];
+    data.subjects.map((subject, index) => {
+      subjectArray.push(index);
+    });
+
+    let response = await dispatch(addClass({ ...data, subjects: subjectArray, institution_id: institution_id }));
+    if (response.payload.success) {
+      dispatch(showModal({ action: "hide", type: "addClass" }));
+      dispatch(getAllClasses());
+    }
   };
 
-  const showLoginModal = (e) => {
-    e.preventDefault();
-    dispatch(showModal({ action: "show", type: "logIn" }));
-  };
-
-  const resolver = yupResolver(forgotPasswordValidationSchema);
+  const resolver = yupResolver(addClassValidationSchema);
 
   const defaultValues = {
-    email: ""
+    name: "",
+    description: "",
+    subjects: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
@@ -58,23 +62,45 @@ const AddClass = () => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
+      setImgData({ file: file, imagePreviewUrl: reader.result });
     };
     reader.readAsDataURL(file);
   }, []);
 
   const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
 
+  const getSubjectsOptions = () => {
+    let options = [];
+    Array.isArray(schoolSubjects) && schoolSubjects.map((subject) => {
+      options.push({
+        value: subject.id,
+        label: subject.subject
+      });
+    });
+    return options;
+  };
+
+  const getTeacherOptions = () => {
+    let options = [];
+    Array.isArray(allTeachersData) && allTeachersData.map((teacher) => {
+      options.push({
+        value: teacher.id,
+        label: teacher.name
+      });
+    });
+    return options;
+  };
+
   return (
 
     <section className={cx(styles.addClassContainer, "flexCol")}>
 
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "addClass" }))} icon="carbon:close-filled" color="white" />
+        <Icon onClick={() => dispatch(showModal({ action: "hide", type: "addClass" }))} icon="carbon:close-filled" color="white" />
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
-	  <div className={cx(styles.header)}>
+        <div className={cx(styles.header)}>
           <p>Add New Class</p>
         </div>
         <form
@@ -83,63 +109,76 @@ const AddClass = () => {
         >
 
           <Controller
-            name="studentId"
+            name="name"
             control={control}
             render={({ field }) => (
               <InputField
                 {...field}
                 label={"CLASS NAME"}
                 placeholder="Class Name"
-                error={errors?.studentId && errors?.studentId?.message}
-                options={[{label: "", value: ""}]}
+                error={errors?.name && errors?.name?.message}
               />
             )}
           />
 
           <Controller
-            name="studentClass"
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <InputField
+                {...field}
+                label={"DESCRIPTION"}
+                placeholder="Description"
+                error={errors?.description && errors?.description?.message}
+              />
+            )}
+          />
+
+          <Controller
+            name="teacher_id"
             control={control}
             render={({ field }) => (
               <Select
                 {...field}
                 label={"CLASS TEACHER"}
                 defaultSelect="Select"
-                error={errors?.studentId && errors?.studentId?.message}
-                options={[{label: "", value: ""}]}
+                error={errors?.teacher_id && errors?.teacher_id?.message}
+                options={getTeacherOptions(allTeachersData)}
               />
             )}
           />
 
+          <label className={cx(styles.subjectsLabel)}>SELECT SUBJECTS</label>
           <Controller
-            name="studentId"
+            name="subjects"
             control={control}
             render={({ field }) => (
-              <InputField
+              <SelectAutoComplete
                 {...field}
-                label={"NUMBER OF STUDENTS"}
-                placeholder="Number of students"
-                error={errors?.studentId && errors?.studentId?.message}
-                options={[{label: "", value: ""}]}
+                // label={"Select Student"}
+                isMulti={true}
+                isClearable={true}
+                isCreatable={true}
+                marginbottom="1.5rem"
+                placeholder=""
+                options={getSubjectsOptions(schoolSubjects)}
+                error={errors?.subjects && errors?.subjects?.message}
               />
             )}
           />
 
 
-          <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button title="Add Class" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+          <div className={cx(styles.btnDiv, "flexRow")}>
+            <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => sendRequest(data))} title="Add Class" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
 
-     
+
 
         </form>
       </div>
 
     </section>
   );
-};
-
-AddClass.propTypes = {
-  title: PropTypes.string
 };
 
 export default AddClass;

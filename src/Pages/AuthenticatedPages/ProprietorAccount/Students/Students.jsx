@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import cx from "classnames";
 import styles from "./Students.module.scss";
 
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button/Button";
 
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
-import {allStudentsData} from "@/helpers/sampleData";
+// import {allStudentsData} from "@/helpers/sampleData";
 
 import UrgentInfoModal from "@/components/Modals/UrgentInfo/UrgentInfo";
 import AddNewStudentModal from "@/components/Modals/AddNewStudent/AddNewStudent";
@@ -19,9 +19,10 @@ import { Icon } from "@iconify/react";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import useGenerateColor from "@/utils/useGenerateColor";
-import {initialsCase, titleCase} from "@/helpers/textTransform";
-import { Dropdown, DropdownToggle, DropdownMenu,  DropdownItem } from "reactstrap";
-import { getAllStudents } from "@/redux/Proprietor/ProprietorSlice";
+import { initialsCase, titleCase } from "@/helpers/textTransform";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import useGetAllStudents from "@/utils/useGetAllStudents";
+
 
 const Students = () => {
 
@@ -29,15 +30,12 @@ const Students = () => {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+  const loading = useSelector((state) => state.proprietor.loading);
   const color = useGenerateColor();
 
-  // const allStudentsData = useSelector((state) => state.proprietor.getAllStudentsData);
+  const allStudentsData = useGetAllStudents();
 
-  useEffect(() => {
-    dispatch(getAllStudents());
-  }, [dispatch]);
-
-  const columnsHeaderAssessment = [                
+  const columnsHeaderAssessment = [
     {
       Header: () => (
         <div
@@ -47,12 +45,12 @@ const Students = () => {
             fontSize: "1rem"
           }}
         >
-            S/No</div>
+          S/No</div>
       ),
       accessor: "serialNumber",
       Cell: (row) => {
         let serialNumber = row.cell.row.values.serialNumber;
-        return <span style={{ color: "#4F4F4F"}}>{serialNumber}</span>;
+        return <span style={{ color: "#4F4F4F" }}>{serialNumber}</span>;
       }
     },
     {
@@ -68,7 +66,7 @@ const Students = () => {
       accessor: "firstName",
       Cell: (row) => {
         let firstName = row.cell.row.values.firstName;
-        return <div style={{ color: "#4F4F4F"}}>
+        return <div style={{ color: "#4F4F4F" }}>
           {firstName}
         </div>;
       }
@@ -86,9 +84,9 @@ const Students = () => {
       accessor: "lastName",
       Cell: (row) => {
         let lastName = row.cell.row.values.lastName;
-        return <div style={{ color: "#4F4F4F"}} >
+        return <div style={{ color: "#4F4F4F" }} >
           {lastName}
-            
+
         </div>;
       }
     },
@@ -106,7 +104,7 @@ const Students = () => {
       Cell: (row) => {
         let studentId = row.cell.row.values.studentId;
         return <div>
-          <p style={{ color: "#4F4F4F"}}>{studentId}</p>         
+          <p style={{ color: "#4F4F4F" }}>{studentId}</p>
         </div>;
       }
     },
@@ -124,7 +122,7 @@ const Students = () => {
       Cell: (row) => {
         let studentClass = row.cell.row.values.class;
         return <div>
-          <p style={{ color: "#4F4F4F"}}>{studentClass}</p>         
+          <p style={{ color: "#4F4F4F" }}>{studentClass}</p>
         </div>;
       }
     },
@@ -142,10 +140,10 @@ const Students = () => {
       Cell: (row) => {
         let parentName = row.cell.row.values.parent.parentName;
         let parentImage = row.cell.row.values.parent.parentImage;
-        return <div  style={{width: "auto", display: "flex", gap: "0.25rem", alignItems: "center"}}>
-          
-          {parentImage ? <img style={{width: "2.5rem", height: "2.5rem", borderRadius: "50%"}} src={parentImage} alt="img" /> : <span style={{backgroundColor: color, borderRadius: "50%", fontSize: "1.25rem", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", textAlign: "center"}}>{initialsCase(parentName)}</span>}
-          <p style={{ color: "#4F4F4F"}}>{parentName}</p>         
+        return <div style={{ width: "auto", display: "flex", gap: "0.25rem", alignItems: "center" }}>
+
+          {parentImage ? <img style={{ width: "2.5rem", height: "2.5rem", borderRadius: "50%" }} src={parentImage} alt="img" /> : <p style={{ backgroundColor: color, whiteSpace: "nowrap", border: "1px solid #FF7E3F0D", borderRadius: "50%", fontSize: "1.25rem", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", textAlign: "center" }}>{parentName && initialsCase(parentName)}</p>}
+          <p style={{ color: "#4F4F4F" }}>{parentName}</p>
         </div>;
       }
     },
@@ -165,7 +163,7 @@ const Students = () => {
         let studentData = row.cell.row.original.allData;
         console.log(studentData);
         return <div>
-          <Button onClick={() => navigate(`student-report/${studentData?.studentId}`, {state:{studentData: studentData}})} title="View Report" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" hoverBg="#FF6A00" hoverColor="#fff" />
+          <Button onClick={() => navigate(`student-report/${studentData?.id}`, { state: { studentData: studentData } })} title="View Report" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" hoverBg="#FF6A00" hoverColor="#fff" />
         </div>;
       }
     },
@@ -191,34 +189,34 @@ const Students = () => {
 
         return <div>
           <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle style={{backgroundColor: "transparent"}} name="" className={cx(styles.dropdownToggler)}>
-              <Icon style={{cursor: "pointer"}} icon="bx:dots-vertical-rounded" color="black" />
+            <DropdownToggle style={{ backgroundColor: "transparent" }} name="" className={cx(styles.dropdownToggler)}>
+              <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
-              <DropdownItem style={{color: "#828282" }} onClick={() => dispatch(showModal({action: "show", type: "modifyStudent", modalData:data}))}><Icon icon="ep:edit" color="#828282" /> Edit Account</DropdownItem>  
-              <DropdownItem style={{color: "#fb4e4e" }} onClick={() => dispatch(showModal({action: "show", type: "deleteStudent", modalData: data}))}> <Icon icon="fluent:delete-20-regular" color="#fb4e4e" /> Delete Account</DropdownItem>
+              <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "modifyStudent", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Edit Student</DropdownItem>
+              <DropdownItem style={{ color: "#fb4e4e" }} onClick={() => dispatch(showModal({ action: "show", type: "deleteStudent", modalData: data }))}> <Icon icon="fluent:delete-20-regular" color="#fb4e4e" /> Delete Student</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>;
       }
     }
   ];
-  
+
   let getTableData = (data) => {
-    let result =[];
-  
-    data  && data.map((item, index) =>{
+    let result = [];
+
+    Array.isArray(data) && data.map((item, index) => {
       result.push({
-        serialNumber: index+1,
+        serialNumber: index + 1,
         firstName: item?.firstName && titleCase(item?.firstName),
         lastName: item?.lastName && titleCase(item?.lastName),
-        studentId: item?.studentId && item?.studentId,
-        class: item?.class && item?.class,
+        studentId: item?.sdid && item?.sdid,
+        class: item?.student_class?.name && item?.student_class?.name,
         parentName: item?.parentName && item?.parentName,
         parentImage: item?.parentImage && item?.parentImage,
         parent: {
-          parentName: item?.parentName && item?.parentName,
-          parentImage: item?.parentImage && item?.parentImage
+          parentName: item?.guardian?.firstName && `${item?.guardian?.firstName} ${item?.guardian?.lastName}`,
+          parentImage: item?.guardian?.avatar && item?.guardian?.avatar
         },
         allData: item,
         moreOption: "",
@@ -233,20 +231,20 @@ const Students = () => {
 
       <div className={cx(styles.heading, "flexRow-space-between")}>
         <h3 className={cx(styles.title)}>Student</h3>
-        <Button onClick={() => dispatch(showModal({action: "show", type: "addNewStudent", modalData: {studentData: "", user: "proprietor"}}))} title="Add New Student" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" hoverColor="#000" />
+        <Button onClick={() => dispatch(showModal({ action: "show", type: "addNewStudent", modalData: { studentData: "", user: "proprietor" } }))} title="Add New Student" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" hoverColor="#000" />
       </div>
 
-      <div className={cx(styles.body, "flexCol")}> 
+      <div className={cx(styles.body, "flexCol")}>
 
         <div className={cx(styles.tableSection)}>
           <h3 className={cx(styles.title)}>All Students</h3>
-          {<TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(allStudentsData)} showHeader={true} />}
+          {loading ? <TableSkeleton /> : <TableComponent loading={loading} columnsHeader={columnsHeaderAssessment} tableData={getTableData(allStudentsData)} showHeader={true} />}
         </div>
-     
-      </div>              
 
-      {modalState === "show" ? <Modal size={modalType==="addNewStudent" ? "lg" : "md"} show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> :  modalType === "addNewStudent" ? <AddNewStudentModal /> :  modalType === "modifyStudent" ? <ModifyStudentModal /> :  modalType === "deleteStudent" ? <DeleteStudentModal /> :  null}</Modal> : null}
-            
+      </div>
+
+      {modalState === "show" ? <Modal size={modalType === "addNewStudent" ? "lg" : "md"} show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> : modalType === "addNewStudent" ? <AddNewStudentModal /> : modalType === "modifyStudent" ? <ModifyStudentModal /> : modalType === "deleteStudent" ? <DeleteStudentModal /> : null}</Modal> : null}
+
     </div>
   );
 };

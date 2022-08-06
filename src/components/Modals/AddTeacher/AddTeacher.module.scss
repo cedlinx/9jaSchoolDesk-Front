@@ -48,6 +48,14 @@
                 width: 49%;
                 margin-bottom: 1.625rem !important;
             } 
+
+            .emailWrapper{
+                margin-bottom: 0rem !important;
+
+                > div{
+                    margin-bottom: 1rem !important;
+                }
+             }
             }
 
             .btnDiv{
@@ -71,6 +79,14 @@
                 line-height: 1;
                 font-size: 1rem;
                 margin: 0rem;
+             }
+
+             .subjectsLabel{
+                font-size: 0.75rem;
+                margin: 0rem;
+                padding: 0rem;
+                line-height: 1;
+                position: relative;
              }
         }
     }

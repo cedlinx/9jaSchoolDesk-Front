@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 
-import { deleteTeacher, getAllStudents } from "@/redux/Proprietor/ProprietorSlice";
+import { deleteTeacher, getAllTeachers } from "@/redux/Proprietor/ProprietorSlice";
 
 const DeleteTeacher = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const DeleteTeacher = () => {
     // let response = await dispatch(deleteTeacher(formData));
     let response = await dispatch(deleteTeacher({id: modalData.id}));
     if (response.payload.success) {
-      dispatch(getAllStudents());
+      dispatch(getAllTeachers());
       dispatch(showModal({ action: "hide", type: "deleteTeacher" }));
     }
   };
@@ -36,11 +36,11 @@ const DeleteTeacher = () => {
 
       <div className={cx(styles.formWrapper, "flexCol")}>
 	  <div className={cx(styles.header, "flexCol")}>
-          <p>Delete Student</p>
+          <p>Delete Teacher</p>
         </div>
 
         <div style={{textAlign: "center"}}>
-          Are you sure you want to delete this student?
+          Are you sure you want to delete this teacher?
         </div>
 
         <div className={cx(styles.btnGroup, "flexRow")}>

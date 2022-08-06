@@ -3,6 +3,7 @@ import AuthReducer from "./Auth/AuthSlice";
 import ModalReducer from "./ModalState/ModalSlice";
 import ProprietorReducer from "./Proprietor/ProprietorSlice";
 import GuardianReducer from "./Guardian/GuardianSlice";
+import TeacherReducer from "./Teacher/TeacherSlice";
 
 
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
     auth: AuthReducer,
     modalState: ModalReducer,
     proprietor: ProprietorReducer,
-    guardian: GuardianReducer
+    guardian: GuardianReducer,
+    teacher: TeacherReducer
   },
   devTools: process.env.NODE_ENV === "development" ? true : false 
 });

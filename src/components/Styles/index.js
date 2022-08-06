@@ -136,7 +136,7 @@ export const FormGroup = styled(Form.Group)`
     font-weight: normal;
     font-size: 12px;
     line-height: 16px;
-    color: #A0A4A8;
+    color: #000;
     text-align: left;
     ${({ required }) => required
     ? `

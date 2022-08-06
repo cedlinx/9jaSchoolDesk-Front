@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import cx from "classnames";
 import styles from "./Home.module.scss";
 import Button from "@/components/Button/Button";
 
 import { Icon } from "@iconify/react";
-import {initialsCase} from "@/helpers/textTransform";
+import { initialsCase } from "@/helpers/textTransform";
 import curiosityIcon from "@/assets/icons/curiosity.svg";
 import persistenceIcon from "@/assets/icons/persistence.svg";
 import teamworkIcon from "@/assets/icons/teamwork.svg";
@@ -22,10 +22,11 @@ import addIcon from "@/assets/icons/add-icon.svg";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/sampleData";
+import { assessmentData } from "@/helpers/sampleData";
 
 import EditProfileModal from "@/components/Modals/EditProfile/EditProfile";
 import AddStudentModal from "@/components/Modals/AddNewStudent/AddNewStudent";
+import SendNotificationToParentModal from "@/components/Modals/SendNotificationToParent/SendNotificationToParent";
 import ViewStudentProfileModal from "@/components/Modals/ViewStudentProfile/ViewStudentProfile";
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
 import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";
@@ -40,6 +41,7 @@ const Home = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const [takeAttendance, setTakeAttendance] = useState(false);
+  const [studentAttendanceStatus, setStudentAttendanceStatus] = useState([]);
 
   const studentsArray = [
     {
@@ -179,39 +181,30 @@ const Home = () => {
     }
   ];
 
-  const editProfileModal = () => {
-    return (
-      <EditProfileModal />
-    );
+  const attendanceStatus = (status) => {
+    console.log(status);
+    // setStudentAttendanceStatus.map((student) => {
+    //   if (student.name === status.name) {
+    //     student.attendanceStatus = status.status;
+    //   }
+    // });
   };
 
-  const submitAssessmentModal = () => {
-    return (
-      <SubmitAssessmentModal />
-    );
-  };
-
-  const uploadActivityModal = () => {
-    return (
-      <UploadActivityModal />
-    );
-  };
-  
   return (
     <div className={cx(styles.dashboardHomeContainer)}>
 
       <div className={cx(styles.heading, "flexRow")}>
         <h3 className={cx(styles.title)}>Classroom</h3>
         <div className={cx(styles.btnGroup, "flexRow")}>
-          <Button onClick={()=>setTakeAttendance(true)} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
-          <Button onClick={() => dispatch(showModal({action: "show", type: "addStudent"}))} type title="Add Student" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
+          <Button onClick={() => setTakeAttendance(true)} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
+          <Button onClick={() => dispatch(showModal({ action: "show", type: "addStudent" }))} type title="Add Student" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
         </div>
       </div>
 
-      <div className={cx(styles.body)}> 
+      <div className={cx(styles.body)}>
         {studentsArray.map((student, index) => {
-          return(
-            <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} />
+          return (
+            <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
           );
         }
         )}
@@ -220,22 +213,22 @@ const Home = () => {
       {takeAttendance && <div className={cx(styles.footer, "flexRow")}>
         <p><span>9 / 24</span> <span>Attendance Today</span></p>
         <div className={cx(styles.btnGroup, "flexRow")}>
-        
+
           <Button onClick={() => setTakeAttendance(false)} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
 
-          <Button onClick={() => dispatch(showModal({action: "show"}))} type title="Save Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
+          <Button onClick={() => dispatch(showModal({ action: "show" }))} type title="Save Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
         </div>
-      </div>}                  
-    
+      </div>}
 
-      {modalState === "show" ? <Modal show >{modalType === "editProfile" ? editProfileModal() : modalType === "submitAssessment" ? submitAssessmentModal() : modalType === "uploadActivity" ? uploadActivityModal()  :  modalType === "viewStudentProfile" ? <ViewStudentProfileModal /> :  modalType === "addStudent" ? <AddStudentModal /> :  null}</Modal> : null}
-            
+      {modalState === "show" && modalType === "editProfile" && <Modal show >{<EditProfileModal />}</Modal>}
+      {modalState === "show" && modalType === "submitAssessment" && <Modal show >{<SubmitAssessmentModal />}</Modal>}
+      {modalState === "show" && modalType === "uploadActivity" && <Modal show >{<UploadActivityModal />}</Modal>}
+      {modalState === "show" && modalType === "viewStudentProfile" && <Modal show >{<ViewStudentProfileModal />}</Modal>}
+      {modalState === "show" && modalType === "addStudent" && <Modal show >{<AddStudentModal />}</Modal>}
+      {modalState === "show" && modalType === "sendNotificationToParent" && <Modal show >{<SendNotificationToParentModal />}</Modal>}
+
     </div>
   );
-};
-
-Home.propTypes = {
-    
 };
 
 export default Home;

@@ -9,29 +9,49 @@ import InputField from "@/components/Input/Input";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import { useDropzone } from "react-dropzone";
-import { forgotPassword } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
-import { forgotPasswordValidationSchema } from "@/helpers/validation";
+import { assignTeacherToClassValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import useGetAllClasses from "@/utils/useGetAllClasses";
+import { reAssignTeacher, getAllTeachers } from "@/redux/Proprietor/ProprietorSlice";
+
 
 const AssignTeacherToClass = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
+  const allClassesData = useGetAllClasses();
+  console.log(modalData);
 
-  const sendRequest = (data) => {
-    dispatch(forgotPassword(data));
-    dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
+  const sendRequest = async (data) => {
+    let response = await dispatch(reAssignTeacher({...data, teacher_id: modalData.id}));
+    console.log(response);
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide", type: "reAssignTeacher" }));
+      dispatch(getAllTeachers());
+    }
   };
 
-  const resolver = yupResolver(forgotPasswordValidationSchema);
+  const resolver = yupResolver(assignTeacherToClassValidationSchema);
 
   const defaultValues = {
-    email: ""
+    name: modalData.name,
+    class_id: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+
+  const getClassOptions = () => {
+    let options = [];
+    Array.isArray(allClassesData) && allClassesData.map((classData) => {
+      options.push({
+        value: classData.id,
+        label: classData.name
+      });
+    });
+    return options;
+  };
 
   return (
 
@@ -51,29 +71,29 @@ const AssignTeacherToClass = () => {
         >
 
           <Controller
-            name="studentId"
+            name="name"
             control={control}
             render={({ field }) => (
               <InputField
                 {...field}
                 label={"NAME"}
                 placeholder="Name"
-                error={errors?.studentId && errors?.studentId?.message}
-                options={[{label: "", value: ""}]}
+                readOnly
+                error={errors?.name && errors?.name?.message}
               />
             )}
           />
 
           <Controller
-            name="studentClass"
+            name="class_id"
             control={control}
             render={({ field }) => (
               <Select
                 {...field}
                 label={"SELECT CLASS"}
                 defaultSelect="Select"
-                error={errors?.studentId && errors?.studentId?.message}
-                options={[{label: "", value: ""}]}
+                error={errors?.class_id && errors?.class_id?.message}
+                options={getClassOptions(allClassesData)}
               />
             )}
           />

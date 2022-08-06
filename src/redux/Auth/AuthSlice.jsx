@@ -1,4 +1,4 @@
-import { loginWithOTPCodeApi, loginWithClassCodeApi, loginApi,  forgotPasswordApi, resetPasswordApi, getOTPApi, verifyOTPApi,  getQRCodeApi, changePasswordApi, signUpApi  } from "../api/auth";
+import { loginWithOTPCodeApi, loginWithClassCodeApi, loginApi,  forgotPasswordApi, resetPasswordApi, getOTPApi, verifyOTPApi, verifyEmailApi,  getQRCodeApi, changePasswordApi, signUpApi  } from "../api/auth";
 import { toast } from "react-toastify";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -17,6 +17,7 @@ const initialState = {
   resetPasswordData: {},
   getOTPData: {},
   verifyOTPData: {},
+  verifyEmailData: {},
   getQRCodeData: {},
   changePasswordData: {},
   signUpData: {}
@@ -72,6 +73,11 @@ export const authSlice = createSlice({
       state.loading = false;
     },
 
+    verifyEmailAction: (state, action) => {
+      state.verifyEmailData = action.payload;
+      state.loading = false;
+    },
+
     getQRCodeAction: (state, action) => {
       state.getQRCodeData = action.payload;
       state.loading = false;
@@ -96,7 +102,7 @@ export const authSlice = createSlice({
 export default authSlice.reducer;
 
 // Actions
-const { startLoading, hasError, loginWithOTPCodeAction, loginWithClassCodeAction, loginAction, forgotPasswordAction, resetPasswordAction, getOTPAction, verifyOTPAction, getQRCodeAction, changePasswordAction, signUpAction} = authSlice.actions;
+const { startLoading, hasError, loginWithOTPCodeAction, loginWithClassCodeAction, loginAction, forgotPasswordAction, resetPasswordAction, getOTPAction, verifyOTPAction, verifyEmailAction, getQRCodeAction, changePasswordAction, signUpAction} = authSlice.actions;
 
 export const loginWithOTPCode = (data) => async (dispatch) => {
   try {
@@ -109,7 +115,7 @@ export const loginWithOTPCode = (data) => async (dispatch) => {
     localStorage.setItem("userData", JSON.stringify(userData));
     return dispatch(loginWithOTPCodeAction(response?.data));
   } catch (e) {
-    toast.error(e?.response?.data?.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
     return dispatch(hasError(e?.response?.data));
   }
 };
@@ -121,7 +127,7 @@ export const loginWithClassCode = (data) => async (dispatch) => {
     console.log(response, "login with class code");
     return dispatch(loginWithClassCodeAction(response?.data));
   } catch (e) {
-    toast.error(e?.response?.data?.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
     return dispatch(hasError(e?.response?.data));
   }
 };
@@ -135,7 +141,7 @@ export const login = (data) => async (dispatch) => {
 
     return dispatch(loginAction(response?.data));
   } catch (e) {
-    toast.error(e?.response?.data?.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
     return dispatch(hasError(e?.response?.data));
   }
 };
@@ -149,7 +155,7 @@ export const getOTP = (data) => async (dispatch) => {
     setToken(token);
     return dispatch(getOTPAction(response?.data));
   } catch (e) {
-    toast.error(e?.response?.data?.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
     return dispatch(hasError(e?.response?.data));
   }
 };
@@ -161,7 +167,7 @@ export const getQRCode = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(getQRCodeAction(response));
   } catch (e) {
-    toast.error(e?.response?.data?.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
     return dispatch(hasError(e?.response?.data));
   }
 };
@@ -172,7 +178,18 @@ export const verifyOTP = (data) => async (dispatch) => {
     const response = await verifyOTPApi(data);
     return dispatch(verifyOTPAction(response?.data));
   } catch (e) {
-    toast.error(e?.response?.data?.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
+    return dispatch(hasError(e?.response?.data));
+  }
+};
+
+export const verifyEmail = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await verifyEmailApi(data);
+    return dispatch(verifyEmailAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
     return dispatch(hasError(e?.response?.data));
   }
 };
@@ -184,9 +201,9 @@ export const signUp = (data) => async (dispatch) => {
     toast.success(response.data.message);
     let token = response?.data?.token;
     setToken(token);
-    return dispatch(signUpAction(response));
+    return dispatch(signUpAction(response?.data));
   } catch (e) {
-    toast.error(e?.response?.data?.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
     return dispatch(hasError(e?.response?.data));
   }
 };

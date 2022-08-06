@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,25 +20,28 @@ import { useDropzone } from "react-dropzone";
 
 import editIcon from "@/assets/icons/edit-icon.svg";
 
-import { assignGuardianToSingleStudent } from "@/redux/Proprietor/ProprietorSlice";
+import { assignGuardianToSingleStudent, getAllGuardians } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { assignWardToParentValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import useGetAllStudents from "@/utils/useGetAllStudents";
+
+
 
 const AssignWardToParent = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
+  const allStudentsData = useGetAllStudents();
 
   const sendRequest = async (data) => {
-    alert("attach ward");
     console.log(data);
-    // let response = await dispatch(assignGuardianToSingleStudent(data));
-    // if(response.payload.success){
-    //   dispatch(showModal({ action: "hide", type: "assignWardToParent" }));
-    //   dispatch(getAllGuardians())
-    // }
+    let response = await dispatch(assignGuardianToSingleStudent(data));
+    if (response.payload.success) {
+      dispatch(showModal({ action: "hide", type: "assignWardToParent" }));
+      dispatch(getAllGuardians());
+    }
   };
 
   const resolver = yupResolver(assignWardToParentValidationSchema);
@@ -50,16 +53,29 @@ const AssignWardToParent = () => {
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
+  const getWardsOptions = (data) => {
+    console.log(data);
+    let options = [];
+    Array.isArray(data) && data.map((studentData) => {
+      options.push({
+        value: studentData.id,
+        label: studentData.name
+      });
+    });
+    return options;
+  };
+
+
   return (
 
     <section className={cx(styles.assignWardToParentContainer, "flexCol")}>
 
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "assignWardToParent" }))} icon="carbon:close-filled" color="white" />
+        <Icon onClick={() => dispatch(showModal({ action: "hide", type: "assignWardToParent" }))} icon="carbon:close-filled" color="white" />
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
-	  <div className={cx(styles.header)}>
+        <div className={cx(styles.header)}>
           <p>Add New Ward</p>
         </div>
         <form
@@ -67,7 +83,7 @@ const AssignWardToParent = () => {
           className=""
         >
 
-          
+
           <Controller
             name="email"
             control={control}
@@ -104,12 +120,12 @@ const AssignWardToParent = () => {
                 label={"SELECT WARD TO ATTACH"}
                 defaultSelect="Select Ward"
                 error={errors?.student_id && errors?.student_id?.message}
-                options={[{label: "Tolu", value: "1"}, {label: "Tope", value: "2"}]}
+                options={getWardsOptions(allStudentsData)}
               />
             )}
           />
-  
-    
+
+
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
             <Button title="Attach" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>

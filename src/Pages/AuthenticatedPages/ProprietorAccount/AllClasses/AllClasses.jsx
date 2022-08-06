@@ -2,40 +2,34 @@ import React from "react";
 import cx from "classnames";
 import styles from "./AllClasses.module.scss";
 
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button/Button";
 
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {allClassesData} from "@/helpers/sampleData";
 import { Icon } from "@iconify/react";
 import AddClassModal from "@/components/Modals/AddClass/AddClass";
 import EditClassModal from "@/components/Modals/EditClass/EditClass";
+import DeleteClassModal from "@/components/Modals/DeleteClass/DeleteClass";
 
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
+import useGetAllClasses from "@/utils/useGetAllClasses";
+
+
 
 const AllClasses = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+  const loading = useSelector((state) => state.proprietor.loading);
 
+  const allClassesData = useGetAllClasses();
 
-  let shortenDate=(value)=>{
-    let date = new Date(value);
-    const options = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    };
-    let dateValue = date.toLocaleDateString("en-US", options);
-    return `${dateValue}`;
-  };
-
-  const columnsHeader = [                
+  const columnsHeader = [
     {
       Header: () => (
         <div
@@ -50,7 +44,26 @@ const AllClasses = () => {
       accessor: "serialNumber",
       Cell: (row) => {
         let serialNumber = row.cell.row.values.serialNumber;
-        return <span style={{ color: "#4F4F4F"}}>{serialNumber}</span>;
+        return <span style={{ color: "#4F4F4F" }}>{serialNumber}</span>;
+      }
+    },
+    {
+      Header: () => (
+        <div
+          style={{
+            width: "5rem",
+            color: "#747474",
+            fontSize: "1rem"
+          }}
+        >Class</div>
+      ),
+      accessor: "class",
+      Cell: (row) => {
+        let schoolClass = row.cell.row.values.class;
+        return <div style={{ color: "#4F4F4F" }} >
+          {schoolClass}
+
+        </div>;
       }
     },
     {
@@ -61,14 +74,14 @@ const AllClasses = () => {
             color: "#747474",
             fontSize: "1rem"
           }}
-        >Class</div>
+        >Class Code</div>
       ),
-      accessor: "class",
+      accessor: "code",
       Cell: (row) => {
-        let schoolClass = row.cell.row.values.class;
-        return <div style={{ color: "#4F4F4F"}} >
-          {schoolClass}
-          
+        let code = row.cell.row.values.code;
+        return <div style={{ color: "#4F4F4F" }} >
+          {code}
+
         </div>;
       }
     },
@@ -82,15 +95,32 @@ const AllClasses = () => {
           }}
         >Teacher Name</div>
       ),
-      accessor: "teacherName",
+      accessor: "teacher_name",
       Cell: (row) => {
-        let teacherName = row.cell.row.values.teacherName;
-        return <div style={{ color: "#4F4F4F"}}>
-          {teacherName}
+        let teacher_name = row.cell.row.values.teacher_name;
+        return <div style={{ color: "#4F4F4F" }}>
+          {teacher_name}
         </div>;
       }
     },
-
+    // {
+    //   Header: () => (
+    //     <div
+    //       style={{
+    //         width: "auto",
+    //         color: "#747474",
+    //         fontSize: "1rem"
+    //       }}
+    //     >No. of Students</div>
+    //   ),
+    //   accessor: "numberOfStudents",
+    //   Cell: (row) => {
+    //     let numberOfStudents = row.cell.row.values.numberOfStudents;
+    //     return <div >
+    //       <p style={{ color: "#4F4F4F"}}>{numberOfStudents}</p>         
+    //     </div>;
+    //   }
+    // },
     {
       Header: () => (
         <div
@@ -98,31 +128,15 @@ const AllClasses = () => {
             width: "auto",
             color: "#747474",
             fontSize: "1rem"
-          }}
-        >No. of Students</div>
-      ),
-      accessor: "numberOfStudents",
-      Cell: (row) => {
-        let numberOfStudents = row.cell.row.values.numberOfStudents;
-        return <div >
-          <p style={{ color: "#4F4F4F"}}>{numberOfStudents}</p>         
-        </div>;
-      }
-    },
-    {
-      Header: () => (
-        <div
-          style={{
-            width: "auto",
-            color: "#747474",
-            fontSize: "1rem"
+            // textAlign: "center"
           }}
         >Action</div>
       ),
       accessor: "action",
       Cell: (row) => {
+        let data = row.cell.row.original.allData;
         return <div>
-          <Button onClick={() => dispatch(showModal({action: "show", type: "editClass", modalData:{id: "id"}}))} title =  "Edit" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+          <Button onClick={() => dispatch(showModal({ action: "show", type: "editClass", modalData: data }))} title="Edit" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
         </div>;
       }
     },
@@ -138,47 +152,51 @@ const AllClasses = () => {
       ),
       accessor: "delete",
       Cell: (row) => {
+        let data = row.cell.row.original.allData;
+
         return <div>
-          <Icon style={{cursor: "pointer"}} icon="ant-design:delete-filled" color="#d25b5d" />
+          <Icon onClick={() => dispatch(showModal({ action: "show", type: "deleteClass", modalData: data }))} style={{ cursor: "pointer" }} icon="ant-design:delete-filled" color="#d25b5d" />
         </div>;
       }
     }
   ];
 
   let getTableData = (data) => {
-    let result =[];
+    let result = [];
 
-    data  && data.map((item, index) =>{
+    Array.isArray(data) && data.map((item, index) => {
       result.push({
-        serialNumber: index+1,
-        teacherName: item?.teacherName && titleCase(item?.teacherName),
+        serialNumber: index + 1,
+        teacher_name: item?.teacher?.name && titleCase(item?.teacher?.name),
         action: "",
-        class: item?.class && item?.class,
-        numberOfStudents: item?.numberOfStudents && item?.numberOfStudents
+        class: item?.name && item?.name,
+        code: item?.code && item?.code,
+        numberOfStudents: item?.numberOfStudents && item?.numberOfStudents,
+        allData: item
       });
     });
     return result;
   };
-  
+
   return (
     <div className={cx(styles.allClassesHomeContainer)}>
 
       <div className={cx(styles.heading, "flexRow-space-between")}>
         <h3 className={cx(styles.title)}>Classes</h3>
-        <Button onClick={() => dispatch(showModal({action: "show", type: "addClass"}))} type title="Add Class" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+        <Button onClick={() => dispatch(showModal({ action: "show", type: "addClass" }))} type title="Add Class" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
       </div>
 
-      <div className={cx(styles.body, "flexCol")}> 
+      <div className={cx(styles.body, "flexCol")}>
 
         <div className={cx(styles.tableSection)}>
           <h3 className={cx(styles.title)}>All Classes</h3>
-          {<TableComponent columnsHeader={columnsHeader} tableData= {getTableData(allClassesData)} />}
+          {loading ? <TableSkeleton /> : <TableComponent loading={loading} columnsHeader={columnsHeader} tableData={getTableData(allClassesData)} />}
         </div>
-     
-      </div>              
 
-      {modalState === "show" ? <Modal show >{modalType === "addClass" ? <AddClassModal /> : modalType === "editClass" ? <EditClassModal /> :  null}</Modal> : null}
-            
+      </div>
+
+      {modalState === "show" ? <Modal show >{modalType === "addClass" ? <AddClassModal /> : modalType === "editClass" ? <EditClassModal /> : modalType === "deleteClass" ? <DeleteClassModal /> : null}</Modal> : null}
+
     </div>
   );
 };

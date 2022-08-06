@@ -48,12 +48,32 @@
                 width: 49%;
                 margin-bottom: 1.625rem !important;
             } 
+
+            .selectAutoCompleteWrapper{
+                margin-bottom: 0rem !important;
+                > div{
+                    margin-bottom: 0rem !important;
+                }
+                .subjectsLabel{
+                    font-size: 0.75rem;
+                    margin: 0rem;
+                    padding: 0rem;
+                    line-height: 1;
+                    position: relative;
+                 }
+                 span:last-of-type{
+                    top: 0rem !important;
+                }
+            }
+         
             }
 
             .btnDiv{
                 justify-content: center;
                 padding-top: 1rem;
              }
+
+
         }
     }
 }

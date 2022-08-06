@@ -21,7 +21,7 @@ const Page404 = () => {
           <img src={unAuthorizedIcon} alt="404" />
         </div>
         <div className="error-text">
-					We are sorry, you do not have the administrator rights to access this page. Kindly verify the url or <Link onClick={()=> localStorage.clear()} to="/contact" >contact us by clicking this link</Link> .
+          We are sorry, you do not have the rights to access this page. Kindly verify the url or <Link onClick={() => localStorage.clear()} to="/contact" >contact us by clicking this link</Link> .
         </div>
         <div>
           <Button onClick={() => clearLocalStorage()} title="Go To The Homepage" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />

@@ -32,15 +32,15 @@ const PreSignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const verifyOTPData = useSelector((state) => state?.auth?.verifyOTPData?.data?.message);
+  const verifyOTPData = useSelector((state) => state?.auth?.verifyOTPData);
   const [emailValue, setEmailValue] = useState("");
   const params = useParams();
   const user = params?.user;
   console.log(verifyOTPData);
 
   useEffect(() => {
-    if (verifyOTPData) {
-      toast.success(verifyOTPData);
+    if (verifyOTPData.success) {
+      toast.success(verifyOTPData.message);
       navigate(`/signup/${user}`, { state: { email: emailValue } });
     }
   }, [emailValue, navigate, user, verifyOTPData]);

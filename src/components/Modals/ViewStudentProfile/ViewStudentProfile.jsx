@@ -83,6 +83,7 @@ const ViewStudentProfile = () => {
 	      <div className={cx(styles.header)}>
           <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
           <img className={cx(styles.profilePic)} src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : studentProfilePic} alt="profile pic" />
+          <Button onClick={() => dispatch(showModal({action: "show", type: "sendNotificationToParent", modalData: modalData}))} title="Send Message" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" hoverColor="#000" />
         </div>
 
         <div className={cx(styles.body, "flexCol")}>
@@ -106,10 +107,6 @@ const ViewStudentProfile = () => {
 
     </section>
   );
-};
-
-ViewStudentProfile.propTypes = {
-  title: PropTypes.string
 };
 
 export default ViewStudentProfile;

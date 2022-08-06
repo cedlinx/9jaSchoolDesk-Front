@@ -28,10 +28,9 @@ const InviteGuardian = () => {
 
   const defaultValues = {
     email: "",
-    name: "",
-    // firstName: "",
-    // lastName: "",
-    // otherNames: "",
+    firstName: "",
+    lastName: "",
+    otherNames: "",
     message: ""
   };
 
@@ -53,7 +52,7 @@ const InviteGuardian = () => {
           onSubmit={handleSubmit((data) => sendRequest(data))}
         >
 
-          <Controller
+          {/* <Controller
             name="name"
             control={control}
             render={({ field }) => (
@@ -64,9 +63,9 @@ const InviteGuardian = () => {
                 error={errors?.name && errors?.name?.message}
               />
             )}
-          />
+          /> */}
 
-          {/* <Controller
+          <Controller
             name="firstName"
             control={control}
             render={({ field }) => (
@@ -103,7 +102,7 @@ const InviteGuardian = () => {
                 error={errors?.otherNames && errors?.otherNames?.message}
               />
             )}
-          /> */}
+          />
 
           <Controller
             name="email"

@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import cx from "classnames";
 import styles from "./OTPVerification.module.scss";
 import Button from "@/components/Button/Button";
@@ -9,7 +9,7 @@ import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {loginWithOTPCode} from "@/redux/Auth/AuthSlice";
+import { loginWithOTPCode } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { loginWithOTPCodeValidationSchema } from "@/helpers/validation";
@@ -24,7 +24,7 @@ const OTPVerification = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const {user} = useParams();
+  const { user } = useParams();
 
 
   const resolver = yupResolver(loginWithOTPCodeValidationSchema);
@@ -33,18 +33,18 @@ const OTPVerification = () => {
     otp: ""
   };
 
-  const { handleSubmit, formState: { errors }, setValue, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
+  const { handleSubmit, formState: { errors }, setValue, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const handleLogin = async (data)=>{
+  const handleLogin = async (data) => {
     console.log(data);
-    const response = await dispatch(loginWithOTPCode({payload: data, user: params.user}));
+    const response = await dispatch(loginWithOTPCode({ payload: data, user: params.user }));
     console.log(response);
     if (response?.payload?.success) {
       toast.success(response?.payload?.message);
       reset();
-      navigate(`/${user}/dashboard`);
+      user === "teacher" ? navigate(`/select-class/${user}/`) : navigate(`/${user}/dashboard`);
     } else {
-      toast.error(response.payload.data.message);
+      toast.error(response.payload.error);
     }
   };
   const handleInputChange = (e) => {
@@ -76,14 +76,14 @@ const OTPVerification = () => {
                     {...field}
                     numberOfInputs={6}
                     handleInputChange={handleInputChange}
-                  />                
+                  />
                 )}
-              /> 
-              {errors?.otp && <small style={{marginTop: "1rem"}}>{errors?.otp?.message}</small>}
+              />
+              {errors?.otp && <small style={{ marginTop: "1rem" }}>{errors?.otp?.message}</small>}
             </div>
-           
-          
-          
+
+
+
 
             {/* <small style={{marginTop: "2rem"}}>Timer here - 40secs</small> */}
 
@@ -91,7 +91,7 @@ const OTPVerification = () => {
               <Button onClick={handleSubmit((data) => handleLogin(data))} title="Login" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
-            <Button onClick={()=>navigate(-1)} title="Back" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+            <Button onClick={() => navigate(-1)} title="Back" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 
             {/* <p>Don't get OTP? <Link to="#">Resend OTP</Link></p> */}
 

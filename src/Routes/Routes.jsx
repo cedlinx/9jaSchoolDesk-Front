@@ -14,11 +14,11 @@ import OtpVerification from "../Pages/Authentication/OTPVerification/OTPVerifica
 import Page404 from "../Pages/Page404/Page404";
 import UnAuthorizedPage from "../Pages/UnAuthorizedPage/UnAuthorizedPage";
 import DashboardWrapper from "../Pages/Dashboard/Dashboard";
-// import VerifyEmail from "../Pages/VerifyEmail/VerifyEmail";
+import VerifyEmail from "../Pages/Authentication/VerifyEmail/VerifyEmail";
 import AuthenticatedRoute from "../components/AuthenticatedRoute/AuthenticatedRoutes";
 
 
-import {Role} from "@/constants/constants";
+import { Role } from "@/constants/constants";
 
 // Student Section
 import DashboardStudent from "../Pages/AuthenticatedPages/StudentAccount/Home/Home";
@@ -42,6 +42,10 @@ import TasksAndActivitiesTeacher from "../Pages/AuthenticatedPages/TeacherAccoun
 import ProfileTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Profile/Profile";
 import LessonsTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lessons/Lessons";
 import LoungeTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lounge/Lounge";
+import SelectClassTeacher from "../Pages/Authentication/Login/SelectClass/SelectClass";
+import SettingsTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Settings/Settings";
+
+
 
 // Proprietor Section
 import DashboardProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Home/Home";
@@ -57,69 +61,71 @@ const RoutesComponent = () => {
   return (
     <BrowserRouter className="App">
       <Routes>
-        <Route index path="" element={<HomePage  />} />
+        <Route index path="" element={<HomePage />} />
         <Route path="login/:user" element={<Login />} />
         <Route path="login-with-class-code" element={<LoginWithClassCode />} />
         <Route path="pre-signup/:user" element={<PreSignUp />} />
         <Route path="signup/:user" element={<SignUp />} />
-        {/* <Route path="api/email/verify/:id/:token" element={<VerifyEmail />} />		 */}
-        <Route  path="/:user/forgot-password" element={<ForgotPassword />} />
-        <Route  path="otp-expired" element={<OtpExpired />} />
-        <Route  path="login/:user/otp-verification" element={<OtpVerification />} />
-        <Route  path="/:user/reset/password/:token" element={<ResetPassword />} />	
-        <Route path="select-account/:user" element={<SelectAccountStudent  />} />
+        <Route path=":user/auth/email/verify/6/:token*" element={<VerifyEmail />} />
+        <Route path="/:user/forgot-password" element={<ForgotPassword />} />
+        <Route path="otp-expired" element={<OtpExpired />} />
+        <Route path="login/:user/otp-verification" element={<OtpVerification />} />
+        <Route path="/:user/reset/password/:token" element={<ResetPassword />} />
+        <Route path="select-account/:user" element={<SelectAccountStudent />} />
+        <Route path="select-class/:user" element={<SelectClassTeacher />} />
         {/* <Route  path="request-verification-link" element={<RequestVerificationLink />} />	 */}
-				
+
         <Route path="student" element={<AuthenticatedRoute roles={[Role.Student]}><DashboardWrapper /></AuthenticatedRoute>}>
 
-          <Route index path="dashboard" element={<DashboardStudent  />} />
-          <Route path="profile" element={<ProfileStudent  />} />
-          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackStudent  />} />
+          <Route index path="dashboard" element={<DashboardStudent />} />
+          <Route path="profile" element={<ProfileStudent />} />
+          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackStudent />} />
           <Route path="my-classes">
-            <Route index path="" element={<MyClassesStudent  />} />
-            <Route path="view-class/:id" element={<ViewClassStudent  />} />
+            <Route index path="" element={<MyClassesStudent />} />
+            <Route path="view-class/:id" element={<ViewClassStudent />} />
           </Route>
-          <Route path="class-gist" element={<ClassGistStudent  />} />
-        </Route>			
+          <Route path="class-gist" element={<ClassGistStudent />} />
+        </Route>
 
 
         <Route path="guardian" element={<AuthenticatedRoute roles={[Role.Guardian]}><DashboardWrapper /></AuthenticatedRoute>}>
 
-          <Route index path="dashboard" element={<DashboardGuardian  />} />
-          <Route path="profile" element={<ProfileGuardian  />} />
-          <Route path="messages" element={<MessagesGuardian  />} />
-          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackGuardian  />} />
+          <Route index path="dashboard" element={<DashboardGuardian />} />
+          <Route path="profile" element={<ProfileGuardian />} />
+          <Route path="messages" element={<MessagesGuardian />} />
+          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackGuardian />} />
 
-        </Route>	
+        </Route>
 
         <Route path="teacher" element={<AuthenticatedRoute roles={[Role.Teacher]}><DashboardWrapper /></AuthenticatedRoute>}>
 
-          <Route index path="dashboard" element={<DashboardTeacher  />} />
-          <Route path="profile" element={<ProfileTeacher  />} />
-          <Route path="tasks-and-activities" element={<TasksAndActivitiesTeacher  />} />
-          <Route path="lessons" element={<LessonsTeacher  />} />
-          <Route path="lounge" element={<LoungeTeacher  />} />
+          <Route index path="dashboard" element={<DashboardTeacher />} />
+          <Route path="profile" element={<ProfileTeacher />} />
+          <Route path="tasks-and-activities" element={<TasksAndActivitiesTeacher />} />
+          <Route path="lessons" element={<LessonsTeacher />} />
+          <Route path="lounge" element={<LoungeTeacher />} />
+          <Route path="settings" element={<SettingsTeacher />} />
 
         </Route>
 
         <Route path="proprietor" element={<AuthenticatedRoute roles={[Role.Student, Role.Teacher, Role.Guardian, Role.Proprietor]}><DashboardWrapper /></AuthenticatedRoute>}>
 
-          <Route index path="dashboard" element={<DashboardProprietor  />} />
-          <Route path="classes" element={<ClassesProprietor  />} />
-          <Route  path="students" >
-            <Route index path="" element={<StudentsProprietor  />} />
-            <Route path="student-report/:studentId" element={<StudentReportProprietor  />} />
+          <Route index path="dashboard" element={<DashboardProprietor />} />
+          <Route path="classes" element={<ClassesProprietor />} />
+          <Route path="students" >
+            <Route index path="" element={<StudentsProprietor />} />
+            <Route path="student-report/:studentId" element={<StudentReportProprietor />} />
           </Route>
-          <Route path="teachers" element={<TeachersProprietor  />} />
-          <Route path="parents" element={<ParentsProprietor  />} />
-          <Route path="settings" element={<SettingsProprietor  />} />
-          <Route path="subjects" element={<SubjectsProprietor  />} />
+          <Route path="teachers" element={<TeachersProprietor />} />
+          <Route path="parents" element={<ParentsProprietor />} />
+          <Route path="settings" element={<SettingsProprietor />} />
+          <Route path="subjects" element={<SubjectsProprietor />} />
 
         </Route>
 
 
-        <Route  path="unauthorized-page" element={<UnAuthorizedPage />} />
-        <Route  path="*" element={<Page404 />} />
+        <Route path="unauthorized-page" element={<UnAuthorizedPage />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
 

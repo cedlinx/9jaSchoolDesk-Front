@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./GeneralSideBar.scss";
-import {useDispatch, useSelector} from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./GeneralSideBar.module.scss";
 import { NavLink, useNavigate, useLocation, Navigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import {
   SidebarContent
 } from "react-pro-sidebar";
 
-import {logout} from "@/redux/Auth/AuthSlice";
+import { logout } from "@/redux/Auth/AuthSlice";
 
 import logo from "@/assets/images/Logo.svg";
 import thumbnailImg from "@/assets/images/testimonialsAvatar.png";
@@ -23,6 +23,8 @@ import classroomIcon from "@/assets/icons/classroom-icon.svg";
 import tasksIcon from "@/assets/icons/tasks-icon.svg";
 import loungeIcon from "@/assets/icons/lounge-icon.svg";
 import lessonsIcon from "@/assets/icons/lessons-icon.svg";
+import settingsIconActive from "@/assets/icons/settings-icon-active.svg";
+import settingsIcon from "@/assets/icons/settings-white.svg";
 
 
 // import { getUserInfo } from "@/redux/Auth/AuthSlice";
@@ -41,12 +43,12 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
   useEffect(() => {
     // dispatch(getUserInfo());
   });
-	
-  const handleLogout=()=>{
+
+  const handleLogout = () => {
     dispatch(logout());
     navigate("/");
   };
-		
+
 
   return (
     <ProSidebar
@@ -57,6 +59,9 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
       className="general-sidebar"
     >
       <SidebarHeader>
+        <div style={{ height: "61px", backgroundColor: "#fff", padding: "0.25rem 0rem", border: "1px solid #fff" }}>
+          <img style={{ width: "100%", height: "100%" }} src={logo} alt="img" />
+        </div>
         <div className="sidebar-header" >
           <div className="imageDiv">
             <img
@@ -69,11 +74,11 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
             <p>Eunice Mark</p>
             <small>eunicemark@gmail.com</small>
           </div>
-          <img onClick={() => navigate("profile")}  className="caret-icon" src={rightCaret} alt="icon" />
+          <img onClick={() => navigate("profile")} className="caret-icon" src={rightCaret} alt="icon" />
         </div>
       </SidebarHeader>
 
-      <SidebarContent style={{backgroundColor: "#22467B"}}>
+      <SidebarContent style={{ backgroundColor: "#22467B" }}>
 
         <Menu iconShape="">
           <MenuItem
@@ -81,7 +86,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
             prefix={<span className="menuIcon"><img src={classroomIcon} alt="" /></span>}
           >
             <NavLink to={`/${basePath}/dashboard`}>
-							Classroom
+              Classroom
             </NavLink>
           </MenuItem>
         </Menu>
@@ -91,18 +96,18 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
             active={actualPath === "tasks-and-activities" ? "true" : ""}
             prefix={<span className="menuIcon"><img src={tasksIcon} alt="" /></span>}
           >
-            <NavLink  to={`/${basePath}/tasks-and-activities`}>Tasks and Activities</NavLink>
+            <NavLink to={`/${basePath}/tasks-and-activities`}>Activities</NavLink>
           </MenuItem>
-        </Menu> 
+        </Menu>
 
         <Menu iconShape="">
           <MenuItem
             active={actualPath === "lessons" ? "true" : ""}
             prefix={<span className="menuIcon"><img src={lessonsIcon} alt="" /></span>}
           >
-            <NavLink  to={`/${basePath}/lessons`}>Lessons</NavLink>
+            <NavLink to={`/${basePath}/lessons`}>Lessons</NavLink>
           </MenuItem>
-        </Menu> 
+        </Menu>
 
         <Menu iconShape="">
           <MenuItem
@@ -112,7 +117,30 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
             <NavLink to={`/${basePath}/lounge`}>Lounge</NavLink>
           </MenuItem>
         </Menu>
-				
+        {/* 
+        <Menu iconShape="">
+
+          <MenuItem
+            active={actualPath === "settings" ? "true" : ""}
+            prefix={<span className="menuIcon"><img src={settingsIcon} alt="" /></span>}
+          >
+            <NavLink to={`/${basePath}/profile`}>Settings Old</NavLink>
+          </MenuItem>
+
+        </Menu> */}
+
+        <Menu iconShape="">
+
+          <MenuItem
+            style={{ marginTop: "2rem" }}
+            active={actualPath === "settings" ? "true" : ""}
+            prefix={<span className="menuIcon"><img src={actualPath === "settings" ? settingsIconActive : settingsIcon} alt="" /></span>}
+          >
+            <NavLink to={`/${basePath}/settings`}>Settings</NavLink>
+          </MenuItem>
+
+        </Menu>
+
       </SidebarContent>
 
       {/* <SidebarFooter>

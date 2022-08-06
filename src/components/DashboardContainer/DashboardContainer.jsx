@@ -26,15 +26,16 @@ const DashboardContainer = (props) => {
     <div className={cx(styles.dashboardContainer, "flexCol")}>
 			
       { rootPath !== "proprietor" ? 
-        <div className={cx(styles.generalLayout, "flexCol")}>
-          <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
+        <div className={cx(styles.proprietorLayout, "flexRow")}>
 
-          <div className={cx(styles.contentArea)}>
-            {rootPath === "teacher" && actualPath !== "profile" ? <div className={cx(styles.sidebar, "")}>
-              <GeneralSideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
-            </div> : null}
+          {rootPath === "teacher" && actualPath !== "profile" ? <div className={cx(styles.sidebar)}>
+            <GeneralSideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
+          </div> : null}
+            
+          <div className={cx(styles.contentArea, "flexCol")}>
+            <div className={cx(styles.header)}><DashboardHeader handleToggleSidebar={handleToggleSidebar} /></div>
             <div className={cx(styles.pageContent)}>{children}</div>
-          </div>
+          </div>          
         </div> 
         :
         <div className={cx(styles.proprietorLayout, "flexRow")}>

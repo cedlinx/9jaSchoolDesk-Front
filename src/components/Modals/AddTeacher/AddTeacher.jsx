@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
@@ -14,20 +14,26 @@ import { addTeacher, getAllTeachers } from "@/redux/Proprietor/ProprietorSlice";
 import { useForm, Controller } from "react-hook-form";
 import { addTeacherValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import useGetInstitutionID from "@/utils/useGetInstitutionID";
+import useGetAllSubjects from "@/utils/useGetAllSubjects";
+import SelectAutoComplete from "@/components/SelectAutoComplete";
+
 
 const AddTeacher = () => {
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.proprietor.loading);
-
-  const proprietorDetails = JSON.parse(localStorage.getItem("userData"));
-  console.log(proprietorDetails);
-  let institution_id = proprietorDetails.institution_id;
-  console.log(institution_id);
+  const schoolSubjects = useGetAllSubjects();
+  let institution_id = useGetInstitutionID();
 
   const sendRequest = async (data) => {
-    let response = await dispatch(addTeacher({...data, institution_id: institution_id}));
-    if(response.payload.success) {
+    let subjectArray = [];
+    data.subjects.map((subject) => {
+      subjectArray.push(subject.value);
+    });
+
+    let response = await dispatch(addTeacher({ ...data, subjects: subjectArray, institution_id: institution_id }));
+    if (response.payload.success) {
       dispatch(getAllTeachers());
       dispatch(showModal({ action: "hide", type: "addTeacher" }));
     }
@@ -36,25 +42,37 @@ const AddTeacher = () => {
   const resolver = yupResolver(addTeacherValidationSchema);
 
   const defaultValues = {
-    fistName: "",
+    firstName: "",
     lastName: "",
     otherNames: "",
     email: "",
-    phone: ""
+    phone: "",
+    subjects: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+
+  const getSubjectsOptions = () => {
+    let options = [];
+    Array.isArray(schoolSubjects) && schoolSubjects.map((subject) => {
+      options.push({
+        value: subject.id,
+        label: subject.subject
+      });
+    });
+    return options;
+  };
 
   return (
 
     <section className={cx(styles.addTeacherContainer, "flexCol")}>
 
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "addTeacher" }))} icon="carbon:close-filled" color="white" />
+        <Icon onClick={() => dispatch(showModal({ action: "hide", type: "addTeacher" }))} icon="carbon:close-filled" color="white" />
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
-	  <div className={cx(styles.header)}>
+        <div className={cx(styles.header)}>
           <p>Add New Teacher</p>
         </div>
         <form
@@ -101,20 +119,6 @@ const AddTeacher = () => {
                   error={errors?.otherNames && errors?.otherNames?.message}
                 />
               )}
-            />       
-
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <InputField
-                  {...field}
-                  label={"EMAIL"}
-                  placeholder="email@email.com"
-                  error={errors?.email && errors?.email?.message}
-                  options={[{label: "", value: ""}]}
-                />
-              )}
             />
 
             <Controller
@@ -129,18 +133,54 @@ const AddTeacher = () => {
                 />
               )}
             />
-            
+
+            <div className={cx(styles.emailWrapper)} style={{ width: "100%" }}>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    {...field}
+                    label={"EMAIL"}
+                    placeholder="email@email.com"
+                    error={errors?.email && errors?.email?.message}
+                    options={[{ label: "", value: "" }]}
+                  />
+                )}
+              />
+            </div>
+
+            <div style={{ width: "100%" }}>
+              <label className={cx(styles.subjectsLabel)}>SELECT SUBJECTS</label>
+              <Controller
+                name="subjects"
+                control={control}
+                render={({ field }) => (
+                  < SelectAutoComplete
+                    {...field}
+                    isMulti={true}
+                    isClearable={true}
+                    marginbottom="1.5rem"
+                    placeholder=""
+                    options={getSubjectsOptions()}
+                    error={errors?.subjects && errors?.subjects?.message}
+                  />
+                )}
+              />
+            </div>
+
+
           </div>
 
-       
+
           <span className={cx(styles.span)}>Or</span>
           <small className={cx(styles.small)}>Add from Teacher Database</small>
 
-          <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button loading={loading} disabled={loading}title="Add Teacher" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+          <div className={cx(styles.btnDiv, "flexRow")}>
+            <Button onClick={handleSubmit((data) => sendRequest(data))} loading={loading} disabled={loading} title="Add Teacher" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
 
-     
+
 
         </form>
       </div>

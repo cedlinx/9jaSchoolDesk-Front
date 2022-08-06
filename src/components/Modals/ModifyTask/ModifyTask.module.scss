@@ -1,4 +1,4 @@
-.createActivityContainer{
+.modifyTaskContainer{
     width: 100%;
     background-color: #fff;
     background-color: transparent;
@@ -59,7 +59,22 @@
                     .radioButtonGroup{
                         gap: 1.5rem;
                         font-size: 0.875rem;
-                        margin: 1rem 0rem;
+                        margin: 0rem 0rem;
+                    }
+
+                    .imageSection{
+                        align-items: center;
+                        gap: 1rem;
+                        margin: 1.5rem 0rem;
+                
+                        .imageDiv{
+                            img{
+                                border-radius: 50%;
+                                width: clamp(3rem, 4rem, 5rem);
+                                height: clamp(3rem, 4rem, 5rem);
+                                object-fit: cover;
+                            }
+                        }
                     }
                 }
             }
@@ -73,7 +88,7 @@
 }
 
 @media all and (min-width:991px) {
-    .createActivityContainer{
+    .modifyTaskContainer{
         .formWrapper{
             form{
                 .wrapper{

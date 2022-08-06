@@ -1,4 +1,4 @@
-import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstitutionApi, deleteInstitutionApi, switchInstitutionApi, addClassApi, getAllClassesApi, modifyClassApi, deleteClassApi, reAssignTeacherApi, enableClassSubscriptionApi, disableClassSubscriptionApi, addTeacherApi, getAllTeachersApi, modifyTeacherApi, deleteTeacherApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, enableStudentSubscriptionApi, disableStudentSubscriptionApi, getAllGuardiansApi, viewGuardianDetailsApi, inviteGuardianApi, assignGuardianToSingleStudentApi, assignGuardianToBulkStudentsApi, guardianStatusUpdateApi, getGuardianStatusApi, getNewGuardianSignupsApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, viewKPIForInstitutionApi, sendNotificationApi   } from "../api/proprietor";
+import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstitutionApi, deleteInstitutionApi, switchInstitutionApi, addClassApi, getAllClassesApi, modifyClassApi, deleteClassApi, reAssignTeacherApi, enableClassSubscriptionApi, disableClassSubscriptionApi, addTeacherApi, getAllTeachersApi, modifyTeacherApi, deleteTeacherApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, enableStudentSubscriptionApi, disableStudentSubscriptionApi, getAllGuardiansApi, viewGuardianDetailsApi, inviteGuardianApi, assignGuardianToSingleStudentApi, assignGuardianToBulkStudentsApi, guardianStatusUpdateApi, getGuardianStatusApi, getNewGuardianSignupsApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, viewKPIForInstitutionApi, sendNotificationApi, updateProfileApi, addSubjectApi, getAllSubjectsApi, modifySubjectApi, viewSubjectDetailsApi, assignSubjectToTeacherApi, assignSubjectToStudentApi } from "../api/proprietor";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -7,7 +7,7 @@ import formatArrayList from "@/helpers/formatArrayList";
 const initialState = {
   loading: false,
   error: {},
-  
+
   getDashboardData: {},
   addInstitutionData: {},
   modifyInstitutionData: {},
@@ -47,7 +47,14 @@ const initialState = {
   viewKPIDetailsData: {},
   viewKPIForClassData: {},
   viewKPIForInstitutionData: {},
-  sendNotificationData: {}
+  sendNotificationData: {},
+  updateProfileData: {},
+  addSubjectData: {},
+  getAllSubjectsData: {},
+  modifySubjectData: {},
+  viewSubjectDetailsData: {},
+  assignSubjectToTeacherData: {},
+  assignSubjectToStudentData: {}
 };
 
 export const proprietorSlice = createSlice({
@@ -75,7 +82,7 @@ export const proprietorSlice = createSlice({
       state.addInstitutionData = action.payload;
       state.loading = false;
     },
- 
+
     modifyInstitutionAction: (state, action) => {
       state.modifyInstitutionData = action.payload;
       state.loading = false;
@@ -264,13 +271,53 @@ export const proprietorSlice = createSlice({
     sendNotificationAction: (state, action) => {
       state.sendNotificationData = action.payload;
       state.loading = false;
+    },
+
+    getAllNotificationsAction: (state, action) => {
+      state.getAllNotificationsData = action.payload;
+      state.loading = false;
+    },
+
+    updateProfileAction: (state, action) => {
+      state.updateProfileData = action.payload;
+      state.loading = false;
+    },
+
+    addSubjectAction: (state, action) => {
+      state.addSubjectData = action.payload;
+      state.loading = false;
+    },
+
+    getAllSubjectsAction: (state, action) => {
+      state.getAllSubjectsData = action.payload;
+      state.loading = false;
+    },
+
+    modifySubjectAction: (state, action) => {
+      state.modifySubjectData = action.payload;
+      state.loading = false;
+    },
+
+    viewSubjectDetailsAction: (state, action) => {
+      state.viewSubjectDetailsData = action.payload;
+      state.loading = false;
+    },
+
+    assignSubjectToTeacherAction: (state, action) => {
+      state.assignSubjectToTeacherData = action.payload;
+      state.loading = false;
+    },
+
+    assignSubjectToStudentAction: (state, action) => {
+      state.assignSubjectToStudentData = action.payload;
+      state.loading = false;
     }
   }
 });
 export default proprietorSlice.reducer;
 
 // Actions
-const { startLoading, hasError, getDashboardAction, addInstitutionAction, getAllInstitutionsAction, modifyInstitutionAction, deleteInstitutionAction, switchInstitutionAction, addClassAction, getAllClassesAction, modifyClassAction, deleteClassAction, reAssignTeacherAction, enableClassSubscriptionAction, disableClassSubscriptionAction, addTeacherAction, getAllTeachersAction, modifyTeacherAction, deleteTeacherAction, addStudentAction, getAllStudentsAction, viewStudentRecordAction, modifyStudentAction, deleteStudentAction, enableStudentSubscriptionAction, disableStudentSubscriptionAction, getAllGuardiansAction, viewGuardianDetailsAction, inviteGuardianAction, assignGuardianToSingleStudentAction, assignGuardianToBulkStudentsAction, guardianStatusUpdateAction, getGuardianStatusAction, getNewGuardianSignupsAction, addKPIAction, deleteKPIAction, modifyKPIAction, getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction, viewKPIForInstitutionAction, sendNotificationAction } = proprietorSlice.actions; 
+const { startLoading, hasError, getDashboardAction, addInstitutionAction, getAllInstitutionsAction, modifyInstitutionAction, deleteInstitutionAction, switchInstitutionAction, addClassAction, getAllClassesAction, modifyClassAction, deleteClassAction, reAssignTeacherAction, enableClassSubscriptionAction, disableClassSubscriptionAction, addTeacherAction, getAllTeachersAction, modifyTeacherAction, deleteTeacherAction, addStudentAction, getAllStudentsAction, viewStudentRecordAction, modifyStudentAction, deleteStudentAction, enableStudentSubscriptionAction, disableStudentSubscriptionAction, getAllGuardiansAction, viewGuardianDetailsAction, inviteGuardianAction, assignGuardianToSingleStudentAction, assignGuardianToBulkStudentsAction, guardianStatusUpdateAction, getGuardianStatusAction, getNewGuardianSignupsAction, addKPIAction, deleteKPIAction, modifyKPIAction, getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction, viewKPIForInstitutionAction, sendNotificationAction, updateProfileAction, addSubjectAction, getAllSubjectsAction, modifySubjectAction, viewSubjectDetailsAction, assignSubjectToTeacherAction, assignSubjectToStudentAction, getAllNotificationsAction } = proprietorSlice.actions;
 
 
 
@@ -280,7 +327,7 @@ export const getDashboard = (data) => async (dispatch) => {
     const response = await getDashboardApi(data);
     return dispatch(getDashboardAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -291,7 +338,7 @@ export const addInstitution = (data) => async (dispatch) => {
     const response = await addInstitutionApi(data);
     return dispatch(addInstitutionAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -302,7 +349,7 @@ export const switchInstitution = (data) => async (dispatch) => {
     const response = await switchInstitutionApi(data);
     return dispatch(switchInstitutionAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -312,9 +359,9 @@ export const modifyClass = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await modifyClassApi(data);
     toast.success(response.data.message);
-    return dispatch(modifyClassAction(response));
+    return dispatch(modifyClassAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -324,9 +371,9 @@ export const addClass = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await addClassApi(data);
     toast.success(response.data.message);
-    return dispatch(addClassAction(response));
+    return dispatch(addClassAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -336,9 +383,9 @@ export const reAssignTeacher = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await reAssignTeacherApi(data);
     toast.success(response.data.message);
-    return dispatch(reAssignTeacherAction(response));
+    return dispatch(reAssignTeacherAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -350,7 +397,7 @@ export const getAllInstitutions = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(getAllInstitutionsAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -359,10 +406,11 @@ export const getAllClasses = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getAllClassesApi(data);
-    toast.success(response.data.message);
-    return dispatch(getAllClassesAction(response));
+    console.log(response);
+    return dispatch(getAllClassesAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    console.log(e.response);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -374,7 +422,7 @@ export const modifyInstitution = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(modifyInstitutionAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -384,9 +432,9 @@ export const deleteClass = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await deleteClassApi(data);
     toast.success(response.data.message);
-    return dispatch(deleteClassAction(response));
+    return dispatch(deleteClassAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -397,7 +445,7 @@ export const deleteInstitution = (data) => async (dispatch) => {
     const response = await deleteInstitutionApi(data);
     return dispatch(deleteInstitutionAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -409,7 +457,7 @@ export const enableClassSubscription = (data) => async (dispatch) => {
     const response = await enableClassSubscriptionApi(data);
     return dispatch(enableClassSubscriptionAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -420,7 +468,7 @@ export const disableClassSubscription = (data) => async (dispatch) => {
     const response = await disableClassSubscriptionApi(data);
     return dispatch(disableClassSubscriptionAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -429,9 +477,10 @@ export const addTeacher = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await addTeacherApi(data);
+    toast.success(response.data.message);
     return dispatch(addTeacherAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -442,7 +491,7 @@ export const getAllTeachers = (data) => async (dispatch) => {
     const response = await getAllTeachersApi(data);
     return dispatch(getAllTeachersAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -452,9 +501,10 @@ export const modifyTeacher = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await modifyTeacherApi(data);
     toast.success(response.data.message);
-    return dispatch(modifyTeacherAction(response));
+    return dispatch(modifyTeacherAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    console.log(e.response.data.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -464,9 +514,9 @@ export const deleteTeacher = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await deleteTeacherApi(data);
     toast.success(response.data.message);
-    return dispatch(deleteTeacherAction(response));
+    return dispatch(deleteTeacherAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -476,9 +526,9 @@ export const addStudent = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await addStudentApi(data);
     toast.success(response.data.message);
-    return dispatch(addStudentAction(response));
+    return dispatch(addStudentAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -487,10 +537,9 @@ export const getAllStudents = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getAllStudentsApi(data);
-    toast.success(response.data.message);
     return dispatch(getAllStudentsAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -499,10 +548,10 @@ export const viewStudentRecord = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await viewStudentRecordApi(data);
-    toast.success(response.data.message);
+    // toast.success(response.data.message);
     return dispatch(viewStudentRecordAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -514,7 +563,7 @@ export const modifyStudent = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(modifyStudentAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -526,7 +575,7 @@ export const deleteStudent = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(deleteStudentAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -537,7 +586,7 @@ export const enableStudentSubscription = (data) => async (dispatch) => {
     const response = await enableStudentSubscriptionApi(data);
     return dispatch(enableStudentSubscriptionAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -548,7 +597,7 @@ export const disableStudentSubscription = (data) => async (dispatch) => {
     const response = await disableStudentSubscriptionApi(data);
     return dispatch(disableStudentSubscriptionAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -559,7 +608,7 @@ export const getAllGuardians = (data) => async (dispatch) => {
     const response = await getAllGuardiansApi(data);
     return dispatch(getAllGuardiansAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -570,7 +619,7 @@ export const viewGuardianDetails = (data) => async (dispatch) => {
     const response = await viewGuardianDetailsApi(data);
     return dispatch(viewGuardianDetailsAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -582,7 +631,7 @@ export const inviteGuardian = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(inviteGuardianAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -594,7 +643,7 @@ export const assignGuardianToSingleStudent = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(assignGuardianToSingleStudentAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -606,7 +655,7 @@ export const assignGuardianToBulkStudents = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(assignGuardianToBulkStudentsAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -618,7 +667,7 @@ export const guardianStatusUpdate = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(guardianStatusUpdateAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -629,7 +678,7 @@ export const getGuardianStatus = (data) => async (dispatch) => {
     const response = await getGuardianStatusApi(data);
     return dispatch(getGuardianStatusAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -640,7 +689,7 @@ export const getNewGuardianSignups = (data) => async (dispatch) => {
     const response = await getNewGuardianSignupsApi(data);
     return dispatch(getNewGuardianSignupsAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -653,7 +702,7 @@ export const addKPI = (data) => async (dispatch) => {
     return dispatch(addKPIAction(response?.data));
   } catch (e) {
     console.log(e.response);
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -664,7 +713,7 @@ export const getAllKPIs = (data) => async (dispatch) => {
     const response = await getAllKPIsApi(data);
     return dispatch(getAllKPIsAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -676,7 +725,7 @@ export const modifyKPI = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(modifyKPIAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -688,7 +737,7 @@ export const deleteKPI = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(deleteKPIAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -701,7 +750,7 @@ export const viewKPIDetails = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(viewKPIDetailsAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -713,7 +762,7 @@ export const viewKPIForClass = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(viewKPIForClassAction(response));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -725,7 +774,7 @@ export const viewKPIForInstitution = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(viewKPIForInstitutionAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };
@@ -737,7 +786,92 @@ export const sendNotification = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(sendNotificationAction(response?.data));
   } catch (e) {
-    toast.error(formatArrayList(e.response.data.errors ? e.response.data.errors : e.response.data.message ));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const updateProfile = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await updateProfileApi(data);
+    toast.success(response.data.message);
+    return dispatch(updateProfileAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const addSubject = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await addSubjectApi(data);
+    toast.success(response.data.message);
+    return dispatch(addSubjectAction(response?.data));
+  } catch (e) {
+    console.log(e.response);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getAllSubjects = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getAllSubjectsApi(data);
+    return dispatch(getAllSubjectsAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const modifySubject = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await modifySubjectApi(data);
+    toast.success(response.data.message);
+    return dispatch(modifySubjectAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const viewSubjectDetails = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await viewSubjectDetailsApi(data);
+    toast.success(response.data.message);
+    return dispatch(viewSubjectDetailsAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+
+export const assignSubjectToTeacher = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await assignSubjectToTeacherApi(data);
+    toast.success(response.data.message);
+    return dispatch(assignSubjectToTeacherAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const assignSubjectToStudent = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await assignSubjectToStudentApi(data);
+    toast.success(response.data.message);
+    return dispatch(assignSubjectToStudentAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
   }
 };

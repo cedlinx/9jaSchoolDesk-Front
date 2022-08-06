@@ -1,0 +1,108 @@
+.addTaskContainer{
+    width: 100%;
+    background-color: #fff;
+    background-color: transparent;
+    gap: 1rem;
+    font-family: Jost;
+
+    .header{
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-bottom: 0rem;
+        line-height: 1;
+        color: #fff;
+
+        svg{
+            cursor: pointer;
+        }
+
+    }
+
+    .formWrapper{
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        gap: 1rem;
+
+        .title{
+            font-size: 1.25rem;
+            text-align: center;
+            color: #D25B5D;
+        }
+
+        form{    
+            
+            .wrapper{
+                gap: 1.5rem;
+
+                .leftSection{
+                    gap: 0rem;
+
+                  textarea{
+                      border-radius: 1rem;
+                    border: 1px solid #E0E0E0;
+                    padding: 0.5rem;
+                    background-color: #FFFF;
+                    font-family: Jost;
+
+                    &:focus{
+                        box-shadow: none ;
+                    }
+                  }
+                }
+
+                .rightSection{
+                    >label{
+                        font-size: 1rem;
+                        color: #000;
+                    }
+                    .radioButtonGroup{
+                        gap: 1.5rem;
+                        font-size: 0.875rem;
+                        margin: 0rem 0rem;
+                    }
+
+                    .imageSection{
+                        align-items: center;
+                        gap: 1rem;
+                        margin: 1.5rem 0rem;
+                
+                        .imageDiv{
+                            img{
+                                border-radius: 50%;
+                                width: clamp(3rem, 4rem, 5rem);
+                                height: clamp(3rem, 4rem, 5rem);
+                                object-fit: cover;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .btnDiv{
+                justify-content: center;
+                padding-top: 2rem;
+             }
+        }
+    }
+}
+
+@media all and (min-width:991px) {
+    .addTaskContainer{
+        .formWrapper{
+            form{
+                .wrapper{
+                    gap: 0rem;
+                    .leftSection{
+                        padding: 0rem 1rem 0rem 0rem;
+                    }
+                    .rightSection{
+                        padding: 0rem 0rem 0rem 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+

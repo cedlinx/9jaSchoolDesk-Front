@@ -16,10 +16,8 @@ const DeleteStudent = () => {
   console.log(modalData);
 
   const sendRequest = async () => {
-    // let formData = new FormData();
-    // formData.append("id", `${modalData}`);
-    // let response = await dispatch(deleteStudent(formData));
-    let response = await dispatch(deleteStudent({id: modalData.id}));
+    let response = await dispatch(deleteStudent({ id: modalData.id }));
+    console.log(response);
     if (response.payload.success) {
       dispatch(getAllStudents());
       dispatch(showModal({ action: "hide", type: "deleteStudent" }));
@@ -31,22 +29,22 @@ const DeleteStudent = () => {
     <section className={cx(styles.deleteStudentContainer, "flexCol")}>
 
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "deleteStudent" }))} icon="carbon:close-filled" color="white" />
+        <Icon onClick={() => dispatch(showModal({ action: "hide", type: "deleteStudent" }))} icon="carbon:close-filled" color="white" />
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
-	  <div className={cx(styles.header, "flexCol")}>
+        <div className={cx(styles.header, "flexCol")}>
           <p>Delete Student</p>
         </div>
 
-        <div style={{textAlign: "center"}}>
+        <div style={{ textAlign: "center" }}>
           Are you sure you want to delete this student?
         </div>
 
         <div className={cx(styles.btnGroup, "flexRow")}>
-          <Button onClick={() => dispatch(showModal({action: "hide", type: "deleteStudent"}))} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
+          <Button onClick={() => dispatch(showModal({ action: "hide", type: "deleteStudent" }))} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
 
-          <Button loading={loading} onClick={()=> sendRequest()} type="button" title="Delete" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+          <Button loading={loading} onClick={() => sendRequest()} type="button" title="Delete" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
         </div>
 
       </div>

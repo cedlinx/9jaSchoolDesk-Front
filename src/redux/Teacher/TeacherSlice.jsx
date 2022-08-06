@@ -1,0 +1,547 @@
+import { getDashboardApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, scoreStudentKPIApi, incrementScoreKPIApi, decrementScoreKPIApi, getStudentScoreKPIApi, sendNotificationApi, addTaskApi, modifyTaskApi, viewTaskDetailsApi, getAllTasksApi, deleteTaskApi, assignTaskApi, assessTaskApi, submitTaskApi, saveAttendanceApi, takeAttendanceApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, updateProfileApi } from "../api/teacher";
+import { toast } from "react-toastify";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import formatArrayList from "@/helpers/formatArrayList";
+
+
+const initialState = {
+  loading: false,
+  error: {},
+
+  getDashboardData: {},
+  addKPIData: {},
+  deleteKPIData: {},
+  modifyKPIData: {},
+  getAllKPIsData: {},
+  viewKPIDetailsData: {},
+  viewKPIForClassData: {},
+  scoreStudentKPIData: {},
+  incrementScoreKPIData: {},
+  decrementScoreKPIData: {},
+  getStudentScoreKPIData: {},
+  sendNotificationData: {},
+  addTaskData: {},
+  modifyTaskData: {},
+  viewTaskDetailsData: {},
+  getAllTasksData: {},
+  deleteTaskData: {},
+  assignTaskData: {},
+  assessTaskData: {},
+  submitTaskData: {},
+  saveAttendanceData: {},
+  takeAttendanceData: {},
+  addStudentData: {},
+  getAllStudentsData: {},
+  viewStudentRecordData: {},
+  modifyStudentData: {},
+  deleteStudentData: {},
+  updateProfileData: {}
+};
+
+export const teacherSlice = createSlice({
+  name: "teacher",
+
+  initialState,
+
+  reducers: {
+
+    startLoading: state => {
+      state.loading = true;
+    },
+
+    hasError: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+
+    getDashboardAction: (state, action) => {
+      state.getDashboardData = action.payload;
+      state.loading = false;
+    },
+
+    addKPIAction: (state, action) => {
+      state.addKPIData = action.payload;
+      state.loading = false;
+    },
+
+    deleteKPIAction: (state, action) => {
+      state.deleteKPIData = action.payload;
+      state.loading = false;
+    },
+
+    modifyKPIAction: (state, action) => {
+      state.modifyKPIData = action.payload;
+      state.loading = false;
+    },
+
+    getAllKPIsAction: (state, action) => {
+      state.getAllKPIsData = action.payload;
+      state.loading = false;
+    },
+
+    viewKPIDetailsAction: (state, action) => {
+      state.viewKPIDetailsData = action.payload;
+      state.loading = false;
+    },
+
+    viewKPIForClassAction: (state, action) => {
+      state.viewKPIForClassData = action.payload;
+      state.loading = false;
+    },
+
+    scoreStudentKPIAction: (state, action) => {
+      state.scoreStudentKPIData = action.payload;
+      state.loading = false;
+    },
+
+    incrementScoreKPIAction: (state, action) => {
+      state.incrementScoreKPIData = action.payload;
+      state.loading = false;
+    },
+
+    decrementScoreKPIAction: (state, action) => {
+      state.decrementScoreKPIData = action.payload;
+      state.loading = false;
+    },
+
+    getStudentScoreKPIAction: (state, action) => {
+      state.getStudentScoreKPIData = action.payload;
+      state.loading = false;
+    },
+
+    sendNotificationAction: (state, action) => {
+      state.sendNotificationData = action.payload;
+      state.loading = false;
+    },
+
+    addTaskAction: (state, action) => {
+      state.addTaskData = action.payload;
+      state.loading = false;
+    },
+
+    modifyTaskAction: (state, action) => {
+      state.modifyTaskData = action.payload;
+      state.loading = false;
+    },
+
+    viewTaskDetailsAction: (state, action) => {
+      state.viewTaskDetailsData = action.payload;
+      state.loading = false;
+    },
+
+    getAllTasksAction: (state, action) => {
+      state.getAllTasksData = action.payload;
+      state.loading = false;
+    },
+
+    deleteTaskAction: (state, action) => {
+      state.deleteTaskData = action.payload;
+      state.loading = false;
+    },
+
+    assignTaskAction: (state, action) => {
+      state.assignTaskData = action.payload;
+      state.loading = false;
+    },
+
+    assessTaskAction: (state, action) => {
+      state.assessTaskData = action.payload;
+      state.loading = false;
+    },
+
+    submitTaskAction: (state, action) => {
+      state.submitTaskData = action.payload;
+      state.loading = false;
+    },
+
+    saveAttendanceAction: (state, action) => {
+      state.saveAttendanceData = action.payload;
+      state.loading = false;
+    },
+
+    takeAttendanceAction: (state, action) => {
+      state.takeAttendanceData = action.payload;
+      state.loading = false;
+    },
+
+    addStudentAction: (state, action) => {
+      state.addStudentData = action.payload;
+      state.loading = false;
+    },
+
+    getAllStudentsAction: (state, action) => {
+      state.getAllStudentsData = action.payload;
+      state.loading = false;
+    },
+
+    viewStudentRecordAction: (state, action) => {
+      state.viewStudentRecordData = action.payload;
+      state.loading = false;
+    },
+
+    modifyStudentAction: (state, action) => {
+      state.modifyStudentData = action.payload;
+      state.loading = false;
+    },
+
+    deleteStudentAction: (state, action) => {
+      state.deleteStudentData = action.payload;
+      state.loading = false;
+    },
+
+    updateProfileAction: (state, action) => {
+      state.updateProfileData = action.payload;
+      state.loading = false;
+    }
+  }
+});
+export default teacherSlice.reducer;
+
+// Actions
+const { startLoading, hasError, getDashboardAction,
+  addKPIAction, deleteKPIAction, modifyKPIAction,
+  getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction,
+  scoreStudentKPIAction, incrementScoreKPIAction, decrementScoreKPIAction,
+  getStudentScoreKPIAction, sendNotificationAction, addTaskAction,
+  modifyTaskAction, viewTaskDetailsAction, getAllTasksAction,
+  deleteTaskAction, assignTaskAction, assessTaskAction, submitTaskAction,
+  saveAttendanceAction, takeAttendanceAction, addStudentAction,
+  getAllStudentsAction, viewStudentRecordAction, modifyStudentAction,
+  deleteStudentAction, updateProfileAction } = teacherSlice.actions;
+
+
+export const getDashboard = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getDashboardApi(data);
+    return dispatch(getDashboardAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const addStudent = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await addStudentApi(data);
+    toast.success(response.data.message);
+    return dispatch(addStudentAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getAllStudents = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getAllStudentsApi(data);
+    return dispatch(getAllStudentsAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const viewStudentRecord = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await viewStudentRecordApi(data);
+    toast.success(response.data.message);
+    return dispatch(viewStudentRecordAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const modifyStudent = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await modifyStudentApi(data);
+    toast.success(response.data.message);
+    return dispatch(modifyStudentAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const deleteStudent = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await deleteStudentApi(data);
+    toast.success(response.data.message);
+    return dispatch(deleteStudentAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const addKPI = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await addKPIApi(data);
+    toast.success(response.data.message);
+    return dispatch(addKPIAction(response?.data));
+  } catch (e) {
+    console.log(e.response);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getAllKPIs = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getAllKPIsApi(data);
+    return dispatch(getAllKPIsAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const modifyKPI = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await modifyKPIApi(data);
+    toast.success(response.data.message);
+    return dispatch(modifyKPIAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const deleteKPI = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await deleteKPIApi(data);
+    toast.success(response.data.message);
+    return dispatch(deleteKPIAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+
+export const viewKPIDetails = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await viewKPIDetailsApi(data);
+    toast.success(response.data.message);
+    return dispatch(viewKPIDetailsAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const viewKPIForClass = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await viewKPIForClassApi(data);
+    toast.success(response.data.message);
+    return dispatch(viewKPIForClassAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const scoreStudentKPI = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await scoreStudentKPIApi(data);
+    toast.success(response.data.message);
+    return dispatch(scoreStudentKPIAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const incrementScoreKPI = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await incrementScoreKPIApi(data);
+    toast.success(response.data.message);
+    return dispatch(incrementScoreKPIAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const decrementScoreKPI = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await decrementScoreKPIApi(data);
+    toast.success(response.data.message);
+    return dispatch(decrementScoreKPIAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getStudentScoreKPI = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getStudentScoreKPIApi(data);
+    toast.success(response.data.message);
+    return dispatch(getStudentScoreKPIAction(response));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+
+export const sendNotification = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await sendNotificationApi(data);
+    toast.success(response.data.message);
+    return dispatch(sendNotificationAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const addTask = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await addTaskApi(data);
+    toast.success(response.data.message);
+    return dispatch(addTaskAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const modifyTask = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await modifyTaskApi(data);
+    toast.success(response.data.message);
+    return dispatch(modifyTaskAction(response?.data));
+  } catch (e) {
+    console.log(e.response);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const viewTaskDetails = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await viewTaskDetailsApi(data);
+    toast.success(response.data.message);
+    return dispatch(viewTaskDetailsAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getAllTasks = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getAllTasksApi(data);
+    return dispatch(getAllTasksAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const deleteTask = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await deleteTaskApi(data);
+    toast.success(response.data.message);
+    return dispatch(deleteTaskAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const assignTask = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await assignTaskApi(data);
+    toast.success(response.data.message);
+    return dispatch(assignTaskAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const assessTask = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await assessTaskApi(data);
+    toast.success(response.data.message);
+    return dispatch(assessTaskAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const submitTask = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await submitTaskApi(data);
+    toast.success(response.data.message);
+    return dispatch(submitTaskAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const saveAttendance = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await saveAttendanceApi(data);
+    toast.success(response.data.message);
+    return dispatch(saveAttendanceAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const takeAttendance = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await takeAttendanceApi(data);
+    toast.success(response.data.message);
+    return dispatch(takeAttendanceAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const updateProfile = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await updateProfileApi(data);
+    toast.success(response.data.message);
+    return dispatch(updateProfileAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};

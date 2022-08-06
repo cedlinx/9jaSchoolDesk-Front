@@ -7,12 +7,13 @@ import InputField from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
-import { getDashboard } from "@/redux/Proprietor/ProprietorSlice";
+import { getDashboard, updateProfile } from "@/redux/Proprietor/ProprietorSlice";
 
 
 import { useForm, Controller } from "react-hook-form";
 import { modifyProprietorValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 
 
 const Account = () => {
@@ -24,13 +25,27 @@ const Account = () => {
   const resolver = yupResolver(modifyProprietorValidationSchema);
 
   const defaultValues = {
-    email: userDetails?.email,
-    firstName: userDetails?.firstName || "",
-    lastName: userDetails?.lastName || "",
-    otherNames: userDetails?.otherNames || ""
+    // email: userDetails?.email,
+    // firstName: userDetails?.firstName || "",
+    // lastName: userDetails?.lastName || "",
+    // otherNames: userDetails?.otherNames || "",
+    // address: userDetails?.address || ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+
+  useEffect(() => {
+    reset({
+      email: userDetails?.email,
+      firstName: userDetails?.firstName,
+      lastName: userDetails?.lastName,
+      otherNames: userDetails?.otherNames,
+      address: userDetails?.address
+    });
+  }, [dispatch, reset, userDetails?.address, userDetails?.email, userDetails?.firstName, userDetails?.lastName, userDetails?.otherNames]);
+
+
+
 
   const sendRequest = async (data) => {
     let formData = new FormData();
@@ -38,12 +53,14 @@ const Account = () => {
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("otherNames", data.otherNames);
-    formData.append("email", data.email);
+    // formData.append("email", data.email);
+    formData.append("address", data.address);
+    formData.append("id", userDetails?.id);
 
-    // let response = await dispatch(modifyProprietor(formData));
-    // if(response.payload.success){
-    //   dispatch(getDashboard());
-    // }
+    let response = await dispatch(updateProfile(formData));
+    if(response.payload.success){
+      dispatch(getDashboard());
+    }
   };
 
   const [imgData, setImgData] = useState({
@@ -80,80 +97,105 @@ const Account = () => {
         </div>
 
         <div className={cx(styles.formWrapper, "flexCol")}>
-          <form onSubmit={handleSubmit((data) => sendRequest(data))}
-            className="form"
-          >
+          {loading ? <TableSkeleton /> :
+            <form onSubmit={handleSubmit((data) => sendRequest(data))}
+              className="form"
+            >
 
-            <div className={cx(styles.inputsWrapper)}>
-              <Controller
-                name="firstName"
-                control={control}
-                render={({ field }) => (
-                  <InputField
-                    {...field} 
-                    placeholder={" "}
-                    label={"First Name"}
-                    type="text"
-                    error={errors?.firstName && errors?.firstName?.message}
+              <div className={cx(styles.inputsWrapper)}>
+                <Controller
+                  name="firstName"
+                  control={control}
+                  render={({ field }) => (
+                    <InputField
+                      {...field} 
+                      placeholder={" "}
+                      label={"First Name"}
+                      type="text"
+                      error={errors?.firstName && errors?.firstName?.message}
 
+                    />
+                  )}
+                />
+
+                <Controller
+                  name="lastName"
+                  control={control}
+                  render={({ field }) => (
+                    <InputField
+                      {...field} 
+                      placeholder={" "}
+                      label={"Last Name"}
+                      type="text"
+                      error={errors?.lastName && errors?.lastName?.message}
+
+                    />
+                  )}
+                />
+
+                <div style={{width: "100%"}}>
+                  <Controller
+                    name="otherNames"
+                    control={control}
+                    render={({ field }) => (
+                      <InputField
+                        {...field} 
+                        placeholder={" "}
+                        label={"Other Names"}
+                        type="text"
+                        error={errors?.otherNames && errors?.otherNames?.message}
+
+                      />
+                    )}
                   />
-                )}
-              />
+                </div>
+           
 
-              <Controller
-                name="lastName"
-                control={control}
-                render={({ field }) => (
-                  <InputField
-                    {...field} 
-                    placeholder={" "}
-                    label={"Last Name"}
-                    type="text"
-                    error={errors?.lastName && errors?.lastName?.message}
+                <div style={{width: "100%"}}>
+                  <Controller
+                    name="address"
+                    control={control}
+                    render={({ field }) => (
+                      <InputField
+                        {...field} 
+                        placeholder={" "}
+                        label={"Address"}
+                        type="text"
+                        error={errors?.address && errors?.address?.message}
 
+                      />
+                    )}
                   />
-                )}
-              />
+                </div>
+            
+                <div style={{width: "100%"}}>
+                  <Controller
+                    name="email"
+                    control={control}
+                    render={({ field }) => (
+                      <InputField
+                        {...field} 
+                        placeholder={" "}
+                        label={"Email Address"}
+                        type="text"
+                        readOnly
+                        error={errors?.email && errors?.email?.message}
 
-              <Controller
-                name="otherNames"
-                control={control}
-                render={({ field }) => (
-                  <InputField
-                    {...field} 
-                    placeholder={" "}
-                    label={"Other Names"}
-                    type="text"
-                    error={errors?.otherNames && errors?.otherNames?.message}
-
+                      />
+                    )}
                   />
-                )}
-              />
+                </div>
+           
 
-              <Controller
-                name="email"
-                control={control}
-                render={({ field }) => (
-                  <InputField
-                    {...field} 
-                    placeholder={" "}
-                    label={"Email Address"}
-                    type="text"
-                    readOnly
-                    error={errors?.email && errors?.email?.message}
-
-                  />
-                )}
-              />
-
-            </div>
+              </div>
      
 
-            <div className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => sendRequest(data))} type title="Save Changes" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
-            </div>
+              <div className={cx(styles.submitBtnDiv, "flexRow")}>
+                <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => sendRequest(data))} type title="Save Changes" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
+              </div>
   
-          </form>
+            </form> 
+          }
         </div>
       </div>
     </div>

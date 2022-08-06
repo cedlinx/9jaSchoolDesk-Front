@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { useNavigate, Link, NavLink, useLocation } from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import cx from "classnames";
 import styles from "./DashboardHeader.module.scss";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 
 import profilePicture from "@/assets/images/default-avatar.png";
 import dashboardIcon from "@/assets/icons/dashboard-icon.svg";
@@ -26,7 +27,7 @@ import InputField from "@/components/Input/Input";
 import { Icon } from "@iconify/react";
 import Logo from "@/assets/images/Logo.png";
 import Button from "@/components/Button/Button";
-import { Navbar} from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import {
   Dropdown,
   DropdownToggle,
@@ -36,41 +37,41 @@ import {
 
 import { logout } from "@/redux/Auth/AuthSlice";
 
+import Modal from "@/components/Modals/ModalContainer/ModalContainer";
+import UrgentInfoTeacherModal from "@/components/Modals/UrgentInfoTeacher/UrgentInfoTeacher";
+
+
 
 const Header = (props) => {
-  const {handleToggleSidebar, showLinks=true} = props;
+  const { handleToggleSidebar, showLinks = true } = props;
   const navigate = useNavigate();
   const location = useLocation();
 
 
   let rootPath = location.pathname.split("/")[2];
   let userCategory = location.pathname.split("/")[1];
-  console.log(userCategory);
-  console.log(rootPath);
-	
-  const dispatch = useDispatch();
-  const unreadNotifications = useSelector((state)=>state?.notifications?.notificationSummaryData?.data?.unread);
-  const userDetails = useSelector((state)=>state?.user?.getUserInfoData?.data?.data);
 
-  
+  const dispatch = useDispatch();
+  const modalState = useSelector((state) => state.modalState.action);
+  const modalType = useSelector((state) => state.modalState.type);
+  const unreadNotifications = useSelector((state) => state?.notifications?.notificationSummaryData?.data?.unread);
+  const userDetails = JSON.parse(localStorage.getItem("userData"));
+  const institutionName = userDetails?.institution?.name;
+
+  console.log(institutionName);
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = (e) => {
-    console.log(e.target.name);
     setDropdownOpen(!dropdownOpen);
   };
 
-  const toggleChangeFxn=(e)=>{
-    console.log(e.target.checked);
-    alert("navigate to teacher");
+  const toggleChangeFxn = (e) => {
+    // alert("navigate to teacher");
   };
-
-
 
   return (
     <section className={cx(styles.dashboardHeaderContainer, "flexRow", "")}>
-
- 
 
       <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
         <div
@@ -79,34 +80,43 @@ const Header = (props) => {
         >
           <FaBars />
         </div>
-        {userCategory !== "proprietor" && <Navbar.Brand className={cx(styles.siteLogo )}> 		
+        {userCategory !== "proprietor" && rootPath === "profile" && <Navbar.Brand className={cx(styles.siteLogo)}>
           <Link to={`/${userCategory}/dashboard`}><img src={Logo} alt="" /></Link>
         </Navbar.Brand>}
 
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
-					
-          <div className={cx(styles.contentWrapper, "flexRow", userCategory === "proprietor" ? styles.reducedWidth : styles.fullWidth)}>
-            <div className={cx(styles.searchComponentDiv, "flexRow")}>
-              {/* <InputField
-                
-                label={"Search here"}
-                placeholder={"Search"}
-                type="text"
-                marginbottom={"0px"}
-                border={"#c1c7d0"}
-                borderradius="0.25rem"
-                icon
-              /> */}
+
+          <div className={cx(styles.contentWrapper, "flexRow", userCategory === "proprietor" || (userCategory === "teacher" && rootPath !== "profile") ? styles.reducedWidth : styles.fullWidth)}>
+
+            {/* <div className={cx(styles.searchComponentDiv, "flexRow")}>
               <Icon icon="ei:search" color="#c4c4c4" width="28" />
               <input
                 placeholder={"Search"}
-                type = "text"
+                type="text"
               />
-            </div>
+            </div> */}
 
-            {rootPath === "teachers" && <div style={{width: "100%", display: "flex", gap: "1rem"}}>
-              <p style={{color: "#828282"}} >Switch to Teacher Experience</p>
+            {userCategory === "teacher" &&
+              <div className={cx(styles.switcher, "flexRow")}>
+                <div className={cx(styles.infoDiv, "flexRow")}>
+                  <span>Class: </span><span>JSS 1</span>
+                </div>
+                <Button onClick={() => navigate("/select-class/teacher")} type title="Switch Class" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
+              </div>
+            }
+
+            {userCategory === "proprietor" &&
+              <div className={cx(styles.switcher, "flexRow")}>
+                <div className={cx(styles.infoDiv, "flexRow")}>
+                  <span>Institution: </span><span>{institutionName}</span>
+                </div>
+                {/* <Button onClick={() => navigate("/select-institution/proprietor")} type title="Switch Institution" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" /> */}
+              </div>
+            }
+
+            {rootPath === "teachers" && <div style={{ width: "100%", display: "flex", gap: "1rem", justifyContent: "center" }}>
+              <p style={{ color: "#828282", whiteSpace: "nowrap" }} >Switch to Teacher Experience</p>
               <div className={cx(styles.togglerDiv)}>
                 <FormCheck
                   type="switch"
@@ -114,11 +124,14 @@ const Header = (props) => {
                 />
               </div>
             </div>}
-				
-            { 
+
+            {
               <div className={cx(styles.profileDiv, "flexRow")}>
-            
-                { userCategory !== "teacher" && <NavLink to="dashboard">
+
+                {userCategory === "teacher" && <Button onClick={() => dispatch(showModal({ action: "show", type: "urgentInfoTeacher" }))} type title="Send Urgently" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+                }
+
+                {userCategory !== "teacher" && <NavLink to="dashboard">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                       <div><img src={isActive ? dashboardIconActive : dashboardIcon} alt="" /></div>
@@ -127,7 +140,7 @@ const Header = (props) => {
                   )}
                 </NavLink>}
 
-                { userCategory === "student" && <> <NavLink to="class-gist">
+                {userCategory === "student" && <> <NavLink to="class-gist">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                       <div><img src={isActive ? classGistIconActive : classGistIcon} alt="" /></div>
@@ -135,31 +148,31 @@ const Header = (props) => {
                     </div>
                   )}
                 </NavLink>
-            
-                <NavLink to="my-classes">
-                  {({ isActive }) => (
-                    <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                      <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
-                      <span>My Classes</span>
-                    </div>
-                  )}
-                </NavLink>
+
+                  <NavLink to="my-classes">
+                    {({ isActive }) => (
+                      <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                        <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                        <span>My Classes</span>
+                      </div>
+                    )}
+                  </NavLink>
                 </>
                 }
 
-                { userCategory === "guardian" && 
-              <> 
-                <NavLink to="messages">
-                  {({ isActive }) => (
-                    <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                      <div><img src={isActive ? messagesIconActive : messagesIcon} alt="" /></div>
-                      <span>Messages</span>
-                    </div>
-                  )}
-                </NavLink>
-            
-                <div><img src={unreadNotificationsIcon} alt="" /></div>
-              </>
+                {userCategory === "guardian" &&
+                  <>
+                    <NavLink to="messages">
+                      {({ isActive }) => (
+                        <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                          <div><img src={isActive ? messagesIconActive : messagesIcon} alt="" /></div>
+                          <span>Messages</span>
+                        </div>
+                      )}
+                    </NavLink>
+
+                    <div><img src={unreadNotificationsIcon} alt="" /></div>
+                  </>
                 }
 
                 <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
@@ -172,7 +185,7 @@ const Header = (props) => {
                   </DropdownToggle>
                   <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
 
-                    {userCategory !== "proprietor" ? <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem> : 
+                    {userCategory !== "proprietor" ? <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem> :
                       <DropdownItem onClick={() => navigate("settings")}>Settings</DropdownItem>}
                     <DropdownItem onClick={() => dispatch(logout())}>Logout</DropdownItem>
                   </DropdownMenu>
@@ -184,7 +197,8 @@ const Header = (props) => {
         </Navbar.Collapse>
       </Navbar>
 
-   
+      {modalState === "show" && modalType === "urgentInfoTeacher" && <Modal show >{<UrgentInfoTeacherModal />}</Modal>}
+
     </section>
   );
 };

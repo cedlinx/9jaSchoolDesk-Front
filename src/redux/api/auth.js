@@ -10,6 +10,11 @@ export const verifyOTPApi = async (data) => {
   return request;
 };
 
+export const verifyEmailApi = async (data) => {
+  const request = await axios.post(`${data.user}/auth/email/verify/6/${data.token}?expires=${data.expires}&signature=${data.signature}`);
+  return request;
+};
+
 export const signUpApi = async (data) => {
   const request = await axios.post(`temp/auth/${data.user}/signup`, data.payload);
   return request;

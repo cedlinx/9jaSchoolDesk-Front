@@ -194,7 +194,7 @@ const ModifyKPIIndicator = () => {
   
     
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button loading={loading} disabled={loading} title="Save" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            <Button loading={loading} disabled={loading} title="Save" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
 
         </form>

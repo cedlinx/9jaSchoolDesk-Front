@@ -36,13 +36,13 @@ const Settings = () => {
     dispatch(getDashboard());
   }, [dispatch]);
 
-  const RenderSubscriptions = () => <Subscriptions />;
+  // const RenderSubscriptions = () => <Subscriptions />;
   const RenderAccount = () => <Account />;
   const RenderPassword = () => <Password />;
   const RenderPerformanceIndicator = () => <PerformanceIndicator />;
 
   const tabsComponents = [
-    { name: "Subscriptions", component: RenderSubscriptions },
+    // { name: "Subscriptions", component: RenderSubscriptions },
     { name: "Account", component: RenderAccount },
     { name: "Password", component: RenderPassword },
     { name: "Performance Indicator", component: RenderPerformanceIndicator }

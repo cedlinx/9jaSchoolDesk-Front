@@ -10,11 +10,28 @@ const animatedComponents = makeAnimated();
 const customStyles = {
    
   control: () => ({
-    backgroundColor: "#f4f5f7",
-    border: "1px solid #c1c7d0",
+    // backgroundColor: "#f4f5f7",
+    // border: "1px solid #c1c7d0",
     display: "flex",
+    borderRadius: "2rem",
+    padding: "0rem"
+  }),
+
+  valueContainer: (base) => ({
+    ...base,
+    padding: "0.25rem 0rem 0.25rem 1rem",
+    margin: "0px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: "100%",
     borderRadius: "4px",
-    padding: "10px 14px"
+    // backgroundColor: "#f4f5f7",
+    overflowY: "auto",
+    height: "2.75rem",
+    fontSize: "1rem"
   }),
     
 
@@ -39,9 +56,12 @@ const customStyles = {
 };
   
 const SelectFieldContainer = styled.div`
-  margin: 15px 0;
+  margin: 0rem 0rem 1.5rem 0rem;
   height: fit-content;
   width: 100%;
+  padding: 0rem 0rem;
+  border-radius: 2rem;
+  border: 1px solid #DBDDE0;
 `;
 
 const SelectAutoComplete = (props) => {
@@ -61,22 +81,11 @@ const SelectAutoComplete = (props) => {
   } = props;
     
   return (
-    <SelectFieldContainer>
-      <span className="text-label">{label}</span>
+    <>
+      <SelectFieldContainer>
+        <span style={{fontSize: "0.875rem", margin: "0rem", padding: "0rem", lineHeight: "1"}} >{label}</span>
 
-      {isCreatable ? <Creatable
-        styles={customStyles}
-        components={animatedComponents}
-        name={name}
-        onChange={onChange}
-        options={options}
-        onBlur={onBlur}
-        isClearable
-        isMulti={isMulti}
-        placeholder={placeholder}
-        value={value}
-      /> :
-        <Select
+        {isCreatable ? <Creatable
           styles={customStyles}
           components={animatedComponents}
           name={name}
@@ -84,12 +93,27 @@ const SelectAutoComplete = (props) => {
           options={options}
           onBlur={onBlur}
           isClearable
+          isMulti={isMulti}
           placeholder={placeholder}
           value={value}
-        /> }
-      {error && <span className="text-error">{error}</span>}
-      {helperText && <span className="text-helper">{helperText}</span>}
-    </SelectFieldContainer>
+                       /> :
+          <Select
+            styles={customStyles}
+            components={animatedComponents}
+            name={name}
+            onChange={onChange}
+            options={options}
+            onBlur={onBlur}
+            isClearable
+            isMulti={isMulti}
+            placeholder={placeholder}
+            value={value}
+          /> }
+        {/* {error && <span className="text-error">{error}</span>} */}
+        {helperText && <span className="text-helper">{helperText}</span>}
+      </SelectFieldContainer>
+      {error && <span style={{fontSize: "0.875rem", color: "tomato", position: "relative", top: "-2rem"}}>{error}</span>}
+    </>
   );
 };
 

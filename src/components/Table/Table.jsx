@@ -18,7 +18,9 @@ const Styles = styled.div`
     max-width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
-    border-bottom: 1px solid black;
+    // border-bottom: 1px solid black;
+    min-height: 40vh;
+
   }
 
   table {
@@ -56,6 +58,7 @@ const Styles = styled.div`
   }
 
   .pagination {
+    margin-top: 3rem;
     padding: 0.5rem;
   }
 `;

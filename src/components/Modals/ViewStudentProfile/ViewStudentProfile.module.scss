@@ -50,6 +50,12 @@
                 bottom: -45%;
                 width: 1.5rem;
             }
+
+            button{
+                position: absolute;
+                right: 0.5rem;
+                top: 0.5rem;
+            }
         }
 
         .body{
@@ -62,7 +68,7 @@
                     color: black;
                 }
                 small{
-                    font-size: 0.625rem;
+                    font-size: 1rem;
                     color: #4F4F4F;
 
                 }
@@ -94,18 +100,18 @@
         
                         span:nth-child(2){
                             color: #000;
-                            font-size: clamp(0.625rem, 0.75rem, 0.875rem);
+                            font-size: clamp(0.75rem, 0.875rem, 1rem);
                         }
                         span:nth-child(3){
                             color: #fff;
                             background-color: #FCC34E;
-                            padding: 0.125rem 0.5rem;
+                            padding: 0rem 0.5rem;
                             border-radius: 1rem;
                             border-bottom: 2px solid green;
                             font-weight: 450;
-                            font-size: clamp(0.625rem, 0.75rem, 0.875rem);
+                            font-size: clamp(0.75rem, 0.875rem, 1rem);
                             position: absolute;
-                            top: -1.25rem;
+                            top: -1.5rem;
                             right: -0.5rem;
                         }
                     }
@@ -183,7 +189,7 @@
                         color: black;
                     }
                     small{
-                        font-size: 0.625rem;
+                        font-size: 1rem;
                         color: #4F4F4F;
     
                     }
@@ -212,13 +218,13 @@
                             span:nth-child(1){
                                 margin-right: 0.5rem;
                                 img{
-                                    width: 1rem;
+                                    width: 2rem;
                                 }
                             }
             
                             span:nth-child(2){
                                 color: #000;
-                                font-size: clamp(0.625rem, 0.75rem, 0.875rem);
+                                font-size: clamp(0.875rem, 1rem, 1.25rem);
                             }
                             span:nth-child(3){
                                 color: #fff;
@@ -227,7 +233,7 @@
                                 border-radius: 1rem;
                                 border-bottom: 2px solid green;
                                 font-weight: 450;
-                                font-size: clamp(0.625rem, 0.75rem, 0.875rem);
+                                font-size: clamp(0.875rem, 1rem, 1.125rem);
                                 position: absolute;
                                 top: -1rem;
                                 right: 0.5rem;

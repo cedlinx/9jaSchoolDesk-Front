@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import cx from "classnames";
 import styles from "./Home.module.scss";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button/Button";
 import { Icon } from "@iconify/react";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
 // import {newSignUpsData} from "@/helpers/sampleData";
-import { Dropdown, DropdownToggle, DropdownMenu,  DropdownItem } from "reactstrap";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import UrgentInfoModal from "@/components/Modals/UrgentInfo/UrgentInfo";
 import ActivateNewSignUpModal from "@/components/Modals/ActivateNewSignUp/ActivateNewSignUp";
 import ActivateGuardianModal from "@/components/Modals/ActivateGuardian/ActivateGuardian";
@@ -36,36 +36,39 @@ const Home = () => {
   const newSignUpsData = useSelector((state) => state.proprietor.getNewGuardianSignupsData.new_signups);
   const loading = useSelector((state) => state.proprietor.loading);
 
-  useEffect(() =>{
+  useEffect(() => {
     dispatch(getDashboard());
     dispatch(getNewGuardianSignups());
-  }
-  , [dispatch]);
+  }, [dispatch]);
 
   const cardData = [
     {
       title: "Students",
       value: dashboardData?.total_students,
-      icon: studentIcon
+      icon: studentIcon,
+      bgColor: "#f2f4f4"
     },
     {
       title: "Parents",
       value: dashboardData?.total_parents,
-      icon: parentIcon
+      icon: parentIcon,
+      bgColor: "#f2f4f4"
     },
     {
       title: "Teachers",
       value: dashboardData?.total_teachers,
-      icon: teacherIcon
+      icon: teacherIcon,
+      bgColor: "#f2f4f4"
     },
     {
       title: "Classes",
       value: dashboardData?.total_classes,
-      icon: classIcon
+      icon: classIcon,
+      bgColor: "#f2f4f4"
     }
   ];
 
-  const columnsHeaderAssessment = [                
+  const columnsHeaderAssessment = [
     {
       Header: () => (
         <div
@@ -80,7 +83,7 @@ const Home = () => {
       accessor: "serialNumber",
       Cell: (row) => {
         let serialNumber = row.cell.row.values.serialNumber;
-        return <span style={{ color: "#4F4F4F"}}>{serialNumber}</span>;
+        return <span style={{ color: "#4F4F4F" }}>{serialNumber}</span>;
       }
     },
     {
@@ -96,7 +99,7 @@ const Home = () => {
       accessor: "firstName",
       Cell: (row) => {
         let firstName = row.cell.row.values.firstName;
-        return <div style={{ color: "#4F4F4F"}}>
+        return <div style={{ color: "#4F4F4F" }}>
           {firstName}
         </div>;
       }
@@ -114,9 +117,9 @@ const Home = () => {
       accessor: "lastName",
       Cell: (row) => {
         let lastName = row.cell.row.values.lastName;
-        return <div style={{ color: "#4F4F4F"}} >
+        return <div style={{ color: "#4F4F4F" }} >
           {lastName}
-          
+
         </div>;
       }
     },
@@ -133,8 +136,8 @@ const Home = () => {
       accessor: "email",
       Cell: (row) => {
         let email = row.cell.row.values.email;
-        return <div  style={{width: "15rem"}}>
-          <p style={{ color: "#4F4F4F"}}>{email}</p>         
+        return <div style={{ width: "15rem" }}>
+          <p style={{ color: "#4F4F4F" }}>{email}</p>
         </div>;
       }
     },
@@ -152,7 +155,7 @@ const Home = () => {
       Cell: (row) => {
         let status = row.cell.row.values.status;
         return <div>
-          <p style={{color: status==="Active" ? "green" : status === "Suspended" ? "orange" : "tomato"}}>{status}</p>         
+          <p style={{ color: status === "Active" ? "green" : status === "Suspended" ? "orange" : "tomato" }}>{status}</p>
         </div>;
       }
     },
@@ -178,14 +181,14 @@ const Home = () => {
 
         return <div>
           <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle style={{backgroundColor: "transparent"}} name="" className={cx(styles.dropdownToggler)}>
-              <Icon style={{cursor: "pointer"}} icon="bx:dots-vertical-rounded" color="black" />
+            <DropdownToggle style={{ backgroundColor: "transparent" }} name="" className={cx(styles.dropdownToggler)}>
+              <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
-              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "activateGuardian", modalData: data}))}>Activate Guardian</DropdownItem>
-              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "deactivateGuardian", modalData: data}))}>Deactivate Guardian</DropdownItem>  
-              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "rejectGuardian", modalData: data}))}>Reject Application</DropdownItem> 
-              <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "guardianDetails", modalData: data}))}>View Details</DropdownItem>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "activateGuardian", modalData: data }))}>Activate Guardian</DropdownItem>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "deactivateGuardian", modalData: data }))}>Deactivate Guardian</DropdownItem>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "rejectGuardian", modalData: data }))}>Reject Application</DropdownItem>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "guardianDetails", modalData: data }))}>View Details</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>;
@@ -194,11 +197,11 @@ const Home = () => {
   ];
 
   let getTableData = (data) => {
-    let result =[];
+    let result = [];
 
-    data  && data.map((item, index) =>{
+    data && data.map((item, index) => {
       result.push({
-        serialNumber: index+1,
+        serialNumber: index + 1,
         firstName: item?.firstName && titleCase(item?.firstName),
         lastName: item?.lastName && titleCase(item?.lastName),
         email: item?.email && item?.email,
@@ -209,20 +212,20 @@ const Home = () => {
     });
     return result;
   };
-  
+
   return (
     <div className={cx(styles.dashboardHomeContainer)}>
 
       <div className={cx(styles.heading, "flexRow-space-between")}>
         <h3 className={cx(styles.title)}>Dashboard</h3>
-        <Button onClick={() => dispatch(showModal({action: "show", type: "urgentInfo"}))} type title="Send Urgently" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+        <Button onClick={() => dispatch(showModal({ action: "show", type: "urgentInfo" }))} type title="Send Urgently" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
       </div>
 
-      <div className={cx(styles.body, "flexCol")}> 
+      <div className={cx(styles.body, "flexCol")}>
         <div className={cx(styles.summaryDiv, "flexRow")}>
           {cardData && cardData.map((data, index) => {
             return (
-              <div className={cx(styles.card, "flexRow-space-between")} key={index}>
+              <div style={{ backgroundColor: data.bgColor }} className={cx(styles.card, "flexRow-space-between")} key={index}>
                 <div className={cx(styles.leftSection, "flexCol")}>
                   <p>{data.title}</p>
                   <h3>{data.value}</h3>
@@ -240,20 +243,16 @@ const Home = () => {
 
         <div className={cx(styles.tableSection)}>
           <h3 className={cx(styles.title)}>New SignUps</h3>
-          {loading ? <TableSkeleton /> : 
-            <TableComponent loading={loading} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(newSignUpsData)} showHeader={true} />}
+          {loading ? <TableSkeleton /> :
+            <TableComponent loading={loading} columnsHeader={columnsHeaderAssessment} tableData={getTableData(newSignUpsData)} showHeader={true} />}
         </div>
-     
-      </div>              
+
+      </div>
 
       {modalState === "show" ? <Modal show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> : modalType === "activateGuardian" ? <ActivateGuardianModal /> : modalType === "deactivateGuardian" ? <DeactivateGuardianModal /> : modalType === "guardianDetails" ? <GuardianDetailsModal /> : modalType === "rejectGuardian" ? <RejectGuardianModal /> : null}</Modal> : null}
-            
+
     </div>
   );
-};
-
-Home.propTypes = {
-    
 };
 
 export default Home;
