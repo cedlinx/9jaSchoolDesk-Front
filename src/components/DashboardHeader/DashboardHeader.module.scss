@@ -73,6 +73,7 @@
 
                 .switcher{
                     gap: 1rem;
+                    justify-content: center;
                     
                     .infoDiv{
                         gap: 0.5rem;
@@ -289,6 +290,10 @@
     
                     .searchComponentDiv{
                         width: 50%;
+                    }
+
+                    .switcher{
+                        justify-content: flex-start;
                     }
                     .profileDiv{
                         gap: 1rem;

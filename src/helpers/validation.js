@@ -347,7 +347,7 @@ export const modifyStudentValidationSchema = Yup.object().shape({
   lastName: Yup.string()
     .required("Kindly provide teacher's last name"),
 
-  otherNames: Yup.string(),
+  otherNames: Yup.string().nullable(),
 
   subjects: Yup.array()
     .min(1, "Kindly select at least one (1) subject")

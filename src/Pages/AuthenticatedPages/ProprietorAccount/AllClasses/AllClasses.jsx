@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import cx from "classnames";
 import styles from "./AllClasses.module.scss";
 
@@ -13,6 +13,8 @@ import { Icon } from "@iconify/react";
 import AddClassModal from "@/components/Modals/AddClass/AddClass";
 import EditClassModal from "@/components/Modals/EditClass/EditClass";
 import DeleteClassModal from "@/components/Modals/DeleteClass/DeleteClass";
+import ViewClassDetailsModal from "@/components/Modals/ViewClassDetails/ViewClassDetails";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
@@ -103,31 +105,14 @@ const AllClasses = () => {
         </div>;
       }
     },
-    // {
-    //   Header: () => (
-    //     <div
-    //       style={{
-    //         width: "auto",
-    //         color: "#747474",
-    //         fontSize: "1rem"
-    //       }}
-    //     >No. of Students</div>
-    //   ),
-    //   accessor: "numberOfStudents",
-    //   Cell: (row) => {
-    //     let numberOfStudents = row.cell.row.values.numberOfStudents;
-    //     return <div >
-    //       <p style={{ color: "#4F4F4F"}}>{numberOfStudents}</p>         
-    //     </div>;
-    //   }
-    // },
     {
       Header: () => (
         <div
           style={{
             width: "auto",
             color: "#747474",
-            fontSize: "1rem"
+            fontSize: "1rem",
+            marginLeft: "1rem"
             // textAlign: "center"
           }}
         >Action</div>
@@ -135,8 +120,11 @@ const AllClasses = () => {
       accessor: "action",
       Cell: (row) => {
         let data = row.cell.row.original.allData;
-        return <div>
-          <Button onClick={() => dispatch(showModal({ action: "show", type: "editClass", modalData: data }))} title="Edit" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+        return <div style={{ display: "flex", gap: "0.5rem" }}>
+          <Button onClick={() => dispatch(showModal({ action: "show", type: "editClass", modalData: data }))} title="Edit" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F" />
+
+          {/* <Button onClick={() => dispatch(showModal({ action: "show", type: "viewClassDetails", modalData: data }))} title="View" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F" /> */}
+
         </div>;
       }
     },
@@ -150,12 +138,31 @@ const AllClasses = () => {
           }}
         />
       ),
-      accessor: "delete",
+      accessor: "moreOptions",
       Cell: (row) => {
+
+        const [dropdownOpen, setDropdownOpen] = useState(false);
+
+        const toggle = () => {
+          setDropdownOpen(prevState => !prevState);
+        };
+
         let data = row.cell.row.original.allData;
 
+        // return <div>
+        //   <Icon onClick={() => dispatch(showModal({ action: "show", type: "deleteClass", modalData: data }))} style={{ cursor: "pointer" }} icon="ant-design:delete-filled" color="#d25b5d" />
+        // </div>;
+
         return <div>
-          <Icon onClick={() => dispatch(showModal({ action: "show", type: "deleteClass", modalData: data }))} style={{ cursor: "pointer" }} icon="ant-design:delete-filled" color="#d25b5d" />
+          <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle style={{ backgroundColor: "transparent" }} name="" className={cx(styles.dropdownToggler)}>
+              <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
+            </DropdownToggle>
+            <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "viewClassDetails", modalData: data }))}>View Details</DropdownItem>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "deleteClass", modalData: data }))}>Delete Class</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>;
       }
     }
@@ -171,7 +178,6 @@ const AllClasses = () => {
         action: "",
         class: item?.name && item?.name,
         code: item?.code && item?.code,
-        numberOfStudents: item?.numberOfStudents && item?.numberOfStudents,
         allData: item
       });
     });
@@ -195,7 +201,7 @@ const AllClasses = () => {
 
       </div>
 
-      {modalState === "show" ? <Modal show >{modalType === "addClass" ? <AddClassModal /> : modalType === "editClass" ? <EditClassModal /> : modalType === "deleteClass" ? <DeleteClassModal /> : null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "addClass" ? <AddClassModal /> : modalType === "editClass" ? <EditClassModal /> : modalType === "deleteClass" ? <DeleteClassModal /> : modalType === "viewClassDetails" ? <ViewClassDetailsModal /> : null}</Modal> : null}
 
     </div>
   );

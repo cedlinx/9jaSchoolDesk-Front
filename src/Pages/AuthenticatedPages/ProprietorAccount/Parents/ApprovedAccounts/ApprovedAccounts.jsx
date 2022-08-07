@@ -104,7 +104,7 @@ const ApprovedAccounts = () => {
       accessor: "wards",
       Cell: (row) => {
         let wards = row.cell.row.values.wards;
-        return <div style={{ width: "15rem" }}>
+        return <div style={{ width: "15rem", display: "flex" }}>
           {Array.isArray(wards) && wards.map((ward, index) => {
             return (ward.avatar ? <img style={{ width: "3rem", height: "3rem", borderRadius: "50%", padding: "0.25rem", marginLeft: "-0.625rem", backgroundColor: "white", cursor: "pointer" }} key={index} src={ward} alt="img" /> : ward.firstName && <p style={{ backgroundColor: color, whiteSpace: "nowrap", border: "1px solid #FF7E3F0D", borderRadius: "50%", fontSize: "1.25rem", width: "3rem", height: "3rem", lineHeight: "3rem", textAlign: "center", marginLeft: "-0.625rem", cursor: "pointer" }}>{ward.firstName && initialsCase(`${ward.firstName} ${ward?.lastName}`)}</p>);
           })}

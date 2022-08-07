@@ -97,7 +97,7 @@ const RoutesComponent = () => {
 
         </Route>
 
-        <Route path="teacher" element={<AuthenticatedRoute roles={[Role.Teacher]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="teacher" element={<AuthenticatedRoute roles={[Role.Teacher, Role.Proprietor]}><DashboardWrapper /></AuthenticatedRoute>}>
 
           <Route index path="dashboard" element={<DashboardTeacher />} />
           <Route path="profile" element={<ProfileTeacher />} />
@@ -108,7 +108,7 @@ const RoutesComponent = () => {
 
         </Route>
 
-        <Route path="proprietor" element={<AuthenticatedRoute roles={[Role.Student, Role.Teacher, Role.Guardian, Role.Proprietor]}><DashboardWrapper /></AuthenticatedRoute>}>
+        <Route path="proprietor" element={<AuthenticatedRoute roles={[Role.Proprietor]}><DashboardWrapper /></AuthenticatedRoute>}>
 
           <Route index path="dashboard" element={<DashboardProprietor />} />
           <Route path="classes" element={<ClassesProprietor />} />
