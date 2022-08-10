@@ -24,7 +24,7 @@ const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
 
   const handleClick = () => {
     if (takeAttendance) {
-      setStatus(status === "present" ? "absent" : "present");
+      setStatus((prev) => (prev === "present" ? "absent" : "present"));
       attendanceStatus({ status: status === "present" ? "absent" : "present", id: cardData.id });
     } else {
       dispatch(showModal({ action: "show", type: "viewStudentProfile", modalData: cardData }));

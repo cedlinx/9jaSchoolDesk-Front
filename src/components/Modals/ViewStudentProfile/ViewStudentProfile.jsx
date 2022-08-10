@@ -1,74 +1,93 @@
-import React, {useEffect, useState, useCallback} from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./ViewStudentProfile.module.scss";
 import Button from "@/components/Button/Button";
-import InputField from "@/components/Input/Input";
-import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import closeIcon from "@/assets/icons/closeIcon.svg";
 import { Icon } from "@iconify/react";
 import studentProfilePic from "@/assets/images/student-profile-pic.png";
 import profileCardHeaderBg from "@/assets/images/student-profile-modal-image.png";
-import heroImage from "@/assets/images/student-dashboard-hero-image.png";
-import { useDropzone } from "react-dropzone";
-
-import editIcon from "@/assets/icons/edit-icon.svg";
-
 import { forgotPassword } from "@/redux/Auth/AuthSlice";
-
-import { useForm, Controller } from "react-hook-form";
-import { forgotPasswordValidationSchema } from "@/helpers/validation";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 import gratitudeIcon from "@/assets/icons/gratitude-icon.svg";
 import curiosityIcon from "@/assets/icons/curiosity-icon.svg";
 import teamworkIcon from "@/assets/icons/teamwork-icon.svg";
 import persistenceIcon from "@/assets/icons/persistence-icon.svg";
+import caretUp from "@/assets/icons/caret-up.svg";
+import caretDown from "@/assets/icons/caret-down.svg";
+import { viewKPIForClass, getStudentScoreKPI, incrementScoreKPI, decrementScoreKPI } from "@/redux/Teacher/TeacherSlice";
+import { debounce } from "debounce";
+import { toast } from "react-toastify";
+
+
 
 const ViewStudentProfile = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   console.log(modalData);
+  let KPIData = useSelector((state) => state.teacher.getStudentScoreKPI);
+
+  console.log(KPIData);
+  
+  useEffect(() => {
+    dispatch(getStudentScoreKPI(modalData.student_id));
+  }, [dispatch, modalData.student_id]);
 
   const sendRequest = (data) => {
     dispatch(forgotPassword(data));
     dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
   };
 
-  const showLoginModal = (e) => {
-    e.preventDefault();
-    dispatch(showModal({ action: "show", type: "logIn" }));
+  const increaseKPI = (e, data) => {
+    let valueSpan = e.target.parentElement.parentElement.querySelector("p > span");
+    let currentValue = (valueSpan.textContent)*1;
+    if(currentValue >=0 && currentValue <5){
+      valueSpan.innerText = currentValue + 1;
+      // dispatch(incrementScoreKPI(modalData.student_id, modalData.class_id));
+      debounce(alert("increase hello"), 4000);
+
+    }
+    else{
+      toast.warn("Maximum value reached");
+    }
   };
 
-  const resolver = yupResolver(forgotPasswordValidationSchema);
-
-  const defaultValues = {
-    email: ""
+  const decreaseKPI = (e, data) => {
+    // dispatch(decrementScoreKPI(modalData.student_id, modalData.class_id));
+    let valueSpan = e.target.parentElement.parentElement.querySelector("p > span");
+    let currentValue = (valueSpan.textContent)*1;
+    console.log(currentValue);
+    if(currentValue >=1 && currentValue <= 5){
+      valueSpan.innerText = currentValue - 1;
+      // dispatch(decrementScoreKPI(modalData.student_id, modalData.class_id));
+      debounce(alert("decrease hello"), 4000);
+    }
+    else{
+      toast.warn("Minimum value reached");
+    }
   };
 
-  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [imgData, setImgData] = useState({
-    file: "",
-    imagePreviewUrl: ""
-  });
+  let dataArray = [
+    { name: "Curiosity",
+      icon: curiosityIcon,
+      value: "4"
+    },
+    { name: "Gratitude",
+      icon: gratitudeIcon,
+      value: "4"
+    },
+    { name: "Persistence",
+      icon: persistenceIcon,
+      value: "4"
+    },
+    { name: "Teamwork",
+      icon: teamworkIcon,
+      value: "4"
+    }
+  ];
 
-  const onDrop = useCallback(acceptedFiles => {
-    let file = (acceptedFiles[0]);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
-    };
-    reader.readAsDataURL(file);
-  }, []);
-
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
 
   return (
 
@@ -82,7 +101,7 @@ const ViewStudentProfile = () => {
 
 	      <div className={cx(styles.header)}>
           <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
-          <img className={cx(styles.profilePic)} src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : studentProfilePic} alt="profile pic" />
+          <img className={cx(styles.profilePic)} src={studentProfilePic} alt="profile pic" />
           <Button onClick={() => dispatch(showModal({action: "show", type: "sendNotificationToParent", modalData: modalData}))} title="Send Message" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" hoverColor="#000" />
         </div>
 
@@ -96,10 +115,24 @@ const ViewStudentProfile = () => {
           <div className={cx(styles.bottomSection, "flexCol")}>
             <p>Behavioural Feedback</p>
             <div className={cx(styles.behavioursDiv, "flexCol")}>
-              <div><span><img src={curiosityIcon} alt="" /></span><span>Curiosity</span><span>2 pts</span></div>
-              <div><span><img src={gratitudeIcon} alt="" /></span><span>Gratitude</span><span>2 pts</span></div>
-              <div><span><img src={teamworkIcon} alt="" /></span><span>Teamwork</span><span>2 pts</span></div>
-              <div><span><img src={persistenceIcon} alt="" /></span><span>Persistence</span><span>2 pts</span></div>
+              {dataArray.map((data, index) => (
+                <div className={cx(styles.behaviorWrapper, "flexRow")} key={index}>
+                  <div className={cx(styles.leftSection)}>
+                    <span><img src={data.icon} alt="icon" /></span>
+                    <span>{data.name}</span>
+                    <p className={cx(styles.valueSpan)}>
+                      <span>{data.value}</span>
+                      <span>pts</span>
+                    </p>
+                  </div>
+                 
+                  <div className={cx(styles.btnGroup, "flexCol")}>
+                    <img onClick={(e) =>increaseKPI(e, data)} src={caretUp} alt="icon" />
+                    <img onClick={(e) =>decreaseKPI(e, data)} src={caretDown} alt="icon" />
+                  </div>
+                </div>
+              ))}
+             
             </div>
           </div>
         </div>

@@ -85,7 +85,7 @@ export const saveAttendanceApi = async (data) => {
 };
 
 export const takeAttendanceApi = async (data) => {
-  return await axios.post("teacher/auth/attendance/save", data);
+  return await axios.get("teacher/auth/attendance/take", data);
 };
 
 export const addStudentApi = async (data) => {
@@ -93,7 +93,8 @@ export const addStudentApi = async (data) => {
 };
 
 export const getAllStudentsApi = async (data) => {
-  return await axios.get("teacher/auth/student/list", data);
+  console.log(data, "api");
+  return await axios.get(`teacher/auth/list/student?class_id=${data}`, data);
 };
 
 export const viewStudentRecordApi = async (data) => {
@@ -112,13 +113,18 @@ export const updateProfileApi = async (data) => {
   return await axios.post("teacher/auth/profile/update", data);
 };
 
-// export const enableStudentSubscriptionApi = async (data) => {
-//   return await axios.put("teacher/auth/student/enable", data);
-// };
+export const getTeacherDetailsApi = async (data) => {
+  return await axios.get("teacher/auth/profile", data);
+};
 
-// export const disableStudentSubscriptionApi = async (data) => {
-//   return await axios.get("teacher/auth/student/disable", data);
-// };
+export const switchClassApi = async (data) => {
+  return await axios.get("teacher/auth/profile", data);
+};
+
+export const getClassDetailsApi = async (data) => {
+  return await axios.get("teacher/auth/profile", data);
+};
+
 
 
 

@@ -43,18 +43,18 @@ const HomePage = () => {
 
   const gotoSection = (value) => {
     switch (value.target.id) {
-      case "student":
-        studentsRef.current.scrollIntoView({ behavior: "smooth" });
-        break;
-      case "guardian":
-        guardiansRef.current.scrollIntoView({ behavior: "smooth" });
-        break;
-      case "teacher":
-        teachersRef.current.scrollIntoView({ behavior: "smooth" });
-        break;
-      default:
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        break;
+    case "student":
+      studentsRef.current.scrollIntoView({ behavior: "smooth" });
+      break;
+    case "guardian":
+      guardiansRef.current.scrollIntoView({ behavior: "smooth" });
+      break;
+    case "teacher":
+      teachersRef.current.scrollIntoView({ behavior: "smooth" });
+      break;
+    default:
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      break;
     }
   };
 

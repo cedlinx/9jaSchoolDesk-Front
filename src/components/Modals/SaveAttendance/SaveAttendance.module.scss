@@ -1,0 +1,84 @@
+.saveAttendanceContainer{
+    width: 100%;
+    background-color: #fff;
+    background-color: transparent;
+    gap: 1rem;
+
+    .header{
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-bottom: 0rem;
+        line-height: 1;
+        color: #fff;
+
+        p{
+            line-height: 1;
+            width: 100%;
+        }
+        svg{
+            cursor: pointer;
+        }
+    }
+
+    .formWrapper{
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        gap: 2rem;
+
+        .header {
+            align-items: center;
+            gap: 1rem;
+            p{
+               color: #D25B5D;
+               font-size: 1.25rem;
+               text-align: center;
+            }
+
+            small{
+                color: #D25B5D;
+               text-align: center;
+                font-size: 0.875rem;
+            }
+        }
+
+        .btnGroup{
+            justify-content: center;
+            padding-top: 1rem;
+            gap: 1rem;
+         }
+        
+    }
+}
+
+@media all and (min-width: 768px){
+    .saveAttendanceContainer{
+        gap: 1rem;
+    
+        .header{
+        }
+        .formWrapper{
+            gap: 3rem;
+            .header {
+    
+            }
+        }
+    }
+}
+
+
+@media all and (min-width: 991px){
+    .saveAttendanceContainer{
+        gap: 1rem;
+    
+        .header{
+        }
+        .formWrapper{
+            gap: 2rem;
+            .header {
+
+            }
+        }
+    }
+}
+

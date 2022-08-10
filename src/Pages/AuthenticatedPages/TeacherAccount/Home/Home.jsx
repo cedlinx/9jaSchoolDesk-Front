@@ -24,7 +24,7 @@ import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
 import { assessmentData } from "@/helpers/sampleData";
 
-import EditProfileModal from "@/components/Modals/EditProfile/EditProfile";
+import SaveAttendanceModal from "@/components/Modals/SaveAttendance/SaveAttendance";
 import AddStudentModal from "@/components/Modals/AddNewStudent/AddNewStudent";
 import SendNotificationToParentModal from "@/components/Modals/SendNotificationToParent/SendNotificationToParent";
 import ViewStudentProfileModal from "@/components/Modals/ViewStudentProfile/ViewStudentProfile";
@@ -33,6 +33,10 @@ import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAs
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import AttendanceCard from "@/components/Cards/AttendanceCard/AttendanceCard";
+import useGetAllClassStudents from "@/utils/useGetAllClassStudents";
+import { takeAttendance as takeAttendanceFxn } from "@/redux/Teacher/TeacherSlice";
+useGetAllClassStudents;
+
 
 const Home = () => {
 
@@ -40,8 +44,13 @@ const Home = () => {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+  const loading = useSelector((state) => state.teacher.loading);
+
   const [takeAttendance, setTakeAttendance] = useState(false);
   const [studentAttendanceStatus, setStudentAttendanceStatus] = useState([]);
+  let class_id = 4;
+  // let studentsArray = useGetAllClassStudents(class_id);
+  // console.log(studentsArray);
 
   const studentsArray = [
     {
@@ -150,9 +159,20 @@ const Home = () => {
       studentsArr.splice(answer, 1);
       studentsArr.push(status);
     }
-    console.log(studentsArr);
     setStudentAttendanceStatus(studentsArr);
   };
+
+  const handleTakeAttendance = async () => {
+    // setTakeAttendance(!takeAttendance);
+    setTakeAttendance(true);
+    let response = await dispatch(takeAttendanceFxn(1));
+    console.log(response);
+  };
+
+  const resetTakeAttendance = (data) => {
+    setTakeAttendance(data);
+  };
+
 
   return (
     <div className={cx(styles.dashboardHomeContainer)}>
@@ -160,18 +180,24 @@ const Home = () => {
       <div className={cx(styles.heading, "flexRow")}>
         <h3 className={cx(styles.title)}>Classroom</h3>
         <div className={cx(styles.btnGroup, "flexRow")}>
-          <Button onClick={() => setTakeAttendance(true)} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
+          <Button onClick={() => handleTakeAttendance()} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
           <Button onClick={() => dispatch(showModal({ action: "show", type: "addStudent" }))} type title="Add Student" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
         </div>
       </div>
 
       <div className={cx(styles.body)}>
-        {studentsArray.map((student, index) => {
+        {!takeAttendance && Array.isArray(studentsArray) && studentsArray.map((student, index) => {
           return (
             <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
           );
         }
         )}
+        {takeAttendance ? loading ? <p>Fetching Data...</p> :  Array.isArray(studentsArray) && studentsArray.map((student, index) => {
+          return (
+            <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
+          );
+        }
+        ) : null}
       </div>
 
       {takeAttendance && <div className={cx(styles.footer, "flexRow")}>
@@ -180,14 +206,14 @@ const Home = () => {
 
           <Button onClick={() => setTakeAttendance(false)} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
 
-          <Button onClick={() => dispatch(showModal({ action: "show" }))} type title="Save Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
+          <Button onClick={() => dispatch(showModal({ action: "show", type:"saveAttendance", modalData: studentAttendanceStatus }))} type title="Save Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
         </div>
       </div>}
 
-      {modalState === "show" && modalType === "editProfile" && <Modal show >{<EditProfileModal />}</Modal>}
+      {modalState === "show" && modalType === "saveAttendance" && <Modal show >{<SaveAttendanceModal resetTakeAttendance={resetTakeAttendance} />}</Modal>}
       {modalState === "show" && modalType === "submitAssessment" && <Modal show >{<SubmitAssessmentModal />}</Modal>}
       {modalState === "show" && modalType === "uploadActivity" && <Modal show >{<UploadActivityModal />}</Modal>}
-      {modalState === "show" && modalType === "viewStudentProfile" && <Modal show >{<ViewStudentProfileModal />}</Modal>}
+      {modalState === "show" && modalType === "viewStudentProfile" && <Modal size="lg" show >{<ViewStudentProfileModal />}</Modal>}
       {modalState === "show" && modalType === "addStudent" && <Modal show >{<AddStudentModal />}</Modal>}
       {modalState === "show" && modalType === "sendNotificationToParent" && <Modal show >{<SendNotificationToParentModal />}</Modal>}
 

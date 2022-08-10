@@ -52,15 +52,15 @@ const Button = props => {
 
   const borderRadiusValue = () => {
     switch (borderRadiusType) {
-      case "lowRounded":
-        return "0.75rem";
-      case "mediumRounded":
-        return "1rem";
-      case "fullyRounded":
-        return "1.5rem";
+    case "lowRounded":
+      return "0.75rem";
+    case "mediumRounded":
+      return "1rem";
+    case "fullyRounded":
+      return "1.5rem";
 
-      default:
-        return "0.25rem";
+    default:
+      return "0.25rem";
     }
   };
 

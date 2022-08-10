@@ -1,4 +1,4 @@
-import { getDashboardApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, scoreStudentKPIApi, incrementScoreKPIApi, decrementScoreKPIApi, getStudentScoreKPIApi, sendNotificationApi, addTaskApi, modifyTaskApi, viewTaskDetailsApi, getAllTasksApi, deleteTaskApi, assignTaskApi, assessTaskApi, submitTaskApi, saveAttendanceApi, takeAttendanceApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, updateProfileApi } from "../api/teacher";
+import { getDashboardApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, scoreStudentKPIApi, incrementScoreKPIApi, decrementScoreKPIApi, getStudentScoreKPIApi, sendNotificationApi, addTaskApi, modifyTaskApi, viewTaskDetailsApi, getAllTasksApi, deleteTaskApi, assignTaskApi, assessTaskApi, submitTaskApi, saveAttendanceApi, takeAttendanceApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, updateProfileApi, getTeacherDetailsApi, switchClassApi, getClassDetailsApi } from "../api/teacher";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -35,7 +35,10 @@ const initialState = {
   viewStudentRecordData: {},
   modifyStudentData: {},
   deleteStudentData: {},
-  updateProfileData: {}
+  updateProfileData: {},
+  getTeacherDetails: {},
+  switchClassData: {},
+  getClassDetailsData: {}
 };
 
 export const teacherSlice = createSlice({
@@ -192,6 +195,21 @@ export const teacherSlice = createSlice({
     updateProfileAction: (state, action) => {
       state.updateProfileData = action.payload;
       state.loading = false;
+    },
+
+    getTeacherDetailsAction: (state, action) => {
+      state.getTeacherDetails = action.payload;
+      state.loading = false;
+    },
+
+    switchClassAction: (state, action) => {
+      state.switchClassData = action.payload;
+      state.loading = false;
+    },
+
+    getClassDetailsAction: (state, action) => {
+      state.getClassDetailsData = action.payload;
+      state.loading = false;
     }
   }
 });
@@ -207,7 +225,7 @@ const { startLoading, hasError, getDashboardAction,
   deleteTaskAction, assignTaskAction, assessTaskAction, submitTaskAction,
   saveAttendanceAction, takeAttendanceAction, addStudentAction,
   getAllStudentsAction, viewStudentRecordAction, modifyStudentAction,
-  deleteStudentAction, updateProfileAction } = teacherSlice.actions;
+  deleteStudentAction, updateProfileAction, getTeacherDetailsAction, switchClassAction, getClassDetailsAction } = teacherSlice.actions;
 
 
 export const getDashboard = (data) => async (dispatch) => {
@@ -540,6 +558,42 @@ export const updateProfile = (data) => async (dispatch) => {
     const response = await updateProfileApi(data);
     toast.success(response.data.message);
     return dispatch(updateProfileAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getTeacherDetails = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getTeacherDetailsApi(data);
+    toast.success(response.data.message);
+    return dispatch(getTeacherDetailsAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const switchClass = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await switchClassApi(data);
+    toast.success(response.data.message);
+    return dispatch(switchClassAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getClassDetails = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getClassDetailsApi(data);
+    toast.success(response.data.message);
+    return dispatch(getClassDetailsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));

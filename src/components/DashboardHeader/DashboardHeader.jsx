@@ -149,14 +149,14 @@ const Header = (props) => {
                   )}
                 </NavLink>
 
-                  <NavLink to="my-classes">
-                    {({ isActive }) => (
-                      <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                        <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
-                        <span>My Classes</span>
-                      </div>
-                    )}
-                  </NavLink>
+                <NavLink to="my-classes">
+                  {({ isActive }) => (
+                    <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                      <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                      <span>My Classes</span>
+                    </div>
+                  )}
+                </NavLink>
                 </>
                 }
 
