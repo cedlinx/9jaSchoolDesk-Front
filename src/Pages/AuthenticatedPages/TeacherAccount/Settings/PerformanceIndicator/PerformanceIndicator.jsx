@@ -10,8 +10,10 @@ import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 
 const PerformanceIndicator = () => {
   const dispatch = useDispatch();
-  const performanceIndicatorData = useSelector((state) => state?.teacher?.getAllKPIsData?.kpis);
+  const performanceIndicatorData = useSelector((state) => state?.teacher?.viewKPIForClassData?.kpis);
   const loading = useSelector((state) => state?.teacher?.loading);
+
+  console.log(performanceIndicatorData);
 
   const handleDelete = (data) => {
     dispatch(showModal({ action: "show", type: "deleteIndicator", modalData: data }));
@@ -35,7 +37,7 @@ const PerformanceIndicator = () => {
 
         <div className={cx(styles.body)}>
           {loading ? <TableSkeleton /> :
-            performanceIndicatorData && performanceIndicatorData.map((indicator, index) => {
+            Array.isArray(performanceIndicatorData) && performanceIndicatorData.map((indicator, index) => {
               return (
                 <div key={index} className={cx(styles.sectionContainer, "flexCol")}>
                   <div onClick={() => showDetails(indicator)} className={cx(styles.indicatorWrapper, "flexRow")} >
@@ -64,7 +66,7 @@ const PerformanceIndicator = () => {
         </div>
 
         <div className={cx(styles.footer, "flexRow")}>
-          <Button onClick={() => dispatch(showModal({ action: "show", type: "addPerformanceIndicator" }))} type title="Add Indicator" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+          <Button onClick={() => dispatch(showModal({ action: "show", type: "addPerformanceIndicator"}))} type title="Add Indicator" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
         </div>
       </div>
 

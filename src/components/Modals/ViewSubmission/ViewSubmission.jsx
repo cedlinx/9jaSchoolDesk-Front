@@ -1,14 +1,9 @@
-import React, { useState, useCallback } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./ViewSubmission.module.scss";
 import Button from "@/components/Button/Button";
-import InputField from "@/components/Input/Input";
-import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import closeIcon from "@/assets/icons/closeIcon.svg";
 import { Icon } from "@iconify/react";
@@ -28,11 +23,14 @@ import { forgotPasswordValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import singleSubmissionIcon from "@/assets/icons/single-submission-icon.svg";
 import Accordion from "@/components/SubmissionAccordion/Accordion";
+import { getStudentsAssignedToTask } from "@/redux/Teacher/TeacherSlice";
 
 
 const ViewSubmission = () => {
 
   const dispatch = useDispatch();
+
+
 
   const sendRequest = (data) => {
     dispatch(forgotPassword(data));
@@ -40,6 +38,13 @@ const ViewSubmission = () => {
   };
   const modalData = useSelector((state) => state.modalState.modalData);
   console.log(modalData);
+  const studentsData = useSelector((state) => state.teacher.getStudentsAssignedToTaskData.students);
+
+  console.log(studentsData);
+
+  useEffect(() => {
+    dispatch(getStudentsAssignedToTask(modalData.id));
+  }, [dispatch, modalData.id]);
 
   const resolver = yupResolver(forgotPasswordValidationSchema);
 
@@ -54,7 +59,7 @@ const ViewSubmission = () => {
     imagePreviewUrl: ""
   });
 
-  const accordionData = [
+  const studentsData1 = [
     {
       title: "Submission 1"
     },
@@ -110,21 +115,31 @@ const ViewSubmission = () => {
         >
 
           <div className={cx(styles.wrapper, "row", "g-0")}>
-            <div className={cx(styles.leftSection, "col-sm-12", "col-md-12", "col-lg-6", "flexCol")}>
-              
-              <label htmlFor="category">Task Category</label>
-              <p>{"Category Here"}</p>
+            <div className={cx(styles.leftSection, "col-sm-12", "col-md-12", "col-lg-12", "flexCol")}>
 
-              <label htmlFor="category">Task</label>
-              <p>{modalData?.task}</p>
-
-              <label htmlFor="category">Assigned To</label>
-              <p><img src="" alt="img" />{modalData?.assignedTo?.name}</p>
-
+              <div className={cx(styles.titleDiv, "flexCol")}>
+                <label htmlFor="category">Task</label>
+                <p>{modalData?.name}</p>
+              </div>
             
 
+              <div className={cx("flexRow-space-between", styles.downloadDiv)}>
+                <label htmlFor="category">Assigned To</label>
+                <p>Download All</p>
+              </div>
+             
+
+              <p>{modalData?.assignedTo?.name}</p>
+              {
+                <div className={cx(styles.multiSubmissionDiv)}>
+                  <div className={cx(styles.accordionWrapper)}>
+                    <Accordion accordionArray={studentsData} />
+                  </div>
+                </div>
+              }
             </div>
-            <div className={cx(styles.rightSection, "col-sm-12", "col-md-12", "col-lg-6")}>
+
+            {/* <div className={cx(styles.rightSection, "col-sm-12", "col-md-12", "col-lg-6")}>
 
               {<div className={cx(styles.singleSubmissionDiv)}>
                 <small>Submission</small>
@@ -148,12 +163,12 @@ const ViewSubmission = () => {
                 <div className={cx(styles.multiSubmissionDiv)}>
                   <p>Submissions <span>Download All</span> </p>
                   <div className={cx(styles.accordionWrapper)}>
-                    <Accordion accordionArray={accordionData} />
+                    <Accordion accordionArray={studentsData} />
                   </div>
                 </div>
               }
 
-            </div>
+            </div> */}
           </div>
 
         </form>
@@ -161,10 +176,6 @@ const ViewSubmission = () => {
 
     </section>
   );
-};
-
-ViewSubmission.propTypes = {
-  title: PropTypes.string
 };
 
 export default ViewSubmission;

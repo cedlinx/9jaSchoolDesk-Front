@@ -3,15 +3,16 @@ import cx from "classnames";
 import styles from "./AttendanceCard.module.scss";
 import presentIcon from "@/assets/icons/present-icon.svg";
 import absentIcon from "@/assets/icons/absent-icon.svg";
-import { initialsCase } from "@/helpers/textTransform";
+import { initialsCase, titleCase } from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { useDispatch } from "react-redux";
 
 
 const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
+  console.log(cardData, "inside card");
   const dispatch = useDispatch();
 
-  const [status, setStatus] = useState(cardData?.attendanceStatus);
+  const [status, setStatus] = useState(cardData?.status);
 
   const generateColor = () => {
     const letters = "123456789ABCDEF";
@@ -24,8 +25,8 @@ const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
 
   const handleClick = () => {
     if (takeAttendance) {
-      setStatus((prev) => (prev === "present" ? "absent" : "present"));
-      attendanceStatus({ status: status === "present" ? "absent" : "present", id: cardData.id });
+      setStatus((prev) => (prev === 1 ? 0 : 1));
+      attendanceStatus({ status: status === 1 ? 0 : 1, id: cardData.id });
     } else {
       dispatch(showModal({ action: "show", type: "viewStudentProfile", modalData: cardData }));
     }
@@ -36,13 +37,13 @@ const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
     <div onClick={() => handleClick()} className={cx(styles.attendanceCardContainer, "flexCol")}>
 
       <div className={cx(styles.imageDiv)}>
-        {takeAttendance && <img className={cx(styles.statusIcon)} src={status === "present" ? presentIcon : absentIcon} alt="" />}
-        {cardData?.profilePic ? <img className={cx(styles.profileImage)} src={cardData?.profilePic} alt="" /> :
-          <span style={{ backgroundColor: generateColor() }}>{initialsCase(cardData.name)}</span>
+        {takeAttendance && <img className={cx(styles.statusIcon)} src={status === 1 ? presentIcon : absentIcon} alt="" />}
+        {cardData?.avatar ? <img className={cx(styles.profileImage)} src={cardData?.avatar} alt="" /> :
+          <span style={{ backgroundColor: generateColor() }}>{initialsCase(`${cardData.firstName} ${cardData.lastName}`)}</span>
         }
       </div>
 
-      <p>{cardData?.name}</p>
+      <p>{titleCase(`${cardData.firstName} ${cardData.lastName}`)}</p>
     </div>
   );
 };

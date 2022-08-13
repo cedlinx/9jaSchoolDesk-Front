@@ -1,39 +1,38 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import cx from "classnames";
 import styles from "./SelectClass.module.scss";
 import Logo from "@/assets/images/Logo.svg";
-import { allStudentsData } from "@/helpers/sampleData";
 import { useDispatch, useSelector } from "react-redux";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
-import useGetTeacherDetails from "@/utils/useGetTeacherDetails";
-import useSwitchClass from "@/utils/useSwitchClass";
+import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 import { toast } from "react-toastify";
+import { switchClass } from "@/redux/Teacher/TeacherSlice";
+
+
 
 
 const SelectClass = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [classID, setClassID] = useState("");
 
-  const teacherDetails = useGetTeacherDetails();
-  const switchClass = useSwitchClass(classID);
-
-  let classesArray = teacherDetails?.classes;
-
+  const teacherDetails = useGetLoggedInUser();
+  let classesArray = teacherDetails?.klasses;
   console.log(teacherDetails);
+
 
   const handleSwitchClass = async (class_id) => {
     console.log(class_id);
-    setClassID(class_id);
     toast("Switching class...");
-    let response = await switchClass;
+    let response = await dispatch(switchClass({id: class_id }));
     console.log(response, "switch response");
-    navigate("/teacher/dashboard");
-    // if (response.message.success) {
-    //   navigate("/teacher/dashboard");
-    // }
+    if (response.payload.success) {
+      console.log(class_id);
+      localStorage.setItem("activeClassData", JSON.stringify(response.payload.class));
+      localStorage.setItem("class_id", class_id);
+      navigate("/teacher/dashboard");
+    }
   };
 
 
@@ -44,7 +43,7 @@ const SelectClass = () => {
         <p>Select a class to continue</p>
       </div>
       <div className={cx(styles.body)}>
-        {Array.isArray(allStudentsData) && allStudentsData.map((element, index) => {
+        {Array.isArray(classesArray) && classesArray.map((element, index) => {
           return (
             <div key={index} onClick={() => handleSwitchClass(element?.id)} className={cx(styles.studentContainer, "flexCol")}>
               <div className={cx(styles.imageDiv)}>

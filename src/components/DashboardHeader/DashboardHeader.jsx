@@ -21,32 +21,25 @@ import { FormCheck } from "react-bootstrap";
 
 
 import unreadNotificationsIcon from "@/assets/icons/unread-notifications-icon.svg";
-import notificationIcon from "@/assets/icons/notifications-icon.svg";
 import { titleCase } from "@/helpers/textTransform";
-import InputField from "@/components/Input/Input";
 import { Icon } from "@iconify/react";
 import Logo from "@/assets/images/Logo.png";
 import Button from "@/components/Button/Button";
 import { Navbar } from "react-bootstrap";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from "reactstrap";
 
 import { logout } from "@/redux/Auth/AuthSlice";
 
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import UrgentInfoTeacherModal from "@/components/Modals/UrgentInfoTeacher/UrgentInfoTeacher";
-
+import useGetClassDetails from "@/utils/useGetClassDetails";
 
 
 const Header = (props) => {
   const { handleToggleSidebar, showLinks = true } = props;
   const navigate = useNavigate();
   const location = useLocation();
-
+  const classDetails = useGetClassDetails();
 
   let rootPath = location.pathname.split("/")[2];
   let userCategory = location.pathname.split("/")[1];
@@ -54,11 +47,8 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
-  const unreadNotifications = useSelector((state) => state?.notifications?.notificationSummaryData?.data?.unread);
   const userDetails = JSON.parse(localStorage.getItem("userData"));
   const institutionName = userDetails?.institution?.name;
-
-  console.log(institutionName);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -69,6 +59,8 @@ const Header = (props) => {
   const toggleChangeFxn = (e) => {
     // alert("navigate to teacher");
   };
+  console.log(userCategory);
+  console.log(rootPath);
 
   return (
     <section className={cx(styles.dashboardHeaderContainer, "flexRow", "")}>
@@ -80,7 +72,7 @@ const Header = (props) => {
         >
           <FaBars />
         </div>
-        {userCategory !== "proprietor" && rootPath === "profile" && <Navbar.Brand className={cx(styles.siteLogo)}>
+        {userCategory !== "proprietor" && userCategory !== "teacher" && <Navbar.Brand className={cx(styles.siteLogo)}>
           <Link to={`/${userCategory}/dashboard`}><img src={Logo} alt="" /></Link>
         </Navbar.Brand>}
 
@@ -100,7 +92,7 @@ const Header = (props) => {
             {userCategory === "teacher" &&
               <div className={cx(styles.switcher, "flexRow")}>
                 <div className={cx(styles.infoDiv, "flexRow")}>
-                  <span>Class: </span><span>JSS 1</span>
+                  <span>Class: </span><span>{classDetails?.name}</span>
                 </div>
                 <Button onClick={() => navigate("/select-class/teacher")} type title="Switch Class" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
               </div>

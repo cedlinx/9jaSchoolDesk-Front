@@ -25,7 +25,7 @@ import { titleCase } from "@/helpers/textTransform";
 import { assessmentData } from "@/helpers/sampleData";
 
 import SaveAttendanceModal from "@/components/Modals/SaveAttendance/SaveAttendance";
-import AddStudentModal from "@/components/Modals/AddNewStudent/AddNewStudent";
+import AddStudentModal from "@/components/Modals/AddNewStudentByTeacher/AddNewStudentByTeacher";
 import SendNotificationToParentModal from "@/components/Modals/SendNotificationToParent/SendNotificationToParent";
 import ViewStudentProfileModal from "@/components/Modals/ViewStudentProfile/ViewStudentProfile";
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
@@ -33,9 +33,8 @@ import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAs
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import AttendanceCard from "@/components/Cards/AttendanceCard/AttendanceCard";
-import useGetAllClassStudents from "@/utils/useGetAllClassStudents";
-import { takeAttendance as takeAttendanceFxn } from "@/redux/Teacher/TeacherSlice";
-useGetAllClassStudents;
+import { takeAttendance as takeAttendanceFxn, getClassDetails, getAllStudents } from "@/redux/Teacher/TeacherSlice";
+import useGetClassID from "@/utils/useGetClassID";
 
 
 const Home = () => {
@@ -45,106 +44,20 @@ const Home = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.teacher.loading);
+  let class_id = useGetClassID();
+
+  const dataArray = useSelector((state) => state?.teacher?.getAllStudentsData?.wards);
+
+  console.log(dataArray);
+  const [attendanceDataArray, setAttendanceDataArray] = useState([]);
 
   const [takeAttendance, setTakeAttendance] = useState(false);
   const [studentAttendanceStatus, setStudentAttendanceStatus] = useState([]);
-  let class_id = 4;
-  // let studentsArray = useGetAllClassStudents(class_id);
-  // console.log(studentsArray);
+  const [presentStudents, setPresentStudents] = useState(0);
 
-  const studentsArray = [
-    {
-      id: 1,
-      name: "Emenike Chidi Michael",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 2,
-      name: "George Saim",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 3,
-      name: "Fred Anderson",
-      attendanceStatus: "absent",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 4,
-      name: "John Doe",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 5,
-      name: "George Saim",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 6,
-      name: "Fred Anderson",
-      attendanceStatus: "absent",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 7,
-      name: "John Doe",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 8,
-      name: "George Saim",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 9,
-      name: "Fred Anderson",
-      attendanceStatus: "absent",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 10,
-      name: "John Doe",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 11,
-      name: "George Saim",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 12,
-      name: "Fred Anderson",
-      attendanceStatus: "absent",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 13,
-      name: "John Doe",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 14,
-      name: "Emenike Chidi Michael",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    },
-    {
-      id: 15,
-      name: "George Saim",
-      attendanceStatus: "present",
-      profilePic: studentProfilePic
-    }
-
-  ];
+  useEffect(() => {
+    dispatch(getAllStudents(class_id));
+  }, [dispatch, class_id]);
 
   const attendanceStatus = (status) => {
     console.log(status);
@@ -155,18 +68,35 @@ const Home = () => {
     let answer = studentsArr.indexOf(result);
     if (answer === -1) {
       studentsArr.push(status);
+      status.status === 1 ? setPresentStudents(presentStudents + 1) : setPresentStudents(presentStudents - 1);
     } else {
       studentsArr.splice(answer, 1);
       studentsArr.push(status);
+      status.status === 1 ? setPresentStudents(presentStudents + 1) : setPresentStudents(presentStudents - 1);
     }
     setStudentAttendanceStatus(studentsArr);
   };
 
   const handleTakeAttendance = async () => {
-    // setTakeAttendance(!takeAttendance);
+
     setTakeAttendance(true);
-    let response = await dispatch(takeAttendanceFxn(1));
+    let response = await dispatch(takeAttendanceFxn({class_id: class_id}));
     console.log(response);
+    if (response.payload.success) {
+      console.log(response.payload.students);
+      setAttendanceDataArray(response.payload.students);
+      let presentStudents = response?.payload?.students.filter((student) => {
+        return student.status === 1;
+      });
+      setPresentStudents(presentStudents.length);
+
+      let status = [];
+      response.payload.students.forEach((student) => {
+        status.push({ id: student.id, status: student.status });
+      });
+      console.log(status);
+      setStudentAttendanceStatus(status);
+    }
   };
 
   const resetTakeAttendance = (data) => {
@@ -181,18 +111,18 @@ const Home = () => {
         <h3 className={cx(styles.title)}>Classroom</h3>
         <div className={cx(styles.btnGroup, "flexRow")}>
           <Button onClick={() => handleTakeAttendance()} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
-          <Button onClick={() => dispatch(showModal({ action: "show", type: "addStudent" }))} type title="Add Student" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
+          <Button onClick={() => dispatch(showModal({ action: "show", type: "addNewStudentByTeacher" }))} type title="Add Student" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
         </div>
       </div>
 
       <div className={cx(styles.body)}>
-        {!takeAttendance && Array.isArray(studentsArray) && studentsArray.map((student, index) => {
+        {!takeAttendance ? loading ? <>Fetching Data</> : Array.isArray(dataArray) && dataArray.length === 0 ? <div>No Student Added To This Class. Kindly Add New Students</div> : Array.isArray(dataArray) && dataArray.map((student, index) => {
           return (
             <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
           );
         }
-        )}
-        {takeAttendance ? loading ? <p>Fetching Data...</p> :  Array.isArray(studentsArray) && studentsArray.map((student, index) => {
+        ) : null}
+        {takeAttendance ? loading ? <p>Fetching Data...</p> :  Array.isArray(attendanceDataArray) && attendanceDataArray.map((student, index) => {
           return (
             <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
           );
@@ -201,7 +131,7 @@ const Home = () => {
       </div>
 
       {takeAttendance && <div className={cx(styles.footer, "flexRow")}>
-        <p><span>9 / 24</span> <span>Attendance Today</span></p>
+        <p><span>{presentStudents} / {Array.isArray(dataArray) && dataArray.length}</span> <span>Attendance Today</span></p>
         <div className={cx(styles.btnGroup, "flexRow")}>
 
           <Button onClick={() => setTakeAttendance(false)} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
@@ -214,7 +144,7 @@ const Home = () => {
       {modalState === "show" && modalType === "submitAssessment" && <Modal show >{<SubmitAssessmentModal />}</Modal>}
       {modalState === "show" && modalType === "uploadActivity" && <Modal show >{<UploadActivityModal />}</Modal>}
       {modalState === "show" && modalType === "viewStudentProfile" && <Modal size="lg" show >{<ViewStudentProfileModal />}</Modal>}
-      {modalState === "show" && modalType === "addStudent" && <Modal show >{<AddStudentModal />}</Modal>}
+      {modalState === "show" && modalType === "addNewStudentByTeacher" && <Modal show >{<AddStudentModal />}</Modal>}
       {modalState === "show" && modalType === "sendNotificationToParent" && <Modal show >{<SendNotificationToParentModal />}</Modal>}
 
     </div>

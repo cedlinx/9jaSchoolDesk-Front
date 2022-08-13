@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import { titleCase } from "@/helpers/textTransform";
-// import { enableTask, disableTask } from "@/redux/Task/TaskSlice";
+import { enableAndDisableTask, getAllTasks } from "@/redux/Teacher/TeacherSlice";
 
 
 const ChangeTaskStatus = () => {
@@ -16,13 +16,28 @@ const ChangeTaskStatus = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   const loading = useSelector((state) => state.teacher.loading);
+  console.log(modalData);
   let action = modalData.action;
+
+  console.log(modalData);
 
   const sendRequest = async () => {
     if (action === "enable") {
-      // dispatch(enableTask(modalData.id));
+      let response = await dispatch(enableAndDisableTask({status: 1, ids: [modalData.data.id]}));
+      console.log(response);
+      if(response.payload.success){
+        dispatch(showModal({ action: "hide", type: "changeTaskStatus" }));
+        dispatch(getAllTasks());
+      }
     } else {
-      // dispatch(disableTask(modalData.id));
+      let response = await dispatch(enableAndDisableTask({status: 0, ids: [modalData.data.id]}));
+      console.log(response);
+
+      if(response.payload.success){
+        dispatch(showModal({ action: "hide", type: "changeTaskStatus" }));
+        dispatch(getAllTasks());
+
+      }
     }
   };
 
@@ -47,7 +62,7 @@ const ChangeTaskStatus = () => {
 
         <div className={cx(styles.btnGroup, "flexRow")}>
           <Button onClick={() => dispatch(showModal({ action: "hide", type: "" }))} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
-          <Button loading={loading} disabled={loading} onClick={sendRequest} type title={titleCase(action)} borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+          <Button loading={loading} disabled={loading} onClick={()=>sendRequest()} type title={titleCase(action)} borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
         </div>
 
       </div>

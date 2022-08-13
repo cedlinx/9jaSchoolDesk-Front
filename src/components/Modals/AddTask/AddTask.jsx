@@ -17,11 +17,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { addTask, getAllTasks } from "@/redux/Teacher/TeacherSlice";
 import SelectAutoComplete from "@/components/SelectAutoComplete";
 
+import useGetClassDetails from "@/utils/useGetClassDetails";
+
 
 const AddTask = () => {
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.teacher.loading);
+  const schoolSubjects = useGetClassDetails().subjects;
+  const classStudents = useGetClassDetails().students;
+
 
   const sendRequest = async (data) => {
     console.log(data);
@@ -30,15 +35,17 @@ const AddTask = () => {
       selected_audience_ids.push(item.value);
     });
 
+    console.log(selected_audience_ids);
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("subject_id", data.subject_id);
     formData.append("type", data.type);
-    formData.append("format", data.format);
+    // formData.append("format", data.format);
     formData.append("status", data.status);
-    // formData.append("audience", data.audience === "0" ? 0 : selected_audience_ids);
-    formData.append("audience", data.audience);
+    // formData.append("audience", data.audience === "0" ? [0] : selected_audience_ids);
+    // formData.append("audience", data.audience);
     formData.append("due_date", data.due_date);
     formData.append("attachment", imgData.file);
 
@@ -64,9 +71,6 @@ const AddTask = () => {
   };
 
   const { handleSubmit, register, formState: { errors }, setValue, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
-
-  console.log(errors);
-  console.log(control);
 
   const [imgData, setImgData] = useState({
     file: "",
@@ -99,6 +103,28 @@ const AddTask = () => {
 
   };
 
+  const getSubjectsOptions = () => {
+    let options = [];
+    Array.isArray(schoolSubjects) && schoolSubjects.map((subject) => {
+      options.push({
+        value: subject.id,
+        label: subject.subject
+      });
+    });
+    return options;
+  };
+
+  const getStudentsOptions = () => {
+    let options = [];
+    Array.isArray(classStudents) && classStudents.map((student) => {
+      options.push({
+        value: student.id,
+        label: `${student.firstName} ${student.lastName}`
+      });
+    });
+    return options;
+  };
+
   return (
 
     <section className={cx(styles.addTaskContainer, "flexCol")}>
@@ -126,7 +152,7 @@ const AddTask = () => {
                     {...field}
                     label="Subject"
                     defaultSelect="Select Subject"
-                    options={[{ value: "1", label: "Mathematics" }, { value: "2", label: "English Language" }]}
+                    options={getSubjectsOptions()}
                     marginbottom="1.5rem"
                     error={errors?.subject_id && errors?.subject_id?.message}
                   />
@@ -180,14 +206,14 @@ const AddTask = () => {
             </div>
             <div className={cx(styles.rightSection, "col-sm-12", "col-md-12", "col-lg-6")}>
 
-              <Controller
+              {/* <Controller
                 name="audience"
                 control={control}
                 render={({ field }) => (
                   <SelectField
                     {...field}
-                    label={"Audience"}
-                    defaultSelect="Select Audience"
+                    label={"Assign To"}
+                    defaultSelect="Select "
                     options={[{ value: "0", label: "Assign to entire class" }, { value: "1", label: "Assign to selected student(s)" }]}
                     onChange={(e) => setAudienceType(e)}
                     marginbottom="1.5rem"
@@ -207,12 +233,12 @@ const AddTask = () => {
                       isMulti={true}
                       isClearable={true}
                       placeholder=""
-                      options={[{ value: "1", label: "johndoe22@gmail.com" }, { value: "0", label: "johndoe22@gmail.com" }, { value: "2", label: "tamsay@gmail.com" }, { value: "3", label: "johndoe22@gmail.com" }]}
+                      options={getStudentsOptions()}
                       marginbottom="1.5rem"
                       error={errors?.selected_audience && errors?.selected_audience?.message}
                     />
                   )}
-                />}
+                />} */}
 
               <Controller
                 name="status"
@@ -228,7 +254,7 @@ const AddTask = () => {
                   />
                 )}
               />
-              <div>
+              {/* <div>
                 <label style={{ fontSize: "1rem" }} htmlFor="docType">Response Type</label>
                 <div className={cx(styles.radioButtonGroup, "flexRow")}>
                   <span><input name='docType' type="radio" value="image" {...register("format")} /> Image
@@ -236,7 +262,7 @@ const AddTask = () => {
                   <span> <input name='docType' type="radio" value="document" {...register("format")} /> Document</span>
                 </div>
                 {errors?.format && <span style={{ color: "red", fontSize: "0.875rem" }}>{errors?.format?.message}</span>}
-              </div>
+              </div> */}
 
 
               <div className={cx(styles.imageSection, "flexRow")}>

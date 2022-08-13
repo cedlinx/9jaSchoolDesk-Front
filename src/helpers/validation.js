@@ -573,10 +573,36 @@ export const addNewTaskValidationSchema = Yup.object().shape({
 
   subject_id: Yup.string().required("Kindly select a subject"),
 
-  format: Yup.string().required("Kindly select a format").nullable(),
+  // format: Yup.string().required("Kindly select a format").nullable(),
 
   status: Yup.string().required("Kindly select a status"),
 
+  // audience: Yup.string()
+  //   .required("Kindly select assignment mode"),
+
+  // selected_audience: Yup.array()
+  //   .when("audience", {
+  //     is: (value) => {
+  //       console.log(value);
+  //       return value && value === 1;
+  //     },
+  //     then: (rule) => {
+  //       rule.min(1, "Kindly select at least one (1) student").required("Kindly select at least one student");
+  //     }
+  //   })
+    
+  // // .nullable()
+  // // .required("Kindly select at least one (1) student")
+  // ,
+
+  due_date: Yup.string().required("Kindly select a due date")
+
+  // attachment: Yup.string()
+
+});
+
+export const assignTaskValidationSchema = Yup.object().shape({
+ 
   audience: Yup.string()
     .required("Kindly select assignment mode"),
 
@@ -593,12 +619,6 @@ export const addNewTaskValidationSchema = Yup.object().shape({
     
   // .nullable()
   // .required("Kindly select at least one (1) student")
-  ,
-
-  due_date: Yup.string().required("Kindly select a date")
-
-  // attachment: Yup.string()
-
 });
 
 export const modifyTaskValidationSchema = Yup.object().shape({
@@ -610,27 +630,27 @@ export const modifyTaskValidationSchema = Yup.object().shape({
 
   subject_id: Yup.string().required("Kindly select a subject"),
 
-  format: Yup.string().required("Kindly select a format").nullable(),
+  // format: Yup.string().required("Kindly select a format").nullable(),
 
   status: Yup.string().required("Kindly select a status"),
 
-  audience: Yup.string()
-    .required("Kindly select assignment mode"),
+  // audience: Yup.string()
+  //   .required("Kindly select assignment mode"),
 
-  selected_audience: Yup.array()
-    .when("audience", {
-      is: (value) => {
-        console.log(value);
-        return value && value === 1;
-      },
-      then: (rule) => {
-        rule.min(1, "Kindly select at least one (1) student").required("Kindly select at least one student");
-      }
-    })
+  // selected_audience: Yup.array()
+  //   .when("audience", {
+  //     is: (value) => {
+  //       console.log(value);
+  //       return value && value === 1;
+  //     },
+  //     then: (rule) => {
+  //       rule.min(1, "Kindly select at least one (1) student").required("Kindly select at least one student");
+  //     }
+  //   })
     
-  // .nullable()
-  // .required("Kindly select at least one (1) student")
-  ,
+  // // .nullable()
+  // // .required("Kindly select at least one (1) student")
+  // ,
 
   due_date: Yup.string().required("Kindly select a date")
 

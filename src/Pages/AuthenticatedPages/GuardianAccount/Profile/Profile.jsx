@@ -90,9 +90,9 @@ const Profile = () => {
             <Tab>
               <p>Password</p>
             </Tab>
-            <Tab>
+            {/* <Tab>
               <p>Subscription</p>
-            </Tab>
+            </Tab> */}
            
           </TabList>
 
@@ -356,7 +356,7 @@ const Profile = () => {
             </TabPanel>
             <TabPanel>
               <div className={cx(styles.panelContent, "flexCol")}>
-                <PricingModule />
+                {/* <PricingModule /> */}
               </div>
             </TabPanel>
           </div>

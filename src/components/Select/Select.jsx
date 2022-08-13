@@ -12,12 +12,13 @@ const Select = ({
   label,
   error,
   required,
-  marginbottom
+  marginbottom,
+  disabled
 }) => (
   <div style={{marginBottom: marginbottom || "1rem"}} className="select-container">
     <div className="select-wrapper" >
       <label className="select-label">{label}</label>
-      <select required={required} name={name} onChange={onChange} value={value}>
+      <select disabled={disabled} required={required} name={name} onChange={onChange} value={value}>
         <option value="">{defaultSelect}</option>
         {options.map((option, index) => (
           <option value={option.value} key={index}>

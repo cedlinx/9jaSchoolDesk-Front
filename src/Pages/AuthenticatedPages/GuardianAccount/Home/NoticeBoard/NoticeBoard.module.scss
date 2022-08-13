@@ -1,0 +1,50 @@
+.noticeBoardContainer{
+    .header{
+        align-items: flex-end;
+        line-height: 1;
+        margin-bottom: 0.75rem;
+
+        h5, small{
+            padding: 0rem;
+            margin: 0rem;
+        }
+        small{
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: clamp(0.625rem, 0.75rem, 0.875rem);
+
+        }
+    }
+    .tableDiv{
+        background-color: #fff;
+        padding: 0rem;
+        border-radius: 0.5rem;
+        height: 20rem;
+        justify-content: space-between;
+        overflow-y: auto;
+    }
+}
+
+@media all and (min-width: 768px){
+    .noticeBoardContainer{
+        .tableDiv{
+            height: 20rem;
+        }
+    }
+}
+
+@media all and (min-width: 991px){
+    .noticeBoardContainer{
+        .tableDiv{
+            height: 25rem;
+        }
+    }
+}
+
+@media all and (min-width: 1200px){
+    .noticeBoardContainer{
+        .tableDiv{
+            height: 30rem;
+        }
+    }
+}

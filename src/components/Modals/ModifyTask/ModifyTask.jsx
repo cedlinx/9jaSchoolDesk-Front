@@ -17,6 +17,7 @@ import { modifyTaskValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { modifyTask, getAllTasks } from "@/redux/Teacher/TeacherSlice";
 import SelectAutoComplete from "@/components/SelectAutoComplete";
+import useGetClassDetails from "@/utils/useGetClassDetails";
 
 
 const ModifyTask = () => {
@@ -24,6 +25,10 @@ const ModifyTask = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.teacher.loading);
   const modalData = useSelector((state) => state.modalState.modalData);
+  const schoolSubjects = useGetClassDetails().subjects;
+  const classStudents = useGetClassDetails().students;
+
+  console.log(modalData);
 
   const sendRequest = async (data) => {
     console.log(data);
@@ -35,12 +40,12 @@ const ModifyTask = () => {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
-    formData.append("subject_id", data.subject_id);
+    formData.append("id", modalData.id);
     formData.append("type", data.type);
-    formData.append("format", data.format);
+    // formData.append("format", data.format);
     formData.append("status", data.status);
     // formData.append("audience", data.audience === "0" ? 0 : selected_audience_ids);
-    formData.append("audience", data.audience);
+    // formData.append("audience", data.audience);
     formData.append("due_date", data.due_date);
     formData.append("attachment", imgData.file);
 
@@ -69,14 +74,14 @@ const ModifyTask = () => {
 
   useEffect(() => {
     reset({
-      name: modalData.name,
-      type: modalData.type,
-      subject_id: modalData.subject_id,
-      format: modalData.format,
-      status: modalData.status,
-      audience: modalData.audience,
-      due_date: modalData.due_date,
-      attachment: modalData.attachment
+      name: modalData?.name,
+      type: modalData?.type,
+      subject_id: modalData?.subject_id,
+      format: modalData?.format,
+      status: modalData?.status,
+      audience: modalData?.audience,
+      due_date: modalData?.due_date,
+      attachment: modalData?.attachment
     });
 
   }, [modalData, reset]);
@@ -112,6 +117,28 @@ const ModifyTask = () => {
 
   };
 
+  const getSubjectsOptions = () => {
+    let options = [];
+    Array.isArray(schoolSubjects) && schoolSubjects.map((subject) => {
+      options.push({
+        value: subject.id,
+        label: subject.subject
+      });
+    });
+    return options;
+  };
+
+  const getStudentsOptions = () => {
+    let options = [];
+    Array.isArray(classStudents) && classStudents.map((student) => {
+      options.push({
+        value: student.id,
+        label: `${student.firstName} ${student.lastName}`
+      });
+    });
+    return options;
+  };
+
   return (
 
     <section className={cx(styles.modifyTaskContainer, "flexCol")}>
@@ -139,7 +166,8 @@ const ModifyTask = () => {
                     {...field}
                     label="Subject"
                     defaultSelect="Select Subject"
-                    options={[{ value: "1", label: "Mathematics" }, { value: "2", label: "English Language" }]}
+                    options={getSubjectsOptions()}
+                    disabled
                     marginbottom="1.5rem"
                     error={errors?.subject_id && errors?.subject_id?.message}
                   />
@@ -193,7 +221,7 @@ const ModifyTask = () => {
             </div>
             <div className={cx(styles.rightSection, "col-sm-12", "col-md-12", "col-lg-6")}>
 
-              <Controller
+              {/* <Controller
                 name="audience"
                 control={control}
                 render={({ field }) => (
@@ -225,7 +253,7 @@ const ModifyTask = () => {
                       error={errors?.selected_audience && errors?.selected_audience?.message}
                     />
                   )}
-                />}
+                />} */}
 
               <Controller
                 name="status"
@@ -241,7 +269,7 @@ const ModifyTask = () => {
                   />
                 )}
               />
-              <div>
+              {/* <div>
                 <label style={{ fontSize: "1rem" }} htmlFor="docType">Response Type</label>
                 <div className={cx(styles.radioButtonGroup, "flexRow")}>
                   <span><input name='docType' type="radio" value="image" {...register("format")} /> Image
@@ -249,7 +277,7 @@ const ModifyTask = () => {
                   <span> <input name='docType' type="radio" value="document" {...register("format")} /> Document</span>
                 </div>
                 {errors?.format && <span style={{ color: "red", fontSize: "0.875rem" }}>{errors?.format?.message}</span>}
-              </div>
+              </div> */}
 
 
               <div className={cx(styles.imageSection, "flexRow")}>

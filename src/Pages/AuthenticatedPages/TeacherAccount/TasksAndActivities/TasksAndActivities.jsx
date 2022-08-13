@@ -12,7 +12,8 @@ import ChangeTaskStatusModal from "@/components/Modals/ChangeTaskStatus/ChangeTa
 import Tabs from "@/components/Tabs/TabsV2";
 import AllTasks from "./AllTasks/AllTasks";
 import Submissions from "./Submissions/Submissions";
-import ViewSubmissionModal from "@/components/Modals/ViewSubmission/ViewSubmission";
+import AssignTaskModal from "@/components/Modals/AssignTask/AssignTask";
+import ViewSubmissionsModal from "@/components/Modals/ViewSubmission/ViewSubmission";
 
 
 const TasksAndActivities = () => {
@@ -24,8 +25,8 @@ const TasksAndActivities = () => {
   const RenderSubmissions = () => <Submissions />;
 
   const tabsComponents = [
-    { name: "Tasks", component: RenderAllTasks },
-    { name: "Submissions", component: RenderSubmissions }
+    { name: "Tasks", component: RenderAllTasks }
+    // { name: "Submissions", component: RenderSubmissions }
   ];
 
 
@@ -37,16 +38,17 @@ const TasksAndActivities = () => {
       </div>
 
       <div className={cx(styles.body, "flexCol")}>
-        <Tabs centralise tabs={tabsComponents} />
+        {/* <Tabs centralise tabs={tabsComponents} /> */}
+        <AllTasks />
       </div>
 
       {modalType === "addTask" && <Modal size="lg" show > <AddTaskModal /></Modal>}
       {modalType === "modifyTask" && <Modal size="lg" show > <ModifyTaskModal /></Modal>}
       {modalType === "deleteTask" && <Modal size="md" show > <DeleteTaskModal /></Modal>}
       {modalType === "changeTaskStatus" && <Modal size="md" show > <ChangeTaskStatusModal /></Modal>}
-      {modalType === "viewSubmission" && <Modal size="lg" show > <ViewSubmissionModal /></Modal>}
+      {modalType === "assignTask" && <Modal size="md" show > <AssignTaskModal /></Modal>}
+      {modalType === "viewSubmissions" && <Modal size="lg" show > <ViewSubmissionsModal /></Modal>}
 
-      {/* {modalState === "show" ? <Modal size="lg" show >{modalType === "addTask" ? <AddTaskModal /> : modalType === "modifyTask" ? <ModifyTaskModal /> : modalType === "deleteTask" ? <DeleteTaskModal /> : modalType === "changeTaskStatus" ? <ChangeTaskStatusModal /> : modalType === "viewSubmission" ? <ViewSubmissionModal /> : null}</Modal> : null} */}
     </div>
   );
 };

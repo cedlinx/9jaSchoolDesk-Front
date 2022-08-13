@@ -26,13 +26,14 @@ const ViewStudentProfile = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   console.log(modalData);
-  let KPIData = useSelector((state) => state.teacher.getStudentScoreKPI);
+  let KPIData = useSelector((state) => state.teacher.getStudentScoreKPIData);
 
   console.log(KPIData);
+  console.log(modalData);
   
   useEffect(() => {
-    dispatch(getStudentScoreKPI(modalData.student_id));
-  }, [dispatch, modalData.student_id]);
+    dispatch(getStudentScoreKPI({student_id: modalData.id}));
+  }, [dispatch, modalData.id]);
 
   const sendRequest = (data) => {
     dispatch(forgotPassword(data));
@@ -45,7 +46,7 @@ const ViewStudentProfile = () => {
     if(currentValue >=0 && currentValue <5){
       valueSpan.innerText = currentValue + 1;
       // dispatch(incrementScoreKPI(modalData.student_id, modalData.class_id));
-      debounce(alert("increase hello"), 4000);
+      // debounce(alert("increase hello"), 4000);
 
     }
     else{
@@ -61,7 +62,7 @@ const ViewStudentProfile = () => {
     if(currentValue >=1 && currentValue <= 5){
       valueSpan.innerText = currentValue - 1;
       // dispatch(decrementScoreKPI(modalData.student_id, modalData.class_id));
-      debounce(alert("decrease hello"), 4000);
+      // debounce(alert("decrease hello"), 4000);
     }
     else{
       toast.warn("Minimum value reached");
@@ -109,7 +110,6 @@ const ViewStudentProfile = () => {
 
           <div className={cx(styles.topSection, "flexCol")}>
             <p>{modalData?.name}</p>
-            <small>{modalData?.email || "janedoe@gmail.coom"}</small>
           </div>
 
           <div className={cx(styles.bottomSection, "flexCol")}>

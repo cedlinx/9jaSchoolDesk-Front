@@ -8,21 +8,29 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 
 import { deleteKPI, getAllKPIs } from "@/redux/Proprietor/ProprietorSlice";
+import { deleteKPI as deleteTeacherKPI, viewKPIForClass } from "@/redux/Teacher/TeacherSlice";
+import useGetUser from "@/utils/useGetUser";
+import useGetClassID from "@/utils/useGetClassID";
+
 
 const DeleteIndicator = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state?.modalState?.modalData);
   const loading = useSelector((state) => state?.proprietor?.loading);
   console.log(modalData);
+  const user = useGetUser();
+  const classID = useGetClassID();
+
+  console.log(user);
 
   const sendRequest = async () => {
     // let formData = new FormData();
     // formData.append("id", `${modalData}`);
     // let response = await dispatch(deleteKPI(formData));
-    let response = await dispatch(deleteKPI({id: modalData}));
+    let response = user === "proprietor" ? await dispatch(deleteKPI({id: modalData})) : await dispatch(deleteTeacherKPI({id: modalData}));
     console.log(response);
     if (response.payload.success) {
-      dispatch(getAllKPIs());
+      user === "proprietor" ? dispatch(getAllKPIs()) : dispatch(viewKPIForClass(classID));
       dispatch(showModal({ action: "hide", type: "deleteIndicator" }));
     }
   };

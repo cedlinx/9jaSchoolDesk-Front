@@ -1,4 +1,4 @@
-import { getDashboardApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, scoreStudentKPIApi, incrementScoreKPIApi, decrementScoreKPIApi, getStudentScoreKPIApi, sendNotificationApi, addTaskApi, modifyTaskApi, viewTaskDetailsApi, getAllTasksApi, deleteTaskApi, assignTaskApi, assessTaskApi, submitTaskApi, saveAttendanceApi, takeAttendanceApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, updateProfileApi, getTeacherDetailsApi, switchClassApi, getClassDetailsApi } from "../api/teacher";
+import { getDashboardApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, scoreStudentKPIApi, incrementScoreKPIApi, decrementScoreKPIApi, getStudentScoreKPIApi, sendNotificationApi, addTaskApi, modifyTaskApi, viewTaskDetailsApi, getAllTasksApi, deleteTaskApi, assignTaskApi, assessTaskApi, submitTaskApi, saveAttendanceApi, takeAttendanceApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, updateProfileApi, getTeacherDetailsApi, switchClassApi, getClassDetailsApi, getAllGuardiansApi, enableAndDisableTaskApi, getStudentsAssignedToTaskApi } from "../api/teacher";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -38,7 +38,10 @@ const initialState = {
   updateProfileData: {},
   getTeacherDetails: {},
   switchClassData: {},
-  getClassDetailsData: {}
+  getClassDetailsData: {},
+  getAllGuardiansData: {},
+  enableAndDisableTaskData: {},
+  getStudentsAssignedToTaskData: {}
 };
 
 export const teacherSlice = createSlice({
@@ -210,6 +213,21 @@ export const teacherSlice = createSlice({
     getClassDetailsAction: (state, action) => {
       state.getClassDetailsData = action.payload;
       state.loading = false;
+    },
+
+    getAllGuardiansAction: (state, action) => {
+      state.getAllGuardiansData = action.payload;
+      state.loading = false;
+    },
+
+    enableAndDisableTaskAction: (state, action) => {
+      state.enableAndDisableTaskData = action.payload;
+      state.loading = false;
+    },
+
+    getStudentsAssignedToTaskAction: (state, action) => {
+      state.getStudentsAssignedToTaskData = action.payload;
+      state.loading = false;
     }
   }
 });
@@ -225,7 +243,7 @@ const { startLoading, hasError, getDashboardAction,
   deleteTaskAction, assignTaskAction, assessTaskAction, submitTaskAction,
   saveAttendanceAction, takeAttendanceAction, addStudentAction,
   getAllStudentsAction, viewStudentRecordAction, modifyStudentAction,
-  deleteStudentAction, updateProfileAction, getTeacherDetailsAction, switchClassAction, getClassDetailsAction } = teacherSlice.actions;
+  deleteStudentAction, updateProfileAction, getTeacherDetailsAction, switchClassAction, getClassDetailsAction, getAllGuardiansAction, enableAndDisableTaskAction, getStudentsAssignedToTaskAction } = teacherSlice.actions;
 
 
 export const getDashboard = (data) => async (dispatch) => {
@@ -291,7 +309,7 @@ export const deleteStudent = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await deleteStudentApi(data);
     toast.success(response.data.message);
-    return dispatch(deleteStudentAction(response));
+    return dispatch(deleteStudentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -352,7 +370,7 @@ export const viewKPIDetails = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await viewKPIDetailsApi(data);
     toast.success(response.data.message);
-    return dispatch(viewKPIDetailsAction(response));
+    return dispatch(viewKPIDetailsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -364,7 +382,7 @@ export const viewKPIForClass = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await viewKPIForClassApi(data);
     toast.success(response.data.message);
-    return dispatch(viewKPIForClassAction(response));
+    return dispatch(viewKPIForClassAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -376,7 +394,7 @@ export const scoreStudentKPI = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await scoreStudentKPIApi(data);
     toast.success(response.data.message);
-    return dispatch(scoreStudentKPIAction(response));
+    return dispatch(scoreStudentKPIAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -388,7 +406,7 @@ export const incrementScoreKPI = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await incrementScoreKPIApi(data);
     toast.success(response.data.message);
-    return dispatch(incrementScoreKPIAction(response));
+    return dispatch(incrementScoreKPIAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -400,7 +418,7 @@ export const decrementScoreKPI = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await decrementScoreKPIApi(data);
     toast.success(response.data.message);
-    return dispatch(decrementScoreKPIAction(response));
+    return dispatch(decrementScoreKPIAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -412,7 +430,7 @@ export const getStudentScoreKPI = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await getStudentScoreKPIApi(data);
     toast.success(response.data.message);
-    return dispatch(getStudentScoreKPIAction(response));
+    return dispatch(getStudentScoreKPIAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -580,8 +598,32 @@ export const switchClass = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await switchClassApi(data);
+    console.log(response?.data);
     toast.success(response.data.message);
     return dispatch(switchClassAction(response?.data));
+  } catch (e) {
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
+  }
+};
+
+export const getAllGuardians = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getAllGuardiansApi(data);
+    return dispatch(getAllGuardiansAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const enableAndDisableTask = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await enableAndDisableTaskApi(data);
+    toast.success(response.data.message);
+    return dispatch(enableAndDisableTaskAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -594,6 +636,18 @@ export const getClassDetails = (data) => async (dispatch) => {
     const response = await getClassDetailsApi(data);
     toast.success(response.data.message);
     return dispatch(getClassDetailsAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getStudentsAssignedToTask = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getStudentsAssignedToTaskApi(data);
+    toast.success(response.data.message);
+    return dispatch(getStudentsAssignedToTaskAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));

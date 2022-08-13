@@ -69,7 +69,7 @@ const AllTasks = () => {
         let assignedTo = row.cell.row.values.assignedTo;
         console.log(assignedTo);
         return <div>
-          <span style={{ color: "#4F4F4F", fontSize: "1rem" }}>{assignedTo === 0 ? "All Students" : "Selected Students"}</span>
+          <span style={{ color: "#4F4F4F", fontSize: "1rem" }}>{assignedTo === null ? "" : assignedTo === 0 ? "All Students" : "Selected Students"}</span>
         </div>;
       }
     },
@@ -111,6 +111,7 @@ const AllTasks = () => {
         };
 
         let data = row.cell.row.original.allData;
+        console.log(data);
 
         return <div style={{ display: "flex", justifyContent: "space-between" }}>
           {data.status !== 1 ? <Button onClick={() => dispatch(showModal({ action: "show", type: "changeTaskStatus", modalData: { data, action: "enable" } }))} title="Enable" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" bordercolor="#D25B5D" />
@@ -121,6 +122,8 @@ const AllTasks = () => {
               <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "viewSubmissions", modalData: data }))}><Icon icon="carbon:view" color="#828282" />View Submissions</DropdownItem>
+              <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "assignTask", modalData: data }))}><Icon icon="clarity:assign-user-line" color="#828282" />Assign Task</DropdownItem>
               <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "modifyTask", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Edit Task</DropdownItem>
               <DropdownItem style={{ color: "#fb4e4e" }} onClick={() => dispatch(showModal({ action: "show", type: "deleteTask", modalData: data }))}> <Icon icon="fluent:delete-20-regular" color="#fb4e4e" /> Delete Task</DropdownItem>
             </DropdownMenu>

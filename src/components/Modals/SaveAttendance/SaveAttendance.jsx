@@ -6,22 +6,25 @@ import Button from "@/components/Button/Button";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 
-import { saveAttendance, getAllStudents } from "@/redux/Teacher/TeacherSlice";
-import useGetClassDetails from "@/utils/useGetClassDetails";
+import { saveAttendance } from "@/redux/Teacher/TeacherSlice";
+import useGetClassID from "@/utils/useGetClassID";
 
 
 const SaveAttendance = ({resetTakeAttendance}) => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state?.modalState?.modalData);
   const loading = useSelector((state) => state?.proprietor?.loading);
-  const classDetails = useGetClassDetails();
-  let class_id = classDetails?.id;
+  let class_id = useGetClassID();
 
   console.log(modalData);
 
   const sendRequest = async () => {
-    const studentIds = modalData.map((student) => student.id);
-
+    const studentIds = [];
+    modalData.map((student) => {
+      console.log(student.status);
+      student.status === 1 ? studentIds.push(student.id) : null;
+    });
+    console.log(studentIds);
     let response = await dispatch(saveAttendance({class_id: class_id, students: studentIds}));
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "saveAttendance" }));

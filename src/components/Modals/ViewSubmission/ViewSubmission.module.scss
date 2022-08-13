@@ -35,7 +35,7 @@
 
                 .leftSection{
                     label{
-                        font-size: 0.875rem;
+                        font-size: 1rem;
                         color: #A0A4A8;
                     }
                     p{
@@ -48,6 +48,20 @@
 
                         img{
                             margin-right: 0.5rem;
+                        }
+                    }
+
+                    .titleDiv{
+                        p{
+                            font-size: 1.25rem;
+                        }
+                    }
+
+                    .downloadDiv{
+                        align-items: center;
+                        p{
+                            cursor: pointer;
+                            text-decoration: underline;
                         }
                     }
                 }

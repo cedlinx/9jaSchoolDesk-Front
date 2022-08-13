@@ -33,16 +33,21 @@ const Login = () => {
   const rootPath = location.pathname.split("/")[1];
   const actualPath = location.pathname.split("/").pop();
   const isOTPVerified = localStorage.getItem("userData")?.hasverifiedotp;
+  const loading = useSelector((state) => state?.auth?.loading);
 
   const checkIsAuthenticated = isAuthenticated();
 
   useEffect(() => {
+    if(user === "undefined"){
+      navigate("/");
+      return;
+    }
     checkIsAuthenticated && isOTPVerified && navigate(`/${user}/dashboard`);
   }, [checkIsAuthenticated, isOTPVerified, navigate, user]);
 
   const signIn = async (data) => {
-    // navigate(`/${actualPath}/dashboard`);
     console.log(data);
+    console.log(user);
     try {
       let response = await dispatch(login({payload:  {email: data.email, password: data.password}, user: user}));
       console.log(response?.payload);
@@ -123,8 +128,8 @@ const Login = () => {
                       <Link to={`/${user}/forgot-password`}>Forgot Password</Link>
                     </div>
 
-                    <div onClick={handleSubmit((data) => signIn(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
-                      <Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+                    <div  className={cx(styles.submitBtnDiv, "flexRow")}>
+                      <Button onClick={handleSubmit((data) => signIn(data))} loading={loading} disabled={loading} title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
                     </div>
                     {/* <p className={cx(styles.formText)}>
                       <Link to="/login-with-class-code">Login With Class Code</Link>
