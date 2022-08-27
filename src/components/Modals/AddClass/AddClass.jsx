@@ -53,7 +53,7 @@ const AddClass = () => {
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
@@ -62,7 +62,7 @@ const AddClass = () => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({ file: file, imagePreviewUrl: reader.result });
+      setUploadedFile({ file: file, imagePreviewUrl: reader.result });
     };
     reader.readAsDataURL(file);
   }, []);
@@ -111,7 +111,7 @@ const AddClass = () => {
           <Controller
             name="name"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"CLASS NAME"}
@@ -124,7 +124,7 @@ const AddClass = () => {
           <Controller
             name="description"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"DESCRIPTION"}
@@ -137,7 +137,7 @@ const AddClass = () => {
           <Controller
             name="teacher_id"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"CLASS TEACHER"}
@@ -152,7 +152,7 @@ const AddClass = () => {
           <Controller
             name="subjects"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <SelectAutoComplete
                 {...field}
                 // label={"Select Student"}

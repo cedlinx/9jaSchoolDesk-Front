@@ -1,4 +1,4 @@
-import { loginWithOTPCodeApi, loginWithClassCodeApi, loginApi,  forgotPasswordApi, resetPasswordApi, getOTPApi, verifyOTPApi, verifyEmailApi,  getQRCodeApi, changePasswordApi, signUpApi  } from "../api/auth";
+import { loginWithOTPCodeApi, loginWithClassCodeApi, loginApi,  forgotPasswordApi, resetPasswordApi, getOTPApi, verifyOTPApi, verifyEmailApi,  getQRCodeApi, changePasswordApi, signUpApi, validatePinApi  } from "../api/auth";
 import { toast } from "react-toastify";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -20,7 +20,9 @@ const initialState = {
   verifyEmailData: {},
   getQRCodeData: {},
   changePasswordData: {},
-  signUpData: {}
+  signUpData: {},
+  logoutData: {},
+  validatePinData: {}
 };
 
 export const authSlice = createSlice({
@@ -34,6 +36,8 @@ export const authSlice = createSlice({
       state.loading = true;
     },
     hasError: (state, action) => {
+      console.log(state);
+      console.log(action);
       state.error = action.payload;
       state.loading = false;
     },
@@ -96,13 +100,18 @@ export const authSlice = createSlice({
     logoutAction: (state, action) => {
       state.logoutData = action.payload;
       state.loading = false;
+    },
+
+    validatePinAction: (state, action) => {
+      state.validatePinData = action.payload;
+      state.loading = false;
     }
   }
 });
 export default authSlice.reducer;
 
 // Actions
-const { startLoading, hasError, loginWithOTPCodeAction, loginWithClassCodeAction, loginAction, forgotPasswordAction, resetPasswordAction, getOTPAction, verifyOTPAction, verifyEmailAction, getQRCodeAction, changePasswordAction, signUpAction} = authSlice.actions;
+const { startLoading, hasError, loginWithOTPCodeAction, loginWithClassCodeAction, loginAction, forgotPasswordAction, resetPasswordAction, getOTPAction, verifyOTPAction, verifyEmailAction, getQRCodeAction, changePasswordAction, signUpAction, logoutAction, validatePinAction} = authSlice.actions;
 
 export const loginWithOTPCode = (data) => async (dispatch) => {
   try {
@@ -124,7 +133,8 @@ export const loginWithClassCode = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await loginWithClassCodeApi(data);
-    console.log(response, "login with class code");
+    // let token = response?.data?.token;
+    // setToken(token);
     return dispatch(loginWithClassCodeAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
@@ -141,8 +151,9 @@ export const login = (data) => async (dispatch) => {
 
     return dispatch(loginAction(response?.data));
   } catch (e) {
+    console.log(e.message, "kkk");
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e?.response?.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -254,10 +265,21 @@ export const logout = () => (dispatch) => {
   try {
     setAuthToken(false);
     window.localStorage.clear();
-    window.location.href = ("/");
+    return dispatch(logoutAction({success: true}));
+
   } catch (e) {
     return dispatch(hasError(e.message));
   }
 };
 
-  
+export const validatePin = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await validatePinApi(data);
+    toast.success(response.data.message);
+    return dispatch(validatePinAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
+    return dispatch(hasError(e.response.data));
+  }
+};  

@@ -4,14 +4,18 @@ import styles from "./NoticeBoard.module.scss";
 import {useNavigate} from "react-router-dom";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
-import shortenDate from "@/helpers/shortenDate";
+import formatDate from "@/helpers/formatDate";
 import { titleCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/sampleData";
+import {noticeboardData} from "@/helpers/sampleData";
 import { Icon } from "@iconify/react";
 import expandIcon from "@/assets/icons/expand-icon.svg";
 
-const NoticeBoard = () => {
+
+const NoticeBoard = ({selectedWard}) => {
   const navigate = useNavigate();
+  const notices = selectedWard?.notices;
+  console.log(notices);
+
 
   let getTableData = (data) => {
     let result =[];
@@ -20,10 +24,8 @@ const NoticeBoard = () => {
       result.push({
         serialNumber: index + 1,
         status: item?.status && item?.status,
-        imageUrl: item?.imageUrl && item?.imageUrl,
-        teacherDetails: item?.teacherDetails && item?.teacherDetails,
-        date: item?.date && shortenDate(item?.date),
-        description: item?.description && titleCase(item?.description),
+        title: item?.title && item?.title,
+        date: item?.date && formatDate(item?.date),
         allData: item
       });
     });
@@ -32,23 +34,34 @@ const NoticeBoard = () => {
 
   const columnsHeaderAssessment = [                
     {
-  
+      Header: () => (
+        <div
+          style={{
+            width: "0.5rem"
+          }}
+        />
+      ),
       accessor: "status",
       Cell: (row) => {
         let status = row.cell.row.values.status;
-        return <span>{status.toLowerCase() === "read" ? <Icon icon="akar-icons:circle-fill" color="#2ac769" width="12" height="12" /> : <Icon icon="akar-icons:circle-fill" color="#bdbdbd" width="12" height="12" />}</span>;
+        return <span style={{width: "0.5rem"}}>{status && status.toLowerCase() === "read" ? <Icon icon="akar-icons:circle-fill" color="#2ac769" width="12" height="12" /> : <Icon icon="akar-icons:circle-fill" color="#bdbdbd" width="12" height="12" />}</span>;
       }
     },
     {
       Header: () => (
-        <div />
+        <div
+          style={{
+            minWidth: "15rem"
+          }}
+        />
       ),
-      accessor: "teacherDetails",
+      accessor: "title",
       Cell: (row) => {
-        let details = row.cell.row.values.teacherDetails;
-        return <div>
-          <p style={{fontWeight: "500", color: "#4f4f4f"}}>{titleCase(details.name)}</p>
-          <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{titleCase(details.subject)}</p>
+        let title = row.cell.row.values.title;
+        let allData = row.cell.row.original.allData;
+        return <div  style={{width: "15rem"}}>
+          <p style={{fontWeight: "500", color: "#4f4f4f", fontSize: "1.125rem"}}>{title}</p>
+          <p style={{fontWeight: "500", color: "#828282", fontSize: "0.875rem"}}>{allData?.date}</p>
           
         </div>;
       }
@@ -61,7 +74,7 @@ const NoticeBoard = () => {
         <h5>Notice Board</h5>             
       </div>
       <div className={cx(styles.tableDiv)}>
-        {<TableComponent columnsHeader={columnsHeaderAssessment} tableData= {getTableData(assessmentData)} />}
+        {<TableComponent defaultPageSize="5" showTableHeader={false} showPaginationSummary={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(noticeboardData)} />}
       </div>
     </div>
   );

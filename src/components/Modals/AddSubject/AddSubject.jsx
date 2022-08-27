@@ -79,7 +79,7 @@ const AddSubject = () => {
           <Controller
             name="subjects"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <SelectAutoComplete
                 {...field}
                 // label={"Select Student"}

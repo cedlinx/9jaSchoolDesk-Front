@@ -82,7 +82,7 @@ const ModifyTeacher = () => {
           {/* <Controller
             name="name"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"TEACHER NAME"}
@@ -95,7 +95,7 @@ const ModifyTeacher = () => {
           <Controller
             name="firstName"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"FIRST NAME"}
@@ -108,7 +108,7 @@ const ModifyTeacher = () => {
           <Controller
             name="lastName"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"LAST NAME"}
@@ -121,7 +121,7 @@ const ModifyTeacher = () => {
           <Controller
             name="otherNames"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"OTHER NAMES"}
@@ -134,7 +134,7 @@ const ModifyTeacher = () => {
           <Controller
             name="email"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"EMAIL"}
@@ -148,7 +148,7 @@ const ModifyTeacher = () => {
           <Controller
             name="phone"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"PHONE NUMBER"}
@@ -163,7 +163,7 @@ const ModifyTeacher = () => {
           <Controller
             name="subjects"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               < SelectAutoComplete
                 {...field}
                 isMulti={true}
@@ -179,7 +179,7 @@ const ModifyTeacher = () => {
           {/* <Controller
             name="class_id"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"SELECT CLASS"}

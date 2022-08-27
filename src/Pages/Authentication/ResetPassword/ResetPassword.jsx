@@ -62,7 +62,7 @@ const ResetPassword = () => {
             <Controller
               name="email"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"Email Address"}
@@ -77,7 +77,7 @@ const ResetPassword = () => {
             <Controller
               name="password"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"Enter New Password"}
@@ -92,7 +92,7 @@ const ResetPassword = () => {
             <Controller
               name="password_confirmation"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"Confirm New Password"}

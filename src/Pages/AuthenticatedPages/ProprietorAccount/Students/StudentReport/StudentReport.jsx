@@ -16,7 +16,7 @@ import UrgentInfoModal from "@/components/Modals/UrgentInfo/UrgentInfo";
 import AddStudentModal from "@/components/Modals/AddNewStudent/AddNewStudent";
 import ActivateNewSignUpModal from "@/components/Modals/ActivateNewSignUp/ActivateNewSignUp";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
-import useGenerateColor from "@/utils/useGenerateColor";
+import generateColor from "@/helpers/generateColor";
 import { viewStudentRecord } from "@/redux/Proprietor/ProprietorSlice";
 import formatArrayList from "@/helpers/formatArrayList";
 
@@ -29,7 +29,6 @@ const StudentReport = () => {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
-  const color = useGenerateColor();
 
   const allStudentRecord = useSelector((state) => state.proprietor.viewStudentRecordData.ward);
 
@@ -50,7 +49,7 @@ const StudentReport = () => {
   console.log(basicStudentData);
 
 
-  let shortenDate = (value) => {
+  let formatDate = (value) => {
     let date = new Date(value);
     const options = {
       day: "2-digit",
@@ -94,7 +93,7 @@ const StudentReport = () => {
         let parentName = row.cell.row.values.parent.parentName;
         let parentImage = row.cell.row.values.parent.parentImage;
         return <div style={{ display: "flex", gap: "0.25rem", alignItems: "center" }}>
-          {parentImage ? <img style={{ width: "2.5rem", height: "2.5rem", borderRadius: "50%" }} src={parentImage} alt="img" /> : <p style={{ backgroundColor: color, whiteSpace: "nowrap", borderRadius: "50%", fontSize: "1.25rem", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", textAlign: "center" }}>{initialsCase(parentName)}</p>}
+          {parentImage ? <img style={{ width: "2.5rem", height: "2.5rem", borderRadius: "50%" }} src={parentImage} alt="img" /> : <p style={{ backgroundColor: generateColor(), whiteSpace: "nowrap", borderRadius: "50%", fontSize: "1.25rem", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", textAlign: "center" }}>{initialsCase(parentName)}</p>}
           <p style={{ color: "#4F4F4F" }}>{parentName}</p>
         </div>;
       }
@@ -149,7 +148,7 @@ const StudentReport = () => {
       accessor: "studentId",
       Cell: (row) => {
         return <div>
-          <p style={{ color: "#4F4F4F" }}>{shortenDate(new Date())}</p>
+          <p style={{ color: "#4F4F4F" }}>{formatDate(new Date())}</p>
         </div>;
       }
     }
@@ -174,6 +173,14 @@ const StudentReport = () => {
         moreOption: "",
         action: ""
       });
+    });
+    return result;
+  };
+
+  let taskNames =()=>{
+    let result = [];
+    allStudentRecord?.tasks.forEach((item)=>{
+      result.push(item.name);
     });
     return result;
   };
@@ -206,10 +213,10 @@ const StudentReport = () => {
             <span>Subjects: </span><span>{allStudentRecord?.subjects && getSubjectList(allStudentRecord?.subjects)}</span>
           </div>
           <div>
-            <span>Tasks: </span><span>{allStudentRecord?.tasks && formatArrayList(allStudentRecord?.tasks)}</span>
+            <span>Tasks: </span><span>{allStudentRecord?.tasks && formatArrayList(taskNames())}</span>
           </div>
           <div>
-            <span>Notices: </span><span>{allStudentRecord?.notices && formatArrayList(allStudentRecord?.notices)}</span>
+            <span>Notices: </span><span>{Array.isArray(allStudentRecord?.notices) && allStudentRecord?.notices.length > 0 ? formatArrayList(allStudentRecord?.notices) : "There is currently no notice for this student"}</span>
           </div>
         </div>
 

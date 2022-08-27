@@ -113,7 +113,7 @@ const AddNewStudent = () => {
             {/* <Controller
               name="name"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"NAME"}
@@ -126,7 +126,7 @@ const AddNewStudent = () => {
             <Controller
               name="firstName"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"FIRST NAME"}
@@ -139,7 +139,7 @@ const AddNewStudent = () => {
             <Controller
               name="lastName"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"LAST NAME"}
@@ -152,7 +152,7 @@ const AddNewStudent = () => {
             <Controller
               name="otherNames"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"OTHER NAMES"}
@@ -165,7 +165,7 @@ const AddNewStudent = () => {
             <Controller
               name="gender"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <Select
                   {...field}
                   label={"GENDER"}
@@ -179,7 +179,7 @@ const AddNewStudent = () => {
             {/* <Controller
               name="phone"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"PHONE"}
@@ -193,7 +193,7 @@ const AddNewStudent = () => {
             <Controller
               name="class_id"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <Select
                   {...field}
                   label={"ASSIGN CLASS"}
@@ -207,7 +207,7 @@ const AddNewStudent = () => {
             {/* <Controller
               name="guardian_email"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <Select
                   {...field}
                   label={"SELECT GUARDIAN EMAIL"}
@@ -223,7 +223,7 @@ const AddNewStudent = () => {
               <Controller
                 name="guardian_email"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   < SelectAutoComplete
                     {...field}
                     isClearable={true}
@@ -242,7 +242,7 @@ const AddNewStudent = () => {
               <Controller
                 name="subjects"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   < SelectAutoComplete
                     {...field}
                     isMulti={true}
@@ -259,7 +259,7 @@ const AddNewStudent = () => {
             {/* <Controller
               name="guardian_id"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <Select
                   {...field}
                   label={"SELECT GUARDIAN"}

@@ -130,6 +130,10 @@
                     .btnGroup{
                         gap: 0.25rem;
                         justify-content: space-between;
+
+                        img{
+                            cursor: pointer;
+                        }
                     }
                     }
         

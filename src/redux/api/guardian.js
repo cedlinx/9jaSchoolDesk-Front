@@ -11,3 +11,20 @@ export const getAllWardsApi = async (data) => {
 export const viewWardDetailsApi = async (data) => {
   return await axios.get(`guardian/auth/ward/view?id=${data}`);
 };
+
+export const viewTaskDetailsApi = async (data) => {
+  return await axios.post("guardian/auth/student/task/view", data);
+};
+
+export const getWardTasksApi = async (data) => {
+  return await axios.post("guardian/auth/student/task/list", data);
+};
+
+export const modifyWardProfileApi = async (data) => {
+  return await axios.post("guardian/auth/profile/update/ward", data);
+};
+
+export const modifyGuardianProfileApi = async (data) => {
+  return await axios.post("guardian/auth/profile/update", data);
+};
+

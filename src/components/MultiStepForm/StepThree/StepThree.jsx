@@ -11,7 +11,7 @@ import { useDropzone } from "react-dropzone";
 
 const StepThree = ({nextStep, handleFormData, values, prevStep}) => {
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
@@ -19,7 +19,7 @@ const StepThree = ({nextStep, handleFormData, values, prevStep}) => {
   const resolver = yupResolver(stepThreeValidationSchema);
 
   const defaultValues = {
-    uploadedImage: imgData.file
+    uploadedImage: uploadedFile.file
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
@@ -28,8 +28,8 @@ const StepThree = ({nextStep, handleFormData, values, prevStep}) => {
     // for (const item in data) {
     //   values[item] = data[item];
     // }
-    values.uploadedImage = imgData.file;
-    values.imagePreviewUrl = imgData.imagePreviewUrl;
+    values.uploadedImage = uploadedFile.file;
+    values.imagePreviewUrl = uploadedFile.imagePreviewUrl;
     handleFormData(values);
     nextStep();
   }; 
@@ -41,7 +41,7 @@ const StepThree = ({nextStep, handleFormData, values, prevStep}) => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
+      setUploadedFile({file: file, imagePreviewUrl: reader.result});
     };
     reader.readAsDataURL(file);
   }, []);
@@ -60,12 +60,12 @@ const StepThree = ({nextStep, handleFormData, values, prevStep}) => {
               name="uploadedImage"
               control={control}
               render={({field }) => (
-                <img {...field} {...getRootProps()} src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : ""} alt="" />
+                <img {...field} {...getRootProps()} src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : ""} alt="" />
               )}
             />
           </div>
           <div className={cx(styles.nameDiv)}>
-            {imgData?.file?.name}
+            {uploadedFile?.file?.name}
           </div>
 
         </div>

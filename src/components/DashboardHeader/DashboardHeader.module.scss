@@ -13,6 +13,7 @@
         top: 0rem;
         z-index: 1000;
         border-bottom: 1px solid #E2E2E2;
+        height: 60px;
 
         .dashboardToggler{
             margin-right: 0.5rem;
@@ -102,15 +103,20 @@
                         gap: 0.25rem;
                         line-height: 0;
                         font-size: 0.875rem;
+
+                        &:hover{
+                            text-decoration: none !important;
+                        }
                     }
 
                     .navLink{
                         color: #ACACAC;
+                        text-decoration: none !important;
+
                     }
                     .navLinkActive{
                         color: #D25B5D;
                         border-bottom: 2px solid #D25B5D;
-
                     }
 
                     .dropdown{

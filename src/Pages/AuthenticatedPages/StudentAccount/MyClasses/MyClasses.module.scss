@@ -1,14 +1,28 @@
 .myClassesContainer{
     width: 100%;
-    padding: 0rem;
+    margin: 0rem;
+    padding: 0.5rem;
     align-items: center;
-    margin-top: 0.5rem;
 
     .header{
         text-align: center;
         border-bottom: 1px solid #E2E2E2;
-        color: #22467B;
-        padding-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        width: 100%;
+
+        h5{
+            color: #22467B;
+            line-height: 1;
+            margin: 0rem;
+        }
+    }
+    .filterSection{
+        justify-content: flex-end;
+            gap: 1rem;
+        font-size: 0.75rem;
+        input{
+            width: 50%;
+        }
     }
 
     .body{
@@ -31,7 +45,6 @@
                 }
             }
         }
-
     }
 
 
@@ -40,10 +53,18 @@
 @media all and (min-width: 768px) {
     .myClassesContainer{
         width: 100%;
-        padding: 0rem;
+        padding: 0.5rem 1rem;
         align-items: center;
-        margin-top: 1.5rem;
-    
+
+        .filterSection{
+            justify-content: flex-end;
+                gap: 1rem;
+            font-size: 0.75rem;
+            input{
+                width: auto;
+            }
+        }
+
         .body{
             gap: 1.5rem;
             .sectionWrapper{
@@ -61,7 +82,6 @@
 
 @media all and (min-width: 991px) {
     .myClassesContainer{
-        margin-top: 2.5rem;
     
         .body{
             gap: 1.75rem;

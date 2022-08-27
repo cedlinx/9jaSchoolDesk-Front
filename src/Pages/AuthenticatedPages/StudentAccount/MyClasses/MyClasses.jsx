@@ -3,19 +3,25 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import cx from "classnames";
 import styles from "./MyClasses.module.scss";
-import {videoLessonsData} from "@/helpers/sampleData";
 import {useNavigate} from "react-router-dom";
 import VideoCard from "@/components/VideoCard/VideoCard";
+import { getAllLessons } from "@/redux/Student/StudentSlice";
 
 
 const MyClasses = () => {
 
   const navigate = useNavigate();
-  console.log(videoLessonsData);
+  const dispatch = useDispatch();
+  const classID = JSON.parse(localStorage.getItem("userData")).klass_id;  
+  const loading = useSelector((state) => state.student.loading);
+  const lessonsData = useSelector((state) => state.student.getAllLessonsData.lessons);
 
-  const handleClick = (product) => {
-    console.log(product);
-    navigate(`view-class/${product.id}`);
+  useEffect(() => {
+    dispatch(getAllLessons(classID));
+  }, [classID, dispatch]);
+
+  const handleClick = (lesson) => {
+    navigate(`view-class/${lesson.id}`);
   };
 
       
@@ -27,12 +33,12 @@ const MyClasses = () => {
       <div className={cx(styles.body, "flexCol")}>
 
         <div className={cx(styles.sectionWrapper)}>
-          <p className={cx(styles.title)}>Today's Lessons</p>
+          <p className={cx(styles.title)}>Today&apos;s Lessons</p>
           <div className={cx(styles.subGroupContainer)}>
-            {videoLessonsData && videoLessonsData.map((item, index)=>{
+            {lessonsData && lessonsData.map((item, index)=>{
               return(
                 <div key={index} onClick={()=>handleClick(item)}>
-                  <VideoCard productDetails={item} />
+                  <VideoCard cardDetails={item} />
                 </div>
               );
             })}
@@ -40,12 +46,12 @@ const MyClasses = () => {
         </div>
 
         <div className={cx(styles.sectionWrapper)}>
-          <p className={cx(styles.title)}>Tomorrow's Lessons</p>
+          <p className={cx(styles.title)}>Past Lessons</p>
           <div className={cx(styles.subGroupContainer)}>
-            {videoLessonsData && videoLessonsData.map((item, index)=>{
+            {lessonsData && lessonsData.map((item, index)=>{
               return(
                 <div key={index} onClick={()=>handleClick(item)}>
-                  <VideoCard productDetails={item} />
+                  <VideoCard cardDetails={item} />
                 </div>
               );
             })}

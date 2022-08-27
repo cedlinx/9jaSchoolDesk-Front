@@ -18,7 +18,7 @@ import DeleteStudentModal from "@/components/Modals/DeleteStudent/DeleteStudent"
 import { Icon } from "@iconify/react";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import useGenerateColor from "@/utils/useGenerateColor";
+import generateColor from "@/helpers/generateColor";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import useGetAllStudents from "@/utils/useGetAllStudents";
@@ -31,7 +31,6 @@ const Students = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.proprietor.loading);
-  const color = useGenerateColor();
 
   const allStudentsData = useGetAllStudents();
 
@@ -142,7 +141,7 @@ const Students = () => {
         let parentImage = row.cell.row.values.parent.parentImage;
         return <div style={{ width: "auto", display: "flex", gap: "0.25rem", alignItems: "center" }}>
 
-          {parentImage ? <img style={{ width: "2.5rem", height: "2.5rem", borderRadius: "50%" }} src={parentImage} alt="img" /> : <p style={{ backgroundColor: color, whiteSpace: "nowrap", border: "1px solid #FF7E3F0D", borderRadius: "50%", fontSize: "1.25rem", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", textAlign: "center" }}>{parentName && initialsCase(parentName)}</p>}
+          {parentImage ? <img style={{ width: "2.5rem", height: "2.5rem", borderRadius: "50%" }} src={parentImage} alt="img" /> : <p style={{ backgroundColor: generateColor(), whiteSpace: "nowrap", border: "1px solid #FF7E3F0D", borderRadius: "50%", fontSize: "1.25rem", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", textAlign: "center" }}>{parentName && initialsCase(parentName)}</p>}
           <p style={{ color: "#4F4F4F" }}>{parentName}</p>
         </div>;
       }

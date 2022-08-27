@@ -9,14 +9,14 @@ export const TabWrapper = styled.div`
   justify-content: flex-start;
   padding-left: 0rem;
   width: 100%;
-  height: 100%;
-  overflow-y: scroll !important;
+  // height: 100%;
+  overflow-y: hidden !important;
 
   
   @media screen and (max-width: 997px) {
     left: 0;
     z-index: 1;
-    overflow-y: scroll !important;
+    overflow-y: hidden !important;
     }
 `;
 
@@ -46,6 +46,7 @@ export const TabItem = styled.p`
   border-bottom: ${({ isActive }) => (isActive ? "2px solid #D25B5D" : "none")};
   text-align: center;
   padding: 12px 0px;
+  margin: 0rem;
   width: 100%;
   white-space: nowrap;
   font-weight: bold;

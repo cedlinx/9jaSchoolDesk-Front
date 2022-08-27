@@ -94,7 +94,7 @@ const Login = () => {
                     <Controller
                       name="email"
                       control={control}
-                      render={({ field }) => (
+                      render={({ field, ref }) => (
                         <InputField
                           {...field}
                           label={"Email"}
@@ -109,7 +109,7 @@ const Login = () => {
                     <Controller
                       name="password"
                       control={control}
-                      render={({ field }) => (
+                      render={({ field, ref }) => (
                         <InputField
                           {...field}
                           label={"Password"}

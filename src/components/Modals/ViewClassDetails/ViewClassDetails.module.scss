@@ -41,15 +41,16 @@
             align-items: center;
 
             .title{
-                width: 50%;
+                width: 40%;
                 font-size: 1rem;
                 line-height: 1;
                 font-weight: bold;
             }
             .value{
-                width: 50%;
+                width: 60%;
                 font-size: 1.25rem;
                 line-height: 1;
+                white-space: wrap;
             }
         }
 

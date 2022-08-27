@@ -54,7 +54,7 @@ const Profile = () => {
     }
   };
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
@@ -63,7 +63,7 @@ const Profile = () => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
+      setUploadedFile({file: file, imagePreviewUrl: reader.result});
     };
     reader.readAsDataURL(file);
   }, []);
@@ -98,7 +98,7 @@ const Profile = () => {
                 </div>
                 <div className={cx(styles.imageSection, "flexRow")}>
                   <div className={cx(styles.imageDiv)}>
-                    <img src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : studentProfilePic} alt="" />
+                    <img src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : studentProfilePic} alt="" />
                   </div>
 
                   <Button {...getRootProps()}  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
@@ -115,7 +115,7 @@ const Profile = () => {
                       <Controller
                         name="name"
                         control={control}
-                        render={({ field }) => (
+                        render={({ field, ref }) => (
                           <InputField
                             {...field} 
                             placeholder={" "}
@@ -130,7 +130,7 @@ const Profile = () => {
                       <Controller
                         name="name"
                         control={control}
-                        render={({ field }) => (
+                        render={({ field, ref }) => (
                           <InputField
                             {...field} 
                             placeholder={" "}
@@ -145,7 +145,7 @@ const Profile = () => {
                       <Controller
                         name="email"
                         control={control}
-                        render={({ field }) => (
+                        render={({ field, ref }) => (
                           <InputField
                             {...field} 
                             placeholder={" "}
@@ -160,7 +160,7 @@ const Profile = () => {
                       <Controller
                         name="accountType"
                         control={control}
-                        render={({ field }) => (
+                        render={({ field, ref }) => (
                           <SelectField
                             {...field}
                             label={"Account Type"}
@@ -197,7 +197,7 @@ const Profile = () => {
                       <Controller
                         name="password"
                         control={control}
-                        render={({ field }) => (
+                        render={({ field, ref }) => (
                           <InputField
                             {...field} 
                             placeholder={" "}
@@ -213,7 +213,7 @@ const Profile = () => {
                     <Controller
                       name="password"
                       control={control}
-                      render={({ field }) => (
+                      render={({ field, ref }) => (
                         <InputField
                           {...field} 
                           placeholder={" "}
@@ -229,7 +229,7 @@ const Profile = () => {
                     <Controller
                       name="password"
                       control={control}
-                      render={({ field }) => (
+                      render={({ field, ref }) => (
                         <InputField
                           {...field} 
                           placeholder={" "}

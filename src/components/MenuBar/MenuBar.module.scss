@@ -3,10 +3,11 @@
     margin: 0rem;
     justify-content: space-between;
     background-color: #fff;
-    position: fixed !important;
+    position: fixed;
     top: 0rem;
     z-index: 1000;
     border-bottom: 1px solid #E2E2E2;
+    width: 100%;
 }
 
 .navbarCollapse {

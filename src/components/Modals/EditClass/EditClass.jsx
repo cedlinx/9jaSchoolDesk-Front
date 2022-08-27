@@ -62,7 +62,7 @@ const EditClass = () => {
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
@@ -71,7 +71,7 @@ const EditClass = () => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({ file: file, imagePreviewUrl: reader.result });
+      setUploadedFile({ file: file, imagePreviewUrl: reader.result });
     };
     reader.readAsDataURL(file);
   }, []);
@@ -111,7 +111,7 @@ const EditClass = () => {
           <Controller
             name="teacher_id"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"CLASS TEACHER"}
@@ -127,7 +127,7 @@ const EditClass = () => {
           <Controller
             name="name"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"CLASS NAME"}
@@ -141,7 +141,7 @@ const EditClass = () => {
           <Controller
             name="description"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"DESCRIPTION"}
@@ -155,7 +155,7 @@ const EditClass = () => {
           <Controller
             name="subjects"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               < SelectAutoComplete
                 {...field}
                 isMulti={true}

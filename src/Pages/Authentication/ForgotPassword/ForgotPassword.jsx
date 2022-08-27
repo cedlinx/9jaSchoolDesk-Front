@@ -55,7 +55,7 @@ const ForgotPassword = () => {
             <Controller
               name="email"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"Enter email used to create account"}

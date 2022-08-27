@@ -24,6 +24,7 @@ const LoginWithClassCodeComponent = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.loading);
   const isOTPVerified = localStorage.getItem("userData")?.hasverifiedotp;
 
   const checkIsAuthenticated = isAuthenticated();
@@ -35,7 +36,9 @@ const LoginWithClassCodeComponent = () => {
   const signIn= async (data)=>{
     let response = await dispatch(loginWithClassCode({code: data?.accessCode}));
     console.log(response);
-    navigate("/select-account/student");
+    if(response.payload.success){
+      navigate("/select-account/student", {state: {payload: response.payload.students}});
+    }
   };
 
   const resolver = yupResolver(loginWithClassCodeValidationSchema);
@@ -71,7 +74,7 @@ const LoginWithClassCodeComponent = () => {
                   <Controller
                     name="accessCode"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field}
                         label={"Enter Access Code"}
@@ -84,7 +87,7 @@ const LoginWithClassCodeComponent = () => {
                   />
 
                   <div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow-fully-centered")}>
-                    <Button title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
+                    <Button loading={loading} disabled={loading} title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
                   </div>
 
                   {/* <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p> */}

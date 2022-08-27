@@ -20,7 +20,7 @@ import { useDropzone } from "react-dropzone";
 
 import editIcon from "@/assets/icons/edit-icon.svg";
 
-import { assignGuardianToSingleStudent, getAllGuardians } from "@/redux/Proprietor/ProprietorSlice";
+import { assignGuardianToSingleStudent, getAllGuardians, getGuardianStatus } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { assignWardToParentValidationSchema } from "@/helpers/validation";
@@ -41,6 +41,7 @@ const AssignWardToParent = () => {
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "assignWardToParent" }));
       dispatch(getAllGuardians());
+      dispatch(getGuardianStatus());
     }
   };
 
@@ -87,7 +88,7 @@ const AssignWardToParent = () => {
           <Controller
             name="email"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"GUARDIAN EMAIL"}
@@ -101,7 +102,7 @@ const AssignWardToParent = () => {
           {/* <Controller
             name="studentId"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"NAME"}
@@ -114,7 +115,7 @@ const AssignWardToParent = () => {
           <Controller
             name="student_id"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"SELECT WARD TO ATTACH"}

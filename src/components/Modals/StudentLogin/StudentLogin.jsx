@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useCallback} from "react";
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import cx from "classnames";
 import styles from "./StudentLogin.module.scss";
 import Button from "@/components/Button/Button";
@@ -9,40 +8,56 @@ import InputField from "@/components/Input/Input";
 
 import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-
-
-
 import { Icon } from "@iconify/react";
-
-
-import { forgotPassword } from "@/redux/Auth/AuthSlice";
+import { validatePin } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { studentLoginValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {initialsCase, titleCase} from "@/helpers/textTransform";
-import useGenerateColor from "@/utils/useGenerateColor";
+import generateColor from "@/helpers/generateColor";
+import { getDashboard } from "@/redux/Student/StudentSlice";
+import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
+
 
 const StudentLogin = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalData = useSelector((state) => state.modalState.modalData);
-
+  const userDetails = useGetLoggedInUser();
+  const loading = useSelector((state) => state.student.loading);
+  console.log(userDetails);
   console.log(modalData);
-  const color = useGenerateColor();
+  let signature = modalData?.dashboard_url.split("=")[1];
+  let classCode = modalData?.dashboard_url.split("/")[8];
 
-  const sendRequest = (data) => {
+  const params = useParams();
+  console.log(params);
+
+  const sendRequest = async (data) => {
     console.log(data);
-    navigate("/student/dashboard");
-    // dispatch(forgotPassword(data));
-    // dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
+    localStorage.setItem("loggedInStudentID", modalData.id);
+    localStorage.setItem("userData", JSON.stringify(modalData));
+    let response = await dispatch(validatePin({pin: data.pin, student_id: modalData.id}));
+    console.log(response);
+    if(response.payload.success){
+      console.log(signature, classCode);
+      const studentID = localStorage.getItem("loggedInStudentID");
+
+      let response2 = await dispatch(getDashboard({id: studentID, signature: signature, classCode: classCode}));
+
+      response2.payload.success && navigate("/student/dashboard", {state: {studentID: modalData?.id}});
+      dispatch(showModal({action: "hide"}));
+
+    }
+    
   };
 
   const resolver = yupResolver(studentLoginValidationSchema);
 
   const defaultValues = {
-    password: ""
+    pin: ""
   };
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
@@ -59,7 +74,7 @@ const StudentLogin = () => {
       <div className={cx(styles.formWrapper, "flexCol")}>
 	  <div className={cx(styles.header, "flexCol")}>
           <p>{`${titleCase(modalData.firstName)} ${titleCase(modalData.lastName)}`}</p>
-          {modalData.studentImage ? <img src={modalData.studentImage} alt="img" /> : <span style={{backgroundColor: color}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> }
+          {modalData.studentImage ? <img src={modalData.studentImage} alt="img" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> }
         </div>
         
         <form
@@ -67,34 +82,28 @@ const StudentLogin = () => {
         >
 
           <Controller
-            name="password"
+            name="pin"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
-                label="PASSWORD"
-                placeholder="Enter Password"
+                label="PIN"
+                placeholder="Enter Pin"
                 type="password"
-                error={errors?.password && errors?.password?.message}
+                error={errors?.pin && errors?.pin?.message}
+                inputRef={ref}
               />
             )}
           />
 
-          <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button title="Submit" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#D25B5D" hoverBg="#fff" />
+          <div className={cx(styles.btnDiv, "flexRow")}>
+            <Button onClick={handleSubmit((data) => sendRequest(data))} loading={loading} disabled={loading} title="Submit" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#D25B5D" hoverBg="#fff" />
           </div>
-
-     
-
         </form>
       </div>
 
     </section>
   );
-};
-
-StudentLogin.propTypes = {
-  title: PropTypes.string
 };
 
 export default StudentLogin;

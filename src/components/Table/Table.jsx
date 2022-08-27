@@ -19,8 +19,7 @@ const Styles = styled.div`
     overflow-x: scroll;
     overflow-y: hidden;
     // border-bottom: 1px solid black;
-    min-height: 40vh;
-
+    // min-height: 40vh;
   }
 
   table {
@@ -81,7 +80,7 @@ const IndeterminateCheckbox = forwardRef(
 );
 IndeterminateCheckbox.displayName = "Search";
 
-const Table = ({ columns, data, selectedRowsData, loading })=> {
+const Table = ({ columns, data, selectedRowsData, loading, showPaginationNavigation, showPagination, showPaginationSummary, showTableHeader, defaultPageSize })=> {
 	
   // Use the state and functions returned from useTable to build your UI
   const {
@@ -107,7 +106,7 @@ const Table = ({ columns, data, selectedRowsData, loading })=> {
     {
       columns,
       data,
-      initialState: { hiddenColumns: ["hidden_id"] }
+      initialState: { hiddenColumns: ["hidden_id"], pageIndex: 0, pageSize: defaultPageSize }
     },
     usePagination,
     useRowSelect,
@@ -142,7 +141,7 @@ const Table = ({ columns, data, selectedRowsData, loading })=> {
   return (
     <>
       <table {...getTableProps()}>
-        <thead>
+        {showTableHeader && <thead>
           {headerGroups.map((headerGroup, index) => (
             <tr key={index} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column, idx) => (
@@ -150,7 +149,7 @@ const Table = ({ columns, data, selectedRowsData, loading })=> {
               ))}
             </tr>
           ))}
-        </thead>
+        </thead>}
         {loading ? <TableSkeleton /> :
           <tbody {...getTableBodyProps()}>
             {page.map((row, i) => {
@@ -171,12 +170,12 @@ const Table = ({ columns, data, selectedRowsData, loading })=> {
         Pagination can be built however you'd like. 
         This is just a very basic UI implementation:
       */}
-      <div className="pagination flexRow-space-between">
-        <div className="pagination-summary">
+      {showPagination && <div className="pagination flexRow-space-between">
+        {showPaginationSummary && <div className="pagination-summary">
                     Showing <span>{pageSize > data.length ? data.length : pageSize}</span> from <span>{data.length}</span> data
-        </div>
+        </div>}
 
-        <div className="pagination-navigation">
+        {showPaginationNavigation && <div className="pagination-navigation">
           <div className="pagination-navigation-btn-wrapper">
             <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
               <Icon icon="bi:chevron-double-left" color="white" />
@@ -226,21 +225,21 @@ const Table = ({ columns, data, selectedRowsData, loading })=> {
               </option>
             ))}
           </select>
-        </div>
+        </div>}
 				
-      </div>
+      </div> }
     </>
   );
 };
 
-const TableComponent = ({columnsHeader, tableData, selectedRowsData, loading}) => {
+const TableComponent = ({columnsHeader, tableData, selectedRowsData, loading, showPaginationNavigation=true, showPaginationSummary=true, showPagination=true, showTableHeader=true, defaultPageSize=10 }) => {
   const columns = useMemo(()=>columnsHeader, []);
   const data = useMemo(()=>tableData, []);
 
   return (
     <Styles>
       <div className="tableWrap">
-        <Table columns={columns} data={data} selectedRowsData={selectedRowsData} loading={loading} />
+        <Table columns={columns} data={data} selectedRowsData={selectedRowsData} loading={loading} showPaginationNavigation={showPaginationNavigation} showPagination={showPagination} showPaginationSummary ={showPaginationSummary} showTableHeader={showTableHeader} defaultPageSize={defaultPageSize} />
       </div>
     </Styles>
   );

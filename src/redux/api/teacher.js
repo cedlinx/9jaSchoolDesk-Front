@@ -137,6 +137,31 @@ export const getClassDetailsApi = async (data) => {
   // return await axios.get("teacher/auth/profile", data);
 };
 
+export const createLessonApi = async (data) => {
+  console.log(data, "api");
+  return await axios.post("teacher/auth/lesson/add", data);
+};
+
+export const modifyLessonApi = async (data) => {
+  return await axios.post("teacher/auth/lesson/modify", data);
+};
+
+export const viewLessonApi = async (data) => {
+  return await axios.post("teacher/auth/lesson/view", data);
+};
+
+export const getClassLessonsApi = async (data) => {
+  return await axios.post("teacher/auth/lesson/list-for-class", data);
+};
+
+export const getAllLessonsApi = async (data) => {
+  return await axios.get("teacher/auth/lesson/list", data);
+};
+
+export const deleteLessonApi = async (data) => {
+  return await axios.post("teacher/auth/lesson/delete", data);
+};
+
 
 
 

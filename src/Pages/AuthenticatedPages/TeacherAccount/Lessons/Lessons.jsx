@@ -1,21 +1,36 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import cx from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Lessons.module.scss";
-import {videoLessonsData} from "@/helpers/sampleData";
 import {useNavigate} from "react-router-dom";
 import VideoCard from "@/components/VideoCard/VideoCard";
 import Button from "@/components/Button/Button";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import UploadLessonModal from "@/components/Modals/UploadLesson/UploadLesson";
+import ViewLessonDetailsModal from "@/components/Modals/ViewLessonDetails/ViewLessonDetails";
+import ModifyLessonModal from "@/components/Modals/ModifyLesson/ModifyLesson";
+import DeleteLessonModal from "@/components/Modals/DeleteLesson/DeleteLesson";
+import { getClassLessons } from "@/redux/Teacher/TeacherSlice";
+import useGetClassID from "@/utils/useGetClassID";
+import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
+
+
 
 
 const Lessons = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(videoLessonsData);
+  const loading = useSelector((state) => state.teacher.loading);
+  const classLessonsData = useSelector((state) => state.teacher.getClassLessonsData.lessons);
+  const class_id = useGetClassID();
+
+  console.log(classLessonsData);
+
+  useEffect(() => {
+    dispatch(getClassLessons({class_id}));
+  },[class_id, dispatch]);
 
   const modalType = useSelector((state) => state.modalState.type);
   const modalState = useSelector((state) => state.modalState.action);
@@ -33,20 +48,24 @@ const Lessons = () => {
       </div>
       <div className={cx(styles.body, "flexCol")}>
         <div className={cx(styles.sectionWrapper, "flexCol")}>
-          <p className={cx(styles.title)}>Recent Uploads</p>
+          {/* <p className={cx(styles.title)}>Recent Uploads</p> */}
           <div className={cx(styles.subGroupContainer)}>
-            {videoLessonsData && videoLessonsData.map((item, index)=>{
+            {loading ? <TableSkeleton /> : Array.isArray(classLessonsData) && classLessonsData.length > 0 ? classLessonsData.map((item, index)=>{
               return(
                 <div key={index}>
-                  <VideoCard productDetails={item} teacherSection={true} studentSection={false} />
+                  <VideoCard cardDetails={item} teacherSection={true} studentSection={false} />
                 </div>
               );
-            })}
+            }) : <p className={cx(styles.noData)}>No Lessons Uploaded</p>}
           </div>
         </div>
    
       </div>
-      {modalState === "show" ? <Modal size="lg" show >{modalType === "uploadLesson" ?<UploadLessonModal /> :  null}</Modal> : null}
+
+      {modalType === "uploadLesson" && <Modal size="lg" show > <UploadLessonModal /></Modal>}
+      {modalType === "lessonDetails" && <Modal show > <ViewLessonDetailsModal /></Modal>}
+      {modalType === "modifyLesson" && <Modal show > <ModifyLessonModal /></Modal>}
+      {modalType === "deleteLesson" && <Modal show > <DeleteLessonModal /></Modal>}
     </div>
   );
 };

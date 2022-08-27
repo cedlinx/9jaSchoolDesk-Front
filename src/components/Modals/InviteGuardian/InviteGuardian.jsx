@@ -55,7 +55,7 @@ const InviteGuardian = () => {
           {/* <Controller
             name="name"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"Name"}
@@ -68,7 +68,7 @@ const InviteGuardian = () => {
           <Controller
             name="firstName"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"First Name"}
@@ -81,7 +81,7 @@ const InviteGuardian = () => {
           <Controller
             name="lastName"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"Last Name"}
@@ -94,7 +94,7 @@ const InviteGuardian = () => {
           <Controller
             name="otherNames"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"Other Names"}
@@ -107,7 +107,7 @@ const InviteGuardian = () => {
           <Controller
             name="email"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"Email"}
@@ -120,7 +120,7 @@ const InviteGuardian = () => {
           {/* <Controller
             name="message"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <TextInput
                 {...field}
                 placeholder="Enter Message"

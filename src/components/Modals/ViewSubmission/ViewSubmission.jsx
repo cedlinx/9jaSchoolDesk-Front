@@ -54,49 +54,10 @@ const ViewSubmission = () => {
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
-
-  const studentsData1 = [
-    {
-      title: "Submission 1"
-    },
-    {
-      title: "Submission 2"
-    },
-    {
-      title: "Submission 3"
-    },
-    {
-      title: "Submission 4"
-    },
-    {
-      title: "Submission 1"
-    },
-    {
-      title: "Submission 2"
-    },
-    {
-      title: "Submission 3"
-    },
-    {
-      title: "Submission 4"
-    },
-    {
-      title: "Submission 1"
-    },
-    {
-      title: "Submission 2"
-    },
-    {
-      title: "Submission 3"
-    },
-    {
-      title: "Submission 4"
-    }
-  ];
 
   return (
 
@@ -125,7 +86,7 @@ const ViewSubmission = () => {
 
               <div className={cx("flexRow-space-between", styles.downloadDiv)}>
                 <label htmlFor="category">Assigned To</label>
-                <p>Download All</p>
+                {/* <p>Download All</p> */}
               </div>
              
 

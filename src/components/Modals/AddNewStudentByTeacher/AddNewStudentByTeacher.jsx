@@ -27,6 +27,7 @@ const AddNewStudentByTeacher = () => {
   const allGuardiansData = useGetAllGuardians();
   const schoolSubjects = useGetClassDetails().subjects;
   const classDetails = useGetClassDetails();
+  console.log(classDetails);
 
   const sendRequest = async (data) => {
     console.log(data);
@@ -38,7 +39,7 @@ const AddNewStudentByTeacher = () => {
 
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "addNewStudentByTeacher" }));
-      dispatch(getAllStudents());
+      dispatch(getAllStudents(classDetails?.id));
     }
   };
 
@@ -113,7 +114,7 @@ const AddNewStudentByTeacher = () => {
             <Controller
               name="firstName"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"FIRST NAME"}
@@ -126,7 +127,7 @@ const AddNewStudentByTeacher = () => {
             <Controller
               name="lastName"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"LAST NAME"}
@@ -139,7 +140,7 @@ const AddNewStudentByTeacher = () => {
             <Controller
               name="otherNames"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"OTHER NAMES"}
@@ -152,7 +153,7 @@ const AddNewStudentByTeacher = () => {
             <Controller
               name="gender"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <Select
                   {...field}
                   label={"GENDER"}
@@ -166,7 +167,7 @@ const AddNewStudentByTeacher = () => {
             {/* <Controller
               name="phone"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"PHONE"}
@@ -179,7 +180,7 @@ const AddNewStudentByTeacher = () => {
             <Controller
               name="class_id"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <Select
                   {...field}
                   label={"ASSIGN CLASS"}
@@ -195,7 +196,7 @@ const AddNewStudentByTeacher = () => {
               <Controller
                 name="guardian_email"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   < SelectAutoComplete
                     {...field}
                     isClearable={true}
@@ -214,7 +215,7 @@ const AddNewStudentByTeacher = () => {
               <Controller
                 name="subjects"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   < SelectAutoComplete
                     {...field}
                     isMulti={true}

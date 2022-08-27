@@ -1,7 +1,7 @@
-import { getDashboardApi, getAllWardsApi, viewWardDetailsApi} from "../api/guardian";
+import { getDashboardApi, getAllWardsApi, viewWardDetailsApi, viewTaskDetailsApi, getWardTasksApi, modifyWardProfileApi, modifyGuardianProfileApi} from "../api/guardian";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import formatArrayList from "@/helpers/formatArrayList";
 
 
 const initialState = {
@@ -10,7 +10,11 @@ const initialState = {
   
   getDashboardData: {},
   getAllWardsData: {},
-  viewWardDetailsData: {}
+  viewWardDetailsData: {},
+  viewTaskDetailsData: {},
+  getWardTasksData: {},
+  modifyWardProfileData: {},
+  modifyGuardianProfileData: {}
 };
 
 export const guardianSlice = createSlice({
@@ -41,22 +45,44 @@ export const guardianSlice = createSlice({
     viewWardDetailsAction: (state, action) => {
       state.viewWardDetailsData = action.payload;
       state.loading = false;
+    },
+
+    viewTaskDetailsAction: (state, action) => {
+      state.viewTaskDetailsData = action.payload;
+      state.loading = false;
+    },
+
+    getWardTasksAction: (state, action) => {
+      state.getWardTasksData = action.payload;
+      state.loading = false;
+    },
+
+    modifyWardProfileAction: (state, action) => {
+      state.modifyWardProfileData = action.payload;
+      state.loading = false;
+    },
+
+    modifyGuardianProfileAction: (state, action) => {
+      state.modifyGuardianProfileData = action.payload;
+      state.loading = false;
     }
   }
 });
 export default guardianSlice.reducer;
 
 // Actions
-const { startLoading, hasError, getDashboardAction, getAllWardsAction, viewWardDetailsAction } = guardianSlice.actions;
+const { startLoading, hasError, getDashboardAction, getAllWardsAction, viewWardDetailsAction, viewTaskDetailsAction, getWardTasksAction, modifyWardProfileAction, modifyGuardianProfileAction } = guardianSlice.actions;
+
 
 export const getDashboard = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getDashboardApi(data);
+    // toast.success(response.data.message);
     return dispatch(getDashboardAction(response?.data));
   } catch (e) {
-    toast.error(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -64,10 +90,11 @@ export const getAllWards = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getAllWardsApi(data);
+    // toast.success(response.data.message);
     return dispatch(getAllWardsAction(response?.data));
   } catch (e) {
-    toast.error(e.response.message);
-    return dispatch(hasError(e.response.message));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
   }
 };
 
@@ -75,12 +102,61 @@ export const viewWardDetails = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await viewWardDetailsApi(data);
-    toast.success(response.data.message);
-    return dispatch(viewWardDetailsAction(response));
+    // toast.success(response.data.message);
+    return dispatch(viewWardDetailsAction(response?.data));
   } catch (e) {
-    toast.warn(e.message);
-    return dispatch(hasError(e.message));
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
   }
 };
 
+export const viewTaskDetails = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await viewTaskDetailsApi(data);
+    // toast.success(response.data.message);
+    return dispatch(viewTaskDetailsAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const getWardTasks = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getWardTasksApi(data);
+    // toast.success(response.data.message);
+    return dispatch(getWardTasksAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : formatArrayList(e.response.data.message));
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const modifyWardProfile = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await modifyWardProfileApi(data);
+    console.log(response);
+    toast.success(response?.data?.message);
+    return dispatch(modifyWardProfileAction(response?.data));
+  } catch (e) {
+    console.log(e);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e.response.data.errors) : e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
+  }
+};
+
+export const modifyGuardianProfile = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await modifyGuardianProfileApi(data);
+    toast.success(response.data.message);
+    return dispatch(modifyGuardianProfileAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
   

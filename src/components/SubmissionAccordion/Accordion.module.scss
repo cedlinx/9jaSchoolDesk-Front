@@ -15,11 +15,11 @@
         }
           .accordionPanel{
             border: 1px solid #d25b5d6b;
-            padding: 0.5rem;
+            padding: 0rem;
             border-radius: 0.5rem;
 
             .leftSection{
-                padding-right: 1rem;
+                padding: 1rem;
                 small{
                     color: #A0A4A8;
                     font-size: 1rem;
@@ -35,15 +35,18 @@
             }
 
               .rightSection{
-        border: 1px solid rgba(173, 216, 230, 0.623);
-        border-radius: 0.5rem;
-        padding: 0rem 1rem 1rem 0rem;
+        border-left: 1px solid rgba(173, 216, 230, 0.623);
+        padding: 1rem;
+
+        form{
+            gap: 1rem;
+        }
 
         textarea{
             box-shadow: none !important;
-            border: none;
+            // border: none;
             background-color: transparent;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0rem;
 
             &::placeholder{
                 color: #000000;

@@ -1,0 +1,37 @@
+.submitTaskWrapper{
+    padding: 1rem;
+
+    .header{
+        text-align: center;
+        border-bottom: 1px solid #E2E2E2;
+        h5{
+            color: #22467B;
+        }
+    }
+
+    .body{
+        .leftSection{
+            gap: 1rem;
+
+            .questionsDiv{
+                gap: 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        .rightSection{
+            gap: 1rem;
+
+            
+            .quillEditorDiv{
+                height: 10rem;
+
+                .quill{
+                    height: 100%;
+                }
+           
+            
+            }
+        }
+    }
+}

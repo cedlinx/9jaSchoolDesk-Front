@@ -170,7 +170,6 @@ const PendingAccounts = () => {
   return (
 
     <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(allPendingGuardians)} showHeader={true}/>                
- 
   );
 };
 

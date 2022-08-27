@@ -9,20 +9,27 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import { useDropzone } from "react-dropzone";
 import { modifyKPI, getAllKPIs } from "@/redux/Proprietor/ProprietorSlice";
+import { modifyKPI as modifyTeacherKPI, viewKPIForClass } from "@/redux/Teacher/TeacherSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { modifyKPIIndicatorValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+import useGetUser from "@/utils/useGetUser";
+import useGetClassID from "@/utils/useGetClassID";
+
 
 const ModifyKPIIndicator = () => {
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.proprietor.loading);
   const modalData = useSelector((state) => state.modalState.modalData);
+  const user = useGetUser();
+  const classID = useGetClassID();
 
   const sendRequest = async (data) => {
     let formData = new FormData();
-    imgData.file && formData.append("photo", imgData.file);
+    uploadedFile.file && formData.append("photo", uploadedFile.file);
     formData.append("name", data.name);
     formData.append("category", data.category);
     formData.append("type", data.type);
@@ -31,10 +38,10 @@ const ModifyKPIIndicator = () => {
     formData.append("weight", data.weight);
     formData.append("id", modalData.id);
 
-    let response = await dispatch(modifyKPI(formData));
+    let response = user === "proprietor" ? await dispatch(modifyKPI(formData)) : await dispatch(modifyTeacherKPI(formData));
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "modifyKPIIndicator" }));
-      dispatch(getAllKPIs());
+      user === "proprietor" ? dispatch(getAllKPIs()) : dispatch(viewKPIForClass(classID));
     }
   };
 
@@ -52,7 +59,7 @@ const ModifyKPIIndicator = () => {
 
   const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
@@ -61,7 +68,7 @@ const ModifyKPIIndicator = () => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
+      setUploadedFile({file: file, imagePreviewUrl: reader.result});
       setValue("uploadedFile", file);
     };
     reader.readAsDataURL(file);
@@ -88,7 +95,7 @@ const ModifyKPIIndicator = () => {
           <Controller
             name="name"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"INDICATOR NAME"}
@@ -101,7 +108,7 @@ const ModifyKPIIndicator = () => {
           <Controller
             name="category"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"CATEGORY"}
@@ -118,7 +125,7 @@ const ModifyKPIIndicator = () => {
           <Controller
             name="type"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"TYPE"}
@@ -135,7 +142,7 @@ const ModifyKPIIndicator = () => {
           <Controller
             name="weight"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"WEIGHT"}
@@ -148,7 +155,7 @@ const ModifyKPIIndicator = () => {
           <Controller
             name="min_score"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"MINIMUM SCORE"}
@@ -161,7 +168,7 @@ const ModifyKPIIndicator = () => {
           <Controller
             name="max_score"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"MAXIMUM SCORE"}
@@ -174,12 +181,12 @@ const ModifyKPIIndicator = () => {
           <Controller 
             name="uploadedFile"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <>
                 <div className={cx(styles.imageSection, "flexRow")}>
                   <p>Upload Image</p>
                   <div {...getRootProps()}   {...field} className={cx(styles.imageDiv)}>
-                    {imgData?.imagePreviewUrl ? <img src={imgData?.imagePreviewUrl && imgData?.imagePreviewUrl} alt=""/>
+                    {uploadedFile?.imagePreviewUrl ? <img src={uploadedFile?.imagePreviewUrl && uploadedFile?.imagePreviewUrl} alt=""/>
                       :
                       modalData?.avatar ? <img src={modalData?.avatar && modalData?.avatar} alt=""/> :  <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>  }        
                     

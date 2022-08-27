@@ -57,7 +57,7 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
                   <Controller
                     name="email"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -75,7 +75,7 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
                     className={cx(styles.controller)}
                     name="firstName"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -92,7 +92,7 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
                   <Controller
                     name="lastName"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -109,7 +109,7 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
                   <Controller
                     name="otherNames"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -126,7 +126,7 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
                   <Controller
                     name="password"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -143,7 +143,7 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
                   <Controller
                     name="password_confirmation"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -161,7 +161,7 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
                   <Controller
                     name="phone"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <PhoneInput
                         placeholder="Enter phone number"
                         {...field}

@@ -98,7 +98,7 @@ const PreSignUp = () => {
                   name="email"
                   control={control}
 
-                  render={({ field }) => (
+                  render={({ field, ref }) => (
                     <InputField
                       {...field} 
                       placeholder={" "}
@@ -114,7 +114,7 @@ const PreSignUp = () => {
                 <Controller
                   name="otp"
                   control={control}
-                  render={({ field }) => (
+                  render={({ field, ref }) => (
                     <InputField
                       {...field} 
                       placeholder={" "}

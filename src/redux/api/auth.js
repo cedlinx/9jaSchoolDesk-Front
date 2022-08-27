@@ -21,9 +21,14 @@ export const signUpApi = async (data) => {
 };
 
 export const getQRCodeApi = async (data) => {
-  const request = await axios.get("noauth/qrcode/1");
+  const request = await axios.get(`noauth/qrcode/${data}`);
   return request;
 };
+
+// export const getQRImageApi = async (data) => {
+//   const request = await axios.get(`noauth/qrcode/${data}`);
+//   return request;
+// };
 
 export const loginApi = async (data) => {
   const request = await axios.post(`${data.user}/noauth/login`, data.payload);
@@ -50,4 +55,8 @@ export const resetPasswordApi =  async (data) => {
 
 export const changePasswordApi =  async (data) => {
   return await axios.post(`${data.user}/auth/change/password`, data.payload);
+};
+
+export const validatePinApi = async (data) => {
+  return await axios.post("student/noauth/student/validate/pin", data);
 };

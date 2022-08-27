@@ -35,11 +35,11 @@
         top: 0; 
         left: 0; 
         z-index: 99; 
-        height: 50px; 
+        height: 60px; 
     }
         .pageContent{
             margin-top: 0rem;
-            min-height: calc(100vh - 50px);
+            min-height: calc(100vh - 60px);
             background-color: #fff;
         }
         .header, .pageContent{
@@ -56,7 +56,7 @@
 
         .generalLayout{
              .header {
-            height: 50px;
+            height: 60px;
             margin: 0rem;
             padding: 0rem;
         }
@@ -70,14 +70,13 @@
             .sidebar{
                 border: 1px solid #E9ECFF;
                 z-index: 1;
-                height: calc(100vh - 50px);
+                height: calc(100vh - 60px);
             }
 
             .pageContent{
                 margin: 0rem;
-                padding: 0rem 0rem 0rem 0rem;
                 overflow-y: auto;
-                height: calc(100vh - 50px);
+                height: calc(100vh - 60px);
 
             }
         } 
@@ -96,16 +95,15 @@
            height: 100%;
    
            .header {
-            height: 50px;
+            height: 60px;
             margin: 0rem;
             padding: 0rem;
         }
 
            .pageContent{
                margin: 0rem;
-               padding: 0rem 0rem 0rem 0rem;
                overflow-y: auto;
-               height: calc(100vh - 50px);
+               height: calc(100vh - 60px);
 
            }
        } 

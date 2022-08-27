@@ -33,7 +33,7 @@ import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAs
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import AttendanceCard from "@/components/Cards/AttendanceCard/AttendanceCard";
-import { takeAttendance as takeAttendanceFxn, getClassDetails, getAllStudents } from "@/redux/Teacher/TeacherSlice";
+import { takeAttendance as takeAttendanceFxn, getClassDetails, getAllStudents, viewKPIForClass } from "@/redux/Teacher/TeacherSlice";
 import useGetClassID from "@/utils/useGetClassID";
 
 
@@ -57,6 +57,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllStudents(class_id));
+    dispatch(viewKPIForClass(class_id));
   }, [dispatch, class_id]);
 
   const attendanceStatus = (status) => {

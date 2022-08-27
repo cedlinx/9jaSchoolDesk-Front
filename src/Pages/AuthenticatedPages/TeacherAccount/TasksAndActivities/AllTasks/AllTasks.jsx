@@ -5,7 +5,7 @@ import styles from "./AllTasks.module.scss";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { Icon } from "@iconify/react";
-import shortenDate from "@/helpers/shortenDate";
+import formatDate from "@/helpers/formatDate";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/ModalSlice";
@@ -67,9 +67,10 @@ const AllTasks = () => {
       accessor: "assignedTo",
       Cell: (row) => {
         let assignedTo = row.cell.row.values.assignedTo;
-        console.log(assignedTo);
+        let data = row.cell.row.original.allData;
+
         return <div>
-          <span style={{ color: "#4F4F4F", fontSize: "1rem" }}>{assignedTo === null ? "" : assignedTo === 0 ? "All Students" : "Selected Students"}</span>
+          <span onClick={() => dispatch(showModal({ action: "show", type: "viewSubmissions", modalData: data }))} style={{ color: "#4F4F4F", fontSize: "1rem", cursor: "pointer" }}>{assignedTo === null ? "" : assignedTo === 0 ? "All Students" : "Selected Students"}</span>
         </div>;
       }
     },
@@ -142,7 +143,7 @@ const AllTasks = () => {
         category: item?.type && item?.type,
         imageUrl: item?.imageUrl && item?.imageUrl,
         assignedTo: item?.audience && item?.audience,
-        date: item?.due_date && shortenDate(item?.due_date),
+        date: item?.due_date && formatDate(item?.due_date),
         task: item?.name && titleCase(item?.name),
         allData: item,
         action: ""

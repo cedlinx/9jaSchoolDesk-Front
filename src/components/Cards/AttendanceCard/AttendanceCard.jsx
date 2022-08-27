@@ -6,6 +6,7 @@ import absentIcon from "@/assets/icons/absent-icon.svg";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { useDispatch } from "react-redux";
+import generateColor from "@/helpers/generateColor";
 
 
 const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
@@ -13,15 +14,6 @@ const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
   const dispatch = useDispatch();
 
   const [status, setStatus] = useState(cardData?.status);
-
-  const generateColor = () => {
-    const letters = "123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
 
   const handleClick = () => {
     if (takeAttendance) {

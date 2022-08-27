@@ -2,8 +2,8 @@
     width: 100%;
     gap: 2rem;
     align-items: center;
-    margin: 2rem 0rem 3rem 0rem;
-    padding: 1rem;
+    margin: 0rem 0rem 1rem 0rem;
+    padding: 0rem;
 
     .formWrapper{
         background-color: #fff;
@@ -14,6 +14,38 @@
         form{    
             justify-content: space-between;
 
+            .imageSection{
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 1.5rem;
+                margin-bottom: 0.5rem;
+
+                p{
+                    line-height: 1;
+                    font-weight: bold;
+                    font-size: 1rem;
+                }
+
+                .imageDiv{
+                    display: flex;
+                    align-items: center;
+
+                    img{
+                        width: 3rem;
+                        // width: 100%;
+                        // height: 100%;
+                        object-fit: cover;
+                    }
+                    small{
+                        color: #D25B5D;
+                        line-height: 1;
+                        font-weight: bold;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
             .btnDiv{
                 justify-content: flex-end;
                 padding-top: 0.5rem;
@@ -22,11 +54,12 @@
     }
 
     .body{
+        width: 100%;
 
         .postContainer{
             gap: 1rem;
             border-top: 1px solid #E2E2E2;
-            padding: 1rem 0rem;
+            padding: 1rem;
             .header{
                 gap: 1rem;
                 align-items: center;
@@ -42,17 +75,22 @@
 
                 p{
                     color: #000000;
-                    font-size: 0.875rem;
+                    font-size: 1rem;
                     font-weight: bold;
+                }
+                small{
+                    color: #828282;
+                    font-size: 0.875rem;
+                    margin-left: auto;
                 }
             }
 
             .introText{
-                color: #4F4F4F;
-                font-size: 0.875rem;
+                color: #000;
+                font-size: 1rem;
             }
 
-            .courseCoverImageDiv{
+            .mediaDiv{
                 img{
                     width: 100%;
                     height: auto;
@@ -60,7 +98,89 @@
                     border-radius: 0.5rem;
                 }
             }
+
+            button{
+                background-color: #D25B5D;
+                color: #FFFF;
+                font-size: 0.875rem;
+                border: none;
+                cursor: pointer;
+                width: fit-content;
+                padding: 0.5rem 1.125rem;
+                line-height: 1;
+                border-radius: 0.5rem;
+                align-self: flex-end;
+            }
+
+            .commentsDiv{
+
+                .heading{
+                      h5{
+                    font-size: 0.9rem;
+                    font-weight: bold;
+                    color: #000000;
+                } 
+                small{
+                    font-size: 0.875rem;
+                    color: red;
+                } 
+                }
+             
+                .body{
+                    
+                     .commentContainer{
+                    gap: 1rem;
+                    width: 100%;
+                    margin-bottom: 0.875rem;
+
+                    .userImageDiv{
+                        img{
+                            border-radius: 50%;
+                            width: clamp(1.75rem, 2.75rem, 3.75rem);
+                            height: clamp(1.75rem, 2.75rem, 3.75rem);
+                            object-fit: contain;
+                        }
+                    }
+
+                    .body{
+                        width: 100%;
+                        .top{
+                            align-self: flex-end;
+                            line-height: 1;
+
+                            p{
+                                font-size: 0.75rem;
+                                font-weight: bold;
+                                color: #000000;
+                            }
+
+                            small{
+                                font-size: 0.75rem;
+                                color: #828282;
+                            }
+                        }
+
+                        .comment{
+                            font-size: 0.875rem;
+                            color: #000000;
+                        }
+                    }
+                } 
+                }
+
+              
+
+              
+            }
         }
+
+        .emptyDataDiv{
+             p{
+            text-align: center;
+        } 
+        }
+
+      
     }
 }
 
@@ -70,7 +190,7 @@
         gap: 2rem;
         align-items: center;
         margin: 0rem auto;
-        padding: 2rem 0rem 0rem 0rem;
+        padding: 0rem 0rem 0rem 0rem;
         border:  1px solid #E2E2E2;
         justify-self: center;
     
@@ -109,20 +229,10 @@
                             object-fit: contain;
                         }
                     }
-    
-                    p{
-                        color: #000000;
-                        font-size: 0.875rem;
-                        font-weight: bold;
-                    }
                 }
+
     
-                .introText{
-                    color: #4F4F4F;
-                    font-size: 0.875rem;
-                }
-    
-                .courseCoverImageDiv{
+                .mediaDiv{
                     img{
                         width: 100%;
                         height: auto;
@@ -140,16 +250,16 @@
         width: 50%;
         gap: 2rem;
         align-items: center;
-        padding: 2rem 0rem 0rem 0rem;
+        padding: 0rem 0rem 0rem 0rem;
         border:  1px solid #E2E2E2;
         align-self: center;
     
         .formWrapper{
             background-color: #fff;
             padding: 1rem;
-            margin-top: 1rem;
+            margin-top: 0rem;
             border-radius: 0.5rem;
-            width: 90%;
+            width: 100%;
     
             form{    
                 justify-content: space-between;
@@ -179,20 +289,9 @@
                             object-fit: contain;
                         }
                     }
-    
-                    p{
-                        color: #000000;
-                        font-size: 0.875rem;
-                        font-weight: bold;
-                    }
                 }
     
-                .introText{
-                    color: #4F4F4F;
-                    font-size: 0.875rem;
-                }
-    
-                .courseCoverImageDiv{
+                .mediaDiv{
                     img{
                         width: 100%;
                         height: auto;
@@ -210,16 +309,16 @@
         width: 35%;
         gap: 2rem;
         align-items: center;
-        padding: 2rem 0rem 0rem 0rem;
+        padding: 0rem 0rem 0rem 0rem;
         border:  1px solid #E2E2E2;
         align-self: center;
     
         .formWrapper{
             background-color: #fff;
-            padding: 1rem;
+            padding: 0rem 1rem;
             margin-top: 1rem;
             border-radius: 0.5rem;
-            width: 90%;
+            width: 100%;
     
             form{    
                 justify-content: space-between;
@@ -232,11 +331,13 @@
         }
     
         .body{
-    
+    // background-color: red;
+    width: 100%;
             .postContainer{
                 gap: 1rem;
                 border-top: 1px solid #E2E2E2;
-                padding: 1rem 2rem;
+                padding: 1rem 1rem;
+
                 .header{
                     gap: 1rem;
                     align-items: center;
@@ -249,20 +350,9 @@
                             object-fit: contain;
                         }
                     }
-    
-                    p{
-                        color: #000000;
-                        font-size: 0.875rem;
-                        font-weight: bold;
-                    }
                 }
     
-                .introText{
-                    color: #4F4F4F;
-                    font-size: 0.875rem;
-                }
-    
-                .courseCoverImageDiv{
+                .mediaDiv{
                     img{
                         width: 100%;
                         height: auto;

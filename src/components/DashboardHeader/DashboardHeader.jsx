@@ -34,7 +34,6 @@ import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import UrgentInfoTeacherModal from "@/components/Modals/UrgentInfoTeacher/UrgentInfoTeacher";
 import useGetClassDetails from "@/utils/useGetClassDetails";
 
-
 const Header = (props) => {
   const { handleToggleSidebar, showLinks = true } = props;
   const navigate = useNavigate();
@@ -59,8 +58,11 @@ const Header = (props) => {
   const toggleChangeFxn = (e) => {
     // alert("navigate to teacher");
   };
-  console.log(userCategory);
-  console.log(rootPath);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
 
   return (
     <section className={cx(styles.dashboardHeaderContainer, "flexRow", "")}>
@@ -101,13 +103,13 @@ const Header = (props) => {
             {userCategory === "proprietor" &&
               <div className={cx(styles.switcher, "flexRow")}>
                 <div className={cx(styles.infoDiv, "flexRow")}>
-                  <span>Institution: </span><span>{institutionName}</span>
+                  <span>Institution: </span><span>{titleCase(institutionName)}</span>
                 </div>
                 {/* <Button onClick={() => navigate("/select-institution/proprietor")} type title="Switch Institution" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" /> */}
               </div>
             }
 
-            {rootPath === "teachers" && <div style={{ width: "100%", display: "flex", gap: "1rem", justifyContent: "center" }}>
+            {/* {rootPath === "teachers" && <div style={{ width: "100%", display: "flex", gap: "1rem", justifyContent: "center" }}>
               <p style={{ color: "#828282", whiteSpace: "nowrap" }} >Switch to Teacher Experience</p>
               <div className={cx(styles.togglerDiv)}>
                 <FormCheck
@@ -115,7 +117,7 @@ const Header = (props) => {
                   onChange={(e) => toggleChangeFxn(e)}
                 />
               </div>
-            </div>}
+            </div>} */}
 
             {
               <div className={cx(styles.profileDiv, "flexRow")}>
@@ -149,6 +151,15 @@ const Header = (props) => {
                     </div>
                   )}
                 </NavLink>
+
+                <NavLink to="tasks">
+                  {({ isActive }) => (
+                    <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                      <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                      <span>Tasks</span>
+                    </div>
+                  )}
+                </NavLink>
                 </>
                 }
 
@@ -159,6 +170,24 @@ const Header = (props) => {
                         <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                           <div><img src={isActive ? messagesIconActive : messagesIcon} alt="" /></div>
                           <span>Messages</span>
+                        </div>
+                      )}
+                    </NavLink>
+
+                    <NavLink to="submissions">
+                      {({ isActive }) => (
+                        <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                          <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                          <span>Submissions</span>
+                        </div>
+                      )}
+                    </NavLink>
+
+                    <NavLink to="tasks">
+                      {({ isActive }) => (
+                        <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
+                          <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                          <span>Tasks</span>
                         </div>
                       )}
                     </NavLink>
@@ -179,7 +208,7 @@ const Header = (props) => {
 
                     {userCategory !== "proprietor" ? <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem> :
                       <DropdownItem onClick={() => navigate("settings")}>Settings</DropdownItem>}
-                    <DropdownItem onClick={() => dispatch(logout())}>Logout</DropdownItem>
+                    <DropdownItem onClick={() => handleLogout()}>Logout</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               </div>

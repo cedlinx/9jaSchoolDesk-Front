@@ -42,7 +42,7 @@
                     }
 
                     .fileUploadDiv{
-                        height: 7rem;
+                        height: 10rem;
                         border: 1px dashed #D25B5D;
                         white-space: wrap;
                         padding: 0.5rem;
@@ -50,9 +50,17 @@
                         font-size: 0.75rem;
                         border-radius: 0.5rem;
                         background-color: #d6777917;
+
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
                     }
 
                     .thumbnailDiv{
+                        gap: 1rem;
+                        
                         p{
                             font-size: 1rem;
                             color: #000;
@@ -63,6 +71,11 @@
                                 cursor: pointer;
                                 margin-left: 2rem;
                             }
+                        }
+                        img{
+                            width: 5rem;
+                            height: 100%;
+                            object-fit: contain;
                         }
                         small{
                             font-size: 0.75rem;

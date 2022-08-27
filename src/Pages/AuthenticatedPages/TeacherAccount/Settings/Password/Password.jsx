@@ -52,7 +52,7 @@ const Password = () => {
               <Controller
                 name="current_password"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <InputField
                     {...field} 
                     label={"Current Password"}
@@ -67,7 +67,7 @@ const Password = () => {
             <Controller
               name="password"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field} 
                   label={"New Password"}
@@ -82,7 +82,7 @@ const Password = () => {
             <Controller
               name="password_confirmation"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field} 
                   label={"Confirm New Password"}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./OTPVerification.module.scss";
 import Button from "@/components/Button/Button";
@@ -23,6 +23,7 @@ const OTPVerification = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
+  const loading = useSelector((state) => state.auth.loading);
 
   const { user } = useParams();
 
@@ -42,7 +43,7 @@ const OTPVerification = () => {
     if (response?.payload?.success) {
       toast.success(response?.payload?.message);
       reset();
-      user === "teacher" ? navigate(`/select-class/${user}/`) : navigate(`/${user}/dashboard`);
+      user === "teacher" ? navigate(`/select-class/${user}/`) : user === "guardian" ? navigate(`/select-ward/${user}/`) :  navigate(`/${user}/dashboard`);
     } else {
       toast.error(response.payload.error);
     }
@@ -71,7 +72,7 @@ const OTPVerification = () => {
               <Controller
                 name="otp"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <OTPComponent
                     {...field}
                     numberOfInputs={6}
@@ -88,7 +89,7 @@ const OTPVerification = () => {
             {/* <small style={{marginTop: "2rem"}}>Timer here - 40secs</small> */}
 
             <div className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button onClick={handleSubmit((data) => handleLogin(data))} title="Login" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+              <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => handleLogin(data))} title="Login" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
             <Button onClick={() => navigate(-1)} title="Back" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />

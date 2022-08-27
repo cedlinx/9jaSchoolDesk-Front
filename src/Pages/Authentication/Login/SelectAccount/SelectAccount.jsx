@@ -1,5 +1,6 @@
 import React from "react";
 import cx from "classnames";
+import { useLocation } from "react-router-dom";
 import styles from "./SelectAccount.module.scss";
 import Logo from "@/assets/images/Logo.svg";
 import {allStudentsData} from "@/helpers/sampleData";
@@ -8,20 +9,20 @@ import {initialsCase, titleCase} from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import StudentLoginModal from "@/components/Modals/StudentLogin/StudentLogin";
+import generateColor from "@/helpers/generateColor";
 
 
 const SelectAccount = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
+  const allStudentsData = location?.state?.payload;
 
-  const generateColor = () => {
-    const letters = "123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+  console.log(allStudentsData);
+
+  const handleLogin = (student) => {
+    dispatch(showModal({action: "show", type: "studentLogin", modalData: student}));
   };
 
   return (
@@ -33,7 +34,7 @@ const SelectAccount = () => {
       <div className={cx(styles.body)}>
         {allStudentsData.map((element, index) => {
           return (
-            <div key={index}  onClick={()=>dispatch(showModal({action: "show", type: "studentLogin", modalData: element}))} className={cx(styles.studentContainer, "flexCol")}>
+            <div key={index}  onClick={()=> handleLogin(element)} className={cx(styles.studentContainer, "flexCol")}>
 
               <div className={cx(styles.imageDiv)}>
             

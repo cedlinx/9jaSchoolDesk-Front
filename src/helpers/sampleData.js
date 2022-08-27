@@ -256,6 +256,41 @@ export const videoLessonsData = [
   }
 ];
 
+export const lessonsData = [
+  {
+    id: 1,
+    name: "Lesson One",
+    topic: "Topic one",
+    images: "https://www.w3schools.com/Jsref/movie.mp4",
+    thumbnail_url: "https://www.w3schools.com/Jsref/movie.mp4",
+    document_url: "https://www.w3schools.com/Jsref/movie.mp4"
+  },
+  {
+    id: 2,
+    name: "Lesson Two",
+    topic: "Topic two",
+    images: "https://picsum.photos/id/1011/1000/600/",
+    thumbnail_url: "https://picsum.photos/id/1011/1000/600/",
+    document_url: "https://picsum.photos/id/1011/1000/600/"
+  },
+  {
+    id: 3,
+    name: "Lesson three",
+    topic: "Topic three",
+    images: "https://picsum.photos/id/1011/1000/600/",
+    thumbnail_url: "https://picsum.photos/id/1011/1000/600/",
+    document_url: "https://picsum.photos/id/1011/1000/600/"
+  },
+  {
+    id: 4,
+    name: "Lesson four",
+    topic: "Topic four",
+    images: "https://picsum.photos/id/1011/1000/600/",
+    thumbnail_url: "https://picsum.photos/id/1011/1000/600/",
+    document_url: "https://picsum.photos/id/1011/1000/600/"
+  }
+];
+
 export const newSignUpsData = [
   {
     id: 1,
@@ -652,5 +687,18 @@ export const teachersRatingArray = [
     subject: "Civic Education",
     rating: 0,
     profilePic: null
+  }
+];
+
+export const noticeboardData = [
+  {
+    id: 1,
+    title: "School Fees",
+    date: "12/12/2019"
+  },
+  {
+    id: 2,
+    title: "School Fees",
+    date: "12/12/2019"
   }
 ];

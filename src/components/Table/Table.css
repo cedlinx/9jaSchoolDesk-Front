@@ -1,8 +1,9 @@
 table{
     border: 1px solid #E9ECFF;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     border-radius: 1rem !important;
     font-family: NunitoSans;
+    /* height: 100%; */
 }
 
 table th, table td{
@@ -26,6 +27,10 @@ tr:hover {
 
 .tableWrap{
     border-bottom: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .pagination{
@@ -35,6 +40,7 @@ tr:hover {
     width: 100%;
     font-size: 0.875rem;
     background-color: #4967904d;
+    margin: auto 0rem 0rem 0rem;
 
 }
 .pagination-summary{
@@ -97,7 +103,6 @@ tr:hover {
     .pagination{
         flex-direction: row;
         align-items: center;
-        margin-bottom: 1rem;
         justify-content: space-between;
     }
     .pagination .pagination-navigation{

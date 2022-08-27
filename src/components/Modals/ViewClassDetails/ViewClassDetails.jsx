@@ -7,7 +7,7 @@ import { titleCase } from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import formatArrayList from "@/helpers/formatArrayList";
-import shortenDate from "@/helpers/shortenDate";
+import formatDate from "@/helpers/formatDate";
 
 
 const ViewClassDetails = () => {
@@ -54,7 +54,7 @@ const ViewClassDetails = () => {
         </div>
 
         <div className={cx(styles.modalItem)}>
-          <span className={cx(styles.title)}>CREATED AT</span><span className={cx(styles.value)}>{shortenDate(data?.created_at)}</span>
+          <span className={cx(styles.title)}>CREATED AT</span><span className={cx(styles.value)}>{formatDate(data?.created_at)}</span>
         </div>
 
         <Button onClick={() => dispatch(showModal({ action: "hide", type: "ViewClassDetails" }))} title="OK" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />

@@ -26,7 +26,7 @@ const ChangeTaskStatus = () => {
       let response = await dispatch(enableAndDisableTask({status: 1, ids: [modalData.data.id]}));
       console.log(response);
       if(response.payload.success){
-        dispatch(showModal({ action: "hide", type: "changeTaskStatus" }));
+        dispatch(showModal({ action: "hide" }));
         dispatch(getAllTasks());
       }
     } else {
@@ -34,7 +34,7 @@ const ChangeTaskStatus = () => {
       console.log(response);
 
       if(response.payload.success){
-        dispatch(showModal({ action: "hide", type: "changeTaskStatus" }));
+        dispatch(showModal({ action: "hide"}));
         dispatch(getAllTasks());
 
       }

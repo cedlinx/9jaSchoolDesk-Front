@@ -49,7 +49,7 @@ const Account = () => {
 
   const sendRequest = async (data) => {
     let formData = new FormData();
-    imgData.file && formData.append("photo", imgData.file);
+    uploadedFile.file && formData.append("photo", uploadedFile.file);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("otherNames", data.otherNames);
@@ -63,7 +63,7 @@ const Account = () => {
     }
   };
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
@@ -72,7 +72,7 @@ const Account = () => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
+      setUploadedFile({file: file, imagePreviewUrl: reader.result});
     };
     reader.readAsDataURL(file);
   }, []);
@@ -88,7 +88,7 @@ const Account = () => {
         </div>
         <div className={cx(styles.imageSection, "flexRow")}>
           <div className={cx(styles.imageDiv)}>
-            <img src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : userDetails?.avatar} alt="" />
+            <img src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : userDetails?.avatar} alt="" />
           </div>
 
           <Button {...getRootProps()}  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
@@ -106,7 +106,7 @@ const Account = () => {
                 <Controller
                   name="firstName"
                   control={control}
-                  render={({ field }) => (
+                  render={({ field, ref }) => (
                     <InputField
                       {...field} 
                       placeholder={" "}
@@ -121,7 +121,7 @@ const Account = () => {
                 <Controller
                   name="lastName"
                   control={control}
-                  render={({ field }) => (
+                  render={({ field, ref }) => (
                     <InputField
                       {...field} 
                       placeholder={" "}
@@ -137,7 +137,7 @@ const Account = () => {
                   <Controller
                     name="otherNames"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -155,7 +155,7 @@ const Account = () => {
                   <Controller
                     name="address"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -172,7 +172,7 @@ const Account = () => {
                   <Controller
                     name="email"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}

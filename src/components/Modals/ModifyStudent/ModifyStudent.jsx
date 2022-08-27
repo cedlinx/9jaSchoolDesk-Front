@@ -91,7 +91,7 @@ const ModifyStudent = () => {
           <Controller
             name="firstName"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"FIRST NAME"}
@@ -104,7 +104,7 @@ const ModifyStudent = () => {
           <Controller
             name="lastName"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"LAST NAME"}
@@ -117,7 +117,7 @@ const ModifyStudent = () => {
           <Controller
             name="otherNames"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"OTHER NAMES"}
@@ -130,7 +130,7 @@ const ModifyStudent = () => {
           <Controller
             name="class_id"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"SELECT CLASS"}
@@ -145,7 +145,7 @@ const ModifyStudent = () => {
           <Controller
             name="subjects"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               < SelectAutoComplete
                 {...field}
                 isMulti={true}

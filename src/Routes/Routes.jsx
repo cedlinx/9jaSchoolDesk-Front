@@ -28,12 +28,18 @@ import SelectAccountStudent from "../Pages/Authentication/Login/SelectAccount/Se
 import ViewClassStudent from "../Pages/AuthenticatedPages/StudentAccount/MyClasses/ViewClass/ViewClass";
 import ProfileStudent from "../Pages/AuthenticatedPages/StudentAccount/Profile/Profile";
 import ClassGistStudent from "../Pages/AuthenticatedPages/StudentAccount/ClassGist/ClassGist";
+import TasksStudent from "../Pages/AuthenticatedPages/StudentAccount/Tasks/Tasks";
+import SubmitTaskStudent from "../Pages/AuthenticatedPages/StudentAccount/SubmitTask/SubmitTask";
+
 
 // Guardian Section
 import DashboardGuardian from "../Pages/AuthenticatedPages/GuardianAccount/Home/Home";
 import AssessmentFeedbackGuardian from "../Pages/AuthenticatedPages/GuardianAccount/AssessmentFeedback/AssessmentFeedback";
+import SubmissionsGuardian from "../Pages/AuthenticatedPages/GuardianAccount/Submissions/Submissions";
+import TasksGuardian from "../Pages/AuthenticatedPages/GuardianAccount/Tasks/Tasks";
 import ProfileGuardian from "../Pages/AuthenticatedPages/GuardianAccount/Profile/Profile";
 import MessagesGuardian from "../Pages/AuthenticatedPages/GuardianAccount/Messages/Messages";
+import SelectWardGuardian from "../Pages/Authentication/Login/SelectWard/SelectWard";
 
 
 // Teacher Section
@@ -73,18 +79,21 @@ const RoutesComponent = () => {
         <Route path="/:user/reset/password/:token" element={<ResetPassword />} />
         <Route path="select-account/:user" element={<SelectAccountStudent />} />
         <Route path="select-class/:user" element={<SelectClassTeacher />} />
+        <Route path="select-ward/:user" element={<SelectWardGuardian />} />
         {/* <Route  path="request-verification-link" element={<RequestVerificationLink />} />	 */}
 
         <Route path="student" element={<AuthenticatedRoute roles={[Role.Student]}><DashboardWrapper /></AuthenticatedRoute>}>
 
           <Route index path="dashboard" element={<DashboardStudent />} />
           <Route path="profile" element={<ProfileStudent />} />
-          <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackStudent />} />
+          <Route path="assessment-feedback" element={<AssessmentFeedbackStudent />} />
           <Route path="my-classes">
             <Route index path="" element={<MyClassesStudent />} />
             <Route path="view-class/:id" element={<ViewClassStudent />} />
           </Route>
           <Route path="class-gist" element={<ClassGistStudent />} />
+          <Route path="tasks" element={<TasksStudent />} />
+          <Route path="submit-task" element={<SubmitTaskStudent />} />
         </Route>
 
 
@@ -93,6 +102,8 @@ const RoutesComponent = () => {
           <Route index path="dashboard" element={<DashboardGuardian />} />
           <Route path="profile" element={<ProfileGuardian />} />
           <Route path="messages" element={<MessagesGuardian />} />
+          <Route path="submissions" element={<SubmissionsGuardian />} />
+          <Route path="tasks" element={<TasksGuardian />} />
           <Route path="dashboard/assessment-feedback" element={<AssessmentFeedbackGuardian />} />
 
         </Route>

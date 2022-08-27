@@ -60,7 +60,7 @@ const SendNotificationToParent = () => {
           <Controller
             name="recipients"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label="Guardians Email"
@@ -73,7 +73,7 @@ const SendNotificationToParent = () => {
           <Controller
             name="message"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <TextInput
                 {...field}
                 placeholder="Enter message"

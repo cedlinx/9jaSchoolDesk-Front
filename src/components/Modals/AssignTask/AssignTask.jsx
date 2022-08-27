@@ -92,7 +92,7 @@ const AssignTask = () => {
           <Controller
             name="audience"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <SelectField
                 {...field}
                 label={"Assign To"}
@@ -109,7 +109,7 @@ const AssignTask = () => {
                 <Controller
                   name="selected_audience"
                   control={control}
-                  render={({ field }) => (
+                  render={({ field, ref }) => (
                     <SelectAutoComplete
                       {...field}
                       // label={"Select Student"}

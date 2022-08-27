@@ -85,7 +85,7 @@ const AddTeacher = () => {
             <Controller
               name="firstName"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"FIRST NAME"}
@@ -98,7 +98,7 @@ const AddTeacher = () => {
             <Controller
               name="lastName"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"LAST NAME"}
@@ -111,7 +111,7 @@ const AddTeacher = () => {
             <Controller
               name="otherNames"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"OTHER NAMES"}
@@ -124,7 +124,7 @@ const AddTeacher = () => {
             <Controller
               name="phone"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <InputField
                   {...field}
                   label={"PHONE NUMBER"}
@@ -138,7 +138,7 @@ const AddTeacher = () => {
               <Controller
                 name="email"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <InputField
                     {...field}
                     label={"EMAIL"}
@@ -155,7 +155,7 @@ const AddTeacher = () => {
               <Controller
                 name="subjects"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   < SelectAutoComplete
                     {...field}
                     isMulti={true}

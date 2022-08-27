@@ -1,85 +1,66 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import cx from "classnames";
 import styles from "./SubmitAssessment.module.scss";
 import Button from "@/components/Button/Button";
-import InputField from "@/components/Input/Input";
-import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import closeIcon from "@/assets/icons/closeIcon.svg";
 import { Icon } from "@iconify/react";
-import UploadComponent from "@/components/UploadComponent/UploadComponent";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
-import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
-import heroImage from "@/assets/images/student-dashboard-hero-image.png";
-import editIcon from "@/assets/icons/edit-icon.svg";
+import { submitTask } from "@/redux/Student/StudentSlice";
 
-import { forgotPassword } from "@/redux/Auth/AuthSlice";
-
-import { useForm, Controller } from "react-hook-form";
-import { forgotPasswordValidationSchema } from "@/helpers/validation";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 const SubmitAssessment = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const modalData = useSelector((state) => state.modalState.modalData);
+  const loading = useSelector((state) => state.student.loading);
+  console.log(modalData);
 
-  const sendRequest = (data) => {
-    dispatch(forgotPassword(data));
-    dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
+  const sendRequest = async () => {
+    let formData = new FormData();
+    modalData?.data?.solution && formData.append("solution", modalData?.data?.solution);
+    modalData?.attachment && formData.append("attachment", modalData?.attachment);
+    formData.append("studentID", modalData?.taskData?.pivot?.student_id);
+    formData.append("task_id", modalData?.taskData?.id);
+
+    console.log(formData);
+    
+    let response = await dispatch(submitTask(formData));
+    console.log(response);
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide"}));
+      navigate("/student/tasks");
+    }
   };
-
-  const showLoginModal = (e) => {
-    e.preventDefault();
-    dispatch(showModal({ action: "show", type: "logIn" }));
-  };
-
-  const resolver = yupResolver(forgotPasswordValidationSchema);
-
-  const defaultValues = {
-    email: ""
-  };
-
-  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
   return (
 
     <section className={cx(styles.submitAssessmentContainer, "flexCol")}>
 
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <p>Submit Assessment</p>
         <Icon onClick={()=>dispatch(showModal({ action: "hide", type: "submitAssessment" }))} icon="carbon:close-filled" color="white" />
-        {/* <img src={closeIcon} alt="" /> */}
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
+        <div className={cx(styles.header, "flexCol")}>
+          <p>Submit Task</p>
+        </div>
 
-        <form
-          onSubmit={handleSubmit((data) => sendRequest(data))}
-          className={cx("flexCol")}
-        >
+        <div style={{textAlign: "center"}}>
+        Are you sure you want to submit this task?
+        </div>
 
-          <UploadComponent  fileDescription="Supports pdf, docs, png, svg, jpg" />
+        <div className={cx(styles.btnGroup, "flexRow")}>
+          <Button onClick={() => dispatch(showModal({action: "hide", type: "submitAssessment"}))} type title="Cancel" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
 
-          <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-            <Button title="Submit" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
-          </div>
+          <Button loading={loading} onClick={()=> sendRequest()} type="button" title="Submit" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+        </div>
 
-     
-
-        </form>
       </div>
 
     </section>
   );
-};
-
-SubmitAssessment.propTypes = {
-  title: PropTypes.string
 };
 
 export default SubmitAssessment;

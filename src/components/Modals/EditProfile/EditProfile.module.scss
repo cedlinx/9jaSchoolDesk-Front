@@ -19,47 +19,112 @@
         }
 
     }
-    .formWrapper{
+    .wrapper{
         background-color: #fff;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        gap: 3rem;
-        .header {
-            position: relative;
-            height: 4rem;
+        border-radius: 0.25rem;
 
-            .bgImage {
-                position: absolute;
-                background-repeat: no-repeat;
-                object-fit: cover;
-                background-position: center;
-                border-radius: 0.5rem;
-                width: 100%;
-                height: 100%;
+        .formWrapper{
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            gap: 3rem;
+            .header {
+                position: relative;
+                height: 4rem;
+    
+                .bgImage {
+                    position: absolute;
+                    background-repeat: no-repeat;
+                    object-fit: cover;
+                    background-position: center;
+                    border-radius: 0.5rem;
+                    width: 100%;
+                    height: 100%;
+                }
+                .profilePic{
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    bottom: -35%;
+                    width: 4rem;
+                    height: 4rem;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    background-color: white;
+                }
+                span{
+                    display: inline-block;
+                    border-radius: 50%;
+                    width: 4rem;
+                    height: 4rem;
+                    line-height: 4rem;
+                    font-size: 1.25rem;
+                    text-align: center;
+                    color: #fff;
+                    font-weight: bold;
+                    margin: 0rem;
+                  }
+                .editIcon{
+                    position: absolute;
+                    left: 2.5rem;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    bottom: -45%;
+                    width: 1.5rem;
+                }
             }
-            .profilePic{
-                position: absolute;
-                left: 1rem;
-                bottom: -35%;
-                width: 3rem;
-                height: 3rem;
-                object-fit: contain;
-            }
-            .editIcon{
-                position: absolute;
-                left: 2.5rem;
-                bottom: -45%;
-                width: 1.5rem;
+    
+            form{    
+                .btnDiv{
+                    justify-content: center;
+                    padding-top: 1rem;
+                 }
             }
         }
 
-        form{    
-            .btnDiv{
-                justify-content: center;
-                padding-top: 1rem;
-             }
+        .submissionsDiv{
+            padding: 1rem;
+            gap: 2rem;
+
+            .heading{
+                .title{
+                    font-weight: bold;
+                    color: #22467B;
+                }
+
+                span{
+                    color: #EB5757;
+                    cursor: pointer;
+                    text-decoration: underline;
+                    font-size: 1rem;
+                }
+            }
+
+            .body{
+                gap: 1rem;
+
+                .submissionContainer{
+                    cursor: pointer;
+                    border-radius: 0.5rem;
+                    padding: 0.75rem;
+
+                    &:hover{
+                        background-color: #F5F5F5;
+                    }
+
+                    .fileDetails{
+                        color: #4F4F4F;
+                        font-size: 1rem;
+                    }
+                }
+
+            
+            }
         }
     }
+  
 }
 
 @media all and (min-width: 768px){
@@ -74,12 +139,10 @@
                 height: 5rem;
     
                 .profilePic{
-                    left: 1rem;
                     bottom: -35%;
                     width: 4rem;
                 }
                 .editIcon{
-                    left: 3rem;
                     bottom: -45%;
                     width: 1.75rem;
                 }
@@ -108,14 +171,12 @@
                 height: 7rem;
     
                 .profilePic{
-                    left: 1rem;
                     bottom: -35%;
                     width: 5rem;
                     height: 5rem;
                     object-fit: contain;
                 }
                 .editIcon{
-                    left: 3rem;
                     bottom: -45%;
                     width: 1.75rem;
                 }

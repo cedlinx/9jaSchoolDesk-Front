@@ -71,7 +71,7 @@ const StepTwo = ({ nextStep, handleFormData, values, prevStep }) => {
                   <Controller
                     name="addressLine1"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}
@@ -90,7 +90,7 @@ const StepTwo = ({ nextStep, handleFormData, values, prevStep }) => {
                   <Controller
                     name="country"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <CountryDropdown
                         {...field}
                         value={country}
@@ -106,7 +106,7 @@ const StepTwo = ({ nextStep, handleFormData, values, prevStep }) => {
                   <Controller
                     name="state"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <RegionDropdown
                         {...field}
                         country={country}
@@ -122,7 +122,7 @@ const StepTwo = ({ nextStep, handleFormData, values, prevStep }) => {
                   <Controller
                     name="city"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, ref }) => (
                       <InputField
                         {...field} 
                         placeholder={" "}

@@ -9,10 +9,13 @@ export default function TextInput({
   onBlur,
   name,
   value,
-  containerClassName
+  containerClassName,
+  marginbottom,
+  readonly,
+  defaultValue
 }) {
   return (
-    <div className={`form-group text-area-wrapper ${containerClassName}`}>
+    <div style={{marginBottom: marginbottom}} className={`form-group text-area-wrapper ${containerClassName}`}>
       {label && <label htmlFor="text-area-component">{label}</label>}
       <textarea
         className="form-control"
@@ -22,6 +25,8 @@ export default function TextInput({
         name={name}
         onBlur={onBlur}
         value={value}
+        readOnly={readonly}
+        defaultValue={defaultValue}
       />
       {error && <div className="error-message">{error}</div>}
     </div>

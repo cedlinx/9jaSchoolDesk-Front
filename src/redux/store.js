@@ -4,7 +4,8 @@ import ModalReducer from "./ModalState/ModalSlice";
 import ProprietorReducer from "./Proprietor/ProprietorSlice";
 import GuardianReducer from "./Guardian/GuardianSlice";
 import TeacherReducer from "./Teacher/TeacherSlice";
-
+import StudentReducer from "./Student/StudentSlice";
+import GistReducer from "./Gist/GistSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,7 +13,9 @@ const store = configureStore({
     modalState: ModalReducer,
     proprietor: ProprietorReducer,
     guardian: GuardianReducer,
-    teacher: TeacherReducer
+    teacher: TeacherReducer,
+    student: StudentReducer,
+    gist: GistReducer
   },
   devTools: process.env.NODE_ENV === "development" ? true : false 
 });

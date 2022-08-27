@@ -25,6 +25,8 @@ import loungeIcon from "@/assets/icons/lounge-icon.svg";
 import lessonsIcon from "@/assets/icons/lessons-icon.svg";
 import settingsIconActive from "@/assets/icons/settings-icon-active.svg";
 import settingsIcon from "@/assets/icons/settings-white.svg";
+import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
+import { titleCase, initialsCase } from "@/helpers/textTransform";
 
 
 // import { getUserInfo } from "@/redux/Auth/AuthSlice";
@@ -35,6 +37,9 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const teacherDetails = useGetLoggedInUser();
+
+  console.log(teacherDetails);
 
   // const actualPath = location.pathname.match(/([^/]+$)/);
   const actualPath = location.pathname.split("/").pop();
@@ -64,17 +69,20 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         </div>
         <div className="sidebar-header" >
           <div className="imageDiv">
-            <img
-              src={thumbnailImg}
-              alt="thumb"
-              className="user-image"
-            />
+            {teacherDetails?.avatar ?  
+              <img
+                src={teacherDetails?.avatar}
+                alt="thumb"
+                className="user-image"
+              /> 
+              : 
+              <span style={{ backgroundColor: "#D25B5D" }}>{initialsCase(`${teacherDetails.firstName} ${teacherDetails.lastName}`)}</span>}
           </div>
           <div className="user-info">
-            <p>Eunice Mark</p>
-            <small>eunicemark@gmail.com</small>
+            <p>{`${teacherDetails?.firstName && titleCase(teacherDetails?.firstName)} ${teacherDetails?.firstName && titleCase(teacherDetails?.lastName)}` }</p>
+            <small>{teacherDetails?.email}</small>
           </div>
-          <img onClick={() => navigate("profile")} className="caret-icon" src={rightCaret} alt="icon" />
+          <img onClick={() => navigate("settings")} className="caret-icon" src={rightCaret} alt="icon" />
         </div>
       </SidebarHeader>
 

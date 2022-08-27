@@ -61,7 +61,7 @@ const EditSubject = () => {
           <Controller
             name="subject"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"SUBJECT NAME"}

@@ -13,7 +13,6 @@ const DashboardContainer = (props) => {
   const { children } = props;
   const location = useLocation();
   const rootPath = location.pathname.split("/")[1];
-  console.log(rootPath);
   const actualPath = location.pathname.split("/").pop();
 
 

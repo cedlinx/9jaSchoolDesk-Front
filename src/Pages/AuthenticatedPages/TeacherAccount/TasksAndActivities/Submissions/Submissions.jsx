@@ -16,7 +16,7 @@ const Submissions = () => {
 
   const dispatch = useDispatch();
 
-  let shortenDate=(value)=>{
+  let formatDate=(value)=>{
     let date = new Date(value);
     const options = {
       day: "2-digit",
@@ -125,7 +125,7 @@ const Submissions = () => {
         imageUrl: item?.imageUrl && item?.imageUrl,
         assignedTo: item?.teacherDetails && {name: item?.teacherDetails?.name, subject: item?.teacherDetails?.subject, imageUrl: item?.imageUrl},
         submission: item?.teacherDetails && {name: item?.teacherDetails?.name, subject: item?.teacherDetails?.subject, imageUrl: item?.imageUrl},
-        date: item?.date && shortenDate(item?.date),
+        date: item?.date && formatDate(item?.date),
         task: item?.description && titleCase(item?.description),
         action: ""
       });

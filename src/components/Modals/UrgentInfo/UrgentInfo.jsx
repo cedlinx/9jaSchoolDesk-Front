@@ -66,7 +66,7 @@ const UrgentInfo = () => {
           <Controller
             name="message"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <TextInput
                 {...field}
                 placeholder="Enter message"
@@ -106,7 +106,7 @@ const UrgentInfo = () => {
             <Controller
               name="recipients"
               control={control}
-              render={({ field }) => (
+              render={({ field, ref }) => (
                 <TextInput
                   {...field}
                   label="Recipients Email"

@@ -21,7 +21,7 @@ const AddPerformanceIndicator = () => {
 
   const sendRequest = async (data) => {
     let formData = new FormData();
-    formData.append("photo", imgData.file);
+    formData.append("photo", uploadedFile.file);
     formData.append("name", data.name);
     formData.append("category", data.category);
     formData.append("type", data.type);
@@ -50,7 +50,7 @@ const AddPerformanceIndicator = () => {
 
   const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
@@ -59,7 +59,7 @@ const AddPerformanceIndicator = () => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({file: file, imagePreviewUrl: reader.result});
+      setUploadedFile({file: file, imagePreviewUrl: reader.result});
       setValue("uploadedFile", file);
     };
     reader.readAsDataURL(file);
@@ -86,7 +86,7 @@ const AddPerformanceIndicator = () => {
           <Controller
             name="name"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"INDICATOR NAME"}
@@ -99,7 +99,7 @@ const AddPerformanceIndicator = () => {
           <Controller
             name="category"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"CATEGORY"}
@@ -116,7 +116,7 @@ const AddPerformanceIndicator = () => {
           <Controller
             name="type"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"TYPE"}
@@ -133,7 +133,7 @@ const AddPerformanceIndicator = () => {
           <Controller
             name="weight"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"WEIGHT"}
@@ -146,7 +146,7 @@ const AddPerformanceIndicator = () => {
           <Controller
             name="min_score"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"MINIMUM SCORE"}
@@ -159,7 +159,7 @@ const AddPerformanceIndicator = () => {
           <Controller
             name="max_score"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"MAXIMUM SCORE"}
@@ -172,12 +172,12 @@ const AddPerformanceIndicator = () => {
           <Controller 
             name="uploadedFile"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <>
                 <div className={cx(styles.imageSection, "flexRow")}>
                   <p>Upload Image</p>
                   <div {...getRootProps()}   {...field} className={cx(styles.imageDiv)}>
-                    {imgData?.imagePreviewUrl ? <img src={imgData?.imagePreviewUrl && imgData?.imagePreviewUrl} alt=""/>
+                    {uploadedFile?.imagePreviewUrl ? <img src={uploadedFile?.imagePreviewUrl && uploadedFile?.imagePreviewUrl} alt=""/>
                       :
                       <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>              
                     }

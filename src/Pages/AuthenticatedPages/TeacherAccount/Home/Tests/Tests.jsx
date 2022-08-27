@@ -73,7 +73,7 @@ const Tests = () => {
     }
   ];
 
-  let shortenDate=(value)=>{
+  let formatDate=(value)=>{
     let date = new Date(value);
     const options = {
       day: "2-digit",
@@ -93,7 +93,7 @@ const Tests = () => {
         status: item?.status && item?.status,
         imageUrl: item?.imageUrl && item?.imageUrl,
         teacherDetails: item?.teacherDetails && item?.teacherDetails,
-        date: item?.date && shortenDate(item?.date),
+        date: item?.date && formatDate(item?.date),
         description: item?.description && titleCase(item?.description)
       });
     });

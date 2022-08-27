@@ -73,7 +73,7 @@ const AssignTeacherToClass = () => {
           <Controller
             name="name"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <InputField
                 {...field}
                 label={"NAME"}
@@ -87,7 +87,7 @@ const AssignTeacherToClass = () => {
           <Controller
             name="class_id"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"SELECT CLASS"}

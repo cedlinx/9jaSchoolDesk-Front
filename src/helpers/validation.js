@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-import moment from "moment";
 
 
 export const signInValidationSchema = Yup.object().shape({
@@ -94,6 +93,50 @@ export const addIndicatorValidationSchema = Yup.object().shape({
 
   uploadedFile: Yup.string()
     .required("Indicator icon is required")
+}); 
+
+export const uploadLessonValidationSchema = Yup.object().shape({
+  topic: Yup.string()
+    .min(2, "Topic should be at least 2 characters long.")
+    .required("Topic is required"),
+
+  description: Yup.string()
+    .required("Description is Required"),
+
+  date: Yup.string(),
+
+  subject_id: Yup.string(),
+
+  status: Yup.string(),
+
+  thumbnail: Yup.string(),
+
+  video: Yup.string(),
+
+  attachment: Yup.string()
+
+}); 
+
+export const modifyLessonValidationSchema = Yup.object().shape({
+  topic: Yup.string()
+    .min(2, "Topic should be at least 2 characters long.")
+    .required("Topic is required"),
+
+  description: Yup.string()
+    .required("Description is Required"),
+
+  date: Yup.string(),
+
+  subject_id: Yup.string(),
+
+  status: Yup.string(),
+
+  thumbnail: Yup.string(),
+
+  video: Yup.string(),
+
+  attachment: Yup.string()
+
 }); 
 
 export const modifyKPIIndicatorValidationSchema = Yup.object().shape({
@@ -422,10 +465,27 @@ export const forgotPasswordValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address").required()
 });
 
+export const submitTaskValidationSchema = Yup.object().shape({
+  solution: Yup.string()
+});
+
+export const submitFeedbackValidationSchema = Yup.object().shape({
+  task: Yup.array().of(
+    Yup.object().shape({
+      feedback: Yup.string().required("Feedback cannot be empty"),
+      score: Yup.string().required("Score cannot be empty")
+    })
+  )
+});
+
+export const createGistValidationSchema = Yup.object().shape({
+  body: Yup.string().required("Content body cannot be empty")
+});
+
 export const studentLoginValidationSchema = Yup.object().shape({
-  password: Yup.string()
-    .required("Password is required")
-    .min(8, "Must Contain at least 8 Characters")
+  pin: Yup.string()
+    .required("Pin is required")
+    .min(4, "Must Contain at least 4 Characters")
 });
 
 export const requestVerificationLinkValidationSchema = Yup.object().shape({
@@ -453,11 +513,21 @@ export const resetPasswordValidationSchema = Yup.object().shape({
     .oneOf([Yup.ref("password")], "Passwords must and should match")
 });
 
-export const formatDate = (date) => {
-  return moment(date, "hh:mm A").format("\"hh:mm A\"");
-};
-
 export const changePasswordValidationSchema = Yup.object().shape({
+  current_password: Yup.string()
+    .required("The Current Password is required")
+    .min(8, "Must be at least 8 Characters"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(8, "Must Contain at least 8 Characters"),
+
+  password_confirmation: Yup.string()
+    .required("Password is required")
+    .min(8, "Must Contain at least 8 Characters")
+    .oneOf([Yup.ref("password")], "Passwords must and should match")
+});
+
+export const changePinValidationSchema = Yup.object().shape({
   current_password: Yup.string()
     .required("The Current Password is required")
     .min(8, "Must be at least 8 Characters"),
@@ -681,6 +751,23 @@ export const addTeacherValidationSchema = Yup.object().shape({
 
 });
 
+export const modifyWardProfileValidationSchema = Yup.object().shape({
+  firstName: Yup.string(),
+
+  lastName: Yup.string(),
+
+  otherNames: Yup.string(),
+
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .nullable()
+
+  // phone: Yup.string().required("Phone is required")
+
+});
+
 export const modifyTeacherValidationSchema = Yup.object().shape({
   firstName: Yup.string()
     .required("Kindly provide teacher's first name"),
@@ -715,6 +802,57 @@ export const modifyProprietorValidationSchema = Yup.object().shape({
     .min(5, "Must be above 5 characters!")
     .max(225, "Too Long!")
     .required("Email is required"),
+
+  address: Yup.string()
+
+  // phone: Yup.string().required("Phone is required")
+
+});
+
+export const saveNotificationsValidationSchema = Yup.object().shape({
+  whatsApp: Yup.string(),
+
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .nullable,
+
+  phone: Yup.string()
+
+});
+
+export const modifyGuardianValidationSchema = Yup.object().shape({
+  firstName: Yup.string(),
+
+  lastName: Yup.string(),
+
+  otherNames: Yup.string().nullable(),
+
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .required("Email is required"),
+
+  address: Yup.string()
+
+  // phone: Yup.string().required("Phone is required")
+
+});
+
+export const modifyStudentProfileValidationSchema = Yup.object().shape({
+  firstName: Yup.string(),
+
+  lastName: Yup.string(),
+
+  otherNames: Yup.string().nullable(),
+
+  email: Yup.string()
+    .email("Invalid email address")
+    .min(5, "Must be above 5 characters!")
+    .max(225, "Too Long!")
+    .nullable(),
 
   address: Yup.string()
 

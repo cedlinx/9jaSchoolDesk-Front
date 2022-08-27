@@ -16,7 +16,7 @@ const MenuBar = () => {
   
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
+      <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow", "container")}>
         <Navbar.Brand className={cx(styles.siteLogo )}> 		
           <Link to="/"><img src={Logo} alt="" /></Link>
         </Navbar.Brand>

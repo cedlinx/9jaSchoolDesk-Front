@@ -51,7 +51,7 @@ const AssignStudentToClass = () => {
           <Controller
             name="studentId"
             control={control}
-            render={({ field }) => (
+            render={({ field, ref }) => (
               <Select
                 {...field}
                 label={"Select Student"}
@@ -70,7 +70,7 @@ const AssignStudentToClass = () => {
               <Controller
                 name="studentClass"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <Select
                     {...field}
                     label={"Assign To Class"}

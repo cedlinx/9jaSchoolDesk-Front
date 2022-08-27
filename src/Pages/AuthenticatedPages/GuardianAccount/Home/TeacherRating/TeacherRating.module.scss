@@ -6,7 +6,7 @@
             border-radius: 0.5rem;
             height: 20rem;
             justify-content: space-between;
-            padding: 1rem;
+            padding: 0rem;
             overflow-y: auto;
 
             .body{
@@ -64,6 +64,12 @@
                     cursor: pointer;
                 }
             }
+
+            .tableDiv{
+                &>div{
+                    width: 100%;
+                }
+            }
         }
     }
 }
@@ -74,7 +80,7 @@
         .teacherRatingsDiv{
      
             .ratingsDiv{
-                padding: 1rem;
+                padding: 0rem;
                 height: 20rem;
 
                 .body{
@@ -151,7 +157,7 @@
     .teacherRatingContainer{
         .teacherRatingsDiv{
             .ratingsDiv{
-                height: 20rem;
+                height: 100%;
 
                 .body{
 

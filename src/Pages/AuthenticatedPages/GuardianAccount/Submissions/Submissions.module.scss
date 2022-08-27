@@ -1,0 +1,67 @@
+.submissionsContainer{
+    margin: 0rem;
+    padding: 0.5rem;
+    gap: 1.5rem;
+    align-items: center;
+
+    .header{
+        text-align: center;
+        border-bottom: 1px solid #E2E2E2;
+        width: 100%;
+        padding-bottom: 0.5rem;
+        h5{
+            color: #22467B;
+        }
+    }
+
+    .filterSection{
+        justify-content: flex-end;
+            gap: 1rem;
+        font-size: 0.75rem;
+        input{
+            width: 50%;
+        }
+    }
+
+}
+
+@media all and (min-width: 768px){
+    .submissionsContainer{
+        padding: 1rem;
+        gap: 1.5rem;
+    
+        .header{
+
+        }
+    
+        .filterSection{
+            justify-content: flex-end;
+                gap: 1rem;
+            font-size: 0.75rem;
+            input{
+                width: auto;
+            }
+        }
+    
+    }
+}
+
+@media all and (min-width: 991px){
+    .submissionsContainer{
+        padding: 1rem 3rem;
+        gap: 1.5rem;
+    
+        .header{
+
+        }
+    
+        .filterSection{
+            justify-content: flex-end;
+                gap: 1rem;
+            font-size: 0.75rem;
+            input{
+            }
+        }
+    
+    }
+}

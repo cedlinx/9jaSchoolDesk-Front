@@ -11,14 +11,12 @@ import { toast } from "react-toastify";
 import { switchClass } from "@/redux/Teacher/TeacherSlice";
 
 
-
-
 const SelectClass = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const teacherDetails = useGetLoggedInUser();
-  let classesArray = teacherDetails?.klasses;
+  let classesArray = teacherDetails?.classes;
   console.log(teacherDetails);
 
 

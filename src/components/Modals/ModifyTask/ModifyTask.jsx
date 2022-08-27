@@ -47,7 +47,7 @@ const ModifyTask = () => {
     // formData.append("audience", data.audience === "0" ? 0 : selected_audience_ids);
     // formData.append("audience", data.audience);
     formData.append("due_date", data.due_date);
-    formData.append("attachment", imgData.file);
+    formData.append("attachment", uploadedFile.file);
 
     let response = await dispatch(modifyTask(formData));
 
@@ -86,7 +86,7 @@ const ModifyTask = () => {
 
   }, [modalData, reset]);
 
-  const [imgData, setImgData] = useState({
+  const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: ""
   });
@@ -95,7 +95,7 @@ const ModifyTask = () => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImgData({ file: file, imagePreviewUrl: reader.result });
+      setUploadedFile({ file: file, imagePreviewUrl: reader.result });
     };
     reader.readAsDataURL(file);
   }, []);
@@ -161,7 +161,7 @@ const ModifyTask = () => {
               <Controller
                 name="subject_id"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <SelectField
                     {...field}
                     label="Subject"
@@ -177,7 +177,7 @@ const ModifyTask = () => {
               <Controller
                 name="name"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <InputField
                     {...field}
                     placeholder={" "}
@@ -192,7 +192,7 @@ const ModifyTask = () => {
               <Controller
                 name="type"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <SelectField
                     {...field}
                     label={"Task Type"}
@@ -207,7 +207,7 @@ const ModifyTask = () => {
               <Controller
                 name="description"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <TextArea
                     {...field}
                     placeholder={"Enter Description"}
@@ -224,7 +224,7 @@ const ModifyTask = () => {
               {/* <Controller
                 name="audience"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <SelectField
                     {...field}
                     label={"Audience"}
@@ -241,7 +241,7 @@ const ModifyTask = () => {
                 <Controller
                   name="selected_audience"
                   control={control}
-                  render={({ field }) => (
+                  render={({ field, ref }) => (
                     <SelectAutoComplete
                       {...field}
                       // label={"Select Student"}
@@ -258,7 +258,7 @@ const ModifyTask = () => {
               <Controller
                 name="status"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <SelectField
                     {...field}
                     label={"Status"}
@@ -282,7 +282,7 @@ const ModifyTask = () => {
 
               <div className={cx(styles.imageSection, "flexRow")}>
                 <div {...getRootProps()} className={cx(styles.imageDiv)}>
-                  <img src={imgData?.imagePreviewUrl ? imgData?.imagePreviewUrl : null} alt="" />
+                  <img src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : null} alt="" />
                 </div>
 
                 <Button {...getRootProps()} type="button" title="Attach File" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
@@ -293,7 +293,7 @@ const ModifyTask = () => {
               <Controller
                 name="due_date"
                 control={control}
-                render={({ field }) => (
+                render={({ field, ref }) => (
                   <InputField
                     {...field}
                     placeholder={" "}

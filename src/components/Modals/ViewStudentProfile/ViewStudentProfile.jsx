@@ -16,8 +16,8 @@ import persistenceIcon from "@/assets/icons/persistence-icon.svg";
 import caretUp from "@/assets/icons/caret-up.svg";
 import caretDown from "@/assets/icons/caret-down.svg";
 import { viewKPIForClass, getStudentScoreKPI, incrementScoreKPI, decrementScoreKPI } from "@/redux/Teacher/TeacherSlice";
-import { debounce } from "debounce";
 import { toast } from "react-toastify";
+import useDebounce from "@/utils/useDebounce";
 
 
 
@@ -26,27 +26,37 @@ const ViewStudentProfile = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   console.log(modalData);
-  let KPIData = useSelector((state) => state.teacher.getStudentScoreKPIData);
+  let KPIData = useSelector((state) => state?.teacher?.getStudentScoreKPIData?.kpi);
+  const dataArray = useSelector((state) => state?.teacher?.viewKPIForClassData?.kpis);
+  const [increaseValue, setIncreaseValue] = useState(0);
+  const [decreaseValue, setDecreaseValue] = useState(0);
+
+  const debouncedIncreaseValue = useDebounce(increaseValue, 1500);
+  const debouncedDecreaseValue = useDebounce(decreaseValue, 1500);
 
   console.log(KPIData);
   console.log(modalData);
+  console.log(dataArray);
   
   useEffect(() => {
     dispatch(getStudentScoreKPI({student_id: modalData.id}));
-  }, [dispatch, modalData.id]);
+   
+  }, [ dispatch,  modalData.id]);
 
   const sendRequest = (data) => {
     dispatch(forgotPassword(data));
     dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
   };
+    
 
   const increaseKPI = (e, data) => {
     let valueSpan = e.target.parentElement.parentElement.querySelector("p > span");
     let currentValue = (valueSpan.textContent)*1;
-    if(currentValue >=0 && currentValue <5){
+    if(currentValue >= data?.min_score && currentValue < data?.max_score){
       valueSpan.innerText = currentValue + 1;
-      // dispatch(incrementScoreKPI(modalData.student_id, modalData.class_id));
-      // debounce(alert("increase hello"), 4000);
+      setIncreaseValue(currentValue + 1);
+      // debounce(displayAlert(), 5000);
+      dispatch(incrementScoreKPI({student_id: modalData.id, kpi_id: data.id, score: currentValue + 1}));
 
     }
     else{
@@ -55,13 +65,13 @@ const ViewStudentProfile = () => {
   };
 
   const decreaseKPI = (e, data) => {
-    // dispatch(decrementScoreKPI(modalData.student_id, modalData.class_id));
     let valueSpan = e.target.parentElement.parentElement.querySelector("p > span");
     let currentValue = (valueSpan.textContent)*1;
     console.log(currentValue);
-    if(currentValue >=1 && currentValue <= 5){
+    if(currentValue >= data?.min_score + 1 && currentValue <= data?.max_score){
       valueSpan.innerText = currentValue - 1;
-      // dispatch(decrementScoreKPI(modalData.student_id, modalData.class_id));
+      setDecreaseValue(currentValue - 1);
+      dispatch(decrementScoreKPI({student_id: modalData.id, kpi_id: data.id, score: currentValue - 1}));
       // debounce(alert("decrease hello"), 4000);
     }
     else{
@@ -69,26 +79,19 @@ const ViewStudentProfile = () => {
     }
   };
 
-
-  let dataArray = [
-    { name: "Curiosity",
-      icon: curiosityIcon,
-      value: "4"
-    },
-    { name: "Gratitude",
-      icon: gratitudeIcon,
-      value: "4"
-    },
-    { name: "Persistence",
-      icon: persistenceIcon,
-      value: "4"
-    },
-    { name: "Teamwork",
-      icon: teamworkIcon,
-      value: "4"
+  const getKPIValue = (id) => {
+    if (Array.isArray(KPIData) && KPIData.length > 0 ){
+      return KPIData.map((indicator, index) => {
+        if(indicator.id === id){
+          console.log(indicator.pivot.score);
+          return indicator.pivot.score * 1;
+        }
+      });    
     }
-  ];
-
+    else{
+      return 0;
+    }
+  };
 
   return (
 
@@ -118,10 +121,10 @@ const ViewStudentProfile = () => {
               {dataArray.map((data, index) => (
                 <div className={cx(styles.behaviorWrapper, "flexRow")} key={index}>
                   <div className={cx(styles.leftSection)}>
-                    <span><img src={data.icon} alt="icon" /></span>
+                    <span><img src={data.avatar} alt="icon" /></span>
                     <span>{data.name}</span>
                     <p className={cx(styles.valueSpan)}>
-                      <span>{data.value}</span>
+                      <span>{getKPIValue(data?.id)}</span>
                       <span>pts</span>
                     </p>
                   </div>
