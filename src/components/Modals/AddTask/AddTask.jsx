@@ -42,8 +42,9 @@ const AddTask = () => {
     formData.append("description", data.description);
     formData.append("subject_id", data.subject_id);
     formData.append("type", data.type);
-    // formData.append("format", data.format);
+    formData.append("format", uploadedFile.file.type.split("/")[0]);
     formData.append("status", data.status);
+    formData.append("description", data.description);
     // formData.append("audience", data.audience === "0" ? [0] : selected_audience_ids);
     // formData.append("audience", data.audience);
     formData.append("due_date", data.due_date);
@@ -86,7 +87,7 @@ const AddTask = () => {
     reader.readAsDataURL(file);
   }, []);
 
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
+  const { getInputProps, getRootProps } = useDropzone({ onDrop });
 
   const [displayStudentSelector, setDisplayStudentSelector] = useState(false);
 

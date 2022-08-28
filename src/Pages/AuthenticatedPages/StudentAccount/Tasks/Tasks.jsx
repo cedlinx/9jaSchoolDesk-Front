@@ -23,6 +23,7 @@ import useGetSelectedWard from "@/utils/useGetSelectedWard";
 import Submitted from "./Submitted/Submitted";
 import Overdue from "./Overdue/Overdue";
 import Active from "./Active/Active";
+import All from "./All/All";
 
 const Tasks = () => {
   const dispatch = useDispatch();
@@ -32,11 +33,13 @@ const Tasks = () => {
   const studentData = useGetStudentDashboard()?.student;
   console.log(studentData);
 
-  const RenderActive = () => <Active currentTasks={Array.isArray(studentData?.current_tasks) && studentData.current_tasks} />;
+  const RenderAll = () => <All allTasks={Array.isArray(studentData?.current_tasks) && studentData.current_tasks} />;
+  const RenderActive = () => <Active currentTasks={Array.isArray(studentData?.pending_tasks) && studentData.pending_tasks} />;
   const RenderSubmitted = () => <Submitted submittedTasks={Array.isArray(studentData?.submitted_tasks) && studentData.submitted_tasks} />;
   const RenderOverdue = () => <Overdue overdueTasks={Array.isArray(studentData?.overdue_tasks) && studentData.overdue_tasks} />;
 
   const tabsComponents = [
+    { name: "All", component: RenderAll },
     { name: "Active", component: RenderActive },
     { name: "Submitted", component: RenderSubmitted },
     { name: "Overdue", component: RenderOverdue }
@@ -45,7 +48,7 @@ const Tasks = () => {
   return (
     <div className={cx(styles.tasksContainer, "flexCol")}>
       <div className={cx(styles.header)}>
-        <h5>All Tasks</h5>
+        <h5>Tasks</h5>
       </div>
       {/* <div className={cx(styles.filterSection, "flexRow")}>
         <input type="date" name="" id="" />

@@ -27,7 +27,7 @@ const SubmitTask = () => {
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
-
+  console.log(taskData);
   const sendRequest = (data) => {
     dispatch(showModal({ action: "show", type: "submitAssessment", modalData: {data: data, taskData: taskData, attachment: uploadedFile?.file}}));
   };
@@ -46,7 +46,8 @@ const SubmitTask = () => {
 
   const [uploadedFile, setUploadedFile] = useState({
     file: "",
-    imagePreviewUrl: ""
+    imagePreviewUrl: "", 
+    type: ""
   });
   
   const onDrop = useCallback(acceptedFiles => {
@@ -54,7 +55,7 @@ const SubmitTask = () => {
     console.log(file);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setUploadedFile({file: file, imagePreviewUrl: reader.result});
+      setUploadedFile({file: file, imagePreviewUrl: reader.result, type: file.type.split("/")[0]});
       setValue("uploadedFile", file);
     };
     reader.readAsDataURL(file);
@@ -68,15 +69,26 @@ const SubmitTask = () => {
     <div className={cx(styles.submitTaskWrapper, "flexCol")}>
       <div className={cx(styles.header)}>
         <h5>Submit Task</h5>
-        <h6><span>Title: </span>{taskData?.name && titleCase(taskData?.name)}</h6>
-        <p><span>Type: </span>{taskData?.type && titleCase(taskData?.type)}</p>
       </div>
 
       <div className={cx(styles.body, "row", "g-0")}>
-        <div className={cx(styles.leftSection, "col-sm-12", "col-md-5")}>
-          <h5>Questions</h5>
+        <div className={cx(styles.leftSection, "flexCol", "col-sm-12", "col-md-5")}>
+          <div className={cx(styles.metaDataDiv, "flexCol")}>
+            <h6><span>Title: </span>{taskData?.name && titleCase(taskData?.name)}</h6>
+            <p><span>Type: </span>{taskData?.type && titleCase(taskData?.type)}</p>
+          </div>
           <div className={cx(styles.questionsDiv)}>
-            {taskData?.attachment && parse(taskData.attachment)}
+            <h5>Questions</h5>
+            {taskData?.attachment && <div className={cx(styles.mediaDiv)}>
+              {taskData?.format === "video" ?
+                <video src={taskData?.attachment} id="myVideo" width="100%" height="240px" controls /> 
+                :
+                taskData?.format === "image" ?
+                  <img src={taskData?.attachment} alt="img" />
+                  :
+                  <a href={taskData?.attachment} target="_blank" rel="noreferrer"><Icon icon="teenyicons:attachment-solid" color="#eb5757" /> {taskData?.attachment.split("/")[taskData?.attachment.split("/").length - 1]}</a>
+              }
+            </div>}
           </div>
         </div>
         <div className={cx(styles.rightSection, "col-sm-12", "col-md-7", "flexCol")}>
@@ -97,6 +109,7 @@ const SubmitTask = () => {
                       {...field}
                       placeholder="Type your answer here"
                       getQuillContent={getQuillContent}
+
                     />
                   )}
                 />
@@ -104,11 +117,11 @@ const SubmitTask = () => {
 
               <div className={cx(styles.attachmentDiv)}>
                 <div className={cx(styles.imageSection, "flexRow")}>
-                  <p>Supports pdf, docs, png, svg, jpg</p>
+                  <p>Attach File</p>
                   <div {...getRootProps()} className={cx(styles.imageDiv)}>
-                    {uploadedFile?.imagePreviewUrl ? <img src={uploadedFile?.imagePreviewUrl && uploadedFile?.imagePreviewUrl} alt=""/>
-                      :
-                      <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>  }        
+                    {uploadedFile?.type === "image" ? <img src={uploadedFile?.imagePreviewUrl && uploadedFile?.imagePreviewUrl} alt=""/>
+                      : uploadedFile?.file ? <small>{uploadedFile?.file?.name}</small> : 
+                        <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>  }        
                   </div>
                 </div>
                 <span style={{color: "tomato", fontSize: "0.75rem"}} >{errors?.uploadedFile && errors?.uploadedFile?.message}</span>
@@ -119,8 +132,6 @@ const SubmitTask = () => {
               </div>
             </form>
           </div>
-          
-         
         </div>
       </div>
 

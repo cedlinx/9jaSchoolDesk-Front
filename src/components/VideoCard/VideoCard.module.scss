@@ -46,6 +46,10 @@
             line-height: 1;
 
             p {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
                 .title {
                     font-size: 1.125rem;
                     font-weight: 500;
@@ -54,16 +58,23 @@
 
                 small {
                     color: #828282;
-                    font-size: 0.75rem;
-
+                    font-size: 0.9rem;
                 }
+
+                .metaData{
+                    margin-top: 0.5rem;
+
+                      .duration {
+                    color: #496690;
+                    font-weight: 500;
+                    margin-left: auto;
+                }
+                }
+
+              
             }
 
-            .duration {
-                color: #496690;
-                font-weight: 500;
-                font-size: 0.875rem;
-            }
+           
         }
 
         .tutorDetails {
@@ -87,6 +98,11 @@
             p{
                 font-size: 0.875rem;
                 font-weight: 500;
+                margin: 0rem;
+            }
+            small{
+                font-size: 1rem;
+                font-weight: 400;
                 margin: 0rem;
             }
         }

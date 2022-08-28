@@ -6,6 +6,8 @@ import Button from "@/components/Button/Button";
 import {titleCase} from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
+import formatArrayList from "@/helpers/formatArrayList";
+import formatDate from "@/helpers/formatDate";
 
 
 const GuardianDetails = () => {
@@ -13,6 +15,15 @@ const GuardianDetails = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.modalState.modalData);
   console.log(data);
+
+  let getWardsArray =(data)=>{
+    let wardArray = [];
+    data.map((ward)=>{
+      wardArray.push(`${ward.firstName} ${ward.lastName}`);
+    }
+    );
+    return formatArrayList(wardArray);
+  }; 
 
   return (
     <div className={cx(styles.guardianDetailsContainer, "flexCol")}>
@@ -37,7 +48,13 @@ const GuardianDetails = () => {
           <span className={cx(styles.title)}>EMAIL</span><span className={cx(styles.value)}>{data?.email}</span>
         </div>
         <div className={cx(styles.modalItem)}>
+          <span className={cx(styles.title)}>WARD(S)</span><span className={cx(styles.value)}>{Array.isArray(data?.wards) && getWardsArray(data?.wards)}</span>
+        </div>
+        {data?.phone && <div className={cx(styles.modalItem)}>
           <span className={cx(styles.title)}>PHONE</span><span className={cx(styles.value)}>{data?.phone}</span>
+        </div>}
+        <div className={cx(styles.modalItem)}>
+          <span className={cx(styles.title)}>CREATED AT</span><span className={cx(styles.value)}>{formatDate(data?.created_at)}</span>
         </div>
         {/* <div className={cx(styles.modalItem)}>
           <span className={cx(styles.title)}>MINIMUM SCORE</span><span className={cx(styles.value)}>{data?.min_score}</span>

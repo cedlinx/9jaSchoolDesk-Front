@@ -94,9 +94,9 @@ const TaskDetails = () => {
   <div className={cx(styles.modalItem)}>
     <span className={cx(styles.title)}>CLASS</span><span className={cx(styles.value)}>{data?.class?.name}</span>
   </div>
-  <div className={cx(styles.modalItem)}>
+  {data?.pivot?.status && <div className={cx(styles.modalItem)}>
     <span className={cx(styles.title)}>STATUS</span><span className={cx(styles.value)}>{data?.pivot?.status && titleCase(data?.pivot?.status)}</span>
-  </div>
+  </div>}
   <div className={cx(styles.modalItem)}>
     <span className={cx(styles.title)}>CREATED DATE</span><span className={cx(styles.value)}>{formatDate(data?.created_at)}</span>
   </div>

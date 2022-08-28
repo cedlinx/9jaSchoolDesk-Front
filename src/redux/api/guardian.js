@@ -28,3 +28,7 @@ export const modifyGuardianProfileApi = async (data) => {
   return await axios.post("guardian/auth/profile/update", data);
 };
 
+export const rateTeacherByGuardianApi = async (data) => {
+  return await axios.post("guardian/auth/rate", data);
+};
+

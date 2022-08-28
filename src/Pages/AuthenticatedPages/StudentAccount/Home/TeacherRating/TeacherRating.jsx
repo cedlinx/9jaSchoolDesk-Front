@@ -6,18 +6,16 @@ import styles from "./TeacherRating.module.scss";
 import TableComponent from "@/components/Table/Table";
 import {initialsCase, titleCase} from "@/helpers/textTransform";
 import StarRating from "@/components/StarRating";
-// import {rateTeacher} from "@/redux/Guardian/GuardianSlice"
+import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
 const TeacherRating = ({teachersData}) => {
   const dispatch = useDispatch();
 
-  // const [rating, setRating] = useState({});
-
   const setRating = async (rating, teacherData) => {
-    // console.log(rating, teacherData);
-    //let response = await dispatch(rateTeacher({rating, teacherData}));
+    // let response = await dispatch(rateTeacherByStudent({rating, teacher_id: teacherData?.id}));
     // console.log(response);
+    dispatch(showModal({action: "show", type: "rateTeacher", modalData: {rating, teacherData}}));
   };
 
   console.log(teachersData);
@@ -36,6 +34,11 @@ const TeacherRating = ({teachersData}) => {
     });
     return result;
   };
+
+  const onSelectStar = (rating, data) => {
+    setRating(rating, data);
+  };
+
 
   const columnsHeaderAssessment = [                
     {
@@ -80,9 +83,8 @@ const TeacherRating = ({teachersData}) => {
           <StarRating
             numberOfSelectedStar={rating}
             numberOfStar={5}
-            onSelectStar={(value) => {
-              setRating(value, allData);
-            }}
+            onSelectStar={onSelectStar}
+            dataObj={allData}
           />
           
         </div>;

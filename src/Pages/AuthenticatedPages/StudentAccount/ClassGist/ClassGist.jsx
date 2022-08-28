@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./ClassGist.module.scss";
@@ -16,6 +16,7 @@ import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 import TextInput from "@/components/TextInput/TextInput";
 import formatDate from "@/helpers/formatDate";
 import TextArea from "@/components/TextArea";
+import { initialsCase, titleCase } from "@/helpers/textTransform";
 
 
 const ClassGist = () => {
@@ -88,17 +89,13 @@ const ClassGist = () => {
 
   const toggleCommentDiv = (e) => {
     let commentDiv = e.target.parentElement.parentElement.querySelector(".commentBody");
-    console.log(commentDiv);
     if(commentDiv.className.includes("hide")){
       commentDiv.classList.remove("hide");
       commentDiv.classList.add("show");
     }else{
       commentDiv.classList.add("hide");
       commentDiv.classList.remove("show");
-
     }
-    // commentDiv.classList.toggle("hide");
-    // commentDiv.display = "block"
     e.target.textContent = e.target.innerText === "Show" ? "Hide" : "Show";
   };
 
@@ -185,16 +182,28 @@ const ClassGist = () => {
               <div key={index} className={cx(styles.postContainer, "flexCol")}>
                 <div className={cx(styles.header, "flexRow")}>
                   <div className={cx(styles.userImageDiv)}>
-                    <img src={studentProfilePic} alt="thumbnail" />
+                    {post?.author?.avatar ? 
+                      <img src={post?.author?.avatar} alt="img" />
+                      :
+                      <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "3rem", height: "3rem", lineHeight: "3rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${post?.author?.firstName ? post?.author?.firstName : ""} ${post?.author?.lastName
+                        ? post?.author?.lastName : ""}`)}</span>
+                    }
                   </div>
-                  <p>John Doe</p>
+                  <p>{`${post?.author?.firstName ? titleCase(post?.author?.firstName) : ""} ${post?.author?.lastName ? titleCase(post?.author?.lastName) : ""}`}</p>
                   <small>{formatDate(post?.created_at)}</small>
                 </div>
 
                 <p className={cx(styles.introText)}>{post?.body}</p>
 
                 {post?.attachment && <div className={cx(styles.mediaDiv)}>
-                  <img src={post?.attachment} alt="course preview" />
+                  {post?.type === "video" ?
+                    <video src={post?.attachment} id="myVideo" width="100%" height="240px" controls /> 
+                    :
+                    post?.type === "image" ?
+                      <img src={post?.attachment} alt="img" />
+                      :
+                      <a href={post?.attachment} target="_blank" rel="noreferrer"><Icon icon="teenyicons:attachment-solid" color="#eb5757" /> {post?.attachment.split("/")[post?.attachment.split("/").length - 1]}</a>
+                  }
                 </div>}
 
                 <InputField

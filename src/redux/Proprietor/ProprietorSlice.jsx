@@ -857,7 +857,7 @@ export const assignSubjectToTeacher = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await assignSubjectToTeacherApi(data);
     toast.success(response.data.message);
-    return dispatch(assignSubjectToTeacherAction(response));
+    return dispatch(assignSubjectToTeacherAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));
@@ -869,7 +869,7 @@ export const assignSubjectToStudent = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await assignSubjectToStudentApi(data);
     toast.success(response.data.message);
-    return dispatch(assignSubjectToStudentAction(response));
+    return dispatch(assignSubjectToStudentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));

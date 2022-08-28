@@ -9,13 +9,13 @@ const QuillEditor = ({placeholder, getQuillContent}) => {
 
   const  modules  = {
     toolbar: [
-      [{ font: [] }],
+      [{ font: [] }]
       // ["bold", "italic", "underline", "strike"],
       // [{ color: [] }, { background: [] }],
       // [{ script:  "sub" }, { script:  "super" }],
       // [{ list:  "ordered" }, { list:  "bullet" }],
       // [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-      ["link", "image", "video"]
+      // ["link", "image", "video"]
     ]
   };
 

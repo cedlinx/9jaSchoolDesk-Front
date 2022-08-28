@@ -86,8 +86,8 @@ const LoginWithClassCodeComponent = () => {
                     )}
                   />
 
-                  <div onClick={handleSubmit((data) => signIn(data))}  className={cx(styles.submitBtnDiv, "flexRow-fully-centered")}>
-                    <Button loading={loading} disabled={loading} title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
+                  <div className={cx(styles.submitBtnDiv, "flexRow-fully-centered")}>
+                    <Button onClick={handleSubmit((data) => signIn(data))} loading={loading} disabled={loading} title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
                   </div>
 
                   {/* <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p> */}

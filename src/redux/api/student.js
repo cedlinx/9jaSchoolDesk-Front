@@ -40,6 +40,9 @@ export const getAllLessonsApi = async (data) => {
   return await axios.post("student/auth/lesson/list-for-class", data);
 };
 
+export const filterTasksApi = async (data) => {
+  return await axios.post("student/auth/task/filter", data);
+};
 
 
 

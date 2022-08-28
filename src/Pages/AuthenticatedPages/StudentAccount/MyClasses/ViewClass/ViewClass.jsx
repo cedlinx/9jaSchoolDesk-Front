@@ -51,7 +51,7 @@ const ViewClass = () => {
           <Icon icon="ci:dot-01-xs" color="#828282" width="12" />
           <small>{lessonDetailsData?.subject?.name}</small>
         </p>
-        { lessonDetailsData?.type === "video" && <small className={cx(styles.duration)}>{duration}</small> }
+        {/* { lessonDetailsData?.type === "video" && <small className={cx(styles.duration)}>{duration}</small> } */}
       </div>
       <div className={cx(styles.container, "row", "g-0")}>
         <div className={cx(styles.mainContent, "col-md-12", "col-lg-9", "flexCol", "g-0")}>
@@ -74,7 +74,7 @@ const ViewClass = () => {
           <div className={cx(styles.subGroupContainer, "flexCol")}>
             {Array.isArray(lessonsData) && lessonsData.map((item, index)=>{
               return(
-                <div onClick={()=>handleClick(item)} key={index}>
+                <div style={{width: "100%"}} onClick={()=>handleClick(item)} key={index}>
                   <VideoCard cardDetails={item} />
                 </div>
               );

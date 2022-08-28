@@ -609,6 +609,24 @@ export const assignTeacherToClassValidationSchema = Yup.object().shape({
     .required("Kindly select a class")
 });
 
+export const rateTeacherValidationSchema = Yup.object().shape({
+  comment: Yup.string()
+});
+
+export const assignSubjectsToTeacherValidationSchema = Yup.object().shape({
+  subjects: Yup.array()
+    .min(1, "Kindly select at least one (1) subject")
+    .nullable().
+    required("Kindly select at least one subject")
+});
+
+export const assignSubjectsToStudentValidationSchema = Yup.object().shape({
+  subjects: Yup.array()
+    .min(1, "Kindly select at least one (1) subject")
+    .nullable().
+    required("Kindly select at least one subject")
+});
+
 export const addStudentValidationSchema = Yup.object().shape({
 
   // name: Yup.string().required("Name is required"),

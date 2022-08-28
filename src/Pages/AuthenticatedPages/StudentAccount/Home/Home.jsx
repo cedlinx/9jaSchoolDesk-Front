@@ -13,6 +13,7 @@ import ChangePinModal from "@/components/Modals/ChangePin/ChangePin";
 import TaskDetailsModal from "@/components/Modals/TaskDetails/TaskDetails";
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
 import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";
+import RateTeacherModal from "@/components/Modals/RateTeacher/RateTeacher";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 
@@ -44,7 +45,7 @@ const Home = () => {
           <p>Where will you like to start off today?</p>
           
         </div>
-        <Button onClick={()=> dispatch(showModal({ action: "show", type: "changePin"}))} type title="Set Pin" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FFF" hoverColor="#000" />
+        {/* <Button onClick={()=> dispatch(showModal({ action: "show", type: "changePin"}))} type title="Set Pin" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FFF" hoverColor="#000" /> */}
       </section>
 
       <section className={cx(styles.upperSection, "row")}>
@@ -76,7 +77,8 @@ const Home = () => {
       {modalState === "show" && modalType === "editProfile" && <Modal show ><EditProfileModal /> </Modal>}
       {modalState === "show" && modalType === "submitAssessment" && <Modal show ><SubmitAssessmentModal /> </Modal>}
       {modalState === "show" && modalType === "uploadActivity" && <Modal show ><UploadActivityModal /> </Modal>}
-      {modalState === "show" && modalType === "changePin" && <Modal show ><ChangePinModal /> </Modal>}       
+      {modalState === "show" && modalType === "changePin" && <Modal show ><ChangePinModal /> </Modal>}    
+      {modalState === "show" && modalType === "rateTeacher" && <Modal show ><RateTeacherModal /> </Modal>}     
       {modalState === "show" && modalType === "taskDetails" && <Modal show size="lg" ><TaskDetailsModal /> </Modal>}      
     </div>
   );

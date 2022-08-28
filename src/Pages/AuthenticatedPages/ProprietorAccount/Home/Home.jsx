@@ -33,8 +33,9 @@ const Home = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const dashboardData = useSelector((state) => state.proprietor.getDashboardData);
-  const newSignUpsData = useSelector((state) => state.proprietor.getNewGuardianSignupsData.new_signups);
+  const newSignUpsData = useSelector((state) => state?.proprietor?.getNewGuardianSignupsData?.new_signups);
   const loading = useSelector((state) => state.proprietor.loading);
+  const newSignUpLoading = useSelector((state) => state?.proprietor?.getNewGuardianSignupsData?.success);
 
   useEffect(() => {
     dispatch(getDashboard());
@@ -243,7 +244,7 @@ const Home = () => {
 
         <div className={cx(styles.tableSection)}>
           <h3 className={cx(styles.title)}>New SignUps</h3>
-          {loading ? <TableSkeleton /> :
+          { !newSignUpLoading ? <TableSkeleton /> :  
             <TableComponent loading={loading} columnsHeader={columnsHeaderAssessment} tableData={getTableData(newSignUpsData)} showHeader={true} />}
         </div>
 

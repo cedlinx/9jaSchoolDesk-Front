@@ -1,5 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./AssignTeacherToClass.module.scss";
@@ -8,7 +7,6 @@ import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
-import { useDropzone } from "react-dropzone";
 
 import { useForm, Controller } from "react-hook-form";
 import { assignTeacherToClassValidationSchema } from "@/helpers/validation";
@@ -102,18 +100,11 @@ const AssignTeacherToClass = () => {
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
             <Button title="Assign To Class" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
-
-     
-
         </form>
       </div>
 
     </section>
   );
-};
-
-AssignTeacherToClass.propTypes = {
-  title: PropTypes.string
 };
 
 export default AssignTeacherToClass;

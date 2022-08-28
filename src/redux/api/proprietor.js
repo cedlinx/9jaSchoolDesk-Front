@@ -185,9 +185,9 @@ export const viewSubjectDetailsApi = async (data) => {
 };
 
 export const assignSubjectToTeacherApi = async (data) => {
-  return await axios.get("proprietor/auth/subject/teacher/save", data);
+  return await axios.post("proprietor/auth/subject/teacher/save", data);
 };
 
 export const assignSubjectToStudentApi = async (data) => {
-  return await axios.get("proprietor/auth/subject/student/save", data);
+  return await axios.post("proprietor/auth/subject/student/save", data);
 };

@@ -14,12 +14,12 @@ const Activities = ({selectedWard}) => {
   const navigate = useNavigate();
   const RenderTests = () => <Tests />;
   const RenderAssignments = () => <Assignments />;
-  const RenderTasks = () => <Tasks currentTasks={Array.isArray(selectedWard?.current_tasks) && selectedWard?.current_tasks} />;
+  const RenderTasks = () => <Tasks currentTasks={Array.isArray(selectedWard?.pending_tasks) && selectedWard?.pending_tasks} />;
 
   const tabsComponents = [
     // { name: "Tests", component: RenderTests },
     // { name: "Assignments", component: RenderAssignments },
-    { name: "Tasks", component: RenderTasks }
+    { name: "Current Task(s)", component: RenderTasks }
   ];
 
   return (

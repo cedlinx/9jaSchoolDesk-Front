@@ -7,7 +7,8 @@ const StarRating = ({
   numberOfStar,
   onSelectStar,
   numberOfSelectedStar,
-  viewOnly
+  viewOnly,
+  dataObj
 }) => {
   const [rating, setRating] = useState(numberOfSelectedStar || 0);
   const [hoverState, setHoverState] = useState(0);
@@ -19,12 +20,14 @@ const StarRating = ({
     viewOnly ? defaultMode() : setHoverState(0);
   };
   const setOnMouseClick = (valueRating) => {
-    viewOnly ? defaultMode() : setRating(valueRating);
+    if(viewOnly) {
+      defaultMode();
+    }
+    else{
+      onSelectStar(valueRating, dataObj);
+      setRating(valueRating);
+    }
   };
-
-  useEffect(() => {
-    onSelectStar(rating);
-  }, [onSelectStar, rating]);
 
   useEffect(() => {
     setRating(numberOfSelectedStar);
@@ -53,12 +56,14 @@ StarRating.propTypes = {
   numberOfStar: PropTypes.number.isRequired,
   numberOfSelectedStar: PropTypes.number,
   onSelectStar: PropTypes.func,
-  viewOnly: PropTypes.bool
+  viewOnly: PropTypes.bool,
+  dataObj: PropTypes.object
 };
 StarRating.defaultProps = {
   onSelectStar: () => {},
   numberOfSelectedStar: 0,
-  viewOnly: false
+  viewOnly: false,
+  dataObj: {}
 };
 
 export default StarRating;

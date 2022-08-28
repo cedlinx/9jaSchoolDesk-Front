@@ -1,4 +1,4 @@
-import { getDashboardApi, getAllStudentsApi, viewStudentDetailsApi, viewTaskDetailsApi, getStudentTasksApi, modifyStudentProfileApi, submitTaskApi, rateTeacherByStudentApi, lessonDetailsApi, getAllLessonsApi} from "../api/student";
+import { getDashboardApi, getAllStudentsApi, viewStudentDetailsApi, viewTaskDetailsApi, getStudentTasksApi, modifyStudentProfileApi, submitTaskApi, rateTeacherByStudentApi, lessonDetailsApi, getAllLessonsApi, filterTasksApi} from "../api/student";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -19,7 +19,8 @@ const initialState = {
   submitTaskData: {},
   rateTeacherByStudentData: {},
   lessonDetailsData: {},
-  getAllLessonsData: {}
+  getAllLessonsData: {},
+  filterTasksData: {}
 };
 
 export const studentSlice = createSlice({
@@ -85,13 +86,18 @@ export const studentSlice = createSlice({
     getAllLessonsAction: (state, action) => {
       state.getAllLessonsData = action.payload;
       state.loading = false;
+    },
+
+    filterTasksAction: (state, action) => {
+      state.filterTasksData = action.payload;
+      state.loading = false;
     }
   }
 });
 export default studentSlice.reducer;
 
 // Actions
-const { startLoading, hasError, getDashboardAction, getAllStudentsAction, viewStudentDetailsAction, viewTaskDetailsAction, getStudentTasksAction, modifyStudentProfileAction, submitTaskAction, rateTeacherByStudentAction, lessonDetailsAction, getAllLessonsAction } = studentSlice.actions;
+const { startLoading, hasError, getDashboardAction, getAllStudentsAction, viewStudentDetailsAction, viewTaskDetailsAction, getStudentTasksAction, modifyStudentProfileAction, submitTaskAction, rateTeacherByStudentAction, lessonDetailsAction, getAllLessonsAction, filterTasksAction } = studentSlice.actions;
 
 
 export const getDashboard = (data) => async (dispatch) => {
@@ -217,3 +223,13 @@ export const getAllLessons = (data) => async (dispatch) => {
   }
 };
   
+export const filterTasks = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await filterTasksApi(data);
+    return dispatch(filterTasksAction(response?.data));
+  } catch (e) {
+    toast.error(e?.response?.data?.errors ? formatArrayList(e.response.data.errors) : e?.response?.data?.message);
+    return dispatch(hasError(e?.response?.data));
+  }
+};

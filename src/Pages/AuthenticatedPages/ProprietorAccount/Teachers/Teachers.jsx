@@ -12,13 +12,15 @@ import { titleCase } from "@/helpers/textTransform";
 import { Icon } from "@iconify/react";
 import AddTeacherModal from "@/components/Modals/AddTeacher/AddTeacher";
 import AssignTeacherToClassModal from "@/components/Modals/AssignTeacherToClass/AssignTeacherToClass";
+import AssignSubjectsToTeacherModal from "@/components/Modals/AssignSubjectsToTeacher/AssignSubjectsToTeacher";
 import TeacherStatusModal from "@/components/Modals/TeacherStatus/TeacherStatus";
 import DeleteTeacherModal from "@/components/Modals/DeleteTeacher/DeleteTeacher";
 import ModifyTeacherModal from "@/components/Modals/ModifyTeacher/ModifyTeacher";
+import ViewTeacherDetailsModal from "@/components/Modals/ViewTeacherDetails/ViewTeacherDetails";
 
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import addIcon from "@/assets/icons/add-icon-2.svg";
+import expandIcon from "@/assets/icons/expand-icon.svg";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import useGetAllTeachers from "@/utils/useGetAllTeachers";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -150,44 +152,51 @@ const Teachers = () => {
             color: "#747474",
             fontSize: "1rem"
           }}
-        >Subject Taught</div>
+        >Subject(s) Taught</div>
       ),
       accessor: "subjectTaught",
       Cell: (row) => {
         let subjectTaught = row.cell.row.values.subjectTaught;
-        return <div style={{ width: "10rem", display: "flex", flexWrap: "wrap" }}>
-          <p style={{ color: "#4F4F4F" }}>{subjectTaught}</p>
+        let data = row.cell.row.original.allData;
+        
+        return <div style={{ width: "auto" }}>
+          <p style={{ color: "#4F4F4F", display: "flex", justifyContent: "space-between"}}>
+            <span style={{ width: "15rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{subjectTaught}</span>
+            <span>
+              {subjectTaught.includes(",") && <img style={{cursor: "pointer" }} onClick={() => dispatch(showModal({ action: "show", type: "viewTeacherDetails", modalData: data }))} src={expandIcon} alt="icon" /> }
+            </span>
+          </p>
         </div>;
       }
     },
-    {
-      Header: () => (
-        <div
-          style={{
-            width: "7.5rem",
-            color: "#747474",
-            fontSize: "1rem"
-          }}
-        >Class Assigned</div>
-      ),
-      accessor: "classAssigned",
-      Cell: (row) => {
-        let classAssigned = row.cell.row.values.classAssigned;
-        let allData = row.cell.row.original.allData;
-        return <div style={{ width: "", display: "flex", alignItems: "center", flexWrap: "nowrap", gap: "1rem" }}>
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {/* {classTaught && classTaught.map((classTaught, index) => {
-              return <p key={index} style={{ color: "#4F4F4F"}}>{classTaught},&nbsp;</p>;
-            }
-            )}  */}
-            <p style={{ color: "#4F4F4F" }}>{classAssigned}&nbsp;</p>
-          </div>
+    // {
+    //   Header: () => (
+    //     <div
+    //       style={{
+    //         width: "7.5rem",
+    //         color: "#747474",
+    //         fontSize: "1rem"
+    //       }}
+    //     >Class Assigned</div>
+    //   ),
+    //   accessor: "classAssigned",
+    //   Cell: (row) => {
+    //     let classAssigned = row.cell.row.values.classAssigned;
+    //     let allData = row.cell.row.original.allData;
+    //     return <div style={{ width: "", display: "flex", alignItems: "center", flexWrap: "nowrap", gap: "1rem" }}>
+    //       <div style={{ display: "flex", flexWrap: "wrap" }}>
+    //         {/* {classTaught && classTaught.map((classTaught, index) => {
+    //           return <p key={index} style={{ color: "#4F4F4F"}}>{classTaught},&nbsp;</p>;
+    //         }
+    //         )}  */}
+    //         <p style={{ color: "#4F4F4F" }}>{classAssigned}&nbsp;</p>
+    //       </div>
 
-          <div><img onClick={() => dispatch(showModal({ action: "show", type: "assignTeacherToClass", modalData: allData }))} style={{ cursor: "pointer" }} src={addIcon} alt="img" /></div>
+    //       <div><img onClick={() => dispatch(showModal({ action: "show", type: "assignTeacherToClass", modalData: allData }))} style={{ cursor: "pointer" }} src={addIcon} alt="img" /></div>
 
-        </div>;
-      }
-    },
+    //     </div>;
+    //   }
+    // },
     // {
     //   Header: () => (
     //     <div
@@ -233,6 +242,9 @@ const Teachers = () => {
               <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "viewTeacherDetails", modalData: data }))}><Icon icon="carbon:view" color="#828282" /> View Details</DropdownItem>
+              <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "assignSubjectsToTeacher", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Assign Subject(s)</DropdownItem>
+              <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "assignTeacherToClass", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Assign To Class</DropdownItem>
               <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "modifyTeacher", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Edit Account</DropdownItem>
               <DropdownItem style={{ color: "#fb4e4e" }} onClick={() => dispatch(showModal({ action: "show", type: "deleteTeacher", modalData: data }))}> <Icon icon="fluent:delete-20-regular" color="#fb4e4e" /> Delete Account</DropdownItem>
             </DropdownMenu>
@@ -255,8 +267,7 @@ const Teachers = () => {
     Array.isArray(data) && data.map((item, index) => {
       result.push({
         serialNumber: index + 1,
-        name: item?.name && titleCase(item?.name),
-        firstName: item?.firstName && titleCase(item?.firstName),
+        name: `${item?.firstName && titleCase(item?.firstName)} ${item?.lastName && titleCase(item?.lastName)}`,
         lastName: item?.lastName && titleCase(item?.lastName),
         email: item?.email && item?.email,
         action: "",
@@ -282,13 +293,13 @@ const Teachers = () => {
       <div className={cx(styles.body, "flexCol")}>
 
         <div className={cx(styles.tableSection)}>
-          <h3 className={cx(styles.title)}>All Teachers</h3>
+          {/* <h3 className={cx(styles.title)}>All Teachers</h3> */}
           {loading ? <TableSkeleton /> : <TableComponent loading={loading} columnsHeader={columnsHeader} tableData={getTableData(allTeachersData)} showHeader={true} showPagination={true} />}
         </div>
 
       </div>
 
-      {modalState === "show" ? <Modal size={modalType === "addTeacher" ? "lg" : "md"} show >{modalType === "addTeacher" ? <AddTeacherModal /> : modalType === "modifyTeacher" ? <ModifyTeacherModal /> : modalType === "deleteTeacher" ? <DeleteTeacherModal /> : modalType === "assignTeacherToClass" ? <AssignTeacherToClassModal /> : modalType === "deactivateTeacher" || modalType === "activateTeacher" ? <TeacherStatusModal /> : null}</Modal> : null}
+      {modalState === "show" ? <Modal size={modalType === "addTeacher" ? "lg" : "md"} show >{modalType === "addTeacher" ? <AddTeacherModal /> : modalType === "modifyTeacher" ? <ModifyTeacherModal /> : modalType === "viewTeacherDetails" ? <ViewTeacherDetailsModal /> : modalType === "assignSubjectsToTeacher" ? <AssignSubjectsToTeacherModal /> : modalType === "deleteTeacher" ? <DeleteTeacherModal /> : modalType === "assignTeacherToClass" ? <AssignTeacherToClassModal /> : modalType === "deactivateTeacher" || modalType === "activateTeacher" ? <TeacherStatusModal /> : null}</Modal> : null}
 
     </div>
   );

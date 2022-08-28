@@ -35,9 +35,6 @@ const VideoCard = ({ cardDetails, teacherSection, studentSection=true }) => {
     }
   };
 
-
-  
-
   return (
 
     <section onClick={handleClick} className={cx(styles.videoCardContainer, "flexCol")}>
@@ -59,20 +56,21 @@ const VideoCard = ({ cardDetails, teacherSection, studentSection=true }) => {
           <p>
             <span className={cx(styles.title)}>{topic}</span>
             {studentSection && 
-            <>
+            <div className={cx(styles.metaData, "flexRow")}>
               <Icon icon="ci:dot-01-xs" color="#828282" width="12" />
-              <small>{subject?.name}</small>
-            </>
+              <small>{subject?.subject}</small>
+              { type === "video" && <small className={cx(styles.duration)}>{duration}</small> }
+            </div>
             }
           </p>
-          { type === "video" && <small className={cx(styles.duration)}>{duration}</small> }
+      
           
         </div>
 
         {studentSection &&  <div className={cx(styles.tutorDetails, "flexRow-space-between")}>
           <div className={cx(styles.imageDiv)}>
             {teacher?.avatar ? 
-              <img style={{borderRadius: "50%", width: "3rem"}} src={teacher?.avatar} alt="img" />
+              <img src={teacher?.avatar} alt="img" />
               :
               <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "3rem", height: "3rem", lineHeight: "3rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${teacher?.firstName ? teacher?.firstName : ""} ${teacher?.lastName
                 ? teacher?.lastName : ""}`)}</span>

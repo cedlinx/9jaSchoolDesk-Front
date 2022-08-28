@@ -12,7 +12,7 @@ import { useDropzone } from "react-dropzone";
 import submissionImage from "@/assets/images/submissions.png";
 import editIcon from "@/assets/icons/edit-icon.svg";
 
-import { modifyStudentProfile } from "@/redux/Student/StudentSlice";
+import { modifyWardProfile } from "@/redux/Guardian/GuardianSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { modifyWardProfileValidationSchema } from "@/helpers/validation";
@@ -43,7 +43,7 @@ const EditProfile = () => {
     data?.email && formData.append("email", data.email);
     uploadedFile?.file && formData.append("photo", uploadedFile.file);
 
-    let response = await dispatch(modifyStudentProfile(formData));
+    let response = await dispatch(modifyWardProfile(formData));
 
     console.log(response);
     // if(response.payload.success){
@@ -105,13 +105,18 @@ const EditProfile = () => {
       <div className={cx(styles.wrapper, "row", "g-0")}>
 
         <div className={cx(styles.formWrapper, "col-sm-12", "col-md-12", user === "student" ?"col-lg-12" : "col-lg-6", "flexCol")}>
+
 	  <div className={cx(styles.header)}>
             <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
 
-            {modalData?.avatar || uploadedFile?.imagePreviewUrl ? <img {...getRootProps()} className={cx(styles.profilePic)} src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : modalData?.avatar} alt="profile pic" /> : <span {...getRootProps()} className={cx(styles.profilePic)} style={{ backgroundColor: "#D25B5D" }}>{modalData?.firstName && initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span>}
+            {user !== "student" ? modalData?.avatar || uploadedFile?.imagePreviewUrl ? <img {...getRootProps()} className={cx(styles.profilePic)} src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : modalData?.avatar} alt="profile pic" /> : <span {...getRootProps()} className={cx(styles.profilePic)} style={{ backgroundColor: "#D25B5D" }}>{modalData?.firstName && initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span>
+              :
 
-		  <img {...getRootProps()}  className={cx(styles.editIcon)}  src={editIcon} alt="" />
+              modalData?.avatar ? <img className={cx(styles.profilePic)} src={modalData?.avatar} alt="profile pic" /> : <span className={cx(styles.profilePic)} style={{ backgroundColor: "#D25B5D" }}>{modalData?.firstName && initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span>}
+
+		  {user !== "student" && <img {...getRootProps()}  className={cx(styles.editIcon)}  src={editIcon} alt="" />}
           </div>
+
           <form
             onSubmit={handleSubmit((data) => sendRequest(data))}
             className=""
@@ -127,7 +132,7 @@ const EditProfile = () => {
                   placeholder=""
                   type="firstName"
                   error={errors?.firstName && errors?.firstName?.message}
-                  // innerref={ref}
+                  readOnly = {user === "student"}
                 />
               )}
             />
@@ -142,6 +147,7 @@ const EditProfile = () => {
                   placeholder=""
                   type="lastName"
                   error={errors?.lastName && errors?.lastName?.message}
+                  readOnly = {user === "student"}
 
                 />
               )}
@@ -157,6 +163,7 @@ const EditProfile = () => {
                   placeholder=""
                   type="otherNames"
                   error={errors?.otherNames && errors?.otherNames?.message}
+                  readOnly = {user === "student"}
 
                 />
               )}
@@ -172,14 +179,15 @@ const EditProfile = () => {
                   placeholder="ward@email.com"
                   type="email"
                   error={errors?.email && errors?.email?.message}
+                  readOnly = {user === "student"}
 
                 />
               )}
             />
 
-            <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
-              <Button loading={loading} disabled={loading} title="Save Changes" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
-            </div>
+            {user !== "student" && <div className={cx(styles.btnDiv, "flexRow")}>
+              <Button onClick={handleSubmit((data) => sendRequest(data))} loading={loading} disabled={loading} title="Save Changes" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            </div>}
           </form>
         </div>
 

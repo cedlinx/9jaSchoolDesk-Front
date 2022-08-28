@@ -25,6 +25,7 @@ const ApprovedAccounts = () => {
             minWidth: "1rem",
             color: "#747474",
             fontSize: "1rem"
+            
           }}
         >
           S/No</div>
@@ -39,7 +40,7 @@ const ApprovedAccounts = () => {
       Header: () => (
         <div
           style={{
-            minWidth: "auto",
+            width: "auto",
             color: "#747474",
             fontSize: "1rem"
           }}
@@ -48,7 +49,7 @@ const ApprovedAccounts = () => {
       accessor: "firstName",
       Cell: (row) => {
         let firstName = row.cell.row.values.firstName;
-        return <div style={{ color: "#4F4F4F" }}>
+        return <div style={{ color: "#4F4F4F", whiteSpace: "nowrap"}}>
           {firstName}
         </div>;
       }
@@ -57,16 +58,17 @@ const ApprovedAccounts = () => {
       Header: () => (
         <div
           style={{
-            minWidth: "auto",
+            width: "auto",
             color: "#747474",
-            fontSize: "1rem"
+            fontSize: "1rem",
+            whiteSpace: "nowrap"
           }}
         >Last Name </div>
       ),
       accessor: "lastName",
       Cell: (row) => {
         let lastName = row.cell.row.values.lastName;
-        return <div style={{ color: "#4F4F4F" }} >
+        return <div style={{ color: "#4F4F4F", whiteSpace: "nowrap" }} >
           {lastName}
 
         </div>;
@@ -103,7 +105,7 @@ const ApprovedAccounts = () => {
       accessor: "wards",
       Cell: (row) => {
         let wards = row.cell.row.values.wards;
-        return <div style={{ width: "15rem", display: "flex" }}>
+        return <div style={{ width: "10rem", display: "flex" }}>
           {Array.isArray(wards) && wards.map((ward, index) => {
             return (ward.avatar ? <img style={{ width: "3rem", height: "3rem", borderRadius: "50%", padding: "0.25rem", marginLeft: "-0.625rem", backgroundColor: "white", cursor: "pointer" }} key={index} src={ward} alt="img" /> : ward.firstName && <p style={{ backgroundColor: generateColor(), whiteSpace: "nowrap", border: "1px solid #FF7E3F0D", borderRadius: "50%", fontSize: "1.25rem", width: "3rem", height: "3rem", lineHeight: "3rem", textAlign: "center", marginLeft: "-0.625rem", cursor: "pointer" }}>{ward.firstName && initialsCase(`${ward.firstName} ${ward?.lastName}`)}</p>);
           })}

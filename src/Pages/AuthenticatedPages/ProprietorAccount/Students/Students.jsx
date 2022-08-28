@@ -12,6 +12,7 @@ import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 
 import UrgentInfoModal from "@/components/Modals/UrgentInfo/UrgentInfo";
 import AddNewStudentModal from "@/components/Modals/AddNewStudent/AddNewStudent";
+import AssignSubjectsToStudentModal from "@/components/Modals/AssignSubjectsToStudent/AssignSubjectsToStudent";
 import ActivateNewSignUpModal from "@/components/Modals/ActivateNewSignUp/ActivateNewSignUp";
 import ModifyStudentModal from "@/components/Modals/ModifyStudent/ModifyStudent";
 import DeleteStudentModal from "@/components/Modals/DeleteStudent/DeleteStudent";
@@ -161,7 +162,7 @@ const Students = () => {
       Cell: (row) => {
         let studentData = row.cell.row.original.allData;
         console.log(studentData);
-        return <div>
+        return <div style={{display: "flex", justifyContent: "center"}}>
           <Button onClick={() => navigate(`student-report/${studentData?.id}`, { state: { studentData: studentData } })} title="View Report" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" hoverBg="#FF6A00" hoverColor="#fff" />
         </div>;
       }
@@ -192,6 +193,7 @@ const Students = () => {
               <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "assignSubjectsToStudent", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Assign Subject(s)</DropdownItem>
               <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "modifyStudent", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Edit Student</DropdownItem>
               <DropdownItem style={{ color: "#fb4e4e" }} onClick={() => dispatch(showModal({ action: "show", type: "deleteStudent", modalData: data }))}> <Icon icon="fluent:delete-20-regular" color="#fb4e4e" /> Delete Student</DropdownItem>
             </DropdownMenu>
@@ -242,7 +244,7 @@ const Students = () => {
 
       </div>
 
-      {modalState === "show" ? <Modal size={modalType === "addNewStudent" ? "lg" : "md"} show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> : modalType === "addNewStudent" ? <AddNewStudentModal /> : modalType === "modifyStudent" ? <ModifyStudentModal /> : modalType === "deleteStudent" ? <DeleteStudentModal /> : null}</Modal> : null}
+      {modalState === "show" ? <Modal size={modalType === "addNewStudent" ? "lg" : "md"} show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> : modalType === "assignSubjectsToStudent" ? <AssignSubjectsToStudentModal /> : modalType === "addNewStudent" ? <AddNewStudentModal /> : modalType === "modifyStudent" ? <ModifyStudentModal /> : modalType === "deleteStudent" ? <DeleteStudentModal /> : null}</Modal> : null}
 
     </div>
   );

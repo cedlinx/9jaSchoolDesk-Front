@@ -42,8 +42,8 @@ const AssessmentFeedback = ({tasksData}) => {
       accessor: "teacherDetails",
       Cell: (row) => {
         let teacherDetails = row.cell.row.values.teacherDetails;
-
-        return <div  style={{width: "auto", display: "flex", gap: "0.5rem"}}>
+        let subject = row.cell.row.original.allData.subject.subject;
+        return <div  style={{width: "12.5rem", display: "flex", gap: "0.5rem"}}>
           <div>
             {teacherDetails?.avatar ? 
               <img style={{borderRadius: "50%", width: "3rem"}} src={teacherDetails?.avatar} alt="img" />
@@ -53,7 +53,7 @@ const AssessmentFeedback = ({tasksData}) => {
           </div>
           <div>
             <p style={{fontWeight: "500", color: "#4f4f4f"}}>{teacherDetails?.firstName && titleCase(`${teacherDetails?.firstName} ${teacherDetails?.lastName}`)}</p>
-            <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{teacherDetails?.subject}</p>
+            <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{subject}</p>
 
           </div>
         </div>;
@@ -69,7 +69,7 @@ const AssessmentFeedback = ({tasksData}) => {
         let allData = row.cell.row.original.allData;
 
         return <div  style={{width: "auto"}}>
-          <p className={cx("flexRow-space-between")} ><span style={{fontWeight: "500", color: "#828282", fontSize: "14px",   whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "15rem", marginRight: "0.5rem"}}>{feedback}</span><span><img onClick={() => dispatch(showModal({action: "show", type: "taskDetails", modalData: allData}))} style={{cursor: "pointer"}} src={expandIcon} alt="" /></span></p>          
+          <p className={cx("flexRow-space-between")} ><span style={{fontWeight: "500", color: "#828282", fontSize: "1rem",   whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "100%", marginRight: "0.5rem"}}>{feedback}</span><span><img onClick={() => dispatch(showModal({action: "show", type: "taskDetails", modalData: allData}))} style={{cursor: "pointer"}} src={expandIcon} alt="" /></span></p>          
         </div>;
       }
     },
@@ -99,7 +99,7 @@ const AssessmentFeedback = ({tasksData}) => {
         <small onClick={() => navigate("/student/assessment-feedback")}>View all</small>
       </div>
       <div className={cx(styles.tableDiv, "flexCol")}>
-        {Array.isArray(tasksData?.submitted_tasks) && tasksData?.submitted_tasks.length > 0 ? <TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(tasksData?.submitted_tasks.slice(0,5))} /> : <p className={cx(styles.emptyDataElement)}>This is currently no graded task</p>}
+        {Array.isArray(tasksData?.current_tasks) && tasksData?.current_tasks.length > 0 ? <TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(tasksData?.current_tasks.slice(0,5))} /> : <p className={cx(styles.emptyDataElement)}>This is currently no graded task</p>}
       </div>
     </div>
   );

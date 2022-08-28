@@ -194,12 +194,12 @@ const StudentReport = () => {
 
       <div className={cx(styles.body, "flexCol")}>
 
-        <div className={cx(styles.tableSection)}>
-          <h3 className={cx(styles.title)}>{allStudentRecord?.firstName && titleCase(allStudentRecord?.firstName)} {allStudentRecord?.lastName && titleCase(allStudentRecord?.lastName)}</h3>
+        <div className={cx(styles.tableSection, "flexCol")}>
+          <h3 className={cx(styles.title)}>{allStudentRecord?.firstName ? titleCase(allStudentRecord?.firstName) : ""} {allStudentRecord?.lastName ? titleCase(allStudentRecord?.lastName) : ""}</h3>
           {/* {<TableComponent columnsHeader={columnsHeader} tableData={getTableData(allStudentsData)} showHeader={true} />} */}
-          <div>
+          {allStudentRecord?.sdid && <div>
             <span>Student ID: </span><span>{allStudentRecord?.sdid}</span>
-          </div>
+          </div>}
           <div>
             <span>Class: </span><span>{allStudentRecord?.class?.name}</span>
           </div>
@@ -213,7 +213,7 @@ const StudentReport = () => {
             <span>Subjects: </span><span>{allStudentRecord?.subjects && getSubjectList(allStudentRecord?.subjects)}</span>
           </div>
           <div>
-            <span>Tasks: </span><span>{allStudentRecord?.tasks && formatArrayList(taskNames())}</span>
+            <span>Tasks: </span><span>{Array.isArray(allStudentRecord?.tasks) && allStudentRecord?.tasks.length > 0 ? formatArrayList(taskNames()) : "There is currently no task for this student"}</span>
           </div>
           <div>
             <span>Notices: </span><span>{Array.isArray(allStudentRecord?.notices) && allStudentRecord?.notices.length > 0 ? formatArrayList(allStudentRecord?.notices) : "There is currently no notice for this student"}</span>
