@@ -1,10 +1,9 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import PropTypes from "prop-types";
+import {useDispatch} from "react-redux";
 import cx from "classnames";
 import styles from "./WardProfile.module.scss";
 import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
-import editIcon from "@/assets/icons/edit-icon.svg";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { titleCase, initialsCase } from "@/helpers/textTransform";
 
@@ -37,6 +36,10 @@ const WardProfile = ({selectedWard}) => {
       </div>
     </div></div>
   );
+};
+
+WardProfile.propTypes = {
+  selectedWard: PropTypes.object.isRequired
 };
 
 export default WardProfile;

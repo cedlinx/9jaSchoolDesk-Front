@@ -2,15 +2,15 @@
     margin: 0rem;
     padding: 0.5rem;
     gap: 1.5rem;
-    // align-items: center;
+    align-items: center;
     width: 100%;
 
     .header{
         text-align: center;
         width: 100%;
         padding-bottom: 0.5rem;
-
         border-bottom: 1px solid #E2E2E2;
+
         h5{
             color: #22467B;
         }
@@ -32,10 +32,6 @@
         padding: 1rem;
         gap: 1.5rem;
     
-        .header{
-
-        }
-    
         .filterSection{
             justify-content: flex-end;
                 gap: 1rem;
@@ -53,16 +49,10 @@
         padding: 1rem 3rem;
         gap: 1.5rem;
     
-        .header{
-
-        }
-    
         .filterSection{
             justify-content: flex-end;
                 gap: 1rem;
             font-size: 0.75rem;
-            input{
-            }
         }
     
     }

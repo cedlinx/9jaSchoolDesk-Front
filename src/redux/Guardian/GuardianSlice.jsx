@@ -135,7 +135,7 @@ export const getWardTasks = (data) => async (dispatch) => {
     // toast.success(response.data.message);
     return dispatch(getWardTasksAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : formatArrayList(e.response.data.message));
+    // toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : formatArrayList(e.response.data.message));
     return dispatch(hasError(e.response.data));
   }
 };

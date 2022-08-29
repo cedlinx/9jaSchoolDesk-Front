@@ -8,7 +8,8 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import SelectField from "@/components/Select/Select";
 import TextArea from "@/components/TextInput/TextInput";
-
+import fileIcon from "@/assets/icons/file-icon.svg";
+import videoIcon from "@/assets/icons/video-icon.svg";
 import { useDropzone } from "react-dropzone";
 
 import { useForm, Controller } from "react-hook-form";
@@ -75,14 +76,15 @@ const AddTask = () => {
 
   const [uploadedFile, setUploadedFile] = useState({
     file: "",
-    imagePreviewUrl: ""
+    imagePreviewUrl: "",
+    type: ""
   });
 
   const onDrop = useCallback(acceptedFiles => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setUploadedFile({ file: file, imagePreviewUrl: reader.result });
+      setUploadedFile({ file: file, imagePreviewUrl: reader.result, type: file.type.split("/")[0]});
     };
     reader.readAsDataURL(file);
   }, []);
@@ -124,6 +126,14 @@ const AddTask = () => {
       });
     });
     return options;
+  };
+
+  const removeAttachment = () => {
+    setUploadedFile({
+      file: "",
+      imagePreviewUrl: "", 
+      type: ""
+    });
   };
 
   return (
@@ -266,14 +276,18 @@ const AddTask = () => {
               </div> */}
 
 
-              <div className={cx(styles.imageSection, "flexRow")}>
-                <div {...getRootProps()} className={cx(styles.imageDiv)}>
-                  <img src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : null} alt="" />
+              <div className={cx(styles.imageSection, "flexCol")}>
+                <div className={cx(styles.top, "flexRow")}>
+                  {uploadedFile?.imagePreviewUrl && <div {...getRootProps()} className={cx(styles.imageDiv)}>
+                    <img src={uploadedFile?.type === "image" ? uploadedFile?.imagePreviewUrl : uploadedFile?.type === "video" ? videoIcon : fileIcon} alt="" />
+                  </div>}
+
+                  <Button {...getRootProps()} type title="Attach File" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
+
+                  <Button onClick={()=>removeAttachment()} title="Remove" borderRadiusType="fullyRounded" textColor="#828282" bgColor="#fff" bordercolor="#828282" hoverBg="#828282" hoverColor="#fff" />
                 </div>
-
-                <Button {...getRootProps()} type title="Attach File" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
-
-                <Button type title="Remove" borderRadiusType="fullyRounded" textColor="#828282" bgColor="#fff" bordercolor="#828282" hoverBg="#828282" hoverColor="#fff" />
+                <small>{uploadedFile?.file.name}</small>
+             
               </div>
 
               <Controller

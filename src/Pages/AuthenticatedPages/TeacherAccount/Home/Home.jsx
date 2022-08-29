@@ -111,7 +111,7 @@ const Home = () => {
       <div className={cx(styles.heading, "flexRow")}>
         <h3 className={cx(styles.title)}>Classroom</h3>
         <div className={cx(styles.btnGroup, "flexRow")}>
-          <Button onClick={() => handleTakeAttendance()} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
+          <Button disabled={dataArray.length === 0} onClick={() => handleTakeAttendance()} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
           <Button onClick={() => dispatch(showModal({ action: "show", type: "addNewStudentByTeacher" }))} type title="Add Student" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
         </div>
       </div>

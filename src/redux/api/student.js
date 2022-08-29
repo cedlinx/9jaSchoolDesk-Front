@@ -29,7 +29,7 @@ export const submitTaskApi = async (data) => {
 };
 
 export const rateTeacherByStudentApi = async (data) => {
-  return await axios.post("student/noauth/student/teacher/rate", data);
+  return await axios.post("student/auth/teacher/rate", data);
 };
 
 export const lessonDetailsApi = async (data) => {

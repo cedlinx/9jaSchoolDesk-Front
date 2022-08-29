@@ -29,7 +29,7 @@ const SubmissionDetails = () => {
         </div>
 
         <div className={cx(styles.modalItem)}>
-          <span className={cx(styles.title)}>TITLE</span><span className={cx(styles.value)}>{data?.title}</span>
+          <span className={cx(styles.title)}>TITLE</span><span className={cx(styles.value)}>{data?.name}</span>
         </div>
         <div className={cx(styles.modalItem)}>
           <span className={cx(styles.title)}>SUBJECT</span><span className={cx(styles.value)}>{data?.subject}</span>

@@ -1,18 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./NoticeBoard.module.scss";
-import {useNavigate} from "react-router-dom";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import formatDate from "@/helpers/formatDate";
 import { titleCase } from "@/helpers/textTransform";
-import {noticeboardData} from "@/helpers/sampleData";
 import { Icon } from "@iconify/react";
-import expandIcon from "@/assets/icons/expand-icon.svg";
 
 
 const NoticeBoard = ({selectedWard}) => {
-  const navigate = useNavigate();
   const notices = selectedWard?.notices;
   console.log(notices);
 
@@ -74,10 +71,14 @@ const NoticeBoard = ({selectedWard}) => {
         <h5>Notice Board</h5>             
       </div>
       <div className={cx(styles.tableDiv)}>
-        {<TableComponent defaultPageSize="5" showTableHeader={false} showPaginationSummary={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(noticeboardData)} />}
+        {Array.isArray(notices) && notices.length > 0 ? <TableComponent defaultPageSize="5" showTableHeader={false} showPaginationSummary={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(notices)} /> : <p className={cx(styles.emptyDataElement)}>You have no notiification at this time</p> }
       </div>
     </div>
   );
+};
+
+NoticeBoard.propTypes = {
+  selectedWard: PropTypes.object
 };
 
 export default NoticeBoard;

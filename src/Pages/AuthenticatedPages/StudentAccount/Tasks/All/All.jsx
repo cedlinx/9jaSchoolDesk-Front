@@ -109,6 +109,25 @@ const All = ({allTasks}) => {
       Header: () => (
         <div
           style={{
+            minWidth: "auto",
+            color: "#747474",
+            fontSize: "1rem"
+          }}
+        >Status</div>
+      ),
+      accessor: "status",
+      Cell: (row) => {
+        let status = row.cell.row.values.status;
+        return <div style={{ color: status === "Graded" ? "green" : status === "Submitted" ? "blue" : "tomato"}} >
+          {status}
+            
+        </div>;
+      }
+    },
+    {
+      Header: () => (
+        <div
+          style={{
             width: "auto",
             color: "#747474",
             fontSize: "1rem",
@@ -129,6 +148,7 @@ const All = ({allTasks}) => {
 
   let getTableData = (data) => {
     let result =[];
+    console.log(data);
 
     Array.isArray(data)  && data.map((item, index) =>{
       result.push({
@@ -138,6 +158,7 @@ const All = ({allTasks}) => {
         type: item?.type && titleCase(item?.type),
         due_date: item?.due_date && formatDate(item?.due_date),
         action: "",
+        status: item?.pivot?.status && item?.pivot?.status,
         allData: item
       });
     });

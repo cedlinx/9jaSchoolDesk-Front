@@ -64,17 +64,29 @@
 
                     .imageSection{
                         align-items: center;
-                        gap: 1rem;
+                        gap: 0rem;
                         margin: 1.5rem 0rem;
-                
+
+                        .top{
+                            gap: 0.5rem;
+                            
                         .imageDiv{
                             img{
-                                border-radius: 50%;
+                                border-radius: 0.125rem;
                                 width: clamp(3rem, 4rem, 5rem);
                                 height: clamp(3rem, 4rem, 5rem);
                                 object-fit: cover;
                             }
                         }
+                        }
+
+                        small{
+                            color: #D25B5D;
+                            font-weight: bold;
+                            cursor: pointer;
+                            font-size: 0.875rem;
+                        }
+                
                     }
                 }
             }

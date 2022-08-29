@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 import { toast } from "react-toastify";
 import useGetAllWards from "@/utils/useGetAllWards";
+import Button from "@/components/Button/Button";
+import { logout } from "@/redux/Auth/AuthSlice";
+
 // import { switchClass } from "@/redux/Teacher/TeacherSlice";
 
 
@@ -30,10 +33,16 @@ const SelectWard = () => {
     navigate("/guardian/dashboard");
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
 
   return (
     <div className={cx(styles.selectWardWrapper, "flexCol")}>
       <div className={cx(styles.heading, "flexCol")}>
+        <Button onClick={()=>handleLogout()} title="Logout" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
         <img src={Logo} alt="" />
         <p>Select a ward to continue</p>
       </div>
@@ -43,7 +52,7 @@ const SelectWard = () => {
             <div key={index} onClick={() => handleSwitchWard(ward?.id)} className={cx(styles.studentContainer, "flexCol")}>
               <div className={cx(styles.imageDiv)}>
                 {ward?.avatar ? 
-                  <img src={ward?.avatar} alt="avatar" />
+                  <img className={cx(styles.profileImage)} src={ward?.avatar} alt="avatar" />
                   :
                   <span style={{ backgroundColor: "#D25B5D" }}>{initialsCase(`${ward.firstName} ${ward.lastName}`)}</span>
                 }

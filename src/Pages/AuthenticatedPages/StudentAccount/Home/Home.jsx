@@ -41,7 +41,7 @@ const Home = () => {
       <section className={cx(styles.heroImageSection)}>
         <img className={cx(styles.bgImage)} src={heroImage} alt="img" />
         <div className={cx(styles.heroImageText, "flexCol")}>
-          <h3>Welcome {studentData?.student?.firstName && titleCase(studentData?.student?.firstName)}</h3>
+          <h3>Welcome {studentData?.firstName && titleCase(studentData?.firstName)}</h3>
           <p>Where will you like to start off today?</p>
           
         </div>
@@ -51,11 +51,11 @@ const Home = () => {
       <section className={cx(styles.upperSection, "row")}>
 
         <div className={cx(styles.upperSectionLeft, "col-md-12", "col-xl-6")}>
-          <Activities selectedWard={studentData?.student}/>
+          <Activities selectedWard={studentData}/>
         </div>
         
         <div className={cx(styles.upperSectionRight, "col-md-12", "col-xl-6")}>
-          <AssessmentFeedback tasksData={studentData?.student} />
+          <AssessmentFeedback tasksData={studentData} />
         </div>
 
       </section>
@@ -66,11 +66,11 @@ const Home = () => {
         </div>
 
         <div className={cx(styles.lowerSectionMiddle, "col-sm-12", "col-md-6", "col-xl-6")}>
-          <TeacherRating teachersData={Array.isArray(studentData?.teachers) && studentData?.teachers} />
+          <TeacherRating teachersData={Array.isArray(studentData?.subjects) && studentData?.subjects} studentID={studentData?.id} />
         </div>
 
         <div className={cx(styles.lowerSectionRight, "col-sm-12", "col-md-6", "col-xl-3")}>
-          <WardProfile selectedWard={studentData?.student} />
+          <WardProfile selectedWard={studentData} />
         </div>
       </section>     
                                 

@@ -1,5 +1,5 @@
 .dashboardHomeContainer{
-    padding: 0rem 0rem 4rem 0rem;
+    padding: 1rem 1rem 4rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -60,6 +60,8 @@
     }
 
     .body{
+        width: 100%;
+        
         .leftSection{
             margin-bottom: 2rem;
 
@@ -118,7 +120,7 @@
 
 @media all and (min-width: 768px){
     .dashboardHomeContainer{
-        padding: 0rem 0rem 4rem 0rem;
+        padding: 0rem 1rem 4rem 1rem;
         gap: 2.5rem;
 
         .heading{
@@ -275,7 +277,5 @@
         }
             }
         }
-
     }
-  
 }       

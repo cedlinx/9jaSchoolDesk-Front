@@ -8,8 +8,6 @@ import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import formatDate from "@/helpers/formatDate";
 import { titleCase, initialsCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/sampleData";
-import { Icon } from "@iconify/react";
 import expandIcon from "@/assets/icons/expand-icon.svg";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 
@@ -99,7 +97,7 @@ const AssessmentFeedback = ({tasksData}) => {
         <small onClick={() => navigate("/student/assessment-feedback")}>View all</small>
       </div>
       <div className={cx(styles.tableDiv, "flexCol")}>
-        {Array.isArray(tasksData?.current_tasks) && tasksData?.current_tasks.length > 0 ? <TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(tasksData?.current_tasks.slice(0,5))} /> : <p className={cx(styles.emptyDataElement)}>This is currently no graded task</p>}
+        {Array.isArray(tasksData?.graded_tasks) && tasksData?.graded_tasks.length > 0 ? <TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(tasksData?.graded_tasks.slice(0,5))} /> : <p className={cx(styles.emptyDataElement)}>This is currently no graded task</p>}
       </div>
     </div>
   );

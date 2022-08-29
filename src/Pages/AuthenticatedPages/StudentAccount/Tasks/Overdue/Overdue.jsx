@@ -150,7 +150,6 @@ const Overdue = ({overdueTasks}) => {
   return (
     <>
       {overdueTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(overdueTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
-        :
         <p style={{color: "#747474", fontSize: "1.5rem"}}>No Overdue Task</p>
       </div>}
     </>

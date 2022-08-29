@@ -109,7 +109,7 @@ const SubmitTask = () => {
                       {...field}
                       placeholder="Type your answer here"
                       getQuillContent={getQuillContent}
-
+                      className={cx(styles.quillNew)}
                     />
                   )}
                 />

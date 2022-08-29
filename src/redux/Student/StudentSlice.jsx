@@ -105,7 +105,7 @@ export const getDashboard = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await getDashboardApi(data);
     // toast.success(response.data.message);
-    let token = response?.data?.data?.student?.token;
+    let token = response?.data?.data?.ward?.token;
     setToken(token);
     return dispatch(getDashboardAction(response?.data));
   } catch (e) {

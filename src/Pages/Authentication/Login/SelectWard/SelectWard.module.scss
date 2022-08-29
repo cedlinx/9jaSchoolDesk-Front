@@ -7,6 +7,7 @@
     .heading{
         gap: 0.5rem;
         align-items: center;
+        padding: 1rem;
 
         img{
             width: 10rem;
@@ -15,6 +16,9 @@
         p{
             font-size: 1.25rem;
             color: #D25B5D;
+        }
+        button{
+            align-self: flex-end;
         }
     }
 

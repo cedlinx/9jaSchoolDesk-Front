@@ -1,21 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {useDispatch, useSelector} from "react-redux";
-import { Icon } from "@iconify/react";
-import Button from "@/components/Button/Button";
+import {useSelector} from "react-redux";
 import TableComponent from "@/components/Table/Table";
-import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
+// import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import { showModal } from "@/redux/ModalState/ModalSlice";
 import formatDate from "@/helpers/formatDate";
-import { useNavigate } from "react-router-dom";
 
 
+const Overdue = ({overdueTasks}) => {
 
-const Active = ({currentTasks}) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const loading = useSelector((state) => state?.student?.loading);
+  console.log(overdueTasks);
 
   const columnsHeader = [                
     {
@@ -108,30 +103,26 @@ const Active = ({currentTasks}) => {
           <p style={{ color: "#4F4F4F"}}>{due_date}</p>         
         </div>;
       }
-    },
-    {
-      Header: () => (
-        <div
-          style={{
-            width: "auto",
-            color: "#747474",
-            fontSize: "1rem",
-            textAlign: "center"
-          }}
-        />
-      ),
-      accessor: "action",
-      Cell: (row) => {
-        let allData = row.cell.row.original.allData;
-        return <div  style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem"}}>
-          <Button onClick={() => dispatch(showModal({action: "show", type: "taskDetails", modalData: allData }))} title="View" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF6A00" hoverColor="#fff" hoverBg="#ff6a00" />
-
-          <Button onClick={()=> navigate("/student/submit-task", { state:{data: allData}})} title="Submit" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#2AC769" bordercolor="#2AC769" hoverColor="#2AC769" hoverBg="#fff" />
-
-        
-        </div>;
-      }
     }
+    // {
+    //   Header: () => (
+    //     <div
+    //       style={{
+    //         width: "auto",
+    //         color: "#747474",
+    //         fontSize: "1rem",
+    //         textAlign: "center"
+    //       }}
+    //     />
+    //   ),
+    //   accessor: "action",
+    //   Cell: (row) => {
+    //     let allData = row.cell.row.original.allData;
+    //     return <div  style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+    //       <Button onClick={() => dispatch(showModal({action: "show", type: "taskDetails", modalData: allData }))} title="View" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF6A00" hoverColor="#fff" hoverBg="#ff6a00" />
+    //     </div>;
+    //   }
+    // }
 
   ];
 
@@ -154,15 +145,15 @@ const Active = ({currentTasks}) => {
     
   return (
     <>
-      {currentTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(currentTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
-        <p style={{color: "#747474", fontSize: "1.5rem"}}>No Active Task</p>
+      {overdueTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(overdueTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
+        <p style={{color: "#747474", fontSize: "1.5rem"}}>No Overdue Task</p>
       </div>}
     </>
   );
 };
 
-Active.propTypes = {
-  currentTasks: PropTypes.array.isRequired
+Overdue.propTypes = {
+  overdueTasks: PropTypes.array
 };
 
-export default Active;
+export default Overdue;

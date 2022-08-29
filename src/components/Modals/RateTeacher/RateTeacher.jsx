@@ -38,8 +38,12 @@ const RateTeacher = () => {
   const sendRequest = async (data) => {
     console.log(data);
     
-    let response = user === "student" ? await dispatch(rateTeacherByStudent({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment})) : await dispatch(rateTeacherByGuardian({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment}));
+    let response = user === "student" ? await dispatch(rateTeacherByStudent({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.studentID})) : await dispatch(rateTeacherByGuardian({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.guardianID}));
     console.log(response);
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide", type: "rateTeacher" }));
+      dispatch(getDashboard());
+    }
   };
 
   const resolver = yupResolver(rateTeacherValidationSchema);

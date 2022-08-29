@@ -1,59 +1,24 @@
 import React, {useState, useEffect} from "react";
 import cx from "classnames";
+import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import styles from "./TeacherRating.module.scss";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
 import TableComponent from "@/components/Table/Table";
 import {initialsCase, titleCase} from "@/helpers/textTransform";
 import StarRating from "@/components/StarRating";
-// import {rateTeacher} from "@/redux/Guardian/GuardianSlice"
+import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
-const TeacherRating = ({selectedWard}) => {
+const TeacherRating = ({teachersData, guardianID}) => {
   const dispatch = useDispatch();
 
-  // const [rating, setRating] = useState({});
-
-  const teachersArray1 = selectedWard?.teachers;
-
   const setRating = async (rating, teacherData) => {
-    // console.log(rating, teacherData);
-    //let response = await dispatch(rateTeacher({rating, teacherData}));
+    // let response = await dispatch(rateTeacherByStudent({rating, teacher_id: teacherData?.id}));
     // console.log(response);
+    dispatch(showModal({action: "show", type: "rateTeacher", modalData: {rating, teacherData, guardianID}}));
   };
 
-  const teachersArray = [
-    {
-      name: "Emenike Chidi",
-      subject: "Mathematics",
-      rating: 4,
-      profilePic: studentProfilePic
-    },
-    {
-      name: "George Saim",
-      subject: "Basic Technology",
-      rating: 0,
-      profilePic: studentProfilePic
-    },
-    {
-      name: "Fred Anderson",
-      subject: "Home Economics",
-      rating: 0,
-      profilePic: studentProfilePic
-    },
-    {
-      name: "John Doe",
-      subject: "Civic Education",
-      rating: 3,
-      profilePic: studentProfilePic
-    },
-    {
-      name: "John Doe",
-      subject: "Civic Education",
-      rating: 0,
-      profilePic: null
-    }
-  ];
+  console.log(teachersData);
 
   let getTableData = (data) => {
     let result =[];
@@ -62,7 +27,7 @@ const TeacherRating = ({selectedWard}) => {
       result.push({
         serialNumber: index + 1,
         imageUrl: item?.imageUrl && item?.imageUrl,
-        teacherDetails: item?.teacher && item?.teacher,
+        teacherDetails: item,
         rating: item?.rating && item?.rating,
         allData: item
       });
@@ -70,29 +35,12 @@ const TeacherRating = ({selectedWard}) => {
     return result;
   };
 
+  const onSelectStar = (rating, data) => {
+    setRating(rating, data);
+  };
+
+
   const columnsHeaderAssessment = [                
-    {
-      Header: () => (
-        <div
-          style={{
-            minWidth: "auto"
-          }}
-        />
-      ),
-      accessor: "imageUrl",
-      Cell: (row) => {
-        let imageUrl = row.cell.row.values.imageUrl;
-        let allData = row.cell.row.original.allData;
-        return <div>
-          
-          {imageUrl ? 
-            <img style={{borderRadius: "50%", width: "2rem"}} src={imageUrl} alt="img" />
-            :
-            <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${allData?.teacher?.firstName} ${allData?.teacher?.lastName}`)}</span>
-          }
-        </div>;
-      }
-    },
     {
       Header: () => (
         <div />
@@ -100,29 +48,43 @@ const TeacherRating = ({selectedWard}) => {
       accessor: "teacherDetails",
       Cell: (row) => {
         let details = row.cell.row.values.teacherDetails;
-        return <div  style={{width: "5rem"}}>
-          <p style={{fontWeight: "500", color: "#4f4f4f", fontSize: "1rem"}}>{details?.firstName && titleCase(`${details?.firstName} ${details?.lastName}`)}</p>
-          <p style={{fontWeight: "500", color: "#828282", fontSize: "0.875rem"}}>{details?.subject}</p>
+
+        return <div  style={{width: "auto", display: "flex", gap: "0.5rem"}}>
+          <div>
+          
+            {details.avatar ? 
+              <img style={{borderRadius: "50%", width: "2rem"}} src={details.avatar} alt="img" />
+              :
+              <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${details.firstName || ""} ${details.lastName || ""}`)}</span>
+            }
+          </div>
+
+          <div>
+            <p style={{fontWeight: "500", color: "#4f4f4f", fontSize: "1rem"}}>{details?.firstName && titleCase(`${details?.firstName} ${details?.lastName}`)}</p>
+            <p style={{fontWeight: "500", color: "#828282", fontSize: "0.875rem"}}>{details?.subject}</p>
+          </div>
+        
           
         </div>;
       }
     },
     {
       Header: () => (
-        <div />
+        <div
+          style={{width: "auto"}}
+        />
       ),
       accessor: "ratings",
       Cell: (row) => {
         let rating = row.cell.row.values.ratings;
         let allData = row.cell.row.original.allData;
 
-        return <div  style={{width: "auto"}}>
+        return <div>
           <StarRating
             numberOfSelectedStar={rating}
             numberOfStar={5}
-            onSelectStar={(value) => {
-              setRating(value, allData);
-            }}
+            onSelectStar={onSelectStar}
+            dataObj={allData}
           />
           
         </div>;
@@ -135,13 +97,24 @@ const TeacherRating = ({selectedWard}) => {
       <div className={cx(styles.teacherRatingsDiv)}>
         <h5>Rate Your Teacher</h5>
         <div className={cx(styles.ratingsDiv)}>
-          <div className={cx(styles.tableDiv)}>
-            {<TableComponent defaultPageSize="10" showTableHeader={false} showPaginationSummary={true} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(teachersArray)} />}
-          </div>
+          {teachersData.length > 0 ? 
+            <div className={cx(styles.tableDiv)}>
+              <TableComponent defaultPageSize="10" showTableHeader={false} showPaginationSummary={true} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(teachersData)} />
+            </div>
+            :
+            <div className={cx(styles.emptyDataDiv)}>
+              <p>No Teacher to rate</p>
+            </div>
+          }
         </div>
       </div>
     </div>
   );
+};
+
+TeacherRating.propTypes = {
+  teachersData: PropTypes.array,
+  guardianID: PropTypes.string
 };
 
 export default TeacherRating;

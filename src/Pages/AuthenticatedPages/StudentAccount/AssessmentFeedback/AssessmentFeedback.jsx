@@ -156,7 +156,7 @@ const AssessmentFeedback = () => {
       <div className={cx(styles.header)}>
         <h5>Assessment Feedback</h5>
       </div>
-      {loading ? <TableSkeleton /> : Array.isArray(studentData?.current_tasks) && studentData?.current_tasks.length > 0 ?
+      {loading ? <TableSkeleton /> : Array.isArray(studentData?.graded_tasks) && studentData?.graded_tasks.length > 0 ?
         <>
           <div className={cx(styles.filterSection, "flexRow")}>
 
@@ -190,7 +190,7 @@ const AssessmentFeedback = () => {
             </Dropdown>
           </div>
           <div className={cx(styles.tableDiv)}>
-            <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(studentData?.current_tasks)} /> 
+            <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(studentData?.graded_tasks)} /> 
           </div>
         </>
         : <div className={cx(styles.noDataDiv)}>

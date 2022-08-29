@@ -117,7 +117,7 @@ const ViewStudentProfile = () => {
 
           <div className={cx(styles.bottomSection, "flexCol")}>
             <p>Behavioural Feedback</p>
-            <div className={cx(styles.behavioursDiv, "flexCol")}>
+            {Array.isArray(dataArray) && dataArray.length > 0 ? <div className={cx(styles.behavioursDiv, "flexCol")}>
               {dataArray.map((data, index) => (
                 <div className={cx(styles.behaviorWrapper, "flexRow")} key={index}>
                   <div className={cx(styles.leftSection)}>
@@ -136,7 +136,7 @@ const ViewStudentProfile = () => {
                 </div>
               ))}
              
-            </div>
+            </div> : <small>There are no behavioural feedbacks yet. Kindly add them</small> }
           </div>
         </div>
       </div>

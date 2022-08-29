@@ -25,7 +25,7 @@ const ModalContainer = ({ children, size = "md" }) => {
         <Modal
           show={modalState === "show" ? true : false}
           onHide={handleClose}
-          scrollable={true}
+          // scrollable={true}
           centered
           size={size}
           dialogClassName='generic-modal-wrapper'

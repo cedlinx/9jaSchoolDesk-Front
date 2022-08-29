@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SelectAccount.module.scss";
 import Logo from "@/assets/images/Logo.svg";
 import {allStudentsData} from "@/helpers/sampleData";
@@ -10,10 +10,13 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import StudentLoginModal from "@/components/Modals/StudentLogin/StudentLogin";
 import generateColor from "@/helpers/generateColor";
+import { logout } from "@/redux/Auth/AuthSlice";
+import Button from "@/components/Button/Button";
 
 
 const SelectAccount = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
@@ -25,9 +28,15 @@ const SelectAccount = () => {
     dispatch(showModal({action: "show", type: "studentLogin", modalData: student}));
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
   return (
     <div className={cx(styles.selectAccountWrapper, "flexCol")}>
       <div className={cx(styles.heading, "flexCol")}>
+        <Button onClick={()=>handleLogout()} title="Logout" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
         <img src={Logo} alt="" />
         <p>Select your account to continue</p>
       </div>

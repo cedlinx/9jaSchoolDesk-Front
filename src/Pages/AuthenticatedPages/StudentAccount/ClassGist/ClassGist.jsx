@@ -7,7 +7,6 @@ import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
 import { useForm, Controller } from "react-hook-form";
 import { createGistValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -53,9 +52,16 @@ const ClassGist = () => {
     console.log(gist);
     let payload = {
       body: inputValue,
-      author: gist?.author,
+      author: gist?.author?.id,
       gist_id: gist.id
     };
+
+    let formData = new FormData();
+    formData.append("body", inputValue);
+    formData.append("author", gist?.author?.id);
+    formData.append("gist_id", gist.id);
+    // uploadedFile?.imagePreviewUrl && formData.append("attachment", uploadedFile?.file);
+    // uploadedFile?.imagePreviewUrl && formData.append("attachment_type", uploadedFile?.type);
 
     let response = await dispatch(addComment({payload, user: userDetails?.role.toLowerCase()}));
     console.log(response);
@@ -77,6 +83,7 @@ const ClassGist = () => {
     formData.append("class_id", userDetails?.klass_id);
     formData.append("institution_id", userDetails?.institution_id);
     uploadedFile?.imagePreviewUrl && formData.append("attachment", uploadedFile?.file);
+    uploadedFile?.imagePreviewUrl && formData.append("attachment_type", uploadedFile?.type);
 
     let response = await dispatch(createGist({user: userDetails?.role.toLowerCase(), payload: formData}));
     console.log(response);
@@ -109,7 +116,8 @@ const ClassGist = () => {
 
   const [uploadedFile, setUploadedFile] = useState({
     file: "",
-    imagePreviewUrl: ""
+    imagePreviewUrl: "",
+    type: ""
   });
 
   console.log(errors);
@@ -196,25 +204,15 @@ const ClassGist = () => {
                 <p className={cx(styles.introText)}>{post?.body}</p>
 
                 {post?.attachment && <div className={cx(styles.mediaDiv)}>
-                  {post?.type === "video" ?
+                  {post?.attachment_type === "video" ?
                     <video src={post?.attachment} id="myVideo" width="100%" height="240px" controls /> 
                     :
-                    post?.type === "image" ?
+                    post?.attachment_type === "image" ?
                       <img src={post?.attachment} alt="img" />
                       :
                       <a href={post?.attachment} target="_blank" rel="noreferrer"><Icon icon="teenyicons:attachment-solid" color="#eb5757" /> {post?.attachment.split("/")[post?.attachment.split("/").length - 1]}</a>
                   }
                 </div>}
-
-                <InputField
-                  placeholder={" "}
-                  label={"Leave a comment"}
-                  type="text"
-                  marginbottom="0"
-                  // error={errors?.name && errors?.name?.message}
-                />
-
-                <Button loading={loadingStatus?.index === index ? loadingStatus?.loading : false} disabled={loadingStatus?.index === index ? loadingStatus?.loading : false}  onClick={(e)=> addNewComment(e, post, index)} title="Reply" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
 
                 {Array.isArray(post?.comments) && post?.comments.length > 0 && 
                 <div className={cx(styles.commentsDiv)}>
@@ -228,11 +226,16 @@ const ClassGist = () => {
                         return (
                           <div key={index} className={cx(styles.commentContainer, "flexRow")}>
                             <div className={cx(styles.userImageDiv)}>
-                              <img src={studentProfilePic} alt="thumbnail" />
+                              {comment?.author?.avatar ? 
+                                <img src={comment?.author?.avatar} alt="img" />
+                                :
+                                <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "3rem", height: "3rem", lineHeight: "3rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${comment?.author?.firstName ? comment?.author?.firstName : ""} ${comment?.author?.lastName
+                                  ? comment?.author?.lastName : ""}`)}</span>
+                              }
                             </div>
                             <div className={cx(styles.body, "flexCol")}>
                               <div className={cx(styles.top, "flexRow-space-between")}>
-                                <p>John Doe</p>
+                                <p>{`${comment?.author?.firstName ? titleCase(comment?.author?.firstName) : ""} ${comment?.author?.lastName ? titleCase(comment?.author?.lastName) : ""}`}</p>
                                 <small>{formatDate(comment?.created_at)}</small>
                               </div>
                               <p className={cx(styles.comment)}>{comment?.body}</p>
@@ -244,6 +247,18 @@ const ClassGist = () => {
                     }
                   </div>
                 </div>}
+
+                <InputField
+                  placeholder={" "}
+                  label={"Leave a comment"}
+                  type="text"
+                  marginbottom="0"
+                  // error={errors?.name && errors?.name?.message}
+                />
+
+                <Button loading={loadingStatus?.index === index ? loadingStatus?.loading : false} disabled={loadingStatus?.index === index ? loadingStatus?.loading : false}  onClick={(e)=> addNewComment(e, post, index)} title="Reply" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+
+             
               </div>);
           }) 
           : 

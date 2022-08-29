@@ -4,8 +4,8 @@ import styles from "./Works.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import useGetStudentDashboard from "@/utils/useGetStudentDashboard";
 import formatDate from "@/helpers/formatDate";
-import { Icon } from "@iconify/react";
 import parse from "html-react-parser";
+import { Icon } from "@iconify/react";
 
 const Works = () => {
   const dispatch = useDispatch();

@@ -1,20 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
-import { Icon } from "@iconify/react";
 import Button from "@/components/Button/Button";
 import TableComponent from "@/components/Table/Table";
-import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import formatDate from "@/helpers/formatDate";
 
 
-const Due = () => {
+const All = ({allTasks}) => {
 
   const dispatch = useDispatch();
-  const allTasksData = useSelector((state) => state?.guardian?.getWardTasksData?.task);
-
-  console.log(allTasksData);
+  const loading = useSelector((state) => state?.student?.loading);
 
   const columnsHeader = [                
     {
@@ -133,11 +130,11 @@ const Due = () => {
   let getTableData = (data) => {
     let result =[];
 
-    data  && data.map((item, index) =>{
+    Array.isArray(data)  && data.map((item, index) =>{
       result.push({
         serialNumber: index+1,
         name: item?.name && titleCase(item?.name),
-        subject: item?.subject && titleCase(item?.subject),
+        subject: item?.subject?.subject && titleCase(item?.subject?.subject),
         type: item?.type && titleCase(item?.type),
         due_date: item?.due_date && formatDate(item?.due_date),
         action: "",
@@ -148,9 +145,16 @@ const Due = () => {
   };
     
   return (
-
-    <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(allTasksData)} showHeader={true}/>                
+    <>
+      {allTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(allTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
+        <p style={{color: "#747474", fontSize: "1.5rem"}}>No All Task</p>
+      </div>}
+    </>
   );
 };
 
-export default Due;
+All.propTypes = {
+  allTasks: PropTypes.array.isRequired
+};
+
+export default All;

@@ -41,6 +41,7 @@ const StudentLogin = () => {
     localStorage.setItem("userData", JSON.stringify(modalData));
     let response = await dispatch(validatePin({pin: data.pin, student_id: modalData.id}));
     console.log(response);
+    
     if(response.payload.success){
       console.log(signature, classCode);
       const studentID = localStorage.getItem("loggedInStudentID");

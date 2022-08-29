@@ -31,6 +31,18 @@
   padding: 2rem 0rem;
 }
 
+/* CSS used here will be applied after bootstrap.css */
+// .modal{
+//   display: block !important;
+// }
+// .modal-dialog{
+//     overflow-y: initial !important
+// }
+// .modal-body{
+// height: 85vh !important;
+// overflow-y: auto;
+// }
+
 @media all and (min-width: 768px){
   .generic-modal-wrapper .modal-content{
     // height: 70.5vh;

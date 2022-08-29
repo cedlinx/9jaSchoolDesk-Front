@@ -1,7 +1,7 @@
 import React, {useMemo, forwardRef, useState, useEffect} from "react";
 import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { useTable, usePagination, useRowSelect, useRowState } from "react-table";
+import { useTable, usePagination, useRowSelect, useRowState, useSortBy } from "react-table";
 import "./Table.css";
 import { Icon } from "@iconify/react";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
@@ -11,6 +11,7 @@ const Styles = styled.div`
   /* This is required to make the table full-width */
   display: block;
   max-width: 100%;
+  width: 100%;
 
   /* This will make the table scrollable when it gets too small */
   .tableWrap {
@@ -108,6 +109,7 @@ const Table = ({ columns, data, selectedRowsData, loading, showPaginationNavigat
       data,
       initialState: { hiddenColumns: ["hidden_id"], pageIndex: 0, pageSize: defaultPageSize }
     },
+    useSortBy,
     usePagination,
     useRowSelect,
     useRowState
@@ -145,7 +147,21 @@ const Table = ({ columns, data, selectedRowsData, loading, showPaginationNavigat
           {headerGroups.map((headerGroup, index) => (
             <tr key={index} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column, idx) => (
-                <th {...column.getHeaderProps()} key={idx} >{column.render("Header")}</th>
+                <th {...column.getHeaderProps()} key={idx} >{column.render("Header")}
+                </th>
+
+                // <th key={idx} {...column.getHeaderProps(column.getSortByToggleProps())}>
+                //   {column.render("Header")}
+                //   {/* Add a sort direction indicator */}
+                //   <span>
+                //     {column.isSorted
+                //       ? column.isSortedDesc
+                //         ? " 🔽"
+                //         : " 🔼"
+                //       : ""}
+                //   </span>
+                // </th>
+                
               ))}
             </tr>
           ))}

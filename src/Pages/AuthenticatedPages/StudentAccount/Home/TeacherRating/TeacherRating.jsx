@@ -9,13 +9,13 @@ import StarRating from "@/components/StarRating";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
-const TeacherRating = ({teachersData}) => {
+const TeacherRating = ({teachersData, studentID}) => {
   const dispatch = useDispatch();
 
   const setRating = async (rating, teacherData) => {
     // let response = await dispatch(rateTeacherByStudent({rating, teacher_id: teacherData?.id}));
     // console.log(response);
-    dispatch(showModal({action: "show", type: "rateTeacher", modalData: {rating, teacherData}}));
+    dispatch(showModal({action: "show", type: "rateTeacher", modalData: {rating, teacherData, studentID}}));
   };
 
   console.log(teachersData);
@@ -55,7 +55,7 @@ const TeacherRating = ({teachersData}) => {
             {details.avatar ? 
               <img style={{borderRadius: "50%", width: "2rem"}} src={details.avatar} alt="img" />
               :
-              <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${details.firstName} ${details.lastName}`)}</span>
+              <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${details.firstName || ""} ${details.lastName || ""}`)}</span>
             }
           </div>
 
@@ -113,7 +113,8 @@ const TeacherRating = ({teachersData}) => {
 };
 
 TeacherRating.propTypes = {
-  teachersData: PropTypes.array
+  teachersData: PropTypes.array,
+  studentID: PropTypes.string
 };
 
 export default TeacherRating;

@@ -10,6 +10,9 @@ import EditProfileModal from "@/components/Modals/EditProfile/EditProfile";
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";
 import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAssessment";
 import SubmissionDetailsModal from "@/components/Modals/SubmissionDetails/SubmissionDetails";
+import TaskDetailsModal from "@/components/Modals/TaskDetails/TaskDetails";
+import RateTeacherModal from "@/components/Modals/RateTeacher/RateTeacher";
+import ChangePinModal from "@/components/Modals/ChangePin/ChangePin";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { getDashboard, getWardTasks } from "@/redux/Guardian/GuardianSlice";
 import AssessmentFeedback from "./AssessmentFeedback/AssessmentFeedback";
@@ -38,6 +41,7 @@ const Home = () => {
   
   useEffect(() => {
     dispatch(getDashboard());
+    dispatch(getWardTasks({student_id: selectedWard?.id}));
   }, [dispatch, selectedWard?.id]);
 
   const switchWard = (ward_id) => {
@@ -84,29 +88,34 @@ const Home = () => {
               <section className={cx(styles.tablesSection, "row")}>
 
                 <div className={cx(styles.tablesSectionLeft, "col-md-12", "col-xl-6")}>
-                  <AssessmentFeedback selectedWard={selectedWard} />
+                  <AssessmentFeedback selectedWard={selectedWard} tasksData={selectedWard?.graded_tasks} />
                 </div>
                 <div className={cx(styles.tablesSectionRight, "col-md-12", "col-xl-6")}>
                   <NoticeBoard selectedWard={selectedWard} />
                 </div>
-
               </section>
           
             </div>
+
             <div className={cx(styles.rightSection, "col-sm-12", "col-lg-4", "col-xl-3")}>
               <section className={cx(styles.rightSectionInnerContainer, "row")}>
                 <div className={cx("col-sm-6", "col-md-6", "col-lg-12")}>
                   <WardProfile selectedWard={selectedWard} />
                 </div>
                 <div className={cx("col-sm-6", "col-md-6", "col-lg-12")}>
-                  <TeacherRating selectedWard={selectedWard} />
+                  <TeacherRating teachersData={selectedWard?.subjects} guardianID={loggedInUser?.id} />
                 </div>
               </section>   
             </div>
           </div> : <p>You have no ward registered</p>}
 
-      {modalState === "show" ? <Modal show size = {modalType === "editProfile" ? "xl" : modalType === "submissionDetails" ? "lg" : "md"} >{modalType === "editProfile" ? <EditProfileModal /> : modalType === "submitAssessment" ? <SubmitAssessmentModal /> : modalType === "uploadActivity" ? <UploadActivityModal />  : modalType === "submissionDetails" ? <SubmissionDetailsModal />  : null}</Modal> : null}
-            
+      {modalState === "show" && modalType === "editProfile" && <Modal show size="xl" ><EditProfileModal /> </Modal>}
+      {modalState === "show" && modalType === "submitAssessment" && <Modal show ><SubmitAssessmentModal /> </Modal>}
+      {modalState === "show" && modalType === "submissionDetails" && <Modal show size="lg" ><SubmissionDetailsModal /> </Modal>}
+      {modalState === "show" && modalType === "changePin" && <Modal show ><ChangePinModal /> </Modal>}    
+      {modalState === "show" && modalType === "rateTeacher" && <Modal show ><RateTeacherModal /> </Modal>}     
+      {modalState === "show" && modalType === "uploadActivity" && <Modal show size="lg" ><UploadActivityModal /> </Modal>} 
+      {modalState === "show" && modalType === "taskDetails" && <Modal show size="lg" ><TaskDetailsModal /> </Modal>} 
     </div>
   );
 };

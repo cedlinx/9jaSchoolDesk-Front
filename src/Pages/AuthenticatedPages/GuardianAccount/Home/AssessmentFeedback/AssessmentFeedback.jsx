@@ -1,18 +1,20 @@
-import React, {useState} from "react";
+import React from "react";
 import cx from "classnames";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import styles from "./AssessmentFeedback.module.scss";
 import {useNavigate} from "react-router-dom";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import formatDate from "@/helpers/formatDate";
 import { titleCase, initialsCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/sampleData";
-import { Icon } from "@iconify/react";
 import expandIcon from "@/assets/icons/expand-icon.svg";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
-const AssessmentFeedback = ({selectedWard}) => {
+const AssessmentFeedback = ({selectedWard, tasksData}) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let getTableData = (data) => {
     let result =[];
@@ -21,65 +23,37 @@ const AssessmentFeedback = ({selectedWard}) => {
     data  && data.map((item, index) =>{
       result.push({
         serialNumber: index + 1,
-        status: item?.read_status && item?.read_status,
-        imageUrl: item?.teacher?.avatar && item?.teacher?.avatar,
         teacherDetails: item?.teacher && item?.teacher,
         date: item?.created_at && formatDate(item?.created_at),
-        feedback: item?.pivot?.feedback && titleCase(item?.pivot?.feedback),
+        feedback: item?.pivot?.feedback && item?.pivot?.feedback,
         allData: item
       });
     });
     return result;
   };
 
-  const columnsHeaderAssessment = [                
-    {
-      Header: () => (
-        <div
-          style={{
-            minWidth: "1rem"
-          }}
-        />
-      ),
-      accessor: "status",
-      Cell: (row) => {
-        let status = row.cell.row.values.status;
-        return <span>{status && status.toLowerCase() === "read" ? <Icon icon="akar-icons:circle-fill" color="#2ac769" width="12" height="12" /> : <Icon icon="akar-icons:circle-fill" color="#bdbdbd" width="12" height="12" />}</span>;
-      }
-    },
-    {
-      Header: () => (
-        <div
-          style={{
-            minWidth: "auto"
-          }}
-        />
-      ),
-      accessor: "imageUrl",
-      Cell: (row) => {
-        let imageUrl = row.cell.row.values.imageUrl;
-        let allData = row.cell.row.original.allData;
-        return <div>
-          
-          {imageUrl ? 
-            <img style={{borderRadius: "50%", width: "3rem"}} src={imageUrl} alt="img" />
-            :
-            <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "3rem", height: "3rem", lineHeight: "3rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${allData?.teacher?.firstName} ${allData?.teacher?.lastName}`)}</span>
-          }
-        </div>;
-      }
-    },
+  const columnsHeaderAssessment = [                   
     {
       Header: () => (
         <div />
       ),
       accessor: "teacherDetails",
       Cell: (row) => {
-        let details = row.cell.row.values.teacherDetails;
-        return <div  style={{width: "5rem"}}>
-          <p style={{fontWeight: "500", color: "#4f4f4f"}}>{details?.firstName && titleCase(`${details?.firstName} ${details?.lastName}`)}</p>
-          <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{details?.subject}</p>
-          
+        let teacherDetails = row.cell.row.values.teacherDetails;
+        let subject = row.cell.row.original.allData.subject.subject;
+        return <div  style={{width: "12.5rem", display: "flex", gap: "0.5rem"}}>
+          <div>
+            {teacherDetails?.avatar ? 
+              <img style={{borderRadius: "50%", width: "3rem"}} src={teacherDetails?.avatar} alt="img" />
+              :
+              <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "3rem", height: "3rem", lineHeight: "3rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${teacherDetails?.firstName ? teacherDetails.firstName : ""} ${teacherDetails?.lastName ? teacherDetails?.lastName : ""}`)}</span>
+            }
+          </div>
+          <div>
+            <p style={{fontWeight: "500", color: "#4f4f4f"}}>{teacherDetails?.firstName && titleCase(`${teacherDetails?.firstName} ${teacherDetails?.lastName}`)}</p>
+            <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{subject}</p>
+
+          </div>
         </div>;
       }
     },
@@ -90,8 +64,10 @@ const AssessmentFeedback = ({selectedWard}) => {
       accessor: "feedback",
       Cell: (row) => {
         let feedback = row.cell.row.values.feedback;
-        return <div  style={{width: "10rem"}}>
-          <p className={cx("flexRow-space-between")} ><span style={{fontWeight: "500", color: "#828282", fontSize: "14px",   whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "15rem", marginRight: "0.5rem"}}>{feedback}</span><span><img style={{cursor: "pointer"}} src={expandIcon} alt="" /></span></p>          
+        let allData = row.cell.row.original.allData;
+
+        return <div  style={{width: "auto"}}>
+          <p className={cx("flexRow-space-between")} ><span style={{fontWeight: "500", color: "#828282", fontSize: "1rem",   whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "100%", marginRight: "0.5rem"}}>{feedback}</span><span><img onClick={() => dispatch(showModal({action: "show", type: "taskDetails", modalData: allData}))} style={{cursor: "pointer"}} src={expandIcon} alt="" /></span></p>          
         </div>;
       }
     },
@@ -107,7 +83,7 @@ const AssessmentFeedback = ({selectedWard}) => {
       Cell: (row) => {
         let date = row.cell.row.values.date;
         return <div>
-          <p style={{fontWeight: "500", color: "#BDBDBD", fontSize: "0.875rem"}}>{formatDate(date)}</p>
+          <p style={{fontWeight: "500", color: "#000", fontSize: "0.875rem", textAlign: "center"}}>{formatDate(date)}</p>
           
         </div>;
       }
@@ -117,14 +93,19 @@ const AssessmentFeedback = ({selectedWard}) => {
   return (
     <div className={cx(styles.assessmentFeedbackContainer)}>
       <div className={cx(styles.header, "flexRow-space-between")}>
-        <h5>{selectedWard?.firstName && titleCase(titleCase(selectedWard?.firstName))}'s Assessment Feedback</h5>
+        <h5>{selectedWard?.firstName && titleCase(titleCase(selectedWard?.firstName))}&apos;s Assessment Feedback</h5>
         <small onClick={() => navigate("assessment-feedback")}>View all</small>
       </div>
       <div className={cx(styles.tableDiv)}>
-        {<TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(selectedWard?.tasks.slice(0,5))} />}
+        {Array.isArray(tasksData) && tasksData.length > 0 ?  <TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(tasksData.slice(0,5))} /> : <p className={cx(styles.emptyDataElement)}>There is currently no graded task</p>}
       </div>
     </div>
   );
+};
+
+AssessmentFeedback.propTypes = {
+  selectedWard: PropTypes.object,
+  tasksData: PropTypes.object
 };
 
 export default AssessmentFeedback;

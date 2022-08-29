@@ -9,7 +9,6 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
 import { useDropzone } from "react-dropzone";
-import submissionImage from "@/assets/images/submissions.png";
 import editIcon from "@/assets/icons/edit-icon.svg";
 
 import { modifyWardProfile } from "@/redux/Guardian/GuardianSlice";
@@ -17,9 +16,11 @@ import { modifyWardProfile } from "@/redux/Guardian/GuardianSlice";
 import { useForm, Controller } from "react-hook-form";
 import { modifyWardProfileValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import useGetUser from "@/utils/useGetUser";
 import { initialsCase } from "@/helpers/textTransform";
-
+import formatDate from "@/helpers/formatDate";
+import parse from "html-react-parser";
 
 
 const EditProfile = () => {
@@ -28,9 +29,10 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const modalData = useSelector((state) => state.modalState.modalData);
   const loading = useSelector((state) => state.student.loading);
-  const allTasksData = useSelector((state) => state.guardian.getWardTasksData);
+  const allTasksData = useSelector((state) => state.guardian.getWardTasksData.task);
   const user = useGetUser();
   console.log(modalData);
+  console.log(allTasksData);
 
   const sendRequest = async (data) => {
     console.log(data);
@@ -46,10 +48,9 @@ const EditProfile = () => {
     let response = await dispatch(modifyWardProfile(formData));
 
     console.log(response);
-    // if(response.payload.success){
-    // dispatch(showModal({ action: "hide" }));
-    // }
-
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide" }));
+    }
   };
 
   const resolver = yupResolver(modifyWardProfileValidationSchema);
@@ -61,7 +62,7 @@ const EditProfile = () => {
     otherNames: modalData?.otherNames
   };
 
-  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+  const { handleSubmit, formState: { errors }, control } = useForm({ defaultValues, resolver, mode: "all" });
 
   const [uploadedFile, setUploadedFile] = useState({
     file: "",
@@ -77,20 +78,12 @@ const EditProfile = () => {
     reader.readAsDataURL(file);
   }, []);
 
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
+  const { getRootProps } = useDropzone({ onDrop, accept: "image/*" });
 
-  const submissionsArray = [
-    {
-      name: "Submission One",
-      date: "22/5/2022",
-      thumbnailUrl: submissionImage
-    },
-    {
-      name: "Submission Two",
-      date: "22/5/2022",
-      thumbnailUrl: submissionImage
-    }
-  ];
+  const handleViewAll = () => {
+    navigate("/guardian/submissions");
+    dispatch(showModal({ action: "hide" }));
+  };
 
   return (
 
@@ -194,19 +187,32 @@ const EditProfile = () => {
         {user !== "student" && <div className={cx(styles.submissionsDiv, "col-sm-12", "col-md-12", "col-lg-6")}>
 
           <div className={cx(styles.heading, "flexRow-space-between")}>
-            <h3 className={cx(styles.title)}>Your Ward's Works</h3>
-            <span onClick={() => navigate("/guardian/submissions")}>View All</span>
+            <h3 className={cx(styles.title)}>Your Ward&apos;s Works</h3>
+            <span onClick={() => handleViewAll()}>View All</span>
           </div>
 
           <div className={cx(styles.body, "flexCol")}>
-            {Array.isArray(submissionsArray) && submissionsArray.map((submission, index)=>{
+            {Array.isArray(allTasksData) && allTasksData.map((submission, index)=>{
               return(
-                <div onClick={() => dispatch(showModal({action: "show", type: "submissionDetails", modalData: submission }))} className={cx(styles.submissionContainer)} key={index}>
+                <div onClick={() => dispatch(showModal({action: "show", type: "submissionDetails", modalData: submission }))} className={cx(styles.submissionContainer, "flexCol")} key={index}>
                   <div className={cx(styles.fileDetails, "flexRow-space-between")}>
-                    <span>{submission?.name}</span><span>{submission?.date}</span>
+                    <span>{submission?.name}</span>
+                    <small>{formatDate(submission?.pivot?.updated_at)}</small>
                   </div>
-                  <div className={cx(styles.imageDiv)}>
-                    <img src={submission?.thumbnailUrl} alt="image" />
+                  <div className={cx(styles.solutionDiv, styles.wrapper)}>
+                    <label htmlFor="">Solution</label>
+                    <p>{submission?.pivot?.solution && parse(submission?.pivot?.solution)}</p>
+                  </div>
+                  <div className={cx(styles.scoreDiv, styles.wrapper)}>
+                    <label htmlFor="">Score</label>
+                    <p>{submission?.pivot?.score}</p>
+                  </div>
+                  <div className={cx(styles.feedbackDiv, styles.wrapper)}>
+                    <label htmlFor="">Feedback</label>
+                    <p>{submission?.pivot?.feedback && parse(submission?.pivot?.feedback)}</p>
+                  </div>
+                  <div className={cx(styles.attachmentDiv, styles.wrapper)}>
+                    <a target="_blank" href={submission?.pivot?.attachment} rel="noreferrer"> <Icon icon="teenyicons:attachment-solid" color="#22467b" /> Download Solution</a>
                   </div>
                 </div>
               );
@@ -214,9 +220,6 @@ const EditProfile = () => {
           </div>
         </div>}
       </div>
-
-
-
     </section>
   );
 };
