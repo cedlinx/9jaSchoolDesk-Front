@@ -7,7 +7,6 @@ const useGetAllTeachers = () => {
 
   const dispatch = useDispatch();
   const allTeachersData = useSelector((state) => state?.proprietor?.getAllTeachersData?.teachers);
-  console.log("allTeachersData", allTeachersData);
 
   useEffect(() => {
     dispatch(getAllTeachers());

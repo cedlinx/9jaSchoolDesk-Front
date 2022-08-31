@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Select from "react-select";
 import Creatable from "react-select/creatable";
 
@@ -56,7 +57,8 @@ const customStyles = {
 };
   
 const SelectFieldContainer = styled.div`
-  margin: 0rem 0rem 1.5rem 0rem;
+margin: 0rem 0rem 1.5rem 0rem;
+  margin-bottom: ${props => props.marginbottom ? props.marginbottom : "1.5rem"};
   height: fit-content;
   width: 100%;
   padding: 0rem 0rem;
@@ -77,12 +79,14 @@ const SelectAutoComplete = (props) => {
     name,
     onBlur,
     isMulti,
-    isCreatable
+    isCreatable,
+    isClearable,
+    marginbottom
   } = props;
     
   return (
     <>
-      <SelectFieldContainer>
+      <SelectFieldContainer marginbottom={marginbottom}>
         <span style={{fontSize: "0.875rem", margin: "0rem", padding: "0rem", lineHeight: "1"}} >{label}</span>
 
         {isCreatable ? <Creatable
@@ -92,7 +96,7 @@ const SelectAutoComplete = (props) => {
           onChange={onChange}
           options={options}
           onBlur={onBlur}
-          isClearable
+          isClearable ={isClearable}
           isMulti={isMulti}
           placeholder={placeholder}
           value={value}
@@ -104,7 +108,7 @@ const SelectAutoComplete = (props) => {
             onChange={onChange}
             options={options}
             onBlur={onBlur}
-            isClearable
+            isClearable ={isClearable}
             isMulti={isMulti}
             placeholder={placeholder}
             value={value}
@@ -116,5 +120,24 @@ const SelectAutoComplete = (props) => {
     </>
   );
 };
+
+SelectAutoComplete.propTypes = {
+  error: PropTypes.string,
+  label: PropTypes.string,
+  helperText: PropTypes.string,
+  options: PropTypes.array,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.any,
+  name: PropTypes.string,
+  onBlur: PropTypes.func,
+  isMulti: PropTypes.bool,
+  isCreatable: PropTypes.bool,
+  marginbottom: PropTypes.string,
+  isClearable: PropTypes.bool
+
+  // props: PropTypes.object.isRequired
+};
+
 
 export default SelectAutoComplete;

@@ -11,7 +11,7 @@ import { useDropzone } from "react-dropzone";
 import { addClass, getAllClasses } from "@/redux/Proprietor/ProprietorSlice";
 import useGetInstitutionID from "@/utils/useGetInstitutionID";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { addClassValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useGetAllTeachers from "@/utils/useGetAllTeachers";
@@ -29,18 +29,21 @@ const AddClass = () => {
   const loading = useSelector((state) => state.proprietor.loading);
   const allTeachersData = useGetAllTeachers();
   const schoolSubjects = useGetAllSubjects();
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [selectedSubjectTeachers, setSelectedSubjectTeachers] = useState([]);
 
   const sendRequest = async (data) => {
+    console.log(data);
     let subjectArray = [];
     data.subjects.map((subject, index) => {
       subjectArray.push(index);
     });
 
-    let response = await dispatch(addClass({ ...data, subjects: subjectArray, institution_id: institution_id }));
-    if (response.payload.success) {
-      dispatch(showModal({ action: "hide", type: "addClass" }));
-      dispatch(getAllClasses());
-    }
+    // let response = await dispatch(addClass({ ...data, subjects: subjectArray, institution_id: institution_id }));
+    // if (response.payload.success) {
+    //   dispatch(showModal({ action: "hide", type: "addClass" }));
+    //   dispatch(getAllClasses());
+    // }
   };
 
   const resolver = yupResolver(addClassValidationSchema);
@@ -48,26 +51,16 @@ const AddClass = () => {
   const defaultValues = {
     name: "",
     description: "",
-    subjects: ""
+    subjects: "",
+    subject: ""
   };
 
-  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+  const { register, watch, handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [uploadedFile, setUploadedFile] = useState({
-    file: "",
-    imagePreviewUrl: ""
-  });
-
-  const onDrop = useCallback(acceptedFiles => {
-    let file = (acceptedFiles[0]);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setUploadedFile({ file: file, imagePreviewUrl: reader.result });
-    };
-    reader.readAsDataURL(file);
-  }, []);
-
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
+  // const { append, remove } = useFieldArray({
+  //   control,
+  //   name: "test"
+  // });
 
   const getSubjectsOptions = () => {
     let options = [];
@@ -90,6 +83,26 @@ const AddClass = () => {
     });
     return options;
   };
+
+  const handleSubjectChange = (e) => {
+    let selectedSubjects = e.map((subject) => {
+      return subject;
+    });
+    console.log(selectedSubjects);
+    setValue("subjects", selectedSubjects);
+    setSelectedSubjects(selectedSubjects);
+    setSelectedSubjectTeachers(selectedSubjects);
+  };
+
+  const handleSubjectTeacherChange = (data, element, subject) => {
+    console.log(data);
+    console.log(element);
+    console.log(subject);
+    setValue(element.name, data);
+  };
+
+  console.log(selectedSubjectTeachers);
+  console.log(errors);
 
   return (
 
@@ -148,7 +161,7 @@ const AddClass = () => {
             )}
           />
 
-          <label className={cx(styles.subjectsLabel)}>SELECT SUBJECTS</label>
+          <label className={cx(styles.outsideLabel)}>SELECT SUBJECTS</label>
           <Controller
             name="subjects"
             control={control}
@@ -163,9 +176,55 @@ const AddClass = () => {
                 placeholder=""
                 options={getSubjectsOptions(schoolSubjects)}
                 error={errors?.subjects && errors?.subjects?.message}
+                onChange={(e) => handleSubjectChange(e)}
               />
             )}
           />
+
+          <label className={cx(styles.outsideLabel)}>SELECT SUBJECT TEACHER</label>
+          <div className={cx(styles.subjectTeacherContainer, "flexCol")}>
+            {selectedSubjectTeachers.map((subject, index) => {
+              return (
+                <div key={index} className={cx(styles.subjectTeacherItem, "flexRow")} >
+                  <div className={cx(styles.labelDiv)}>
+                    <p>{subject.label}</p>
+                    <input style={{display: "none"}} readOnly name={`subject[${index}]subject`} {...register(`subject.${index}.subject`)} value={subject.label} />
+                  </div>
+                  <div className={cx(styles.selectDiv)}>
+                    <Controller
+                      // name="subject_teacher_id"
+                      name={`subject[${index}]teacher`} 
+                      {...register(`subject.${index}.teacher`)}
+                      control={control}
+                      render={({ field, ref }) => (
+                        <SelectAutoComplete
+                          {...field}
+                          // label={"Select Teacher"}
+                          isMulti={false}
+                          isClearable={false}
+                          isCreatable={false}
+                          marginbottom="0rem"
+                          placeholder=""
+                          options={getTeacherOptions(allTeachersData)}
+                          onChange={(data, element) => handleSubjectTeacherChange(data, element,  subject)}
+                          error={errors?.subject?.[index]?.teacher && errors?.subject?.[index]?.teacher?.message}
+                        />
+                      )}
+                    />
+                  </div>
+                
+                </div>
+              );
+            }
+            )}
+
+
+          </div>
+        
+
+     
+
+
 
 
           <div className={cx(styles.btnDiv, "flexRow")}>

@@ -66,7 +66,7 @@ const Home = () => {
         </div>
 
         <div className={cx(styles.lowerSectionMiddle, "col-sm-12", "col-md-6", "col-xl-6")}>
-          <TeacherRating teachersData={Array.isArray(studentData?.subjects) && studentData?.subjects} studentID={studentData?.id} />
+          <TeacherRating teachersData={Array.isArray(studentData?.class?.subjects) && studentData?.class?.subjects} studentID={studentData?.id} />
         </div>
 
         <div className={cx(styles.lowerSectionRight, "col-sm-12", "col-md-6", "col-xl-3")}>

@@ -12,7 +12,8 @@ import { useForm, Controller } from "react-hook-form";
 import { assignTeacherToClassValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useGetAllClasses from "@/utils/useGetAllClasses";
-import { reAssignTeacher, getAllTeachers } from "@/redux/Proprietor/ProprietorSlice";
+import useGetAllTeachers from "@/utils/useGetAllTeachers";
+import { reAssignTeacher, getAllTeachers, getAllClasses } from "@/redux/Proprietor/ProprietorSlice";
 
 
 const AssignTeacherToClass = () => {
@@ -20,26 +21,38 @@ const AssignTeacherToClass = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   const allClassesData = useGetAllClasses();
+  const allTeachersData = useGetAllTeachers();
   console.log(modalData);
 
   const sendRequest = async (data) => {
-    let response = await dispatch(reAssignTeacher({...data, teacher_id: modalData.id}));
+    console.log(data);
+    let {name, ...rest} = data;
+    // let response = await dispatch(reAssignTeacher({...data, teacher_id: modalData?.category === "teacher" ? modalData.id : data?.teacher_id}));
+    // console.log(response);
+    // if(response.payload.success){
+    //   dispatch(showModal({ action: "hide", type: "reAssignTeacher" }));
+    //   dispatch(getAllTeachers());
+    // }
+
+    let response = await dispatch(reAssignTeacher(rest));
     console.log(response);
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "reAssignTeacher" }));
-      dispatch(getAllTeachers());
+      modalData.category === "class" ? dispatch(getAllClasses()) : dispatch(getAllTeachers());
+      // dispatch(getAllTeachers());
     }
   };
 
   const resolver = yupResolver(assignTeacherToClassValidationSchema);
 
   const defaultValues = {
-    name: modalData.name,
-    class_id: ""
+    name: modalData.data.name,
+    class_id: modalData.category === "class" ? modalData.data.id : "",
+    teacher_id: modalData.category === "teacher" ? modalData.data.id : ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
-
+  console.log(errors);
   const getClassOptions = () => {
     let options = [];
     Array.isArray(allClassesData) && allClassesData.map((classData) => {
@@ -50,6 +63,20 @@ const AssignTeacherToClass = () => {
     });
     return options;
   };
+
+  const getTeacherOptions = () => {
+    let options = [];
+    Array.isArray(allTeachersData) && allTeachersData.map((teacherData) => {
+      options.push({
+        value: teacherData.id,
+        label: teacherData.name
+      });
+    }).sort((a, b) => a.label.localeCompare(b.label));
+    return options;
+  };
+  
+
+
 
   return (
 
@@ -82,19 +109,36 @@ const AssignTeacherToClass = () => {
             )}
           />
 
+          {modalData?.category === "teacher" &&
+            <Controller
+              name="class_id"
+              control={control}
+              render={({ field, ref }) => (
+                <Select
+                  {...field}
+                  label={"SELECT CLASS"}
+                  defaultSelect="Select"
+                  error={errors?.class_id && errors?.class_id?.message}
+                  options={getClassOptions(allClassesData)}
+                />
+              )}
+            />}
+
+          {modalData?.category === "class" && 
           <Controller
-            name="class_id"
+            name="teacher_id"
             control={control}
             render={({ field, ref }) => (
               <Select
                 {...field}
-                label={"SELECT CLASS"}
+                label={"SELECT TEACHER"}
                 defaultSelect="Select"
-                error={errors?.class_id && errors?.class_id?.message}
-                options={getClassOptions(allClassesData)}
+                error={errors?.teacher_id && errors?.teacher_id?.message}
+                options={getTeacherOptions(allTeachersData)}
               />
             )}
           />
+          }
 
 
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>

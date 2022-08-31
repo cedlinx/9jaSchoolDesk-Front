@@ -14,6 +14,7 @@ import AddClassModal from "@/components/Modals/AddClass/AddClass";
 import EditClassModal from "@/components/Modals/EditClass/EditClass";
 import DeleteClassModal from "@/components/Modals/DeleteClass/DeleteClass";
 import ViewClassDetailsModal from "@/components/Modals/ViewClassDetails/ViewClassDetails";
+import AssignTeacherToClassModal from "@/components/Modals/AssignTeacherToClass/AssignTeacherToClass";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
@@ -159,6 +160,7 @@ const AllClasses = () => {
               <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "assignTeacherToClass", modalData: {data, category: "class"} }))}>Assign Class Teacher</DropdownItem>
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "viewClassDetails", modalData: data }))}>View Details</DropdownItem>
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "deleteClass", modalData: data }))}>Delete Class</DropdownItem>
             </DropdownMenu>
@@ -201,7 +203,7 @@ const AllClasses = () => {
 
       </div>
 
-      {modalState === "show" ? <Modal show >{modalType === "addClass" ? <AddClassModal /> : modalType === "editClass" ? <EditClassModal /> : modalType === "deleteClass" ? <DeleteClassModal /> : modalType === "viewClassDetails" ? <ViewClassDetailsModal /> : null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "addClass" ? <AddClassModal /> : modalType === "editClass" ? <EditClassModal /> : modalType === "deleteClass" ? <DeleteClassModal /> : modalType === "viewClassDetails" ? <ViewClassDetailsModal /> : modalType === "assignTeacherToClass" ? <AssignTeacherToClassModal /> : null}</Modal> : null}
 
     </div>
   );

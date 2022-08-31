@@ -1,4 +1,4 @@
-import { getDashboardApi, getAllWardsApi, viewWardDetailsApi, viewTaskDetailsApi, getWardTasksApi, modifyWardProfileApi, modifyGuardianProfileApi, rateTeacherByGuardianApi} from "../api/guardian";
+import { getDashboardApi, getAllWardsApi, viewWardDetailsApi, viewTaskDetailsApi, getWardTasksApi, modifyWardProfileApi, modifyGuardianProfileApi, rateTeacherByGuardianApi, preferredChannelApi} from "../api/guardian";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -15,7 +15,8 @@ const initialState = {
   getWardTasksData: {},
   modifyWardProfileData: {},
   modifyGuardianProfileData: {},
-  rateTeacherByGuardianData: {}
+  rateTeacherByGuardianData: {},
+  preferredChannelData: {}
 };
 
 export const guardianSlice = createSlice({
@@ -71,13 +72,18 @@ export const guardianSlice = createSlice({
     rateTeacherByGuardianAction: (state, action) => {
       state.rateTeacherByGuardianData = action.payload;
       state.loading = false;
+    },
+
+    preferredChannelAction: (state, action) => {
+      state.preferredChannelData = action.payload;
+      state.loading = false;
     }
   }
 });
 export default guardianSlice.reducer;
 
 // Actions
-const { startLoading, hasError, getDashboardAction, getAllWardsAction, viewWardDetailsAction, viewTaskDetailsAction, getWardTasksAction, modifyWardProfileAction, modifyGuardianProfileAction, rateTeacherByGuardianAction } = guardianSlice.actions;
+const { startLoading, hasError, getDashboardAction, getAllWardsAction, viewWardDetailsAction, viewTaskDetailsAction, getWardTasksAction, modifyWardProfileAction, modifyGuardianProfileAction, rateTeacherByGuardianAction, preferredChannelAction } = guardianSlice.actions;
 
 
 export const getDashboard = (data) => async (dispatch) => {
@@ -172,6 +178,18 @@ export const rateTeacherByGuardian = (data) => async (dispatch) => {
     const response = await rateTeacherByGuardianApi(data);
     toast.success(response.data.message);
     return dispatch(rateTeacherByGuardianAction(response?.data));
+  } catch (e) {
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e.response.data));
+  }
+};
+
+export const preferredChannel = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await preferredChannelApi(data);
+    toast.success(response.data.message);
+    return dispatch(preferredChannelAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e.response.data));

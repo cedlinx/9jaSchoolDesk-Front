@@ -17,7 +17,8 @@ import { rateTeacherValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {initialsCase, titleCase} from "@/helpers/textTransform";
 import generateColor from "@/helpers/generateColor";
-import { getDashboard } from "@/redux/Student/StudentSlice";
+import { getDashboard as getStudentDashboard } from "@/redux/Student/StudentSlice";
+import { getDashboard as getGuardianDashboard } from "@/redux/Guardian/GuardianSlice";
 import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 import useGetUser from "@/utils/useGetUser";
 import TextInput from "@/components/TextInput/TextInput";
@@ -29,20 +30,25 @@ const RateTeacher = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalData = useSelector((state) => state.modalState.modalData);
-  const userDetails = useGetLoggedInUser();
   const loading = useSelector((state) => state.student.loading);
   const user = useGetUser();
+
+  const userDetails = useGetLoggedInUser();
+  let signature = userDetails?.dashboard_url && userDetails?.dashboard_url.split("=")[1];
+  let classCode = userDetails?.dashboard_url && userDetails?.dashboard_url.split("/")[8];
+  const studentID = localStorage.getItem("loggedInStudentID");
   console.log(userDetails);
   console.log(modalData);
 
   const sendRequest = async (data) => {
     console.log(data);
     
-    let response = user === "student" ? await dispatch(rateTeacherByStudent({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.studentID})) : await dispatch(rateTeacherByGuardian({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.guardianID}));
+    let response = user === "student" ? await dispatch(rateTeacherByStudent({rating : modalData?.rating, teacher_id: modalData?.teacherData?.subject_teacher.id, comment: data?.comment, user_id: modalData?.studentID})) : await dispatch(rateTeacherByGuardian({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.guardianID}));
     console.log(response);
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "rateTeacher" }));
-      dispatch(getDashboard());
+
+      user === "student" ? dispatch(getStudentDashboard({id: studentID, signature: signature, classCode: classCode})) : dispatch(getGuardianDashboard());
     }
   };
 

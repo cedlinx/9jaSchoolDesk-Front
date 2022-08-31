@@ -32,3 +32,7 @@ export const rateTeacherByGuardianApi = async (data) => {
   return await axios.post("guardian/auth/rate", data);
 };
 
+export const preferredChannelApi = async (data) => {
+  return await axios.post("guardian/auth/profile/set-comms-channel", data);
+};
+

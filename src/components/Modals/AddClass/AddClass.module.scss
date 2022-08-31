@@ -63,12 +63,44 @@
                 margin-bottom: 1rem;
              }
 
-             .subjectsLabel{
+             .outsideLabel{
                 font-size: 0.75rem;
                 margin: 0rem;
                 padding: 0rem;
                 line-height: 1;
                 position: relative;
+             }
+
+             .subjectTeacherContainer{
+                border-radius: 0.25rem;
+                border: 1px solid #d25b5d3b;
+
+
+                .subjectTeacherItem{
+                    align-items: center;
+                    gap: 1rem;
+                    width: 100%;
+                    // border-radius: 0.5rem;
+                    padding: 0.5rem;
+                    border-bottom: 1px solid #d25b5d3b;
+                   
+
+
+                    .labelDiv{
+                        width: 50%;
+                        p{
+                            font-size: 1rem;
+                            font-weight: bold;
+                            margin: 0rem;
+                            padding: 0rem;
+                            line-height: 1;
+                            position: relative;
+                        }
+                    }
+                    .selectDiv{
+                        width: 50%;
+                    }
+                }
              }
         }
     }

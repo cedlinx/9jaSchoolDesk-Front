@@ -26,14 +26,26 @@ const EditClass = () => {
   const modalData = useSelector((state) => state.modalState.modalData);
   const allTeachersData = useGetAllTeachers();
   const schoolSubjects = useGetAllSubjects();
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [selectedSubjectTeachers, setSelectedSubjectTeachers] = useState(modalData?.subjects);
+
+  console.log(modalData);
 
   const sendRequest = async (data) => {
+    console.log(data);
     let subjectArray = [];
     data.subjects.map((subject) => {
-      subjectArray.push(subject.value);
+      data?.subject.map((teacher, index)=>{
+        if(subject.label === teacher.subject){
+          subjectArray.push({subject: subject.value, teacher: teacher.teacher.value});
+        }
+      });
     });
+    console.log(subjectArray);
 
-    let response = await dispatch(modifyClass({ ...data, subjects: subjectArray, id: modalData.id }));
+    let {subject, ...rest} = data;
+
+    let response = await dispatch(modifyClass({ ...rest, subjects: subjectArray, id: modalData.id }));
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "editClass" }));
       dispatch(getAllClasses());
@@ -57,26 +69,12 @@ const EditClass = () => {
     name: modalData?.name,
     subjects: getSubjectsOptions(modalData?.subjects),
     description: modalData?.description,
-    teacher_id: modalData?.teacher_id
+    teacher_id: modalData?.teacher_id,
+    subject: ""
   };
 
-  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+  const { register, handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
-  const [uploadedFile, setUploadedFile] = useState({
-    file: "",
-    imagePreviewUrl: ""
-  });
-
-  const onDrop = useCallback(acceptedFiles => {
-    let file = (acceptedFiles[0]);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setUploadedFile({ file: file, imagePreviewUrl: reader.result });
-    };
-    reader.readAsDataURL(file);
-  }, []);
-
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
 
   const getTeacherOptions = () => {
     let options = [];
@@ -88,6 +86,25 @@ const EditClass = () => {
     });
     return options;
   };
+
+  const handleSubjectChange = (e) => {
+    let selectedSubjects = e.map((subject) => {
+      return subject;
+    });
+    console.log(selectedSubjects);
+    setValue("subjects", selectedSubjects);
+    setSelectedSubjects(selectedSubjects);
+    setSelectedSubjectTeachers(selectedSubjects);
+  };
+
+  const handleSubjectTeacherChange = (data, element, subject) => {
+    console.log(data);
+    console.log(element);
+    console.log(subject);
+    setValue(element.name, data);
+  };
+
+  console.log(selectedSubjectTeachers);
 
   console.log(defaultValues.subjects);
 
@@ -151,7 +168,7 @@ const EditClass = () => {
             )}
           />
 
-          <label className={cx(styles.subjectsLabel)}>SELECT SUBJECTS</label>
+          <label className={cx(styles.outsideLabel)}>SELECT SUBJECTS</label>
           <Controller
             name="subjects"
             control={control}
@@ -167,6 +184,46 @@ const EditClass = () => {
               />
             )}
           />
+
+          <label className={cx(styles.outsideLabel)}>SELECT SUBJECT TEACHER</label>
+          <div className={cx(styles.subjectTeacherContainer, "flexCol")}>
+            {selectedSubjectTeachers.map((subject, index) => {
+              return (
+                <div key={index} className={cx(styles.subjectTeacherItem, "flexRow")} >
+                  <div className={cx(styles.labelDiv)}>
+                    <p>{subject.subject}</p>
+                    <input style={{display: "none"}} readOnly name={`subject[${index}]subject`} {...register(`subject.${index}.subject`)} value={subject.subject} />
+                  </div>
+                  <div className={cx(styles.selectDiv)}>
+                    <Controller
+                      // name="subject_teacher_id"
+                      name={`subject[${index}]teacher`} 
+                      {...register(`subject.${index}.teacher`)}
+                      control={control}
+                      render={({ field, ref }) => (
+                        <SelectAutoComplete
+                          {...field}
+                          // label={"Select Teacher"}
+                          isMulti={false}
+                          isClearable={false}
+                          isCreatable={false}
+                          marginbottom="0rem"
+                          placeholder=""
+                          options={getTeacherOptions(allTeachersData)}
+                          onChange={(data, element) => handleSubjectTeacherChange(data, element,  subject)}
+                          error={errors?.subject?.[index]?.teacher && errors?.subject?.[index]?.teacher?.message}
+                        />
+                      )}
+                    />
+                  </div>
+                
+                </div>
+              );
+            }
+            )}
+
+
+          </div>
 
 
           <div className={cx(styles.btnDiv, "flexRow")}>

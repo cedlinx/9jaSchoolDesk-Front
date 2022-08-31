@@ -1,4 +1,5 @@
-import React from "react";
+import React,  { Suspense }  from "react";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { Provider } from "react-redux";
 import { ToastProvider } from "@/context/toastContext";
 import { checkAuth } from "./utils/auth";
@@ -18,11 +19,17 @@ AOS.init({
 });
 
 const App = () => (
-  <Provider store={store}>
-    <ToastProvider autoClose={3000}>
-      <Routes />
-    </ToastProvider>
-  </Provider>
+  <ErrorBoundary>
+    <Suspense fallback={<p>Spinner Here</p>}>
+
+      <Provider store={store}>
+        <ToastProvider autoClose={3000}>
+          <Routes />
+        </ToastProvider>
+      </Provider>
+
+    </Suspense>
+  </ErrorBoundary>
 );
 
 export default App;

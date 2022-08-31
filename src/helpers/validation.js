@@ -606,7 +606,9 @@ export const assignWardToParentValidationSchema = Yup.object().shape({
 
 export const assignTeacherToClassValidationSchema = Yup.object().shape({
   class_id: Yup.string()
-    .required("Kindly select a class")
+    .required("Kindly select a class"),
+  teacher_id: Yup.string()
+    .required("Kindly select a teacher")
 });
 
 export const rateTeacherValidationSchema = Yup.object().shape({
@@ -828,15 +830,13 @@ export const modifyProprietorValidationSchema = Yup.object().shape({
 });
 
 export const saveNotificationsValidationSchema = Yup.object().shape({
-  whatsApp: Yup.string(),
+  Whatsapp: Yup.string(),
 
-  email: Yup.string()
-    .email("Invalid email address")
-    .min(5, "Must be above 5 characters!")
-    .max(225, "Too Long!")
-    .nullable,
+  Email: Yup.string(),
 
-  phone: Yup.string()
+  Call: Yup.string(),
+
+  Sms: Yup.string()
 
 });
 

@@ -47,7 +47,7 @@ const ViewClassDetails = () => {
           <span className={cx(styles.title)}>CLASS CODE</span><span className={cx(styles.value)}>{data?.code}</span>
         </div>
         <div className={cx(styles.modalItem)}>
-          <span className={cx(styles.title)}>CLASS TEACHER</span><span className={cx(styles.value)}>{`${data?.teacher?.firstName} ${data?.teacher?.lastName}`}</span>
+          <span className={cx(styles.title)}>CLASS TEACHER</span><span className={cx(styles.value)}>{`${data?.teacher?.firstName ? data.teacher.firstName : ""} ${data?.teacher?.lastName ? data.teacher.lastName : ""}`}</span>
         </div>
         <div className={cx(styles.modalItem)}>
           <span className={cx(styles.title)}>SUBJECTS</span><span className={cx(styles.value)}>{getSubjectList(data?.subjects)}</span>
