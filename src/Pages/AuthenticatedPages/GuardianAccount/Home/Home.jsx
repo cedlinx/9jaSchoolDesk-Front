@@ -11,6 +11,7 @@ import SubmitAssessmentModal from "@/components/Modals/SubmitAssessment/SubmitAs
 import SubmissionDetailsModal from "@/components/Modals/SubmissionDetails/SubmissionDetails";
 import TaskDetailsModal from "@/components/Modals/TaskDetails/TaskDetails";
 import RateTeacherModal from "@/components/Modals/RateTeacher/RateTeacher";
+import SwitchWardLoaderModal from "@/components/Modals/SwitchWardLoader/SwitchWardLoader";
 import ChangePinModal from "@/components/Modals/ChangePin/ChangePin";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { getDashboard, getWardTasks } from "@/redux/Guardian/GuardianSlice";
@@ -21,6 +22,7 @@ import TeacherRating from "./TeacherRating/TeacherRating";
 import useGetSelectedWard from "@/utils/useGetSelectedWard";
 import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
+import { showModal } from "@/redux/ModalState/ModalSlice";
 
 
 
@@ -43,9 +45,13 @@ const Home = () => {
     dispatch(getWardTasks({student_id: selectedWard?.id}));
   }, [dispatch, selectedWard?.id]);
 
-  const switchWard = (ward_id) => {
-    localStorage.setItem("selectedWardID", ward_id);
-    dispatch(getDashboard());
+  const switchWard = async (ward_id) => {
+    if(localStorage.getItem("selectedWardID") * 1 !== ward_id * 1 ){ 
+      dispatch(showModal({ action: "show", type: "switchWardLoader" }));
+      localStorage.setItem("selectedWardID", ward_id);
+      let response = await dispatch(getDashboard());
+      response.payload.success && dispatch(showModal({ action: "hide", type: "switchWardLoader" }));
+    }
   };
 
   return (
@@ -115,6 +121,7 @@ const Home = () => {
       {modalState === "show" && modalType === "rateTeacher" && <Modal show ><RateTeacherModal /> </Modal>}     
       {modalState === "show" && modalType === "uploadActivity" && <Modal show size="lg" ><UploadActivityModal /> </Modal>} 
       {modalState === "show" && modalType === "taskDetails" && <Modal show size="lg" ><TaskDetailsModal /> </Modal>} 
+      {modalState === "show" && modalType === "switchWardLoader" && <Modal show size="md" ><SwitchWardLoaderModal /> </Modal>} 
     </div>
   );
 };

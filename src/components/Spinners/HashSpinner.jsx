@@ -8,18 +8,18 @@ const override = css`
   border-color: red;
 `;
 
-const HashSpinner=({loading, color, css, speedMultiplier})=> {
-	let [loading, setLoading] = useState(true);
-	let [color, setColor] = useState("#ffffff");
+const HashSpinner=({ css, speedMultiplier})=> {
+  let [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#000");
 
-	return (
-		<div className="sweet-loading">
-			<button onClick={() => setLoading(!loading)}>Toggle Loader</button>
-			<input value={color} onChange={(input) => setColor(input.target.value)} placeholder="Color of the loader" />
+  return (
+    <div className="sweet-loading">
+      <button onClick={() => setLoading(!loading)}>Toggle Loader</button>
+      <input value={color} onChange={(input) => setColor(input.target.value)} placeholder="Color of the loader" />
 
-			<ClipLoader color={color} loading={loading} css={override} size={150} />
-		</div>
-	);
+      <ClipLoader color={color} loading={loading} css={override} size={150} />
+    </div>
+  );
 };
 
 export default HashSpinner;

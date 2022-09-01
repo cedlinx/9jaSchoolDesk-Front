@@ -7,6 +7,7 @@
             .title{
                 font-size: 1.125rem;
                 margin-left: 0.5rem;
+                font-weight: 450;
             }
            
             button{
@@ -20,9 +21,22 @@
 
             .leftSection{
                 padding: 1rem;
+                gap: 0.5rem;
                 small{
                     color: #A0A4A8;
                     font-size: 1rem;
+                }
+                a{
+                    color: #d25b5d;
+                    font-size: 1rem;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    // color: #;
+
+                    svg{
+                        margin-left: 0.5rem;
+                    }
                 }
                 p{
                     display: flex;
@@ -32,11 +46,17 @@
                         cursor: pointer;
                     }
                 }
+                .answerDiv{
+                    div{
+                        font-size: 1rem;
+                    }
+                }
             }
 
               .rightSection{
         border-left: 1px solid rgba(173, 216, 230, 0.623);
         padding: 1rem;
+        border-radius: 0rem 0.5rem 0.5rem 0rem;
 
         form{
             gap: 1rem;
@@ -44,8 +64,8 @@
 
         textarea{
             box-shadow: none !important;
-            // border: none;
-            background-color: transparent;
+            border: 1px solid rgba(173, 216, 230, 0.623);
+            background-color: white;
             margin-bottom: 0rem;
 
             &::placeholder{

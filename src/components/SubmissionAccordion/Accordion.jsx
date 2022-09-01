@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import cx from "classnames";
 import styles from "./Accordion.module.scss";
@@ -29,15 +30,17 @@ const AccordionComponent =(props)=>{
   });
   console.log(accordionArray);
 
-  const sendRequest = async (data, task) => {
-    console.log(data);
-    let response = await dispatch(assessTask({...data, audience: [task?.pivot?.student_id], task_id: task?.pivot?.task_id }));
+  const sendRequest = async (data, task, index) => {
+    let feedbackData = {
+      feedback: data.feedback[index].feedback,
+      score: data.score[index].score
+    };
+
+    let response = await dispatch(assessTask({...feedbackData, audience: [task?.pivot?.student_id], task_id: task?.pivot?.task_id }));
     console.log(response);
     if (response.payload.success) {
-      // dispatch(getAllTasks());
       dispatch(getStudentsAssignedToTask(task?.pivot?.task_id));
     }
-
   };
 
   const resolver = yupResolver(submitFeedbackValidationSchema);
@@ -49,10 +52,16 @@ const AccordionComponent =(props)=>{
 
   const handleFeedbackChange =(e, index)=>{
     setFeedbackData({...feedbackData, feedback: e.target.value, index: index});
+    setValue(e.target.name, e.target.value);
   };
 
-  const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
-  const { fields, append, remove } = useFieldArray({ name: "task", control });
+  const handleScoreChange =(e, index)=>{
+    setFeedbackData({...feedbackData, score: e.target.value, index: index});
+    setValue(e.target.name, e.target.value);
+  };
+
+  const { register, handleSubmit, formState: { errors }, control,  setValue } = useForm({ defaultValues, resolver, mode: "all" });
+
 
   console.log(errors);
   return (
@@ -75,13 +84,13 @@ const AccordionComponent =(props)=>{
                 </AccordionItemHeading>
                 <AccordionItemPanel className={cx(styles.accordionPanel)}>
                   <div className={cx("row", "g-0")}>
-                    <div className={cx("col-sm-12", "col-md-6", "col-lg-6", styles.leftSection)}>
+                    <div className={cx("col-sm-12", "col-md-6", "col-lg-6", styles.leftSection, "flexCol")}>
                       {item?.pivot?.attachment && <div className={cx(styles.attachmentDiv, "flexCol")}>
                         <small>
                         Attachment
                         </small>
                         <a href={item?.pivot?.attachment}>
-                          <span>File</span>                       
+                          <span>Uploaded File </span>                       
                           <Icon icon="bi:download" color="#d25b5d" />
                         </a>
                       </div>}
@@ -94,23 +103,25 @@ const AccordionComponent =(props)=>{
                       </div>}
                     
                     </div>
-                    <div className={cx("col-sm-12", "col-md-6", "col-lg-6", styles.rightSection, "flexCol")}>
+                    <div style={{backgroundColor: item?.pivot?.status && item?.pivot?.status.toLowerCase() === "graded" ? "#c1eac1" : "white" }} className={cx("col-sm-12", "col-md-6", "col-lg-6", styles.rightSection, "flexCol")}>
                       <form
                         onSubmit={handleSubmit((data) => sendRequest(data, item))}
                         className={cx("flexCol")}
                       >
                         <div className={cx(styles.formGroup, "flexCol")}>
                           <Controller
-                            name="feedback"
+                            // name="feedback"
+                            name={`feedback[${index}feedback]`} 
+                            {...register(`feedback.${index}.feedback`)}
                             control={control}
                             render={({ field, ref }) => (
                               <TextArea 
                                 {...field}
                                 placeholder="Leave a feedback for the student"
                                 error={errors?.feedback?.message}
-                                // onChange={(e) => handleFeedbackChange(e, index)}
-                                // readonly={item?.pivot?.status && item?.pivot?.status.toLowerCase() === "graded"}
-                                // value={feedbackData?.index === index ? feedbackData?.feedback : item?.pivot?.feedback}
+                                onChange={(e) => handleFeedbackChange(e, index)}
+                                readonly={item?.pivot?.status && item?.pivot?.status.toLowerCase() === "graded"}
+                                value={feedbackData?.index === index ? feedbackData?.feedback : item?.pivot?.feedback}
 
                               />
                             )}
@@ -119,7 +130,8 @@ const AccordionComponent =(props)=>{
 
                         <div className={cx(styles.formGroup, "flexCol")}>
                           <Controller
-                            name="score"
+                            name={`score[${index}score]`} 
+                            {...register(`score.${index}.score`)}
                             control={control}
                             render={({ field, ref }) => (
                               <InputField
@@ -128,14 +140,15 @@ const AccordionComponent =(props)=>{
                                 label={"Score"}
                                 type="number"
                                 error={errors?.score?.message}
-                                // readOnly={item?.pivot?.status && item?.pivot?.status.toLowerCase() === "graded"}
-                                // onChange={(e)=>handleScoreChange(e, index)}
+                                onChange={(e)=>handleScoreChange(e, index)}
+                                readOnly={item?.pivot?.status && item?.pivot?.status.toLowerCase() === "graded"}
+                                value={feedbackData?.index === index ? feedbackData?.score : item?.pivot?.score}
                               />
                             )}
                           />
                         </div>
                       
-                        <Button loading={loading} disabled={loading}onClick={handleSubmit((data) => sendRequest(data, item))} title="Send" bgColor="#D25B5D" textColor="#fff" />
+                        <Button loading={loading} disabled={item?.pivot?.status && item?.pivot?.status.toLowerCase() === "graded" || loading}onClick={handleSubmit((data) => sendRequest(data, item, index))} title="Send" bgColor="#D25B5D" textColor="#fff" />
                       </form>
                     </div>
                   </div>
@@ -151,5 +164,11 @@ const AccordionComponent =(props)=>{
     </section>
   );
 };
+
+AccordionComponent.propTypes = {
+  props: PropTypes.object.isRequired,
+  accordionArray: PropTypes.array.isRequired
+};
+
 
 export default AccordionComponent;

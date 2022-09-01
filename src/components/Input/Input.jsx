@@ -17,6 +17,7 @@ const Input = ({
   onBlur,
   borderradius,
   rightPlaceholder,
+  readOnly,
   ...props
 }) => {
   const [inputType, setInputType] = useState(type);
@@ -30,7 +31,7 @@ const Input = ({
     }
     return setInputType("password");
   };
-
+  console.log(readOnly);
   useEffect(() => {
     props.value !== "" && setIsActive(true);
   },[props.value]);
@@ -46,6 +47,7 @@ const Input = ({
           required={required}
           onChange={onChange}
           onBlur = {onBlur}
+          readOnly={readOnly}
           {...props}
           // autoComplete="new-password"
           autoComplete="none"
