@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { ToastProvider } from "@/context/toastContext";
 import { checkAuth } from "./utils/auth";
 import store from "./redux/store";
-import Routes from "./routes/Routes";
+import Routes from "./Routes/Routes";
 
 import AOS from "aos";
 import "aos/dist/aos.css";

@@ -8,7 +8,7 @@ import "normalize.css";
 import "./assets/fonts/Kronika.ttf";
 import "./assets/fonts/NunitoSans-Regular.ttf";
 import "./assets/fonts/KGCorneroftheSky.ttf";
-import "./assets/fonts/Jost-regular.ttf";
+// import "./assets/fonts/Jost-regular.ttf";
 
 import "./index.css";
 

@@ -26,7 +26,7 @@ import teacherImage from "@/assets/images/Teacher Image.png";
 import guardiansImage from "@/assets/images/Parents Image.png";
 import ruler from "@/assets/images/ruler.png";
 import book from "@/assets/images/book.png";
-import pencil from "@/assets/images/pencil.png";
+// import pencil from "@/assets/images/pencil.png";
 import idea from "@/assets/images/idea.png";
 import curvedHamburger from "@/assets/icons/curved-hamburger.svg";
 import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
