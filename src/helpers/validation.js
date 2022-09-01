@@ -904,7 +904,12 @@ export const modifyClassValidationSchema = Yup.object().shape({
   subjects: Yup.array()
     .min(1, "Kindly select at least one (1) subject")
     .nullable().
-    required("Kindly select at least one subject")
+    required("Kindly select at least one subject"),
+
+  subject: Yup.array()
+    .min(1, "Kindly select at least one (1) teacher")
+    .nullable().
+    required("Kindly select at least one teacher")
 
 });
 

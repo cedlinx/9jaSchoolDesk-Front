@@ -37,7 +37,7 @@ const EditClass = () => {
     data.subjects.map((subject) => {
       data?.subject.map((teacher, index)=>{
         if(subject.label === teacher.subject){
-          subjectArray.push({subject: subject.value, teacher: teacher.teacher.value});
+          subjectArray.push({subject: subject?.value, teacher: teacher?.teacher?.value});
         }
       });
     });
@@ -63,6 +63,18 @@ const EditClass = () => {
     return options;
   };
 
+  const getTeacherOptions = (data) => {
+    console.log(data);
+    let options = [];
+    Array.isArray(data) && data.map((teacher) => {
+      options.push({
+        value: teacher.id,
+        label: teacher.name
+      });
+    });
+    return options;
+  };
+
   const resolver = yupResolver(modifyClassValidationSchema);
 
   const defaultValues = {
@@ -75,26 +87,20 @@ const EditClass = () => {
 
   const { register, handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
-
-  const getTeacherOptions = () => {
-    let options = [];
-    Array.isArray(allTeachersData) && allTeachersData.map((teacher) => {
-      options.push({
-        value: teacher.id,
-        label: teacher.name
-      });
-    });
-    return options;
-  };
-
   const handleSubjectChange = (e) => {
+    let selectedSubjectsArray = [];
+    let selectedSubjectTeachersArray = [];
     let selectedSubjects = e.map((subject) => {
+      // return subject;
+      selectedSubjectsArray.push(subject);
+      selectedSubjectTeachersArray.push({subject: subject.label, id: subject.value});
       return subject;
+
     });
     console.log(selectedSubjects);
     setValue("subjects", selectedSubjects);
-    setSelectedSubjects(selectedSubjects);
-    setSelectedSubjectTeachers(selectedSubjects);
+    setSelectedSubjects(selectedSubjectsArray);
+    setSelectedSubjectTeachers(selectedSubjectTeachersArray);
   };
 
   const handleSubjectTeacherChange = (data, element, subject) => {
@@ -180,6 +186,7 @@ const EditClass = () => {
                 marginbottom="1.5rem"
                 placeholder=""
                 options={getSubjectsOptions(schoolSubjects)}
+                onChange={(e) => handleSubjectChange(e)}
                 error={errors?.subjects && errors?.subjects?.message}
               />
             )}
@@ -209,6 +216,7 @@ const EditClass = () => {
                           isCreatable={false}
                           marginbottom="0rem"
                           placeholder=""
+                          defaultValue={{value: subject?.subject_teacher?.id, label: subject?.subject_teacher?.name}}
                           options={getTeacherOptions(allTeachersData)}
                           onChange={(data, element) => handleSubjectTeacherChange(data, element,  subject)}
                           error={errors?.subject?.[index]?.teacher && errors?.subject?.[index]?.teacher?.message}

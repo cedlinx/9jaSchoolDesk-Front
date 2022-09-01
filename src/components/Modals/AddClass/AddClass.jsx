@@ -36,14 +36,20 @@ const AddClass = () => {
     console.log(data);
     let subjectArray = [];
     data.subjects.map((subject, index) => {
-      subjectArray.push(index);
+      data.subject.map((subjectName, index) => {
+        if(subjectName.subject === subject.label){
+          subjectArray.push({subject_id: subject.value, teacher_id: subjectName.teacher.value});
+        }
+      });
     });
+    console.log(subjectArray);
+    let {subject, ...rest} = data;
 
-    // let response = await dispatch(addClass({ ...data, subjects: subjectArray, institution_id: institution_id }));
-    // if (response.payload.success) {
-    //   dispatch(showModal({ action: "hide", type: "addClass" }));
-    //   dispatch(getAllClasses());
-    // }
+    let response = await dispatch(addClass({ ...rest, subjects: subjectArray, institution_id: institution_id }));
+    if (response.payload.success) {
+      dispatch(showModal({ action: "hide", type: "addClass" }));
+      dispatch(getAllClasses());
+    }
   };
 
   const resolver = yupResolver(addClassValidationSchema);
@@ -102,7 +108,6 @@ const AddClass = () => {
   };
 
   console.log(selectedSubjectTeachers);
-  console.log(errors);
 
   return (
 

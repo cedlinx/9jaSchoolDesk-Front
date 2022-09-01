@@ -406,7 +406,6 @@ export const getAllClasses = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getAllClassesApi(data);
-    console.log(response);
     return dispatch(getAllClassesAction(response?.data));
   } catch (e) {
     console.log(e.response);
