@@ -46,7 +46,7 @@ const ModifyLesson = () => {
     formData.append("topic", data.topic);
     formData.append("description", data.description);
     formData.append("date", data.date);
-    formData.append("type", uploadedFile.file.type.split("/")[0]);
+    uploadedFile.file && formData.append("type", uploadedFile.file.type.split("/")[0]);
     formData.append("class_id", class_id);
     formData.append("id", modalData.id);
     formData.append("subject_id", modalData.subject_id);

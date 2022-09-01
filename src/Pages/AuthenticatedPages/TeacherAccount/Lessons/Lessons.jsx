@@ -64,7 +64,7 @@ const Lessons = () => {
 
       {modalType === "uploadLesson" && <Modal size="lg" show > <UploadLessonModal /></Modal>}
       {modalType === "lessonDetails" && <Modal show > <ViewLessonDetailsModal /></Modal>}
-      {modalType === "modifyLesson" && <Modal show > <ModifyLessonModal /></Modal>}
+      {modalType === "modifyLesson" && <Modal show size="lg" > <ModifyLessonModal /></Modal>}
       {modalType === "deleteLesson" && <Modal show > <DeleteLessonModal /></Modal>}
     </div>
   );

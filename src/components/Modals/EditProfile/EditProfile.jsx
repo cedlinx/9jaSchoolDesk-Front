@@ -192,7 +192,7 @@ const EditProfile = () => {
           </div>
 
           <div className={cx(styles.body, "flexCol")}>
-            {Array.isArray(allTasksData) && allTasksData.map((submission, index)=>{
+            {Array.isArray(modalData?.submitted_tasks) && modalData.submitted_tasks.length > 0 ? modalData?.submitted_tasks.map((submission, index)=>{
               return(
                 <div onClick={() => dispatch(showModal({action: "show", type: "submissionDetails", modalData: submission }))} className={cx(styles.submissionContainer, "flexCol")} key={index}>
                   <div className={cx(styles.fileDetails, "flexRow-space-between")}>
@@ -216,7 +216,7 @@ const EditProfile = () => {
                   </div>
                 </div>
               );
-            })}
+            }) : <p>There is currently no submitted task</p> }
           </div>
         </div>}
       </div>

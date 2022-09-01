@@ -19,17 +19,17 @@ AOS.init({
 });
 
 const App = () => (
-  <ErrorBoundary>
-    <Suspense fallback={<p>Spinner Here</p>}>
+  // <ErrorBoundary>
+  //   <Suspense fallback={<p>Spinner Here</p>}>
 
-      <Provider store={store}>
-        <ToastProvider autoClose={3000}>
-          <Routes />
-        </ToastProvider>
-      </Provider>
+  <Provider store={store}>
+    <ToastProvider autoClose={3000}>
+      <Routes />
+    </ToastProvider>
+  </Provider>
 
-    </Suspense>
-  </ErrorBoundary>
+  //   </Suspense>
+  // </ErrorBoundary>
 );
 
 export default App;

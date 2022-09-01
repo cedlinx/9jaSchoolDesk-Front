@@ -14,9 +14,8 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import TaskDetailsModal from "@/components/Modals/TaskDetails/TaskDetails";
 
-import useGetStudentDashboard from "@/utils/useGetStudentDashboard";
 import useGetSelectedWard from "@/utils/useGetSelectedWard";
-import { getDashboard, getWardTasks } from "@/redux/Guardian/GuardianSlice";
+import { getWardTasks } from "@/redux/Guardian/GuardianSlice";
 
 
 import Submitted from "./Submitted/Submitted";
@@ -30,19 +29,17 @@ const Tasks = () => {
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.student.loading);
   const selectedWard = useGetSelectedWard();
-  const tasksData = useSelector((state) => state.guardian.getWardTasksData.task);
 
   console.log(selectedWard);
-  console.log(tasksData);
 
   useEffect(() => {
     dispatch(getWardTasks({student_id: selectedWard?.id}));
   }, [dispatch, selectedWard?.id]);
 
-  const RenderAll = () => <All allTasks={Array.isArray(tasksData?.current_tasks) && tasksData.current_tasks} />;
-  const RenderActive = () => <Active currentTasks={Array.isArray(tasksData?.pending_tasks) && tasksData.pending_tasks} />;
-  const RenderSubmitted = () => <Submitted submittedTasks={Array.isArray(tasksData?.submitted_tasks) && tasksData.submitted_tasks} />;
-  const RenderOverdue = () => <Overdue overdueTasks={Array.isArray(tasksData?.overdue_tasks) && tasksData.overdue_tasks} />;
+  const RenderAll = () => <All allTasks={Array.isArray(selectedWard?.current_tasks) && selectedWard.current_tasks} />;
+  const RenderActive = () => <Active currentTasks={Array.isArray(selectedWard?.pending_tasks) && selectedWard.pending_tasks} />;
+  const RenderSubmitted = () => <Submitted submittedTasks={Array.isArray(selectedWard?.submitted_tasks) && selectedWard.submitted_tasks} />;
+  const RenderOverdue = () => <Overdue overdueTasks={Array.isArray(selectedWard?.overdue_tasks) && selectedWard.overdue_tasks} />;
 
   const tabsComponents = [
     { name: "All", component: RenderAll },

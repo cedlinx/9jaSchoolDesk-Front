@@ -4,7 +4,6 @@ import {useNavigate} from "react-router-dom";
 import cx from "classnames";
 import styles from "./Home.module.scss";
 import heroImage from "@/assets/images/parent-dashboard-hero-image.png";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
 import { titleCase, initialsCase } from "@/helpers/textTransform";
 import EditProfileModal from "@/components/Modals/EditProfile/EditProfile";
 import UploadActivityModal from "@/components/Modals/UploadActivity/UploadActivity";

@@ -160,7 +160,7 @@ const AssessmentFeedback = () => {
         <>
           <div className={cx(styles.filterSection, "flexRow")}>
 
-            <DateRangePicker placeholder="Select Date Range" onChange={onChange} />
+            
 
             <DateRangeComp dateValue={dateValue} />
 

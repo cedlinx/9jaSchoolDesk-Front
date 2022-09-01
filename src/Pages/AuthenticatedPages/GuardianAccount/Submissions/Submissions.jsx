@@ -6,13 +6,17 @@ import styles from "./Submissions.module.scss";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { titleCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/sampleData";
 import { Icon } from "@iconify/react";
 import Button from "@/components/Button/Button";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import SubmissionDetailsModal from "@/components/Modals/SubmissionDetails/SubmissionDetails";
+import useGetSelectedWard from "@/utils/useGetSelectedWard";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from "reactstrap";
+import formatDate from "@/helpers/formatDate";
+import DateRangeComp from "@/components/Dates/Range/Range";
 
+import { DateRangePicker } from "rsuite";
 
 
 const Submissions = () => {
@@ -20,16 +24,31 @@ const Submissions = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.guardian.loading);
+  const selectedWard = useGetSelectedWard();
+  console.log(selectedWard);
 
-  let formatDate=(value)=>{
-    let date = new Date(value);
-    const options = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    };
-    let dateValue = date.toLocaleDateString("en-US", options);
-    return `${dateValue}`;
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState({
+    subjectSearch: false,
+    teacherSearch: false
+  });
+  const [dateRange, setDateRange] = useState(null);
+
+
+  const handleRadioChange = (e) => {
+    let value = e.target.value;
+    
+    if(value === "subject") {
+      setShowSearch((prev) => ({...prev, subjectSearch: true, teacherSearch: false}));
+    } else if(value === "teacher") {
+      setShowSearch((prev) => ({...prev, subjectSearch: false, teacherSearch: true}));
+    }
+  };
+
+  const toggle = () => {
+    setDropdownOpen(prevState => !prevState);
+    setShowSearch((prev) => ({...prev, subjectSearch: false, teacherSearch: false}));
+
   };
 
   const columnsHeader = [                
@@ -58,7 +77,7 @@ const Submissions = () => {
       accessor: "title",
       Cell: (row) => {
         let title = row.cell.row.values.title;
-        return <div style={{width: "10rem"}}>
+        return <div style={{minWidth: "10rem"}}>
           <span>{title}</span>
         </div>;
       }
@@ -67,14 +86,15 @@ const Submissions = () => {
       Header: () => (
         <div
           style={{
-            minWidth: "auto"
+            minWidth: "auto",
+            fontSize: "1rem"
           }}
         >Subject</div>
       ),
       accessor: "subject",
       Cell: (row) => {
         let subject = row.cell.row.values.subject;
-        return <div  style={{width: "7.5rem"}}>
+        return <div>
           <span>{subject}</span>
           
         </div>;
@@ -92,7 +112,7 @@ const Submissions = () => {
       Cell: (row) => {
         let feedback = row.cell.row.values.feedback;
         return <div>
-          <p style={{fontWeight: "500", color: "#828282", fontSize: "14px"}}>{feedback}</p>
+          <p style={{fontWeight: "500", color: "#000"}}>{feedback}</p>
         </div>;
       }
     },
@@ -107,7 +127,7 @@ const Submissions = () => {
       accessor: "score",
       Cell: (row) => {
         let score = row.cell.row.values.score;
-        return <div  style={{width: "10rem"}}>
+        return <div  style={{width: "auto"}}>
           <span>{score}</span>
           
         </div>;
@@ -117,15 +137,15 @@ const Submissions = () => {
       Header: () => (
         <div
           style={{
-            minWidth: "5rem"
+            width: "auto"
           }}
         >Date </div>
       ),
-      accessor: "date",
+      accessor: "due_date",
       Cell: (row) => {
-        let date = row.cell.row.values.date;
+        let due_date = row.cell.row.values.due_date;
         return <div>
-          <p style={{fontWeight: "500", color: "#000", fontSize: "1rem"}}>{date}</p>
+          <p style={{fontWeight: "500", color: "#000"}}>{due_date}</p>
           
         </div>;
       }
@@ -157,18 +177,25 @@ const Submissions = () => {
     data  && data.map((item, index) =>{
       result.push({
         serialNumber: index+1,
-        title: item?.title && item?.title,
-        feedback: item?.feedback && item?.feedback,
-        score: item?.score && item?.score,
-        subject: item?.subject && item?.subject,
-        status: item?.status && item?.status,
-        type: item?.type && item?.type,
-        date: item?.date && formatDate(item?.date),
-
+        title: item?.name && item?.name,
+        feedback: item?.pivot?.feedback && item?.pivot?.feedback,
+        score: item?.pivot?.score && item?.pivot?.score * 1,
+        subject: item?.subject?.subject && titleCase(item?.subject?.subject),
+        type: item?.type && titleCase(item?.type),
+        due_date: item?.due_date && formatDate(item?.due_date),
         allData: item
       });
     });
     return result;
+  };
+
+  console.log(dateRange);
+  const dateValue = (date) => {
+    setDateRange(date);
+  };
+
+  const onChange = (date) => {
+    console.log(date);
   };
 
   return (
@@ -176,11 +203,48 @@ const Submissions = () => {
       <div className={cx(styles.header)}>
         <h5>All Submissions</h5>
       </div>
-      {/* <div className={cx(styles.filterSection, "flexRow")}>
-        <input type="date" name="" id="" />
-        <button>Filter</button>
-      </div> */}
-      {loading ? <TableSkeleton /> : <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(assessmentData)} />}
+
+      {loading ? <TableSkeleton /> : Array.isArray(selectedWard?.submitted_tasks) && selectedWard?.submitted_tasks.length > 0 ?
+        <>
+          <div className={cx(styles.filterSection, "flexRow")}>
+
+            
+
+            <DateRangeComp dateValue={dateValue} />
+
+       
+            <Dropdown className={cx(styles.dropdown)} isOpen={dropdownOpen} toggle={toggle} >
+              <DropdownToggle  name="profile-toggler" className={cx(styles.dropdownToggler)}>
+                <Icon icon="ant-design:plus-outlined" color="black" />Add Filter
+              </DropdownToggle>
+          
+              <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+
+                <div className={cx(styles.radioDiv)}>
+                  <span>Subject</span> <input name='taskFilter' type="radio" value="subject" onChange={(e)=>handleRadioChange(e)} />
+                </div>
+                {showSearch?.subjectSearch && <div className={cx(styles.searchDiv)}>
+                  <input type="text" placeholder="Enter Subject" />
+                  <button>OK</button>
+                </div>}
+                <div className={cx(styles.radioDiv)}>
+                  <span>Teacher</span><input onChange={(e)=>handleRadioChange(e)} name='taskFilter' type="radio" value="teacher" />
+                </div>
+                {showSearch?.teacherSearch && <div className={cx(styles.searchDiv)}>
+                  <input type="text" placeholder="Enter Teacher" />
+                  <button>OK</button>
+                </div>}
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+          <div className={cx(styles.tableDiv)}>
+            <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(selectedWard?.submitted_tasks)} /> 
+          </div>
+        </>
+        : <div className={cx(styles.noDataDiv)}>
+          <p>There is currently no submitted task</p>
+        </div>
+      }
 
       {modalType === "submissionDetails" && <Modal show size="lg" >{ <SubmissionDetailsModal />}</Modal> }
     </div>

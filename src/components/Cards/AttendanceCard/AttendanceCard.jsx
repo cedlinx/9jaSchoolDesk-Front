@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./AttendanceCard.module.scss";
 import presentIcon from "@/assets/icons/present-icon.svg";
@@ -10,7 +11,6 @@ import generateColor from "@/helpers/generateColor";
 
 
 const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
-  console.log(cardData, "inside card");
   const dispatch = useDispatch();
 
   const [status, setStatus] = useState(cardData?.status);
@@ -38,6 +38,12 @@ const AttendanceCard = ({ cardData, takeAttendance, attendanceStatus }) => {
       <p>{titleCase(`${cardData.firstName} ${cardData.lastName}`)}</p>
     </div>
   );
+};
+
+AttendanceCard.propTypes = {
+  cardData: PropTypes.object.isRequired,
+  takeAttendance: PropTypes.bool,
+  attendanceStatus: PropTypes.func
 };
 
 export default AttendanceCard;

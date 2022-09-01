@@ -65,6 +65,7 @@ const AssessmentFeedback = ({selectedWard, tasksData}) => {
       Cell: (row) => {
         let feedback = row.cell.row.values.feedback;
         let allData = row.cell.row.original.allData;
+        console.log(allData);
 
         return <div  style={{width: "auto"}}>
           <p className={cx("flexRow-space-between")} ><span style={{fontWeight: "500", color: "#828282", fontSize: "1rem",   whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "100%", marginRight: "0.5rem"}}>{feedback}</span><span><img onClick={() => dispatch(showModal({action: "show", type: "taskDetails", modalData: allData}))} style={{cursor: "pointer"}} src={expandIcon} alt="" /></span></p>          

@@ -13,12 +13,12 @@ const AuthenticatedRoute = ({ children, roles }) => {
   const checkIsAuthenticated = isAuthenticated();
   const params = useParams();
   const user = params?.user;
-  const tempStudent = useGetUser();
-
-  // Temporary Student Access
-  if(tempStudent === "student"){
-    return children;
-  }
+  
+  // // Temporary Student Access
+  // const tempStudent = useGetUser();
+  // if(tempStudent === "student"){
+  //   return children;
+  // }
     
   const token = getToken();
   const userDetails = JSON.parse(localStorage.getItem("userData"));

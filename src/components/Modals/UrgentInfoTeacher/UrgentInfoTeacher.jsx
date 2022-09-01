@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./UrgentInfoTeacher.module.scss";
 import Button from "@/components/Button/Button";
@@ -8,44 +8,56 @@ import { Icon } from "@iconify/react";
 import TextInput from "@/components/TextInput/TextInput";
 import InputField from "@/components/Input/Input";
 
-import { sendNotification } from "@/redux/Proprietor/ProprietorSlice";
+import { sendNotification } from "@/redux/Teacher/TeacherSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { urgentInfoTeacherValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import SelectAutoComplete from "@/components/SelectAutoComplete";
+import useGetAllClassStudents from "@/utils/useGetAllClassStudents";
+import useGetClassID from "@/utils/useGetClassID";
+
 
 const UrgentInfoTeacher = () => {
 
   const dispatch = useDispatch();
+  const classID = useGetClassID();
+  const allStudentsData = useGetAllClassStudents(classID);
+  const loading = useSelector((state) => state.teacher.loading);
+
+  console.log(allStudentsData);
 
   const sendRequest = async (data) => {
     console.log(data);
-    let group = data.user.includes("guardian") ? "guardian" :  data.user.includes("teacher") ? "teacher" : "all";
-    let response = await dispatch(sendNotification({group: group, message: data.message, recipients: convertStringToArray(data.recipients)}));
+    let response = await dispatch(sendNotification({ message: data.message, student_id: data?.student_id?.value}));
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "urgentInfoTeacher" }));
     }
-  };
-
-  const convertStringToArray =(data)=>{
-    let arr = [];
-    let strArr = data.split(",");
-    strArr.forEach(element => {
-      arr.push(element.trim());
-    }
-    );
-    return arr;
   };
 
   const resolver = yupResolver(urgentInfoTeacherValidationSchema);
 
   const defaultValues = {
     message: "",
-    user: "",
-    recipients: ""
+    student_id: ""
   };
 
-  const { handleSubmit, register, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+  const { handleSubmit, formState: { errors }, control } = useForm({ defaultValues, resolver, mode: "all" });
+
+  const getStudentOptions = (data) => {
+    let options = [];
+    console.log(data);
+    Array.isArray(data) && data.map((student) => {
+      options.push({
+        value: student.id,
+        label: student.name
+      });
+    });
+    return options;
+  };
+
+  console.log(errors);
+
 
   return (
 
@@ -65,7 +77,7 @@ const UrgentInfoTeacher = () => {
           onSubmit={handleSubmit((data) => sendRequest(data))}
         >
 
-          <Controller
+          {/* <Controller
             name="recipients"
             control={control}
             render={({ field, ref }) => (
@@ -76,7 +88,25 @@ const UrgentInfoTeacher = () => {
                 error={errors?.recipients && errors?.recipients?.message}
               />
             )}
-          />
+          /> */}
+
+          <div className={cx(styles.selectAutoCompleteWrapper)} style={{ width: "100%" }}>
+            <label className={cx(styles.subjectsLabel)}>SELECT GUARDIAN EMAIL</label>
+            <Controller
+              name="student_id"
+              control={control}
+              render={({ field, ref }) => (
+                < SelectAutoComplete
+                  {...field}
+                  isClearable={true}
+                  placeholder={""}
+                  marginbottom="1.25rem"
+                  options={getStudentOptions(allStudentsData?.wards)}
+                  error={errors?.student_id && errors?.student_id?.message}
+                />
+              )}
+            />
+          </div>
             
           <Controller
             name="message"
@@ -91,7 +121,7 @@ const UrgentInfoTeacher = () => {
           />
                
           <div  className={cx(styles.btnDiv, "flexRow")}>
-            <Button onClick={handleSubmit((data) => sendRequest(data))} title="Send" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#D25B5D" hoverBg="#fff" />
+            <Button loading={loading} disabled ={loading} onClick={handleSubmit((data) => sendRequest(data))} title="Send" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#D25B5D" hoverBg="#fff" />
           </div>
 
         </form>

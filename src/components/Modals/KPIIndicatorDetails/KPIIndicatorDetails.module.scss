@@ -38,16 +38,21 @@
 
         .modalItem{
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.25rem;
+
+            img{
+                align-self: center;
+            }
 
             .title{
-                width: 50%;
-                font-size: 1rem;
+                font-size: 0.9rem;
                 line-height: 1;
-                font-weight: bold;
+                font-weight: 550;
+                color: #22467B;
             }
             .value{
-                width: 50%;
                 font-size: 1.25rem;
                 line-height: 1;
                 white-space: wrap;

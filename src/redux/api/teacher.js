@@ -98,7 +98,7 @@ export const getAllStudentsApi = async (data) => {
 };
 
 export const viewStudentRecordApi = async (data) => {
-  return await axios.get(`teacher/auth/student/view?id=${data}`);
+  return await axios.get(`teacher/auth/view/student?id=${data}`);
 };
 
 export const modifyStudentApi = async (data) => {

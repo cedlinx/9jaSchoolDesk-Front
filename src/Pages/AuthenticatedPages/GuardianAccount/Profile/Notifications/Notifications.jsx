@@ -45,12 +45,8 @@ const Notifications = () => {
 
   const saveNotification = async (data) => {
     console.log(data);
-    console.log("saved");
-    let answer = "";
-    data?.Sms ? answer = "Sms" : answer = "";
-    data?.Whatsapp ? answer = answer + ", " + "Whatsapp"  : "";
-    data?.Call ? answer = answer + ", " + "Call" : "";
-    data?.Email ? answer = answer + ", " + "Email"  : "";
+    // let answer = "";
+    // data?.Sms ? answer = "Sms" : data?.Whatsapp ? answer = "Whatsapp"  : data?.Call ? answer = "Call" : "Email" ;
 
     // let answer = [];
     // data?.Sms && answer.push("Sms");
@@ -58,7 +54,7 @@ const Notifications = () => {
     // data?.Call && answer.push("Call");
     // data?.Email && answer.push("Email");
 
-    let response = await dispatch(preferredChannel({channel: answer}));
+    let response = await dispatch(preferredChannel({channel: data.channel}));
     console.log(response);
   };
 
@@ -91,9 +87,10 @@ const Notifications = () => {
                   marginbottom="0.5rem"
                 /> */}
                 <input
-                  type="checkbox"
-                  name="Sms"
-                  {...register("Sms")}
+                  type="radio"
+                  name="channel"
+                  value="Sms"
+                  {...register("channel")}
                 />
               </div>
                    
@@ -115,9 +112,10 @@ const Notifications = () => {
                   marginbottom="0.5rem"
                 /> */}
                 <input
-                  type="checkbox"
-                  name="Email"
-                  {...register("Email")}
+                  type="radio"
+                  name="channel"
+                  value="Email"
+                  {...register("channel")}
                 />
    
               </div>
@@ -142,9 +140,10 @@ const Notifications = () => {
                 /> */}
 
                 <input
-                  type="checkbox"
-                  name="Call"
-                  {...register("Call")}
+                  type="radio"
+                  name="channel"
+                  value="Call"
+                  {...register("channel")}
                 />
        
               </div>
@@ -169,9 +168,10 @@ const Notifications = () => {
                 /> */}
 
                 <input
-                  type="checkbox"
-                  name="Whatsapp"
-                  {...register("Whatsapp")}
+                  type="radio"
+                  name="channel"
+                  value="Whatsapp"
+                  {...register("channel")}
                 />
 
               </div>

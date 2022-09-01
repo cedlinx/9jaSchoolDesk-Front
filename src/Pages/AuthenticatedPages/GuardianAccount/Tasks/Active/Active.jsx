@@ -125,9 +125,6 @@ const Active = ({currentTasks}) => {
         let allData = row.cell.row.original.allData;
         return <div  style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem"}}>
           <Button onClick={() => dispatch(showModal({action: "show", type: "taskDetails", modalData: allData }))} title="View" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF6A00" hoverColor="#fff" hoverBg="#ff6a00" />
-
-          <Button onClick={()=> navigate("/student/submit-task", { state:{data: allData}})} title="Submit" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#2AC769" bordercolor="#2AC769" hoverColor="#2AC769" hoverBg="#fff" />
-
         
         </div>;
       }

@@ -573,7 +573,11 @@ export const urgentInfoTeacherValidationSchema = Yup.object().shape({
   message: Yup.string()
     .required("Message content is required"),
 
-  recipients: Yup.string().required("Recipients is required")
+  student_id: Yup.object().shape({
+    label: Yup.string().required("label is required"),
+    value: Yup.string().required("value is required")
+  })
+  // .required("Kindly select a student")
 
   // user: Yup.array()
   //   .min(1, "Kindly select at least one (1) user")
@@ -830,13 +834,7 @@ export const modifyProprietorValidationSchema = Yup.object().shape({
 });
 
 export const saveNotificationsValidationSchema = Yup.object().shape({
-  Whatsapp: Yup.string(),
-
-  Email: Yup.string(),
-
-  Call: Yup.string(),
-
-  Sms: Yup.string()
+  channel: Yup.string().required("Kindly select a channel")
 
 });
 

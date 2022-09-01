@@ -65,7 +65,8 @@ const Account = () => {
 
   const [uploadedFile, setUploadedFile] = useState({
     file: "",
-    imagePreviewUrl: ""
+    imagePreviewUrl: "",
+    type: ""
   });
 
   const onDrop = useCallback(acceptedFiles => {
@@ -77,7 +78,15 @@ const Account = () => {
     reader.readAsDataURL(file);
   }, []);
 
-  const { getInputProps, getRootProps } = useDropzone({ onDrop, accept: "image/*" });
+  const { getRootProps } = useDropzone({ onDrop, accept: "image/*" });
+
+  const removeAttachment = () => {
+    setUploadedFile({
+      file: "",
+      imagePreviewUrl: "", 
+      type: ""
+    });
+  };
 
   return (
     <div className={cx(styles.settingsTabItemContainer)}>
@@ -93,7 +102,7 @@ const Account = () => {
 
           <Button {...getRootProps()}  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
      
-          <Button  type title="Remove" borderRadiusType="fullyRounded" textColor="#828282" bgColor="#fff" bordercolor="#828282" hoverBg="#828282" hoverColor="#fff" />
+          <Button onClick={()=> removeAttachment()} title="Remove" borderRadiusType="fullyRounded" textColor="#828282" bgColor="#fff" bordercolor="#828282" hoverBg="#828282" hoverColor="#fff" />
         </div>
 
         <div className={cx(styles.formWrapper, "flexCol")}>
