@@ -1,21 +1,17 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import cx from "classnames";
 import styles from "./Lounge.module.scss";
-import  "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
-// import {  MainContainer, ChatContainer, MessageList, Message, MessageInput, Avatar, AvatarGroup, Button, Conversation, ConversationHeader, StarButton, VoiceCallButton, VideoCallButton, InfoButton, ConversationList, InputToolbox, Loader, TypingIndicator, StatusList, Status, Sidebar, Search, MessageSeparator, ExpansionPanel } from "@chatscope/chat-ui-kit-react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
 import { useForm, Controller } from "react-hook-form";
 import { createGistValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getAllGists, createGist, addComment, getGistConversations } from "@/redux/Gist/GistSlice";
 import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
-import TextInput from "@/components/TextInput/TextInput";
 import formatDate from "@/helpers/formatDate";
 import TextArea from "@/components/TextArea";
 import { initialsCase, titleCase } from "@/helpers/textTransform";

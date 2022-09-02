@@ -6,13 +6,11 @@ import styles from "./AssessmentFeedback.module.scss";
 import TableComponent from "@/components/Table/Table";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
-import {assessmentData} from "@/helpers/sampleData";
 import { Icon } from "@iconify/react";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from "reactstrap";
 import formatDate from "@/helpers/formatDate";
 import DateRangeComp from "@/components/Dates/Range/Range";
 
-import { DateRangePicker } from "rsuite";
 import useGetStudentDashboard from "@/utils/useGetStudentDashboard";
 
 import expandIcon from "@/assets/icons/expand-icon.svg";

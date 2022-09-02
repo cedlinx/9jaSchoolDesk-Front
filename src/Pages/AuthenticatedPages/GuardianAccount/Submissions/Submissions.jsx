@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
 import cx from "classnames";
 import styles from "./Submissions.module.scss";
 import TableComponent from "@/components/Table/Table";
@@ -15,9 +14,6 @@ import useGetSelectedWard from "@/utils/useGetSelectedWard";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from "reactstrap";
 import formatDate from "@/helpers/formatDate";
 import DateRangeComp from "@/components/Dates/Range/Range";
-
-import { DateRangePicker } from "rsuite";
-
 
 const Submissions = () => {
   const dispatch = useDispatch();

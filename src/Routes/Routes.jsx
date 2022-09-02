@@ -5,6 +5,7 @@ import HomePage from "../Pages/HomePage/HomePage";
 import Login from "../Pages/Authentication/Login/Login";
 import LoginWithClassCode from "../Pages/Authentication/Login/LoginWithClassCode";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
+import AddInstitution from "../Pages/Authentication/AddInstitution/AddInstitution";
 import PreSignUp from "../Pages/Authentication/PreSignUp/PreSignUp";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
@@ -80,6 +81,8 @@ const RoutesComponent = () => {
         <Route path="select-account/:user" element={<SelectAccountStudent />} />
         <Route path="select-class/:user" element={<SelectClassTeacher />} />
         <Route path="select-ward/:user" element={<SelectWardGuardian />} />
+        <Route path=":user/add-institution" element={<AddInstitution />} />
+
         {/* <Route  path="request-verification-link" element={<RequestVerificationLink />} />	 */}
 
         <Route path="student" element={<AuthenticatedRoute roles={[Role.Student]}><DashboardWrapper /></AuthenticatedRoute>}>

@@ -2,7 +2,8 @@ import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstit
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
-
+import { setToken } from "@/utils/auth";
+import { setAuthToken } from "@/utils/setAuthToken";
 
 const initialState = {
   loading: false,
@@ -336,6 +337,8 @@ export const addInstitution = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await addInstitutionApi(data);
+    let token = response?.data?.token;
+    setToken(token);
     return dispatch(addInstitutionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);

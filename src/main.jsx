@@ -2,7 +2,6 @@ import { createRoot } from "react-dom/client";
 const container = document.getElementById("root");
 const root = createRoot(container); 
 
-// import "rsuite/dist/rsuite.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "normalize.css";
 import "./assets/fonts/Kronika.ttf";

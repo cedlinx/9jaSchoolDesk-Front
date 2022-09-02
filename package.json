@@ -10,8 +10,6 @@
     "lint:fix": "eslint --fix --ext .js,.jsx src/"
   },
   "dependencies": {
-    "@chatscope/chat-ui-kit-react": "^1.9.7",
-    "@chatscope/chat-ui-kit-styles": "^1.4.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@hookform/resolvers": "^2.8.8",
@@ -73,7 +71,6 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
-    "rsuite": "^5.16.5",
     "shortid": "^2.2.16",
     "styled-components": "^5.3.3",
     "swiper": "^8.1.0",

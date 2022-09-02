@@ -15,8 +15,11 @@ const FinalStep = ({ values }) => {
   const dispatch = useDispatch();
   const signUpSuccess = useSelector((state) => state?.auth?.signUpData?.data?.verified);
 
-  const handleSubmit = () => {
-    dispatch(signUp({payload: values, user: user}));
+  const handleSubmit = async () => {
+    let response = await dispatch(signUp({payload: values, user: user}));
+    console.log(response);
+
+    response.payload.success && user === "proprietor" && navigate(`/${user}/add-institution`);
   };
 
   useEffect(() => {

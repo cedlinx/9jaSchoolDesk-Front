@@ -31,7 +31,7 @@ const Input = ({
     }
     return setInputType("password");
   };
-  console.log(readOnly);
+
   useEffect(() => {
     props.value !== "" && setIsActive(true);
   },[props.value]);

@@ -21,6 +21,7 @@ const MultiStepForm = ({signUpEmail}) => {
   const modalType = useSelector((state) => state.modalState.type);
   
   const [step, setStep] = useState(1);
+  console.log(signUpEmail);
 
   const [formData, setFormData] = useState({
     firstName: "",
