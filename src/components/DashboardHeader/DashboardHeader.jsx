@@ -23,7 +23,7 @@ import { FormCheck } from "react-bootstrap";
 import unreadNotificationsIcon from "@/assets/icons/unread-notifications-icon.svg";
 import { titleCase } from "@/helpers/textTransform";
 import { Icon } from "@iconify/react";
-import Logo from "@/assets/images/Logo.png";
+import Logo from "@/assets/images/logo.png";
 import Button from "@/components/Button/Button";
 import { Navbar } from "react-bootstrap";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from "reactstrap";

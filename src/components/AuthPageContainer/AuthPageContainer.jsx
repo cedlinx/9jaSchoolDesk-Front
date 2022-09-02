@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Link, useNavigate} from "react-router-dom";
 import cx from "classnames";
 import styles from "./AuthPageContainer.module.scss";
-import siteLogo from "@/assets/images/Logo.png";
+import siteLogo from "@/assets/images/logo.png";
 import MenuBar from "@/components/MenuBar/MenuBar";
 import TopDivWave from "@/components/WaveSvg/TopDivWave";
 

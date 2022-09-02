@@ -2,7 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SelectAccount.module.scss";
-import Logo from "@/assets/images/Logo.svg";
+import Logo from "@/assets/images/logo.svg";
 import {allStudentsData} from "@/helpers/sampleData";
 import { useDispatch, useSelector } from "react-redux";
 import {initialsCase, titleCase} from "@/helpers/textTransform";

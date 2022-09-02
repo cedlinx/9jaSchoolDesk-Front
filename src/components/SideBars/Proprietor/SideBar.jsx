@@ -15,7 +15,7 @@ import {
 
 import {logout} from "@/redux/Auth/AuthSlice";
 
-import logo from "@/assets/images/Logo.svg";
+import logo from "@/assets/images/logo.svg";
 import dashboardIconActive from "@/assets/icons/dashboard-icon-active.svg";
 import dashboardIcon from "@/assets/icons/dashboard-icon.svg";
 import classIcon from "@/assets/icons/class-icon.svg";

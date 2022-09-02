@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import cx from "classnames";
 import styles from "./SelectClass.module.scss";
-import Logo from "@/assets/images/Logo.svg";
+import Logo from "@/assets/images/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
 import { Icon } from "@iconify/react";

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import cx from "classnames";
 import styles from "./MenuBar.module.scss";
-import Logo from "@/assets/images/Logo.png";
+import Logo from "@/assets/images/logo.png";
 import Button from "@/components/Button/Button";
 import { Navbar, Nav, Dropdown, 
   NavDropdown} from "react-bootstrap";

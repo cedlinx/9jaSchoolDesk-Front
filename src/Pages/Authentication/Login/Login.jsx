@@ -22,7 +22,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
 
 
-import siteLogo from "@/assets/images/Logo.png";
+import siteLogo from "@/assets/images/logo.png";
 
 const Login = () => {
 

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {verifyEmail} from "@/redux/Auth/AuthSlice";
 
-import siteLogo from "@/assets/images/Logo.png";
+import siteLogo from "@/assets/images/logo.png";
 import { urlParameters } from "@/helpers/urlParameters";
 import useGetUser from "@/utils/useGetUser";
 

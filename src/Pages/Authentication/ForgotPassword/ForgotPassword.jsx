@@ -14,7 +14,7 @@ import { useForm, Controller } from "react-hook-form";
 import { forgotPasswordValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import siteLogo from "@/assets/images/Logo.png";
+import siteLogo from "@/assets/images/logo.png";
 import useGetUser from "@/utils/useGetUser";
 
 

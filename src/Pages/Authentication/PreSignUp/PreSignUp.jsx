@@ -20,7 +20,7 @@ import { useForm, Controller } from "react-hook-form";
 import { preSignUpValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import siteLogo from "@/assets/images/Logo.png";
+import siteLogo from "@/assets/images/logo.png";
 import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg";
 import TopDivWave from "@/components/WaveSvg/TopDivWave";
 import sendOtpBtn from "@/assets/images/send-otp-btn.svg";

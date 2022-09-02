@@ -16,7 +16,7 @@ import {
 
 import { logout } from "@/redux/Auth/AuthSlice";
 
-import logo from "@/assets/images/Logo.svg";
+import logo from "@/assets/images/logo.svg";
 import thumbnailImg from "@/assets/images/testimonialsAvatar.png";
 import rightCaret from "@/assets/icons/right-caret.svg";
 import classroomIcon from "@/assets/icons/classroom-icon.svg";
