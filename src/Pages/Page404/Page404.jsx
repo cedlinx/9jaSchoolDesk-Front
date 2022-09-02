@@ -1,5 +1,5 @@
 import React from "react";
-import errorIcon from "@/assets/iconS/404-error.svg";
+import errorIcon from "@/assets/icons/404-error.svg";
 import Button from "@/components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import "./Page404.scss";

@@ -142,7 +142,7 @@ const HomePage = () => {
                 <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
               </div>
 
-              <Button onClick={() => navigate("/signup")} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
+              <Button onClick={() => navigate("/login-with-class-code", { state: { category: "student" } })} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
 
             </div>
 
@@ -171,7 +171,7 @@ const HomePage = () => {
                 <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
               </div>
 
-              <Button onClick={() => navigate("/signup")} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
+              <Button onClick={() => navigate("/login/guardian", { state: { category: "guardian" } })} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
 
             </div>
 
@@ -200,7 +200,7 @@ const HomePage = () => {
                 <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
               </div>
 
-              <Button onClick={() => navigate("/signup")} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
+              <Button onClick={() => navigate("/login/teacher", { state: { category: "teacher" } })} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
 
             </div>
 
