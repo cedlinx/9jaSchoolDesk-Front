@@ -71,7 +71,7 @@ export const createGist = (data) => async (dispatch) => {
   } catch (e) {
     console.log(e.response);
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : formatArrayList(e.response.data.message));
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -83,7 +83,7 @@ export const viewGistDetails = (data) => async (dispatch) => {
     return dispatch(viewGistDetailsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -95,7 +95,7 @@ export const getAllGists = (data) => async (dispatch) => {
     return dispatch(getAllGistsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -107,7 +107,7 @@ export const addComment = (data) => async (dispatch) => {
     return dispatch(addCommentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -119,6 +119,6 @@ export const getGistConversations = (data) => async (dispatch) => {
     return dispatch(getGistConversationsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };

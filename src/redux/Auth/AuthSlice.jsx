@@ -125,7 +125,7 @@ export const loginWithOTPCode = (data) => async (dispatch) => {
     return dispatch(loginWithOTPCodeAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e?.response?.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -138,7 +138,7 @@ export const loginWithClassCode = (data) => async (dispatch) => {
     return dispatch(loginWithClassCodeAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e?.response?.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -151,8 +151,7 @@ export const login = (data) => async (dispatch) => {
 
     return dispatch(loginAction(response?.data));
   } catch (e) {
-    console.log(e.message, "kkk");
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
+    toast.error(e?.response?.data?.errors ? formatArrayList(e.response.data.errors) : e?.response?.data?.message ? e?.response?.data?.message : e.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -167,7 +166,7 @@ export const getOTP = (data) => async (dispatch) => {
     return dispatch(getOTPAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e?.response?.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -179,7 +178,7 @@ export const getQRCode = (data) => async (dispatch) => {
     return dispatch(getQRCodeAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e?.response?.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -190,7 +189,7 @@ export const verifyOTP = (data) => async (dispatch) => {
     return dispatch(verifyOTPAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e?.response?.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -201,7 +200,7 @@ export const verifyEmail = (data) => async (dispatch) => {
     return dispatch(verifyEmailAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e?.response?.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -215,7 +214,7 @@ export const signUp = (data) => async (dispatch) => {
     return dispatch(signUpAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e?.response?.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -227,7 +226,7 @@ export const forgotPassword = (data) => async (dispatch) => {
     return dispatch(forgotPasswordAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -239,7 +238,7 @@ export const changePassword = (data) => async (dispatch) => {
     return dispatch(changePasswordAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -257,7 +256,7 @@ export const resetPassword = (data) => async (dispatch) => {
     return dispatch(resetPasswordAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -280,6 +279,6 @@ export const validatePin = (data) => async (dispatch) => {
     return dispatch(validatePinAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };  

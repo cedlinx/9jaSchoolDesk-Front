@@ -34,6 +34,7 @@ const Login = () => {
   const actualPath = location.pathname.split("/").pop();
   const isOTPVerified = localStorage.getItem("userData")?.hasverifiedotp;
   const loading = useSelector((state) => state?.auth?.loading);
+  console.log(loading, "loading state");
 
   const checkIsAuthenticated = isAuthenticated();
 
@@ -46,19 +47,16 @@ const Login = () => {
   }, [checkIsAuthenticated, isOTPVerified, navigate, user]);
 
   const signIn = async (data) => {
-    console.log(data);
-    console.log(user);
-    try {
-      let response = await dispatch(login({payload:  {email: data.email, password: data.password}, user: user}));
-      console.log(response?.payload);
-      if (response?.payload?.success) {
-        toast.success(response?.payload?.message);
-        // dispatch(getUserInfo());
-        navigate("otp-verification", { state: { email: data.email } });
-      }
-    } catch (error) {
-      toast.error("An Error Occured, please try again");
+ 
+    let response = await dispatch(login({payload:  {email: data.email, password: data.password}, user: user}));
+    console.log(response);
+    console.log(response?.payload);
+    if (response?.payload?.success) {
+      toast.success(response?.payload?.message);
+      // dispatch(getUserInfo());
+      navigate("otp-verification", { state: { email: data.email } });
     }
+  
   };
 
   const resolver = yupResolver(signInValidationSchema);

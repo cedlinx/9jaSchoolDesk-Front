@@ -329,7 +329,7 @@ export const getDashboard = (data) => async (dispatch) => {
     return dispatch(getDashboardAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -342,7 +342,7 @@ export const addInstitution = (data) => async (dispatch) => {
     return dispatch(addInstitutionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -353,7 +353,7 @@ export const switchInstitution = (data) => async (dispatch) => {
     return dispatch(switchInstitutionAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -365,7 +365,7 @@ export const modifyClass = (data) => async (dispatch) => {
     return dispatch(modifyClassAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -377,7 +377,7 @@ export const addClass = (data) => async (dispatch) => {
     return dispatch(addClassAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -389,7 +389,7 @@ export const reAssignTeacher = (data) => async (dispatch) => {
     return dispatch(reAssignTeacherAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -401,7 +401,7 @@ export const getAllInstitutions = (data) => async (dispatch) => {
     return dispatch(getAllInstitutionsAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -413,7 +413,7 @@ export const getAllClasses = (data) => async (dispatch) => {
   } catch (e) {
     console.log(e.response);
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -425,7 +425,7 @@ export const modifyInstitution = (data) => async (dispatch) => {
     return dispatch(modifyInstitutionAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -437,7 +437,7 @@ export const deleteClass = (data) => async (dispatch) => {
     return dispatch(deleteClassAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -448,7 +448,7 @@ export const deleteInstitution = (data) => async (dispatch) => {
     return dispatch(deleteInstitutionAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -460,7 +460,7 @@ export const enableClassSubscription = (data) => async (dispatch) => {
     return dispatch(enableClassSubscriptionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -471,7 +471,7 @@ export const disableClassSubscription = (data) => async (dispatch) => {
     return dispatch(disableClassSubscriptionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -483,7 +483,7 @@ export const addTeacher = (data) => async (dispatch) => {
     return dispatch(addTeacherAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -494,7 +494,7 @@ export const getAllTeachers = (data) => async (dispatch) => {
     return dispatch(getAllTeachersAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -507,7 +507,7 @@ export const modifyTeacher = (data) => async (dispatch) => {
   } catch (e) {
     console.log(e.response.data.message);
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -519,7 +519,7 @@ export const deleteTeacher = (data) => async (dispatch) => {
     return dispatch(deleteTeacherAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -531,7 +531,7 @@ export const addStudent = (data) => async (dispatch) => {
     return dispatch(addStudentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -542,7 +542,7 @@ export const getAllStudents = (data) => async (dispatch) => {
     return dispatch(getAllStudentsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -554,7 +554,7 @@ export const viewStudentRecord = (data) => async (dispatch) => {
     return dispatch(viewStudentRecordAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -566,7 +566,7 @@ export const modifyStudent = (data) => async (dispatch) => {
     return dispatch(modifyStudentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -578,7 +578,7 @@ export const deleteStudent = (data) => async (dispatch) => {
     return dispatch(deleteStudentAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -589,7 +589,7 @@ export const enableStudentSubscription = (data) => async (dispatch) => {
     return dispatch(enableStudentSubscriptionAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -600,7 +600,7 @@ export const disableStudentSubscription = (data) => async (dispatch) => {
     return dispatch(disableStudentSubscriptionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -611,7 +611,7 @@ export const getAllGuardians = (data) => async (dispatch) => {
     return dispatch(getAllGuardiansAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -622,7 +622,7 @@ export const viewGuardianDetails = (data) => async (dispatch) => {
     return dispatch(viewGuardianDetailsAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -634,7 +634,7 @@ export const inviteGuardian = (data) => async (dispatch) => {
     return dispatch(inviteGuardianAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -646,7 +646,7 @@ export const assignGuardianToSingleStudent = (data) => async (dispatch) => {
     return dispatch(assignGuardianToSingleStudentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -658,7 +658,7 @@ export const assignGuardianToBulkStudents = (data) => async (dispatch) => {
     return dispatch(assignGuardianToBulkStudentsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -670,7 +670,7 @@ export const guardianStatusUpdate = (data) => async (dispatch) => {
     return dispatch(guardianStatusUpdateAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -681,7 +681,7 @@ export const getGuardianStatus = (data) => async (dispatch) => {
     return dispatch(getGuardianStatusAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -692,7 +692,7 @@ export const getNewGuardianSignups = (data) => async (dispatch) => {
     return dispatch(getNewGuardianSignupsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -705,7 +705,7 @@ export const addKPI = (data) => async (dispatch) => {
   } catch (e) {
     console.log(e.response);
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -716,7 +716,7 @@ export const getAllKPIs = (data) => async (dispatch) => {
     return dispatch(getAllKPIsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -728,7 +728,7 @@ export const modifyKPI = (data) => async (dispatch) => {
     return dispatch(modifyKPIAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -740,7 +740,7 @@ export const deleteKPI = (data) => async (dispatch) => {
     return dispatch(deleteKPIAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -753,7 +753,7 @@ export const viewKPIDetails = (data) => async (dispatch) => {
     return dispatch(viewKPIDetailsAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -765,7 +765,7 @@ export const viewKPIForClass = (data) => async (dispatch) => {
     return dispatch(viewKPIForClassAction(response));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -777,7 +777,7 @@ export const viewKPIForInstitution = (data) => async (dispatch) => {
     return dispatch(viewKPIForInstitutionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -789,7 +789,7 @@ export const sendNotification = (data) => async (dispatch) => {
     return dispatch(sendNotificationAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -801,7 +801,7 @@ export const updateProfile = (data) => async (dispatch) => {
     return dispatch(updateProfileAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -814,7 +814,7 @@ export const addSubject = (data) => async (dispatch) => {
   } catch (e) {
     console.log(e.response);
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -825,7 +825,7 @@ export const getAllSubjects = (data) => async (dispatch) => {
     return dispatch(getAllSubjectsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -837,7 +837,7 @@ export const modifySubject = (data) => async (dispatch) => {
     return dispatch(modifySubjectAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -849,7 +849,7 @@ export const viewSubjectDetails = (data) => async (dispatch) => {
     return dispatch(viewSubjectDetailsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -862,7 +862,7 @@ export const assignSubjectToTeacher = (data) => async (dispatch) => {
     return dispatch(assignSubjectToTeacherAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
 
@@ -874,6 +874,6 @@ export const assignSubjectToStudent = (data) => async (dispatch) => {
     return dispatch(assignSubjectToStudentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
-    return dispatch(hasError(e.response.data));
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
