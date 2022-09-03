@@ -103,7 +103,7 @@ const Header = (props) => {
             {userCategory === "proprietor" &&
               <div className={cx(styles.switcher, "flexRow")}>
                 <div className={cx(styles.infoDiv, "flexRow")}>
-                  <span>Institution: </span><span>{titleCase(institutionName)}</span>
+                  <span>Institution: </span><span>{institutionName && titleCase(institutionName)}</span>
                 </div>
                 {/* <Button onClick={() => navigate("/select-institution/proprietor")} type title="Switch Institution" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" /> */}
               </div>
