@@ -63,6 +63,8 @@ import TeachersProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Te
 import StudentsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/Students";
 import StudentReportProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/StudentReport/StudentReport";
 import SettingsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Settings/Settings";
+import SelectInstitutionProprietor from "../Pages/Authentication/Login/SelectInstitution/SelectInstitution";
+
 
 const RoutesComponent = () => {
   return (
@@ -80,6 +82,7 @@ const RoutesComponent = () => {
         <Route path="/:user/reset/password/:token" element={<ResetPassword />} />
         <Route path="select-account/:user" element={<SelectAccountStudent />} />
         <Route path="select-class/:user" element={<SelectClassTeacher />} />
+        <Route path="select-institution/:user" element={<SelectInstitutionProprietor />} />
         <Route path="select-ward/:user" element={<SelectWardGuardian />} />
         <Route path=":user/add-institution" element={<AddInstitution />} />
 

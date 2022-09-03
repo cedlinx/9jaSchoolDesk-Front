@@ -15,7 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 import { loginWithOTPCodeValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import siteLogo from "@/assets/images/logo.png";
+import siteLogo from "@/assets/images/Logo.png";
 import OTPComponent from "@/components/OTP/OTP";
 
 const OTPVerification = () => {
@@ -44,6 +44,8 @@ const OTPVerification = () => {
       toast.success(response?.payload?.message);
       reset();
       user === "teacher" ? navigate(`/select-class/${user}/`) : user === "guardian" ? navigate(`/select-ward/${user}/`) :  navigate(`/${user}/dashboard`);
+
+      // user === "teacher" ? navigate(`/select-class/${user}/`) : user === "guardian" ? navigate(`/select-ward/${user}/`) :  navigate(`/select-institution/${user}/`);
     } else {
       toast.error(response.payload.error);
     }
