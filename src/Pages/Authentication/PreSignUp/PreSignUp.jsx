@@ -31,6 +31,7 @@ import {getOTP, verifyOTP} from "@/redux/Auth/AuthSlice";
 const PreSignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loading = useSelector((state) => state?.auth?.loading);
 
   const verifyOTPData = useSelector((state) => state?.auth?.verifyOTPData);
   const [emailValue, setEmailValue] = useState("");
