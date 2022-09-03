@@ -165,7 +165,7 @@ export const getOTP = (data) => async (dispatch) => {
     setToken(token);
     return dispatch(getOTPAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : e?.response?.data?.message ? formatArrayList(e?.response?.data?.message) : e.message );
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };

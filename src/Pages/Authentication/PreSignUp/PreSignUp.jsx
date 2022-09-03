@@ -106,7 +106,8 @@ const PreSignUp = () => {
                       label={"Enter Email"}
                       type="email"
                       error={errors?.email && errors?.email?.message}
-                      suffixIcon={<img style={{cursor: "pointer", width: "4.5rem"}} src={sendOtpBtn} onClick={()=>requestOTP()} alt="sendOtpBtn" />}
+                      // suffixIcon={<img style={{cursor: "pointer", width: "4.5rem"}} src={sendOtpBtn} onClick={()=>requestOTP()} alt="sendOtpBtn" />}
+                      suffixIcon={<Button onClick={()=>requestOTP()}  title="SendOTP" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />}
                       onChange={(e) => handleInputChange(e)}
                     />
                   )}

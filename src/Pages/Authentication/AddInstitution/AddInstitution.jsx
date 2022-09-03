@@ -19,6 +19,7 @@ import { addInstitution } from "@/redux/Proprietor/ProprietorSlice";
 import { useDispatch } from "react-redux";
 import Select from "@/components/Select/Select";
 import { useNavigate, useParams } from "react-router-dom";
+import { logout } from "@/redux/Auth/AuthSlice";
 
 
 
@@ -68,6 +69,11 @@ const AddInstitution = () => {
       return {value: item.value, label: item.label};
     });
     return result;
+  };
+
+  const handleCancel =()=>{
+    dispatch(logout);
+    navigate("/");
   };
 
   return (
@@ -212,12 +218,12 @@ const AddInstitution = () => {
 
                   </div>
 
-                  <div className={cx(styles.submitBtnDiv, "flexRow")}>        
+                  <div className={cx(styles.submitBtnDiv, "flexCol")}>        
                     <Button onClick={handleSubmit((data) => register(data))} title="Submit" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="transparent" hoverColor="#000"   />
+
+                    <Button onClick={() => handleCancel()} title="Cancel" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverColor="#000"   />
                   </div>
 
-
-              
                 </form>
               </div>
 

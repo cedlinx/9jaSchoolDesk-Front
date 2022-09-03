@@ -43,9 +43,9 @@ const OTPVerification = () => {
     if (response?.payload?.success) {
       toast.success(response?.payload?.message);
       reset();
-      user === "teacher" ? navigate(`/select-class/${user}/`) : user === "guardian" ? navigate(`/select-ward/${user}/`) :  navigate(`/${user}/dashboard`);
+      // user === "teacher" ? navigate(`/select-class/${user}/`) : user === "guardian" ? navigate(`/select-ward/${user}/`) :  navigate(`/${user}/dashboard`);
 
-      // user === "teacher" ? navigate(`/select-class/${user}/`) : user === "guardian" ? navigate(`/select-ward/${user}/`) :  navigate(`/select-institution/${user}/`);
+      user === "teacher" ? navigate(`/select-class/${user}/`) : user === "guardian" ? navigate(`/select-ward/${user}/`) :  navigate(`/select-institution/${user}/`);
     } else {
       toast.error(response.payload.error);
     }
