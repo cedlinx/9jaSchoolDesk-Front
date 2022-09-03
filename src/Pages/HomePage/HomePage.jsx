@@ -19,13 +19,13 @@ import {
   Navbar, Nav, Dropdown,
   NavDropdown
 } from "react-bootstrap";
-import Logo from "@/assets/images/logo.png";
+import Logo from "@/assets/images/logo1.png";
 
 import studentImage from "@/assets/images/studentImage.png";
 import teacherImage from "@/assets/images/teacherImage.png";
 import guardiansImage from "@/assets/images/parentsImage.png";
 import ruler from "@/assets/images/ruler.png";
-import book from "@/assets/images/book.png";
+import book from "@/assets/images/book1.png";
 import pencil from "@/assets/images/pencil.png";
 import idea from "@/assets/images/idea.png";
 import curvedHamburger from "@/assets/icons/curved-hamburger.svg";
