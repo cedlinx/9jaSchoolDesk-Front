@@ -47,7 +47,8 @@ const Header = (props) => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const userDetails = JSON.parse(localStorage.getItem("userData"));
-  const institutionName = userDetails?.institution?.name;
+  const activeInstitutionData = JSON.parse(localStorage.getItem("activeInstitutionData"));
+  const institutionName = activeInstitutionData?.name;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -105,7 +106,7 @@ const Header = (props) => {
                 <div className={cx(styles.infoDiv, "flexRow")}>
                   <span>Institution: </span><span>{institutionName && titleCase(institutionName)}</span>
                 </div>
-                {/* <Button onClick={() => navigate("/select-institution/proprietor")} type title="Switch Institution" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" /> */}
+                <Button onClick={() => navigate("/select-institution/proprietor")} type title="Switch Institution" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
               </div>
             }
 

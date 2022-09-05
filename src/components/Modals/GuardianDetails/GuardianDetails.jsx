@@ -48,7 +48,7 @@ const GuardianDetails = () => {
           <span className={cx(styles.title)}>EMAIL</span><span className={cx(styles.value)}>{data?.email}</span>
         </div>
         <div className={cx(styles.modalItem)}>
-          <span className={cx(styles.title)}>WARD(S)</span><span className={cx(styles.value)}>{Array.isArray(data?.wards) && getWardsArray(data?.wards)}</span>
+          <span className={cx(styles.title)}>WARD(S)</span><span className={cx(styles.value)}>{Array.isArray(data?.wards) && data?.wards.length > 0 ? getWardsArray(data?.wards) : "There are no wards attached to this account"}</span>
         </div>
         {data?.phone && <div className={cx(styles.modalItem)}>
           <span className={cx(styles.title)}>PHONE</span><span className={cx(styles.value)}>{data?.phone}</span>

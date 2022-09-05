@@ -19,7 +19,7 @@ import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import generateColor from "@/helpers/generateColor";
 import { viewStudentRecord } from "@/redux/Proprietor/ProprietorSlice";
 import formatArrayList from "@/helpers/formatArrayList";
-
+import { Icon } from "@iconify/react";
 
 const StudentReport = () => {
 
@@ -60,123 +60,6 @@ const StudentReport = () => {
     return `${dateValue}`;
   };
 
-  const columnsHeader = [
-    {
-      Header: () => (
-        <div
-          style={{
-            minWidth: "1rem",
-            color: "#747474",
-            fontSize: "1rem"
-          }}
-        >
-          S/No</div>
-      ),
-      accessor: "serialNumber",
-      Cell: (row) => {
-        let serialNumber = row.cell.row.values.serialNumber;
-        return <span style={{ color: "#4F4F4F" }}>{serialNumber}</span>;
-      }
-    },
-    {
-      Header: () => (
-        <div
-          style={{
-            width: "auto",
-            color: "#747474",
-            fontSize: "1rem"
-          }}
-        >Teacher</div>
-      ),
-      accessor: "parent",
-      Cell: (row) => {
-        let parentName = row.cell.row.values.parent.parentName;
-        let parentImage = row.cell.row.values.parent.parentImage;
-        return <div style={{ display: "flex", gap: "0.25rem", alignItems: "center" }}>
-          {parentImage ? <img style={{ width: "2.5rem", height: "2.5rem", borderRadius: "50%" }} src={parentImage} alt="img" /> : <p style={{ backgroundColor: generateColor(), whiteSpace: "nowrap", borderRadius: "50%", fontSize: "1.25rem", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", textAlign: "center" }}>{initialsCase(parentName)}</p>}
-          <p style={{ color: "#4F4F4F" }}>{parentName}</p>
-        </div>;
-      }
-    },
-    {
-      Header: () => (
-        <div
-          style={{
-            minWidth: "auto",
-            color: "#747474",
-            fontSize: "1rem"
-          }}
-        >Subject </div>
-      ),
-      accessor: "firstName",
-      Cell: (row) => {
-        let firstName = row.cell.row.values.firstName;
-        return <div style={{ color: "#4F4F4F" }}>
-          {firstName}
-        </div>;
-      }
-    },
-    {
-      Header: () => (
-        <div
-          style={{
-            width: "15rem",
-            color: "#747474",
-            fontSize: "1rem"
-          }}
-        >Feedback </div>
-      ),
-      accessor: "lastName",
-      Cell: (row) => {
-        let lastName = row.cell.row.values.lastName;
-        return <div style={{ color: "#4F4F4F" }} >
-          {lastName}
-
-        </div>;
-      }
-    },
-    {
-      Header: () => (
-        <div
-          style={{
-            minWidth: "auto",
-            color: "#747474",
-            fontSize: "1rem"
-          }}
-        >Date</div>
-      ),
-      accessor: "studentId",
-      Cell: (row) => {
-        return <div>
-          <p style={{ color: "#4F4F4F" }}>{formatDate(new Date())}</p>
-        </div>;
-      }
-    }
-  ];
-
-  let getTableData = (data) => {
-    let result = [];
-
-    data && data.map((item, index) => {
-      result.push({
-        serialNumber: index + 1,
-        firstName: item?.firstName && titleCase(item?.firstName),
-        lastName: item?.lastName && titleCase(item?.lastName),
-        studentId: item?.studentId && item?.studentId,
-        class: item?.class && item?.class,
-        parentName: item?.parentName && item?.parentName,
-        parentImage: item?.parentImage && item?.parentImage,
-        parent: {
-          parentName: item?.parentName && item?.parentName,
-          parentImage: item?.parentImage && item?.parentImage
-        },
-        moreOption: "",
-        action: ""
-      });
-    });
-    return result;
-  };
-
   let taskNames =()=>{
     let result = [];
     allStudentRecord?.tasks.forEach((item)=>{
@@ -189,14 +72,13 @@ const StudentReport = () => {
     <div className={cx(styles.studentReportContainer)}>
 
       <div className={cx(styles.heading, "flexRow-space-between")}>
-        <h3 className={cx(styles.title)}><span onClick={() => navigate(-1)} style={{ cursor: "pointer", fontSize: "1.125rem" }} >Students</span> / View Report</h3>
+        <h3 className={cx(styles.title)}><span onClick={() => navigate(-1)} style={{ cursor: "pointer", fontSize: "1.125rem" }} ><Icon icon="eva:arrow-back-outline" /> Students</span> / View Report</h3>
       </div>
 
       <div className={cx(styles.body, "flexCol")}>
 
         <div className={cx(styles.tableSection, "flexCol")}>
           <h3 className={cx(styles.title)}>{allStudentRecord?.firstName ? titleCase(allStudentRecord?.firstName) : ""} {allStudentRecord?.lastName ? titleCase(allStudentRecord?.lastName) : ""}</h3>
-          {/* {<TableComponent columnsHeader={columnsHeader} tableData={getTableData(allStudentsData)} showHeader={true} />} */}
           {allStudentRecord?.sdid && <div>
             <span>Student ID: </span><span>{allStudentRecord?.sdid}</span>
           </div>}

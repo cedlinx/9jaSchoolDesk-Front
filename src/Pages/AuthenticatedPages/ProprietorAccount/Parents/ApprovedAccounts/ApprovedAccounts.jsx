@@ -105,33 +105,33 @@ const ApprovedAccounts = () => {
       accessor: "wards",
       Cell: (row) => {
         let wards = row.cell.row.values.wards;
-        return <div style={{ width: "10rem", display: "flex" }}>
+        return <div style={{ width: "10rem", display: "flex", flexWrap: "wrap" }}>
           {Array.isArray(wards) && wards.map((ward, index) => {
             return (ward.avatar ? <img style={{ width: "3rem", height: "3rem", borderRadius: "50%", padding: "0.25rem", marginLeft: "-0.625rem", backgroundColor: "white", cursor: "pointer" }} key={index} src={ward} alt="img" /> : ward.firstName && <p style={{ backgroundColor: generateColor(), whiteSpace: "nowrap", border: "1px solid #FF7E3F0D", borderRadius: "50%", fontSize: "1.25rem", width: "3rem", height: "3rem", lineHeight: "3rem", textAlign: "center", marginLeft: "-0.625rem", cursor: "pointer" }}>{ward.firstName && initialsCase(`${ward.firstName} ${ward?.lastName}`)}</p>);
           })}
         </div>;
       }
     },
-    {
-      Header: () => (
-        <div
-          style={{
-            width: "auto",
-            color: "#747474",
-            fontSize: "1rem",
-            textAlign: "center"
-          }}
-        >Action</div>
-      ),
-      accessor: "action",
-      Cell: (row) => {
-        let data = row.cell.row.original.allData;
+    // {
+    //   Header: () => (
+    //     <div
+    //       style={{
+    //         width: "auto",
+    //         color: "#747474",
+    //         fontSize: "1rem",
+    //         textAlign: "center"
+    //       }}
+    //     >Action</div>
+    //   ),
+    //   accessor: "action",
+    //   Cell: (row) => {
+    //     let data = row.cell.row.original.allData;
 
-        return <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
-          <Button onClick={() => dispatch(showModal({ action: "show", type: "assignWardToParent", modalData: data }))} title="Add New Ward +" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
-        </div>;
-      }
-    },
+    //     return <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+    //       <Button onClick={() => dispatch(showModal({ action: "show", type: "assignWardToParent", modalData: data }))} title="Add New Ward +" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" />
+    //     </div>;
+    //   }
+    // },
     {
       Header: () => (
         <div
@@ -159,6 +159,8 @@ const ApprovedAccounts = () => {
               <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "assignWardToParent", modalData: data }))}>Assign Single Ward</DropdownItem>
+              {/* <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "assignBulkWardsToParent", modalData: data }))}>Assign Multiple Wards</DropdownItem> */}
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "deactivateGuardian", modalData: data }))}>Deactivate Guardian</DropdownItem>
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "guardianDetails", modalData: data }))}>View Details</DropdownItem>
             </DropdownMenu>

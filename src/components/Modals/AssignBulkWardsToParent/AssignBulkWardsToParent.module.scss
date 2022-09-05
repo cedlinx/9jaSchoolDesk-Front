@@ -1,4 +1,4 @@
-.addTeacherContainer{
+.assignBulkWardsToParentContainer{
     width: 100%;
     background-color: #fff;
     background-color: transparent;
@@ -20,13 +20,6 @@
         }
 
     }
-
-    .addSubjectDiv{
-        align-items: center;
-        gap: 2rem;
-        text-align: center;
-    }
-
     .formWrapper{
         background-color: #fff;
         padding: 1rem;
@@ -45,62 +38,18 @@
         form{    
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-
-            .inputsWrapper{
-                flex-wrap: wrap;
-                gap: 0.5rem;
-
-                >div{
-                width: 49%;
-                margin-bottom: 1.625rem !important;
-            } 
-
-            .emailWrapper{
-                margin-bottom: 0rem !important;
-
-                > div{
-                    margin-bottom: 1rem !important;
-                }
-             }
-            }
+            gap: 1rem;
 
             .btnDiv{
                 justify-content: center;
                 padding-top: 1rem;
-             }
-
-             .small{
-                text-align: center;
-                color: #D25B5D;
-                font-weight: bold;
-                text-decoration: underline;
-                cursor: pointer;
-                font-size: 1rem;
-             }
-
-             .span{
-                align-self: center;
-                text-align: center;
-                font-weight: bold;
-                line-height: 1;
-                font-size: 1rem;
-                margin: 0rem;
-             }
-
-             .subjectsLabel{
-                font-size: 0.75rem;
-                margin: 0rem;
-                padding: 0rem;
-                line-height: 1;
-                position: relative;
              }
         }
     }
 }
 
 @media all and (min-width: 768px){
-    .addTeacherContainer{
+    .assignBulkWardsToParentContainer{
         gap: 1rem;
     
         .header{
@@ -123,7 +72,7 @@
 
 
 @media all and (min-width: 991px){
-    .addTeacherContainer{
+    .assignBulkWardsToParentContainer{
         gap: 1rem;
     
         .header{

@@ -13,7 +13,7 @@ export const getAllInstitutionsApi = async (data) => {
 };
 
 export const modifyInstitutionApi = async (data) => {
-  return await axios.put("proprietor/auth/institution/modify", data);
+  return await axios.post("proprietor/auth/institution/modify", data);
 };
 
 export const deleteInstitutionApi = async (data) => {

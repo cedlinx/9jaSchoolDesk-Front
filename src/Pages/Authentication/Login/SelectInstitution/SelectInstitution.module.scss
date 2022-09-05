@@ -3,22 +3,26 @@
     padding-top: 2rem;
     background-color: #fff; 
     min-height: 100vh;
+    align-items: center;
 
     .heading{
         gap: 0.5rem;
         align-items: center;
+        width: 100%;
 
         img{
             width: 10rem;
         }
-        p{
-            font-size: 1.25rem;
-            color: #D25B5D;
-        }
+      
         button{
             align-self: flex-end;
             margin-right: 1rem;
         }
+    }
+
+    p{
+        font-size: 1.25rem;
+        color: #D25B5D;
     }
 
         .body{        
@@ -64,6 +68,7 @@
                         margin: 0rem;
                         font-weight: bold;
                         text-align: center;
+                        color: black;
                     }
             }
             }

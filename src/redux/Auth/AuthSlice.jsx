@@ -118,8 +118,8 @@ export const loginWithOTPCode = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await loginWithOTPCodeApi(data);
     console.log(response, "login with code");
-    let token = response?.data?.user?.token;
-    setToken(token);
+    // let token = response?.data?.user?.token;
+    // setToken(token);
     let userData = response?.data?.user;
     localStorage.setItem("userData", JSON.stringify(userData));
     return dispatch(loginWithOTPCodeAction(response?.data));
@@ -133,8 +133,8 @@ export const loginWithClassCode = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await loginWithClassCodeApi(data);
-    // let token = response?.data?.token;
-    // setToken(token);
+    let token = response?.data?.token;
+    setToken(token);
     return dispatch(loginWithClassCodeAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message );

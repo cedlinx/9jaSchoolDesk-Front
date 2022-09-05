@@ -18,6 +18,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import siteLogo from "@/assets/images/logo.png";
 import OTPComponent from "@/components/OTP/OTP";
 
+import { setToken } from "@/utils/auth";
+
 const OTPVerification = () => {
 
   const dispatch = useDispatch();
@@ -37,9 +39,13 @@ const OTPVerification = () => {
   const { handleSubmit, formState: { errors }, setValue, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
   const handleLogin = async (data) => {
-    console.log(data);
     const response = await dispatch(loginWithOTPCode({ payload: data, user: params.user }));
-    console.log(response);
+
+    if(user === "proprietor"){
+      let token = response?.payload?.user?.token;
+      setToken(token);
+    }
+
     if (response?.payload?.success) {
       toast.success(response?.payload?.message);
       reset();
@@ -84,9 +90,6 @@ const OTPVerification = () => {
               />
               {errors?.otp && <small style={{ marginTop: "1rem" }}>{errors?.otp?.message}</small>}
             </div>
-
-
-
 
             {/* <small style={{marginTop: "2rem"}}>Timer here - 40secs</small> */}
 

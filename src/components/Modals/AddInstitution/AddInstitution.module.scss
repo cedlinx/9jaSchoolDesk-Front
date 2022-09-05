@@ -1,4 +1,4 @@
-.addTeacherContainer{
+.addInstitutionContainer{
     width: 100%;
     background-color: #fff;
     background-color: transparent;
@@ -20,13 +20,6 @@
         }
 
     }
-
-    .addSubjectDiv{
-        align-items: center;
-        gap: 2rem;
-        text-align: center;
-    }
-
     .formWrapper{
         background-color: #fff;
         padding: 1rem;
@@ -100,7 +93,7 @@
 }
 
 @media all and (min-width: 768px){
-    .addTeacherContainer{
+    .addInstitutionContainer{
         gap: 1rem;
     
         .header{
@@ -123,7 +116,7 @@
 
 
 @media all and (min-width: 991px){
-    .addTeacherContainer{
+    .addInstitutionContainer{
         gap: 1rem;
     
         .header{

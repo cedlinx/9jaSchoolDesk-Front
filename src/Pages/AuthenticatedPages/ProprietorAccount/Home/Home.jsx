@@ -16,6 +16,9 @@ import ActivateGuardianModal from "@/components/Modals/ActivateGuardian/Activate
 import DeactivateGuardianModal from "@/components/Modals/DeactivateGuardian/DeactivateGuardian";
 import RejectGuardianModal from "@/components/Modals/RejectGuardian/RejectGuardian";
 import GuardianDetailsModal from "@/components/Modals/GuardianDetails/GuardianDetails";
+import NoInstitutionModal from "@/components/Modals/NoInstitution/NoInstitution";
+import AddInstitutionModal from "@/components/Modals/AddInstitution/AddInstitution";
+
 
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import { showModal } from "@/redux/ModalState/ModalSlice";
@@ -37,10 +40,17 @@ const Home = () => {
   const loading = useSelector((state) => state.proprietor.loading);
   const newSignUpLoading = useSelector((state) => state?.proprietor?.getNewGuardianSignupsData?.success);
 
+  console.log(dashboardData);
+  console.log(newSignUpsData);
+
   useEffect(() => {
     dispatch(getDashboard());
     dispatch(getNewGuardianSignups());
   }, [dispatch]);
+
+  useEffect(() => {
+    dashboardData?.proprietor?.institutions.length === 0 && dispatch(showModal({action: "show", type: "noInstitution"}));
+  }, [dashboardData?.proprietor?.institutions.length, dispatch]);
 
   const cardData = [
     {
@@ -250,7 +260,7 @@ const Home = () => {
 
       </div>
 
-      {modalState === "show" ? <Modal show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> : modalType === "activateGuardian" ? <ActivateGuardianModal /> : modalType === "deactivateGuardian" ? <DeactivateGuardianModal /> : modalType === "guardianDetails" ? <GuardianDetailsModal /> : modalType === "rejectGuardian" ? <RejectGuardianModal /> : null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> : modalType === "activateGuardian" ? <ActivateGuardianModal /> : modalType === "deactivateGuardian" ? <DeactivateGuardianModal /> : modalType === "guardianDetails" ? <GuardianDetailsModal /> : modalType === "rejectGuardian" ? <RejectGuardianModal /> : modalType === "noInstitution" ? <NoInstitutionModal /> : modalType === "addInstitution" ? <AddInstitutionModal /> : null}</Modal> : null}
 
     </div>
   );

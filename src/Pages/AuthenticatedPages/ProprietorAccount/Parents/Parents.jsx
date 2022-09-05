@@ -19,6 +19,7 @@ import DeactivateGuardianModal from "@/components/Modals/DeactivateGuardian/Deac
 import RejectGuardianModal from "@/components/Modals/RejectGuardian/RejectGuardian";
 import GuardianDetailsModal from "@/components/Modals/GuardianDetails/GuardianDetails";
 import AssignWardToParentModal from "@/components/Modals/AssignWardToParent/AssignWardToParent";
+import AssignBulkWardsToParentModal from "@/components/Modals/AssignBulkWardsToParent/AssignBulkWardsToParent";
 
 import { getGuardianStatus, getNewGuardianSignups } from "@/redux/Proprietor/ProprietorSlice";
 import useGetAllGuardians from "@/utils/useGetAllGuardians";
@@ -64,7 +65,7 @@ const Parents = () => {
 
       {loading ? <TableSkeleton /> : <Tabs centralise tabs={tabsComponents} />}
 
-      {modalState === "show" ? <Modal show >{modalType === "inviteGuardian" ? <InviteGuardianModal /> : modalType === "activateGuardian" ? <ActivateGuardianModal /> : modalType === "deactivateGuardian" ? <DeactivateGuardianModal /> : modalType === "guardianDetails" ? <GuardianDetailsModal /> : modalType === "rejectGuardian" ? <RejectGuardianModal /> : modalType === "assignWardToParent" ? <AssignWardToParentModal /> : null}</Modal> : null}
+      {modalState === "show" ? <Modal show >{modalType === "inviteGuardian" ? <InviteGuardianModal /> : modalType === "activateGuardian" ? <ActivateGuardianModal /> : modalType === "deactivateGuardian" ? <DeactivateGuardianModal /> : modalType === "guardianDetails" ? <GuardianDetailsModal /> : modalType === "rejectGuardian" ? <RejectGuardianModal /> : modalType === "assignWardToParent" ? <AssignWardToParentModal /> : modalType === "assignBulkWardsToParent" ? <AssignBulkWardsToParentModal />  : null}</Modal> : null}
     </div>
   );
 };

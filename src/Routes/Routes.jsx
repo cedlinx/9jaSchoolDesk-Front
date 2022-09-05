@@ -60,6 +60,7 @@ import ClassesProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/All
 import SubjectsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Subjects/Subjects";
 import ParentsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Parents/Parents";
 import TeachersProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Teachers/Teachers";
+import InstitutionsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Institutions/Institutions";
 import StudentsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/Students";
 import StudentReportProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/StudentReport/StudentReport";
 import SettingsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Settings/Settings";
@@ -134,6 +135,7 @@ const RoutesComponent = () => {
             <Route path="student-report/:studentId" element={<StudentReportProprietor />} />
           </Route>
           <Route path="teachers" element={<TeachersProprietor />} />
+          <Route path="institutions" element={<InstitutionsProprietor />} />
           <Route path="parents" element={<ParentsProprietor />} />
           <Route path="settings" element={<SettingsProprietor />} />
           <Route path="subjects" element={<SubjectsProprietor />} />

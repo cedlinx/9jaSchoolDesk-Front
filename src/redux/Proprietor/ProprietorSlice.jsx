@@ -337,8 +337,8 @@ export const addInstitution = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await addInstitutionApi(data);
-    let token = response?.data?.token;
-    setToken(token);
+    // let token = response?.data?.token;
+    // setToken(token);
     return dispatch(addInstitutionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
@@ -350,9 +350,12 @@ export const switchInstitution = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await switchInstitutionApi(data);
-    return dispatch(switchInstitutionAction(response));
+    const token = response?.data?.user?.token;
+    console.log(token);
+    setToken(token);
+    return dispatch(switchInstitutionAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -364,7 +367,7 @@ export const modifyClass = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(modifyClassAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -376,7 +379,7 @@ export const addClass = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(addClassAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : Array.isArray(e.response.data.message) ? formatArrayList(e.response.data.message) : e.response.data.message ? e.response.data.message : e.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -397,10 +400,9 @@ export const getAllInstitutions = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getAllInstitutionsApi(data);
-    toast.success(response.data.message);
-    return dispatch(getAllInstitutionsAction(response));
+    return dispatch(getAllInstitutionsAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : e?.response?.data?.message ? formatArrayList(e?.response?.data?.message) : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -422,7 +424,7 @@ export const modifyInstitution = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await modifyInstitutionApi(data);
     toast.success(response.data.message);
-    return dispatch(modifyInstitutionAction(response));
+    return dispatch(modifyInstitutionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
@@ -445,7 +447,7 @@ export const deleteInstitution = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await deleteInstitutionApi(data);
-    return dispatch(deleteInstitutionAction(response));
+    return dispatch(deleteInstitutionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
@@ -482,7 +484,7 @@ export const addTeacher = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(addTeacherAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : Array.isArray(e.response.data.message) ? formatArrayList(e.response.data.message) : e.response.data.message ? e.response.data.message : e.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -575,7 +577,7 @@ export const deleteStudent = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await deleteStudentApi(data);
     toast.success(response.data.message);
-    return dispatch(deleteStudentAction(response));
+    return dispatch(deleteStudentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
@@ -586,7 +588,7 @@ export const enableStudentSubscription = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await enableStudentSubscriptionApi(data);
-    return dispatch(enableStudentSubscriptionAction(response));
+    return dispatch(enableStudentSubscriptionAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
@@ -619,7 +621,7 @@ export const viewGuardianDetails = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await viewGuardianDetailsApi(data);
-    return dispatch(viewGuardianDetailsAction(response));
+    return dispatch(viewGuardianDetailsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
@@ -750,7 +752,7 @@ export const viewKPIDetails = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await viewKPIDetailsApi(data);
     toast.success(response.data.message);
-    return dispatch(viewKPIDetailsAction(response));
+    return dispatch(viewKPIDetailsAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
@@ -762,7 +764,7 @@ export const viewKPIForClass = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await viewKPIForClassApi(data);
     toast.success(response.data.message);
-    return dispatch(viewKPIForClassAction(response));
+    return dispatch(viewKPIForClassAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));

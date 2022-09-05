@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom";
 import cx from "classnames";
 import styles from "./AddNewStudent.module.scss";
 import Button from "@/components/Button/Button";
@@ -14,6 +15,7 @@ import { addStudentValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useGetAllClasses from "@/utils/useGetAllClasses";
 import useGetAllGuardians from "@/utils/useGetAllGuardians";
+import useGetInstitutionID from "@/utils/useGetInstitutionID";
 import useGetAllSubjects from "@/utils/useGetAllSubjects";
 import SelectAutoComplete from "@/components/SelectAutoComplete";
 
@@ -21,17 +23,19 @@ import SelectAutoComplete from "@/components/SelectAutoComplete";
 const AddNewStudent = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const allClassesData = useGetAllClasses();
   const allGuardiansData = useGetAllGuardians();
   const schoolSubjects = useGetAllSubjects();
+  let institution_id = useGetInstitutionID();
 
   const sendRequest = async (data) => {
     console.log(data);
     let subjectArray = [];
-    data.subjects.map((subject) => {
+    Array.isArray(data.subjects) && data.subjects.map((subject) => {
       subjectArray.push(subject.value);
     });
-    let response = await dispatch(addStudent({ ...data, subjects: subjectArray, guardian_email: data?.guardian_email?.value }));
+    let response = await dispatch(addStudent({ ...data, institution_id: institution_id, subjects: subjectArray, guardian_email: data?.guardian_email?.value }));
 
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "addNewStudent" }));
@@ -91,6 +95,11 @@ const AddNewStudent = () => {
   };
   console.log(errors);
 
+  const handleNavigateToClasses =()=>{
+    dispatch(showModal({action: "hide", type: "addTeacher"}));
+    navigate("/proprietor/classes");
+  };
+
   return (
 
     <section className={cx(styles.addNewStudentContainer, "flexCol")}>
@@ -103,10 +112,16 @@ const AddNewStudent = () => {
         <div className={cx(styles.header)}>
           <p>Add New Student</p>
         </div>
-        <form
+
+        {Array.isArray(allClassesData) && allClassesData.length === 0 && <div className ={cx(styles.addClassDiv, "flexCol")}>
+          <p> No Class has been registered. Kindly create at least one class before continuing </p>
+          <Button onClick={()=> handleNavigateToClasses()} title="Add Class" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+        </div>}
+
+        { Array.isArray(allClassesData) && allClassesData.length > 0 &&  <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
           className=""
-        >
+                                                                         >
 
           <div className={cx(styles.inputsWrapper, "flexRow")}>
 
@@ -275,7 +290,7 @@ const AddNewStudent = () => {
           <div className={cx(styles.btnDiv, "flexRow")}>
             <Button onClick={handleSubmit((data) => sendRequest(data))} title="Add Student" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
-        </form>
+        </form>}
       </div>
 
     </section>

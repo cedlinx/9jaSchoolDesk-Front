@@ -961,6 +961,31 @@ export const addInstitutionValidationSchema = Yup.object().shape({
 
 });
 
+export const modifyInstitutionValidationSchema = Yup.object().shape({
+  name: Yup.string()
+    .required("Institution Name is required")
+    .min(2, "Institution Name should be at least 2 characters"),
+
+  address: Yup.string()
+    .required("Address is required")    
+    .min(2, "Address should be at least 2 characters"),
+
+  type: Yup.string()
+    .required("Institution Type is required"),
+
+  email: Yup.string().email("Invalid email address"),
+
+  phone: Yup.string()
+    .required("Phone Number is Required")
+    .matches(
+      /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/,
+      "Phone number is not valid"
+    ),
+
+  website: Yup.string()
+
+});
+
 export const stepOneValidationSchema = Yup.object().shape({
   firstName: Yup.string()
     .required("First Name is required")

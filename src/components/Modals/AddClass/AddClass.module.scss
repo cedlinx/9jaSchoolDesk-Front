@@ -20,6 +20,16 @@
         }
 
     }
+    .addSubjectDiv{
+        align-items: center;
+        gap: 2rem;
+        text-align: center;
+
+        .btnDiv{
+            justify-content: center;
+            gap: 2rem;
+        }
+    }
     .formWrapper{
         background-color: #fff;
         padding: 1rem;

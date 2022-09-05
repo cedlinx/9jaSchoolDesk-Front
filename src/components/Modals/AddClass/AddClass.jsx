@@ -10,6 +10,7 @@ import { Icon } from "@iconify/react";
 import { useDropzone } from "react-dropzone";
 import { addClass, getAllClasses } from "@/redux/Proprietor/ProprietorSlice";
 import useGetInstitutionID from "@/utils/useGetInstitutionID";
+import { useNavigate } from "react-router-dom";
 
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { addClassValidationSchema } from "@/helpers/validation";
@@ -25,20 +26,22 @@ import useGetAllSubjects from "@/utils/useGetAllSubjects";
 const AddClass = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let institution_id = useGetInstitutionID();
   const loading = useSelector((state) => state.proprietor.loading);
   const allTeachersData = useGetAllTeachers();
   const schoolSubjects = useGetAllSubjects();
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [selectedSubjectTeachers, setSelectedSubjectTeachers] = useState([]);
+  console.log(institution_id);
 
   const sendRequest = async (data) => {
     console.log(data);
     let subjectArray = [];
-    data.subjects.map((subject, index) => {
+    Array.isArray(data.subjects) && data.subjects.map((subject, index) => {
       data.subject.map((subjectName, index) => {
         if(subjectName.subject === subject.label){
-          subjectArray.push({subject_id: subject.value, teacher_id: subjectName.teacher.value});
+          subjectArray.push({subject_id: subject?.value, teacher_id: subjectName?.teacher?.value});
         }
       });
     });
@@ -109,6 +112,16 @@ const AddClass = () => {
 
   console.log(selectedSubjectTeachers);
 
+  const handleNavigateToSubjects = () => {
+    dispatch(showModal({action: "hide", type: "addTeacher"}));
+    navigate("/proprietor/subjects");
+  };
+
+  const handleNavigateToTeachers = () => {
+    dispatch(showModal({action: "hide", type: "addTeacher"}));
+    navigate("/proprietor/teachers");
+  };
+
   return (
 
     <section className={cx(styles.addClassContainer, "flexCol")}>
@@ -121,10 +134,22 @@ const AddClass = () => {
         <div className={cx(styles.header)}>
           <p>Add New Class</p>
         </div>
-        <form
+
+        {Array.isArray(schoolSubjects) && schoolSubjects.length === 0 || Array.isArray(allTeachersData) && allTeachersData.length === 0 && <div className ={cx(styles.addSubjectDiv, "flexCol")}>
+          <p> No Subject and/or Teacher has been registered. Kindly create at least one of each before continuing </p>
+          <div className={cx(styles.btnDiv, "flexRow")}>
+
+            {schoolSubjects.length === 0 && <Button onClick={()=> handleNavigateToSubjects()} title="Add Subject" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />}
+
+            {allTeachersData.length === 0 && <Button onClick={()=> handleNavigateToTeachers()} title="Add Teacher" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />}
+
+          </div>
+        </div>}
+
+        {Array.isArray(schoolSubjects) && schoolSubjects.length > 0 && Array.isArray(allTeachersData) && allTeachersData.length > 0 &&  <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
           className=""
-        >
+                                                                                                                                        >
 
           <Controller
             name="name"
@@ -238,7 +263,7 @@ const AddClass = () => {
 
 
 
-        </form>
+        </form>}
       </div>
 
     </section>

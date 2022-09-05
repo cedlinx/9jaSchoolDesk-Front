@@ -17,6 +17,7 @@ import { modifyClassValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useGetAllTeachers from "@/utils/useGetAllTeachers";
 import useGetAllSubjects from "@/utils/useGetAllSubjects";
+import useGetInstitutionID from "@/utils/useGetInstitutionID";
 
 
 
@@ -28,6 +29,8 @@ const EditClass = () => {
   const schoolSubjects = useGetAllSubjects();
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [selectedSubjectTeachers, setSelectedSubjectTeachers] = useState(modalData?.subjects);
+  let institution_id = useGetInstitutionID();
+
 
   console.log(modalData);
 
@@ -45,7 +48,7 @@ const EditClass = () => {
 
     let {subject, ...rest} = data;
 
-    let response = await dispatch(modifyClass({ ...rest, subjects: subjectArray, id: modalData.id }));
+    let response = await dispatch(modifyClass({ ...rest, subjects: subjectArray, id: modalData.id, institution_id: institution_id}));
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "editClass" }));
       dispatch(getAllClasses());

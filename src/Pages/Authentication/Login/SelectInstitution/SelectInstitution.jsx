@@ -8,37 +8,58 @@ import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 import { toast } from "react-toastify";
-import { switchClass } from "@/redux/Teacher/TeacherSlice";
+import { switchInstitution } from "@/redux/Proprietor/ProprietorSlice";
 import { logout } from "@/redux/Auth/AuthSlice";
 import Button from "@/components/Button/Button";
+import { showModal } from "@/redux/ModalState/ModalSlice";
+import AddInstitutionModal from "@/components/Modals/AddInstitution/AddInstitution";
+import Modal from "@/components/Modals/ModalContainer/ModalContainer";
+import { getAllInstitutions } from "@/redux/Proprietor/ProprietorSlice";
+import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
+
 
 const SelectInstitution = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const modalState = useSelector((state) => state.modalState.action);
+  const modalType = useSelector((state) => state.modalState.type);
+  const loading = useSelector((state) => state.proprietor.loading);
 
 
+  // const proprietorDetails = useGetLoggedInUser();
+  // let institutionsArray = proprietorDetails?.institutions;
 
-  const proprietorDetails = useGetLoggedInUser();
-  let institutionsArray = proprietorDetails?.institutions;
-  console.log(proprietorDetails);
+  let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
+
+  console.log(institutionsArray);
 
   useEffect(() => {
-    if(proprietorDetails.institutions === undefined) {
-      navigate("/proprietor/dashboard");
-    }
-  },[dispatch, navigate, proprietorDetails.institutions]);
+    dispatch(getAllInstitutions());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   if(proprietorDetails.institutions === undefined) {
+  //     navigate("/proprietor/dashboard");
+  //   }
+  // },[dispatch, navigate, proprietorDetails.institutions]);
+
+  // useEffect(() => {
+  //   if( institutionsArray.length === 0) {
+  //     dispatch(showModal({ action: "show", type: "addInstitution" }));
+  //   }
+  // },[dispatch, institutionsArray.length, navigate]);
 
 
-  const handleSwitchClass = async (institution_id) => {
+  const handleSwitchInstitution = async (institution_id) => {
     console.log(institution_id);
     toast("Switching Institution...");
-    let response = await dispatch(switchClass({id: institution_id }));
+    let response = await dispatch(switchInstitution({id: institution_id }));
     console.log(response, "switch response");
     if (response.payload.success) {
       console.log(institution_id);
-      localStorage.setItem("activeInstitutionData", JSON.stringify(response.payload.institution));
+      localStorage.setItem("activeInstitutionData", JSON.stringify(response.payload.active_institution));
       localStorage.setItem("institution_id", institution_id);
-      navigate("/teacher/dashboard");
+      navigate("/proprietor/dashboard");
     }
   };
 
@@ -52,23 +73,42 @@ const SelectInstitution = () => {
       <div className={cx(styles.heading, "flexCol")}>
         <Button onClick={()=>handleLogout()} title="Logout" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
         <img src={Logo} alt="" />
-        <p>Select an institution to continue</p>
       </div>
-      <div className={cx(styles.body)}>
-        {Array.isArray(institutionsArray) && institutionsArray.map((element, index) => {
-          return (
-            <div key={index} onClick={() => handleSwitchClass(element?.id)} className={cx(styles.studentContainer, "flexCol")}>
-              <div className={cx(styles.imageDiv)}>
-                <Icon icon="healthicons:i-training-class" color="#d25b5d" width="72" />
-              </div>
-              <p>{element?.name}</p>
-              {/* <p>JSS 1 A</p> */}
-            </div>
-          );
-        }
-        )}
+      { loading ? 
+        <>
+          <p>...fetching data, please wait...</p>
+          <TableSkeleton />
+        </>
+        :
+        Array.isArray(institutionsArray) && institutionsArray.length > 0 ?
+          <>  
+            <p>Select an institution to continue</p>
+            <div className={cx(styles.body)}>
+              {Array.isArray(institutionsArray) && institutionsArray.map((element, index) => {
+                return (
+                  <div key={index} onClick={() => handleSwitchInstitution(element?.id)} className={cx(styles.studentContainer, "flexCol")}>
+                    <div className={cx(styles.imageDiv)}>
+                      <Icon icon="cil:institution" color="#000" width="72" />
+                    </div>
+                    <p>{element?.name}</p>
+                  </div>
+                );
+              }
+              )}
 
-      </div>
+            </div>
+          </>
+          :
+          <>
+            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", gap: "1rem"}}>
+              <p style={{color: "#747474", fontSize: "1.5rem"}}>No Institution Found. Kindly Add A New Institution</p>
+              <Button onClick={() => dispatch(showModal({ action: "show", type: "addInstitution" }))} type title="Add Institution" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+            </div>
+          </>
+      }
+
+      {modalState === "show" && modalType === "addInstitution" && <Modal show size="lg" ><AddInstitutionModal /> </Modal>}
+    
     </div>
   );
 };

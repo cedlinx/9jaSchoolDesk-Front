@@ -8,8 +8,9 @@ import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 
-import { addTeacher, getAllTeachers } from "@/redux/Proprietor/ProprietorSlice";
+import { addTeacher, getAllSubjects, getAllTeachers } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { addTeacherValidationSchema } from "@/helpers/validation";
@@ -22,13 +23,16 @@ import SelectAutoComplete from "@/components/SelectAutoComplete";
 const AddTeacher = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const loading = useSelector((state) => state.proprietor.loading);
   const schoolSubjects = useGetAllSubjects();
   let institution_id = useGetInstitutionID();
 
+  console.log(schoolSubjects);
+
   const sendRequest = async (data) => {
     let subjectArray = [];
-    data.subjects.map((subject) => {
+    Array.isArray(data.subjects) && data.subjects.map((subject) => {
       subjectArray.push(subject.value);
     });
 
@@ -63,6 +67,12 @@ const AddTeacher = () => {
     return options;
   };
 
+  const handleNavigateToSubjects = () => {
+    dispatch(showModal({action: "hide", type: "addTeacher"}));
+    navigate("/proprietor/subjects");
+  };
+    
+
   return (
 
     <section className={cx(styles.addTeacherContainer, "flexCol")}>
@@ -75,10 +85,16 @@ const AddTeacher = () => {
         <div className={cx(styles.header)}>
           <p>Add New Teacher</p>
         </div>
-        <form
+
+        {Array.isArray(schoolSubjects) && schoolSubjects.length === 0 && <div className ={cx(styles.addSubjectDiv, "flexCol")}>
+          <p> No Subject has been registered. Kindly create at least one subject before continuing </p>
+          <Button onClick={()=> handleNavigateToSubjects()} title="Add Subject" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+        </div>}
+
+        {Array.isArray(schoolSubjects) && schoolSubjects.length > 0 &&  <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
           className=""
-        >
+                                                                        >
 
           <div className={cx(styles.inputsWrapper, "flexRow")}>
 
@@ -173,8 +189,8 @@ const AddTeacher = () => {
           </div>
 
 
-          <span className={cx(styles.span)}>Or</span>
-          <small className={cx(styles.small)}>Add from Teacher Database</small>
+          {/* <span className={cx(styles.span)}>Or</span>
+          <small className={cx(styles.small)}>Add from Teacher Database</small> */}
 
           <div className={cx(styles.btnDiv, "flexRow")}>
             <Button onClick={handleSubmit((data) => sendRequest(data))} loading={loading} disabled={loading} title="Add Teacher" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
@@ -182,7 +198,7 @@ const AddTeacher = () => {
 
 
 
-        </form>
+        </form>}
       </div>
 
     </section>
