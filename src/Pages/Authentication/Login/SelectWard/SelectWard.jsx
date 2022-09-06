@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import useGetAllWards from "@/utils/useGetAllWards";
 import Button from "@/components/Button/Button";
 import { logout } from "@/redux/Auth/AuthSlice";
+import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 
 // import { switchClass } from "@/redux/Teacher/TeacherSlice";
 
@@ -20,6 +21,7 @@ import { logout } from "@/redux/Auth/AuthSlice";
 const SelectWard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loading = useSelector((state) => state.guardian.loading);
 
   const wardsArray = useGetAllWards();
 
@@ -44,26 +46,47 @@ const SelectWard = () => {
       <div className={cx(styles.heading, "flexCol")}>
         <Button onClick={()=>handleLogout()} title="Logout" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
         <img src={Logo} alt="" />
-        <p>Select a ward to continue</p>
       </div>
-      <div className={cx(styles.body)}>
-        {Array.isArray(wardsArray) && wardsArray.map((ward, index) => {
-          return (
-            <div key={index} onClick={() => handleSwitchWard(ward?.id)} className={cx(styles.studentContainer, "flexCol")}>
-              <div className={cx(styles.imageDiv)}>
-                {ward?.avatar ? 
-                  <img className={cx(styles.profileImage)} src={ward?.avatar} alt="avatar" />
-                  :
-                  <span style={{ backgroundColor: "#D25B5D" }}>{initialsCase(`${ward.firstName} ${ward.lastName}`)}</span>
+      {
+        loading ? 
+          <>
+            <p>...fetching data, please wait...</p>
+            <TableSkeleton />
+          </>
+          :
+          Array.isArray(wardsArray) && wardsArray.length > 0 ?
+            <> 
+              <p>Select a ward to continue</p>
+              <div className={cx(styles.body)}>
+                {Array.isArray(wardsArray) && wardsArray.map((ward, index) => {
+                  return (
+                    <div key={index} onClick={() => handleSwitchWard(ward?.id)} className={cx(styles.studentContainer, "flexCol")}>
+                      <div className={cx(styles.imageDiv)}>
+                        {ward?.avatar ? 
+                          <img className={cx(styles.profileImage)} src={ward?.avatar} alt="avatar" />
+                          :
+                          <span style={{ backgroundColor: "#D25B5D" }}>{initialsCase(`${ward.firstName} ${ward.lastName}`)}</span>
+                        }
+                      </div>
+                      <p>{titleCase(`${ward.firstName} ${ward.lastName}`)}</p>
+                    </div>
+                  );
                 }
-              </div>
-              <p>{titleCase(`${ward.firstName} ${ward.lastName}`)}</p>
-            </div>
-          );
-        }
-        )}
+                )}
 
-      </div>
+              </div> 
+            </> 
+            :
+            Array.isArray(wardsArray) && wardsArray.length === 0 ?
+              <>
+                <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", gap: "1rem"}}>
+                  <p style={{color: "#747474", fontSize: "1.5rem"}}>You currently do not have any ward assigned to you. Kindly contact the institution administrator. Thank you</p>
+                </div>
+              </>
+              :
+              <p>An Error Occured. Please Try Again</p>
+      }
+     
     </div>
   );
 };

@@ -109,7 +109,7 @@ export const getDashboard = (data) => async (dispatch) => {
     setToken(token);
     return dispatch(getDashboardAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -121,7 +121,7 @@ export const getAllStudents = (data) => async (dispatch) => {
     // toast.success(response.data.message);
     return dispatch(getAllStudentsAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -133,7 +133,7 @@ export const viewStudentDetails = (data) => async (dispatch) => {
     // toast.success(response.data.message);
     return dispatch(viewStudentDetailsAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
@@ -145,7 +145,7 @@ export const viewTaskDetails = (data) => async (dispatch) => {
     // toast.success(response.data.message);
     return dispatch(viewTaskDetailsAction(response?.data));
   } catch (e) {
-    toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
