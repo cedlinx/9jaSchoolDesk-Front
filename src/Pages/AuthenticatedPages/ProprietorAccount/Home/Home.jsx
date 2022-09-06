@@ -26,7 +26,7 @@ import classIcon from "@/assets/icons/class-icon-active.svg";
 import studentIcon from "@/assets/icons/student-icon-active.svg";
 import teacherIcon from "@/assets/icons/teacher-icon-active.svg";
 import parentIcon from "@/assets/icons/parent-icon-active.svg";
-import { getDashboard, getNewGuardianSignups } from "@/redux/Proprietor/ProprietorSlice";
+import { getDashboard, getNewGuardianSignups, getProfile } from "@/redux/Proprietor/ProprietorSlice";
 
 
 const Home = () => {
@@ -46,6 +46,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getDashboard());
     dispatch(getNewGuardianSignups());
+    // dispatch(getProfile());
   }, [dispatch]);
 
   useEffect(() => {

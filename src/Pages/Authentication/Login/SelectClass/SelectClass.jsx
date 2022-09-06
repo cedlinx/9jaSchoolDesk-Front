@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 import { toast } from "react-toastify";
 import { switchClass } from "@/redux/Teacher/TeacherSlice";
+import { logout } from "@/redux/Auth/AuthSlice";
+import Button from "@/components/Button/Button";
 
 
 const SelectClass = () => {
@@ -33,10 +35,16 @@ const SelectClass = () => {
     }
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
 
   return (
     <div className={cx(styles.selectClassWrapper, "flexCol")}>
       <div className={cx(styles.heading, "flexCol")}>
+        <Button onClick={()=>handleLogout()} title="Logout" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
         <img src={Logo} alt="" />
         <p>Select a class to continue</p>
       </div>

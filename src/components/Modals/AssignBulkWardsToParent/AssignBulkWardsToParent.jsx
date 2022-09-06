@@ -10,12 +10,13 @@ import InputField from "@/components/Input/Input";
 
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
-import { assignGuardianToSingleStudent, getAllGuardians, getGuardianStatus } from "@/redux/Proprietor/ProprietorSlice";
+import { assignGuardianToBulkStudents, getAllGuardians, getGuardianStatus } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { assignBulkWardsToParentValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useGetAllStudents from "@/utils/useGetAllStudents";
+import SelectAutoComplete from "@/components/SelectAutoComplete";
 
 
 const AssignBulkWardsToParent = () => {
@@ -23,22 +24,32 @@ const AssignBulkWardsToParent = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   const allStudentsData = useGetAllStudents();
+  console.log(modalData);
 
   const sendRequest = async (data) => {
+    let studentArray = [];
+    Array.isArray(data.student_ids) && data.student_ids.map((student, index) => {
+      studentArray.push(student.value);
+    });
+
+    const {student_ids, ...rest} = data;
+    
+    console.log(studentArray);
     console.log(data);
-    let response = await dispatch(assignGuardianToSingleStudent(data));
-    if (response.payload.success) {
-      dispatch(showModal({ action: "hide", type: "assignBulkWardsToParent" }));
-      dispatch(getAllGuardians());
-      dispatch(getGuardianStatus());
-    }
+    let response = await dispatch(assignGuardianToBulkStudents({...rest, student_ids: studentArray, guardian_id: modalData.id}));
+    console.log(response);
+    // if (response.payload.success) {
+    //   dispatch(showModal({ action: "hide", type: "assignBulkWardsToParent" }));
+    //   dispatch(getAllGuardians());
+    //   dispatch(getGuardianStatus());
+    // }
   };
 
   const resolver = yupResolver(assignBulkWardsToParentValidationSchema);
 
   const defaultValues = {
     email: modalData.email,
-    student_id: ""
+    student_ids: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
@@ -66,7 +77,7 @@ const AssignBulkWardsToParent = () => {
 
       <div className={cx(styles.formWrapper, "flexCol")}>
         <div className={cx(styles.header)}>
-          <p>Add New Ward</p>
+          <p>Add New Ward(s)</p>
         </div>
         <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
@@ -88,29 +99,21 @@ const AssignBulkWardsToParent = () => {
             )}
           />
 
-          {/* <Controller
-            name="studentId"
-            control={control}
-            render={({ field, ref }) => (
-              <InputField
-                {...field}
-                label={"NAME"}
-                placeholder="Name"
-                error={errors?.studentId && errors?.studentId?.message}
-              />
-            )}
-          /> */}
-
+          <label className={cx(styles.outsideLabel)}>SELECT WARD(S)</label>
           <Controller
-            name="student_id"
+            name="student_ids"
             control={control}
             render={({ field, ref }) => (
-              <Select
+              <SelectAutoComplete
                 {...field}
-                label={"SELECT WARD TO ATTACH"}
-                defaultSelect="Select Ward"
-                error={errors?.student_id && errors?.student_id?.message}
+                // label={"Select Student"}
+                isMulti={true}
+                isClearable={true}
+                isCreatable={false}
+                marginbottom="1.5rem"
+                placeholder=""
                 options={getWardsOptions(allStudentsData)}
+                error={errors?.student_ids && errors?.student_ids?.message}
               />
             )}
           />

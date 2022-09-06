@@ -1,4 +1,4 @@
-import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstitutionApi, deleteInstitutionApi, switchInstitutionApi, addClassApi, getAllClassesApi, modifyClassApi, deleteClassApi, reAssignTeacherApi, enableClassSubscriptionApi, disableClassSubscriptionApi, addTeacherApi, getAllTeachersApi, modifyTeacherApi, deleteTeacherApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, enableStudentSubscriptionApi, disableStudentSubscriptionApi, getAllGuardiansApi, viewGuardianDetailsApi, inviteGuardianApi, assignGuardianToSingleStudentApi, assignGuardianToBulkStudentsApi, guardianStatusUpdateApi, getGuardianStatusApi, getNewGuardianSignupsApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, viewKPIForInstitutionApi, sendNotificationApi, updateProfileApi, addSubjectApi, getAllSubjectsApi, modifySubjectApi, viewSubjectDetailsApi, assignSubjectToTeacherApi, assignSubjectToStudentApi } from "../api/proprietor";
+import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstitutionApi, deleteInstitutionApi, switchInstitutionApi, addClassApi, getAllClassesApi, modifyClassApi, deleteClassApi, reAssignTeacherApi, enableClassSubscriptionApi, disableClassSubscriptionApi, addTeacherApi, getAllTeachersApi, modifyTeacherApi, deleteTeacherApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, enableStudentSubscriptionApi, disableStudentSubscriptionApi, getAllGuardiansApi, viewGuardianDetailsApi, inviteGuardianApi, assignGuardianToSingleStudentApi, assignGuardianToBulkStudentsApi, guardianStatusUpdateApi, getGuardianStatusApi, getNewGuardianSignupsApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, viewKPIForInstitutionApi, sendNotificationApi, updateProfileApi, addSubjectApi, getAllSubjectsApi, modifySubjectApi, viewSubjectDetailsApi, assignSubjectToTeacherApi, assignSubjectToStudentApi, getProfileApi } from "../api/proprietor";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -55,7 +55,8 @@ const initialState = {
   modifySubjectData: {},
   viewSubjectDetailsData: {},
   assignSubjectToTeacherData: {},
-  assignSubjectToStudentData: {}
+  assignSubjectToStudentData: {},
+  getProfileData: {}
 };
 
 export const proprietorSlice = createSlice({
@@ -312,13 +313,18 @@ export const proprietorSlice = createSlice({
     assignSubjectToStudentAction: (state, action) => {
       state.assignSubjectToStudentData = action.payload;
       state.loading = false;
+    },
+
+    getProfileAction: (state, action) => {
+      state.getProfileData = action.payload;
+      state.loading = false;
     }
   }
 });
 export default proprietorSlice.reducer;
 
 // Actions
-const { startLoading, hasError, getDashboardAction, addInstitutionAction, getAllInstitutionsAction, modifyInstitutionAction, deleteInstitutionAction, switchInstitutionAction, addClassAction, getAllClassesAction, modifyClassAction, deleteClassAction, reAssignTeacherAction, enableClassSubscriptionAction, disableClassSubscriptionAction, addTeacherAction, getAllTeachersAction, modifyTeacherAction, deleteTeacherAction, addStudentAction, getAllStudentsAction, viewStudentRecordAction, modifyStudentAction, deleteStudentAction, enableStudentSubscriptionAction, disableStudentSubscriptionAction, getAllGuardiansAction, viewGuardianDetailsAction, inviteGuardianAction, assignGuardianToSingleStudentAction, assignGuardianToBulkStudentsAction, guardianStatusUpdateAction, getGuardianStatusAction, getNewGuardianSignupsAction, addKPIAction, deleteKPIAction, modifyKPIAction, getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction, viewKPIForInstitutionAction, sendNotificationAction, updateProfileAction, addSubjectAction, getAllSubjectsAction, modifySubjectAction, viewSubjectDetailsAction, assignSubjectToTeacherAction, assignSubjectToStudentAction, getAllNotificationsAction } = proprietorSlice.actions;
+const { startLoading, hasError, getDashboardAction, addInstitutionAction, getAllInstitutionsAction, modifyInstitutionAction, deleteInstitutionAction, switchInstitutionAction, addClassAction, getAllClassesAction, modifyClassAction, deleteClassAction, reAssignTeacherAction, enableClassSubscriptionAction, disableClassSubscriptionAction, addTeacherAction, getAllTeachersAction, modifyTeacherAction, deleteTeacherAction, addStudentAction, getAllStudentsAction, viewStudentRecordAction, modifyStudentAction, deleteStudentAction, enableStudentSubscriptionAction, disableStudentSubscriptionAction, getAllGuardiansAction, viewGuardianDetailsAction, inviteGuardianAction, assignGuardianToSingleStudentAction, assignGuardianToBulkStudentsAction, guardianStatusUpdateAction, getGuardianStatusAction, getNewGuardianSignupsAction, addKPIAction, deleteKPIAction, modifyKPIAction, getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction, viewKPIForInstitutionAction, sendNotificationAction, updateProfileAction, addSubjectAction, getAllSubjectsAction, modifySubjectAction, viewSubjectDetailsAction, assignSubjectToTeacherAction, assignSubjectToStudentAction, getAllNotificationsAction, getProfileAction } = proprietorSlice.actions;
 
 
 
@@ -326,6 +332,7 @@ export const getDashboard = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getDashboardApi(data);
+    localStorage.setItem("userData", JSON.stringify(response.data.proprietor));
     return dispatch(getDashboardAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
@@ -351,7 +358,6 @@ export const switchInstitution = (data) => async (dispatch) => {
     dispatch(startLoading());
     const response = await switchInstitutionApi(data);
     const token = response?.data?.user?.token;
-    console.log(token);
     setToken(token);
     return dispatch(switchInstitutionAction(response?.data));
   } catch (e) {
@@ -876,6 +882,18 @@ export const assignSubjectToStudent = (data) => async (dispatch) => {
     return dispatch(assignSubjectToStudentAction(response?.data));
   } catch (e) {
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : e.response.data.message);
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
+  }
+};
+
+export const getProfile = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getProfileApi(data);
+    toast.success(response.data.message);
+    return dispatch(getProfileAction(response?.data));
+  } catch (e) {
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : e?.response?.data?.message ? formatArrayList(e?.response?.data?.message) : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };

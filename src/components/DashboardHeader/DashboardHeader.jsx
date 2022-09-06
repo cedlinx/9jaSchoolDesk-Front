@@ -49,6 +49,11 @@ const Header = (props) => {
   const userDetails = JSON.parse(localStorage.getItem("userData"));
   const activeInstitutionData = JSON.parse(localStorage.getItem("activeInstitutionData"));
   const institutionName = activeInstitutionData?.name;
+  // console.log(userDetails, "new user details");
+
+  useEffect(() => {
+    // dispatch(logout());
+  },[userDetails?.avatar]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 

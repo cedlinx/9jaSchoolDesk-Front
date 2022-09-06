@@ -9,7 +9,7 @@ import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginWithOTPCode } from "@/redux/Auth/AuthSlice";
+import { loginWithOTPCode, logout } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { loginWithOTPCodeValidationSchema } from "@/helpers/validation";
@@ -61,6 +61,11 @@ const OTPVerification = () => {
     setValue("otp", e);
   };
 
+  const handleBack =()=>{
+    dispatch(logout());
+    navigate(-1);
+  };
+
   return (
     <AuthPageContainer>
       <section className={cx(styles.otpVerificationContainer, "flexCol")}>
@@ -97,7 +102,7 @@ const OTPVerification = () => {
               <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => handleLogin(data))} title="Login" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
-            <Button onClick={() => navigate(-1)} title="Back" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+            <Button onClick={() => handleBack()} title="Back" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
 
             {/* <p>Don't get OTP? <Link to="#">Resend OTP</Link></p> */}
 

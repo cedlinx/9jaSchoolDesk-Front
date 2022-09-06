@@ -7,18 +7,9 @@ import styles from "./AssignWardToParent.module.scss";
 import Button from "@/components/Button/Button";
 import Select from "@/components/Select/Select";
 import InputField from "@/components/Input/Input";
-import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { showModal } from "@/redux/ModalState/ModalSlice";
-import closeIcon from "@/assets/icons/closeIcon.svg";
 import { Icon } from "@iconify/react";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
-import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
-import heroImage from "@/assets/images/student-dashboard-hero-image.png";
-import { useDropzone } from "react-dropzone";
 
-import editIcon from "@/assets/icons/edit-icon.svg";
 
 import { assignGuardianToSingleStudent, getAllGuardians, getGuardianStatus } from "@/redux/Proprietor/ProprietorSlice";
 
@@ -99,19 +90,6 @@ const AssignWardToParent = () => {
             )}
           />
 
-          {/* <Controller
-            name="studentId"
-            control={control}
-            render={({ field, ref }) => (
-              <InputField
-                {...field}
-                label={"NAME"}
-                placeholder="Name"
-                error={errors?.studentId && errors?.studentId?.message}
-              />
-            )}
-          /> */}
-
           <Controller
             name="student_id"
             control={control}
@@ -125,7 +103,6 @@ const AssignWardToParent = () => {
               />
             )}
           />
-
 
           <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.btnDiv, "flexRow")}>
             <Button title="Attach" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />

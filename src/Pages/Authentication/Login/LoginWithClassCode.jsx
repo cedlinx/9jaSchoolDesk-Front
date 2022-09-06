@@ -13,7 +13,7 @@ import { isAuthenticated, decodeToken, getToken } from "@/utils/auth";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {loginWithClassCode} from "@/redux/Auth/AuthSlice";
+import {loginWithClassCode, logout} from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { loginWithClassCodeValidationSchema } from "@/helpers/validation";
@@ -48,6 +48,11 @@ const LoginWithClassCodeComponent = () => {
   };
   
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all"  });
+
+  const handleBack =()=>{
+    dispatch(logout());
+    navigate("/");
+  };
 
   return (
     <>
@@ -86,8 +91,9 @@ const LoginWithClassCodeComponent = () => {
                     )}
                   />
 
-                  <div className={cx(styles.submitBtnDiv, "flexRow-fully-centered")}>
+                  <div className={cx(styles.submitBtnDiv, "flexRow")}>
                     <Button onClick={handleSubmit((data) => signIn(data))} loading={loading} disabled={loading} title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D"  />
+                    <Button onClick={() => handleBack()} title="Back" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
                   </div>
 
                   {/* <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p> */}

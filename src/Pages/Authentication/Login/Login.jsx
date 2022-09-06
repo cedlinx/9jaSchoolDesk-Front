@@ -13,7 +13,7 @@ import { isAuthenticated, decodeToken, getToken } from "@/utils/auth";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { login } from "@/redux/Auth/AuthSlice";
+import { login, logout } from "@/redux/Auth/AuthSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { signInValidationSchema } from "@/helpers/validation";
@@ -67,6 +67,11 @@ const Login = () => {
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+
+  const handleBack =()=>{
+    dispatch(logout());
+    navigate("/");
+  };
 
   return (
     <>
@@ -126,8 +131,9 @@ const Login = () => {
                       <Link to={`/${user}/forgot-password`}>Forgot Password</Link>
                     </div>
 
-                    <div  className={cx(styles.submitBtnDiv, "flexRow")}>
+                    <div  className={cx(styles.submitBtnDiv, "flexCol")}>
                       <Button onClick={handleSubmit((data) => signIn(data))} loading={loading} disabled={loading} title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+                      <Button onClick={() => handleBack()} title="Back" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
                     </div>
                     {/* <p className={cx(styles.formText)}>
                       <Link to="/login-with-class-code">Login With Class Code</Link>
@@ -137,7 +143,7 @@ const Login = () => {
                     <p className={cx(styles.formText)}>Don't have an account? <Link to="/guardian-signup">Sign Up</Link></p> } */}
 
  
-                    { user === "guardian" || user === "proprietor" &&  <p className={cx(styles.formText)}>Don&apos;t have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p> }
+                    { user === "guardian" || user === "proprietor" ?  <p className={cx(styles.formText)}>Don&apos;t have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p> : null }
 
                   </form>
                 </div>

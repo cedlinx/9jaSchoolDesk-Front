@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import cx from "classnames";
 import styles from "./VerifyEmail.module.scss";
@@ -20,11 +20,14 @@ const VerifyEmail = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [verificationResponse, setVerificationResponse] = useState("");
   const token = params.token;
   const expires = urlParameters("expires");
   const signature = urlParameters("signature");
   const user = useGetUser();
+
+  const id = location.pathname.split("/")[5];
 
   console.log(user, expires, signature, token);
 
@@ -33,8 +36,8 @@ const VerifyEmail = () => {
   console.log(verifyEmailData);
 
   useEffect(() => {
-    dispatch(verifyEmail({token, expires, signature, user}));
-  }, [dispatch, token, expires, signature, user]);
+    dispatch(verifyEmail({token, expires, signature, user, id}));
+  }, [dispatch, token, expires, signature, user, id]);
 
   return (
     <AuthPageContainer>
@@ -47,7 +50,7 @@ const VerifyEmail = () => {
         <h3>Email Verification</h3>
 
         <div className={cx(styles.formWrapper, "flexCol")}>
-    Response Here
+    ...verifying...
         </div>
 
       </section>

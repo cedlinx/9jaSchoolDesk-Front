@@ -615,8 +615,10 @@ export const assignBulkWardsToParentValidationSchema = Yup.object().shape({
     .max(225, "Too Long!")
     .required("Email is required"),
 
-  student_id: Yup.string()
-    .required("Kindly select at least one (1) user")
+  student_ids: Yup.array()
+    .min(1, "Kindly select at least one (1) student")
+    .nullable()
+    .required("Kindly select at least one student")
 });
 
 export const assignTeacherToClassValidationSchema = Yup.object().shape({

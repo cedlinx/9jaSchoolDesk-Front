@@ -7,7 +7,7 @@ import InputField from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
-import { getDashboard, updateProfile } from "@/redux/Proprietor/ProprietorSlice";
+import { getDashboard, updateProfile, getProfile } from "@/redux/Proprietor/ProprietorSlice";
 
 
 import { useForm, Controller } from "react-hook-form";
@@ -20,6 +20,8 @@ const Account = () => {
 
   const dispatch = useDispatch();
   const userDetails = useSelector((state) => state?.proprietor?.getDashboardData?.proprietor);
+  const userDetails1 = useSelector((state) => state?.proprietor?.getProfileData);
+  console.log(userDetails1);
   const loading = useSelector((state) => state?.proprietor?.loading);
 
   const resolver = yupResolver(modifyProprietorValidationSchema);
@@ -57,9 +59,12 @@ const Account = () => {
     formData.append("address", data.address);
     formData.append("id", userDetails?.id);
 
+    console.log(uploadedFile.file);
+
     let response = await dispatch(updateProfile(formData));
     if(response.payload.success){
       dispatch(getDashboard());
+      // dispatch(getProfile());
     }
   };
 

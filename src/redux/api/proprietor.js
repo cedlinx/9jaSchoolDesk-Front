@@ -164,6 +164,10 @@ export const updateProfileApi = async (data) => {
   return await axios.post("proprietor/auth/profile/update", data);
 };
 
+export const getProfileApi = async (data) => {
+  return await axios.get("proprietor/auth/profile/view", data);
+};
+
 export const addSubjectApi = async (data) => {
   return await axios.post("proprietor/auth/subject/add", data);
 };

@@ -76,7 +76,7 @@ const RoutesComponent = () => {
         <Route path="login-with-class-code" element={<LoginWithClassCode />} />
         <Route path="pre-signup/:user" element={<PreSignUp />} />
         <Route path="signup/:user" element={<SignUp />} />
-        <Route path=":user/auth/email/verify/6/:token/*" element={<VerifyEmail />} />
+        <Route path=":user/auth/email/verify/:id/:token/*" element={<VerifyEmail />} />
         <Route path="/:user/forgot-password" element={<ForgotPassword />} />
         <Route path="otp-expired" element={<OtpExpired />} />
         <Route path="login/:user/otp-verification" element={<OtpVerification />} />

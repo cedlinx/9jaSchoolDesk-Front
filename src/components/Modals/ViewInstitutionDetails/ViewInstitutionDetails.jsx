@@ -56,6 +56,9 @@ const ViewInstitutionDetails = () => {
           <span className={cx(styles.title)}>PHONE NUMBER</span><span className={cx(styles.value)}>{data?.phone}</span>
         </div>
         <div className={cx(styles.modalItem)}>
+          <span className={cx(styles.title)}>TYPE</span><span className={cx(styles.value)}>{data?.type && titleCase(data?.type)}</span>
+        </div>
+        <div className={cx(styles.modalItem)}>
           <span className={cx(styles.title)}>WEBSITE</span><span className={cx(styles.value)}><a href={data?.website} target="_blank" rel="noreferrer">{data?.website}</a></span>
         </div>
         {data?.youtube && <div className={cx(styles.modalItem)}>

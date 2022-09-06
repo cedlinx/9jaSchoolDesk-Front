@@ -6,7 +6,7 @@ import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
-import { inviteGuardian } from "@/redux/Proprietor/ProprietorSlice";
+import { inviteGuardian, getAllGuardians } from "@/redux/Proprietor/ProprietorSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { inviteGuardianValidationSchema } from "@/helpers/validation";
@@ -20,6 +20,7 @@ const InviteGuardian = () => {
   const sendRequest = async (data) => {
     let response = await dispatch(inviteGuardian(data));
     if(response.payload.success){
+      dispatch(getAllGuardians());
       dispatch(showModal({ action: "hide", type: "inviteGuardian" }));
     }
   };

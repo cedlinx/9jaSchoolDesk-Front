@@ -72,7 +72,7 @@ const StudentReport = () => {
     <div className={cx(styles.studentReportContainer)}>
 
       <div className={cx(styles.heading, "flexRow-space-between")}>
-        <h3 className={cx(styles.title)}><span onClick={() => navigate(-1)} style={{ cursor: "pointer", fontSize: "1.125rem" }} ><Icon icon="eva:arrow-back-outline" /> Students</span> / View Report</h3>
+        <h3 className={cx(styles.title)}><span onClick={() => navigate(-1)} style={{ cursor: "pointer", fontSize: "1.125rem" }} ><Icon icon="eva:arrow-back-outline" /> Students</span> / View Details</h3>
       </div>
 
       <div className={cx(styles.body, "flexCol")}>
