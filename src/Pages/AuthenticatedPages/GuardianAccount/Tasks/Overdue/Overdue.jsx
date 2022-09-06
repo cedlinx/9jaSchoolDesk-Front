@@ -10,7 +10,6 @@ import formatDate from "@/helpers/formatDate";
 const Overdue = ({overdueTasks}) => {
 
   const loading = useSelector((state) => state?.student?.loading);
-  console.log(overdueTasks);
 
   const columnsHeader = [                
     {

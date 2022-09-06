@@ -18,7 +18,6 @@ const UserDetailsModal = props => {
   const dispatch = useDispatch();
 
   const handleClick=(dispatchActionData) => {
-    console.log("got herere");
     dispatch(showModal({action: "hide"}));
     dispatchActionData === "usersList" ? dispatch(getAllUsers()) : null;
     dispatchActionData === "adminUsersList" ? dispatch(getAllAdminUsers()) : null;

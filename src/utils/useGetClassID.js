@@ -5,7 +5,6 @@ import { getClassDetails } from "@/redux/Teacher/TeacherSlice";
 
 const useGetClassID = () => {
   const classID = localStorage.getItem("class_id");
-  console.log("class id", classID);
   return classID;
 };
 

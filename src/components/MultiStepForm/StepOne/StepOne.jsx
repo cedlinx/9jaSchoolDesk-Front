@@ -20,7 +20,6 @@ const StepOne = ({ nextStep, handleFormData, values, signUpEmail }) => {
   const { user } = useParams();
 
   const resolver = yupResolver(stepOneValidationSchema);
-  console.log(signUpEmail);
   const defaultValues = {
     email: signUpEmail || values.email,
     firstName: values.firstName,

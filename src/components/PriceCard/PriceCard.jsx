@@ -17,8 +17,6 @@ const PriceCard = props => {
   const location = useLocation();
   const rootPath = location.pathname.split("/")[1];
 
-  console.log(rootPath);
-
   return (
 
     <section className={cx(styles.priceCardContainer, "flexRow")}>

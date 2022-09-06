@@ -31,12 +31,8 @@ const EditProfile = () => {
   const loading = useSelector((state) => state.student.loading);
   const allTasksData = useSelector((state) => state.guardian.getWardTasksData.task);
   const user = useGetUser();
-  console.log(modalData);
-  console.log(allTasksData);
-
+  
   const sendRequest = async (data) => {
-    console.log(data);
-
     let formData = new FormData();
     formData.append("id", modalData.id);
     formData.append("firstName", data.firstName);
@@ -47,7 +43,7 @@ const EditProfile = () => {
 
     let response = await dispatch(modifyWardProfile(formData));
 
-    console.log(response);
+    
     if(response.payload.success){
       dispatch(showModal({ action: "hide" }));
     }

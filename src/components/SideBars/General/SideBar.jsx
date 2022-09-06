@@ -49,11 +49,6 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
   const location = useLocation();
   const teacherDetails = useGetLoggedInUser();
   const user = useGetUser();
-
-  console.log(user);
-
-  console.log(teacherDetails);
-
   // const actualPath = location.pathname.match(/([^/]+$)/);
   const actualPath = location.pathname.split("/").pop();
   const basePath = location.pathname.split("/")[1];

@@ -48,7 +48,6 @@ const Home = () => {
 
   const dataArray = useSelector((state) => state?.teacher?.getAllStudentsData?.wards);
 
-  console.log(dataArray);
   const [attendanceDataArray, setAttendanceDataArray] = useState([]);
 
   const [takeAttendance, setTakeAttendance] = useState(false);
@@ -61,7 +60,6 @@ const Home = () => {
   }, [dispatch, class_id]);
 
   const attendanceStatus = (status) => {
-    console.log(status);
     let studentsArr = [...studentAttendanceStatus];
     let result = studentsArr.find((student) => {
       return student.id === status.id;
@@ -82,9 +80,8 @@ const Home = () => {
 
     setTakeAttendance(true);
     let response = await dispatch(takeAttendanceFxn({class_id: class_id}));
-    console.log(response);
+    
     if (response.payload.success) {
-      console.log(response.payload.students);
       setAttendanceDataArray(response.payload.students);
       let presentStudents = response?.payload?.students.filter((student) => {
         return student.status === 1;
@@ -95,7 +92,6 @@ const Home = () => {
       response.payload.students.forEach((student) => {
         status.push({ id: student.id, status: student.status });
       });
-      console.log(status);
       setStudentAttendanceStatus(status);
     }
   };

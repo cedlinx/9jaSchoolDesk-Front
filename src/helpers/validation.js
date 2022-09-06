@@ -554,11 +554,8 @@ export const urgentInfoValidationSchema = Yup.object().shape({
     }
     ) 
   // .test("recipients", "Recipients is required", function(value, allData) {
-  //   console.log(value);
   //   let selectedUsers = allData.parent.user;
-  //   console.log(selectedUsers);
   //   let result =  selectedUsers && selectedUsers.includes("recipients");
-  //   console.log(result);
   //   return result;
   // }
   // )
@@ -690,7 +687,6 @@ export const addNewTaskValidationSchema = Yup.object().shape({
   // selected_audience: Yup.array()
   //   .when("audience", {
   //     is: (value) => {
-  //       console.log(value);
   //       return value && value === 1;
   //     },
   //     then: (rule) => {
@@ -716,7 +712,6 @@ export const assignTaskValidationSchema = Yup.object().shape({
   selected_audience: Yup.array()
     .when("audience", {
       is: (value) => {
-        console.log(value);
         return value && value === 1;
       },
       then: (rule) => {
@@ -747,7 +742,6 @@ export const modifyTaskValidationSchema = Yup.object().shape({
   // selected_audience: Yup.array()
   //   .when("audience", {
   //     is: (value) => {
-  //       console.log(value);
   //       return value && value === 1;
   //     },
   //     then: (rule) => {

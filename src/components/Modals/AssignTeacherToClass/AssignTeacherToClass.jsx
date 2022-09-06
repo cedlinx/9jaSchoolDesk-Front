@@ -22,20 +22,20 @@ const AssignTeacherToClass = () => {
   const modalData = useSelector((state) => state.modalState.modalData);
   const allClassesData = useGetAllClasses();
   const allTeachersData = useGetAllTeachers();
-  console.log(modalData);
+  
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let {name, ...rest} = data;
     // let response = await dispatch(reAssignTeacher({...data, teacher_id: modalData?.category === "teacher" ? modalData.id : data?.teacher_id}));
-    // console.log(response);
+    // 
     // if(response.payload.success){
     //   dispatch(showModal({ action: "hide", type: "reAssignTeacher" }));
     //   dispatch(getAllTeachers());
     // }
 
     let response = await dispatch(reAssignTeacher(rest));
-    console.log(response);
+    
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "reAssignTeacher" }));
       modalData.category === "class" ? dispatch(getAllClasses()) : dispatch(getAllTeachers());
@@ -52,7 +52,7 @@ const AssignTeacherToClass = () => {
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
-  console.log(errors);
+  
   const getClassOptions = () => {
     let options = [];
     Array.isArray(allClassesData) && allClassesData.map((classData) => {

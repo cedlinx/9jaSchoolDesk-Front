@@ -19,7 +19,6 @@ const AllTasks = () => {
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.teacher.loading);
   const allTasksData = useGetAllTasks();
-  console.log(allTasksData);
 
   const columnsHeader = [
     {
@@ -112,7 +111,7 @@ const AllTasks = () => {
         };
 
         let data = row.cell.row.original.allData;
-        console.log(data);
+        
 
         return <div style={{ display: "flex", justifyContent: "space-between" }}>
           {data.status !== 1 ? <Button onClick={() => dispatch(showModal({ action: "show", type: "changeTaskStatus", modalData: { data, action: "enable" } }))} title="Enable" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" bordercolor="#D25B5D" />

@@ -49,7 +49,6 @@ const Header = (props) => {
   const userDetails = JSON.parse(localStorage.getItem("userData"));
   const activeInstitutionData = localStorage.getItem("activeInstitutionData") && JSON.parse(localStorage.getItem("activeInstitutionData"));
   const institutionName = activeInstitutionData?.name;
-  // console.log(userDetails, "new user details");
 
   useEffect(() => {
     // dispatch(logout());

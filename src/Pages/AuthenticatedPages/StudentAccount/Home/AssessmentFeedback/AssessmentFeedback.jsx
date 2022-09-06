@@ -18,7 +18,6 @@ const AssessmentFeedback = ({tasksData}) => {
 
   let getTableData = (data) => {
     let result =[];
-    console.log(data);
     
     data  && data.map((item, index) =>{
       result.push({

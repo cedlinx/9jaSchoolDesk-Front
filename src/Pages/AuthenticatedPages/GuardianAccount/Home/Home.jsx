@@ -36,9 +36,6 @@ const Home = () => {
   const dashboardData = useSelector((state) => state.guardian.getDashboardData);
   const selectedWard = useGetSelectedWard();
   const { comments_and_replies, gists, parent, ratings, wards, notices, subscription_status } = dashboardData;
-
-  console.log(dashboardData, "dashboard data");
-  console.log(selectedWard, "selected Ward");
   
   useEffect(() => {
     dispatch(getDashboard());

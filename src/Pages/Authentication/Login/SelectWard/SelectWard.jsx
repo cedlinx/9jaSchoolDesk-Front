@@ -25,11 +25,7 @@ const SelectWard = () => {
 
   const wardsArray = useGetAllWards();
 
-  console.log(wardsArray);
-
-
   const handleSwitchWard = (id) => {
-    console.log(id);
     toast("Switching ward...");
     localStorage.setItem("selectedWardID", id);
     navigate("/guardian/dashboard");

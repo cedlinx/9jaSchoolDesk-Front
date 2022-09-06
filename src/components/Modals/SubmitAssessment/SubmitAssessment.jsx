@@ -15,7 +15,7 @@ const SubmitAssessment = () => {
   const navigate = useNavigate();
   const modalData = useSelector((state) => state.modalState.modalData);
   const loading = useSelector((state) => state.student.loading);
-  console.log(modalData);
+  
 
   const sendRequest = async () => {
     let formData = new FormData();
@@ -23,11 +23,9 @@ const SubmitAssessment = () => {
     modalData?.attachment && formData.append("attachment", modalData?.attachment);
     formData.append("studentID", modalData?.taskData?.pivot?.student_id);
     formData.append("task_id", modalData?.taskData?.id);
-
-    console.log(formData);
     
     let response = await dispatch(submitTask(formData));
-    console.log(response);
+    
     if(response.payload.success){
       dispatch(showModal({ action: "hide"}));
       navigate("/student/tasks");

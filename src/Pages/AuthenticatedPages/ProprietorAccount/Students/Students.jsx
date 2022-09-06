@@ -161,7 +161,6 @@ const Students = () => {
       accessor: "action",
       Cell: (row) => {
         let studentData = row.cell.row.original.allData;
-        console.log(studentData);
         return <div style={{display: "flex", justifyContent: "center"}}>
           <Button onClick={() => navigate(`student-report/${studentData?.id}`, { state: { studentData: studentData } })} title="View Details" borderRadiusType="fullyRounded" textColor="#FF6A00" bgColor="#FF7E3F0D" bordercolor="#FF7E3F0D" hoverBg="#FF6A00" hoverColor="#fff" />
         </div>;

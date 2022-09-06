@@ -36,15 +36,13 @@ const RateTeacher = () => {
   const userDetails = useGetLoggedInUser();
   let signature = userDetails?.dashboard_url && userDetails?.dashboard_url.split("=")[1];
   let classCode = userDetails?.dashboard_url && userDetails?.dashboard_url.split("/")[8];
-  const studentID = localStorage.getItem("loggedInStudentID");
-  console.log(userDetails);
-  console.log(modalData);
+  const studentID = localStorage.getItem("loggedInStudentID");  
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     
     let response = user === "student" ? await dispatch(rateTeacherByStudent({rating : modalData?.rating, teacher_id: modalData?.teacherData?.subject_teacher.id, comment: data?.comment, user_id: modalData?.studentID})) : await dispatch(rateTeacherByGuardian({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.guardianID}));
-    console.log(response);
+    
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "rateTeacher" }));
 
@@ -59,7 +57,7 @@ const RateTeacher = () => {
   };
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  console.log(errors);
+  
   
   return (
 

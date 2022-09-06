@@ -9,8 +9,6 @@ import useGetUser from "./useGetUser";
 const useGetAllGuardians = () => {
 
   let currentUser = useGetUser();
-  console.log("currentUser", currentUser);
-
   const dispatch = useDispatch();
   const allProprietorGuardiansData = useSelector((state) => state?.proprietor?.getAllGuardiansData?.guardians);
   const allTeacherGuardiansData = useSelector((state) => state?.teacher?.getAllGuardiansData?.guardians);

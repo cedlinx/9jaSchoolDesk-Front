@@ -24,7 +24,7 @@ const AssignBulkWardsToParent = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   const allStudentsData = useGetAllStudents();
-  console.log(modalData);
+  
 
   const sendRequest = async (data) => {
     let studentArray = [];
@@ -33,11 +33,9 @@ const AssignBulkWardsToParent = () => {
     });
 
     const {student_ids, ...rest} = data;
-    
-    console.log(studentArray);
-    console.log(data);
+        
     let response = await dispatch(assignGuardianToBulkStudents({...rest, student_ids: studentArray, guardian_id: modalData.id}));
-    console.log(response);
+    
     // if (response.payload.success) {
     //   dispatch(showModal({ action: "hide", type: "assignBulkWardsToParent" }));
     //   dispatch(getAllGuardians());
@@ -55,7 +53,7 @@ const AssignBulkWardsToParent = () => {
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
   const getWardsOptions = (data) => {
-    console.log(data);
+    
     let options = [];
     Array.isArray(data) && data.map((studentData) => {
       options.push({

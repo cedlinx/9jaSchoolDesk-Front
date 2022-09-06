@@ -32,8 +32,6 @@ const Home = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const studentData = useGetStudentDashboard();
-
-  console.log(studentData, "logged in student data");
   
   return (
     <div className={cx(styles.dashboardHomeContainer)}>

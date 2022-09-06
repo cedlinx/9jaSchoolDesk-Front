@@ -15,7 +15,7 @@ const TaskDetails = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.modalState.modalData);
   const user = useGetUser();
-  console.log(data);
+  
 
   return (
     <div className={cx(styles.taskDetailsContainer, "flexCol")}>

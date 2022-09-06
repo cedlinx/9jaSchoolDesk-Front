@@ -358,7 +358,7 @@ export const addKPI = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(addKPIAction(response?.data));
   } catch (e) {
-    console.log(e.response);
+    
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
@@ -504,7 +504,7 @@ export const modifyTask = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(modifyTaskAction(response?.data));
   } catch (e) {
-    console.log(e.response);
+    
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
@@ -633,7 +633,6 @@ export const switchClass = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await switchClassApi(data);
-    console.log(response?.data);
     toast.success(response.data.message);
     return dispatch(switchClassAction(response?.data));
   } catch (e) {
@@ -693,11 +692,10 @@ export const createLesson = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await createLessonApi(data);
-    console.log(response);
     toast.success(response.data.message);
     return dispatch(createLessonAction(response?.data));
   } catch (e) {
-    console.log(e.response);
+    
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : Array.isArray(e.response.data.message) ? formatArrayList(e.response.data.message) : e.response.data.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }

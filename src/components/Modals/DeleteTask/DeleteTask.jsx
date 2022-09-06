@@ -12,7 +12,7 @@ const DeleteTask = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state?.modalState?.modalData);
   const loading = useSelector((state) => state?.teacher?.loading);
-  console.log(modalData);
+  
 
   const sendRequest = async () => {
     let response = await dispatch(deleteTask({ id: modalData.id }));

@@ -38,7 +38,7 @@ const AddInstitution = () => {
 
   const sendRequest = async (data) => {
     let response = await dispatch(addInstitution(data));
-    console.log(response);
+    
     if (response?.payload?.message.includes("successfully")) {
       dispatch(getAllInstitutions());
       dispatch(showModal({ action: "hide" }));

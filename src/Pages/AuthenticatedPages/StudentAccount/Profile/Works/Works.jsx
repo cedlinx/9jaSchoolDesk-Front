@@ -10,7 +10,6 @@ import { Icon } from "@iconify/react";
 const Works = () => {
   const dispatch = useDispatch();
   const studentData = useGetStudentDashboard();
-  console.log(studentData?.student?.submitted_tasks);
 
   return (
     <div className={cx(styles.worksContainer)}>

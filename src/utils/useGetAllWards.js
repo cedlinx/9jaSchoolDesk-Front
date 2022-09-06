@@ -7,7 +7,6 @@ const useGetAllWards = () => {
 
   const dispatch = useDispatch();
   const allWardsData = useSelector((state) => state.guardian.getAllWardsData.wards);
-  console.log(allWardsData);
 
   useEffect(() => {
     dispatch(getAllWards());

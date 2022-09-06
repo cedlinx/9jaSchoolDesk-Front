@@ -12,7 +12,7 @@ const DeleteClass = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state?.modalState?.modalData);
   const loading = useSelector((state) => state?.proprietor?.loading);
-  console.log(modalData);
+  
 
   const sendRequest = async () => {
     let response = await dispatch(deleteClass({id: modalData.id}));

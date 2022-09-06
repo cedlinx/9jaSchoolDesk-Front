@@ -11,9 +11,6 @@ import { titleCase, initialsCase } from "@/helpers/textTransform";
 const WardProfile = ({selectedWard}) => {
   const dispatch = useDispatch();
 
-  console.log(selectedWard);
-
-
   return (
     <div className={cx(styles.wardProfileContainer)}>  <div className={cx(styles.studentProfileDiv)}>
       <h5>Profile</h5>

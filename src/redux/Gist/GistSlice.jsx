@@ -25,8 +25,6 @@ export const gistSlice = createSlice({
       state.loading = true;
     },
     hasError: (state, action) => {
-      console.log(state);
-      console.log(action);
       state.error = action.payload;
       state.loading = false;
     },
@@ -69,7 +67,7 @@ export const createGist = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(createGistAction(response?.data));
   } catch (e) {
-    console.log(e.response);
+    
     toast.error(e.response.data.errors ? formatArrayList(e.response.data.errors) : formatArrayList(e.response.data.message));
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }

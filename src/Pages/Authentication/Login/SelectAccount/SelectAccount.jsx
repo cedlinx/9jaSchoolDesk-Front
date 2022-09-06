@@ -22,8 +22,6 @@ const SelectAccount = () => {
   const modalType = useSelector((state) => state.modalState.type);
   const allStudentsData = location?.state?.payload;
 
-  console.log(allStudentsData);
-
   const handleLogin = (student) => {
     dispatch(showModal({action: "show", type: "studentLogin", modalData: student}));
   };

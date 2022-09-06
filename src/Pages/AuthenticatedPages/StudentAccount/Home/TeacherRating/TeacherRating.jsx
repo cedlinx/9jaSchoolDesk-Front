@@ -74,7 +74,6 @@ const TeacherRating = ({teachersData, studentID}) => {
       Cell: (row) => {
         let ratings = row.cell.row.values.ratings * 1;
         let allData = row.cell.row.original.allData;
-        console.log(ratings);
 
         return <div>
           <StarRating

@@ -21,20 +21,18 @@ import SelectAutoComplete from "@/components/SelectAutoComplete";
 const AssignSubjectsToStudent = () => {
 
   const dispatch = useDispatch();
-  const modalData = useSelector((state) => state.modalState.modalData);
-  console.log(modalData);
+  const modalData = useSelector((state) => state.modalState.modalData);  
   const schoolSubjects = useGetAllSubjects();
-  console.log(schoolSubjects);
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let subjects = [];
     data.subjects.map((subject) => {
       subjects.push(subject.value);
     } );
 
     let response = await dispatch(assignSubjectToStudent({subjects: subjects, id: modalData.id}));
-    console.log(response);
+    
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "assignSubjectsToStudent" }));
       dispatch(getAllStudents());
@@ -60,7 +58,7 @@ const AssignSubjectsToStudent = () => {
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
-  console.log(errors);
+  
 
   // const getClassOptions = () => {
   //   let options = [];

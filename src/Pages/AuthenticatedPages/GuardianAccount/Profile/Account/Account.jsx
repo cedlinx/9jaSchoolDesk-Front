@@ -23,8 +23,6 @@ const Account = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state?.guardian?.loading);
   const userDetails = useGetLoggedInUser();
-  console.log(userDetails);
-
 
   const resolver = yupResolver(modifyGuardianValidationSchema);
 
@@ -50,7 +48,7 @@ const Account = () => {
 
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let formData = new FormData();
     uploadedFile.file && formData.append("photo", uploadedFile.file);
     formData.append("firstName", data.firstName);

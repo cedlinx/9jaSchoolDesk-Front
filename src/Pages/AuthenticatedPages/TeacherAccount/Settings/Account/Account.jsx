@@ -24,8 +24,6 @@ const Account = () => {
   // const userDetails = useSelector((state) => state?.teacher?.getDashboardData?.teacher);
   const loading = useSelector((state) => state?.teacher?.loading);
   const userDetails = useGetLoggedInUser();
-  console.log(userDetails);
-
 
   const resolver = yupResolver(modifyProprietorValidationSchema);
 
@@ -51,7 +49,7 @@ const Account = () => {
 
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let formData = new FormData();
     uploadedFile.file && formData.append("photo", uploadedFile.file);
     formData.append("firstName", data.firstName);

@@ -24,8 +24,8 @@ const AssignTask = () => {
   const classStudents = useGetClassDetails().students;
 
   const sendRequest = async (data) => {
-    console.log(data);
-    console.log(modalData);
+    
+    
     let selected_audience_ids = [];
     Array.isArray(data.selected_audience) && data.selected_audience.map(item => {
       selected_audience_ids.push(item.value);

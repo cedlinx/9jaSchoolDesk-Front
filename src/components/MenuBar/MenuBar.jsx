@@ -11,7 +11,6 @@ import { Navbar, Nav, Dropdown,
 const MenuBar = () => {
 
   const handleClick=(e)=>{
-    console.log(e.target.id);
   };
   
   return (

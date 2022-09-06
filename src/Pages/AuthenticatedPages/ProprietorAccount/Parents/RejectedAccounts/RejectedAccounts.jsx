@@ -9,8 +9,6 @@ import { titleCase } from "@/helpers/textTransform";
 const RejectedAccounts = () => {
 
   const allRejectedGuardians = useSelector((state) => state?.proprietor?.getGuardianStatusData.terminatedList);
-
-  console.log(allRejectedGuardians);
   
   const columnsHeader = [                
     {

@@ -10,7 +10,6 @@ const useGetSelectedWard = () => {
   useEffect(() => {
     dispatch(viewWardDetails(selectedID));
   }, [dispatch, selectedID]);
-  console.log(wardDetails);
 
   return wardDetails;
 };

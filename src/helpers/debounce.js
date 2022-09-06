@@ -1,5 +1,4 @@
 const debounce = (func, wait) => {
-  console.log(func, wait);
   let timeout;
   return function(...args) {
     const context = this;
@@ -13,7 +12,6 @@ const debounce = (func, wait) => {
 
 // const debounce =((cb, delay = 2000)=>{
 
-//   console.log(cb);
 //   let timeout;
   
 //   return (...args) => {

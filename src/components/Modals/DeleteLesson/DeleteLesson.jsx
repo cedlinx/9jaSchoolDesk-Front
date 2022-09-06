@@ -15,7 +15,7 @@ const DeleteLesson = () => {
   const loading = useSelector((state) => state?.teacher?.loading);
   const class_id = useGetClassID();
 
-  console.log(modalData);
+  
 
   const sendRequest = async () => {
     let response = await dispatch(deleteLesson({ id: modalData }));

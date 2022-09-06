@@ -37,7 +37,6 @@ const PreSignUp = () => {
   const [emailValue, setEmailValue] = useState("");
   const params = useParams();
   const user = params?.user;
-  console.log(verifyOTPData);
 
   useEffect(() => {
     if (verifyOTPData.success) {

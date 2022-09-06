@@ -13,11 +13,11 @@ const DeleteStudent = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state?.modalState?.modalData);
   const loading = useSelector((state) => state?.proprietor?.loading);
-  console.log(modalData);
+  
 
   const sendRequest = async () => {
     let response = await dispatch(deleteStudent({ id: modalData.id }));
-    console.log(response);
+    
     if (response.payload.success) {
       dispatch(getAllStudents());
       dispatch(showModal({ action: "hide", type: "deleteStudent" }));

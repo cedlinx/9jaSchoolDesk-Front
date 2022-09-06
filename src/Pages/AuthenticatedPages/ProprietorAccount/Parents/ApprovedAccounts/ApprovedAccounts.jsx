@@ -14,8 +14,6 @@ const ApprovedAccounts = () => {
   const dispatch = useDispatch();
   const approvedParentsData = useSelector((state) => state?.proprietor?.getGuardianStatusData.activeList);
 
-  console.log(approvedParentsData);
-
   const columnsHeader = [
     {
       Header: () => (

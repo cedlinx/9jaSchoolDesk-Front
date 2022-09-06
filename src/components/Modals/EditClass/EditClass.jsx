@@ -32,10 +32,10 @@ const EditClass = () => {
   let institution_id = useGetInstitutionID();
 
 
-  console.log(modalData);
+  
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let subjectArray = [];
     data.subjects.map((subject) => {
       data?.subject.map((teacher, index)=>{
@@ -67,7 +67,7 @@ const EditClass = () => {
   };
 
   const getTeacherOptions = (data) => {
-    console.log(data);
+    
     let options = [];
     Array.isArray(data) && data.map((teacher) => {
       options.push({
@@ -107,7 +107,7 @@ const EditClass = () => {
   };
 
   const handleSubjectTeacherChange = (data, element, subject) => {
-    console.log(data);
+    
     console.log(element);
     console.log(subject);
     setValue(element.name, data);

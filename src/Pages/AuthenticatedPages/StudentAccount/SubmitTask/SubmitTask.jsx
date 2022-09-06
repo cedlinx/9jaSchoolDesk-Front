@@ -27,7 +27,7 @@ const SubmitTask = () => {
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
-  console.log(taskData);
+
   const sendRequest = (data) => {
     dispatch(showModal({ action: "show", type: "submitAssessment", modalData: {data: data, taskData: taskData, attachment: uploadedFile?.file}}));
   };
@@ -52,7 +52,6 @@ const SubmitTask = () => {
   
   const onDrop = useCallback(acceptedFiles => {
     let file = (acceptedFiles[0]);
-    console.log(file);
     const reader = new FileReader();
     reader.onloadend = () => {
       setUploadedFile({file: file, imagePreviewUrl: reader.result, type: file.type.split("/")[0]});

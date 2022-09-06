@@ -19,16 +19,11 @@ const SelectClass = () => {
 
   const teacherDetails = useGetLoggedInUser();
   let classesArray = teacherDetails?.classes;
-  console.log(teacherDetails);
-
 
   const handleSwitchClass = async (class_id) => {
-    console.log(class_id);
     toast("Switching class...");
     let response = await dispatch(switchClass({id: class_id }));
-    console.log(response, "switch response");
     if (response.payload.success) {
-      console.log(class_id);
       localStorage.setItem("activeClassData", JSON.stringify(response.payload.class));
       localStorage.setItem("class_id", class_id);
       navigate("/teacher/dashboard");

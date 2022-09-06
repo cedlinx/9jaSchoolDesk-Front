@@ -29,11 +29,7 @@ const VerifyEmail = () => {
 
   const id = location.pathname.split("/")[5];
 
-  console.log(user, expires, signature, token);
-
   const verifyEmailData = useSelector((state) => state.auth.verifyEmailData);
-
-  console.log(verifyEmailData);
 
   useEffect(() => {
     dispatch(verifyEmail({token, expires, signature, user, id}));

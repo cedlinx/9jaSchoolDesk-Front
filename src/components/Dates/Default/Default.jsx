@@ -28,7 +28,6 @@ const CalendarComp = () => {
 
   // hide dropdown on ESC press
   const hideOnEscape = (e) => {
-    // console.log(e.key)
     if( e.key === "Escape" ) {
       setOpen(false);
     }
@@ -36,8 +35,6 @@ const CalendarComp = () => {
 
   // Hide on outside click
   const hideOnClickOutside = (e) => {
-    // console.log(refOne.current)
-    // console.log(e.target)
     if( refOne.current && !refOne.current.contains(e.target) ) {
       setOpen(false);
     }
@@ -45,8 +42,6 @@ const CalendarComp = () => {
 
   // on date change, store date in state
   const handleSelect = (date) => {
-    // console.log(date)
-    // console.log(format(date, 'MM/dd/yyyy'))
     setCalendar(format(date, "MM/dd/yyyy"));
   };
 

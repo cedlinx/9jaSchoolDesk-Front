@@ -24,8 +24,6 @@ import AssignBulkWardsToParentModal from "@/components/Modals/AssignBulkWardsToP
 import { getGuardianStatus, getNewGuardianSignups } from "@/redux/Proprietor/ProprietorSlice";
 import useGetAllGuardians from "@/utils/useGetAllGuardians";
 
-
-
 const Parents = () => {
 
   const dispatch = useDispatch();
@@ -36,10 +34,6 @@ const Parents = () => {
   let allGuardiansData = useGetAllGuardians();
   let allGuardiansignups = useSelector((state) => state.proprietor.getNewGuardianSignupsData);
   let allGuardianStatus = useSelector((state) => state.proprietor.getGuardianStatusData);
-
-  console.log(allGuardiansData);
-  console.log(allGuardiansignups);
-  console.log(allGuardianStatus);
 
   useEffect(() => {
     dispatch(getNewGuardianSignups());

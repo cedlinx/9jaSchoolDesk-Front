@@ -40,9 +40,6 @@ const Home = () => {
   const loading = useSelector((state) => state.proprietor.loading);
   const newSignUpLoading = useSelector((state) => state?.proprietor?.getNewGuardianSignupsData?.success);
 
-  console.log(dashboardData);
-  console.log(newSignUpsData);
-
   useEffect(() => {
     dispatch(getDashboard());
     dispatch(getNewGuardianSignups());

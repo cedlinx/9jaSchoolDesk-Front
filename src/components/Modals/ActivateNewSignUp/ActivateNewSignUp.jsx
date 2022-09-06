@@ -14,7 +14,7 @@ const ActivateNewSignUp = () => {
   const modalData = useSelector((state) => state.modalState.modalData);
   const loading = useSelector((state) => state?.proprietor?.loading);
 
-  console.log(modalData);
+  
 
   const sendRequest = async () => {
     let response = await dispatch(guardianStatusUpdate({ guardian_id: modalData.id, status: "Active" }));

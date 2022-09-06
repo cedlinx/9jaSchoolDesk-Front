@@ -40,7 +40,7 @@ const ResetPassword = () => {
 
   const handleReset = async (data)=>{
     const response = await dispatch(resetPassword({user: params.user, payload: data, token: params.token}));
-    console.log(response);
+    
   };
 
   return (

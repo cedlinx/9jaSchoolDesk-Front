@@ -35,7 +35,7 @@ const LoginWithClassCodeComponent = () => {
 
   const signIn= async (data)=>{
     let response = await dispatch(loginWithClassCode({code: data?.accessCode}));
-    console.log(response);
+    
     if(response.payload.success){
       navigate("/select-account/student", {state: {payload: response.payload.students}});
     }

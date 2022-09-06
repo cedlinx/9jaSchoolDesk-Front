@@ -87,7 +87,7 @@ const Tasks = ({currentTasks}) => {
   ];
 
   let getTableData = (data) => {
-    console.log(data);
+    
     let result =[];
 
     data  && data.map((item, index) =>{

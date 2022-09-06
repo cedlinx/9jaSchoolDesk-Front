@@ -148,7 +148,7 @@ const All = ({allTasks}) => {
 
   let getTableData = (data) => {
     let result =[];
-    console.log(data);
+    
 
     Array.isArray(data)  && data.map((item, index) =>{
       result.push({

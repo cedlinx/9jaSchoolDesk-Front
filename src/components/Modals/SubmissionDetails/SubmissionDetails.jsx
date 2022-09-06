@@ -13,7 +13,7 @@ const SubmissionDetails = () => {
   
   const dispatch = useDispatch();
   const data = useSelector((state) => state.modalState.modalData);
-  console.log(data);
+  
 
   return (
     <div className={cx(styles.submissionDetailsContainer, "flexCol")}>

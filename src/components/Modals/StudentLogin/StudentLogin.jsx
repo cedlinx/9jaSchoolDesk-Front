@@ -27,23 +27,20 @@ const StudentLogin = () => {
   const modalData = useSelector((state) => state.modalState.modalData);
   const userDetails = useGetLoggedInUser();
   const loading = useSelector((state) => state.student.loading);
-  console.log(userDetails);
-  console.log(modalData);
+  
   let signature = modalData?.dashboard_url.split("=")[1];
   let classCode = modalData?.dashboard_url.split("/")[8];
 
   const params = useParams();
-  console.log(params);
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     localStorage.setItem("loggedInStudentID", modalData.id);
     localStorage.setItem("userData", JSON.stringify(modalData));
     let response = await dispatch(validatePin({pin: data.pin, student_id: modalData.id}));
-    console.log(response);
+    
     
     if(response.payload.success){
-      console.log(signature, classCode);
       const studentID = localStorage.getItem("loggedInStudentID");
 
       let response2 = await dispatch(getDashboard({id: studentID, signature: signature, classCode: classCode}));
@@ -62,7 +59,7 @@ const StudentLogin = () => {
   };
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  console.log(errors);
+  
   
   return (
 

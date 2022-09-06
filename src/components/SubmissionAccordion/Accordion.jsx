@@ -28,7 +28,6 @@ const AccordionComponent =(props)=>{
     score: "",
     index: ""
   });
-  console.log(accordionArray);
 
   const sendRequest = async (data, task, index) => {
     let feedbackData = {
@@ -37,7 +36,7 @@ const AccordionComponent =(props)=>{
     };
 
     let response = await dispatch(assessTask({...feedbackData, audience: [task?.pivot?.student_id], task_id: task?.pivot?.task_id }));
-    console.log(response);
+    
     if (response.payload.success) {
       dispatch(getStudentsAssignedToTask(task?.pivot?.task_id));
     }
@@ -63,7 +62,7 @@ const AccordionComponent =(props)=>{
   const { register, handleSubmit, formState: { errors }, control,  setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
 
-  console.log(errors);
+  
   return (
     <section className={cx(styles.submissionAccordionContainer, "faq section--py")}>
       <div className="container flex">

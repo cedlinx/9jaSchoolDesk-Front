@@ -11,8 +11,6 @@ import { Icon } from "@iconify/react";
 
 const NoticeBoard = ({selectedWard}) => {
   const notices = selectedWard?.notices;
-  console.log(notices);
-
 
   let getTableData = (data) => {
     let result =[];

@@ -93,7 +93,6 @@ export const addStudentApi = async (data) => {
 };
 
 export const getAllStudentsApi = async (data) => {
-  console.log(data, "api");
   return await axios.get(`teacher/auth/list/student?class_id=${data}`, data);
 };
 
@@ -138,7 +137,6 @@ export const getClassDetailsApi = async (data) => {
 };
 
 export const createLessonApi = async (data) => {
-  console.log(data, "api");
   return await axios.post("teacher/auth/lesson/add", data);
 };
 

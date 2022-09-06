@@ -5,7 +5,6 @@ import behaviouralCardImage from "@/assets/images/behavioral-card-image.png";
 import { titleCase } from "@/helpers/textTransform";
 
 const BehaviouralFeedback = ({feedbackData}) => {
-  console.log(feedbackData);
 
   const calculateTotalPoints = (feedbackData) => {
     let score = feedbackData.reduce((acc, arr)=>{

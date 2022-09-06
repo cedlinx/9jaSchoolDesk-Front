@@ -30,8 +30,6 @@ const Tasks = () => {
   const loading = useSelector((state) => state.student.loading);
   const selectedWard = useGetSelectedWard();
 
-  console.log(selectedWard);
-
   useEffect(() => {
     dispatch(getWardTasks({student_id: selectedWard?.id}));
   }, [dispatch, selectedWard?.id]);

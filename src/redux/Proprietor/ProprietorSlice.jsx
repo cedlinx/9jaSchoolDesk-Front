@@ -419,7 +419,7 @@ export const getAllClasses = (data) => async (dispatch) => {
     const response = await getAllClassesApi(data);
     return dispatch(getAllClassesAction(response?.data));
   } catch (e) {
-    console.log(e.response);
+    
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
@@ -513,7 +513,6 @@ export const modifyTeacher = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(modifyTeacherAction(response?.data));
   } catch (e) {
-    console.log(e.response.data.message);
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
@@ -711,7 +710,7 @@ export const addKPI = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(addKPIAction(response?.data));
   } catch (e) {
-    console.log(e.response);
+    
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
@@ -820,7 +819,7 @@ export const addSubject = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(addSubjectAction(response?.data));
   } catch (e) {
-    console.log(e.response);
+    
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }

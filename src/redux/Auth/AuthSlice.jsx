@@ -36,8 +36,6 @@ export const authSlice = createSlice({
       state.loading = true;
     },
     hasError: (state, action) => {
-      console.log(state);
-      console.log(action);
       state.error = action.payload;
       state.loading = false;
     },
@@ -117,7 +115,6 @@ export const loginWithOTPCode = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await loginWithOTPCodeApi(data);
-    console.log(response, "login with code");
     // let token = response?.data?.user?.token;
     // setToken(token);
     let userData = response?.data?.user;
@@ -243,7 +240,7 @@ export const changePassword = (data) => async (dispatch) => {
 };
 
 export const resetPassword = (data) => async (dispatch) => {
-  console.log(data);
+  
   try {
     dispatch(startLoading());
     const response = await resetPasswordApi(data);

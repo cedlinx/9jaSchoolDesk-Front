@@ -26,7 +26,7 @@ const ModifyInstitution = () => {
 
   const sendRequest = async (data) => {
     let response = await dispatch(modifyInstitution({...data, id: modalData.id}));
-    console.log(response);
+    
     if (response?.payload?.message.includes("successfully")) {
       dispatch(getAllInstitutions());
       dispatch(showModal({ action: "hide", type: "modifyInstitution" }));

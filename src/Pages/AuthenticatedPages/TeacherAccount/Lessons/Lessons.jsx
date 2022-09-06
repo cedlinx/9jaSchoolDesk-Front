@@ -26,8 +26,6 @@ const Lessons = () => {
   const classLessonsData = useSelector((state) => state.teacher.getClassLessonsData.lessons);
   const class_id = useGetClassID();
 
-  console.log(classLessonsData);
-
   useEffect(() => {
     dispatch(getClassLessons({class_id}));
   },[class_id, dispatch]);
@@ -36,7 +34,6 @@ const Lessons = () => {
   const modalState = useSelector((state) => state.modalState.action);
   
   const handleClick = (product) => {
-    console.log(product);
     navigate(`view-class/${product.id}`);
   };
     

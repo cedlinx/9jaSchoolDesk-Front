@@ -15,7 +15,7 @@ const ViewLessonDetails = () => {
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.modalState.modalData);
-  console.log(data);
+  
   const classSubjects = useGetClassDetails(data.class_id)?.subjects;
 
   const getSubjectName = (id) => {

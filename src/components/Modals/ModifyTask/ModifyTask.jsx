@@ -29,10 +29,10 @@ const ModifyTask = () => {
   const schoolSubjects = useGetClassDetails().subjects;
   const classStudents = useGetClassDetails().students;
 
-  console.log(modalData);
+  
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let selected_audience_ids = [];
     Array.isArray(data.selected_audience) && data.selected_audience.map(item => {
       selected_audience_ids.push(item.value);

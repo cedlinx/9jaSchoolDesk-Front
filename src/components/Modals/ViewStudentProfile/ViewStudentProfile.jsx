@@ -25,7 +25,7 @@ const ViewStudentProfile = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
-  console.log(modalData);
+  
   let KPIData = useSelector((state) => state?.teacher?.getStudentScoreKPIData?.kpi);
   const dataArray = useSelector((state) => state?.teacher?.viewKPIForClassData?.kpis);
   const [increaseValue, setIncreaseValue] = useState(0);
@@ -33,10 +33,6 @@ const ViewStudentProfile = () => {
 
   const debouncedIncreaseValue = useDebounce(increaseValue, 1500);
   const debouncedDecreaseValue = useDebounce(decreaseValue, 1500);
-
-  console.log(KPIData);
-  console.log(modalData);
-  console.log(dataArray);
   
   useEffect(() => {
     dispatch(getStudentScoreKPI({student_id: modalData.id}));
@@ -67,7 +63,6 @@ const ViewStudentProfile = () => {
   const decreaseKPI = (e, data) => {
     let valueSpan = e.target.parentElement.parentElement.querySelector("p > span");
     let currentValue = (valueSpan.textContent)*1;
-    console.log(currentValue);
     if(currentValue >= data?.min_score + 1 && currentValue <= data?.max_score){
       valueSpan.innerText = currentValue - 1;
       setDecreaseValue(currentValue - 1);
@@ -83,7 +78,6 @@ const ViewStudentProfile = () => {
     if (Array.isArray(KPIData) && KPIData.length > 0 ){
       return KPIData.map((indicator, index) => {
         if(indicator.id === id){
-          console.log(indicator.pivot.score);
           return indicator.pivot.score * 1;
         }
       });    

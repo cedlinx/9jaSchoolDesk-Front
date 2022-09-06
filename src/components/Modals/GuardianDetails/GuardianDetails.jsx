@@ -14,7 +14,7 @@ const GuardianDetails = () => {
   
   const dispatch = useDispatch();
   const data = useSelector((state) => state.modalState.modalData);
-  console.log(data);
+  
 
   let getWardsArray =(data)=>{
     let wardArray = [];

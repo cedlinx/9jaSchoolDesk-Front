@@ -30,8 +30,6 @@ const AddSubject = () => {
       subjectArray.push(subject.label);
     });
 
-    console.log(subjectArray, "sub array");
-
     let response = await dispatch(addSubject({ subjects: subjectArray }));
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "addSubject" }));

@@ -30,7 +30,6 @@ const Institutions = () => {
   const loading = useSelector((state) => state.proprietor.loading);
 
   const allInstitutionsData = useGetAllInstitutions();
-  console.log(allInstitutionsData);
 
   const columnsHeader = [
     {

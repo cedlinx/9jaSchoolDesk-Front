@@ -14,7 +14,6 @@ const Overdue = ({overdueTasks}) => {
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state?.student?.loading);
-  console.log(overdueTasks);
 
   const columnsHeader = [                
     {

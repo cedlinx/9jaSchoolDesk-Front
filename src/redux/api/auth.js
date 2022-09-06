@@ -11,7 +11,7 @@ export const verifyOTPApi = async (data) => {
 };
 
 export const verifyEmailApi = async (data) => {
-  console.log(data);
+  
   const request = await axios.get(`${data.user}/auth/email/verify/${data.id}/${data.token}?expires=${data.expires}&signature=${data.signature}`);
   return request;
 };

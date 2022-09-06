@@ -17,7 +17,7 @@ const FinalStep = ({ values }) => {
 
   const handleSubmit = async () => {
     let response = await dispatch(signUp({payload: values, user: user}));
-    console.log(response);
+    
 
     response.payload.success && user === "proprietor" && navigate(`/${user}/add-institution`);
   };

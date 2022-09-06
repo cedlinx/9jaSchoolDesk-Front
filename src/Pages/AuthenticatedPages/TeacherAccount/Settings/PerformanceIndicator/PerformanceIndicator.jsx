@@ -13,8 +13,6 @@ const PerformanceIndicator = () => {
   const performanceIndicatorData = useSelector((state) => state?.teacher?.viewKPIForClassData?.kpis);
   const loading = useSelector((state) => state?.teacher?.loading);
 
-  console.log(performanceIndicatorData);
-
   const handleDelete = (data) => {
     dispatch(showModal({ action: "show", type: "deleteIndicator", modalData: data }));
   };

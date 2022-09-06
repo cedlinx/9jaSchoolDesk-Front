@@ -7,7 +7,6 @@ const useGetTeacherDetails = () => {
 
   const dispatch = useDispatch();
   const teacherDetails = useSelector((state) => state?.teacher?.getTeacherDetailsData);
-  console.log("teacher details", teacherDetails);
 
   useEffect(() => {
     dispatch(getTeacherDetails());

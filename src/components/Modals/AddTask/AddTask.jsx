@@ -30,13 +30,11 @@ const AddTask = () => {
 
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let selected_audience_ids = [];
     Array.isArray(data.selected_audience) && data.selected_audience.map(item => {
       selected_audience_ids.push(item.value);
     });
-
-    console.log(selected_audience_ids);
 
     const formData = new FormData();
     formData.append("name", data.name);

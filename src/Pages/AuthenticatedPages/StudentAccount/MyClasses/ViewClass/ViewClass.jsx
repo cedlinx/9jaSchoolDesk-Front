@@ -36,8 +36,6 @@ const ViewClass = () => {
 
   }, [classID, dispatch, id]);
 
-  console.log(lessonDetailsData);
-
   const handleClick = (lesson) => {
     navigate(`/student/my-classes/view-class/${lesson.id}`);
   };

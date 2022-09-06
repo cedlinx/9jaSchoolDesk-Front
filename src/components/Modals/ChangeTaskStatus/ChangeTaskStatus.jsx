@@ -16,22 +16,22 @@ const ChangeTaskStatus = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   const loading = useSelector((state) => state.teacher.loading);
-  console.log(modalData);
+  
   let action = modalData.action;
 
-  console.log(modalData);
+  
 
   const sendRequest = async () => {
     if (action === "enable") {
       let response = await dispatch(enableAndDisableTask({status: 1, ids: [modalData.data.id]}));
-      console.log(response);
+      
       if(response.payload.success){
         dispatch(showModal({ action: "hide" }));
         dispatch(getAllTasks());
       }
     } else {
       let response = await dispatch(enableAndDisableTask({status: 0, ids: [modalData.data.id]}));
-      console.log(response);
+      
 
       if(response.payload.success){
         dispatch(showModal({ action: "hide"}));

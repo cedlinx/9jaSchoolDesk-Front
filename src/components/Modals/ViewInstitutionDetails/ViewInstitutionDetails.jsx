@@ -14,7 +14,7 @@ const ViewInstitutionDetails = () => {
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.modalState.modalData);
-  console.log(data);
+  
 
   const getSubjectList = (data) => {
     let subjectList = [];

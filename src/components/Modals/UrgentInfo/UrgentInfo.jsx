@@ -18,7 +18,7 @@ const UrgentInfo = () => {
   const dispatch = useDispatch();
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let group = data.user.includes("guardian") ? "guardian" :  data.user.includes("teacher") ? "teacher" : "all";
     let response = await dispatch(sendNotification({group: group, message: data.message, recipients: convertStringToArray(data.recipients)}));
     if(response.payload.success){

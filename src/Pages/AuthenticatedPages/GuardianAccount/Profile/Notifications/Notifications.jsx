@@ -22,8 +22,6 @@ const Notifications = () => {
 
   const resolver = yupResolver(saveNotificationsValidationSchema);
 
-  console.log(userDetails);
-
   const defaultValues = {
     Email: userDetails?.notification?.email,
     Call: userDetails?.notification?.call ,
@@ -44,7 +42,7 @@ const Notifications = () => {
 
 
   const saveNotification = async (data) => {
-    console.log(data);
+    
     // let answer = "";
     // data?.Sms ? answer = "Sms" : data?.Whatsapp ? answer = "Whatsapp"  : data?.Call ? answer = "Call" : "Email" ;
 
@@ -55,10 +53,10 @@ const Notifications = () => {
     // data?.Email && answer.push("Email");
 
     let response = await dispatch(preferredChannel({channel: data.channel}));
-    console.log(response);
+    
   };
 
-  console.log(errors);
+  
     
   return (
     <div className={cx(styles.notificationsContainer)}>

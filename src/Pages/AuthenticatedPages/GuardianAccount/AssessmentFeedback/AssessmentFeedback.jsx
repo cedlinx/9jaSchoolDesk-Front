@@ -24,8 +24,6 @@ const AssessmentFeedback = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.student.loading);
-  console.log(studentData);
-
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showSearch, setShowSearch] = useState({
@@ -139,13 +137,8 @@ const AssessmentFeedback = () => {
     return result;
   };
 
-  console.log(dateRange);
   const dateValue = (date) => {
     setDateRange(date);
-  };
-
-  const onChange = (date) => {
-    console.log(date);
   };
 
   return (

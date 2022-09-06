@@ -33,10 +33,9 @@ const AddClass = () => {
   const schoolSubjects = useGetAllSubjects();
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [selectedSubjectTeachers, setSelectedSubjectTeachers] = useState([]);
-  console.log(institution_id);
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let subjectArray = [];
     Array.isArray(data.subjects) && data.subjects.map((subject, index) => {
       data.subject.map((subjectName, index) => {
@@ -45,7 +44,6 @@ const AddClass = () => {
         }
       });
     });
-    console.log(subjectArray);
     let {subject, ...rest} = data;
 
     let response = await dispatch(addClass({ ...rest, subjects: subjectArray, institution_id: institution_id }));
@@ -97,20 +95,14 @@ const AddClass = () => {
     let selectedSubjects = e.map((subject) => {
       return subject;
     });
-    console.log(selectedSubjects);
     setValue("subjects", selectedSubjects);
     setSelectedSubjects(selectedSubjects);
     setSelectedSubjectTeachers(selectedSubjects);
   };
 
   const handleSubjectTeacherChange = (data, element, subject) => {
-    console.log(data);
-    console.log(element);
-    console.log(subject);
     setValue(element.name, data);
   };
-
-  console.log(selectedSubjectTeachers);
 
   const handleNavigateToSubjects = () => {
     dispatch(showModal({action: "hide", type: "addTeacher"}));

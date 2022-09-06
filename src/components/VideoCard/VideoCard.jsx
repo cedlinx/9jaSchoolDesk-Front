@@ -9,7 +9,6 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import cardImagePlaceholder from "@/assets/images/lesson-placeholder.jpg";
 
 const VideoCard = ({ cardDetails, teacherSection, studentSection=true }) => {
-  console.log(cardDetails);
 
   const dispatch = useDispatch();
   const { created_at, date, description, id, klass_id, status, teacher, type, video_url, topic, thumbnail_url, document_url, subject } = cardDetails;

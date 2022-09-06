@@ -30,7 +30,7 @@ const AddNewStudent = () => {
   let institution_id = useGetInstitutionID();
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let subjectArray = [];
     Array.isArray(data.subjects) && data.subjects.map((subject) => {
       subjectArray.push(subject.value);
@@ -62,7 +62,6 @@ const AddNewStudent = () => {
 
   const getGuardianOptions = () => {
     let options = [];
-    console.log(allGuardiansData);
     Array.isArray(allGuardiansData) && allGuardiansData.map((guardian) => {
       options.push({
         value: guardian.email,
@@ -93,7 +92,7 @@ const AddNewStudent = () => {
     });
     return options;
   };
-  console.log(errors);
+  
 
   const handleNavigateToClasses =()=>{
     dispatch(showModal({action: "hide", type: "addTeacher"}));

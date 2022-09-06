@@ -37,10 +37,8 @@ const ViewSubmission = () => {
     dispatch(showModal({ action: "show", type: "resetLinkStatus" }));
   };
   const modalData = useSelector((state) => state.modalState.modalData);
-  console.log(modalData);
+  
   const studentsData = useSelector((state) => state.teacher.getStudentsAssignedToTaskData.students);
-
-  console.log(studentsData);
 
   useEffect(() => {
     dispatch(getStudentsAssignedToTask(modalData.id));

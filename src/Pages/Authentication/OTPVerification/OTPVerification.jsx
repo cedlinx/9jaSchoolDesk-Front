@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./OTPVerification.module.scss";
 import Button from "@/components/Button/Button";
-import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,16 +25,12 @@ const OTPVerification = () => {
   const params = useParams();
   const navigate = useNavigate();
   const loading = useSelector((state) => state.auth.loading);
-
   const { user } = useParams();
 
-
   const resolver = yupResolver(loginWithOTPCodeValidationSchema);
-
   const defaultValues = {
     otp: ""
   };
-
   const { handleSubmit, formState: { errors }, setValue, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
   const handleLogin = async (data) => {
@@ -57,7 +52,6 @@ const OTPVerification = () => {
     }
   };
   const handleInputChange = (e) => {
-    console.log(e);
     setValue("otp", e);
   };
 
@@ -80,7 +74,6 @@ const OTPVerification = () => {
           <form
             onSubmit={handleSubmit((data) => handleLogin(data))}
           >
-
             <div>
               <Controller
                 name="otp"
@@ -95,8 +88,6 @@ const OTPVerification = () => {
               />
               {errors?.otp && <small style={{ marginTop: "1rem" }}>{errors?.otp?.message}</small>}
             </div>
-
-            {/* <small style={{marginTop: "2rem"}}>Timer here - 40secs</small> */}
 
             <div className={cx(styles.submitBtnDiv, "flexRow")}>
               <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => handleLogin(data))} title="Login" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />

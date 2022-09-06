@@ -24,20 +24,19 @@ const AssignSubjectsToTeacher = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   const allClassesData = useGetAllClasses();
-  console.log(modalData);
+  
   const schoolSubjects = useGetAllSubjects();
   let institution_id = useGetInstitutionID();
-  console.log(schoolSubjects);
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let subjects = [];
     data.subjects.map((subject) => {
       subjects.push(subject.value);
     } );
 
     let response = await dispatch(assignSubjectToTeacher({subjects: subjects, id: modalData.id}));
-    console.log(response);
+    
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "assignSubjectToTeacher" }));
       dispatch(getAllTeachers());
@@ -63,7 +62,7 @@ const AssignSubjectsToTeacher = () => {
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
-  console.log(errors);
+  
 
   // const getClassOptions = () => {
   //   let options = [];

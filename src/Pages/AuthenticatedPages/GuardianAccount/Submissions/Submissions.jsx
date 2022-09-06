@@ -21,7 +21,6 @@ const Submissions = () => {
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.guardian.loading);
   const selectedWard = useGetSelectedWard();
-  console.log(selectedWard);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showSearch, setShowSearch] = useState({
@@ -185,13 +184,8 @@ const Submissions = () => {
     return result;
   };
 
-  console.log(dateRange);
   const dateValue = (date) => {
     setDateRange(date);
-  };
-
-  const onChange = (date) => {
-    console.log(date);
   };
 
   return (

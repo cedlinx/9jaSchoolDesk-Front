@@ -45,7 +45,7 @@ const AddInstitution = () => {
 
   const register = async (data) => {
     let response = await dispatch(addInstitution(data));
-    console.log(response);
+    
     if (response.payload.success) {
       navigate(`/${user}/dashboard`);
     }

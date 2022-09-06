@@ -28,8 +28,6 @@ const AddTeacher = () => {
   const schoolSubjects = useGetAllSubjects();
   let institution_id = useGetInstitutionID();
 
-  console.log(schoolSubjects);
-
   const sendRequest = async (data) => {
     let subjectArray = [];
     Array.isArray(data.subjects) && data.subjects.map((subject) => {

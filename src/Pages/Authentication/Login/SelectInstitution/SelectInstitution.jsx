@@ -31,8 +31,6 @@ const SelectInstitution = () => {
 
   let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
 
-  console.log(institutionsArray);
-
   useEffect(() => {
     dispatch(getAllInstitutions());
   }, [dispatch]);
@@ -51,12 +49,9 @@ const SelectInstitution = () => {
 
 
   const handleSwitchInstitution = async (institution_id) => {
-    console.log(institution_id);
     toast("Switching Institution...");
     let response = await dispatch(switchInstitution({id: institution_id }));
-    console.log(response, "switch response");
     if (response.payload.success) {
-      console.log(institution_id);
       localStorage.setItem("activeInstitutionData", JSON.stringify(response.payload.active_institution));
       localStorage.setItem("institution_id", institution_id);
       navigate("/proprietor/dashboard");

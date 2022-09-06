@@ -14,11 +14,8 @@ import { Dropdown, DropdownToggle, DropdownMenu,  DropdownItem } from "reactstra
 
 
 const PendingAccounts = () => {
-
   const dispatch = useDispatch();
   const allPendingGuardians = useSelector((state) => state?.proprietor?.getGuardianStatusData.suspendedList);
-
-  console.log(allPendingGuardians);
 
   const columnsHeader = [                
     {

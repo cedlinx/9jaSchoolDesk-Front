@@ -16,9 +16,6 @@ const TeacherRating = ({teachersData, guardianID}) => {
     dispatch(showModal({action: "show", type: "rateTeacher", modalData: {rating, teacherData, guardianID}}));
   };
 
-  console.log(teachersData);
-
-
   let getTableData = (data) => {
     let result =[];
       

@@ -31,7 +31,6 @@ const Tasks = () => {
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.student.loading);
   const studentData = useGetStudentDashboard();
-  console.log(studentData);
 
   const RenderAll = () => <All allTasks={Array.isArray(studentData?.current_tasks) && studentData.current_tasks} />;
   const RenderActive = () => <Active currentTasks={Array.isArray(studentData?.pending_tasks) && studentData.pending_tasks} />;

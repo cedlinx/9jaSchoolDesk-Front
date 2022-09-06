@@ -30,10 +30,6 @@ const Lounge = () => {
   });
   const classID = useGetClassID();
 
-  console.log(allGistConversationsData);
-  console.log(userDetails);
-  console.log(loading);
-
   useEffect(() => {
     dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
     dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
@@ -48,7 +44,6 @@ const Lounge = () => {
     let inputElement = e.target.parentElement.querySelector("input");
     let inputValue = inputElement.value;
 
-    console.log(gist);
     let payload = {
       body: inputValue,
       author: gist?.author?.id,
@@ -63,7 +58,7 @@ const Lounge = () => {
     // uploadedFile?.imagePreviewUrl && formData.append("attachment_type", uploadedFile?.type);
 
     let response = await dispatch(addComment({payload, user: userDetails?.role.toLowerCase()}));
-    console.log(response);
+    
     if(response?.payload?.success){
       dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
       inputElement.value = "";
@@ -86,7 +81,7 @@ const Lounge = () => {
 
 
     let response = await dispatch(createGist({user: userDetails?.role.toLowerCase(), payload: formData}));
-    console.log(response);
+    
     if (response.payload.success) {
       dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
       reset();
@@ -120,12 +115,11 @@ const Lounge = () => {
     type: ""
   });
 
-  console.log(errors);
+  
 
   const onDrop = useCallback(acceptedFiles => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
-    console.log(file.type.split("/")[0]);
     reader.onloadend = () => {
       setUploadedFile({file: file, imagePreviewUrl: reader.result, type: file.type.split("/")[0]});
       setValue("uploadedFile", file);
@@ -134,8 +128,7 @@ const Lounge = () => {
   }, [setValue]);
 
   const { getRootProps } = useDropzone({ onDrop });
-  console.log(uploadedFile?.file?.name);
-  console.log(uploadedFile?.type);
+
   return (
     <div className={cx(styles.loungeContainer, "flexCol")}>
     

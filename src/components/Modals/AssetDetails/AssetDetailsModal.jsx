@@ -14,7 +14,7 @@ import closeIcon from "@/assets/icons/close-icon.svg";
 
 const AssetDetailsModal = props => {
   const {data, dispatchAction} = props;
-  console.log(data);
+  
   const dispatch = useDispatch();
 
   const handleClick=(dispatchActionData) => {

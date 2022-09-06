@@ -34,7 +34,6 @@ const Login = () => {
   const actualPath = location.pathname.split("/").pop();
   const isOTPVerified = localStorage.getItem("userData")?.hasverifiedotp;
   const loading = useSelector((state) => state?.auth?.loading);
-  console.log(loading, "loading state");
 
   const checkIsAuthenticated = isAuthenticated();
 
@@ -49,8 +48,7 @@ const Login = () => {
   const signIn = async (data) => {
  
     let response = await dispatch(login({payload:  {email: data.email, password: data.password}, user: user}));
-    console.log(response);
-    console.log(response?.payload);
+    
     if (response?.payload?.success) {
       toast.success(response?.payload?.message);
       // dispatch(getUserInfo());

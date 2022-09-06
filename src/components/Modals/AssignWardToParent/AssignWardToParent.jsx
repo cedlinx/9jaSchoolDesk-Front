@@ -27,7 +27,7 @@ const AssignWardToParent = () => {
   const allStudentsData = useGetAllStudents();
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let response = await dispatch(assignGuardianToSingleStudent(data));
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "assignWardToParent" }));
@@ -46,7 +46,7 @@ const AssignWardToParent = () => {
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
   const getWardsOptions = (data) => {
-    console.log(data);
+    
     let options = [];
     Array.isArray(data) && data.map((studentData) => {
       options.push({

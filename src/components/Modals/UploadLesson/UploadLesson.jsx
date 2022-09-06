@@ -42,7 +42,7 @@ const UploadLesson = () => {
   const loading = useSelector((state) => state.teacher.loading);
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     const formData = new FormData();
     formData.append("topic", data.topic);
     formData.append("description", data.description);
@@ -57,7 +57,7 @@ const UploadLesson = () => {
     formData.append("thumbnail", uploadedFile.thumbnailFile);
 
     let response = await dispatch(createLesson(formData));
-    console.log(response);
+    
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "uploadLesson" }));
       dispatch(getClassLessons({class_id}));
@@ -80,7 +80,7 @@ const UploadLesson = () => {
 
   const { handleSubmit, register, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
-  console.log(errors);
+  
   const [uploadedFile, setUploadedFile] = useState({
     file: "",
     imagePreviewUrl: "",
@@ -88,13 +88,9 @@ const UploadLesson = () => {
     thumbnailPreviewUrl: ""
   });
 
-  console.log(uploadedFile);
-
   const onDrop = useCallback(acceptedFiles => {
     let file = (acceptedFiles[0]);
     const reader = new FileReader();
-    console.log(reader);
-    console.log(file);
     reader.onloadend = () => {
       setUploadedFile((prev) =>({...prev, file: file, imagePreviewUrl: reader.result}));
     };
@@ -104,8 +100,6 @@ const UploadLesson = () => {
   const onThumbnailDrop = useCallback(acceptedFiles => {
     let thumbnailFile = (acceptedFiles[0]);
     const reader = new FileReader();
-    console.log(reader);
-    console.log(thumbnailFile);
     reader.onloadend = () => {
       setUploadedFile((prev)=>({...prev, thumbnailFile: thumbnailFile, thumbnailPreviewUrl: reader.result}));
     };

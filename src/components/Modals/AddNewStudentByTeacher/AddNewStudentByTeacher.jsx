@@ -27,10 +27,9 @@ const AddNewStudentByTeacher = () => {
   const allGuardiansData = useGetAllGuardians();
   const schoolSubjects = useGetClassDetails().subjects;
   const classDetails = useGetClassDetails();
-  console.log(classDetails);
 
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let subjectArray = [];
     data.subjects.map((subject) => {
       subjectArray.push(subject.value);

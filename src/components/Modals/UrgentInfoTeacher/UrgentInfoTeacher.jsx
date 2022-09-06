@@ -25,10 +25,8 @@ const UrgentInfoTeacher = () => {
   const allStudentsData = useGetAllClassStudents(classID);
   const loading = useSelector((state) => state.teacher.loading);
 
-  console.log(allStudentsData);
-
   const sendRequest = async (data) => {
-    console.log(data);
+    
     let response = await dispatch(sendNotification({ message: data.message, student_id: data?.student_id?.value}));
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "urgentInfoTeacher" }));
@@ -46,7 +44,7 @@ const UrgentInfoTeacher = () => {
 
   const getStudentOptions = (data) => {
     let options = [];
-    console.log(data);
+    
     Array.isArray(data) && data.map((student) => {
       options.push({
         value: student.id,
@@ -56,7 +54,7 @@ const UrgentInfoTeacher = () => {
     return options;
   };
 
-  console.log(errors);
+  
 
 
   return (

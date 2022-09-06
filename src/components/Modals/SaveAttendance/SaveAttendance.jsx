@@ -16,15 +16,13 @@ const SaveAttendance = ({resetTakeAttendance}) => {
   const loading = useSelector((state) => state?.proprietor?.loading);
   let class_id = useGetClassID();
 
-  console.log(modalData);
+  
 
   const sendRequest = async () => {
     const studentIds = [];
     modalData.map((student) => {
-      console.log(student.status);
       student.status === 1 ? studentIds.push(student.id) : null;
     });
-    console.log(studentIds);
     let response = await dispatch(saveAttendance({class_id: class_id, students: studentIds}));
     if (response.payload.success) {
       dispatch(showModal({ action: "hide", type: "saveAttendance" }));
