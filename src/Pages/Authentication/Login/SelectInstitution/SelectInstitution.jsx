@@ -99,12 +99,15 @@ const SelectInstitution = () => {
             </div>
           </>
           :
-          <>
-            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", gap: "1rem"}}>
-              <p style={{color: "#747474", fontSize: "1.5rem"}}>No Institution Found. Kindly Add A New Institution</p>
-              <Button onClick={() => dispatch(showModal({ action: "show", type: "addInstitution" }))} type title="Add Institution" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
-            </div>
-          </>
+          Array.isArray(institutionsArray) && institutionsArray.length === 0 ?
+            <>
+              <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", gap: "1rem"}}>
+                <p style={{color: "#747474", fontSize: "1.5rem"}}>No Institution Found. Kindly Add A New Institution</p>
+                <Button onClick={() => dispatch(showModal({ action: "show", type: "addInstitution" }))} type title="Add Institution" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+              </div>
+            </>
+            :
+            <p>An Error Occured. Please Try Again</p>
       }
 
       {modalState === "show" && modalType === "addInstitution" && <Modal show size="lg" ><AddInstitutionModal /> </Modal>}

@@ -11,18 +11,20 @@
         img{
             width: 10rem;
         }
-
-        p{
-            font-size: 1.25rem;
-            color: #D25B5D;
-        }
         button{
             align-self: flex-end;
             margin-right: 1rem;
         }
     }
 
-        .body{        
+    .body{
+        .title{
+                font-size: 1.25rem;
+                color: #D25B5D;
+                text-align: center;
+        }
+
+        .classesContainer{        
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
             gap: 1.5rem;
@@ -68,8 +70,7 @@
                     }
             }
             }
-
-       
+       }   
     
 }
 

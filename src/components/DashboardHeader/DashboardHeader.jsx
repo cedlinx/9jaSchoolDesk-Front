@@ -47,7 +47,7 @@ const Header = (props) => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const userDetails = JSON.parse(localStorage.getItem("userData"));
-  const activeInstitutionData = JSON.parse(localStorage.getItem("activeInstitutionData"));
+  const activeInstitutionData = localStorage.getItem("activeInstitutionData") && JSON.parse(localStorage.getItem("activeInstitutionData"));
   const institutionName = activeInstitutionData?.name;
   // console.log(userDetails, "new user details");
 

@@ -46,23 +46,32 @@ const SelectClass = () => {
       <div className={cx(styles.heading, "flexCol")}>
         <Button onClick={()=>handleLogout()} title="Logout" borderRadiusType="mediumRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
         <img src={Logo} alt="" />
-        <p>Select a class to continue</p>
       </div>
-      <div className={cx(styles.body)}>
-        {Array.isArray(classesArray) && classesArray.map((element, index) => {
-          return (
-            <div key={index} onClick={() => handleSwitchClass(element?.id)} className={cx(styles.studentContainer, "flexCol")}>
-              <div className={cx(styles.imageDiv)}>
-                <Icon icon="healthicons:i-training-class" color="#d25b5d" width="72" />
-              </div>
-              <p>{element?.name}</p>
-              {/* <p>JSS 1 A</p> */}
+      {Array.isArray(classesArray) && classesArray.length > 0 ? 
+        <>
+          <div className={cx(styles.body, "flexCol")}>
+            <p className={cx(styles.title)}>Select a class to continue</p>
+            <div className={cx(styles.classesContainer)}>
+              {Array.isArray(classesArray) && classesArray.map((element, index) => {
+                return (
+                  <div key={index} onClick={() => handleSwitchClass(element?.id)} className={cx(styles.studentContainer, "flexCol")}>
+                    <div className={cx(styles.imageDiv)}>
+                      <Icon icon="healthicons:i-training-class" color="#d25b5d" width="72" />
+                    </div>
+                    <p>{element?.name}</p>
+                    {/* <p>JSS 1 A</p> */}
+                  </div>
+                );
+              }
+              )}
             </div>
-          );
-        }
-        )}
-
-      </div>
+          </div>
+        </>
+        :
+        <div className={cx(styles.body, "flexCol")}>
+          <p className={cx(styles.title)}>You currently have no class assigned to you. Kindly contact the Proprietor / Administrator.</p>
+        </div>
+      }
     </div>
   );
 };
