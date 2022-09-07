@@ -6,7 +6,8 @@ const instance = axios.create({
   // baseURL: "https://9jaschooldesk.com/api/"
   // baseURL: "https://naijaschooldesk.frb.io/api/"
   // baseURL: "https://www.9jaschooldesk.com/api"
-  baseURL: "https://app.9jaschooldesk.com/api"
+  // baseURL: "https://app.9jaschooldesk.com/api"
+  baseURL: "https://9jaschooldesk.com/app/api"
 });
 
 instance.interceptors.request.use(
