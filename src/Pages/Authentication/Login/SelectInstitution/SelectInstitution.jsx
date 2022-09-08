@@ -24,17 +24,20 @@ const SelectInstitution = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.proprietor.loading);
-  const switchInstitutionToken = useSelector((state) => state.proprietor.switchInstitutionData.token);
+  const switchInstitutionToken = useSelector((state) => state.proprietor.switchInstitutionData);
+  console.log(switchInstitutionToken);
 
   // const proprietorDetails = useGetLoggedInUser();
   // let institutionsArray = proprietorDetails?.institutions;
 
   let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
 
+  
   useEffect(() => {
     dispatch(getAllInstitutions());
   }, [dispatch]);
-
+  
+  console.log(institutionsArray);
   // useEffect(() => {
   //   if(proprietorDetails.institutions === undefined) {
   //     navigate("/proprietor/dashboard");
@@ -42,14 +45,14 @@ const SelectInstitution = () => {
   // },[dispatch, navigate, proprietorDetails.institutions]);
 
   useEffect(() => {
-    if( institutionsArray.length === 1) {
+    if( Array.isArray(institutionsArray) && institutionsArray.length === 1) {
       dispatch(switchInstitution({id: institutionsArray[0].id }));
       if (switchInstitutionToken) {
         localStorage.setItem("institution_id", institutionsArray[0].id);
         navigate("/proprietor/dashboard");
       }
     }
-  },[dispatch, institutionsArray, institutionsArray.length, navigate, switchInstitutionToken]);
+  },[dispatch, institutionsArray, navigate, switchInstitutionToken]);
 
 
   const handleSwitchInstitution = async (institution_id) => {
