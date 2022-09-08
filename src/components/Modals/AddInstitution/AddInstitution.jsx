@@ -17,12 +17,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import "./PhoneInput.scss";
-import { useNavigate } from "react-router-dom";
 
 const AddInstitution = () => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const loading = useSelector((state) => state.proprietor.loading);
 
   const resolver = yupResolver(addInstitutionValidationSchema);
@@ -41,12 +39,9 @@ const AddInstitution = () => {
   const sendRequest = async (data) => {
     let response = await dispatch(addInstitution(data));
     
-    // if (response?.payload?.message.includes("successfully")) {
-    //   dispatch(getAllInstitutions());
-    //   dispatch(showModal({ action: "hide" }));
-    // }
-    if (response?.payload?.success) {
-      navigate("/select-institution/proprietor");
+    if (response?.payload?.message.includes("successfully")) {
+      dispatch(getAllInstitutions());
+      dispatch(showModal({ action: "hide" }));
     }
   };
 
