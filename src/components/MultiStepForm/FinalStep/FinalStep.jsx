@@ -99,7 +99,7 @@ const FinalStep = ({ values }) => {
       <div className={cx(styles.btnDiv, "flexRow")}>
         <Button onClick={()=>navigate(`/login/${user}`)} title="Cancel" borderRadiusType="lowRounded" bordercolor="transparent" textColor="#f4f4f4" bgColor="gray" hoverColor="#1A3B4A" hoverBg="#f4f4f4" />
 
-        <Button onClick={()=>handleSubmit()} title="Sign Up" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" hoverColor="#f4f4f4" hoverBg="transparent" bordercolor="transparent" />
+        <Button onClick={()=>handleSubmit()} title="Sign Up" borderRadiusType="lowRounded" textColor="#fff" bgColor="#D25B5D" hoverColor="#000" hoverBg="#D25B5D" bordercolor="#000" />
       </div>
 
     </div>

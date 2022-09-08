@@ -24,7 +24,7 @@ const SelectInstitution = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.proprietor.loading);
-
+  const switchInstitutionToken = useSelector((state) => state.proprietor.switchInstitutionData.token);
 
   // const proprietorDetails = useGetLoggedInUser();
   // let institutionsArray = proprietorDetails?.institutions;
@@ -41,18 +41,21 @@ const SelectInstitution = () => {
   //   }
   // },[dispatch, navigate, proprietorDetails.institutions]);
 
-  // useEffect(() => {
-  //   if( institutionsArray.length === 0) {
-  //     dispatch(showModal({ action: "show", type: "addInstitution" }));
-  //   }
-  // },[dispatch, institutionsArray.length, navigate]);
+  useEffect(() => {
+    if( institutionsArray.length === 1) {
+      dispatch(switchInstitution({id: institutionsArray[0].id }));
+      if (switchInstitutionToken) {
+        localStorage.setItem("institution_id", institutionsArray[0].id);
+        navigate("/proprietor/dashboard");
+      }
+    }
+  },[dispatch, institutionsArray, institutionsArray.length, navigate, switchInstitutionToken]);
 
 
   const handleSwitchInstitution = async (institution_id) => {
     toast("Switching Institution...");
     let response = await dispatch(switchInstitution({id: institution_id }));
     if (response.payload.success) {
-      localStorage.setItem("activeInstitutionData", JSON.stringify(response.payload.active_institution));
       localStorage.setItem("institution_id", institution_id);
       navigate("/proprietor/dashboard");
     }

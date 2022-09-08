@@ -33,6 +33,7 @@ import { logout } from "@/redux/Auth/AuthSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import UrgentInfoTeacherModal from "@/components/Modals/UrgentInfoTeacher/UrgentInfoTeacher";
 import useGetClassDetails from "@/utils/useGetClassDetails";
+import useGetActiveInstitution from "@/utils/useGetActiveInstitution";
 
 const Header = (props) => {
   const { handleToggleSidebar, showLinks = true } = props;
@@ -47,7 +48,8 @@ const Header = (props) => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const userDetails = JSON.parse(localStorage.getItem("userData"));
-  const activeInstitutionData = localStorage.getItem("activeInstitutionData") && JSON.parse(localStorage.getItem("activeInstitutionData"));
+  // const activeInstitutionData = localStorage.getItem("activeInstitutionData") && JSON.parse(localStorage.getItem("activeInstitutionData"));
+  const activeInstitutionData = useGetActiveInstitution();
   const institutionName = activeInstitutionData?.name;
 
   useEffect(() => {
