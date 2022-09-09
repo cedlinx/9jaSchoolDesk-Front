@@ -96,7 +96,7 @@ const AllClasses = () => {
             color: "#747474",
             fontSize: "1rem"
           }}
-        >Teacher Name</div>
+        >Class Teacher</div>
       ),
       accessor: "teacher_name",
       Cell: (row) => {

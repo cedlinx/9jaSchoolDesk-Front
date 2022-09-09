@@ -36,12 +36,13 @@ const OTPVerification = () => {
   const handleLogin = async (data) => {
     const response = await dispatch(loginWithOTPCode({ payload: data, user: params.user }));
 
-    if(user === "proprietor"){
-      let token = response?.payload?.user?.token;
-      setToken(token);
-    }
-
     if (response?.payload?.success) {
+
+      if(user === "proprietor"){
+        let token = response?.payload?.user?.token;
+        setToken(token);
+      }
+      
       toast.success(response?.payload?.message);
       reset();
       // user === "teacher" ? navigate(`/select-class/${user}/`) : user === "guardian" ? navigate(`/select-ward/${user}/`) :  navigate(`/${user}/dashboard`);

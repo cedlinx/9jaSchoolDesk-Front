@@ -18,8 +18,9 @@ const FinalStep = ({ values }) => {
   const handleSubmit = async () => {
     let response = await dispatch(signUp({payload: values, user: user}));
     
-
     response.payload.success && user === "proprietor" && navigate(`/${user}/add-institution`);
+
+    response.payload.success && user === "guardian" && navigate("/login/guardian", { state: { category: "guardian" } });
   };
 
   useEffect(() => {

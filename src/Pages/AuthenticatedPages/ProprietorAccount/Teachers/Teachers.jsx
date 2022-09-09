@@ -245,7 +245,7 @@ const Teachers = () => {
               <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "viewTeacherDetails", modalData: data }))}><Icon icon="carbon:view" color="#828282" /> View Details</DropdownItem>
               <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "assignSubjectsToTeacher", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Assign Subject(s)</DropdownItem>
               <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "assignTeacherToClass", modalData: {data, category: "teacher"} }))}><Icon icon="ep:edit" color="#828282" /> Assign As Class Teacher</DropdownItem>
-              <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "modifyTeacher", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Edit Account</DropdownItem>
+              {/* <DropdownItem style={{ color: "#828282" }} onClick={() => dispatch(showModal({ action: "show", type: "modifyTeacher", modalData: data }))}><Icon icon="ep:edit" color="#828282" /> Edit Account</DropdownItem> */}
               <DropdownItem style={{ color: "#fb4e4e" }} onClick={() => dispatch(showModal({ action: "show", type: "deleteTeacher", modalData: data }))}> <Icon icon="fluent:delete-20-regular" color="#fb4e4e" /> Delete Account</DropdownItem>
             </DropdownMenu>
           </Dropdown>

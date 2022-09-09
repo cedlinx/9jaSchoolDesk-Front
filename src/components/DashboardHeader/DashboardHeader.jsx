@@ -34,6 +34,8 @@ import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import UrgentInfoTeacherModal from "@/components/Modals/UrgentInfoTeacher/UrgentInfoTeacher";
 import useGetClassDetails from "@/utils/useGetClassDetails";
 import useGetActiveInstitution from "@/utils/useGetActiveInstitution";
+import { getAllInstitutions } from "@/redux/Proprietor/ProprietorSlice";
+import { toast } from "react-toastify";
 
 const Header = (props) => {
   const { handleToggleSidebar, showLinks = true } = props;
@@ -51,10 +53,17 @@ const Header = (props) => {
   // const activeInstitutionData = localStorage.getItem("activeInstitutionData") && JSON.parse(localStorage.getItem("activeInstitutionData"));
   const activeInstitutionData = useGetActiveInstitution();
   const institutionName = activeInstitutionData?.name;
+  let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
+
+  console.log(userDetails);
 
   useEffect(() => {
     // dispatch(logout());
   },[userDetails?.avatar]);
+
+  useEffect(() => {
+    dispatch(getAllInstitutions());
+  }, [dispatch]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -69,6 +78,15 @@ const Header = (props) => {
   const handleLogout = () => {
     dispatch(logout());
     navigate("/");
+  };
+
+  const handleSwitchInstitution = () => {
+    if(Array.isArray(institutionsArray) && institutionsArray.length === 1){
+      toast.success("You only have one institution");
+    }
+    else{
+      navigate("/select-institution/proprietor");
+    }
   };
 
   return (
@@ -112,7 +130,7 @@ const Header = (props) => {
                 <div className={cx(styles.infoDiv, "flexRow")}>
                   <span>Institution: </span><span>{institutionName && titleCase(institutionName)}</span>
                 </div>
-                <Button onClick={() => navigate("/select-institution/proprietor")} type title="Switch Institution" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
+                <Button onClick={() => handleSwitchInstitution()} type title="Switch Institution" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
               </div>
             }
 
@@ -132,14 +150,14 @@ const Header = (props) => {
                 {userCategory === "teacher" && <Button onClick={() => dispatch(showModal({ action: "show", type: "urgentInfoTeacher" }))} type title="Send Urgently" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
                 }
 
-                {userCategory !== "teacher" && <NavLink to="dashboard">
+                {/* {userCategory !== "teacher" && <NavLink to="dashboard">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                       <div><img src={isActive ? dashboardIconActive : dashboardIcon} alt="" /></div>
                       <span>Dashboard</span>
                     </div>
                   )}
-                </NavLink>}
+                </NavLink>} */}
 
                 {userCategory === "student" && <> <NavLink to="class-gist">
                   {({ isActive }) => (

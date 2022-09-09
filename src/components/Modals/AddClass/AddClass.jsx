@@ -114,6 +114,9 @@ const AddClass = () => {
     navigate("/proprietor/teachers");
   };
 
+  console.log(schoolSubjects);
+  console.log(allTeachersData);
+
   return (
 
     <section className={cx(styles.addClassContainer, "flexCol")}>
@@ -127,7 +130,7 @@ const AddClass = () => {
           <p>Add New Class</p>
         </div>
 
-        {Array.isArray(schoolSubjects) && schoolSubjects.length === 0 || Array.isArray(allTeachersData) && allTeachersData.length === 0 && <div className ={cx(styles.addSubjectDiv, "flexCol")}>
+        {Array.isArray(schoolSubjects) && schoolSubjects.length === 0 || Array.isArray(allTeachersData) && allTeachersData.length === 0 ? <div className ={cx(styles.addSubjectDiv, "flexCol")}>
           <p> No Subject and/or Teacher has been registered. Kindly create at least one of each before continuing </p>
           <div className={cx(styles.btnDiv, "flexRow")}>
 
@@ -136,7 +139,7 @@ const AddClass = () => {
             {allTeachersData.length === 0 && <Button onClick={()=> handleNavigateToTeachers()} title="Add Teacher" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />}
 
           </div>
-        </div>}
+        </div> : null}
 
         {Array.isArray(schoolSubjects) && schoolSubjects.length > 0 && Array.isArray(allTeachersData) && allTeachersData.length > 0 &&  <form
           onSubmit={handleSubmit((data) => sendRequest(data))}

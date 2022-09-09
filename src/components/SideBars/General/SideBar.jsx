@@ -72,7 +72,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
       className="general-sidebar"
     >
       <SidebarHeader>
-        <div style={{ height: "61px", backgroundColor: "#fff", padding: "0.25rem 0rem", border: "1px solid #fff" }}>
+        <div style={{ height: "61px", backgroundColor: "#fff", padding: "0.25rem 0rem" }}>
           <img style={{ width: "100%", height: "100%" }} src={logo} alt="img" />
         </div>
         {user === "teacher" && <div className="sidebar-header" >
@@ -164,7 +164,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         <Menu iconShape="">
           <MenuItem
             active={actualPath === "dashboard" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "dashboard" ? dashboardIconActive : dashboardIcon} alt="" /></span>}
+            prefix={<span className="menuIcon"><img src={actualPath === "dashboard" ? dashboardIcon : dashboardIcon} alt="" /></span>}
           >
             <NavLink to={`/${basePath}/dashboard`}>
       Dashboard
@@ -175,7 +175,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         <Menu iconShape="">
           <MenuItem
             active={actualPath === "institutions" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "institutions" ? classIconActive : classIcon} alt="" /></span>}
+            prefix={<span className="menuIcon"><img src={actualPath === "institutions" ? classIcon : classIcon} alt="" /></span>}
           >
             <NavLink  to={`/${basePath}/institutions`}>Institutions</NavLink>
           </MenuItem>
@@ -184,7 +184,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         <Menu iconShape="">
           <MenuItem
             active={actualPath === "students" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "students" ? studentIconActive : studentIcon} alt="" /></span>}
+            prefix={<span className="menuIcon"><img src={actualPath === "students" ? studentIcon : studentIcon} alt="" /></span>}
           >
             <NavLink  to={`/${basePath}/students`}>Students</NavLink>
           </MenuItem>
@@ -193,7 +193,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         <Menu iconShape="">
           <MenuItem
             active={actualPath === "parents" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "parents" ? parentIconActive : parentIcon} alt="" /></span>}
+            prefix={<span className="menuIcon"><img src={actualPath === "parents" ? parentIcon : parentIcon} alt="" /></span>}
           >
             <NavLink  to={`/${basePath}/parents`}>Parents</NavLink>
           </MenuItem>
@@ -202,7 +202,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         <Menu iconShape="">
           <MenuItem
             active={actualPath === "teachers" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "teachers" ? teacherIconActive : teacherIcon} alt="" /></span>}
+            prefix={<span className="menuIcon"><img src={actualPath === "teachers" ? teacherIcon : teacherIcon} alt="" /></span>}
           >
             <NavLink to={`/${basePath}/teachers`}>Teachers</NavLink>
           </MenuItem>
@@ -211,7 +211,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         <Menu iconShape="">
           <MenuItem
             active={actualPath === "classes" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "classes" ? classIconActive : classIcon} alt="" /></span>}
+            prefix={<span className="menuIcon"><img src={actualPath === "classes" ? classIcon : classIcon} alt="" /></span>}
           >
             <NavLink to={`/${basePath}/classes`}>Classes</NavLink>
           </MenuItem>
@@ -220,7 +220,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         <Menu iconShape="">
           <MenuItem
             active={actualPath === "subjects" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "subjects" ? subjectIconActive : subjectIcon} alt="" /></span>}
+            prefix={<span className="menuIcon"><img src={actualPath === "subjects" ? subjectIcon : subjectIcon} alt="" /></span>}
           >
             <NavLink to={`/${basePath}/subjects`}>Subjects</NavLink>
           </MenuItem>
@@ -231,7 +231,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
           <MenuItem
             style={{marginTop: "2rem"}}
             active={actualPath === "settings" ? "true" : ""}
-            prefix={<span className="menuIcon"><img src={actualPath === "settings" ? settingsIconActive : settingsIcon} alt="" /></span>}
+            prefix={<span className="menuIcon"><img src={actualPath === "settings" ? settingsIcon : settingsIcon} alt="" /></span>}
           >
             <NavLink to={`/${basePath}/settings`}>Settings</NavLink>
           </MenuItem>
