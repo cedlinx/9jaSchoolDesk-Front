@@ -609,6 +609,7 @@ export const updateProfile = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await updateProfileApi(data);
+    response?.data?.teacher && localStorage.setItem("userData", JSON.stringify(response?.data?.teacher));
     toast.success(response.data.message);
     return dispatch(updateProfileAction(response?.data));
   } catch (e) {

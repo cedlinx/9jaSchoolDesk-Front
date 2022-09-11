@@ -59,6 +59,7 @@ const Account = () => {
     formData.append("id", userDetails?.id);
 
     dispatch(modifyGuardianProfile(formData));
+    
   };
 
   const [uploadedFile, setUploadedFile] = useState({

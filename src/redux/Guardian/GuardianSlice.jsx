@@ -163,7 +163,9 @@ export const modifyGuardianProfile = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await modifyGuardianProfileApi(data);
+    response?.data?.guardian && localStorage.setItem("userData", JSON.stringify(response?.data?.guardian));
     toast.success(response.data.message);
+
     return dispatch(modifyGuardianProfileAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);

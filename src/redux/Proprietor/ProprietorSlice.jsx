@@ -805,6 +805,7 @@ export const updateProfile = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await updateProfileApi(data);
+    response?.data?.proprietor && localStorage.setItem("userData", JSON.stringify(response?.data?.proprietor));
     toast.success(response.data.message);
     return dispatch(updateProfileAction(response?.data));
   } catch (e) {

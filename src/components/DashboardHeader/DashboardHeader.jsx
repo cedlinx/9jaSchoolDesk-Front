@@ -56,6 +56,7 @@ const Header = (props) => {
   let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
 
   console.log(userDetails);
+  console.log(userCategory);
 
   useEffect(() => {
     // dispatch(logout());
@@ -150,14 +151,14 @@ const Header = (props) => {
                 {userCategory === "teacher" && <Button onClick={() => dispatch(showModal({ action: "show", type: "urgentInfoTeacher" }))} type title="Send Urgently" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
                 }
 
-                {/* {userCategory !== "teacher" && <NavLink to="dashboard">
+                {userCategory !== "proprietor" && <NavLink to="dashboard">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                      <div><img src={isActive ? dashboardIconActive : dashboardIcon} alt="" /></div>
+                      <div><img src={isActive ? dashboardIcon : dashboardIcon} alt="" /></div>
                       <span>Dashboard</span>
                     </div>
                   )}
-                </NavLink>} */}
+                </NavLink>}
 
                 {userCategory === "student" && <> <NavLink to="class-gist">
                   {({ isActive }) => (
@@ -231,7 +232,7 @@ const Header = (props) => {
                   </DropdownToggle>
                   <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
 
-                    {userCategory !== "proprietor" ? <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem> :
+                    {userCategory !== "proprietor" && userCategory !== "teacher" ? <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem> :
                       <DropdownItem onClick={() => navigate("settings")}>Settings</DropdownItem>}
                     <DropdownItem onClick={() => handleLogout()}>Logout</DropdownItem>
                   </DropdownMenu>

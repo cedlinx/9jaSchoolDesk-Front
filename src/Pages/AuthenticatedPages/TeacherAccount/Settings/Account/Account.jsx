@@ -12,7 +12,7 @@ import { initialsCase } from "@/helpers/textTransform";
 
 
 import { useForm, Controller } from "react-hook-form";
-import { modifyProprietorValidationSchema } from "@/helpers/validation";
+import { modifyTeacherValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
@@ -24,8 +24,9 @@ const Account = () => {
   // const userDetails = useSelector((state) => state?.teacher?.getDashboardData?.teacher);
   const loading = useSelector((state) => state?.teacher?.loading);
   const userDetails = useGetLoggedInUser();
+  console.log(userDetails, "teacher");
 
-  const resolver = yupResolver(modifyProprietorValidationSchema);
+  const resolver = yupResolver(modifyTeacherValidationSchema);
 
   const defaultValues = {
     // email: userDetails?.email,
@@ -51,7 +52,7 @@ const Account = () => {
   const sendRequest = async (data) => {
     
     let formData = new FormData();
-    uploadedFile.file && formData.append("photo", uploadedFile.file);
+    uploadedFile.file && formData.append("avatar", uploadedFile.file);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("otherNames", data.otherNames);
@@ -59,7 +60,8 @@ const Account = () => {
     formData.append("address", data.address);
     formData.append("id", userDetails?.id);
 
-    dispatch(updateProfile(formData));
+    let response = await dispatch(updateProfile(formData));
+    console.log(response);
     // if (response.payload.success) {
     //   // dispatch(getDashboard());
     // }
@@ -88,7 +90,7 @@ const Account = () => {
       type: ""
     });
   };
-
+  console.log(errors);
   return (
     <div className={cx(styles.settingsTabItemContainer)}>
       <div className={cx(styles.panelContent, "flexCol")}>
@@ -163,7 +165,6 @@ const Account = () => {
                     )}
                   />
                 </div>
-
 
                 <div style={{ width: "100%" }}>
                   <Controller

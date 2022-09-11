@@ -105,7 +105,7 @@ export const uploadLessonValidationSchema = Yup.object().shape({
 
   date: Yup.string(),
 
-  subject_id: Yup.string(),
+  subject_id: Yup.string().required("Kindly select a subject"),
 
   status: Yup.string(),
 
@@ -817,7 +817,9 @@ export const modifyTeacherValidationSchema = Yup.object().shape({
     .max(225, "Too Long!")
     .required("Email is required"),
 
-  phone: Yup.string().required("Phone is required")
+  address: Yup.string().nullable()
+
+  // phone: Yup.string().required("Phone is required")
 
 });
 
@@ -834,7 +836,7 @@ export const modifyProprietorValidationSchema = Yup.object().shape({
     .max(225, "Too Long!")
     .required("Email is required"),
 
-  address: Yup.string()
+  address: Yup.string().nullable()
 
   // phone: Yup.string().required("Phone is required")
 

@@ -30,15 +30,14 @@
     }
 
     .body{
-    //    display: flex;
-    //    flex-wrap: wrap; 
-    //    justify-content: space-evenly;
-    //    gap: 2rem;
+       display: flex;
+       flex-wrap: wrap; 
+       gap: 2rem;
 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-    gap: 2rem;
-    padding: 0rem 1rem;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+    // gap: 2rem;
+    // padding: 0rem 1rem;
     }
 
     .footer{

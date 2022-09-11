@@ -41,7 +41,7 @@ const AddTask = () => {
     formData.append("description", data.description);
     formData.append("subject_id", data.subject_id);
     formData.append("type", data.type);
-    formData.append("format", uploadedFile.file.type.split("/")[0]);
+    uploadedFile.file && formData.append("format", uploadedFile.file.type.split("/")[0]);
     formData.append("status", data.status);
     formData.append("description", data.description);
     // formData.append("audience", data.audience === "0" ? [0] : selected_audience_ids);
