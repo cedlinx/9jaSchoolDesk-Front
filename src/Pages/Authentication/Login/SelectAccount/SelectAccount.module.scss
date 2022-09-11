@@ -22,16 +22,21 @@
     }
 
         .body{        
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-            gap: 1.5rem;
-            padding: 0rem 1rem;
+            // display: grid;
+            // grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+            // gap: 1.5rem;
+            // padding: 0rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-evenly;
 
             .studentContainer{
                 height: 100%;
                 align-items: center;
                 cursor: pointer;
                 font-family: Jost;
+                width: fit-content;
             
                     .imageDiv{
                         border-radius: 50%;

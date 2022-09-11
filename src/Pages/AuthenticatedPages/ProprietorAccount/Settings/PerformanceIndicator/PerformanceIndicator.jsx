@@ -39,7 +39,7 @@ const PerformanceIndicator = () => {
               return (
                 <div key={index} className={cx(styles.sectionContainer, "flexCol")}>
                   <div onClick={() => showDetails(indicator)} className={cx(styles.indicatorWrapper, "flexRow")} >
-                    <span className={cx(styles.iconSpan)}><img src={indicator.avatar} alt="img" /></span><span className={cx(styles.value)}>{indicator.name}</span>
+                    <span className={cx(styles.iconSpan)}><img src={indicator?.avatar} alt="img" /></span><span className={cx(styles.value)}>{indicator.name}</span>
                   </div>
                   <div className={cx(styles.btnGroup, "flexRow-space-between")}>
                     <div onClick={() => handleModify(indicator)} className={cx(styles.wrapper, "flexRow")}>

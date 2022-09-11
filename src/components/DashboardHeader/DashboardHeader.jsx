@@ -62,8 +62,8 @@ const Header = (props) => {
   },[userDetails?.avatar]);
 
   useEffect(() => {
-    dispatch(getAllInstitutions());
-  }, [dispatch]);
+    userCategory === "proprietor" && dispatch(getAllInstitutions());
+  }, [dispatch, userCategory]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 

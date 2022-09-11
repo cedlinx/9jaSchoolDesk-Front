@@ -104,11 +104,13 @@ export const getDashboard = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getDashboardApi(data);
+    console.log(response);
     // toast.success(response.data.message);
     let token = response?.data?.data?.ward?.token;
     setToken(token);
     return dispatch(getDashboardAction(response?.data));
   } catch (e) {
+    console.log(e);
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }

@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDashboard } from "@/redux/Proprietor/ProprietorSlice";
+import useGetUser from "./useGetUser";
 
 
 const useGetActiveInstitution = () => {
-
+  const user = useGetUser();
   const dispatch = useDispatch();
   const institutions = useSelector((state) => state?.proprietor?.getDashboardData?.proprietor?.institutions);
   const [activeInstitution, setActiveInstitution] = useState(null);
 
   useEffect(() => {
-    dispatch(getDashboard());
-  }, [dispatch]);
+    user === "proprietor" && getDashboard();
+  }, [dispatch, user]);
 
   useEffect(() => {
     Array.isArray(institutions) && institutions.some((institution) => {

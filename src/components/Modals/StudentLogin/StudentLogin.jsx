@@ -45,11 +45,11 @@ const StudentLogin = () => {
 
       let response2 = await dispatch(getDashboard({id: studentID, signature: signature, classCode: classCode}));
 
-      response2.payload.success && navigate("/student/dashboard", {state: {studentID: modalData?.id}});
-      dispatch(showModal({action: "hide"}));
-
+      if( response2.payload.success){
+        navigate("/student/dashboard", {state: {studentID: modalData?.id}});
+        dispatch(showModal({action: "hide"}));
+      }
     }
-    
   };
 
   const resolver = yupResolver(studentLoginValidationSchema);

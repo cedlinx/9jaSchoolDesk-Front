@@ -115,8 +115,8 @@ export const loginWithOTPCode = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await loginWithOTPCodeApi(data);
-    // let token = response?.data?.user?.token;
-    // setToken(token);
+    let token = response?.data?.user?.token;
+    token && setToken(token);
     let userData = response?.data?.user;
     localStorage.setItem("userData", JSON.stringify(userData));
     return dispatch(loginWithOTPCodeAction(response?.data));
