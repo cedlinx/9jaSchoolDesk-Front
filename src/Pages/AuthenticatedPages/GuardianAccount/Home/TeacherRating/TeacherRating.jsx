@@ -93,7 +93,7 @@ const TeacherRating = ({teachersData, guardianID}) => {
       <div className={cx(styles.teacherRatingsDiv)}>
         <h5>Teacher Rating</h5>
         <div className={cx(styles.ratingsDiv)}>
-          {teachersData.length > 0 ? 
+          {Array.isArray(teachersData) && teachersData.length > 0 ? 
             <div className={cx(styles.tableDiv)}>
               <TableComponent defaultPageSize="10" showTableHeader={false} showPaginationSummary={true} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(teachersData)} />
             </div>

@@ -35,6 +35,7 @@ import UrgentInfoTeacherModal from "@/components/Modals/UrgentInfoTeacher/Urgent
 import useGetClassDetails from "@/utils/useGetClassDetails";
 import useGetActiveInstitution from "@/utils/useGetActiveInstitution";
 import { getAllInstitutions } from "@/redux/Proprietor/ProprietorSlice";
+import { getTeacherDetails, getDashboard } from "@/redux/Teacher/TeacherSlice";
 import { toast } from "react-toastify";
 
 const Header = (props) => {
@@ -54,6 +55,9 @@ const Header = (props) => {
   const activeInstitutionData = useGetActiveInstitution();
   const institutionName = activeInstitutionData?.name;
   let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
+  let classesArray = useSelector((state) => state?.teacher?.getTeacherDetailsData?.classes);
+
+  console.log(classesArray);
 
   console.log(userDetails);
   console.log(userCategory);
@@ -64,6 +68,7 @@ const Header = (props) => {
 
   useEffect(() => {
     userCategory === "proprietor" && dispatch(getAllInstitutions());
+    userCategory === "teacher" && dispatch(getTeacherDetails());
   }, [dispatch, userCategory]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -87,6 +92,22 @@ const Header = (props) => {
     }
     else{
       navigate("/select-institution/proprietor");
+    }
+  };
+
+  const handleSwitchClass =()=>{
+    // if(Array.isArray(classesArray) && classesArray.length === 1){
+    //   toast.success("You only have one class");
+    // }
+    // else{
+    //   navigate("/select-class/teacher");
+    // }
+
+    if(Array.isArray(userDetails?.classes) && userDetails?.classes.length === 1){
+      toast.success("You only have one class");
+    }
+    else{
+      navigate("/select-class/teacher");
     }
   };
 
@@ -122,7 +143,7 @@ const Header = (props) => {
                 <div className={cx(styles.infoDiv, "flexRow")}>
                   <span>Class: </span><span>{classDetails?.name}</span>
                 </div>
-                <Button onClick={() => navigate("/select-class/teacher")} type title="Switch Class" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
+                <Button onClick={() => handleSwitchClass()} type title="Switch Class" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />
               </div>
             }
 

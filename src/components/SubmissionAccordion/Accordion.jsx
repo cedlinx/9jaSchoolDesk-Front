@@ -142,6 +142,7 @@ const AccordionComponent =(props)=>{
                                 onChange={(e)=>handleScoreChange(e, index)}
                                 readOnly={item?.pivot?.status && item?.pivot?.status.toLowerCase() === "graded"}
                                 value={feedbackData?.index === index ? feedbackData?.score : item?.pivot?.score}
+                                marginbottom={"0rem"}
                               />
                             )}
                           />

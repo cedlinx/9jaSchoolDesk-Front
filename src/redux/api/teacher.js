@@ -1,7 +1,7 @@
 import axios from "@/config/axios";
 
 export const getDashboardApi = async () => {
-  return await axios.get("teacher/auth/dashboard");
+  return await axios.post("teacher/auth/dashboard");
 };
 
 export const addKPIApi = async (data) => {
@@ -113,7 +113,7 @@ export const updateProfileApi = async (data) => {
 };
 
 export const getTeacherDetailsApi = async (data) => {
-  return await axios.get("teacher/auth/profile", data);
+  return await axios.get("teacher/auth/profile/view", data);
 };
 
 export const switchClassApi = async (data) => {
