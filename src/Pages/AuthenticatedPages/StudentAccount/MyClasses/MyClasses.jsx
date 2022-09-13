@@ -45,7 +45,7 @@ const MyClasses = () => {
           </div>
         </div>
 
-        <div className={cx(styles.sectionWrapper)}>
+        {/* <div className={cx(styles.sectionWrapper)}>
           <p className={cx(styles.title)}>Past Lessons</p>
           <div className={cx(styles.subGroupContainer)}>
             {lessonsData && lessonsData.map((item, index)=>{
@@ -56,7 +56,7 @@ const MyClasses = () => {
               );
             })}
           </div>
-        </div>
+        </div> */}
    
       </div>
      

@@ -184,7 +184,7 @@ const Header = (props) => {
                 {userCategory === "student" && <> <NavLink to="class-gist">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                      <div><img src={isActive ? classGistIconActive : classGistIcon} alt="" /></div>
+                      <div><img src={isActive ? classGistIcon : classGistIcon} alt="" /></div>
                       <span>Class Gist</span>
                     </div>
                   )}
@@ -193,7 +193,7 @@ const Header = (props) => {
                 <NavLink to="my-classes">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                      <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                      <div><img src={isActive ? myClassesIcon : myClassesIcon} alt="" /></div>
                       <span>My Classes</span>
                     </div>
                   )}
@@ -202,7 +202,7 @@ const Header = (props) => {
                 <NavLink to="tasks">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                      <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                      <div><img src={isActive ? myClassesIcon : myClassesIcon} alt="" /></div>
                       <span>Tasks</span>
                     </div>
                   )}
@@ -233,7 +233,7 @@ const Header = (props) => {
                     <NavLink to="tasks">
                       {({ isActive }) => (
                         <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                          <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                          <div><img src={isActive ? myClassesIcon : myClassesIcon} alt="" /></div>
                           <span>Tasks</span>
                         </div>
                       )}
@@ -248,7 +248,7 @@ const Header = (props) => {
 
                     <span className={cx(styles.avatarDiv, styles.logoutDropdown, "flexRow")}>
                       <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
-                      <Icon icon="clarity:caret-line" color="#000" rotate={2} />
+                      <Icon icon="clarity:caret-line" color="#fff" rotate={2} />
                     </span>
                   </DropdownToggle>
                   <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>

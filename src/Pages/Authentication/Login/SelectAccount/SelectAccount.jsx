@@ -45,7 +45,7 @@ const SelectAccount = () => {
 
               <div className={cx(styles.imageDiv)}>
             
-                {element?.studentImage ? <img className={cx(styles.profileImage)} src={element?.studentImage} alt="" /> : 
+                {element?.avatar ? <img className={cx(styles.profileImage)} src={element?.avatar} alt="" /> : 
                   <span style={{backgroundColor: generateColor()}}>{initialsCase(`${element.firstName} ${element.lastName}`)}</span>
                 }
               </div>

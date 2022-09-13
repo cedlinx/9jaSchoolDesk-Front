@@ -72,7 +72,7 @@ const StudentLogin = () => {
       <div className={cx(styles.formWrapper, "flexCol")}>
 	  <div className={cx(styles.header, "flexCol")}>
           <p>{`${titleCase(modalData.firstName)} ${titleCase(modalData.lastName)}`}</p>
-          {modalData.studentImage ? <img src={modalData.studentImage} alt="img" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> }
+          {modalData.avatar ? <img src={modalData.avatar} alt="img" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> }
         </div>
         
         <form
