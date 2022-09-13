@@ -191,7 +191,7 @@ const AddTask = () => {
                     {...field}
                     label={"Task Type"}
                     defaultSelect="Select Task Type"
-                    options={[{ value: "assignment", label: "Assignment" }, { value: "assessment", label: "Assessment" }]}
+                    options={[{ value: "classwork", label: "Classwork" }, { value: "assignment", label: "Assignment" }]}
                     marginbottom="1.5rem"
                     error={errors?.type && errors?.type?.message}
                   />
@@ -280,7 +280,7 @@ const AddTask = () => {
                     <img src={uploadedFile?.type === "image" ? uploadedFile?.imagePreviewUrl : uploadedFile?.type === "video" ? videoIcon : fileIcon} alt="" />
                   </div>}
 
-                  <Button {...getRootProps()} type title="Attach File" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
+                  <Button {...getRootProps()} title="Attach File" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
 
                   <Button onClick={()=>removeAttachment()} title="Remove" borderRadiusType="fullyRounded" textColor="#828282" bgColor="#fff" bordercolor="#828282" hoverBg="#828282" hoverColor="#fff" />
                 </div>
