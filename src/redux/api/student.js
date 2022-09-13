@@ -1,5 +1,4 @@
 import axios from "@/config/axios";
-console.log(axios);
 
 export const getDashboardApi = async (data) => {
   // return await axios.get(`student/join/class/${data.id}/${data.classCode}/dashboard?signature=${data.signature}`);

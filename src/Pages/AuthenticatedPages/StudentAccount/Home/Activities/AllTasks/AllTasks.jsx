@@ -11,7 +11,7 @@ import formatDate from "@/helpers/formatDate";
 import { useNavigate } from "react-router-dom";
 
 
-const Tasks = ({currentTasks}) => {
+const Tasks = ({allTasks}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -68,22 +68,41 @@ const Tasks = ({currentTasks}) => {
       Header: () => (
         <div
           style={{
-            width: "auto", fontSize: "0.875rem"
+            minWidth: "auto",
+            color: "#747474",
+            fontSize: "1rem"
           }}
-        >Action</div>
+        >Status</div>
       ),
-      accessor: "action",
+      accessor: "status",
       Cell: (row) => {
-        let allData = row.cell.row.original.allData;
-
-        return <div>
-          <button style={{backgroundColor: "#2AC769", borderRadius: "1rem", color: "#fff", border: "none", fontSize: "0.75rem", padding: "0.5rem 1rem", cursor: "pointer"}} onClick={()=> navigate("/student/submit-task", { state:{data: allData}})}>
-                Submit
-          </button>
-              
+        let status = row.cell.row.values.status;
+        return <div style={{ color: status === "Graded" ? "green" : status === "Submitted" ? "blue" : "tomato"}} >
+          {status}
+            
         </div>;
       }
     }
+    // {
+    //   Header: () => (
+    //     <div
+    //       style={{
+    //         width: "auto", fontSize: "0.875rem"
+    //       }}
+    //     >Action</div>
+    //   ),
+    //   accessor: "action",
+    //   Cell: (row) => {
+    //     let allData = row.cell.row.original.allData;
+
+    //     return <div>
+    //       <button style={{backgroundColor: "#2AC769", borderRadius: "1rem", color: "#fff", border: "none", fontSize: "0.75rem", padding: "0.5rem 1rem", cursor: "pointer"}} onClick={()=> navigate("/student/submit-task", { state:{data: allData}})}>
+    //             Submit
+    //       </button>
+              
+    //     </div>;
+    //   }
+    // }
   ];
 
   let getTableData = (data) => {
@@ -93,7 +112,7 @@ const Tasks = ({currentTasks}) => {
     data  && data.map((item, index) =>{
       result.push({
         serialNumber: index+1,
-        status: item?.status && item?.status,
+        status: item?.pivot?.status && item?.pivot?.status,
         imageUrl: item?.imageUrl && item?.imageUrl,
         teacherDetails: item?.teacherDetails && item?.teacherDetails,
         due_date: item?.due_date && formatDate(item?.due_date),
@@ -106,18 +125,18 @@ const Tasks = ({currentTasks}) => {
 
   return (
     <>
-      {currentTasks && currentTasks.length > 0 ? <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(currentTasks)} /> : <div style={{textAlign: "center", fontSize: "1.5rem", color: "#828282"}}>You currently have no task assigned to you</div>}
+      {allTasks && allTasks.length > 0 ? <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(allTasks)} /> : <div style={{textAlign: "center", fontSize: "1.5rem", color: "#828282"}}>You currently have no task assigned to you</div>}
     </>
     
   );
 };
 
 Tasks.defaultProps = {
-  currentTasks: [""]
+  allTasks: [""]
 };
 
 Tasks.propTypes = {
-  currentTasks: PropTypes.array
+  allTasks: PropTypes.array
 };
 
 export default Tasks;

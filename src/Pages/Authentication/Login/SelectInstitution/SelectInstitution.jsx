@@ -25,7 +25,6 @@ const SelectInstitution = () => {
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.proprietor.loading);
   const switchInstitutionToken = useSelector((state) => state.proprietor.switchInstitutionData);
-  console.log(switchInstitutionToken);
 
   // const proprietorDetails = useGetLoggedInUser();
   // let institutionsArray = proprietorDetails?.institutions;
@@ -37,7 +36,6 @@ const SelectInstitution = () => {
     dispatch(getAllInstitutions());
   }, [dispatch]);
   
-  console.log(institutionsArray);
   // useEffect(() => {
   //   if(proprietorDetails.institutions === undefined) {
   //     navigate("/proprietor/dashboard");

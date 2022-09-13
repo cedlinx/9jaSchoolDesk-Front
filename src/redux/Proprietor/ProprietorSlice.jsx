@@ -67,7 +67,6 @@ export const proprietorSlice = createSlice({
   reducers: {
 
     startLoading: state => {
-      console.log(state);
       state.loading = true;
     },
 
