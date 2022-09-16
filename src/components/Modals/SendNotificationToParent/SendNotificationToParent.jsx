@@ -8,7 +8,7 @@ import { Icon } from "@iconify/react";
 import TextInput from "@/components/TextInput/TextInput";
 import InputField from "@/components/Input/Input";
 
-// import { sendNotification } from "@/redux/Teacher/TeacherSlice";
+import { sendNotification } from "@/redux/Teacher/TeacherSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { sendNotificationToParentValidationSchema } from "@/helpers/validation";
@@ -18,23 +18,23 @@ const SendNotificationToParent = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
-  
+  console.log(modalData);
+  const loading = useSelector((state) => state.teacher.loading);
 
   const sendRequest = async (data) => {
     
     let group = data.user.includes("guardian") ? "guardian" :  data.user.includes("teacher") ? "teacher" : "all";
-    // let response = await dispatch(sendNotification({group: group, message: data.message, recipients: convertStringToArray(data.recipients)}));
-    // if(response.payload.success){
-    //   dispatch(showModal({ action: "hide", type: "sendNotificationToParent" }));
-    // }
+    let response = await dispatch(sendNotification({group: group, message: data.message, student_id: modalData?.id}));
+    if(response.payload.success){
+      dispatch(showModal({ action: "hide", type: "sendNotificationToParent" }));
+    }
   };
 
   const resolver = yupResolver(sendNotificationToParentValidationSchema);
 
   const defaultValues = {
     message: "",
-    user: "",
-    recipients: modalData.email
+    user: ""
   };
 
   const { handleSubmit, register, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
@@ -57,7 +57,7 @@ const SendNotificationToParent = () => {
           onSubmit={handleSubmit((data) => sendRequest(data))}
         >
 
-          <Controller
+          {/* <Controller
             name="recipients"
             control={control}
             render={({ field, ref }) => (
@@ -68,7 +68,7 @@ const SendNotificationToParent = () => {
                 error={errors?.recipients && errors?.recipients?.message}
               />
             )}
-          />
+          /> */}
             
           <Controller
             name="message"
@@ -83,7 +83,7 @@ const SendNotificationToParent = () => {
           />
                
           <div  className={cx(styles.btnDiv, "flexRow")}>
-            <Button onClick={handleSubmit((data) => sendRequest(data))} title="Send" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#D25B5D" hoverBg="#fff" />
+            <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => sendRequest(data))} title="Send" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#D25B5D" hoverBg="#fff" />
           </div>
 
         </form>

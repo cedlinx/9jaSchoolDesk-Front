@@ -53,7 +53,7 @@ const ViewLessonDetails = () => {
         </div>
 
         <div className={cx(styles.modalItem)}>
-          <span className={cx(styles.title)}>ATTACHMENT</span><span className={cx(styles.value)}><a href={data?.document_url} target="_blank" rel="noreferrer">File Link</a></span>
+          <span className={cx(styles.title)}>ATTACHMENT</span><span className={cx(styles.value)}><a href={data?.document_url} target="_blank" rel="noreferrer">Download File</a></span>
         </div>
 
         <div className={cx(styles.modalItem)}>

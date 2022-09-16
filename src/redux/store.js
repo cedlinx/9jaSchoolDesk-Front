@@ -6,6 +6,7 @@ import GuardianReducer from "./Guardian/GuardianSlice";
 import TeacherReducer from "./Teacher/TeacherSlice";
 import StudentReducer from "./Student/StudentSlice";
 import GistReducer from "./Gist/GistSlice";
+import LoadingReducer from "./Loading/LoadingSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
     guardian: GuardianReducer,
     teacher: TeacherReducer,
     student: StudentReducer,
-    gist: GistReducer
+    gist: GistReducer,
+    loading: LoadingReducer
   },
   devTools: process.env.NODE_ENV === "development" ? true : false 
 });

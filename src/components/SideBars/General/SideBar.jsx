@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./GeneralSideBar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
@@ -38,6 +38,7 @@ import subjectIconActive from "@/assets/icons/subject-icon-active.svg";
 import subjectIcon from "@/assets/icons/subject-icon.svg";
 import proprietorSettingsIconActive from "@/assets/icons/settings-icon-active.svg";
 import proprietorSettingsIcon from "@/assets/icons/settings-icon.svg";
+import { getTeacherDetails } from "@/redux/Teacher/TeacherSlice";
 
 // import { getUserInfo } from "@/redux/Auth/AuthSlice";
 
@@ -47,15 +48,24 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const teacherDetails = useGetLoggedInUser();
+  // const teacherDetails = JSON.parse(localStorage.getItem("userData"));
   const user = useGetUser();
   // const actualPath = location.pathname.match(/([^/]+$)/);
   const actualPath = location.pathname.split("/").pop();
   const basePath = location.pathname.split("/")[1];
+  const updateProfileLoading = useSelector((state) => state.loading.updateProfileLoading);
+  const userDetails = JSON.parse(localStorage.getItem("userData"));
+  const [avatar, setAvatar] = useState(userDetails?.avatar);
+
+  const teacherDetails = useSelector((state) => state?.teacher?.getTeacherDetailsData?.teacher);
+  console.log(teacherDetails);
+
+  console.log(updateProfileLoading);
 
   useEffect(() => {
-    // dispatch(getUserInfo());
-  });
+    user === "teacher" && dispatch(getTeacherDetails());
+    setAvatar(userDetails?.avatar);
+  },[dispatch, updateProfileLoading, user, userDetails?.avatar]);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -77,18 +87,18 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         </div>
         {user === "teacher" && <div className="sidebar-header" >
           <div className="imageDiv">
-            {teacherDetails?.avatar ?  
+            {avatar ?  
               <img
-                src={teacherDetails?.avatar}
+                src={avatar}
                 alt="thumb"
                 className="user-image"
               /> 
               : 
-              <span style={{ backgroundColor: "#D25B5D" }}>{initialsCase(`${teacherDetails.firstName} ${teacherDetails.lastName}`)}</span>}
+              <span style={{ backgroundColor: "#D25B5D" }}>{teacherDetails?.firstName ? initialsCase(`${teacherDetails.firstName} ${teacherDetails.lastName}`) : ""}</span>}
           </div>
           <div className="user-info">
-            <p>{`${teacherDetails?.firstName && titleCase(teacherDetails?.firstName)} ${teacherDetails?.firstName && titleCase(teacherDetails?.lastName)}` }</p>
-            <small>{teacherDetails?.email}</small>
+            <p>{teacherDetails?.firstName && `${titleCase(teacherDetails?.firstName)} ${teacherDetails?.firstName && titleCase(teacherDetails?.lastName)}` }</p>
+            <small>{teacherDetails && teacherDetails?.email}</small>
           </div>
           <img onClick={() => navigate("settings")} className="caret-icon" src={rightCaret} alt="icon" />
         </div> }
@@ -121,7 +131,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
             active={actualPath === "lessons" ? "true" : ""}
             prefix={<span className="menuIcon"><img src={lessonsIcon} alt="" /></span>}
           >
-            <NavLink to={`/${basePath}/lessons`}>Lessons</NavLink>
+            <NavLink to={`/${basePath}/lessons`}>Resources</NavLink>
           </MenuItem>
         </Menu>
 
@@ -130,7 +140,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
             active={actualPath === "lounge" ? "true" : ""}
             prefix={<span className="menuIcon"><img src={loungeIcon} alt="" /></span>}
           >
-            <NavLink to={`/${basePath}/lounge`}>Lounge</NavLink>
+            <NavLink to={`/${basePath}/lounge`}>Class Gist</NavLink>
           </MenuItem>
         </Menu>
         {/* 

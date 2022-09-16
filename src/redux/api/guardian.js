@@ -36,3 +36,6 @@ export const preferredChannelApi = async (data) => {
   return await axios.post("guardian/auth/profile/set-comms-channel", data);
 };
 
+export const getGuardianDetailsApi = async () => {
+  return await axios.get("guardian/auth/profile/view" );
+};

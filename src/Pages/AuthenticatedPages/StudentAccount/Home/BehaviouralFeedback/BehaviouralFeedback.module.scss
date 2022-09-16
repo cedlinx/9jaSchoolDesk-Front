@@ -16,6 +16,7 @@
             .imageDiv {
                 img{
                     width: 4rem;
+                    height: 4rem;
                 }
             }
 
@@ -46,6 +47,8 @@
 
                     img{
                         width: 2rem;
+                        height: 2rem;
+                        object-fit: cover;
                     }
                 }
 

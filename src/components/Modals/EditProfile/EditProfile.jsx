@@ -11,7 +11,7 @@ import profileCardHeaderBg from "@/assets/images/profile-card-bg.png";
 import { useDropzone } from "react-dropzone";
 import editIcon from "@/assets/icons/edit-icon.svg";
 
-import { modifyWardProfile } from "@/redux/Guardian/GuardianSlice";
+import { getDashboard, modifyWardProfile, viewWardDetails } from "@/redux/Guardian/GuardianSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { modifyWardProfileValidationSchema } from "@/helpers/validation";
@@ -28,7 +28,7 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalData = useSelector((state) => state.modalState.modalData);
-  const loading = useSelector((state) => state.student.loading);
+  const loading = useSelector((state) => state.loading.updateProfileLoading);
   const allTasksData = useSelector((state) => state.guardian.getWardTasksData.task);
   const user = useGetUser();
   
@@ -46,6 +46,9 @@ const EditProfile = () => {
     
     if(response.payload.success){
       dispatch(showModal({ action: "hide" }));
+      dispatch(getDashboard());
+      dispatch(viewWardDetails(modalData.id));
+
     }
   };
 
@@ -80,6 +83,8 @@ const EditProfile = () => {
     navigate("/guardian/submissions");
     dispatch(showModal({ action: "hide" }));
   };
+
+  console.log(errors);
 
   return (
 
@@ -188,12 +193,12 @@ const EditProfile = () => {
           </div>
 
           <div className={cx(styles.body, "flexCol")}>
-            {Array.isArray(modalData?.submitted_tasks) && modalData.submitted_tasks.length > 0 ? modalData?.submitted_tasks.map((submission, index)=>{
+            {Array.isArray(modalData?.graded_tasks) && modalData.graded_tasks.length > 0 ? modalData?.graded_tasks.map((submission, index)=>{
               return(
                 <div onClick={() => dispatch(showModal({action: "show", type: "submissionDetails", modalData: submission }))} className={cx(styles.submissionContainer, "flexCol")} key={index}>
                   <div className={cx(styles.fileDetails, "flexRow-space-between")}>
                     <span>{submission?.name}</span>
-                    <small>{formatDate(submission?.pivot?.updated_at)}</small>
+                    <small>{formatDate(submission?.updated_at)}</small>
                   </div>
                   <div className={cx(styles.solutionDiv, styles.wrapper)}>
                     <label htmlFor="">Solution</label>

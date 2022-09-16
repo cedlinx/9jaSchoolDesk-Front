@@ -38,6 +38,9 @@ const TaskDetails = () => {
             <div className={cx(styles.modalItem)}>
               <span className={cx(styles.title)}>SUBJECT</span><span className={cx(styles.value)}>{data?.subject?.subject}</span>
             </div>
+            {data?.description && <div className={cx(styles.modalItem)}>
+              <span className={cx(styles.title)}>DESCRIPTION</span><span className={cx(styles.value)}>{data?.description}</span>
+            </div>}
             {data?.pivot?.attachment && <div className={cx(styles.modalItem)}>
               <span className={cx(styles.title)}>ATTACHMENT</span><span className={cx(styles.value)}><a href={data?.pivot?.attachment} target="_blank" rel="noreferrer">{data?.pivot?.attachment.split("/").pop()}</a></span>
             </div>}

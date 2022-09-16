@@ -34,8 +34,9 @@ import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import UrgentInfoTeacherModal from "@/components/Modals/UrgentInfoTeacher/UrgentInfoTeacher";
 import useGetClassDetails from "@/utils/useGetClassDetails";
 import useGetActiveInstitution from "@/utils/useGetActiveInstitution";
-import { getAllInstitutions } from "@/redux/Proprietor/ProprietorSlice";
-import { getTeacherDetails, getDashboard } from "@/redux/Teacher/TeacherSlice";
+import { getAllInstitutions, getDashboard as getProprietorDashboard } from "@/redux/Proprietor/ProprietorSlice";
+import { getTeacherDetails, getDashboard as getTeacherDashboard } from "@/redux/Teacher/TeacherSlice";
+import { getGuardianDetails, getDashboard as getGuardianDashboard } from "@/redux/Guardian/GuardianSlice";
 import { toast } from "react-toastify";
 
 const Header = (props) => {
@@ -51,6 +52,8 @@ const Header = (props) => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const userDetails = JSON.parse(localStorage.getItem("userData"));
+  const updateProfileLoading = useSelector((state) => state.loading.updateProfileLoading);
+
   // const activeInstitutionData = localStorage.getItem("activeInstitutionData") && JSON.parse(localStorage.getItem("activeInstitutionData"));
   const activeInstitutionData = useGetActiveInstitution();
   const institutionName = activeInstitutionData?.name;
@@ -62,14 +65,20 @@ const Header = (props) => {
   console.log(userDetails);
   console.log(userCategory);
 
+  const [avatar, setAvatar] = useState(userDetails?.avatar);
+
   useEffect(() => {
-    // dispatch(logout());
-  },[userDetails?.avatar]);
+    setAvatar(userDetails?.avatar);
+  }, [userDetails, updateProfileLoading]);
+
+
+
 
   useEffect(() => {
     userCategory === "proprietor" && dispatch(getAllInstitutions());
-    userCategory === "teacher" && dispatch(getTeacherDetails());
-  }, [dispatch, userCategory]);
+    userCategory === "teacher" && dispatch(getTeacherDetails({id: userDetails?.id}));
+    userCategory === "guardian" && dispatch(getGuardianDetails({id: userDetails?.id}));
+  }, [dispatch, userCategory, userDetails?.id]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -96,19 +105,19 @@ const Header = (props) => {
   };
 
   const handleSwitchClass =()=>{
-    // if(Array.isArray(classesArray) && classesArray.length === 1){
-    //   toast.success("You only have one class");
-    // }
-    // else{
-    //   navigate("/select-class/teacher");
-    // }
-
-    if(Array.isArray(userDetails?.classes) && userDetails?.classes.length === 1){
+    if(Array.isArray(classesArray) && classesArray.length === 1){
       toast.success("You only have one class");
     }
     else{
       navigate("/select-class/teacher");
     }
+
+    // if(Array.isArray(userDetails?.classes) && userDetails?.classes.length === 1){
+    //   toast.success("You only have one class");
+    // }
+    // else{
+    //   navigate("/select-class/teacher");
+    // }
   };
 
   return (
@@ -216,7 +225,7 @@ const Header = (props) => {
                       {({ isActive }) => (
                         <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                           <div><img src={isActive ? messagesIconActive : messagesIcon} alt="" /></div>
-                          <span>Messages</span>
+                          <span>Class Gist</span>
                         </div>
                       )}
                     </NavLink>
@@ -247,7 +256,7 @@ const Header = (props) => {
                   <DropdownToggle name="profile-toggler" className={cx(styles.dropdownToggler)}>
 
                     <span className={cx(styles.avatarDiv, styles.logoutDropdown, "flexRow")}>
-                      <img className={cx(styles.profilePicture)} src={userDetails && userDetails.avatar ? userDetails.avatar : profilePicture} alt="" />
+                      <img className={cx(styles.profilePicture)} src={avatar} alt="" />
                       <Icon icon="clarity:caret-line" color="#fff" rotate={2} />
                     </span>
                   </DropdownToggle>

@@ -194,7 +194,7 @@ const Submissions = () => {
         <h5>All Submissions</h5>
       </div>
 
-      {loading ? <TableSkeleton /> : Array.isArray(selectedWard?.submitted_tasks) && selectedWard?.submitted_tasks.length > 0 ?
+      {loading ? <TableSkeleton /> : Array.isArray(selectedWard?.graded_tasks) && selectedWard?.graded_tasks.length > 0 ?
         <>
           <div className={cx(styles.filterSection, "flexRow")}>
 
@@ -228,7 +228,7 @@ const Submissions = () => {
             </Dropdown>
           </div>
           <div className={cx(styles.tableDiv)}>
-            <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(selectedWard?.submitted_tasks)} /> 
+            <TableComponent columnsHeader={columnsHeader} tableData= {getTableData(selectedWard?.graded_tasks)} /> 
           </div>
         </>
         : <div className={cx(styles.noDataDiv)}>

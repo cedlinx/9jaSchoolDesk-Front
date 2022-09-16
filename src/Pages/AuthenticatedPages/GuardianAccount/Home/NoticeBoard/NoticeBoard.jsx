@@ -69,7 +69,7 @@ const NoticeBoard = ({selectedWard}) => {
         <h5>Notice Board</h5>             
       </div>
       <div className={cx(styles.tableDiv)}>
-        {Array.isArray(notices) && notices.length > 0 ? <TableComponent defaultPageSize="5" showTableHeader={false} showPaginationSummary={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(notices)} /> : <p className={cx(styles.emptyDataElement)}>You have no notiification at this time</p> }
+        {Array.isArray(notices) && notices.length > 0 ? <TableComponent defaultPageSize="5" showTableHeader={false} showPaginationSummary={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(notices)} /> : <p className={cx(styles.emptyDataElement)}>You have no notification at this time</p> }
       </div>
     </div>
   );

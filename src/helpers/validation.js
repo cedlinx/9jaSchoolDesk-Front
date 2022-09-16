@@ -584,9 +584,9 @@ export const urgentInfoTeacherValidationSchema = Yup.object().shape({
 
 export const sendNotificationToParentValidationSchema = Yup.object().shape({
   message: Yup.string()
-    .required("Message content is required"),
+    .required("Message content is required")
 
-  recipients: Yup.string().required("Recipients is required")
+  // recipients: Yup.string().required("Recipients is required")
 
   // user: Yup.array()
   //   .min(1, "Kindly select at least one (1) user")

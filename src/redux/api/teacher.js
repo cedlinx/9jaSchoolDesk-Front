@@ -113,6 +113,7 @@ export const updateProfileApi = async (data) => {
 };
 
 export const getTeacherDetailsApi = async (data) => {
+  // return await axios.get(`teacher/auth/profile/view?id=${data.id}`, data);
   return await axios.get("teacher/auth/profile/view", data);
 };
 

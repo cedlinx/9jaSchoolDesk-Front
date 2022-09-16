@@ -10,8 +10,6 @@ import Account from "./Account/Account";
 import Password from "./Password/Password";
 import PerformanceIndicator from "./PerformanceIndicator/PerformanceIndicator";
 import Tabs from "@/components/Tabs/TabsV2";
-import Button from "@/components/Button/Button";
-import { showModal } from "@/redux/ModalState/ModalSlice";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
 import InviteParentModal from "@/components/Modals/InviteGuardian/InviteGuardian";
 import ActivateParentModal from "@/components/Modals/ActivateGuardian/ActivateGuardian";
@@ -20,10 +18,9 @@ import AddPerformanceIndicatorByTeacherModal from "@/components/Modals/AddPerfor
 import DeleteIndicatorModal from "@/components/Modals/DeleteKPIIndicator/DeleteKPIIndicator";
 import ModifyKPIIndicatorModal from "@/components/Modals/ModifyKPIIndicator/ModifyKPIIndicator";
 import KPIIndicatorDetailsModal from "@/components/Modals/KPIIndicatorDetails/KPIIndicatorDetails";
-import { viewKPIForClass } from "@/redux/Teacher/TeacherSlice";
+import UpdateProfileModal from "@/components/Modals/UpdateProfile/UpdateProfile";
+import { viewKPIForClass, getDashboard } from "@/redux/Teacher/TeacherSlice";
 import useGetClassID from "@/utils/useGetClassID";
-
-
 
 
 const Settings = () => {
@@ -36,6 +33,7 @@ const Settings = () => {
 
   useEffect(() => {
     dispatch(viewKPIForClass(classID));
+    dispatch(getDashboard());
   }, [classID, dispatch]);
 
   // const RenderSubscriptions = () => <Subscriptions />;
@@ -59,7 +57,17 @@ const Settings = () => {
 
       <Tabs centralise tabs={tabsComponents} />
 
-      {modalState === "show" ? <Modal show >{modalType === "inviteParent" ? <InviteParentModal /> : modalType === "activateParent" ? <ActivateParentModal /> : modalType === "assignWardToParent" ? <AssignWardToParentModal /> : modalType === "addPerformanceIndicator" ? <AddPerformanceIndicatorByTeacherModal /> : modalType === "deleteIndicator" ? <DeleteIndicatorModal /> : modalType === "modifyKPIIndicator" ? <ModifyKPIIndicatorModal /> : modalType === "KPIIndicatorDetails" ? <KPIIndicatorDetailsModal /> : null}</Modal> : null}
+      {modalState === "show" && modalType === "inviteParent" && <Modal show >{<InviteParentModal />} </Modal>}
+      {modalState === "show" && modalType === "activateParent" && <Modal show >{<ActivateParentModal />}</Modal>}
+      {modalState === "show" && modalType === "assignWardToParent" && <Modal show >{<AssignWardToParentModal />}</Modal>}
+      {modalState === "show" && modalType === "addPerformanceIndicator" && <Modal size="lg" show >{<AddPerformanceIndicatorByTeacherModal />}</Modal>}
+      {modalState === "show" && modalType === "deleteIndicator" && <Modal show >{<DeleteIndicatorModal />}</Modal>}
+      {modalState === "show" && modalType === "modifyKPIIndicator" && <Modal show >{<ModifyKPIIndicatorModal />}</Modal>}
+      {modalState === "show" && modalType === "KPIIndicatorDetails" && <Modal show >{<KPIIndicatorDetailsModal />}</Modal>}
+      {modalState === "show" && modalType === "updateProfile" && <Modal show >{<UpdateProfileModal />}</Modal>}
+
+
+
     </div>
   );
 };

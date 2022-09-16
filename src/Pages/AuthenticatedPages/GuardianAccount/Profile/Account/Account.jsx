@@ -7,7 +7,7 @@ import InputField from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
-import { modifyGuardianProfile } from "@/redux/Guardian/GuardianSlice";
+import { modifyGuardianProfile, getGuardianDetails, getDashboard } from "@/redux/Guardian/GuardianSlice";
 import { initialsCase } from "@/helpers/textTransform";
 
 
@@ -58,7 +58,14 @@ const Account = () => {
     formData.append("address", data.address);
     formData.append("id", userDetails?.id);
 
-    dispatch(modifyGuardianProfile(formData));
+    let response = await dispatch(modifyGuardianProfile(formData));
+
+    if(response.payload.success){
+      dispatch(getGuardianDetails({id: userDetails?.id}));
+      dispatch(getDashboard());
+
+    }
+
     
   };
 

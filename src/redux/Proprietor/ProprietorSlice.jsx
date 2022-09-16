@@ -5,6 +5,9 @@ import formatArrayList from "@/helpers/formatArrayList";
 import { setToken } from "@/utils/auth";
 import { setAuthToken } from "@/utils/setAuthToken";
 
+import {updateProfileLoading} from "../Loading/LoadingSlice";
+
+
 const initialState = {
   loading: false,
   error: {},
@@ -801,11 +804,13 @@ export const sendNotification = (data) => async (dispatch) => {
 };
 
 export const updateProfile = (data) => async (dispatch) => {
+  dispatch(updateProfileLoading(true));
   try {
     dispatch(startLoading());
     const response = await updateProfileApi(data);
     response?.data?.proprietor && localStorage.setItem("userData", JSON.stringify(response?.data?.proprietor));
     toast.success(response.data.message);
+    dispatch(updateProfileLoading(false));
     return dispatch(updateProfileAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
@@ -893,7 +898,7 @@ export const getProfile = (data) => async (dispatch) => {
     toast.success(response.data.message);
     return dispatch(getProfileAction(response?.data));
   } catch (e) {
-    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : e?.response?.data?.message ? formatArrayList(e?.response?.data?.message) : e?.message);
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };

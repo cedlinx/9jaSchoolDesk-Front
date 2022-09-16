@@ -8,6 +8,7 @@ import Button from "@/components/Button/Button";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
 import { getDashboard, updateProfile, getProfile } from "@/redux/Proprietor/ProprietorSlice";
+import { initialsCase } from "@/helpers/textTransform";
 
 
 import { useForm, Controller } from "react-hook-form";
@@ -20,7 +21,6 @@ const Account = () => {
 
   const dispatch = useDispatch();
   const userDetails = useSelector((state) => state?.proprietor?.getDashboardData?.proprietor);
-  const userDetails1 = useSelector((state) => state?.proprietor?.getProfileData);
   const loading = useSelector((state) => state?.proprietor?.loading);
 
   const resolver = yupResolver(modifyProprietorValidationSchema);
@@ -41,11 +41,9 @@ const Account = () => {
       firstName: userDetails?.firstName,
       lastName: userDetails?.lastName,
       otherNames: userDetails?.otherNames,
-      address: userDetails?.address
+      address: userDetails?.address === "null" ? "" : userDetails?.address
     });
   }, [dispatch, reset, userDetails?.address, userDetails?.email, userDetails?.firstName, userDetails?.lastName, userDetails?.otherNames]);
-
-
 
 
   const sendRequest = async (data) => {
@@ -59,9 +57,8 @@ const Account = () => {
     formData.append("id", userDetails?.id);
 
     let response = await dispatch(updateProfile(formData));
-    if(response.payload.success){
+    if(response?.payload?.success){
       dispatch(getDashboard());
-      // dispatch(getProfile());
     }
   };
 
@@ -99,7 +96,11 @@ const Account = () => {
         </div>
         <div className={cx(styles.imageSection, "flexRow")}>
           <div className={cx(styles.imageDiv)}>
-            <img src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : userDetails?.avatar} alt="" />
+            {userDetails?.avatar || uploadedFile?.imagePreviewUrl ? 
+              <img src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : userDetails?.avatar} alt="" />
+              :
+              <span style={{ backgroundColor: "#D25B5D" }}>{initialsCase(`${userDetails.firstName} ${userDetails.lastName}`)}</span>
+            }
           </div>
 
           <Button {...getRootProps()}  type title="Upload" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" hoverBg="#D25B5D" hoverColor="#fff" />
@@ -160,7 +161,6 @@ const Account = () => {
                     )}
                   />
                 </div>
-           
 
                 <div style={{width: "100%"}}>
                   <Controller
@@ -197,9 +197,7 @@ const Account = () => {
                   />
                 </div>
            
-
               </div>
-     
 
               <div className={cx(styles.submitBtnDiv, "flexRow")}>
                 <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => sendRequest(data))} type title="Save Changes" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" hoverColor="#000" />

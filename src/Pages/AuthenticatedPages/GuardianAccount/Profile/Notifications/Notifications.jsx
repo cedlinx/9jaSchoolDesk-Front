@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import InputField from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { Icon } from "@iconify/react";
-import { preferredChannel } from "@/redux/Guardian/GuardianSlice";
+import { getGuardianDetails, preferredChannel } from "@/redux/Guardian/GuardianSlice";
 
 import { useForm, Controller } from "react-hook-form";
 import { saveNotificationsValidationSchema } from "@/helpers/validation";
@@ -14,12 +14,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 
+
 const Notifications = () => {
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state?.teacher?.loading);
-  const userDetails = useGetLoggedInUser();
-
+  // const userDetails = useGetLoggedInUser();
+  const userDetails = useSelector((state) => state?.guardian?.getGuardianDetailsData?.parent);
+  // console.log(guardianDetails, "guardian details");
+  console.log(userDetails, "guardian22 details");
   const resolver = yupResolver(saveNotificationsValidationSchema);
 
   const defaultValues = {
@@ -32,6 +35,8 @@ const Notifications = () => {
   const { register, handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
 
   useEffect(() => {
+    dispatch(getGuardianDetails());
+
     reset({
       Email: userDetails?.notification?.email,
       Call: userDetails?.notification?.call ,

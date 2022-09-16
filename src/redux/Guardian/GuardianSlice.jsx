@@ -1,7 +1,9 @@
-import { getDashboardApi, getAllWardsApi, viewWardDetailsApi, viewTaskDetailsApi, getWardTasksApi, modifyWardProfileApi, modifyGuardianProfileApi, rateTeacherByGuardianApi, preferredChannelApi} from "../api/guardian";
+import { getDashboardApi, getAllWardsApi, viewWardDetailsApi, viewTaskDetailsApi, getWardTasksApi, modifyWardProfileApi, modifyGuardianProfileApi, rateTeacherByGuardianApi, preferredChannelApi, getGuardianDetailsApi} from "../api/guardian";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
+
+import {updateProfileLoading} from "../Loading/LoadingSlice";
 
 
 const initialState = {
@@ -16,7 +18,8 @@ const initialState = {
   modifyWardProfileData: {},
   modifyGuardianProfileData: {},
   rateTeacherByGuardianData: {},
-  preferredChannelData: {}
+  preferredChannelData: {},
+  getGuardianDetailsData: {}
 };
 
 export const guardianSlice = createSlice({
@@ -77,13 +80,18 @@ export const guardianSlice = createSlice({
     preferredChannelAction: (state, action) => {
       state.preferredChannelData = action.payload;
       state.loading = false;
+    },
+
+    getGuardianDetailsAction: (state, action) => {
+      state.getGuardianDetailsData = action.payload;
+      state.loading = false;
     }
   }
 });
 export default guardianSlice.reducer;
 
 // Actions
-const { startLoading, hasError, getDashboardAction, getAllWardsAction, viewWardDetailsAction, viewTaskDetailsAction, getWardTasksAction, modifyWardProfileAction, modifyGuardianProfileAction, rateTeacherByGuardianAction, preferredChannelAction } = guardianSlice.actions;
+const { startLoading, hasError, getDashboardAction, getAllWardsAction, viewWardDetailsAction, viewTaskDetailsAction, getWardTasksAction, modifyWardProfileAction, modifyGuardianProfileAction, rateTeacherByGuardianAction, preferredChannelAction, getGuardianDetailsAction } = guardianSlice.actions;
 
 
 export const getDashboard = (data) => async (dispatch) => {
@@ -147,11 +155,12 @@ export const getWardTasks = (data) => async (dispatch) => {
 };
 
 export const modifyWardProfile = (data) => async (dispatch) => {
+  dispatch(updateProfileLoading(true));
   try {
     dispatch(startLoading());
     const response = await modifyWardProfileApi(data);
-    
     toast.success(response?.data?.message);
+    dispatch(updateProfileLoading(false));
     return dispatch(modifyWardProfileAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
@@ -160,12 +169,13 @@ export const modifyWardProfile = (data) => async (dispatch) => {
 };
 
 export const modifyGuardianProfile = (data) => async (dispatch) => {
+  dispatch(updateProfileLoading(true));
   try {
     dispatch(startLoading());
     const response = await modifyGuardianProfileApi(data);
     response?.data?.guardian && localStorage.setItem("userData", JSON.stringify(response?.data?.guardian));
     toast.success(response.data.message);
-
+    dispatch(updateProfileLoading(false));
     return dispatch(modifyGuardianProfileAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
@@ -191,6 +201,17 @@ export const preferredChannel = (data) => async (dispatch) => {
     const response = await preferredChannelApi(data);
     toast.success(response.data.message);
     return dispatch(preferredChannelAction(response?.data));
+  } catch (e) {
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
+  }
+};
+  
+export const getGuardianDetails = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getGuardianDetailsApi(data);
+    return dispatch(getGuardianDetailsAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));

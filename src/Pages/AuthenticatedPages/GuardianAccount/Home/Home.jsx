@@ -14,7 +14,7 @@ import RateTeacherModal from "@/components/Modals/RateTeacher/RateTeacher";
 import SwitchWardLoaderModal from "@/components/Modals/SwitchWardLoader/SwitchWardLoader";
 import ChangePinModal from "@/components/Modals/ChangePin/ChangePin";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
-import { getDashboard, getWardTasks } from "@/redux/Guardian/GuardianSlice";
+import { getDashboard, getWardTasks, viewWardDetails } from "@/redux/Guardian/GuardianSlice";
 import AssessmentFeedback from "./AssessmentFeedback/AssessmentFeedback";
 import NoticeBoard from "./NoticeBoard/NoticeBoard";
 import WardProfile from "./WardProfile/WardProfile";
@@ -33,14 +33,14 @@ const Home = () => {
   const loggedInUser = useGetLoggedInUser();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
-  const dashboardData = useSelector((state) => state.guardian.getDashboardData);
+  const dashboardData = useSelector((state) => state?.guardian?.getDashboardData);
+  const loading = useSelector((state) => state.guardian.loading);
   const selectedWard = useGetSelectedWard();
-  const { comments_and_replies, gists, parent, ratings, wards, notices, subscription_status } = dashboardData;
+  console.log(selectedWard);
   
   useEffect(() => {
     dispatch(getDashboard());
-    dispatch(getWardTasks({student_id: selectedWard?.id}));
-  }, [dispatch, selectedWard?.id]);
+  }, [dispatch]);
 
   const switchWard = async (ward_id) => {
     if(localStorage.getItem("selectedWardID") * 1 !== ward_id * 1 ){ 
@@ -61,7 +61,7 @@ const Home = () => {
 
             <div style={{borderBottom: `4px solid ${student?.id*1 === selectedWard?.id*1 ? "#2AC769" : "transparent"}`, paddingBottom: "0.25rem"}} onClick={() => switchWard(student?.id)} key={index} className={cx(styles.studentContainer, "flexRow-align-center")}>
               {student?.avatar ? 
-                <img src={student?.avatar} alt="avatar" />
+                <img src={student?.avatar} alt="img" />
                 :
                 <span style={{ backgroundColor: "#D25B5D" }}>{initialsCase(`${student.firstName} ${student.lastName}`)}</span>
               }
@@ -90,7 +90,7 @@ const Home = () => {
               <section className={cx(styles.tablesSection, "row")}>
 
                 <div className={cx(styles.tablesSectionLeft, "col-md-12", "col-xl-6")}>
-                  <AssessmentFeedback selectedWard={selectedWard} tasksData={selectedWard?.graded_tasks} />
+                  {selectedWard?.graded_tasks && <AssessmentFeedback selectedWard={selectedWard} tasksData={selectedWard?.graded_tasks} /> }
                 </div>
                 <div className={cx(styles.tablesSectionRight, "col-md-12", "col-xl-6")}>
                   <NoticeBoard selectedWard={selectedWard} />
@@ -102,7 +102,7 @@ const Home = () => {
             <div className={cx(styles.rightSection, "col-sm-12", "col-lg-4", "col-xl-3")}>
               <section className={cx(styles.rightSectionInnerContainer, "row")}>
                 <div className={cx("col-sm-6", "col-md-6", "col-lg-12")}>
-                  <WardProfile selectedWard={selectedWard} />
+                  {selectedWard && <WardProfile selectedWard={selectedWard} />}
                 </div>
                 <div className={cx("col-sm-6", "col-md-6", "col-lg-12")}>
                   <TeacherRating teachersData={selectedWard?.subjects} guardianID={loggedInUser?.id} />

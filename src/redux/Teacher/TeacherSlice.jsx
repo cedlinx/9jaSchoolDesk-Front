@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
 
+import {updateProfileLoading} from "../Loading/LoadingSlice";
 
 const initialState = {
   loading: false,
@@ -57,7 +58,8 @@ export const teacherSlice = createSlice({
 
   reducers: {
 
-    startLoading: state => {
+    startLoading: (state, action) => {
+      console.log(action);
       state.loading = true;
     },
 
@@ -285,6 +287,7 @@ export const getDashboard = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getDashboardApi(data);
+    localStorage.setItem("userData", JSON.stringify(response.data.teacher));
     return dispatch(getDashboardAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
@@ -606,11 +609,13 @@ export const takeAttendance = (data) => async (dispatch) => {
 };
 
 export const updateProfile = (data) => async (dispatch) => {
+  dispatch(updateProfileLoading(true));
   try {
     dispatch(startLoading());
     const response = await updateProfileApi(data);
     response?.data?.teacher && localStorage.setItem("userData", JSON.stringify(response?.data?.teacher));
     toast.success(response.data.message);
+    dispatch(updateProfileLoading(false));
     return dispatch(updateProfileAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
