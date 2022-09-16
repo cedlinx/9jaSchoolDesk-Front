@@ -18,9 +18,9 @@ import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 const Notifications = () => {
 
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state?.teacher?.loading);
+  const loading = useSelector((state) => state?.guardian?.loading);
   // const userDetails = useGetLoggedInUser();
-  const userDetails = useSelector((state) => state?.guardian?.getGuardianDetailsData?.parent);
+  const userDetails = useSelector((state) => state?.guardian?.getGuardianDetailsData?.user);
   // console.log(guardianDetails, "guardian details");
   console.log(userDetails, "guardian22 details");
   const resolver = yupResolver(saveNotificationsValidationSchema);
@@ -38,15 +38,16 @@ const Notifications = () => {
     dispatch(getGuardianDetails());
 
     reset({
-      Email: userDetails?.notification?.email,
-      Call: userDetails?.notification?.call ,
-      Whatsapp: userDetails?.notification?.whatsApp,
-      Sms: userDetails?.notification?.sms 
+      Email: userDetails?.comms_channel,
+      Call: userDetails?.comms_channel,
+      Whatsapp: userDetails?.comms_channel,
+      Sms: userDetails?.comms_channel
     });
-  }, [dispatch, reset, userDetails.email, userDetails?.notification?.email, userDetails?.notification?.call, userDetails?.notification?.sms, userDetails?.notification?.whatsApp, userDetails.call, userDetails.sms, userDetails.whatsApp]);
+  }, [dispatch, reset, userDetails?.comms_channel]);
 
 
   const saveNotification = async (data) => {
+    console.log(data);
     
     // let answer = "";
     // data?.Sms ? answer = "Sms" : data?.Whatsapp ? answer = "Whatsapp"  : data?.Call ? answer = "Call" : "Email" ;
@@ -57,7 +58,7 @@ const Notifications = () => {
     // data?.Call && answer.push("Call");
     // data?.Email && answer.push("Email");
 
-    let response = await dispatch(preferredChannel({channel: data.channel}));
+    dispatch(preferredChannel({channel: data.channel}));
     
   };
 

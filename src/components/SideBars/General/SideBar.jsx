@@ -57,7 +57,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
   const userDetails = JSON.parse(localStorage.getItem("userData"));
   const [avatar, setAvatar] = useState(userDetails?.avatar);
 
-  const teacherDetails = useSelector((state) => state?.teacher?.getTeacherDetailsData?.teacher);
+  const teacherDetails = useSelector((state) => state?.teacher?.getTeacherDetailsData?.user);
   console.log(teacherDetails);
 
   console.log(updateProfileLoading);
