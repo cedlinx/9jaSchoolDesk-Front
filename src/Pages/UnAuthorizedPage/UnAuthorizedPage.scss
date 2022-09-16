@@ -7,11 +7,12 @@
     .error-card{
         width: 100%;
         background: #FFFFFF;
-        height: 75%;
+        height: 100%;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 2rem;
         align-items: center;
         padding: 1rem;
 

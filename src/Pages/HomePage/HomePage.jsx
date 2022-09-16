@@ -33,7 +33,7 @@ import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg"
 
 import circleIcon from "@/assets/icons/circle_icon.svg";
 import PricingModule from "@/components/PricingModule/PricingModule";
-
+import RequestDemo from "./RequestDemo/RequestDemo";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -214,8 +214,12 @@ const HomePage = () => {
 
         <Testimonials />
 
-        <section className={cx(styles.pricingWrapper)}>
+        {/* <section className={cx(styles.pricingWrapper)}>
           <PricingModule />
+        </section> */}
+
+        <section className={cx(styles.requestDemoWrapper)}>
+          <RequestDemo />
         </section>
 
       </div>

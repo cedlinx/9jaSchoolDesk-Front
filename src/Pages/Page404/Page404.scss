@@ -3,17 +3,18 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    margin-top: 4rem;
+    margin-top: 0rem;
    
 
     .error-card{
         width: 100%;
         background: #FFFFFF;
-        height: 75%;
+        height: 100%;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 2rem;
         align-items: center;
         padding: 1rem;
 

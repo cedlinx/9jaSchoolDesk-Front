@@ -1,0 +1,41 @@
+.PhoneInputWrapperMailingList{
+    position: relative;
+    margin-bottom: 1rem;
+    label{
+        display: block;
+        font-style: normal;
+        font-weight: normal;
+        font-family: MontserratSemiBold;
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 4px;
+        color: #341D4B;
+        text-align: left;
+    }
+    .PhoneInput{
+        font-family: Montserrat;
+        border: 1px solid #DBDDE0;
+        padding: 7.5px 10px 8.5px 10px;
+        border-radius: 0.25rem;
+        margin: 0rem;
+
+        .PhoneInputInput{
+            border: none;
+            outline: none;
+            font-size: 16px;
+            line-height: 1.25;
+            color: #5e6c84;
+            font-style: normal;
+            font-weight: normal;
+        }
+    }
+
+    small{
+        color: #eb5757;
+        font-size: 0.75rem;
+        margin: 0rem;
+        line-height: 1;
+        padding-top: 0.125rem;
+        position: absolute;
+    }
+}

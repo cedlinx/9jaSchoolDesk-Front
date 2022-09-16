@@ -1,0 +1,459 @@
+.mailingListContainer{
+    margin: 0rem 0rem;
+    .leftSection{
+        background-color: #341D4B;
+        gap: 1.5rem;
+        padding: 2rem 1rem;
+
+        .heading{
+            font-family: MontserratBold;
+            font-size: 1.25rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        .introText{
+            color: #92869D;
+            font-family: MontserratSemiBold;
+            font-size: 0.875rem;
+            text-align: justify
+        }
+        .contactDetails {
+            color: #92869D;
+            // font-weight: bold;
+            gap: 1rem;
+            p {
+                display: flex;
+                gap: 0.5rem;
+                margin-bottom: 0.75rem;
+                line-height: 1.25;
+                svg{
+                line-height: 1.25;
+                font-size: 1.25rem;
+                margin: 0rem;
+                }
+            }
+            small {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        .mapContainer{
+            color: #fff;
+        }
+
+        .linkGroup{
+            color: #fff;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+
+            svg{
+                margin-right: 0.5rem;
+                font-size: 1.375rem;
+            }
+        }
+
+        .emailInputDiv{
+            gap: 1rem;
+            align-items: center;
+            
+            div{
+                width: 100%;
+            }
+
+            btn{
+                padding: 0.125rem;
+            }
+        }
+
+        .imageGroup{
+            gap: 1rem;
+        }
+    }
+
+    .middleSection{
+        padding: 2rem 1rem 1rem 1rem;
+        .formWrapper{
+            .heading{
+                font-family: MontserratBold;
+                font-size: 1.25rem;
+                color: #341D4B;
+                text-align: center;
+            }
+            .registration-form{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-top: 2rem;
+
+            .input-wrapper{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                width: 100%;
+                gap: 0.5rem;
+    
+                .formGroup{
+                    width: 100%;
+                }
+                .maxWidth{
+                    width: 100% !important;
+                }
+
+                .countryWrapper, .regionWrapper{
+                    margin-bottom: 1rem;
+                    display: flex;
+                    flex-direction: column;
+
+                    label{
+                        display: block;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-family: MontserratSemiBold;
+                        font-size: 14px;
+                        line-height: 17px;
+                        margin-bottom: 4px;
+                        color: #341D4B;
+                        text-align: left;
+                    }
+                    select{
+                        width: 100%;
+                        font-family: Montserrat;
+                        border: 1px solid #DBDDE0;
+                        padding: 7.5px 10px 7.5px 10px;
+                        border-radius: 0.25rem;
+                        margin: 0rem;
+                        outline: none;
+
+                        option{
+                        }
+                    }
+                    small{
+                        color: #eb5757;
+                        font-size: 0.75rem;
+                        margin: 0rem;
+                        line-height: 1;
+                        padding-top: 0.125rem;
+                    }
+                }
+            }
+
+            .footer{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 0rem;
+                font-size: 0.875rem;
+                color: #341D4B;
+                font-family: MontserratSemiBold;
+    
+                p a{
+                    color: #65BFBB;
+                    font-size: 0.875rem;
+                }
+    
+                button{
+                    background: #341D4B;
+                    color: #ffffff;
+                    font-weight: 700;
+                    font-size: clamp(0.5rem, 3.5vw, 0.875rem);
+                    outline: none;
+                    border: none;
+                    padding: 0.75rem 1.5rem;
+                    border-radius: 2rem;
+                    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0rem;
+                }
+            }
+          }
+        }
+    }
+}
+
+@media all and (min-width: 768px) {
+    .mailingListContainer{
+        .leftSection{
+            gap: 1.5rem;
+            padding: 3rem 4rem;
+    
+            .heading{
+                font-size: 1.25rem;
+                text-align: center;
+            }
+    
+            .introText{
+                font-size: 0.875rem;
+                text-align: justify
+            }
+
+            .contactDetails {
+                p {
+                    svg{
+                    font-size: 1.25rem;
+                    }
+                }
+                small {
+                    font-size: 1rem;
+                }
+            }
+    
+            .linkGroup{
+                gap: 2rem;
+                font-size: 0.875rem;
+    
+                svg{
+                    margin-right: 0.5rem;
+                    font-size: 1.25rem;
+                }
+            }
+    
+            .imageGroup{
+                gap: 1rem;
+            }
+        }
+    
+        .middleSection{
+            padding: 2rem 4rem;
+            .formWrapper{
+                .heading{
+                    font-size: 1.25rem;
+                }
+                .registration-form{
+                    gap: 0.5rem;
+                    margin-top: 2rem;
+    
+                .input-wrapper{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    width: 100%;
+                    gap: 0.5rem;
+        
+                    .formGroup{
+                        width: 47.5%;
+                    }
+                    .maxWidth{
+                        width: 100% !important;
+                    }
+                }
+    
+                .footer{
+                    margin-top: 0rem;
+        
+                    button{
+                        padding: 0.75rem 1.5rem;
+                        margin: 0rem;
+                    }
+                }
+              }
+            }
+        }
+
+        .rightSection{
+            height: 25rem;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 991px) {
+    .mailingListContainer{
+        .leftSection{
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 3rem 2rem;
+    
+            .heading{
+                font-size: 1.25rem;
+                text-align: center;
+            }
+    
+            .introText{
+                font-size: 0.875rem;
+                text-align: justify
+            }
+
+            .contactDetails {
+                white-space: wrap;
+
+                p {
+                    svg{
+                    font-size: 1.25rem;
+                    }
+                }
+                small {
+                    flex-wrap: wrap;
+                    font-size: 1rem;
+                }
+            }
+    
+            .linkGroup{
+                gap: 2rem;
+                font-size: 0.875rem;
+    
+                svg{
+                    margin-right: 0.5rem;
+                    font-size: 1.25rem;
+                }
+            }
+    
+            .imageGroup{
+                gap: 1rem;
+            }
+        }
+    
+        .middleSection{
+            padding: 2rem 1rem 1rem 1rem;
+            .formWrapper{
+                .heading{
+                    font-size: 1.25rem;
+                }
+                .registration-form{
+                    gap: 0.5rem;
+                    margin-top: 2rem;
+    
+                .input-wrapper{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    width: 100%;
+                    gap: 0.5rem;
+        
+                    .formGroup{
+                        width: 49%;
+                    }
+                    .maxWidth{
+                        width: 100% !important;
+                    }
+                }
+    
+                .footer{
+                    margin-top: 0rem;
+        
+                    button{
+                        padding: 0.75rem 1.5rem;
+                        margin: 0rem;
+                    }
+                }
+              }
+            }
+        }
+
+        .rightSection{
+            height: 25rem;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .mailingListContainer{
+        .leftSection{
+            justify-content: center;
+            gap: 2rem;
+            padding: 3rem 2rem;
+    
+            .heading{
+                font-size: 1.25rem;
+                text-align: center;
+            }
+    
+            .introText{
+                font-size: 0.875rem;
+                text-align: justify
+            }
+
+            .contactDetails {
+                white-space: wrap;
+
+                p {
+                    svg{
+                    font-size: 1.25rem;
+                    }
+                }
+                small {
+                    flex-wrap: wrap;
+                    font-size: 1rem;
+                    margin-top: 0rem;
+                }
+            }
+    
+            .linkGroup{
+                gap: 0.5rem;
+                font-size: 0.875rem;
+    
+                svg{
+                    margin-right: 0.5rem;
+                    font-size: 1.25rem;
+                }
+            }
+    
+            .imageGroup{
+                gap: 1rem;
+            }
+        }
+    
+        .middleSection{
+            padding: 2rem 1rem 0.5rem 1rem;
+            .formWrapper{
+                .heading{
+                    font-size: 1.25rem;
+                }
+                .registration-form{
+                    gap: 0.5rem;
+                    margin-top: 2rem;
+    
+                .input-wrapper{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    width: 100%;
+                    gap: 0.5rem;
+        
+                    .formGroup{
+                        width: 49%;
+                    }
+                    .maxWidth{
+                        width: 100% !important;
+                    }
+                }
+    
+                .footer{
+                    margin-top: 0rem;
+        
+                    button{
+                        padding: 0.75rem 1.5rem;
+                        margin: 0rem;
+                    }
+                }
+              }
+            }
+        }
+
+        .rightSection{
+            height: auto;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}

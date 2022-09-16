@@ -1,0 +1,80 @@
+.demoContainer{
+    margin: 1rem 0rem 2rem 0rem;
+    padding: 1rem;
+    background-color: #FFF2F2;
+    gap: 2rem;
+    .leftSection{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        .formWrapper{
+            margin-top: 1.5rem;
+            width: 100%;
+            
+            form{
+                input{
+                    line-height: 1;
+                }
+
+                .btnDiv{
+                    width: 100%;
+    
+                    button{
+                        width: 100%;
+                        padding: 1rem 0rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .rightSection{
+        .imageDiv{
+            img{
+                width: 100%;
+                border-radius: 0.25rem;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 768px){
+    .demoContainer{
+        margin: 1rem 0rem 2rem 0rem;
+        gap: 0rem;
+        .leftSection{ 
+            padding: 1rem;   
+            .formWrapper{
+                width: 90%;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 992px){
+    .demoContainer{
+
+        .leftSection{ 
+            padding: 1rem;   
+            .formWrapper{
+                width: 90%;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 992px){
+    .demoContainer{
+        padding: 3rem 2rem;
+        .leftSection{ 
+            padding: 0rem 2rem 0rem 0rem;   
+            .formWrapper{
+                width: 90%;
+            }
+        }
+    }
+}

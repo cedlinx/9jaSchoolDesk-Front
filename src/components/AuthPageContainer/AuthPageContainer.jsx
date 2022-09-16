@@ -6,16 +6,25 @@ import styles from "./AuthPageContainer.module.scss";
 import siteLogo from "@/assets/images/logo.png";
 import MenuBar from "@/components/MenuBar/MenuBar";
 import TopDivWave from "@/components/WaveSvg/TopDivWave";
-
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/Auth/AuthSlice";
 
 const AuthPageContainer = (props) => {
   const { showTopDivWave = true, children } = props;
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    navigate("/");
+    dispatch(logout());
+  };
+
   return (
     <div className={cx(styles.authPageContainer, "flexCol")}>
       {/* <MenuBar /> */}
       <div className={cx(styles.header, "flexRow-fully-centered")}>
-        <img src={siteLogo} alt="" />
+        <img src={siteLogo} onClick={() => handleClick()} alt="" />
       </div>
       <div className={cx(styles.childrenContainer)}>
         {showTopDivWave && <TopDivWave />}

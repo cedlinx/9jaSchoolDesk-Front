@@ -85,7 +85,7 @@ const OTPVerification = () => {
             </div>
 
             <div className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => handleLogin(data))} title="Login" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+              <Button type="submit" loading={loading} disabled={loading} onClick={handleSubmit((data) => handleLogin(data))} title="Login" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
             <Button onClick={() => handleBack()} title="Back" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />

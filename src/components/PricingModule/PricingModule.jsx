@@ -5,7 +5,6 @@ import styles from "./PricingModule.module.scss";
 import PriceCard from "@/components/PriceCard/PriceCard";
 
 
-
 const PricingModule = () => {
 
   const pricingArray = {

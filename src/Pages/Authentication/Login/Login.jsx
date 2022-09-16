@@ -130,7 +130,7 @@ const Login = () => {
                     </div>
 
                     <div  className={cx(styles.submitBtnDiv, "flexCol")}>
-                      <Button onClick={handleSubmit((data) => signIn(data))} loading={loading} disabled={loading} title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+                      <Button type="submit" onClick={handleSubmit((data) => signIn(data))} loading={loading} disabled={loading} title="Sign In" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
                       <Button onClick={() => handleBack()} title="Back" borderRadiusType="lowRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
                     </div>
                     {/* <p className={cx(styles.formText)}>
