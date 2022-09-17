@@ -20,10 +20,11 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 const Account = () => {
 
   const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state?.teacher?.getDashboardData?.teacher);
+  const userDetails = useSelector((state) => state?.teacher?.getTeacherDetailsData?.user);
   const loading = useSelector((state) => state?.teacher?.loading);
 
   const resolver = yupResolver(modifyTeacherValidationSchema);
+  console.log(userDetails);
   
   const defaultValues = {
     // email: userDetails?.email,

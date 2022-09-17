@@ -98,7 +98,7 @@ const UrgentInfoTeacher = () => {
                   {...field}
                   isClearable={true}
                   placeholder={""}
-                  marginbottom="1.25rem"
+                  marginbottom="0rem"
                   options={getStudentOptions(allStudentsData?.wards)}
                   error={errors?.student_id && errors?.student_id?.message}
                 />

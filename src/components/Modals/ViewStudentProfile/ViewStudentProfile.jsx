@@ -18,7 +18,8 @@ import caretDown from "@/assets/icons/caret-down.svg";
 import { viewKPIForClass, getStudentScoreKPI, incrementScoreKPI, decrementScoreKPI } from "@/redux/Teacher/TeacherSlice";
 import { toast } from "react-toastify";
 import useDebounce from "@/utils/useDebounce";
-
+import {initialsCase} from "@/helpers/textTransform";
+import generateColor from "@/helpers/generateColor";
 
 
 const ViewStudentProfile = () => {
@@ -99,7 +100,7 @@ const ViewStudentProfile = () => {
 
 	      <div className={cx(styles.header)}>
           <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
-          <img className={cx(styles.profilePic)} src={studentProfilePic} alt="profile pic" />
+          {modalData.avatar ? <img className={cx(styles.profilePic)} src={modalData.avatar} alt="img" /> : <span className={cx(styles.profileSpan)} style={{backgroundColor: generateColor()}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> }
           <Button onClick={() => dispatch(showModal({action: "show", type: "sendNotificationToParent", modalData: modalData}))} title="Send Message" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" hoverColor="#000" />
         </div>
 

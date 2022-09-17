@@ -189,6 +189,15 @@
 
       
     }
+
+    .noDataDiv{
+        padding: 1rem;
+        p{
+            text-align: center;
+            font-size: small;
+            color: #D25B5D;
+        }
+    }
 }
 
 @media all and (min-width: 768px){

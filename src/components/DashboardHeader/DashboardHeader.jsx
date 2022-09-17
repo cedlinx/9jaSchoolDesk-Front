@@ -105,7 +105,10 @@ const Header = (props) => {
   };
 
   const handleSwitchClass =()=>{
-    if(Array.isArray(classesArray) && classesArray.length === 1){
+    if(!classDetails?.id){
+      toast.success("You do not have any class assigned to you");
+    }
+    else if(Array.isArray(classesArray) && classesArray.length === 1){
       toast.success("You only have one class");
     }
     else{
@@ -178,7 +181,7 @@ const Header = (props) => {
             {
               <div className={cx(styles.profileDiv, "flexRow")}>
 
-                {userCategory === "teacher" && <Button onClick={() => dispatch(showModal({ action: "show", type: "urgentInfoTeacher" }))} type title="Send Urgently" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
+                {userCategory === "teacher" && classDetails?.id && <Button onClick={() => dispatch(showModal({ action: "show", type: "urgentInfoTeacher" }))} type title="Send Urgently" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
                 }
 
                 {userCategory !== "proprietor" && <NavLink to="dashboard">

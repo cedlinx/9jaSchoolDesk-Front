@@ -19,6 +19,15 @@ const SelectClass = () => {
 
   const teacherDetails = useGetLoggedInUser();
   let classesArray = teacherDetails?.classes;
+  console.log(teacherDetails);
+
+  useEffect(() => {
+    if (!classesArray) {
+      setTimeout(() => {
+        navigate("/teacher/dashboard");
+      }, 5000);
+    }
+  }, [classesArray, dispatch, navigate]);
 
   const handleSwitchClass = async (class_id) => {
     toast("Switching class...");
@@ -54,7 +63,6 @@ const SelectClass = () => {
                       <Icon icon="healthicons:i-training-class" color="#d25b5d" width="72" />
                     </div>
                     <p>{element?.name}</p>
-                    {/* <p>JSS 1 A</p> */}
                   </div>
                 );
               }
@@ -65,6 +73,9 @@ const SelectClass = () => {
         :
         <div className={cx(styles.body, "flexCol")}>
           <p className={cx(styles.title)}>You currently have no class assigned to you. Kindly contact the Proprietor / Administrator.</p>
+          <small>Redirecting in 5 seconds</small>
+          <Button onClick={()=>navigate("/teacher/dashboard")} title="Go To Dashboard" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+
         </div>
       }
     </div>

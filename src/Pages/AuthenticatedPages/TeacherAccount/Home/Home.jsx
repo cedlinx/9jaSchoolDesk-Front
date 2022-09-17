@@ -55,8 +55,8 @@ const Home = () => {
   const [presentStudents, setPresentStudents] = useState(0);
 
   useEffect(() => {
-    dispatch(getAllStudents(class_id));
-    dispatch(viewKPIForClass(class_id));
+    class_id && dispatch(getAllStudents(class_id));
+    class_id && dispatch(viewKPIForClass(class_id));
   }, [dispatch, class_id]);
 
   const attendanceStatus = (status) => {
@@ -106,28 +106,35 @@ const Home = () => {
 
       <div className={cx(styles.heading, "flexRow")}>
         <h3 className={cx(styles.title)}>Classroom</h3>
-        <div className={cx(styles.btnGroup, "flexRow")}>
+        {class_id && <div className={cx(styles.btnGroup, "flexRow")}>
           <Button disabled={Array.isArray(dataArray) && dataArray.length === 0} onClick={() => handleTakeAttendance()} type title="Take Attendance" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#D25B5D" />
           <Button onClick={() => dispatch(showModal({ action: "show", type: "addNewStudentByTeacher" }))} type title="Add Student" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
-        </div>
+        </div>}
       </div>
 
-      <div className={cx(styles.body)}>
-        {!takeAttendance ? loading ? <>Fetching Data</> : Array.isArray(dataArray) && dataArray.length === 0 ? <div>No Student Added To This Class. Kindly Add New Students</div> : Array.isArray(dataArray) && dataArray.map((student, index) => {
-          return (
-            <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
-          );
-        }
-        ) : null}
-        {takeAttendance ? loading ? <p>Fetching Data...</p> :  Array.isArray(attendanceDataArray) && attendanceDataArray.map((student, index) => {
-          return (
-            <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
-          );
-        }
-        ) : null}
-      </div>
+      {
+        class_id ?
 
-      {takeAttendance && <div className={cx(styles.footer, "flexRow")}>
+          <div className={cx(styles.body)}>
+            {!takeAttendance ? loading ? <>Fetching Data</> : Array.isArray(dataArray) && dataArray.length === 0 ? <div>No Student Added To This Class. Kindly Add New Students</div> : Array.isArray(dataArray) && dataArray.map((student, index) => {
+              return (
+                <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
+              );
+            }
+            ) : null}
+            {takeAttendance ? loading ? <p>Fetching Data...</p> :  Array.isArray(attendanceDataArray) && attendanceDataArray.map((student, index) => {
+              return (
+                <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
+              );
+            }
+            ) : null}
+          </div>
+          :
+          <div className={cx(styles.noDataDiv)}>
+            <p>You have no class assigned to you. Most of the key features will be unavailable until a class is assigned to you. Kindly contact your administrator.</p>
+          </div>
+
+      }      {takeAttendance && <div className={cx(styles.footer, "flexRow")}>
         <p><span>{presentStudents} / {Array.isArray(dataArray) && dataArray.length}</span> <span>Attendance Today</span></p>
         <div className={cx(styles.btnGroup, "flexRow")}>
 

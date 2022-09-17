@@ -19,7 +19,7 @@ import DeleteIndicatorModal from "@/components/Modals/DeleteKPIIndicator/DeleteK
 import ModifyKPIIndicatorModal from "@/components/Modals/ModifyKPIIndicator/ModifyKPIIndicator";
 import KPIIndicatorDetailsModal from "@/components/Modals/KPIIndicatorDetails/KPIIndicatorDetails";
 import UpdateProfileModal from "@/components/Modals/UpdateProfile/UpdateProfile";
-import { viewKPIForClass, getDashboard } from "@/redux/Teacher/TeacherSlice";
+import { viewKPIForClass, getDashboard, getTeacherDetails } from "@/redux/Teacher/TeacherSlice";
 import useGetClassID from "@/utils/useGetClassID";
 
 
@@ -32,8 +32,9 @@ const Settings = () => {
   const classID = useGetClassID();
 
   useEffect(() => {
-    dispatch(viewKPIForClass(classID));
+    classID && dispatch(viewKPIForClass(classID));
     dispatch(getDashboard());
+    dispatch(getTeacherDetails());
   }, [classID, dispatch]);
 
   // const RenderSubscriptions = () => <Subscriptions />;

@@ -44,6 +44,26 @@
                 object-fit: contain;
                 transform: translate(-50%, -50%);
             }
+            .profileSpan{
+                display: inline-block;
+                position: absolute;
+                left: 50%;
+                bottom: -75%;
+                width: 6rem;
+                height: 6rem;
+                line-height: 6rem;
+                object-fit: contain;
+                transform: translate(-50%, -50%);
+                font-size: 1.25rem;
+                text-align: center;
+                color: black;
+                font-weight: bold;
+                border-radius: 50%;
+            }
+            span{
+                
+                margin: 0rem;
+            }
             .editIcon{
                 position: absolute;
                 left: 2.5rem;

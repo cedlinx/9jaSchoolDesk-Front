@@ -22,7 +22,6 @@ const Lounge = () => {
   const dispatch = useDispatch();
   const userDetails = useGetLoggedInUser();
   const loading = useSelector((state) => state?.gist?.loading);
-  // const allGistsData = useSelector((state) => state.gist.getAllGistsData.gist);
   const allGistConversationsData = useSelector((state) => state?.gist?.getGistConversationsData?.gist);
   const [loadingStatus, setLoadingStatus] = useState({
     loading: loading,
@@ -31,8 +30,8 @@ const Lounge = () => {
   const classID = useGetClassID();
 
   useEffect(() => {
-    dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
-    dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
+    classID && dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
+    classID && dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
   },[classID, dispatch, userDetails?.id, userDetails?.role]);
 
   const addNewComment = async (e, gist, index) => {
@@ -132,82 +131,84 @@ const Lounge = () => {
   return (
     <div className={cx(styles.loungeContainer, "flexCol")}>
     
-      <div className={cx(styles.formWrapper, "flexCol")}>
+      {
+        classID ?
+          <>
+            <div className={cx(styles.formWrapper, "flexCol")}>
 
-        <form
-          onSubmit={handleSubmit((data) => createNewGist(data))}
-          className={cx("flexCol")}
-        >
-          <Controller
-            name="body"
-            control={control}
-            render={({ field, ref }) => (
-              <TextArea 
-                {...field}
-                placeholder="Tell us what is happening"
-                error={errors?.body?.message}
-              />
-            )}
-          />
+              <form
+                onSubmit={handleSubmit((data) => createNewGist(data))}
+                className={cx("flexCol")}
+              >
+                <Controller
+                  name="body"
+                  control={control}
+                  render={({ field, ref }) => (
+                    <TextArea 
+                      {...field}
+                      placeholder="Tell us what is happening"
+                      error={errors?.body?.message}
+                    />
+                  )}
+                />
 
-          <Controller 
-            name="uploadedFile"
-            control={control}
-            render={({ field, ref }) => (
-              <>
-                <div className={cx(styles.imageSection, "flexRow")}>
-                  <p>Add Attachment</p>
-                  <div {...getRootProps()}   {...field} className={cx(styles.imageDiv)}>
-                    {uploadedFile?.type === "image" ? <img src={uploadedFile?.imagePreviewUrl && uploadedFile?.imagePreviewUrl} alt=""/>
-                      : uploadedFile?.type ? <small>{uploadedFile?.file?.name}</small> : 
-                        <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>  }        
+                <Controller 
+                  name="uploadedFile"
+                  control={control}
+                  render={({ field, ref }) => (
+                    <>
+                      <div className={cx(styles.imageSection, "flexRow")}>
+                        <p>Add Attachment</p>
+                        <div {...getRootProps()}   {...field} className={cx(styles.imageDiv)}>
+                          {uploadedFile?.type === "image" ? <img src={uploadedFile?.imagePreviewUrl && uploadedFile?.imagePreviewUrl} alt=""/>
+                            : uploadedFile?.type ? <small>{uploadedFile?.file?.name}</small> : 
+                              <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>  }        
                     
-                  </div>
+                        </div>
+                      </div>
+                      <span style={{color: "tomato", fontSize: "0.75rem"}} >{errors?.uploadedFile && errors?.uploadedFile?.message}</span>
+                    </>
+                  )}
+                />
+
+                <div  className={cx(styles.btnDiv, "flexRow")}>
+                  <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => createNewGist(data))} title="Post" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
                 </div>
-                <span style={{color: "tomato", fontSize: "0.75rem"}} >{errors?.uploadedFile && errors?.uploadedFile?.message}</span>
-              </>
-            )}
-          />
+              </form>
+            </div>
+            <div className={cx(styles.body, "flexCol")}>
 
-          <div  className={cx(styles.btnDiv, "flexRow")}>
-            <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => createNewGist(data))} title="Post" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
-          </div>
-        </form>
-      </div>
+              { Array.isArray(allGistConversationsData) && allGistConversationsData.length > 0 ? 
+                [...allGistConversationsData].reverse().map((post, index) => {
+                  return (
+                    <div key={index} className={cx(styles.postContainer, "flexCol")}>
+                      <div className={cx(styles.header, "flexRow")}>
+                        <div className={cx(styles.userImageDiv)}>
+                          {post?.author?.avatar ? 
+                            <img src={post?.author?.avatar} alt="img" />
+                            :
+                            <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "3rem", height: "3rem", lineHeight: "3rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${post?.author?.firstName ? post?.author?.firstName : ""} ${post?.author?.lastName
+                              ? post?.author?.lastName : ""}`)}</span>
+                          }
+                        </div>
+                        <p>{`${post?.author?.firstName ? titleCase(post?.author?.firstName) : ""} ${post?.author?.lastName ? titleCase(post?.author?.lastName) : ""}`}</p>
+                        <small>{formatDate(post?.created_at)}</small>
+                      </div>
 
-      <div className={cx(styles.body, "flexCol")}>
+                      <p className={cx(styles.introText)}>{post?.body}</p>
 
-        { Array.isArray(allGistConversationsData) && allGistConversationsData.length > 0 ? 
-          [...allGistConversationsData].reverse().map((post, index) => {
-            return (
-              <div key={index} className={cx(styles.postContainer, "flexCol")}>
-                <div className={cx(styles.header, "flexRow")}>
-                  <div className={cx(styles.userImageDiv)}>
-                    {post?.author?.avatar ? 
-                      <img src={post?.author?.avatar} alt="img" />
-                      :
-                      <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "3rem", height: "3rem", lineHeight: "3rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${post?.author?.firstName ? post?.author?.firstName : ""} ${post?.author?.lastName
-                        ? post?.author?.lastName : ""}`)}</span>
-                    }
-                  </div>
-                  <p>{`${post?.author?.firstName ? titleCase(post?.author?.firstName) : ""} ${post?.author?.lastName ? titleCase(post?.author?.lastName) : ""}`}</p>
-                  <small>{formatDate(post?.created_at)}</small>
-                </div>
+                      {post?.attachment && <div className={cx(styles.mediaDiv)}>
+                        {post?.attachment_type === "video" ?
+                          <video src={post?.attachment} id="myVideo" width="100%" height="240px" controls /> 
+                          :
+                          post?.attachment_type === "image" ?
+                            <img src={post?.attachment} alt="img" />
+                            :
+                            <a href={post?.attachment} target="_blank" rel="noreferrer"><Icon icon="teenyicons:attachment-solid" color="#eb5757" /> {post?.attachment.split("/")[post?.attachment.split("/").length - 1]}</a>
+                        }
+                      </div>}
 
-                <p className={cx(styles.introText)}>{post?.body}</p>
-
-                {post?.attachment && <div className={cx(styles.mediaDiv)}>
-                  {post?.attachment_type === "video" ?
-                    <video src={post?.attachment} id="myVideo" width="100%" height="240px" controls /> 
-                    :
-                    post?.attachment_type === "image" ?
-                      <img src={post?.attachment} alt="img" />
-                      :
-                      <a href={post?.attachment} target="_blank" rel="noreferrer"><Icon icon="teenyicons:attachment-solid" color="#eb5757" /> {post?.attachment.split("/")[post?.attachment.split("/").length - 1]}</a>
-                  }
-                </div>}
-
-                {Array.isArray(post?.comments) && post?.comments.length > 0 && 
+                      {Array.isArray(post?.comments) && post?.comments.length > 0 && 
                 <div className={cx(styles.commentsDiv)}>
                   <div className={cx(styles.heading, "flexRow-space-between")}>
                     <h5>Comments</h5>
@@ -241,21 +242,32 @@ const Lounge = () => {
                   </div>
                 </div>}
 
-                <InputField
-                  placeholder={" "}
-                  label={"Leave a comment"}
-                  type="text"
-                  marginbottom="0"
-                  // error={errors?.name && errors?.name?.message}
-                />
+                      <InputField
+                        placeholder={" "}
+                        label={"Leave a comment"}
+                        type="text"
+                        marginbottom="0"
+                        // error={errors?.name && errors?.name?.message}
+                      />
 
-                <Button loading={loadingStatus?.index === index ? loadingStatus?.loading : false} disabled={loadingStatus?.index === index ? loadingStatus?.loading : false}  onClick={(e)=> addNewComment(e, post, index)} title="Reply" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />              
-              </div>);
-          }) 
-          : 
-          <div className={cx(styles.emptyDataDiv)}><p>No posts yet</p></div>}
+                      <Button loading={loadingStatus?.index === index ? loadingStatus?.loading : false} disabled={loadingStatus?.index === index ? loadingStatus?.loading : false}  onClick={(e)=> addNewComment(e, post, index)} title="Reply" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />              
+                    </div>);
+                }) 
+                : 
+                <div className={cx(styles.emptyDataDiv)}><p>No posts yet</p></div>}
 
-      </div>
+            </div>
+
+          </>
+         
+          :
+          <div className={cx(styles.noDataDiv)}>
+            <p>You have no class assigned to you. You can only create gists and interact with gists when you have at least one (1) class assigned to you. Kindly contact your administrator.</p>
+          </div>
+      }
+     
+
+ 
 
     </div>
   );

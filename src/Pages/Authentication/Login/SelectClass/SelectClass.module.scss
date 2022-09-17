@@ -19,9 +19,15 @@
 
     .body{
         .title{
-                font-size: 1.25rem;
+                font-size: 1.125rem;
                 color: #D25B5D;
                 text-align: center;
+        }
+
+        small{
+            font-size: 0.875rem;
+            // color: #D25B5D;
+            text-align: center;
         }
 
         .classesContainer{        
@@ -69,6 +75,11 @@
                         text-align: center;
                     }
             }
+            }
+
+            button{
+                align-self: center;
+                margin-top: 1.5rem;
             }
        }   
     

@@ -573,7 +573,7 @@ export const urgentInfoTeacherValidationSchema = Yup.object().shape({
   student_id: Yup.object().shape({
     label: Yup.string().required("label is required"),
     value: Yup.string().required("value is required")
-  })
+  }).required("Guardian Email is required").nullable()
   // .required("Kindly select a student")
 
   // user: Yup.array()

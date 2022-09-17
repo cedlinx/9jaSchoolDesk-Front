@@ -27,7 +27,7 @@ const Lessons = () => {
   const class_id = useGetClassID();
 
   useEffect(() => {
-    dispatch(getClassLessons({class_id}));
+    class_id && dispatch(getClassLessons({class_id}));
   },[class_id, dispatch]);
 
   const modalType = useSelector((state) => state.modalState.type);
@@ -41,23 +41,33 @@ const Lessons = () => {
     <div className={cx(styles.lessonsContainer, "flexCol")}>
       <div className={cx(styles.header, "flexRow")}>
         <h3 className={cx(styles.title)}>My Lessons</h3>
-        <Button  onClick={()=> dispatch(showModal({action: "show", type:"uploadLesson"}))} title="Upload Lesson" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />
+        {class_id && <Button  onClick={()=> dispatch(showModal({action: "show", type:"uploadLesson"}))} title="Upload Lesson" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />}
       </div>
-      <div className={cx(styles.body, "flexCol")}>
-        <div className={cx(styles.sectionWrapper, "flexCol")}>
-          {/* <p className={cx(styles.title)}>Recent Uploads</p> */}
-          <div className={cx(styles.subGroupContainer)}>
-            {loading ? <TableSkeleton /> : Array.isArray(classLessonsData) && classLessonsData.length > 0 ? classLessonsData.map((item, index)=>{
-              return(
-                <div key={index}>
-                  <VideoCard cardDetails={item} teacherSection={true} studentSection={false} />
-                </div>
-              );
-            }) : <p className={cx(styles.noData)}>No Lessons Uploaded</p>}
-          </div>
-        </div>
+
+      {
+        class_id ? 
+          <div className={cx(styles.body, "flexCol")}>
+            <div className={cx(styles.sectionWrapper, "flexCol")}>
+              {/* <p className={cx(styles.title)}>Recent Uploads</p> */}
+              <div className={cx(styles.subGroupContainer)}>
+                {loading ? <TableSkeleton /> : Array.isArray(classLessonsData) && classLessonsData.length > 0 ? classLessonsData.map((item, index)=>{
+                  return(
+                    <div key={index}>
+                      <VideoCard cardDetails={item} teacherSection={true} studentSection={false} />
+                    </div>
+                  );
+                }) : <p className={cx(styles.noData)}>No Lessons Uploaded</p>}
+              </div>
+            </div>
    
-      </div>
+          </div>
+          :
+          <div className={cx(styles.noDataDiv)}>
+            <p>You have no class assigned to you. You can only create lessons when you have at least one (1) class assigned to you. Kindly contact your administrator.</p>
+          </div>
+      }
+
+     
 
       {modalType === "uploadLesson" && <Modal size="lg" show > <UploadLessonModal /></Modal>}
       {modalType === "lessonDetails" && <Modal show > <ViewLessonDetailsModal /></Modal>}
