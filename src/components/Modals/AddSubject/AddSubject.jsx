@@ -9,20 +9,20 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import { useDropzone } from "react-dropzone";
 import { addSubject, getAllSubjects } from "@/redux/Proprietor/ProprietorSlice";
-import useGetInstitutionID from "@/utils/useGetInstitutionID";
 
 import { useForm, Controller } from "react-hook-form";
 import { addSubjectValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SelectAutoComplete from "@/components/SelectAutoComplete";
-import schoolSubjects from "@/helpers/schoolSubjects";
+import useGetAllSubjects from "@/utils/useGetAllSubjects";
 
 
 const AddSubject = () => {
 
   const dispatch = useDispatch();
-  let institution_id = useGetInstitutionID();
   const loading = useSelector((state) => state.proprietor.loading);
+  const schoolSubjects = useGetAllSubjects();
+
 
   const sendRequest = async (data) => {
     let subjectArray = [];
@@ -43,7 +43,7 @@ const AddSubject = () => {
     subjects: ""
   };
 
-  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+  const { handleSubmit, formState: { errors }, control } = useForm({ defaultValues, resolver, mode: "all" });
 
   const getSubjectsOptions = () => {
     let options = [];
@@ -91,9 +91,6 @@ const AddSubject = () => {
               />
             )}
           />
-
-
-
 
           <div className={cx(styles.btnDiv, "flexRow")}>
             <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => sendRequest(data))} title="Add Subjects" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />

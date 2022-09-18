@@ -5,19 +5,19 @@ import useGetClassID from "./useGetClassID";
 
 
 const useGetClassDetails = () => {
-  const dispatch = useDispatch();
-  const classID = useGetClassID();
-  const classDetails = useSelector((state) => state?.teacher?.getClassDetailsData);
+  // const dispatch = useDispatch();
+  // const classID = useGetClassID();
+  // const classDetails = useSelector((state) => state?.teacher?.getClassDetailsData);
 
-  useEffect(() => {
-    dispatch(getClassDetails(classID));
-  }, [classID, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getClassDetails(classID));
+  // }, [classID, dispatch]);
 
-  console.log(classDetails);
+  // console.log(classDetails);
 
-  return classDetails;
-  // const classDetails = JSON.parse(localStorage.getItem("activeClassData"));
   // return classDetails;
+  const classDetails = JSON.parse(localStorage.getItem("activeClassData"));
+  return classDetails;
 };
 
 export default useGetClassDetails;

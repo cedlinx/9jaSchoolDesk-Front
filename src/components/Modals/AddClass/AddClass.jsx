@@ -17,10 +17,7 @@ import { addClassValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useGetAllTeachers from "@/utils/useGetAllTeachers";
 import SelectAutoComplete from "@/components/SelectAutoComplete";
-// import schoolSubjects from "@/helpers/schoolSubjects";
 import useGetAllSubjects from "@/utils/useGetAllSubjects";
-
-
 
 
 const AddClass = () => {
