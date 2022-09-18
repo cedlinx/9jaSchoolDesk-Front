@@ -134,7 +134,7 @@ export const getStudentsAssignedToTaskApi = async (data) => {
 };
 
 export const getClassDetailsApi = async (data) => {
-  // return await axios.get("teacher/auth/profile", data);
+  return await axios.get(`teacher/auth/class/view?id=${data}`);
 };
 
 export const createLessonApi = async (data) => {
