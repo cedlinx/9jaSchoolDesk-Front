@@ -29,8 +29,8 @@ const PerformanceIndicator = () => {
     <div className={cx(styles.settingsTabItemContainer)}>
       <div className={cx(styles.panelContent, "flexCol")}>
         <div className={cx(styles.header)}>
-          <h3>Performance Indicators</h3>
-          <small>Create Performance Indicators for students</small>
+          <h3>Behaviour Monitor</h3>
+          <small>Create Behaviour Monitor for students</small>
         </div>
 
         <div className={cx(styles.body)}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import cx from "classnames";
-import styles from "./Lounge.module.scss";
+import styles from "./ClassGist.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/Button/Button";
@@ -17,7 +17,7 @@ import TextArea from "@/components/TextArea";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
 import useGetClassID from "@/utils/useGetClassID";
 
-const Lounge = () => {
+const ClassGist = () => {
 
   const dispatch = useDispatch();
   const userDetails = useGetLoggedInUser();
@@ -129,10 +129,9 @@ const Lounge = () => {
   const { getRootProps } = useDropzone({ onDrop });
 
   return (
-    <div className={cx(styles.loungeContainer, "flexCol")}>
-      <p>Lounge</p>
+    <div className={cx(styles.classGistContainer, "flexCol")}>
     
-      {/* {
+      {
         classID ?
           <>
             <div className={cx(styles.formWrapper, "flexCol")}>
@@ -263,9 +262,9 @@ const Lounge = () => {
          
           :
           <div className={cx(styles.noDataDiv)}>
-            <p>Lounge</p>
+            <p>You have no class assigned to you. You can only create gists and interact with gists when you have at least one (1) class assigned to you. Kindly contact your administrator.</p>
           </div>
-      } */}
+      }
      
 
  
@@ -274,4 +273,4 @@ const Lounge = () => {
   );
 };
 
-export default Lounge;
+export default ClassGist;

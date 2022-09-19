@@ -38,6 +38,8 @@ import subjectIconActive from "@/assets/icons/subject-icon-active.svg";
 import subjectIcon from "@/assets/icons/subject-icon.svg";
 import proprietorSettingsIconActive from "@/assets/icons/settings-icon-active.svg";
 import proprietorSettingsIcon from "@/assets/icons/settings-icon.svg";
+import messagesIcon from "@/assets/icons/messages-icon.svg";
+
 import { getTeacherDetails } from "@/redux/Teacher/TeacherSlice";
 
 // import { getUserInfo } from "@/redux/Auth/AuthSlice";
@@ -137,12 +139,23 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
 
         <Menu iconShape="">
           <MenuItem
-            active={actualPath === "lounge" ? "true" : ""}
+            active={actualPath === "class-gist" ? "true" : ""}
             prefix={<span className="menuIcon"><img src={loungeIcon} alt="" /></span>}
           >
-            <NavLink to={`/${basePath}/lounge`}>Class Gist</NavLink>
+            <NavLink to={`/${basePath}/class-gist`}>Class Gist</NavLink>
           </MenuItem>
         </Menu>
+
+        <Menu iconShape="">
+          <MenuItem
+            active={actualPath === "lounge" ? "true" : ""}
+            prefix={<span className="menuIcon"><img src={actualPath === "lounge" ? messagesIcon : messagesIcon} alt="" /></span>}
+          >
+            <NavLink to={`/${basePath}/lounge`}>Lounge</NavLink>
+          </MenuItem>
+        </Menu>
+
+
         {/* 
         <Menu iconShape="">
 
@@ -169,7 +182,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
 
       </SidebarContent>}
 
-      {user === "proprietor" &&    <SidebarContent style={{paddingTop: "2rem", backgroundColor: "#22467B"}}>
+      {user === "proprietor" &&    <SidebarContent style={{paddingTop: "0rem", backgroundColor: "#22467B"}}>
 
         <Menu iconShape="">
           <MenuItem
@@ -237,9 +250,18 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         </Menu>
 
         <Menu iconShape="">
+          <MenuItem
+            active={actualPath === "lounge" ? "true" : ""}
+            prefix={<span className="menuIcon"><img src={actualPath === "lounge" ? messagesIcon : messagesIcon} alt="" /></span>}
+          >
+            <NavLink to={`/${basePath}/lounge`}>Lounge</NavLink>
+          </MenuItem>
+        </Menu>
+
+        <Menu iconShape="">
 
           <MenuItem
-            style={{marginTop: "2rem"}}
+            style={{marginTop: "1.5rem"}}
             active={actualPath === "settings" ? "true" : ""}
             prefix={<span className="menuIcon"><img src={actualPath === "settings" ? settingsIcon : settingsIcon} alt="" /></span>}
           >

@@ -49,6 +49,7 @@ import TasksAndActivitiesTeacher from "../Pages/AuthenticatedPages/TeacherAccoun
 import ProfileTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Profile/Profile";
 import LessonsTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lessons/Lessons";
 import LoungeTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lounge/Lounge";
+import ClassGistTeacher from "../Pages/AuthenticatedPages/TeacherAccount/ClassGist/ClassGist";
 import SelectClassTeacher from "../Pages/Authentication/Login/SelectClass/SelectClass";
 import SettingsTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Settings/Settings";
 
@@ -65,6 +66,7 @@ import StudentsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/St
 import StudentReportProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Students/StudentReport/StudentReport";
 import SettingsProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Settings/Settings";
 import SelectInstitutionProprietor from "../Pages/Authentication/Login/SelectInstitution/SelectInstitution";
+import LoungeProprietor from "../Pages/AuthenticatedPages/ProprietorAccount/Lounge/Lounge";
 
 
 const RoutesComponent = () => {
@@ -122,6 +124,7 @@ const RoutesComponent = () => {
           <Route path="tasks-and-activities" element={<TasksAndActivitiesTeacher />} />
           <Route path="lessons" element={<LessonsTeacher />} />
           <Route path="lounge" element={<LoungeTeacher />} />
+          <Route path="class-gist" element={<ClassGistTeacher />} />
           <Route path="settings" element={<SettingsTeacher />} />
 
         </Route>
@@ -139,6 +142,7 @@ const RoutesComponent = () => {
           <Route path="parents" element={<ParentsProprietor />} />
           <Route path="settings" element={<SettingsProprietor />} />
           <Route path="subjects" element={<SubjectsProprietor />} />
+          <Route path="lounge" element={<LoungeProprietor />} />
 
         </Route>
 

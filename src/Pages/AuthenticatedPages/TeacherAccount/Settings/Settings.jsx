@@ -46,7 +46,7 @@ const Settings = () => {
     // { name: "Subscriptions", component: RenderSubscriptions },
     { name: "Account", component: RenderAccount },
     { name: "Password", component: RenderPassword },
-    { name: "Performance Indicator", component: RenderPerformanceIndicator }
+    { name: "Behaviour Monitor", component: RenderPerformanceIndicator }
   ];
 
 

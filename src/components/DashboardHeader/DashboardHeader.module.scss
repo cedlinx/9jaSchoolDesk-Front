@@ -5,7 +5,7 @@
     // border: 1px solid #22467B;
 
     .navbarContainer{
-        padding: 0rem 0.5rem;
+        padding: 0rem 0rem;
         margin: 0rem;
         justify-content: space-between;
         background-color: #22467B;
@@ -13,7 +13,7 @@
         top: 0rem;
         z-index: 1000;
         border-bottom: 1px solid #22467B;
-        height: 60px;
+        height: 50px;
 
         .dashboardToggler{
             margin-right: 0.5rem;
@@ -36,14 +36,17 @@
             padding: 0rem;
             // outline: none;
             // border: none;
+            // color: #fff;
+            background-color: #fff;
 
         }
 
         .navbarCollapse {
             background-color: rgba(9, 0, 0, 0.95);
-            background-color: #fff;
+            background-color: #22467bfa;
+            // background-color: #fff;
             padding: 1rem 0rem;
-            height: 90vh;
+            height: 100vh;
 
             .contentWrapper{
                 align-items: center;
@@ -95,9 +98,12 @@
                 }
 
                 .profileDiv{
-                    gap: 0.5rem;
+                    gap: 1.5rem;
                     justify-content: center;
                     flex-wrap: wrap;
+                    flex-direction: column;
+                    width: auto;
+                    align-items: flex-start;
 
                     .navLinkActive, .navLink {
                         display: flex;
@@ -139,8 +145,9 @@
                         
                     }
                         .dropdownMenuWrapper{
-                            margin-top: 1rem;
+                            margin-top: 0.5rem;
                              outline: none;
+                             transform: translate3d(-24px, 48px, 0px) !important;
 
                            button{
                                padding: 0.5rem 1rem;
@@ -181,7 +188,6 @@
         padding: 1rem 0rem;
     
         .navbarContainer{
-            padding: 0rem 1rem;
             justify-content: space-between;
     
             .siteLogo{
@@ -213,7 +219,6 @@
                         width: 100%;
                     }
                     .profileDiv{
-                        gap: 1rem;
                         justify-content: center;
     
                         .notificationIconSpan{
@@ -259,6 +264,7 @@
         .navbarContainer{
             padding: 0rem 2rem;
             justify-content: space-between;
+            height: 60px;
 
             .dashboardToggler{
                display: none;
@@ -307,6 +313,14 @@
                         justify-content: flex-end;
                         width: 100%;
                         margin-left: auto;
+                        flex-direction: row;
+                        align-items: center;
+
+                        .dropdown{
+                            .dropdownMenuWrapper{
+                             transform: translate3d(0px, 48px, 0px) !important;
+                            }
+                        }
     
                         .notificationIconSpan{
                             margin-right: 0.125rem;
@@ -357,6 +371,7 @@
         .navbarContainer{
             padding: 0rem 2rem;
             justify-content: space-between;
+            height: 60px;
     
             .siteLogo{
                 justify-content: flex-start;
@@ -391,6 +406,8 @@
                     .profileDiv{
                         gap: 1.5rem;
                         justify-content: flex-end;
+
+                      
     
                         .notificationIconSpan{
                             margin-right: 0.125rem;

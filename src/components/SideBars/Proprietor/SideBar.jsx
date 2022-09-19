@@ -70,7 +70,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
         </div>  
       </SidebarHeader>
 
-      <SidebarContent style={{paddingTop: "2rem"}}>
+      <SidebarContent style={{paddingTop: "1rem"}}>
 
         <Menu iconShape="">
           <MenuItem

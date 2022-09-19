@@ -48,6 +48,9 @@ const Header = (props) => {
   let rootPath = location.pathname.split("/")[2];
   let userCategory = location.pathname.split("/")[1];
 
+  const [expanded, setExpanded] = useState(false);
+
+
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
@@ -126,18 +129,19 @@ const Header = (props) => {
   return (
     <section className={cx(styles.dashboardHeaderContainer, "flexRow", "")}>
 
-      <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
+      <Navbar expanded={expanded} collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
+        {userCategory === "proprietor" && userCategory === "teacher" && 
         <div
           className={cx(styles.dashboardToggler, "btn-toggle")}
           onClick={() => handleToggleSidebar(true)}
         >
           <FaBars />
-        </div>
+        </div>}
         {userCategory !== "proprietor" && userCategory !== "teacher" && <Navbar.Brand className={cx(styles.siteLogo)}>
           <Link to={`/${userCategory}/dashboard`}><img src={Logo} alt="" /></Link>
         </Navbar.Brand>}
 
-        <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")} className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
 
           <div className={cx(styles.contentWrapper, "flexRow", userCategory === "proprietor" || (userCategory === "teacher" && rootPath !== "profile") ? styles.reducedWidth : styles.fullWidth)}>
@@ -184,7 +188,7 @@ const Header = (props) => {
                 {userCategory === "teacher" && classDetails?.id && <Button onClick={() => dispatch(showModal({ action: "show", type: "urgentInfoTeacher" }))} type title="Send Urgently" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" bordercolor="#D25B5D" />
                 }
 
-                {userCategory !== "proprietor" && <NavLink to="dashboard">
+                {userCategory !== "proprietor" && <NavLink onClick={() => setExpanded(false)} to="dashboard">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                       <div><img src={isActive ? dashboardIcon : dashboardIcon} alt="" /></div>
@@ -193,7 +197,7 @@ const Header = (props) => {
                   )}
                 </NavLink>}
 
-                {userCategory === "student" && <> <NavLink to="class-gist">
+                {userCategory === "student" && <> <NavLink onClick={() => setExpanded(false)} to="class-gist">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                       <div><img src={isActive ? classGistIcon : classGistIcon} alt="" /></div>
@@ -202,7 +206,7 @@ const Header = (props) => {
                   )}
                 </NavLink>
 
-                <NavLink to="my-classes">
+                <NavLink onClick={() => setExpanded(false)} to="my-classes">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                       <div><img src={isActive ? myClassesIcon : myClassesIcon} alt="" /></div>
@@ -211,7 +215,7 @@ const Header = (props) => {
                   )}
                 </NavLink>
 
-                <NavLink to="tasks">
+                <NavLink onClick={() => setExpanded(false)} to="tasks">
                   {({ isActive }) => (
                     <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                       <div><img src={isActive ? myClassesIcon : myClassesIcon} alt="" /></div>
@@ -224,25 +228,25 @@ const Header = (props) => {
 
                 {userCategory === "guardian" &&
                   <>
-                    <NavLink to="messages">
+                    <NavLink onClick={() => setExpanded(false)} to="messages">
                       {({ isActive }) => (
                         <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                          <div><img src={isActive ? messagesIconActive : messagesIcon} alt="" /></div>
-                          <span>Class Gist</span>
+                          <div><img src={isActive ? messagesIcon : messagesIcon} alt="" /></div>
+                          <span>Lounge</span>
                         </div>
                       )}
                     </NavLink>
 
-                    <NavLink to="submissions">
+                    <NavLink onClick={() => setExpanded(false)} to="submissions">
                       {({ isActive }) => (
                         <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
-                          <div><img src={isActive ? myClassesIconActive : myClassesIcon} alt="" /></div>
+                          <div><img src={isActive ? myClassesIcon : myClassesIcon} alt="" /></div>
                           <span>Submissions</span>
                         </div>
                       )}
                     </NavLink>
 
-                    <NavLink to="tasks">
+                    <NavLink onClick={() => setExpanded(false)} to="tasks">
                       {({ isActive }) => (
                         <div className={cx(isActive ? styles.navLinkActive : styles.navLink)}>
                           <div><img src={isActive ? myClassesIcon : myClassesIcon} alt="" /></div>
@@ -265,8 +269,8 @@ const Header = (props) => {
                   </DropdownToggle>
                   <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
 
-                    {userCategory !== "proprietor" && userCategory !== "teacher" ? <DropdownItem onClick={() => navigate("profile")}>Profile</DropdownItem> :
-                      <DropdownItem onClick={() => navigate("settings")}>Settings</DropdownItem>}
+                    {userCategory !== "proprietor" && userCategory !== "teacher" ? <DropdownItem onClick={() =>{ navigate("profile"); setExpanded(false);}}>Profile</DropdownItem> :
+                      <DropdownItem onClick={() => {navigate("settings"); setExpanded(false);}}>Settings</DropdownItem>}
                     <DropdownItem onClick={() => handleLogout()}>Logout</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

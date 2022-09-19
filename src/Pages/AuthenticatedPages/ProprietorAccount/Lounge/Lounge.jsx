@@ -130,9 +130,8 @@ const Lounge = () => {
 
   return (
     <div className={cx(styles.loungeContainer, "flexCol")}>
-      <p>Lounge</p>
     
-      {/* {
+      {
         classID ?
           <>
             <div className={cx(styles.formWrapper, "flexCol")}>
@@ -265,7 +264,7 @@ const Lounge = () => {
           <div className={cx(styles.noDataDiv)}>
             <p>Lounge</p>
           </div>
-      } */}
+      }
      
 
  

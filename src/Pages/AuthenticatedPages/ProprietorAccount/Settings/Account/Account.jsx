@@ -99,7 +99,7 @@ const Account = () => {
             {userDetails?.avatar || uploadedFile?.imagePreviewUrl ? 
               <img src={uploadedFile?.imagePreviewUrl ? uploadedFile?.imagePreviewUrl : userDetails?.avatar} alt="" />
               :
-              <span style={{ backgroundColor: "#D25B5D" }}>{initialsCase(`${userDetails.firstName} ${userDetails.lastName}`)}</span>
+              <span style={{ backgroundColor: "#D25B5D" }}>{userDetails?.firstName ? initialsCase(`${userDetails?.firstName} ${userDetails?.lastName}`) : ""}</span>
             }
           </div>
 
