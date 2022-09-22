@@ -11,6 +11,8 @@ const Works = () => {
   const dispatch = useDispatch();
   const studentData = useGetStudentDashboard();
 
+  console.log(studentData);
+
   return (
     <div className={cx(styles.worksContainer)}>
       <div className={cx(styles.heading, "flexRow-space-between")}>
@@ -18,12 +20,12 @@ const Works = () => {
       </div>
 
       <div className={cx(styles.body, "flexCol")}>
-        {Array.isArray(studentData?.student?.submitted_tasks) && studentData?.student?.submitted_tasks.map((submission, index)=>{
+        {Array.isArray(studentData?.graded_tasks) && studentData?.graded_tasks.map((submission, index)=>{
           return(
             <div className={cx(styles.submissionContainer, "flexCol")} key={index}>
               <div className={cx(styles.fileDetails, "flexRow-space-between")}>
                 <span>{submission?.name}</span>
-                <small>{formatDate(submission?.pivot?.updated_at)}</small>
+                <small>{formatDate(submission?.updated_at)}</small>
               </div>
               <div className={cx(styles.solutionDiv, styles.wrapper)}>
                 <label htmlFor="">Solution</label>

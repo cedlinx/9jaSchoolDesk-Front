@@ -27,6 +27,7 @@ const AddNewStudentByTeacher = () => {
   const allGuardiansData = useGetAllGuardians();
   const schoolSubjects = useGetClassDetails().subjects;
   const classDetails = useGetClassDetails();
+  const loading = useSelector((state) => state?.teacher?.loading);
 
   const sendRequest = async (data) => {
     
@@ -231,7 +232,7 @@ const AddNewStudentByTeacher = () => {
           </div>
 
           <div className={cx(styles.btnDiv, "flexRow")}>
-            <Button onClick={handleSubmit((data) => sendRequest(data))} title="Add Student" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => sendRequest(data))} title="Add Student" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
         </form>
       </div>

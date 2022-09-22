@@ -30,7 +30,7 @@ const ClassGist = () => {
   const classID = useGetClassID();
 
   useEffect(() => {
-    classID && dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
+    userDetails?.id && dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
     classID && dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
   },[classID, dispatch, userDetails?.id, userDetails?.role]);
 
@@ -70,6 +70,11 @@ const ClassGist = () => {
 
   const createNewGist = async (data) => {
 
+    setLoadingStatus({
+      loading: true,
+      index: "createNewGist"
+    });
+
     let formData = new FormData();
     formData.append("body", data.body);
     formData.append("author", userDetails?.id);
@@ -85,6 +90,10 @@ const ClassGist = () => {
       dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
       reset();
       setUploadedFile({file: "", imagePreviewUrl: "", type: ""});
+      setLoadingStatus({
+        loading: false,
+        index: "createNewGist"
+      });
     }
   };
 
@@ -172,7 +181,7 @@ const ClassGist = () => {
                 />
 
                 <div  className={cx(styles.btnDiv, "flexRow")}>
-                  <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => createNewGist(data))} title="Post" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+                  <Button loading={loadingStatus?.index === "createNewGist" ? loadingStatus?.loading : false} disabled={loadingStatus?.index === "createNewGist" ? loadingStatus?.loading : false} onClick={handleSubmit((data) => createNewGist(data))} title="Post" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
                 </div>
               </form>
             </div>

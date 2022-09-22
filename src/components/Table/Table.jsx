@@ -15,7 +15,7 @@ const Styles = styled.div`
 
   /* This will make the table scrollable when it gets too small */
   .tableWrap {
-    display: block;
+    // display: block;
     max-width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -58,7 +58,7 @@ const Styles = styled.div`
   }
 
   .pagination {
-    // margin-top: 3rem;
+    margin-top: auto;
     padding: 0.5rem;
   }
 `;

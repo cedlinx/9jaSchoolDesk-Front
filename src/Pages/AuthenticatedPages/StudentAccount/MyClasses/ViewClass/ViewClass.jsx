@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react";
 import { lessonDetails, getAllLessons } from "@/redux/Student/StudentSlice";
 import { titleCase } from "@/helpers/textTransform";
 import cardImagePlaceholder from "@/assets/images/lesson-placeholder.jpg";
+import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 
 
 
@@ -51,36 +52,37 @@ const ViewClass = () => {
         </p>
         {/* { lessonDetailsData?.type === "video" && <small className={cx(styles.duration)}>{duration}</small> } */}
       </div>
-      <div className={cx(styles.container, "row", "g-0")}>
-        <div className={cx(styles.mainContent, "col-md-12", "col-lg-9", "flexCol", "g-0")}>
-          <div className={cx(styles.viewingArea)}>
-            {lessonDetailsData?.type === "video" ?
-              <video ref={videoEl} onLoadedMetadata={handleLoadedMetadata} src={lessonDetailsData?.document_url} id="myVideo" width="100%" height="100%" controls /> 
-              :
-              <img src={lessonDetailsData?.thumbnail_url ? lessonDetailsData?.thumbnail_url : cardImagePlaceholder} alt="img" />
-            }
+      {loading ? <TableSkeleton /> :
+        <div className={cx(styles.container, "row", "g-0")}>
+          <div className={cx(styles.mainContent, "col-md-12", "col-lg-9", "flexCol", "g-0")}>
+            <div className={cx(styles.viewingArea)}>
+              {lessonDetailsData?.type === "video" ?
+                <video ref={videoEl} onLoadedMetadata={handleLoadedMetadata} src={lessonDetailsData?.document_url} id="myVideo" width="100%" height="100%" controls /> 
+                :
+                <img src={lessonDetailsData?.thumbnail_url} alt="img" />
+              }
+            </div>
+            <div className={cx(styles.downloadDiv)}>
+              <a href={lessonDetailsData?.document_url} target="_blank" rel="noreferrer">Download Attachment</a>
+            </div>
+            <div className={cx(styles.transcriptArea)}>
+              <h5>Description</h5>
+              <p>{lessonDetailsData?.description}</p>
+            </div>
           </div>
-          <div className={cx(styles.downloadDiv)}>
-            <a href={lessonDetailsData?.document_url} target="_blank" rel="noreferrer">Download Attachment</a>
-          </div>
-          <div className={cx(styles.transcriptArea)}>
-            <h5>Description</h5>
-            <p>{lessonDetailsData?.description}</p>
+          <div className={cx(styles.aside, "flexCol", "col-lg-3")}>
+            <div className={cx(styles.subGroupContainer, "flexCol")}>
+              {Array.isArray(lessonsData) && lessonsData.map((item, index)=>{
+                return(
+                  <div style={{width: "100%"}} onClick={()=>handleClick(item)} key={index}>
+                    <VideoCard cardDetails={item} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-        <div className={cx(styles.aside, "flexCol", "col-lg-3")}>
-          <div className={cx(styles.subGroupContainer, "flexCol")}>
-            {Array.isArray(lessonsData) && lessonsData.map((item, index)=>{
-              return(
-                <div style={{width: "100%"}} onClick={()=>handleClick(item)} key={index}>
-                  <VideoCard cardDetails={item} />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-   
+      }
     </div>
   );
 };

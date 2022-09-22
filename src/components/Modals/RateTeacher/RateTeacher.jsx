@@ -38,8 +38,9 @@ const RateTeacher = () => {
   let classCode = userDetails?.dashboard_url && userDetails?.dashboard_url.split("/")[8];
   const studentID = localStorage.getItem("loggedInStudentID");  
 
+  const subject_id = modalData?.teacherData?.id;
+
   const sendRequest = async (data) => {
-    
     
     let response = user === "student" ? await dispatch(rateTeacherByStudent({rating : modalData?.rating, teacher_id: modalData?.teacherData?.subject_teacher.id, comment: data?.comment, user_id: modalData?.studentID})) : await dispatch(rateTeacherByGuardian({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.guardianID}));
     

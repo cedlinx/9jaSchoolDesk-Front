@@ -39,7 +39,7 @@ const ViewTeacherDetails = () => {
 
         <div className={cx(styles.modalItem, styles.imageDiv)}>
           {data?.avatar ? 
-            <img style={{borderRadius: "50%", width: "7.5rem"}} src={data?.avatar} alt="img" />
+            <img style={{borderRadius: "50%", width: "7.5rem", height: "7.5rem"}} src={data?.avatar} alt="img" />
             :
             <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "7.5rem", height: "7.5rem", lineHeight: "7.5rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${data?.firstName ? data.firstName : ""} ${data?.lastName ? data?.lastName : ""}`)}</span>
           }

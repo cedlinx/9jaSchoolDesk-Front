@@ -38,12 +38,15 @@ import { getAllInstitutions, getDashboard as getProprietorDashboard } from "@/re
 import { getTeacherDetails, getDashboard as getTeacherDashboard } from "@/redux/Teacher/TeacherSlice";
 import { getGuardianDetails, getDashboard as getGuardianDashboard } from "@/redux/Guardian/GuardianSlice";
 import { toast } from "react-toastify";
+import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
+
 
 const Header = (props) => {
   const { handleToggleSidebar, showLinks = true } = props;
   const navigate = useNavigate();
   const location = useLocation();
   const classDetails = useGetClassDetails();
+  const userDetails = useGetLoggedInUser();
 
   let rootPath = location.pathname.split("/")[2];
   let userCategory = location.pathname.split("/")[1];
@@ -54,7 +57,7 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
-  const userDetails = JSON.parse(localStorage.getItem("userData"));
+  // const userDetails = JSON.parse(localStorage.getItem("userData"));
   const updateProfileLoading = useSelector((state) => state.loading.updateProfileLoading);
 
   // const activeInstitutionData = localStorage.getItem("activeInstitutionData") && JSON.parse(localStorage.getItem("activeInstitutionData"));
@@ -115,14 +118,14 @@ const Header = (props) => {
       toast.success("You only have one class");
     }
     else{
-      navigate("/select-class/teacher");
+      navigate("/teacher/select-class");
     }
 
     // if(Array.isArray(userDetails?.classes) && userDetails?.classes.length === 1){
     //   toast.success("You only have one class");
     // }
     // else{
-    //   navigate("/select-class/teacher");
+    //   navigate("/teacher/select-class");
     // }
   };
 

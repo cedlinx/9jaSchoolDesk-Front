@@ -14,7 +14,7 @@ import RateTeacherModal from "@/components/Modals/RateTeacher/RateTeacher";
 import SwitchWardLoaderModal from "@/components/Modals/SwitchWardLoader/SwitchWardLoader";
 import ChangePinModal from "@/components/Modals/ChangePin/ChangePin";
 import Modal from "@/components/Modals/ModalContainer/ModalContainer";
-import { getDashboard, getWardTasks, viewWardDetails } from "@/redux/Guardian/GuardianSlice";
+import { getDashboard, getGuardianDetails, getWardTasks, viewWardDetails } from "@/redux/Guardian/GuardianSlice";
 import AssessmentFeedback from "./AssessmentFeedback/AssessmentFeedback";
 import NoticeBoard from "./NoticeBoard/NoticeBoard";
 import WardProfile from "./WardProfile/WardProfile";
@@ -34,12 +34,15 @@ const Home = () => {
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
   const dashboardData = useSelector((state) => state?.guardian?.getDashboardData);
+  const guardianData = useSelector((state) => state?.guardian?.getGuardianDetailsData);
   const loading = useSelector((state) => state.guardian.loading);
   const selectedWard = useGetSelectedWard();
   console.log(selectedWard);
+  console.log(guardianData);
   
   useEffect(() => {
     dispatch(getDashboard());
+    dispatch(getGuardianDetails());
   }, [dispatch]);
 
   const switchWard = async (ward_id) => {

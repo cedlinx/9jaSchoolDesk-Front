@@ -77,7 +77,7 @@ const AssessmentFeedback = () => {
         return <div  style={{width: "auto", display: "flex", gap: "0.5rem"}}>
           <div>
             {teacherDetails?.avatar ? 
-              <img style={{borderRadius: "50%", width: "3rem"}} src={teacherDetails?.avatar} alt="img" />
+              <img style={{borderRadius: "50%", width: "3rem", height: "3rem"}} src={teacherDetails?.avatar} alt="img" />
               :
               <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "3rem", height: "3rem", lineHeight: "3rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${teacherDetails?.firstName ? teacherDetails.firstName : ""} ${teacherDetails?.lastName ? teacherDetails?.lastName : ""}`)}</span>
             }

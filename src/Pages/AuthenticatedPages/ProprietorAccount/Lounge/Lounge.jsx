@@ -20,7 +20,8 @@ import useGetClassID from "@/utils/useGetClassID";
 const Lounge = () => {
 
   const dispatch = useDispatch();
-  const userDetails = useGetLoggedInUser();
+  // const userDetails = useGetLoggedInUser();
+  const userDetails = {};
   const loading = useSelector((state) => state?.gist?.loading);
   const allGistConversationsData = useSelector((state) => state?.gist?.getGistConversationsData?.gist);
   const [loadingStatus, setLoadingStatus] = useState({
@@ -29,10 +30,10 @@ const Lounge = () => {
   });
   const classID = useGetClassID();
 
-  useEffect(() => {
-    classID && dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
-    classID && dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
-  },[classID, dispatch, userDetails?.id, userDetails?.role]);
+  // useEffect(() => {
+  //   classID && dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
+  //   classID && dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
+  // },[classID, dispatch, userDetails?.id, userDetails?.role]);
 
   const addNewComment = async (e, gist, index) => {
     setLoadingStatus({

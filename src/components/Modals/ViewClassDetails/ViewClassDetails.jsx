@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./ViewClassDetails.module.scss";
 import Button from "@/components/Button/Button";
-import { titleCase } from "@/helpers/textTransform";
+import { titleCase, initialsCase } from "@/helpers/textTransform";
 import { showModal } from "@/redux/ModalState/ModalSlice";
 import { Icon } from "@iconify/react";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -33,8 +33,13 @@ const ViewClassDetails = () => {
 
       <div className={cx(styles.body, "flexCol")}>
 
-        <div className={cx(styles.header)}>
+        <div className={cx(styles.header, "flexCol")}>
           <p>Class Details</p>
+          {data?.teacher?.avatar ? 
+            <img src={data?.teacher?.avatar} alt="" /> 
+            : 
+            <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "7.5rem", height: "7.5rem", lineHeight: "7.5rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${data?.firstName ? data.firstName : ""} ${data?.lastName ? data?.lastName : ""}`)}</span>
+          }
         </div>
 
         <div className={cx(styles.modalItem)}>

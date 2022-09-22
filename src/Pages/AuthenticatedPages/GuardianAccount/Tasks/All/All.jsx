@@ -109,6 +109,25 @@ const All = ({allTasks}) => {
       Header: () => (
         <div
           style={{
+            minWidth: "auto",
+            color: "#747474",
+            fontSize: "1rem"
+          }}
+        >Status</div>
+      ),
+      accessor: "status",
+      Cell: (row) => {
+        let status = row.cell.row.values.status;
+        return <div style={{ color: status === "Graded" ? "green" : status === "Submitted" ? "blue" : "tomato"}} >
+          {status}
+            
+        </div>;
+      }
+    },
+    {
+      Header: () => (
+        <div
+          style={{
             width: "auto",
             color: "#747474",
             fontSize: "1rem",
@@ -135,9 +154,11 @@ const All = ({allTasks}) => {
         serialNumber: index+1,
         name: item?.name && titleCase(item?.name),
         subject: item?.subject?.subject && titleCase(item?.subject?.subject),
+        status: item?.pivot?.status && titleCase(item?.pivot?.status),
         type: item?.type && titleCase(item?.type),
         due_date: item?.due_date && formatDate(item?.due_date),
         action: "",
+
         allData: item
       });
     });

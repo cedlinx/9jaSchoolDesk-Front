@@ -116,7 +116,7 @@ const Home = () => {
         class_id ?
 
           <div className={cx(styles.body)}>
-            {!takeAttendance ? loading ? <>Fetching Data</> : Array.isArray(dataArray) && dataArray.length === 0 ? <div>No Student Added To This Class. Kindly Add New Students</div> : Array.isArray(dataArray) && dataArray.map((student, index) => {
+            {!takeAttendance ? loading ? <>Fetching Data</> : Array.isArray(dataArray) && dataArray.length === 0 ? <div>No Student Is Added To This Class. Kindly Add New Students</div> : Array.isArray(dataArray) && dataArray.length > 0 && dataArray.map((student, index) => {
               return (
                 <AttendanceCard takeAttendance={takeAttendance} key={index} cardData={student} attendanceStatus={attendanceStatus} />
               );
@@ -134,7 +134,8 @@ const Home = () => {
             <p>You have no class assigned to you. Most of the key features will be unavailable until a class is assigned to you. Kindly contact your administrator.</p>
           </div>
 
-      }      {takeAttendance && <div className={cx(styles.footer, "flexRow")}>
+      }      
+      {takeAttendance && <div className={cx(styles.footer, "flexRow")}>
         <p><span>{presentStudents} / {Array.isArray(dataArray) && dataArray.length}</span> <span>Attendance Today</span></p>
         <div className={cx(styles.btnGroup, "flexRow")}>
 

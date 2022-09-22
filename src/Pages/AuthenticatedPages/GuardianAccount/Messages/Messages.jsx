@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./Messages.module.scss";
@@ -7,7 +7,6 @@ import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react";
-import studentProfilePic from "@/assets/images/student-profile-pic.png";
 import { useForm, Controller } from "react-hook-form";
 import { createGistValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -36,7 +35,7 @@ const Messages = () => {
 
   useEffect(() => {
     dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
-    dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
+    classID && dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
   },[dispatch, userDetails?.id, classID, userDetails?.role]);
 
   const addNewComment = async (e, gist, index) => {
@@ -76,6 +75,11 @@ const Messages = () => {
 
   const createNewGist = async (data) => {
 
+    setLoadingStatus({
+      loading: true,
+      index: "createNewGist"
+    });
+
     let formData = new FormData();
     formData.append("body", data.body);
     formData.append("author", userDetails?.id);
@@ -90,6 +94,10 @@ const Messages = () => {
       dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: classID}));
       reset();
       setUploadedFile({file: "", imagePreviewUrl: "", type: ""});
+      setLoadingStatus({
+        loading: false,
+        index: "createNewGist"
+      });
     }
   };
 
@@ -174,7 +182,7 @@ const Messages = () => {
           />
 
           <div  className={cx(styles.btnDiv, "flexRow")}>
-            <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => createNewGist(data))} title="Post" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            <Button loading={loadingStatus?.index === "createNewGist" ? loadingStatus?.loading : false} disabled={loadingStatus?.index === "createNewGist" ? loadingStatus?.loading : false} onClick={handleSubmit((data) => createNewGist(data))} title="Post" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
         </form>
       </div>

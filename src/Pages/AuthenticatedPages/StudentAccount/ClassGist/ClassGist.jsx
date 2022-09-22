@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import styles from "./ClassGist.module.scss";
@@ -18,6 +18,7 @@ import TextArea from "@/components/TextArea";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
 
 
+
 const ClassGist = () => {
 
   const dispatch = useDispatch();
@@ -30,9 +31,11 @@ const ClassGist = () => {
     index: ""
   });
 
+
+
   useEffect(() => {
-    dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
-    dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: userDetails?.klass_id}));
+    userDetails?.id && dispatch(getAllGists({author: userDetails?.id, role: userDetails?.role.toLowerCase()}));
+    userDetails?.klass_id && dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: userDetails?.klass_id}));
   },[dispatch, userDetails?.id, userDetails?.klass_id, userDetails?.role]);
 
   const addNewComment = async (e, gist, index) => {
@@ -72,6 +75,11 @@ const ClassGist = () => {
 
   const createNewGist = async (data) => {
 
+    setLoadingStatus({
+      loading: true,
+      index: "createNewGist"
+    });
+
     let formData = new FormData();
     formData.append("body", data.body);
     formData.append("author", userDetails?.id);
@@ -86,6 +94,10 @@ const ClassGist = () => {
       dispatch(getGistConversations({user: userDetails?.role.toLowerCase(), class_id: userDetails?.klass_id}));
       reset();
       setUploadedFile({file: "", imagePreviewUrl: "", type: ""});
+      setLoadingStatus({
+        loading: false,
+        index: "createNewGist"
+      });
     }
   };
 
@@ -170,7 +182,7 @@ const ClassGist = () => {
           />
 
           <div  className={cx(styles.btnDiv, "flexRow")}>
-            <Button loading={loading} disabled={loading} onClick={handleSubmit((data) => createNewGist(data))} title="Post" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
+            <Button loading={loadingStatus?.index === "createNewGist" ? loadingStatus?.loading : false} disabled={loadingStatus?.index === "createNewGist" ? loadingStatus?.loading : false} onClick={handleSubmit((data) => createNewGist(data))} title="Post" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />
           </div>
         </form>
       </div>

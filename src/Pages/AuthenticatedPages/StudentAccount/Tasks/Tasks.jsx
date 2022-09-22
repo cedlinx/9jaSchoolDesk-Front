@@ -34,7 +34,7 @@ const Tasks = () => {
 
   const RenderAll = () => <All allTasks={Array.isArray(studentData?.current_tasks) && studentData.current_tasks} />;
   const RenderActive = () => <Active currentTasks={Array.isArray(studentData?.pending_tasks) && studentData.pending_tasks} />;
-  const RenderSubmitted = () => <Submitted submittedTasks={Array.isArray(studentData?.submitted_tasks) && studentData.submitted_tasks} />;
+  const RenderSubmitted = () => <Submitted submittedTasks={Array.isArray(studentData?.graded_tasks) && studentData.graded_tasks} />;
   const RenderOverdue = () => <Overdue overdueTasks={Array.isArray(studentData?.overdue_tasks) && studentData.overdue_tasks} />;
 
   const tabsComponents = [

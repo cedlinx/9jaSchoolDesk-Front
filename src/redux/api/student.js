@@ -12,6 +12,7 @@ export const getAllStudentsApi = async (data) => {
 
 export const viewStudentDetailsApi = async (data) => {
   return await axios.get(`student/auth/ward/view?id=${data}`);
+  // return await axios.get("student/auth/profile/view");
 };
 
 export const viewTaskDetailsApi = async (data) => {

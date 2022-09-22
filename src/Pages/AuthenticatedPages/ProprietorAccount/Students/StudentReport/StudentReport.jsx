@@ -29,7 +29,7 @@ const StudentReport = () => {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modalState.action);
   const modalType = useSelector((state) => state.modalState.type);
-
+  const loading = useSelector((state) => state.proprietor.loading);
   const allStudentRecord = useSelector((state) => state.proprietor.viewStudentRecordData.ward);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const StudentReport = () => {
 
       <div className={cx(styles.body, "flexCol")}>
 
-        <div className={cx(styles.tableSection, "flexCol")}>
+        {loading ? <TableSkeleton /> :  <div className={cx(styles.tableSection, "flexCol")}>
           <h3 className={cx(styles.title)}>{allStudentRecord?.firstName ? titleCase(allStudentRecord?.firstName) : ""} {allStudentRecord?.lastName ? titleCase(allStudentRecord?.lastName) : ""}</h3>
           {allStudentRecord?.sdid && <div>
             <span>Student ID: </span><span>{allStudentRecord?.sdid}</span>
@@ -73,7 +73,7 @@ const StudentReport = () => {
             <span>Gender: </span><span>{allStudentRecord?.gender && titleCase(allStudentRecord?.gender)}</span>
           </div>
           <div>
-            <span>Guardian: </span><span>{allStudentRecord?.guardian.name}</span>
+            <span>Guardian: </span><span>{allStudentRecord?.guardian.name || "Not Assigned"}</span>
           </div>
           <div>
             <span>Subjects: </span><span>{allStudentRecord?.subjects && getSubjectList(allStudentRecord?.subjects)}</span>
@@ -84,7 +84,7 @@ const StudentReport = () => {
           <div>
             <span>Notices: </span><span>{Array.isArray(allStudentRecord?.notices) && allStudentRecord?.notices.length > 0 ? formatArrayList(allStudentRecord?.notices) : "There is currently no notice for this student"}</span>
           </div>
-        </div>
+        </div>}
 
       </div>
 

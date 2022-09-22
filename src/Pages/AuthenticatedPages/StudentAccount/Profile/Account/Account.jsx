@@ -23,7 +23,7 @@ const Account = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state?.student?.loading);
   const userDetails = useGetLoggedInUser();
-
+  console.log(userDetails);
   const resolver = yupResolver(modifyStudentProfileValidationSchema);
 
   const defaultValues = {
@@ -139,7 +139,6 @@ const Account = () => {
                       type="text"
                       error={errors?.lastName && errors?.lastName?.message}
                       readOnly
-
                     />
                   )}
                 />
@@ -155,9 +154,7 @@ const Account = () => {
                         label={"Other Names"}
                         type="text"
                         error={errors?.otherNames && errors?.otherNames?.message}
-
                         readOnly
-
                       />
                     )}
                   />
@@ -175,8 +172,7 @@ const Account = () => {
                         label={"Address"}
                         type="text"
                         error={errors?.address && errors?.address?.message}
-
-
+                        readOnly
                       />
                     )}
                   />

@@ -25,8 +25,9 @@ const StudentLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalData = useSelector((state) => state.modalState.modalData);
-  const userDetails = useGetLoggedInUser();
+  // const userDetails = useGetLoggedInUser();
   const loading = useSelector((state) => state.student.loading);
+  console.log(modalData);
   
   let signature = modalData?.dashboard_url.split("=")[1];
   let classCode = modalData?.dashboard_url.split("/")[8];
@@ -57,9 +58,12 @@ const StudentLogin = () => {
   const defaultValues = {
     pin: ""
   };
-  const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+  const { handleSubmit, formState: { errors }, control, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
-  
+  const handleNumberInputChange = (e, inputName) => {
+    let value = e.target.value.replace(/[^0-9]/g, "");
+    setValue(inputName, value);
+  };
   
   return (
 
@@ -90,6 +94,8 @@ const StudentLogin = () => {
                 type="password"
                 error={errors?.pin && errors?.pin?.message}
                 inputRef={ref}
+                onChange={(e) => handleNumberInputChange(e, "pin")}
+                maxLength={4}
               />
             )}
           />

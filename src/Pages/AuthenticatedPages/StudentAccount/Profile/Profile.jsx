@@ -33,9 +33,9 @@ const Profile = () => {
             <Tab>
               <p>Account</p>
             </Tab>
-            <Tab>
+            {/* <Tab>
               <p>Password</p>
-            </Tab>
+            </Tab> */}
             <Tab>
               <p>Your Works</p>
             </Tab>
@@ -46,9 +46,9 @@ const Profile = () => {
             <TabPanel>
               {<Account />}
             </TabPanel>
-            <TabPanel>
+            {/* <TabPanel>
               <Password />
-            </TabPanel>
+            </TabPanel> */}
             <TabPanel>
               <Works />
             </TabPanel>

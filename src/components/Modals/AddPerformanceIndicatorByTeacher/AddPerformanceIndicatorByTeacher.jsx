@@ -64,7 +64,7 @@ const AddPerformanceIndicatorByTeacher = () => {
     const reader = new FileReader();
     reader.onloadend = () => {
       setUploadedFile({file: file, imagePreviewUrl: reader.result});
-      setValue("uploadedFile", file);
+      setValue("uploadedFile", file, {shouldValidate: true});
     };
     reader.readAsDataURL(file);
   }, [setValue]);

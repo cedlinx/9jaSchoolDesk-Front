@@ -89,7 +89,7 @@ const AccordionComponent =(props)=>{
                         Attachment
                         </small>
                         <a href={item?.pivot?.attachment} target ="_blank" rel="noreferrer">
-                          <span>Uploaded File </span>                       
+                          <span>Download Attachment</span>                       
                           <Icon icon="bi:download" color="#d25b5d" />
                         </a>
                       </div>}
