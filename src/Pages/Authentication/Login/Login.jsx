@@ -23,6 +23,7 @@ import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg"
 
 
 import siteLogo from "@/assets/images/logo.png";
+import { titleCase } from "@/helpers/textTransform";
 
 const Login = () => {
 
@@ -87,6 +88,7 @@ const Login = () => {
               <section className={cx(styles.rightCol, "col-md-6", "flexCol")}>
 
                 <img className={styles.logo} src={siteLogo} alt="" />
+                <span>{titleCase(user)}</span>
 
                 <div className={cx(styles.formWrapper, "flexCol")}>
                   <form onSubmit={handleSubmit((data) => signIn(data))}

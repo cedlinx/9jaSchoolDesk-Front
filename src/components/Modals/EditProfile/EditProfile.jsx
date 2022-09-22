@@ -43,12 +43,10 @@ const EditProfile = () => {
 
     let response = await dispatch(modifyWardProfile(formData));
 
-    
     if(response.payload.success){
       dispatch(showModal({ action: "hide" }));
       dispatch(getDashboard());
       dispatch(viewWardDetails(modalData.id));
-
     }
   };
 

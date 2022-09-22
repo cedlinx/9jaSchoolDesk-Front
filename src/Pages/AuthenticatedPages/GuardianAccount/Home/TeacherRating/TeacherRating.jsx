@@ -44,11 +44,11 @@ const TeacherRating = ({teachersData, guardianID}) => {
       Cell: (row) => {
         let details = row.cell.row.values.teacherDetails;
 
-        return <div  style={{width: "auto", display: "flex", gap: "0.5rem"}}>
+        return <div  style={{width: "auto", display: "flex", gap: "0.5rem", alignItems: "center"}}>
           <div>
           
             {details?.subject_teacher?.avatar ? 
-              <img style={{borderRadius: "50%", width: "2rem"}} src={details?.subject_teacher?.avatar} alt="img" />
+              <img style={{borderRadius: "50%", width: "2rem", height: "2rem"}} src={details?.subject_teacher?.avatar} alt="img" />
               :
               <span style={{ display: "inline-block", backgroundColor: "#D25B5D", color: "#fff", borderRadius: "50%", width: "2.5rem", height: "2.5rem", lineHeight: "2.5rem", fontSize: "1.25rem", textAlign: "center"}}>{initialsCase(`${details?.subject_teacher?.firstName || ""} ${details?.subject_teacher?.lastName || ""}`)}</span>
             }

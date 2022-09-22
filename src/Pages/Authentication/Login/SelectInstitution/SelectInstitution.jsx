@@ -82,10 +82,10 @@ const SelectInstitution = () => {
         Array.isArray(institutionsArray) && institutionsArray.length > 0 ?
           <>  
             <p>Select an institution to continue</p>
-            <div className={cx(styles.body)}>
+            <div className={cx(styles.body, "flexCol")}>
               {Array.isArray(institutionsArray) && institutionsArray.map((element, index) => {
                 return (
-                  <div key={index} onClick={() => handleSwitchInstitution(element?.id)} className={cx(styles.studentContainer, "flexCol")}>
+                  <div key={index} onClick={() => handleSwitchInstitution(element?.id)} className={cx(styles.studentContainer)}>
                     <div className={cx(styles.imageDiv)}>
                       <Icon icon="cil:institution" color="#000" width="72" />
                     </div>

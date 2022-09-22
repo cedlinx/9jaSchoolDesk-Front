@@ -66,19 +66,13 @@ const Header = (props) => {
   let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
   let classesArray = useSelector((state) => state?.teacher?.getTeacherDetailsData?.classes);
 
-  console.log(classesArray);
-
   console.log(userDetails);
-  console.log(userCategory);
 
   const [avatar, setAvatar] = useState(userDetails?.avatar);
 
   useEffect(() => {
     setAvatar(userDetails?.avatar);
   }, [userDetails, updateProfileLoading]);
-
-
-
 
   useEffect(() => {
     userCategory === "proprietor" && dispatch(getAllInstitutions());
@@ -106,7 +100,7 @@ const Header = (props) => {
       toast.success("You only have one institution");
     }
     else{
-      navigate("/select-institution/proprietor");
+      navigate("/proprietor/select-institution");
     }
   };
 

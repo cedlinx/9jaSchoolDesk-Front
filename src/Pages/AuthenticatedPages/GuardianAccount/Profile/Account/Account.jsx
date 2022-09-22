@@ -61,9 +61,8 @@ const Account = () => {
     let response = await dispatch(modifyGuardianProfile(formData));
 
     if(response.payload.success){
-      dispatch(getGuardianDetails({id: userDetails?.id}));
+      dispatch(getGuardianDetails());
       dispatch(getDashboard());
-
     }
 
     

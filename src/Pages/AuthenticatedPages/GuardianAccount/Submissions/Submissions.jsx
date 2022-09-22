@@ -194,7 +194,7 @@ const Submissions = () => {
         <h5>All Submissions</h5>
       </div>
 
-      {loading ? <TableSkeleton /> : Array.isArray(selectedWard?.graded_tasks) && selectedWard?.graded_tasks.length > 0 ?
+      {loading ? <TableSkeleton /> : Array.isArray(selectedWard?.completed_tasks) && selectedWard?.completed_tasks.length > 0 ?
         <>
           <div className={cx(styles.filterSection, "flexRow")}>
 

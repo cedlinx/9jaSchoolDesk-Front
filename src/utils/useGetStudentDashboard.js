@@ -1,22 +1,18 @@
 import {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 import { getDashboard } from "@/redux/Student/StudentSlice";
-
 
 const useGetStudentDashboard = () => {
 
   const dispatch = useDispatch();
   const studentData = useSelector((state) => state?.student?.getDashboardData?.data?.ward);
-  const userDetails = useGetLoggedInUser();
-  console.log(userDetails);
-  let signature = userDetails?.dashboard_url && userDetails?.dashboard_url.split("=")[1];
-  let classCode = userDetails?.dashboard_url && userDetails?.dashboard_url.split("/")[8];
+
   const studentID = localStorage.getItem("loggedInStudentID");
+  const studentClassCode = localStorage.getItem("loggedInStudentClassCode");
   
   useEffect(() => {
-    dispatch(getDashboard({id: studentID, signature: signature, classCode: classCode}));
-  }, [dispatch, signature, studentID, classCode]);
+    dispatch(getDashboard({id: studentID, classCode: studentClassCode}));
+  }, [dispatch, studentID, studentClassCode]);
   
   return studentData;
 };

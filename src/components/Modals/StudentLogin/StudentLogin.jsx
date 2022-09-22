@@ -17,7 +17,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {initialsCase, titleCase} from "@/helpers/textTransform";
 import generateColor from "@/helpers/generateColor";
 import { getDashboard } from "@/redux/Student/StudentSlice";
-import useGetLoggedInUser from "@/utils/useGetLoggedInUser";
 
 
 const StudentLogin = () => {
@@ -25,28 +24,23 @@ const StudentLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalData = useSelector((state) => state.modalState.modalData);
-  // const userDetails = useGetLoggedInUser();
   const loading = useSelector((state) => state.student.loading);
-  console.log(modalData);
-  
-  let signature = modalData?.dashboard_url.split("=")[1];
   let classCode = modalData?.dashboard_url.split("/")[8];
-
-  const params = useParams();
 
   const sendRequest = async (data) => {
     
     localStorage.setItem("loggedInStudentID", modalData.id);
+    localStorage.setItem("loggedInStudentClassCode", classCode);
     localStorage.setItem("userData", JSON.stringify(modalData));
+
     let response = await dispatch(validatePin({pin: data.pin, student_id: modalData.id}));
-    
     
     if(response.payload.success){
       const studentID = localStorage.getItem("loggedInStudentID");
 
-      let response2 = await dispatch(getDashboard({id: studentID, signature: signature, classCode: classCode}));
+      let dashboardRequest = await dispatch(getDashboard({id: studentID, classCode: classCode}));
 
-      if( response2.payload.success){
+      if( dashboardRequest.payload.success){
         navigate("/student/dashboard", {state: {studentID: modalData?.id}});
         dispatch(showModal({action: "hide"}));
       }
@@ -74,15 +68,17 @@ const StudentLogin = () => {
       </div>
 
       <div className={cx(styles.formWrapper, "flexCol")}>
-	  <div className={cx(styles.header, "flexCol")}>
-          <p>{`${titleCase(modalData.firstName)} ${titleCase(modalData.lastName)}`}</p>
-          {modalData.avatar ? <img src={modalData.avatar} alt="img" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> }
+	      <div className={cx(styles.header, "flexCol")}>
+          <p>{`${titleCase(modalData.firstName)}${titleCase(modalData.lastName)}`}</p>
+          {
+            modalData.avatar ? 
+              <img src={modalData.avatar} alt="img" /> : <span style={{backgroundColor: generateColor()}}>{initialsCase(`${modalData.firstName} ${modalData.lastName}`)}</span> 
+          }
         </div>
         
         <form
           onSubmit={handleSubmit((data) => sendRequest(data))}
         >
-
           <Controller
             name="pin"
             control={control}

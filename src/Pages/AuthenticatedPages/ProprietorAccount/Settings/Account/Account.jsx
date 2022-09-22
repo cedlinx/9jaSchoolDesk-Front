@@ -59,6 +59,7 @@ const Account = () => {
     let response = await dispatch(updateProfile(formData));
     if(response?.payload?.success){
       dispatch(getDashboard());
+      dispatch(getProfile());
     }
   };
 
