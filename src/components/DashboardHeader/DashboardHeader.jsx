@@ -66,8 +66,6 @@ const Header = (props) => {
   let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
   let classesArray = useSelector((state) => state?.teacher?.getTeacherDetailsData?.classes);
 
-  console.log(userDetails);
-
   const [avatar, setAvatar] = useState(userDetails?.avatar);
 
   useEffect(() => {

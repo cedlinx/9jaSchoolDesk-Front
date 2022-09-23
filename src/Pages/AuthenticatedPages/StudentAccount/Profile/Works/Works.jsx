@@ -11,8 +11,6 @@ const Works = () => {
   const dispatch = useDispatch();
   const studentData = useGetStudentDashboard();
 
-  console.log(studentData);
-
   return (
     <div className={cx(styles.worksContainer)}>
       <div className={cx(styles.heading, "flexRow-space-between")}>

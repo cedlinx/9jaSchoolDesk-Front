@@ -37,8 +37,6 @@ const Home = () => {
   const guardianData = useSelector((state) => state?.guardian?.getGuardianDetailsData);
   const loading = useSelector((state) => state.guardian.loading);
   const selectedWard = useGetSelectedWard();
-  console.log(selectedWard);
-  console.log(guardianData);
   
   useEffect(() => {
     dispatch(getDashboard());

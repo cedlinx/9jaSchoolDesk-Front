@@ -23,7 +23,6 @@ const Account = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state?.student?.loading);
   const userDetails = useGetLoggedInUser();
-  console.log(userDetails);
   const resolver = yupResolver(modifyStudentProfileValidationSchema);
 
   const defaultValues = {

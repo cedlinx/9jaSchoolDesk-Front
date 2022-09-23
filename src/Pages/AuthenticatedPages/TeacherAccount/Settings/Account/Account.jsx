@@ -24,7 +24,6 @@ const Account = () => {
   const loading = useSelector((state) => state?.teacher?.loading);
 
   const resolver = yupResolver(modifyTeacherValidationSchema);
-  console.log(userDetails);
   
   const defaultValues = {
     // email: userDetails?.email,

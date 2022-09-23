@@ -24,7 +24,7 @@ const StudentLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalData = useSelector((state) => state.modalState.modalData);
-  const loading = useSelector((state) => state.student.loading);
+  const loading = useSelector((state) => state.auth.loading);
   let classCode = modalData?.dashboard_url.split("/")[8];
 
   const sendRequest = async (data) => {

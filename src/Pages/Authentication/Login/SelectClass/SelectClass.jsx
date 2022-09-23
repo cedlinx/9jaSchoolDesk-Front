@@ -21,8 +21,6 @@ const SelectClass = () => {
   const teacherDetails = useGetLoggedInUser();
   let classesArray = teacherDetails?.classes;
   const loading = useSelector((state) => state?.teacher?.loading);
-  console.log(loading);
-  console.log(teacherDetails);
 
   useEffect(() => {
     // if (!classesArray) {

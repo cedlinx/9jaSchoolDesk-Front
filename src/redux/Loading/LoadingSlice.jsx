@@ -14,7 +14,6 @@ export const loadingSlice = createSlice({
 
   reducers: {
     updateProfileAction: (state, action) => {
-      console.log(action);
       state.updateProfileLoading = action.payload;
     }
   }

@@ -16,7 +16,7 @@ const RequestDemo = () => {
 
     
   const sendRequest = async (data) => {
-    console.log(data);
+    // console.log(data);
   };
     
   const resolver = yupResolver(modifyClassValidationSchema);

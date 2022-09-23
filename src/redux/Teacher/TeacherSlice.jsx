@@ -59,7 +59,6 @@ export const teacherSlice = createSlice({
   reducers: {
 
     startLoading: (state, action) => {
-      console.log(action);
       state.loading = true;
     },
 

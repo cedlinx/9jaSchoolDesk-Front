@@ -82,8 +82,6 @@ const EditProfile = () => {
     dispatch(showModal({ action: "hide" }));
   };
 
-  console.log(errors);
-
   return (
 
     <section className={cx(styles.editProfileContainer, "flexCol")}>

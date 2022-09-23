@@ -16,7 +16,6 @@ const UpdateProfile = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
   const user = useGetUser();
-  console.log(modalData);
   
   const loading = useSelector((state) => user === "proprietor" ? state?.proprietor?.loading : user === "teacher" ? state?.teacher?.loading : user === "guardian" ? state?.guardian?.loading : state?.student?.loading);
 

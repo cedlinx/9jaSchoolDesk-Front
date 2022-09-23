@@ -21,7 +21,6 @@ const generateColor = () => {
   //   rgb += ("00"+c).substr(c.length);
   // }
 
-  // console.log(rgb);
   // return rgb;
 
   // const red = Math.floor(Math.random() * 256/2);

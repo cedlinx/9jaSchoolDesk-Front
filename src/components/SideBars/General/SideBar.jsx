@@ -60,9 +60,6 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
   const [avatar, setAvatar] = useState(userDetails?.avatar);
 
   const teacherDetails = useSelector((state) => state?.teacher?.getTeacherDetailsData?.user);
-  console.log(teacherDetails);
-
-  console.log(updateProfileLoading);
 
   useEffect(() => {
     user === "teacher" && dispatch(getTeacherDetails());

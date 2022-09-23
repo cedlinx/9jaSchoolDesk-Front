@@ -18,7 +18,6 @@ const SendNotificationToParent = () => {
 
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.modalState.modalData);
-  console.log(modalData);
   const loading = useSelector((state) => state.teacher.loading);
 
   const sendRequest = async (data) => {

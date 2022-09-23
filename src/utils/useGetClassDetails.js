@@ -13,8 +13,6 @@ const useGetClassDetails = () => {
   //   dispatch(getClassDetails(classID));
   // }, [classID, dispatch]);
 
-  // console.log(classDetails);
-
   // return classDetails;
   const classDetails = JSON.parse(localStorage.getItem("activeClassData"));
   return classDetails;
