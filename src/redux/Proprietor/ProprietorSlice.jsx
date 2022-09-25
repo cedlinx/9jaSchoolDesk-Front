@@ -813,6 +813,7 @@ export const updateProfile = (data) => async (dispatch) => {
     dispatch(updateProfileLoading(false));
     return dispatch(updateProfileAction(response?.data));
   } catch (e) {
+    dispatch(updateProfileLoading(false));
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }

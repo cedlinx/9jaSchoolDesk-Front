@@ -42,7 +42,7 @@ const RateTeacher = () => {
 
   const sendRequest = async (data) => {
     
-    let response = user === "student" ? await dispatch(rateTeacherByStudent({rating : modalData?.rating, teacher_id: modalData?.teacherData?.subject_teacher.id, comment: data?.comment, user_id: modalData?.studentID})) : await dispatch(rateTeacherByGuardian({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.guardianID}));
+    let response = user === "student" ? await dispatch(rateTeacherByStudent({rating : modalData?.rating, teacher_id: modalData?.teacherData?.subject_teacher.id, comment: data?.comment, user_id: modalData?.studentID, subject_id: subject_id})) : await dispatch(rateTeacherByGuardian({rating : modalData?.rating, teacher_id: modalData?.teacherData?.id, comment: data?.comment, user_id: modalData?.guardianID, subject_id: subject_id}));
     
     if(response.payload.success){
       dispatch(showModal({ action: "hide", type: "rateTeacher" }));

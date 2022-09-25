@@ -13,7 +13,7 @@ import useGetClassID from "@/utils/useGetClassID";
 const SaveAttendance = ({resetTakeAttendance}) => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state?.modalState?.modalData);
-  const loading = useSelector((state) => state?.proprietor?.loading);
+  const loading = useSelector((state) => state?.teacher?.loading);
   let class_id = useGetClassID();
 
   
