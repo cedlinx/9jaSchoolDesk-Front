@@ -7,7 +7,7 @@ import styles from "./Default.module.scss";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-const CalendarComp = () => {
+const CalendarComp = ({dateValue}) => {
 
   // date state
   const [calendar, setCalendar] = useState("");
@@ -17,6 +17,9 @@ const CalendarComp = () => {
 
   // get the target element to toggle 
   const refOne = useRef(null);
+
+  dateValue(calendar);
+
 
   useEffect(() => {
     // set current date on component load
@@ -43,6 +46,8 @@ const CalendarComp = () => {
   // on date change, store date in state
   const handleSelect = (date) => {
     setCalendar(format(date, "MM/dd/yyyy"));
+    setOpen(false);
+
   };
 
   return (

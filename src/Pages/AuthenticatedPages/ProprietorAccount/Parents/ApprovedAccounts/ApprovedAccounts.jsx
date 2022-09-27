@@ -3,7 +3,6 @@ import cx from "classnames";
 import styles from "./ApprovedAccounts.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "@iconify/react";
-import Button from "@/components/Button/Button";
 import TableComponent from "@/components/Table/Table";
 import { initialsCase, titleCase } from "@/helpers/textTransform";
 import generateColor from "@/helpers/generateColor";

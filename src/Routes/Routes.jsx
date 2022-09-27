@@ -46,6 +46,7 @@ import SelectWardGuardian from "../Pages/Authentication/Login/SelectWard/SelectW
 // Teacher Section
 import DashboardTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Home/Home";
 import TasksAndActivitiesTeacher from "../Pages/AuthenticatedPages/TeacherAccount/TasksAndActivities/TasksAndActivities";
+import AttendanceTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Attendance/Attendance";
 import ProfileTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Profile/Profile";
 import LessonsTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lessons/Lessons";
 import LoungeTeacher from "../Pages/AuthenticatedPages/TeacherAccount/Lounge/Lounge";
@@ -122,6 +123,7 @@ const RoutesComponent = () => {
           <Route index path="dashboard" element={<DashboardTeacher />} />
           <Route path="profile" element={<ProfileTeacher />} />
           <Route path="tasks-and-activities" element={<TasksAndActivitiesTeacher />} />
+          <Route path="attendance" element={<AttendanceTeacher />} />
           <Route path="lessons" element={<LessonsTeacher />} />
           <Route path="lounge" element={<LoungeTeacher />} />
           <Route path="class-gist" element={<ClassGistTeacher />} />

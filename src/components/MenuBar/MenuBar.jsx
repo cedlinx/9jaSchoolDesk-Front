@@ -9,23 +9,25 @@ import { Navbar, Nav, Dropdown,
 
 
 const MenuBar = () => {
+  const [expanded, setExpanded] = useState(false);
 
   const handleClick=(e)=>{
+    setExpanded(false);
   };
   
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow", "container")}>
+      <Navbar expanded={expanded} expand="lg" className={cx(styles.navbarContainer, "flexRow", "container")}>
         <Navbar.Brand className={cx(styles.siteLogo )}> 		
           <Link to="/"><img src={Logo} alt="" /></Link>
         </Navbar.Brand>
         <Navbar.Toggle className={cx(styles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(styles.navbarCollapse)} id="responsive-navbar-nav" >
           <Nav className={cx(styles.primaryNavigation)}>
-            <Link onClick={(e) =>handleClick(e)} id="home" to="#">Home</Link>
-            <Link onClick={(e) =>handleClick(e)} id="student" to="#">Student</Link>
-            <Link onClick={(e) =>handleClick(e)} id="guardian" to="#">Guardian</Link>
-            <Link onClick={(e) =>handleClick(e)} id="teacher" to="#">Teacher</Link>
+            <Link onClick={() =>handleClick()} id="home" to="#">Home</Link>
+            <Link onClick={() =>handleClick()} id="student" to="#">Student</Link>
+            <Link onClick={() =>handleClick()} id="guardian" to="#">Guardian</Link>
+            <Link onClick={() =>handleClick()} id="teacher" to="#">Teacher</Link>
           </Nav>				
 
         </Navbar.Collapse>

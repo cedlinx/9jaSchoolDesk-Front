@@ -1,4 +1,4 @@
-import { getDashboardApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, scoreStudentKPIApi, incrementScoreKPIApi, decrementScoreKPIApi, getStudentScoreKPIApi, sendNotificationApi, addTaskApi, modifyTaskApi, viewTaskDetailsApi, getAllTasksApi, deleteTaskApi, assignTaskApi, assessTaskApi, submitTaskApi, saveAttendanceApi, takeAttendanceApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, updateProfileApi, getTeacherDetailsApi, switchClassApi, getClassDetailsApi, getAllGuardiansApi, enableAndDisableTaskApi, getStudentsAssignedToTaskApi, createLessonApi, modifyLessonApi, viewLessonApi, getClassLessonsApi, getAllLessonsApi, deleteLessonApi} from "../api/teacher";
+import { getDashboardApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, scoreStudentKPIApi, incrementScoreKPIApi, decrementScoreKPIApi, getStudentScoreKPIApi, sendNotificationApi, addTaskApi, modifyTaskApi, viewTaskDetailsApi, getAllTasksApi, deleteTaskApi, assignTaskApi, assessTaskApi, submitTaskApi, saveAttendanceApi, takeAttendanceApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, updateProfileApi, getTeacherDetailsApi, switchClassApi, getClassDetailsApi, getAllGuardiansApi, enableAndDisableTaskApi, getStudentsAssignedToTaskApi, createLessonApi, modifyLessonApi, viewLessonApi, getClassLessonsApi, getAllLessonsApi, deleteLessonApi, getAttendanceApi} from "../api/teacher";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -48,7 +48,8 @@ const initialState = {
   viewLessonData: {},
   getClassLessonsData: {},
   getAllLessonsData: {},
-  deleteLessonData: {}
+  deleteLessonData: {},
+  getAttendanceData: {}
 };
 
 export const teacherSlice = createSlice({
@@ -265,6 +266,11 @@ export const teacherSlice = createSlice({
     getClassLessonsAction: (state, action) => {
       state.getClassLessonsData = action.payload;
       state.loading = false;
+    },
+
+    getAttendanceAction: (state, action) => {
+      state.getAttendanceData = action.payload;
+      state.loading = false;
     } 
   }
 });
@@ -280,7 +286,7 @@ const { startLoading, hasError, getDashboardAction,
   deleteTaskAction, assignTaskAction, assessTaskAction, submitTaskAction,
   saveAttendanceAction, takeAttendanceAction, addStudentAction,
   getAllStudentsAction, viewStudentRecordAction, modifyStudentAction,
-  deleteStudentAction, updateProfileAction, getTeacherDetailsAction, switchClassAction, getClassDetailsAction, getAllGuardiansAction, enableAndDisableTaskAction, getStudentsAssignedToTaskAction, createLessonAction, modifyLessonAction, deleteLessonAction, getAllLessonsAction, viewLessonAction, getClassLessonsAction } = teacherSlice.actions;
+  deleteStudentAction, updateProfileAction, getTeacherDetailsAction, switchClassAction, getClassDetailsAction, getAllGuardiansAction, enableAndDisableTaskAction, getStudentsAssignedToTaskAction, createLessonAction, modifyLessonAction, deleteLessonAction, getAllLessonsAction, viewLessonAction, getClassLessonsAction, getAttendanceAction } = teacherSlice.actions;
 
 export const getDashboard = (data) => async (dispatch) => {
   try {
@@ -765,3 +771,14 @@ export const deleteLesson = (data) => async (dispatch) => {
   }
 };
 
+export const getAttendance = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await getAttendanceApi(data);
+    toast.success(response.data.message);
+    return dispatch(getAttendanceAction(response?.data));
+  } catch (e) {
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
+  }
+};

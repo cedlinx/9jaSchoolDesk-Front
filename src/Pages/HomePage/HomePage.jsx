@@ -40,6 +40,7 @@ const HomePage = () => {
   const studentsRef = useRef();
   const guardiansRef = useRef();
   const teachersRef = useRef();
+  const [expanded, setExpanded] = useState(false);
 
   const gotoSection = (value) => {
     switch (value.target.id) {
@@ -56,17 +57,18 @@ const HomePage = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
       break;
     }
+    setExpanded(false);
   };
 
 
   return (
     <PageContainer showHeader={false}>
 
-      <Navbar collapseOnSelect expand="lg" className={cx(menuBarStyles.navbarContainer, "flexRow")}>
+      <Navbar expanded={expanded} expand="lg" className={cx(menuBarStyles.navbarContainer, "flexRow")}>
         <Navbar.Brand className={cx(menuBarStyles.siteLogo)}>
           <Link to="/"><img src={Logo} alt="" /></Link>
         </Navbar.Brand>
-        <Navbar.Toggle className={cx(menuBarStyles.navbarToggler)} aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")} className={cx(menuBarStyles.navbarToggler)} aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse className={cx(menuBarStyles.navbarCollapse)} id="responsive-navbar-nav" >
           <Nav className={cx(menuBarStyles.primaryNavigation)}>
             <Link onClick={(e) => gotoSection(e)} id="home" to="#">Home</Link>
