@@ -38,7 +38,6 @@ const ResetPassword = () => {
 
   const handleReset = async (data)=>{
     const response = await dispatch(resetPassword({user: params.user, payload: data, token: params.token}));
-    console.log(response);
     if(response?.payload?.success){
       toast.success("You will be redirected to the login page in 5 seconds");
       setTimeout(()=>{
