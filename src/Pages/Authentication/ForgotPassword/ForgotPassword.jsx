@@ -16,6 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import siteLogo from "@/assets/images/logo.png";
 import useGetUser from "@/utils/useGetUser";
+import { titleCase } from "@/helpers/textTransform";
 
 
 const ForgotPassword = () => {
@@ -45,6 +46,7 @@ const ForgotPassword = () => {
         </div>
 
         <h3>Forgot Password</h3>
+        <small>{titleCase(user)}</small>
 
         <div className={cx(styles.formWrapper, "flexCol")}>
           <form
@@ -68,10 +70,10 @@ const ForgotPassword = () => {
             />
 
             <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button title="Request Reset Link" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+              <Button loading={loading} disabled={loading} title="Request Reset Link" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
-            {user === "guardian" && <p className={cx(styles.formText)}>Don't have an account? <Link to="/signup">Sign Up</Link></p>}
+            {user === "guardian" && <p className={cx(styles.formText)}>Don&apos;t  have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p>}
 
           </form>
         </div>
