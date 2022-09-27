@@ -25,8 +25,11 @@ const ForgotPassword = () => {
   const user = useGetUser();
   const loading = useSelector((state) => state.auth.loading);
 
-  const sendRequest =(data)=>{
-    dispatch(forgotPassword({user: user, payload: data}));
+  const sendRequest =async (data)=>{
+    let response = await dispatch(forgotPassword({user: user, payload: data}));
+    if(response?.payload?.success){
+      reset();
+    }
   };
 
   const resolver = yupResolver(forgotPasswordValidationSchema);
@@ -69,8 +72,8 @@ const ForgotPassword = () => {
               )}
             />
 
-            <div onClick={handleSubmit((data) => sendRequest(data))} className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button loading={loading} disabled={loading} title="Request Reset Link" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+            <div className={cx(styles.submitBtnDiv, "flexRow")}>
+              <Button  type="submit" onClick={handleSubmit((data) => sendRequest(data))} loading={loading} disabled={loading} title="Request Reset Link" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
             {user === "guardian" && <p className={cx(styles.formText)}>Don&apos;t  have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p>}

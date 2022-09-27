@@ -83,7 +83,7 @@ const RoutesComponent = () => {
         <Route path="/:user/forgot-password" element={<ForgotPassword />} />
         <Route path="otp-expired" element={<OtpExpired />} />
         <Route path="login/:user/otp-verification" element={<OtpVerification />} />
-        <Route path="/:user/reset/password/:token" element={<ResetPassword />} />
+        <Route path="/:user/noauth/reset/password/:token" element={<ResetPassword />} />
         <Route path="/:user/select-account" element={<SelectAccountStudent />} />
         <Route path="/:user/select-class" element={<SelectClassTeacher />} />
         <Route path="/:user/select-institution" element={<SelectInstitutionProprietor />} />

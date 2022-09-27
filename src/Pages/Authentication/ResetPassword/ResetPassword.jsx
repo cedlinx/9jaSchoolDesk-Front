@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import cx from "classnames";
 import styles from "./ResetPassword.module.scss";
 import Button from "@/components/Button/Button";
@@ -16,17 +16,15 @@ import { resetPasswordValidationSchema } from "@/helpers/validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import siteLogo from "@/assets/images/logo.png";
+import { titleCase } from "@/helpers/textTransform";
 
 const ResetPassword = () => {
 
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
+  const loading = useSelector((state) => state.auth.loading);
   const [verificationResponse, setVerificationResponse] = useState("");
-
-  const sendRequest =(data)=>{
-    dispatch(resetPassword(data));
-  };
 
   const resolver = yupResolver(resetPasswordValidationSchema);
 
@@ -40,7 +38,13 @@ const ResetPassword = () => {
 
   const handleReset = async (data)=>{
     const response = await dispatch(resetPassword({user: params.user, payload: data, token: params.token}));
-    
+    console.log(response);
+    if(response?.payload?.success){
+      toast.success("You will be redirected to the login page in 5 seconds");
+      setTimeout(()=>{
+        navigate(`/login/${params?.user}`);
+      }, 5000);
+    }
   };
 
   return (
@@ -52,6 +56,7 @@ const ResetPassword = () => {
         </div>
 
         <h3>Reset Password</h3>
+        <small style={{marginTop: "-2rem"}}>{titleCase(params?.user)}</small>
 
         <div className={cx(styles.formWrapper, "flexCol")}>
           <form
@@ -105,12 +110,10 @@ const ResetPassword = () => {
             />
 
             <div className={cx(styles.submitBtnDiv, "flexRow")}>
-              <Button onClick={handleSubmit((data) => handleReset(data))} title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
+              <Button type="submit" loading={loading} disabled={loading}  onClick={handleSubmit((data) => handleReset(data))} title="Reset Password" borderRadiusType="lowRounded" textColor="#FFF" bgColor="#D25B5D" />
             </div>
 
-            {/* <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
-
-						<p><Link to="/login">Sign In</Link> to continue</p> */}
+            <p><Link to={`/login/${params?.user}`}>Sign In</Link> to continue</p>
 
           </form>
         </div>

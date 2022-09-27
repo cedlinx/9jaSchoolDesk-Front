@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, Navigate, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, Navigate, useParams } from "react-router-dom";
 import cx from "classnames";
 import styles from "./Login.module.scss";
 import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
-import PageContainer from "@/components/PageContainer/PageContainer";
 
 import { isAuthenticated, decodeToken, getToken } from "@/utils/auth";
 
@@ -29,10 +28,8 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
   const {user} = useParams();
-  const rootPath = location.pathname.split("/")[1];
-  const actualPath = location.pathname.split("/").pop();
+
   const isOTPVerified = localStorage.getItem("userData")?.hasverifiedotp;
   const loading = useSelector((state) => state?.auth?.loading);
 
@@ -88,7 +85,7 @@ const Login = () => {
               <section className={cx(styles.rightCol, "col-md-6", "flexCol")}>
 
                 <img className={styles.logo} src={siteLogo} alt="" />
-                <span>{titleCase(user)}</span>
+                <small style={{marginTop: "-1.75rem"}}>{titleCase(user)}</small>
 
                 <div className={cx(styles.formWrapper, "flexCol")}>
                   <form onSubmit={handleSubmit((data) => signIn(data))}
