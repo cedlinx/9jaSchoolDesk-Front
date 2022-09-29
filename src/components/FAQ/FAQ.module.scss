@@ -1,0 +1,98 @@
+.FAQWrapper{
+
+    .body{
+        section{
+            background-color: #FFF2F2;
+
+            .container{
+                padding-bottom: 1rem;
+            }
+
+        }
+
+        .accordionItem{
+            margin: 0rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .itemButton{
+            font-weight: 300;
+            font-size: 0.875rem;
+            padding: 0.5rem;
+
+            &:hover{
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+        .accordionPanelDiv{
+            background-color: #FFF2F2;
+            padding: 1rem;
+        }
+        .contentDiv{
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+
+            p{
+                // color: white;
+                width: 100%;
+
+                a{
+                    color: #341D4B;
+                }
+
+            }
+            .imageDiv{
+                img{
+                    width: 10rem;
+                    border-radius: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 768px){
+    .FAQWrapper{
+        .body{
+
+            .contentDiv{
+                justify-content: space-between;
+                gap: 2rem;
+                align-items: center;
+                flex-wrap: nowrap;
+    
+                p{
+                    width: 100%;
+                }
+                .imageDiv{
+                    img{
+                        width: 10rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 991px){
+    .FAQWrapper{    
+        .body{
+            .contentDiv{
+                justify-content: space-between;
+                gap: 2rem;
+                align-items: center;
+                flex-wrap: nowrap;
+    
+                p{
+                    width: 50%;
+                }
+                .imageDiv{
+                    img{
+                        width: 10rem;
+                    }
+                }
+            }
+        }
+    }
+}

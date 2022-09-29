@@ -1,0 +1,112 @@
+.faqContainer{
+    background-color: #FFF2F2;
+    padding: 2rem 1rem;
+
+    .header{
+        align-items: center;
+        margin-top: 1rem;
+
+        .title{
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        button{
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+        }
+    }
+
+    .body{
+    background-color: #FFF2F2;
+
+        .accordionPanelDiv{
+            background-color: #341D4B;
+            background-color: #FFF2F2;
+            padding: 1rem;
+        }
+        .contentDiv{
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+
+            p{
+                color: white;
+                width: 100%;
+
+                a{
+                    color: #65BFBB;
+                }
+
+            }
+            .imageDiv{
+                img{
+                    width: 10rem;
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 768px){
+    .faqContainer{
+        .header{
+    
+            .title{
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+    
+        .body{
+
+            .contentDiv{
+                justify-content: space-between;
+                gap: 2rem;
+                align-items: center;
+                flex-wrap: nowrap;
+    
+                p{
+                    width: 100%;
+                }
+                .imageDiv{
+                    img{
+                        width: 10rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 991px){
+    .faqContainer{
+        .header{
+    
+            .title{
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+    
+        .body{
+
+            .contentDiv{
+                justify-content: space-between;
+                gap: 2rem;
+                align-items: center;
+                flex-wrap: nowrap;
+    
+                p{
+                    width: 50%;
+                }
+                .imageDiv{
+                    img{
+                        width: 10rem;
+                    }
+                }
+            }
+        }
+    }
+}

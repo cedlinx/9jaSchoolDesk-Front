@@ -34,6 +34,7 @@ import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg"
 import circleIcon from "@/assets/icons/circle_icon.svg";
 import PricingModule from "@/components/PricingModule/PricingModule";
 import RequestDemo from "./RequestDemo/RequestDemo";
+import FAQ from "./FAQ/FAQ";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -223,6 +224,8 @@ const HomePage = () => {
         <section className={cx(styles.requestDemoWrapper)}>
           <RequestDemo />
         </section>
+
+        <FAQ />
 
       </div>
     </PageContainer>
