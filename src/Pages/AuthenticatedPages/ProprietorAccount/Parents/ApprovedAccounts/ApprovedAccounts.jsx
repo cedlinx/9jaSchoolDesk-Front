@@ -155,6 +155,7 @@ const ApprovedAccounts = () => {
               <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "modifyGuardian", modalData: data }))}>Modify Profile</DropdownItem>
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "assignWardToParent", modalData: data }))}>Assign Ward</DropdownItem>
               {/* <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "assignBulkWardsToParent", modalData: data }))}>Assign Multiple Wards</DropdownItem> */}
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "deactivateGuardian", modalData: data }))}>Deactivate Guardian</DropdownItem>

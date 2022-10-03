@@ -9,19 +9,21 @@ import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import formatDate from "@/helpers/formatDate";
 import DateComp from "@/components/Dates/Default/Default";
 import { getAttendance } from "@/redux/Teacher/TeacherSlice";
+import useGetClassID from "@/utils/useGetClassID";
 
 
 const Attendance = () => {
 
   const dispatch = useDispatch();
+  const class_id = useGetClassID();
   const loading = useSelector((state) => state.teacher.loading);
   const [selectedDateValue, setSelectedDateValue] = useState(null);
-
+  console.log(class_id);
   const attendanceData = useSelector((state) => state?.teacher?.getAttendanceData);
 
-  //   useEffect(() =>{
-  //     dispatch(getAttendance());
-  //   },[dispatch]);
+  useEffect(() =>{
+    dispatch(getAttendance({class_id: class_id, start_date: selectedDateValue, end_date: selectedDateValue}));
+  },[class_id, dispatch, selectedDateValue]);
 
   console.log(attendanceData);
 

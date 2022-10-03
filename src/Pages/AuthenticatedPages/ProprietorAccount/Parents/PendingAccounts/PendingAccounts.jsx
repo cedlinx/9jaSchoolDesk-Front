@@ -139,6 +139,7 @@ const PendingAccounts = () => {
               <Icon style={{cursor: "pointer"}} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "modifyGuardian", modalData: data }))}>Modify Profile</DropdownItem>
               <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "rejectGuardian", modalData: data}))}>Reject Application</DropdownItem>  
               <DropdownItem onClick={() => dispatch(showModal({action: "show", type: "guardianDetails", modalData: data}))}>View Details</DropdownItem>
             </DropdownMenu>

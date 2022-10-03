@@ -1,4 +1,4 @@
-import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstitutionApi, deleteInstitutionApi, switchInstitutionApi, addClassApi, getAllClassesApi, modifyClassApi, deleteClassApi, reAssignTeacherApi, enableClassSubscriptionApi, disableClassSubscriptionApi, addTeacherApi, getAllTeachersApi, modifyTeacherApi, deleteTeacherApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, enableStudentSubscriptionApi, disableStudentSubscriptionApi, getAllGuardiansApi, viewGuardianDetailsApi, inviteGuardianApi, assignGuardianToSingleStudentApi, assignGuardianToBulkStudentsApi, guardianStatusUpdateApi, getGuardianStatusApi, getNewGuardianSignupsApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, viewKPIForInstitutionApi, sendNotificationApi, updateProfileApi, addSubjectApi, getAllSubjectsApi, modifySubjectApi, viewSubjectDetailsApi, assignSubjectToTeacherApi, assignSubjectToStudentApi, getProfileApi } from "../api/proprietor";
+import { getDashboardApi, addInstitutionApi, getAllInstitutionsApi, modifyInstitutionApi, deleteInstitutionApi, switchInstitutionApi, addClassApi, getAllClassesApi, modifyClassApi, deleteClassApi, reAssignTeacherApi, enableClassSubscriptionApi, disableClassSubscriptionApi, addTeacherApi, getAllTeachersApi, modifyTeacherApi, deleteTeacherApi, addStudentApi, getAllStudentsApi, viewStudentRecordApi, modifyStudentApi, deleteStudentApi, enableStudentSubscriptionApi, disableStudentSubscriptionApi, getAllGuardiansApi, viewGuardianDetailsApi, inviteGuardianApi, assignGuardianToSingleStudentApi, assignGuardianToBulkStudentsApi, guardianStatusUpdateApi, getGuardianStatusApi, getNewGuardianSignupsApi, addKPIApi, deleteKPIApi, modifyKPIApi, getAllKPIsApi, viewKPIDetailsApi, viewKPIForClassApi, viewKPIForInstitutionApi, sendNotificationApi, updateProfileApi, addSubjectApi, getAllSubjectsApi, modifySubjectApi, viewSubjectDetailsApi, assignSubjectToTeacherApi, assignSubjectToStudentApi, getProfileApi, modifyGuardianApi } from "../api/proprietor";
 import { toast } from "react-toastify";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatArrayList from "@/helpers/formatArrayList";
@@ -59,7 +59,8 @@ const initialState = {
   viewSubjectDetailsData: {},
   assignSubjectToTeacherData: {},
   assignSubjectToStudentData: {},
-  getProfileData: {}
+  getProfileData: {},
+  modifyGuardianData: {}
 };
 
 export const proprietorSlice = createSlice({
@@ -321,13 +322,18 @@ export const proprietorSlice = createSlice({
     getProfileAction: (state, action) => {
       state.getProfileData = action.payload;
       state.loading = false;
+    },
+
+    modifyGuardianAction: (state, action) => {
+      state.modifyGuardianData = action.payload;
+      state.loading = false;
     }
   }
 });
 export default proprietorSlice.reducer;
 
 // Actions
-const { startLoading, hasError, getDashboardAction, addInstitutionAction, getAllInstitutionsAction, modifyInstitutionAction, deleteInstitutionAction, switchInstitutionAction, addClassAction, getAllClassesAction, modifyClassAction, deleteClassAction, reAssignTeacherAction, enableClassSubscriptionAction, disableClassSubscriptionAction, addTeacherAction, getAllTeachersAction, modifyTeacherAction, deleteTeacherAction, addStudentAction, getAllStudentsAction, viewStudentRecordAction, modifyStudentAction, deleteStudentAction, enableStudentSubscriptionAction, disableStudentSubscriptionAction, getAllGuardiansAction, viewGuardianDetailsAction, inviteGuardianAction, assignGuardianToSingleStudentAction, assignGuardianToBulkStudentsAction, guardianStatusUpdateAction, getGuardianStatusAction, getNewGuardianSignupsAction, addKPIAction, deleteKPIAction, modifyKPIAction, getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction, viewKPIForInstitutionAction, sendNotificationAction, updateProfileAction, addSubjectAction, getAllSubjectsAction, modifySubjectAction, viewSubjectDetailsAction, assignSubjectToTeacherAction, assignSubjectToStudentAction, getAllNotificationsAction, getProfileAction } = proprietorSlice.actions;
+const { startLoading, hasError, getDashboardAction, addInstitutionAction, getAllInstitutionsAction, modifyInstitutionAction, deleteInstitutionAction, switchInstitutionAction, addClassAction, getAllClassesAction, modifyClassAction, deleteClassAction, reAssignTeacherAction, enableClassSubscriptionAction, disableClassSubscriptionAction, addTeacherAction, getAllTeachersAction, modifyTeacherAction, deleteTeacherAction, addStudentAction, getAllStudentsAction, viewStudentRecordAction, modifyStudentAction, deleteStudentAction, enableStudentSubscriptionAction, disableStudentSubscriptionAction, getAllGuardiansAction, viewGuardianDetailsAction, inviteGuardianAction, assignGuardianToSingleStudentAction, assignGuardianToBulkStudentsAction, guardianStatusUpdateAction, getGuardianStatusAction, getNewGuardianSignupsAction, addKPIAction, deleteKPIAction, modifyKPIAction, getAllKPIsAction, viewKPIDetailsAction, viewKPIForClassAction, viewKPIForInstitutionAction, sendNotificationAction, updateProfileAction, addSubjectAction, getAllSubjectsAction, modifySubjectAction, viewSubjectDetailsAction, assignSubjectToTeacherAction, assignSubjectToStudentAction, getAllNotificationsAction, getProfileAction, modifyGuardianAction } = proprietorSlice.actions;
 
 
 
@@ -896,10 +902,22 @@ export const getProfile = (data) => async (dispatch) => {
   try {
     dispatch(startLoading());
     const response = await getProfileApi(data);
-    toast.success(response.data.message);
     return dispatch(getProfileAction(response?.data));
   } catch (e) {
     toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };
+
+export const modifyGuardian = (data) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const response = await modifyGuardianApi(data);
+    toast.success(response.data.message);
+    return dispatch(modifyGuardianAction(response?.data));
+  } catch (e) {
+    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
+    return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
+  }
+};
+

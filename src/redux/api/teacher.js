@@ -89,7 +89,7 @@ export const takeAttendanceApi = async (data) => {
 };
 
 export const getAttendanceApi = async (data) => {
-  return await axios.get("teacher/auth/attendance/list", data);
+  return await axios.post("teacher/auth/attendance/class/view", data);
 };
 
 export const addStudentApi = async (data) => {

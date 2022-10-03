@@ -128,6 +128,10 @@ export const getNewGuardianSignupsApi = async (data) => {
   return await axios.get("proprietor/auth/guardian/list/new", data);
 };
 
+export const modifyGuardianApi = async (data) => {
+  return await axios.post("proprietor/auth/guardian/modify", data);
+};
+
 export const addKPIApi = async (data) => {
   return await axios.post("proprietor/auth/kpi/add", data);
 };

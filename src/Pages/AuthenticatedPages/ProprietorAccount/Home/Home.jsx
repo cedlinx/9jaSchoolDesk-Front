@@ -13,6 +13,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap
 import UrgentInfoModal from "@/components/Modals/UrgentInfo/UrgentInfo";
 import ActivateNewSignUpModal from "@/components/Modals/ActivateNewSignUp/ActivateNewSignUp";
 import ActivateGuardianModal from "@/components/Modals/ActivateGuardian/ActivateGuardian";
+import ModifyGuardianModal from "@/components/Modals/ModifyGuardian/ModifyGuardian";
 import DeactivateGuardianModal from "@/components/Modals/DeactivateGuardian/DeactivateGuardian";
 import RejectGuardianModal from "@/components/Modals/RejectGuardian/RejectGuardian";
 import GuardianDetailsModal from "@/components/Modals/GuardianDetails/GuardianDetails";
@@ -194,6 +195,7 @@ const Home = () => {
               <Icon style={{ cursor: "pointer" }} icon="bx:dots-vertical-rounded" color="black" />
             </DropdownToggle>
             <DropdownMenu className={cx(styles.dropdownMenuWrapper)}>
+              <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "modifyGuardian", modalData: data }))}>Modify Profile</DropdownItem>
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "activateGuardian", modalData: data }))}>Activate Guardian</DropdownItem>
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "deactivateGuardian", modalData: data }))}>Deactivate Guardian</DropdownItem>
               <DropdownItem onClick={() => dispatch(showModal({ action: "show", type: "rejectGuardian", modalData: data }))}>Reject Application</DropdownItem>
@@ -258,7 +260,15 @@ const Home = () => {
 
       </div>
 
-      {modalState === "show" ? <Modal show >{modalType === "urgentInfo" ? <UrgentInfoModal /> : modalType === "activateSignUp" ? <ActivateNewSignUpModal /> : modalType === "activateGuardian" ? <ActivateGuardianModal /> : modalType === "deactivateGuardian" ? <DeactivateGuardianModal /> : modalType === "guardianDetails" ? <GuardianDetailsModal /> : modalType === "rejectGuardian" ? <RejectGuardianModal /> : modalType === "noInstitution" ? <NoInstitutionModal /> : modalType === "addInstitution" ? <AddInstitutionModal /> : null}</Modal> : null}
+      {modalState === "show" && modalType === "urgentInfo" && <Modal show ><UrgentInfoModal /></Modal>}
+      {modalState === "show" && modalType === "modifyGuardian" && <Modal show ><ModifyGuardianModal /></Modal>}
+      {modalState === "show" && modalType === "activateGuardian" && <Modal show ><ActivateGuardianModal /></Modal>}
+      {modalState === "show" && modalType === "deactivateGuardian" && <Modal show ><DeactivateGuardianModal /></Modal>}
+      {modalState === "show" && modalType === "rejectGuardian" && <Modal show ><RejectGuardianModal /></Modal>}
+      {modalState === "show" && modalType === "guardianDetails" && <Modal show ><GuardianDetailsModal /></Modal>}
+      {modalState === "show" && modalType === "activateSignUp" && <Modal show ><ActivateNewSignUpModal /></Modal>}
+      {modalState === "show" && modalType === "noInstitution" && <Modal show ><NoInstitutionModal /></Modal>}
+      {modalState === "show" && modalType === "addInstitution" && <Modal show ><AddInstitutionModal /></Modal>}
 
     </div>
   );
