@@ -20,10 +20,16 @@ const ModifyGuardian = () => {
   console.log(modalData);
 
   useEffect(() => {
-    reset(modalData);
+    reset({
+      email: modalData.email,
+      firstName: modalData.firstName,
+      lastName: modalData.lastName,
+      otherNames: modalData.otherNames
+    });
   }, [modalData]);
 
   const sendRequest = async (data) => {
+    console.log(data);
     let response = await dispatch(modifyGuardian(data));
     if(response.payload.success){
       dispatch(getNewGuardianSignups());
@@ -38,11 +44,12 @@ const ModifyGuardian = () => {
     email: "",
     firstName: "",
     lastName: "",
-    otherNames: "",
-    message: ""
+    otherNames: ""
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
+
+  console.log(errors);
 
   return (
 

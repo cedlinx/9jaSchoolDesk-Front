@@ -858,9 +858,9 @@ export const modifyGuardianValidationSchema = Yup.object().shape({
     .email("Invalid email address")
     .min(5, "Must be above 5 characters!")
     .max(225, "Too Long!")
-    .required("Email is required"),
+    .required("Email is required")
 
-  address: Yup.string()
+  // address: Yup.string()
 
   // phone: Yup.string().required("Phone is required")
 

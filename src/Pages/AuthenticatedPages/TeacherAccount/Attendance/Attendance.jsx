@@ -7,7 +7,7 @@ import TableComponent from "@/components/Table/Table";
 import { titleCase } from "@/helpers/textTransform";
 import TableSkeleton from "@/components/SkeletonLoader/TableSkeleton";
 import formatDate from "@/helpers/formatDate";
-import DateComp from "@/components/Dates/Default/Default";
+import DateComp from "@/components/Dates/Range/Range";
 import { getAttendance } from "@/redux/Teacher/TeacherSlice";
 import useGetClassID from "@/utils/useGetClassID";
 
@@ -22,7 +22,7 @@ const Attendance = () => {
   const attendanceData = useSelector((state) => state?.teacher?.getAttendanceData);
 
   useEffect(() =>{
-    dispatch(getAttendance({class_id: class_id, start_date: selectedDateValue, end_date: selectedDateValue}));
+    dispatch(getAttendance({class_id: class_id, start_date: selectedDateValue?.startDate, end_date: selectedDateValue?.endDate}));
   },[class_id, dispatch, selectedDateValue]);
 
   console.log(attendanceData);
@@ -146,7 +146,7 @@ const Attendance = () => {
 
   const dateValue = (date) => {
     console.log(date);
-    setSelectedDateValue(date);
+    date?.endDate &&  setSelectedDateValue(date);
   };
 
     
