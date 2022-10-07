@@ -64,10 +64,18 @@
 
     .upperSection {
         gap: 1.5rem;
+        .upperSectionLeft, .upperSectionRight{
+            // min-height: 60vh;
+            height: 100%;
+        }
     }
 
     .lowerSection {
         gap: 1.5rem;
+
+        .lowerSectionLeft, .lowerSectionRight, .lowerSectionMiddle{
+            height: 50vh;
+        }
     }
 
   
@@ -96,6 +104,10 @@
             .lowerSectionLeft{
                 margin-bottom: 2rem;
             }
+
+            .lowerSectionLeft, .lowerSectionRight, .lowerSectionMiddle{
+                height: 60vh;
+            }
         }
     
         .upperSection {
@@ -117,14 +129,24 @@
             }
             
         }
-    
+
+            .upperSection {
+            gap: 1.5rem;
+
+            .upperSectionLeft, .upperSectionRight{
+                height: 60vh;
+            }
+        }
+
         .lowerSection {
             gap: 0rem;
+
+            .lowerSectionLeft, .lowerSectionRight, .lowerSectionMiddle{
+                height: 60vh;
+            }
         }
     
-        .upperSection {
-            gap: 1.5rem;
-        }
+
     }
 
     }

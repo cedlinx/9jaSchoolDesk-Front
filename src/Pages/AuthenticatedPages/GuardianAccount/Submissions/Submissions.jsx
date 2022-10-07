@@ -21,6 +21,7 @@ const Submissions = () => {
   const modalType = useSelector((state) => state.modalState.type);
   const loading = useSelector((state) => state.guardian.loading);
   const selectedWard = useGetSelectedWard();
+  console.log(selectedWard);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showSearch, setShowSearch] = useState({

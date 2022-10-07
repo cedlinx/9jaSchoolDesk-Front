@@ -69,8 +69,7 @@ const Tasks = ({allTasks}) => {
         <div
           style={{
             minWidth: "auto",
-            color: "#747474",
-            fontSize: "1rem"
+            fontSize: "0.875rem"
           }}
         >Status</div>
       ),
@@ -125,7 +124,8 @@ const Tasks = ({allTasks}) => {
 
   return (
     <>
-      {allTasks && allTasks.length > 0 ? <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(allTasks)} /> : <div style={{textAlign: "center", fontSize: "1.5rem", color: "#828282"}}>You currently have no task assigned to you</div>}
+      {/* {allTasks && allTasks.length > 0 ? <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(allTasks)} /> : <div style={{textAlign: "center", fontSize: "1.5rem", color: "#828282"}}>You currently have no task assigned to you</div>} */}
+      {Array.isArray(allTasks) && <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(allTasks)} emptyDataText="You currently have no task assigned to you" />}
     </>
     
   );

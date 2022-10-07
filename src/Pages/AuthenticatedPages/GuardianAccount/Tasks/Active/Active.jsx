@@ -151,9 +151,10 @@ const Active = ({currentTasks}) => {
     
   return (
     <>
-      {currentTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(currentTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
+      {/* {currentTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(currentTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
         <p style={{color: "#747474", fontSize: "1.5rem"}}>No Active Task</p>
-      </div>}
+      </div>} */}
+      {Array.isArray(currentTasks) && <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(currentTasks)} showHeader={true} emptyDataText="There are no active tasks" />}
     </>
   );
 };

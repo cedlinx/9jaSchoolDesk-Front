@@ -33,7 +33,7 @@ const TasksAndActivities = () => {
 
 
   return (
-    <div className={cx(styles.tasksAndActivitiesContainer)}>
+    <div className={cx(styles.tasksAndActivitiesContainer, "flexCol")}>
       <div className={cx(styles.header, "flexRow")}>
         <h3 className={cx(styles.title)}>Activities</h3>
         {classID && <Button onClick={() => dispatch(showModal({ action: "show", type: "addTask" }))} title="Create Activity" borderRadiusType="fullyRounded" textColor="#D25B5D" bgColor="#fff" bordercolor="#D25B5D" />}
@@ -43,7 +43,9 @@ const TasksAndActivities = () => {
         classID ?
           <div className={cx(styles.body, "flexCol")}>
             <AllTasks />
-          </div> :
+          </div> 
+          
+          :
           <div className={cx(styles.noDataDiv)}>
             <p>You have no class assigned to you. You can only create Tasks when you have at least one (1) class assigned to you. Kindly contact your administrator.</p>
           </div>

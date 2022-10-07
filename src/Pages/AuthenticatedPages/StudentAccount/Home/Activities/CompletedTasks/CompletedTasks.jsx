@@ -52,7 +52,7 @@ const CompletedTasks = ({completedTasks}) => {
         <div
           style={{
             minWidth: "auto",
-            color: "#747474"
+            fontSize: "0.875rem"
           }}
         >Subject</div>
       ),
@@ -86,8 +86,7 @@ const CompletedTasks = ({completedTasks}) => {
         <div
           style={{
             minWidth: "auto",
-            color: "#747474",
-            fontSize: "1rem"
+            fontSize: "0.875rem"
           }}
         >Status</div>
       ),
@@ -144,7 +143,8 @@ const CompletedTasks = ({completedTasks}) => {
 
   return (
     <>
-      {completedTasks && completedTasks.length > 0 ? <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(completedTasks)} /> : <div style={{textAlign: "center", fontSize: "1.5rem", color: "#828282"}}>You currently have no completed task</div>}
+      {/* {completedTasks && completedTasks.length > 0 ? <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(completedTasks)} /> : <div style={{textAlign: "center", fontSize: "1.5rem", color: "#828282"}}>You currently have no completed task</div>} */}
+      {Array.isArray(completedTasks) && <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(completedTasks)} emptyDataText="You have not completed any task" />}
     </>
     
   );

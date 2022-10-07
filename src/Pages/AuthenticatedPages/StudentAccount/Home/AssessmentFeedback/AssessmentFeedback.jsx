@@ -90,13 +90,14 @@ const AssessmentFeedback = ({tasksData}) => {
   ];
 
   return (
-    <div className={cx(styles.assessmentFeedbackContainer)}>
+    <div className={cx(styles.assessmentFeedbackContainer, "flexCol")}>
       <div className={cx(styles.header, "flexRow-space-between")}>
         <h5>Assessment Feedback</h5>
         <small onClick={() => navigate("/student/assessment-feedback")}>View all</small>
       </div>
-      <div className={cx(styles.tableDiv, "flexCol")}>
-        {Array.isArray(tasksData?.graded_tasks) && tasksData?.graded_tasks.length > 0 ? <TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(tasksData?.graded_tasks.slice(0,5))} /> : <p className={cx(styles.emptyDataElement)}>This is currently no graded task</p>}
+      <div className={cx(styles.tableDiv)}>
+        {/* {Array.isArray(tasksData?.graded_tasks) && tasksData?.graded_tasks.length > 0 ? <TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(tasksData?.graded_tasks.slice(0,5))} emptyDataText="You currently have no feedback" /> : <p className={cx(styles.emptyDataElement)}>You currently have no feedback</p>} */}
+        {Array.isArray(tasksData?.graded_tasks) && <TableComponent showTableHeader={false} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(tasksData?.graded_tasks.slice(0,5))} emptyDataText="You currently have no feedback" />}
       </div>
     </div>
   );

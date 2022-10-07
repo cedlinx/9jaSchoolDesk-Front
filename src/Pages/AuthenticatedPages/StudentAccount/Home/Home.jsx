@@ -25,7 +25,6 @@ import AssessmentFeedback from "./AssessmentFeedback/AssessmentFeedback";
 
 import useGetStudentDashboard from "@/utils/useGetStudentDashboard";
 
-
 const Home = () => {
 
   const dispatch = useDispatch();
@@ -70,7 +69,7 @@ const Home = () => {
         <div className={cx(styles.lowerSectionRight, "col-sm-12", "col-md-6", "col-xl-3")}>
           <WardProfile selectedWard={studentData} />
         </div>
-      </section>     
+      </section>   
                                 
       {modalState === "show" && modalType === "editProfile" && <Modal show ><EditProfileModal /> </Modal>}
       {modalState === "show" && modalType === "submitAssessment" && <Modal show ><SubmitAssessmentModal /> </Modal>}

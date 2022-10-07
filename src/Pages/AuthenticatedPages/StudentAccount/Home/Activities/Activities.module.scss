@@ -1,26 +1,30 @@
 .activitiesContainer{
-    small{
-        cursor: pointer;
-        text-decoration: underline;
-        font-size: clamp(0.875rem, 0.9rem, 1rem);
-    }
+    // height: 100%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .heading{
-        // align-items: flex-end;
+        align-items: flex-end;
+        line-height: 1;
+        margin-bottom: 0.75rem;
+
+        h5, small{
+            padding: 0rem;
+            margin: 0rem;
+        }
     }
     .contentWrapper{
         background-color: #fff;
         padding: 0rem;
         border-radius: 0.5rem;
-        overflow-y: auto;
-        height: 20rem;
+        height: 100%;
     }
 }
 
 @media all and (min-width: 768px){
     .activitiesContainer{
-        margin-bottom: 1.5rem;
         .contentWrapper{
-            height: 25rem;
         }
     }
 }
@@ -28,16 +32,13 @@
 @media all and (min-width: 992px){
     .activitiesContainer{
         .contentWrapper{
-            height: 25rem;
         }
     }
 }
 
 @media all and (min-width: 1200px){
     .activitiesContainer{
-        margin-bottom: 0rem;
         .contentWrapper{
-            height: 27.5rem;
         }
     }
 }

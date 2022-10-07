@@ -33,7 +33,7 @@ tr:hover {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    min-height: 50vh;
+    /* min-height: 50vh; */
 }
 
 .pagination{

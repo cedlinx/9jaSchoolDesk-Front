@@ -38,10 +38,10 @@ const Tasks = () => {
   const RenderOverdue = () => <Overdue overdueTasks={Array.isArray(studentData?.overdue_tasks) && studentData.overdue_tasks} />;
 
   const tabsComponents = [
-    { name: "All", component: RenderAll },
-    { name: "Active", component: RenderActive },
-    { name: "Submitted", component: RenderSubmitted },
-    { name: "Overdue", component: RenderOverdue }
+    { name: "All", component: RenderAll, path: "all-tasks" },
+    { name: "Active", component: RenderActive, path: "active-tasks" },
+    { name: "Submitted", component: RenderSubmitted, path: "submitted-tasks" },
+    { name: "Overdue", component: RenderOverdue, path: "overdue-tasks" }
   ];
 
   return (
@@ -53,8 +53,11 @@ const Tasks = () => {
         <input type="date" name="" id="" />
         <button>Filter</button>
       </div> */}
+      <div style={{height: "100%", width: "100%"}}>
+        {loading ? <TableSkeleton /> : <Tabs centralise tabs={tabsComponents} />}
+      </div>
 
-      {loading ? <TableSkeleton /> : <Tabs centralise tabs={tabsComponents} />}
+    
 
       {modalState === "show" && modalType === "taskDetails" && <Modal show size="lg" >{ <TaskDetailsModal />}</Modal> }
     </div>

@@ -147,9 +147,10 @@ const Submitted = ({submittedTasks}) => {
     
   return (
     <>
-      {submittedTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(submittedTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
+      {/* {submittedTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(submittedTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
         <p style={{color: "#747474", fontSize: "1.5rem"}}>No Submitted Task</p>
-      </div>}
+      </div>} */}
+      {Array.isArray(submittedTasks) && <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(submittedTasks)} showHeader={true} emptyDataText="You have not submitted any task" />}
     </>
   );
 };

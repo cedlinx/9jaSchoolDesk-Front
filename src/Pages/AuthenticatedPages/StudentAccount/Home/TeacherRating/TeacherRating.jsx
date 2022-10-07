@@ -11,6 +11,7 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 
 const TeacherRating = ({teachersData, studentID}) => {
   const dispatch = useDispatch();
+  console.log(teachersData);
 
   const setRating = async (rating, teacherData) => {
     dispatch(showModal({action: "show", type: "rateTeacher", modalData: {rating, teacherData, studentID}}));
@@ -89,11 +90,12 @@ const TeacherRating = ({teachersData, studentID}) => {
   ];
       
   return (
-    <div className={cx(styles.teacherRatingContainer)}>
-      <div className={cx(styles.teacherRatingsDiv)}>
+    <div className={cx(styles.teacherRatingContainer, "flexCol")}>
+      <div className={cx("flexRow", styles.heading)}>
         <h5>Rate Your Teacher</h5>
-        <div className={cx(styles.ratingsDiv)}>
-          {teachersData.length > 0 ? 
+      </div>
+      <div className={cx(styles.ratingsDiv)}>
+        {/* {teachersData.length > 0 ? 
             <div className={cx(styles.tableDiv)}>
               <TableComponent defaultPageSize="10" showTableHeader={false} showPaginationSummary={true} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(teachersData)} />
             </div>
@@ -101,9 +103,9 @@ const TeacherRating = ({teachersData, studentID}) => {
             <div className={cx(styles.emptyDataDiv)}>
               <p>No Teacher to rate</p>
             </div>
-          }
-        </div>
-      </div>
+          } */}
+        { Array.isArray(teachersData)  && <TableComponent defaultPageSize="10" showTableHeader={false} showPaginationSummary={true} showPaginationNavigation={false} columnsHeader={columnsHeaderAssessment} tableData= {getTableData(teachersData)} emptyDataText="There are no teachers to rate" /> }
+      </div> 
     </div>
   );
 };

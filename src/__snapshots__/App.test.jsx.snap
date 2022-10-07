@@ -1,0 +1,1662 @@
+// Vitest Snapshot v1
+
+exports[`renders correctly 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body
+    data-aos-delay="100"
+    data-aos-duration="600"
+    data-aos-easing="ease"
+  >
+    <div />
+  </body>,
+  "container": <div />,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="_container_2515c5 flexCol"
+  >
+    <div>
+      <nav
+        class="_navbarContainer_dc863a flexRow navbar navbar-expand-lg navbar-light"
+      >
+        <span
+          class="_siteLogo_dc863a navbar-brand"
+        >
+          <a
+            href="/"
+          >
+            <img
+              alt=""
+              src="/src/assets/images/logo.png"
+            />
+          </a>
+        </span>
+        <button
+          aria-controls="responsive-navbar-nav"
+          aria-label="Toggle navigation"
+          class="_navbarToggler_dc863a navbar-toggler collapsed"
+          type="button"
+        >
+          <span
+            class="navbar-toggler-icon"
+          />
+        </button>
+        <div
+          class="_navbarCollapse_dc863a navbar-collapse collapse"
+          id="responsive-navbar-nav"
+        >
+          <div
+            class="_primaryNavigation_dc863a navbar-nav"
+          >
+            <a
+              href="/"
+              id="home"
+            >
+              Home
+            </a>
+            <a
+              href="/"
+              id="student"
+            >
+              Student
+            </a>
+            <a
+              href="/"
+              id="guardian"
+            >
+              Guardian
+            </a>
+            <a
+              href="/"
+              id="teacher"
+            >
+              Teacher
+            </a>
+          </div>
+        </div>
+      </nav>
+      <div
+        class="_homepageContainer_e6fd5c"
+      >
+        <div
+          class="_heroWrapper_e6fd5c"
+        >
+          <img
+            alt="icon"
+            class="_floatingImage_e6fd5c _pencil_e6fd5c"
+            src="/src/assets/images/pencil.png"
+          />
+          <img
+            alt="icon"
+            class="_floatingImage_e6fd5c _book_e6fd5c"
+            src="/src/assets/images/book.png"
+          />
+          <img
+            alt="icon"
+            class="_floatingImage_e6fd5c _ruler_e6fd5c"
+            src="/src/assets/images/ruler.png"
+          />
+          <img
+            alt="icon"
+            class="_floatingImage_e6fd5c _idea_e6fd5c"
+            src="/src/assets/images/idea.png"
+          />
+          <h1
+            class="_heroHeader_e6fd5c"
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-delay="600"
+          >
+            The one place where 
+            <span>
+              Children
+            </span>
+            , 
+            <br />
+             
+            <span>
+              Parents
+            </span>
+             and 
+            <span>
+              Teachers
+            </span>
+             all come 
+            <br />
+             together.
+          </h1>
+          <p
+            class="_heroCaption_e6fd5c"
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-delay="800"
+          >
+            Become part of your child’s academic growth today
+            <br />
+             with 9jaschoolDesk
+          </p>
+          <small
+            style="color: black; margin: 1rem 0rem;"
+          >
+            Get started as
+          </small>
+          <div
+            class="_btnDiv_e6fd5c flexRow-fully-centered"
+          >
+            <button
+              class="sc-bczRLJ kILTKx flexRow"
+              style="color: rgb(255, 255, 255); background-color: rgb(210, 91, 93); border: 1px solid #d25b5d; border-radius: 1.5rem;"
+              type="button"
+            >
+              <span />
+              Student
+            </button>
+            <button
+              class="sc-bczRLJ kILTKx flexRow"
+              style="color: rgb(255, 255, 255); background-color: rgb(210, 91, 93); border: 1px solid #d25b5d; border-radius: 1.5rem;"
+              type="button"
+            >
+              <span />
+              Guardian
+            </button>
+            <button
+              class="sc-bczRLJ kILTKx flexRow"
+              style="color: rgb(255, 255, 255); background-color: rgb(210, 91, 93); border: 1px solid #d25b5d; border-radius: 1.5rem;"
+              type="button"
+            >
+              <span />
+              Teacher
+            </button>
+            <button
+              class="sc-bczRLJ kILTKx flexRow"
+              style="color: rgb(255, 255, 255); background-color: rgb(210, 91, 93); border: 1px solid #d25b5d; border-radius: 1.5rem;"
+              type="button"
+            >
+              <span />
+              Proprietor
+            </button>
+          </div>
+        </div>
+        <div
+          class="_mainContentWrapper_e6fd5c flexCol-align-center"
+        >
+          <img
+            alt=""
+            class="sc-dkzDqf dvhiPE"
+            src="/src/assets/images/waves.svg"
+          />
+          <div
+            class="_studentsSection_e6fd5c _sectionWrapper_e6fd5c row"
+          >
+            <div
+              class="_imageDiv_e6fd5c col-sm-6 col-md-6"
+              data-aos="zoom-in-left"
+            >
+              <img
+                alt="img"
+                src="/src/assets/images/studentImage.png"
+              />
+            </div>
+            <div
+              class="_contentWrapper_e6fd5c col-sm-6 col-md-6"
+              data-aos="zoom-in-left"
+            >
+              <small>
+                Students
+              </small>
+              <h3>
+                Learning never 
+                <span
+                  class="_wordBreak_e6fd5c"
+                >
+                  got 
+                  <img
+                    alt="icon"
+                    class="_floatingIcon_e6fd5c"
+                    src="/src/assets/icons/curved-hamburger.svg"
+                  />
+                </span>
+                 
+                <br />
+                  smoother
+              </h3>
+              <div
+                class="_pointsWrapper_e6fd5c"
+              >
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+              </div>
+              <button
+                class="sc-bczRLJ kuSGBf flexRow"
+                style="color: rgb(255, 255, 255); background-color: rgb(210, 91, 93); border: 1px solid #d25b5d; border-radius: 1.5rem;"
+                type="button"
+              >
+                <span />
+                Get Started
+              </button>
+            </div>
+          </div>
+          <div
+            class="_guardiansSection_e6fd5c _sectionWrapper_e6fd5c row"
+          >
+            <div
+              class="_imageDiv_e6fd5c col-sm-6 col-md-6"
+              data-aos="zoom-in-left"
+            >
+              <img
+                alt="img"
+                src="/src/assets/images/parentsImage.png"
+              />
+            </div>
+            <div
+              class="_contentWrapper_e6fd5c col-sm-6 col-md-6"
+              data-aos="zoom-in-left"
+            >
+              <small>
+                Guardians
+              </small>
+              <h3>
+                <span
+                  class="_wordBreak_e6fd5c"
+                >
+                  Become 
+                  <img
+                    alt="icon"
+                    class="_floatingIcon_e6fd5c"
+                    src="/src/assets/icons/curved-hamburger-flipped.svg"
+                  />
+                </span>
+                 part of your kid's 
+                <br />
+                 learning process
+              </h3>
+              <div
+                class="_pointsWrapper_e6fd5c"
+              >
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+              </div>
+              <button
+                class="sc-bczRLJ kuSGBf flexRow"
+                style="color: rgb(255, 255, 255); background-color: rgb(210, 91, 93); border: 1px solid #d25b5d; border-radius: 1.5rem;"
+                type="button"
+              >
+                <span />
+                Get Started
+              </button>
+            </div>
+          </div>
+          <div
+            class="_teachersSection_e6fd5c _sectionWrapper_e6fd5c row"
+          >
+            <div
+              class="_imageDiv_e6fd5c col-sm-6 col-md-6"
+              data-aos="zoom-in-left"
+            >
+              <img
+                alt="img"
+                src="/src/assets/images/teacherImage.png"
+              />
+            </div>
+            <div
+              class="_contentWrapper_e6fd5c col-sm-6 col-md-6"
+              data-aos="zoom-in-left"
+            >
+              <small>
+                Teachers
+              </small>
+              <h3>
+                Cordinate and Manage 
+                <span
+                  class="_wordBreak_e6fd5c"
+                >
+                  your 
+                  <img
+                    alt="icon"
+                    class="_floatingIcon_e6fd5c"
+                    src="/src/assets/icons/curved-hamburger.svg"
+                  />
+                </span>
+                 
+                <br />
+                  classroom efficiently
+              </h3>
+              <div
+                class="_pointsWrapper_e6fd5c"
+              >
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+                <div>
+                  <span>
+                    <img
+                      src="/src/assets/icons/circle_icon.svg"
+                    />
+                  </span>
+                  <span>
+                    Lorem ipsum uspendisse habitant.
+                  </span>
+                   
+                </div>
+              </div>
+              <button
+                class="sc-bczRLJ kuSGBf flexRow"
+                style="color: rgb(255, 255, 255); background-color: rgb(210, 91, 93); border: 1px solid #d25b5d; border-radius: 1.5rem;"
+                type="button"
+              >
+                <span />
+                Get Started
+              </button>
+            </div>
+          </div>
+          <img
+            alt=""
+            class="sc-hKMtZM fAaenj"
+            src="/src/assets/images/waves.svg"
+          />
+        </div>
+        <section>
+          <div
+            class="_testimonialsContainer_5c3ba6"
+          >
+            <div
+              class="_header_5c3ba6"
+            >
+              <h3>
+                Here’s what people are 
+                <br />
+                 saying about us
+              </h3>
+            </div>
+            <div
+              class="_cardWrapper_5c3ba6"
+            >
+              <div>
+                <div
+                  class="swiper swiper-initialized swiper-horizontal swiper-pointer-events _mySwiper_625874"
+                >
+                  <div
+                    class="swiper-wrapper"
+                    style="cursor: grab; transition-duration: 0ms; transform: translate3d(NaNpx, 0px, 0px);"
+                  >
+                    <div
+                      class="swiper-slide swiper-slide-duplicate"
+                      data-swiper-slide-index="0"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                Edeh Funmi
+                              </span>
+                              <span>
+                                (Parent)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-slide swiper-slide-duplicate"
+                      data-swiper-slide-index="1"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                Charles Patterson
+                              </span>
+                              <span>
+                                (Clergy)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-slide swiper-slide-duplicate"
+                      data-swiper-slide-index="2"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                John Doe
+                              </span>
+                              <span>
+                                (Lawyer)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-slide"
+                      data-swiper-slide-index="0"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                Edeh Funmi
+                              </span>
+                              <span>
+                                (Parent)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-slide"
+                      data-swiper-slide-index="1"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                Charles Patterson
+                              </span>
+                              <span>
+                                (Clergy)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-slide"
+                      data-swiper-slide-index="2"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                John Doe
+                              </span>
+                              <span>
+                                (Lawyer)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-slide swiper-slide-duplicate"
+                      data-swiper-slide-index="0"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                Edeh Funmi
+                              </span>
+                              <span>
+                                (Parent)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-slide swiper-slide-duplicate"
+                      data-swiper-slide-index="1"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                Charles Patterson
+                              </span>
+                              <span>
+                                (Clergy)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-slide swiper-slide-duplicate"
+                      data-swiper-slide-index="2"
+                    >
+                      <div
+                        class="_cardItem_5c3ba6 card"
+                      >
+                        <div
+                          class="_cardHeader_5c3ba6 card-header"
+                        >
+                          <div
+                            class="_userInfo_5c3ba6"
+                          >
+                            <p>
+                              <span>
+                                John Doe
+                              </span>
+                              <span>
+                                (Lawyer)
+                              </span>
+                            </p>
+                          </div>
+                          <div
+                            class="_avatarDiv_5c3ba6"
+                          >
+                            <img
+                              alt=""
+                              class="_avatar_5c3ba6"
+                              src="/src/assets/images/testimonialsAvatar.png"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="_cardBody_5c3ba6 card-body"
+                        >
+                          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"
+                  />
+                  <div
+                    class="_prevBtn_625874 swiper-button-prev"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-arrow-circle-left"
+                    />
+                  </div>
+                  <div
+                    class="_nextBtn_625874 swiper-button-next"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-arrow-circle-right"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="_requestDemoWrapper_e6fd5c"
+        >
+          <div
+            class="_demoContainer_27208f flexRow row g-0"
+          >
+            <div
+              class="_leftSection_27208f col-sm-6 col-md-6"
+            >
+              <h3>
+                School management Made Easy
+              </h3>
+              <small>
+                Get In Touch For A Demo Today
+              </small>
+              <div
+                class="_formWrapper_27208f flexCol"
+              >
+                <form
+                  class=""
+                >
+                  <div
+                    border="#DBDDE0"
+                    class="sc-evZas dBcDpR"
+                    marginbottom="1.625rem"
+                  >
+                    <label>
+                      NAME
+                    </label>
+                    <div
+                      class="input-container"
+                    >
+                      <input
+                        autocomplete="none"
+                        name="name"
+                        options="[object Object]"
+                        placeholder="John Doe"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    border="#DBDDE0"
+                    class="sc-evZas dBcDpR"
+                    marginbottom="1.625rem"
+                  >
+                    <label>
+                      EMAIL
+                    </label>
+                    <div
+                      class="input-container"
+                    >
+                      <input
+                        autocomplete="none"
+                        name="email"
+                        placeholder="email@email.com"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="_btnDiv_27208f flexRow"
+                  >
+                    <button
+                      class="sc-bczRLJ kODzKw flexRow"
+                      style="color: rgb(255, 255, 255); background-color: rgb(235, 87, 87); border: 1px solid #eb5757; border-radius: 1.5rem;"
+                      type="button"
+                    >
+                      <span />
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div
+              class="_rightSection_27208f col-sm-6 col-md-6"
+            >
+              <div
+                class="_imageDiv_27208f"
+              >
+                <img
+                  alt="img"
+                  src="/src/assets/images/request-demo.jpg"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <div
+          class="_faqContainer_a92585 flexCol"
+        >
+          <div
+            class="_header_a92585 flexCol"
+          >
+            <h3
+              class="_title_a92585"
+            >
+              Frequently Asked Questions
+            </h3>
+          </div>
+          <div
+            class="_FAQWrapper_2c7bc4 flexCol"
+          >
+            <div
+              class="_body_2c7bc4 flexCol"
+            >
+              <div
+                class="_faqContainer_2c7bc4 flexCol"
+              >
+                <div
+                  class="_body_2c7bc4"
+                >
+                  <section
+                    class="faq section--py"
+                  >
+                    <div
+                      class="_container_2c7bc4 container flex"
+                    >
+                      <div
+                        class="faq__content"
+                      >
+                        <div
+                          class="accordion"
+                          data-accordion-component="Accordion"
+                        >
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-0"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-0"
+                                role="button"
+                                tabindex="0"
+                              >
+                                What is 9jaschooldesk?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-0"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   9jashooldesk is an Edtech software designed to bridge the gap between school administrators, teachers, parents and
+      students, by providing school management solution, behavior monitoring and security solution.
+       
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-1"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-1"
+                                role="button"
+                                tabindex="0"
+                              >
+                                How secure is 9jaschooldesk?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-1"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   The platform is secured and encrypted through: SSL (Secure Socket Layer), which uses network architecture built to meet the requirements of the most security-sensitive organizations. 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-2"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-2"
+                                role="button"
+                                tabindex="0"
+                              >
+                                What if there is a system crash in our school, what happens to the school data?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-2"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   Your data is safe because it’s not stored on your system but in the cloud. So, if your system crashes it does not affect the data stored on 9JASCHOOLDESK 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-3"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-3"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Can non-tech savvy staff use 9jaschooldesk?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-3"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   Yes, 9JASCHOOLDESK is very easy to use. It simply requires basic knowledge of a computer to operate. After the staff training, all staff should be able to use 9JASCHOOLDESK easily. 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-4"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-4"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Can 9jaschooldesk accept data and records from other school portals if we want to migrate
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-4"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   Yes, we will format the records and upload them with ease. 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-5"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-5"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Can the 9jaschooldesk portal work as a Learning Management System (LMS)?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-5"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   Yes, the 9jaschooldesk portal has educational videos, online assignments, grading and analysis data. 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-6"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-6"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Do parents have access to other children data?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-6"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   NO, Parents only have access to their child/children’s data 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-7"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-7"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Is 9jaschooldesk software installed on the computer?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-7"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   No, 9JASCHOOLDESK is a cloud-based software which makes it accessible from anywhere at any time and with any internet enabled device. 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-8"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-8"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Can I start using 9jaschooldesk for FREE?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-8"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   You can use 9JASCHOLDESK for free for one (1) term on a trial basis, after which you will be required to pay for a subscription plan to continue using the system. Every school is entitled to ONLY 1 term free trial. 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="_accordionItem_2c7bc4"
+                            data-accordion-component="AccordionItem"
+                          >
+                            <div
+                              aria-level="3"
+                              class="accordion__heading"
+                              data-accordion-component="AccordionItemHeading"
+                              role="heading"
+                            >
+                              <div
+                                aria-controls="accordion__panel-raa-9"
+                                aria-disabled="false"
+                                aria-expanded="false"
+                                class="_itemButton_2c7bc4"
+                                data-accordion-component="AccordionItemButton"
+                                id="accordion__heading-raa-9"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Can I use 9jaschooldesk to manage multiple schools/ a chain of schools?
+                              </div>
+                            </div>
+                            <div
+                              class="_accordionPanelDiv_2c7bc4"
+                              data-accordion-component="AccordionItemPanel"
+                              hidden=""
+                              id="accordion__panel-raa-9"
+                            >
+                              <div
+                                class="_contentDiv_2c7bc4 flexRow"
+                              >
+                                <p>
+                                   Yes. 9JASCHOOLDESK is a multi-school solution and has been used severally to manage several branches of one school, in different locations. 
+                                </p>
+                                <div
+                                  class="_imageDiv_2c7bc4 flexRow-fully-centered"
+                                >
+                                  <img
+                                    alt=""
+                                    src="/src/assets/images/faq-image.jpg"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="_footer_2515c5"
+    >
+      <div
+        class="flexCol _footerContainer_33bf66"
+      >
+        <div
+          class="_profileSummary_33bf66"
+        >
+          <div>
+            <img
+              alt="site-logo"
+              src="/src/assets/images/logo.png"
+            />
+          </div>
+          <p>
+            Become part of your child’s academic growth today with 9jaschoolDesk
+          </p>
+          <p>
+            ©  9jaSchoolDesk. All rights reserved.
+          </p>
+        </div>
+        <div
+          class="_productSection_33bf66"
+        >
+          <p
+            class="_header_33bf66"
+          >
+            Product
+          </p>
+          <ul>
+            <li>
+              Students
+            </li>
+            <li>
+              Guardians
+            </li>
+            <li>
+              Teachers
+            </li>
+          </ul>
+        </div>
+        <div
+          class="_aboutSection_33bf66"
+        >
+          <p
+            class="_header_33bf66"
+          >
+            About
+          </p>
+          <ul>
+            <li>
+              The Team
+            </li>
+            <li>
+              Features
+            </li>
+            <li>
+              FAQs
+            </li>
+          </ul>
+        </div>
+        <div
+          class="_socialsSection_33bf66"
+        >
+          <p
+            class="_header_33bf66"
+          >
+            Socials
+          </p>
+          <ul>
+            <li>
+               
+              <span>
+                <img
+                  alt="icon"
+                  src="/src/assets/icons/twitter.svg"
+                />
+              </span>
+              <span>
+                Twitter
+              </span>
+                
+            </li>
+            <li>
+              <span>
+                <img
+                  alt="icon"
+                  src="/src/assets/icons/linkedin.svg"
+                />
+              </span>
+              <span>
+                LinkedIn
+              </span>
+               
+            </li>
+            <li>
+              <span>
+                <img
+                  alt="icon"
+                  src="/src/assets/icons/facebook.svg"
+                />
+              </span>
+              <span>
+                Facebook
+              </span>
+               
+            </li>
+          </ul>
+        </div>
+        <div
+          class="_contactSection_33bf66"
+        >
+          <p
+            class="_header_33bf66"
+          >
+            Contact Us
+          </p>
+          <ul>
+            <li>
+              info@9jaschooldesk.com
+            </li>
+            <li>
+              +234 904 342 4455
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -116,7 +116,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
           </MenuItem>
         </Menu>
 
-        <Menu iconShape="">
+        {/* <Menu iconShape="">
           <MenuItem
             active={actualPath === "attendance" ? "true" : ""}
             prefix={<span className="menuIcon"><img src={classroomIcon} alt="" /></span>}
@@ -125,7 +125,7 @@ const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
               Attendance
             </NavLink>
           </MenuItem>
-        </Menu>
+        </Menu> */}
 
         <Menu iconShape="">
           <MenuItem

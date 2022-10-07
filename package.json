@@ -7,7 +7,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix --ext .js,.jsx src/"
+    "lint:fix": "eslint --fix --ext .js,.jsx src/",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
@@ -80,14 +82,21 @@
   },
   "devDependencies": {
     "@iconify/react": "^3.1.4",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.4.3",
     "@vitejs/plugin-react": "^1.0.7",
+    "@vitest/ui": "^0.23.4",
     "eslint": "^8.8.0",
     "eslint-plugin-jest": "^26.0.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-testing-library": "^5.0.5",
+    "jsdom": "^20.0.1",
     "sass": "^1.49.11",
-    "vite": "^2.7.2"
+    "vite": "^2.7.2",
+    "vitest": "^0.23.4"
   }
 }

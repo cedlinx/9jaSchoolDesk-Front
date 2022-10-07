@@ -14,7 +14,7 @@ const BehaviouralFeedback = ({feedbackData}) => {
   };
 
   return (
-    <div className={cx(styles.behaviouralFeedbackContainer)}>
+    <div className={cx(styles.behaviouralFeedbackContainer, "flexCol")}>
       <h5>Behavioural Feedback</h5>
       <div className={cx(styles.contentWrapper, "flexCol")}>
         {feedbackData.length > 0 ? 

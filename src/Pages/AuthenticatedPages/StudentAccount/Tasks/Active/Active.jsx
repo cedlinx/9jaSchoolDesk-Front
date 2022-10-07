@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import { Icon } from "@iconify/react";
 import Button from "@/components/Button/Button";
@@ -153,11 +154,16 @@ const Active = ({currentTasks}) => {
     
   return (
     <>
-      {currentTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(currentTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
+      {/* {currentTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(currentTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
         <p style={{color: "#747474", fontSize: "1.5rem"}}>No Active Task</p>
-      </div>}
+      </div>} */}
+      {Array.isArray(currentTasks) && <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(currentTasks)} showHeader={true} emptyDataText="There are no active tasks" />}
     </>
   );
+};
+
+Active.propTypes = {
+  currentTasks: PropTypes.array.isRequired
 };
 
 export default Active;

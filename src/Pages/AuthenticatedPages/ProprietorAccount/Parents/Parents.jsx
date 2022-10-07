@@ -46,9 +46,9 @@ const Parents = () => {
   const RenderPendingAccounts = () => <PendingAccounts />;
 
   const tabsComponents = [
-    { name: "Active Accounts", component: RenderApprovedAccounts },
-    { name: "Suspended Accounts", component: RenderPendingAccounts },
-    { name: "Terminated Accounts", component: RenderRejectedAccounts }
+    { name: "Active Accounts", component: RenderApprovedAccounts, path: "active-accounts" },
+    { name: "Suspended Accounts", component: RenderPendingAccounts, path: "suspended-accounts"},
+    { name: "Terminated Accounts", component: RenderRejectedAccounts, path: "terminated-accounts"}
   ];
 
   return (

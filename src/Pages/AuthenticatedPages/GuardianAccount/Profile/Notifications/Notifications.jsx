@@ -26,10 +26,10 @@ const Notifications = () => {
   const resolver = yupResolver(saveNotificationsValidationSchema);
 
   const defaultValues = {
-    Email: userDetails?.notification?.email,
-    Call: userDetails?.notification?.call ,
-    Whatsapp: userDetails?.notification?.whatsApp,
-    Sms: userDetails?.notification?.sms 
+    // Email: userDetails?.comms_channel,
+    // Call: userDetails?.comms_channel,
+    // Whatsapp: userDetails?.comms_channel,
+    // Sms: userDetails?.comms_channel 
   };
 
   const { register, handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
@@ -38,27 +38,18 @@ const Notifications = () => {
     dispatch(getGuardianDetails());
 
     reset({
-      Email: userDetails?.comms_channel,
-      Call: userDetails?.comms_channel,
-      Whatsapp: userDetails?.comms_channel,
-      Sms: userDetails?.comms_channel
+      channel: userDetails?.comms_channel
     });
   }, [dispatch, reset, userDetails?.comms_channel]);
 
 
   const saveNotification = async (data) => {
-    console.log(data);
-    
-    // let answer = "";
-    // data?.Sms ? answer = "Sms" : data?.Whatsapp ? answer = "Whatsapp"  : data?.Call ? answer = "Call" : "Email" ;
 
-    // let answer = [];
-    // data?.Sms && answer.push("Sms");
-    // data?.Whatsapp && answer.push("Whatsapp");
-    // data?.Call && answer.push("Call");
-    // data?.Email && answer.push("Email");
+    let response = await dispatch(preferredChannel({channel: data.channel}));
 
-    dispatch(preferredChannel({channel: data.channel}));
+    if(response.payload.success){
+      dispatch(getGuardianDetails());
+    }
     
   };
 

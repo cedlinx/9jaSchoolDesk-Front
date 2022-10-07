@@ -166,10 +166,13 @@ const All = ({allTasks}) => {
   };
     
   return (
+    // <>
+    //   {allTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(allTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
+    //     <p style={{color: "#747474", fontSize: "1.5rem"}}>No All Task</p>
+    //   </div>}
+    // </>
     <>
-      {allTasks.length > 0 ? <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(allTasks)} showHeader={true}/> : <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
-        <p style={{color: "#747474", fontSize: "1.5rem"}}>No All Task</p>
-      </div>}
+      {Array.isArray(allTasks) && <TableComponent loading={loading} columnsHeader={columnsHeader} tableData= {getTableData(allTasks)} showHeader={true} emptyDataText="You have no task yet" />}
     </>
   );
 };

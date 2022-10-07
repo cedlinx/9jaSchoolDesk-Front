@@ -12,26 +12,27 @@ const WardProfile = ({selectedWard}) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={cx(styles.wardProfileContainer)}>  <div className={cx(styles.studentProfileDiv)}>
-      <h5>Profile</h5>
-      <div className={cx(styles.contentWrapper)}>
-        <div className={cx(styles.header)}>
-          <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
-          {selectedWard?.avatar ? 
-            <img className={cx(styles.profilePic)} src={selectedWard?.avatar} alt="avatar" />
-            :
-            <span className={cx(styles.profilePic)} style={{ backgroundColor: "#D25B5D" }}>{selectedWard?.firstName && initialsCase(`${selectedWard.firstName} ${selectedWard.lastName}`)}</span>
-          }
+    <div className={cx(styles.wardProfileContainer)}>  
+      <div className={cx(styles.studentProfileDiv, "flexCol")}>
+        <h5>Profile</h5>
+        <div className={cx(styles.contentWrapper, "flexCol")}>
+          <div className={cx(styles.header, "flexCol")}>
+            <img className={cx(styles.bgImage)} src={profileCardHeaderBg} alt="bg pic" />
+            {selectedWard?.avatar ? 
+              <img className={cx(styles.profilePic)} src={selectedWard?.avatar} alt="avatar" />
+              :
+              <span className={cx(styles.profilePic)} style={{ backgroundColor: "#D25B5D" }}>{selectedWard?.firstName && initialsCase(`${selectedWard.firstName} ${selectedWard.lastName}`)}</span>
+            }
+          </div>
+          <div className={cx(styles.body, "flexCol")}>
+            <p>{selectedWard?.firstName && titleCase(`${selectedWard.firstName} ${selectedWard.lastName}`) || selectedWard?.name && titleCase(selectedWard?.name)}</p>
+            <small>{selectedWard?.klass?.name}</small>
+            <small>{selectedWard?.email}</small>
+            {/* <img  src={editIcon} alt="" /> */}
+            <span onClick={()=>dispatch(showModal({ action: "show", type: "editProfile", modalData: selectedWard }))}>View</span>
+          </div>
         </div>
-        <div className={cx(styles.body, "flexCol")}>
-          <p>{selectedWard?.firstName && titleCase(`${selectedWard.firstName} ${selectedWard.lastName}`) || selectedWard?.name && titleCase(selectedWard?.name)}</p>
-          <small>{selectedWard?.klass?.name}</small>
-          <small>{selectedWard?.email}</small>
-          {/* <img  src={editIcon} alt="" /> */}
-          <span onClick={()=>dispatch(showModal({ action: "show", type: "editProfile", modalData: selectedWard }))}>View</span>
-        </div>
-      </div>
-    </div></div>
+      </div></div>
   );
 };
 

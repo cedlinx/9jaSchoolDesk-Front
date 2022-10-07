@@ -44,9 +44,9 @@ const Settings = () => {
 
   const tabsComponents = [
     // { name: "Subscriptions", component: RenderSubscriptions },
-    { name: "Account", component: RenderAccount },
-    { name: "Password", component: RenderPassword },
-    { name: "Behaviour Monitor", component: RenderPerformanceIndicator }
+    { name: "Account", component: RenderAccount, path: "account" },
+    { name: "Password", component: RenderPassword, path: "password" },
+    { name: "Behaviour Monitor", component: RenderPerformanceIndicator, path: "behavior-monitor" }
   ];
 
 

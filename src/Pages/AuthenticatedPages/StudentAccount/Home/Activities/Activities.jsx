@@ -17,20 +17,21 @@ const Activities = ({selectedWard}) => {
   const RenderPendingTasks = () => <PendingTasks pendingTasks={Array.isArray(selectedWard?.pending_tasks) && selectedWard?.pending_tasks} />;
 
   const tabsComponents = [
-    { name: "Pending Task(s)", component: RenderPendingTasks },
-    { name: "Completed Task(s)", component: RenderCompletedTasks },
-    { name: "All Task(s)", component: RenderAllTasks }
+    { name: "Pending Task(s)", component: RenderPendingTasks, path: "pending-tasks" },
+    { name: "Completed Task(s)", component: RenderCompletedTasks, path: "completed-tasks" },
+    { name: "All Task(s)", component: RenderAllTasks, path: "all-tasks" }
   ];
 
   return (
     <div className={cx(styles.activitiesContainer)}>
-      <div className={cx("flexRow-space-between", styles.heading)}>
+      <div className={cx("flexRow", styles.heading)}>
         <h5>Activities</h5>
         {/* <small onClick={() => navigate("/student/tasks")}>View All</small> */}
       </div>
       <div className={cx(styles.contentWrapper)}>
         <Tabs tabs={tabsComponents} />
       </div>
+
     </div>
   );
 };

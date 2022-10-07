@@ -55,4 +55,5 @@ export const TabItem = styled.p`
 
 export const TabContent = styled.div`
  width: 100%;
+ height: inherit;
 `;

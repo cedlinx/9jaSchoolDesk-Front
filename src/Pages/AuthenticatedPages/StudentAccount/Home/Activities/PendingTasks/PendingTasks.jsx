@@ -106,7 +106,8 @@ const PendingTasks = ({pendingTasks}) => {
 
   return (
     <>
-      {pendingTasks && pendingTasks.length > 0 ? <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(pendingTasks)} /> : <div style={{textAlign: "center", fontSize: "1.5rem", color: "#828282"}}>You currently have no pending task</div>}
+      {/* {pendingTasks && pendingTasks.length > 0 ? <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(pendingTasks)} /> : <div style={{textAlign: "center", fontSize: "1.5rem", color: "#828282", height: "100%", display: "block"}}>You currently have no pending task</div>} */}
+      {Array.isArray(pendingTasks) && <TableComponent columnsHeader={columnsHeaderActivities} tableData= {getTableData(pendingTasks)} emptyDataText="You currently have no pending task" />}
     </>
     
   );

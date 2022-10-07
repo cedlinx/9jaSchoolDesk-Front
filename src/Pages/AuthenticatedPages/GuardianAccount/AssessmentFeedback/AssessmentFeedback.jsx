@@ -50,23 +50,23 @@ const AssessmentFeedback = () => {
   };
 
   const columnsHeader = [                
+    // {
+    //   Header: () => (
+    //     <div
+    //       style={{
+    //         minWidth: "1rem"
+    //       }}
+    //     />
+    //   ),
+    //   accessor: "status",
+    //   Cell: (row) => {
+    //     let status = row.cell.row.values.status;
+    //     return <span>{status === "1" ? <Icon icon="akar-icons:circle-fill" color="#2ac769" width="12" height="12" /> : <Icon icon="akar-icons:circle-fill" color="#bdbdbd" width="12" height="12" />}</span>;
+    //   }
+    // },
     {
       Header: () => (
-        <div
-          style={{
-            minWidth: "1rem"
-          }}
-        />
-      ),
-      accessor: "status",
-      Cell: (row) => {
-        let status = row.cell.row.values.status;
-        return <span>{status === "1" ? <Icon icon="akar-icons:circle-fill" color="#2ac769" width="12" height="12" /> : <Icon icon="akar-icons:circle-fill" color="#bdbdbd" width="12" height="12" />}</span>;
-      }
-    },
-    {
-      Header: () => (
-        <div />
+        <div>Teacher</div>
       ),
       accessor: "teacherDetails",
       Cell: (row) => {
@@ -90,7 +90,7 @@ const AssessmentFeedback = () => {
     },
     {
       Header: () => (
-        <div />
+        <div>Feedback</div>
       ),
       accessor: "feedback",
       Cell: (row) => {
@@ -108,7 +108,7 @@ const AssessmentFeedback = () => {
           style={{
             minWidth: "5rem"
           }}
-        >Date </div>
+        >Date</div>
       ),
       accessor: "date",
       Cell: (row) => {

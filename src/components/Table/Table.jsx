@@ -12,6 +12,7 @@ const Styles = styled.div`
   display: block;
   max-width: 100%;
   width: 100%;
+  height: 100%;
 
   /* This will make the table scrollable when it gets too small */
   .tableWrap {
@@ -19,6 +20,7 @@ const Styles = styled.div`
     max-width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
+    height: 100%;
     // border-bottom: 1px solid black;
     // min-height: 40vh;
   }
@@ -60,6 +62,7 @@ const Styles = styled.div`
   .pagination {
     margin-top: auto;
     padding: 0.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
   }
 `;
 
@@ -81,7 +84,7 @@ const IndeterminateCheckbox = forwardRef(
 );
 IndeterminateCheckbox.displayName = "Search";
 
-const Table = ({ columns, data, selectedRowsData, loading, showPaginationNavigation, showPagination, showPaginationSummary, showTableHeader, defaultPageSize })=> {
+const Table = ({ columns, data, selectedRowsData, loading, showPaginationNavigation, showPagination, showPaginationSummary, showTableHeader, defaultPageSize, emptyDataText })=> {
 	
   // Use the state and functions returned from useTable to build your UI
   const {
@@ -181,7 +184,7 @@ const Table = ({ columns, data, selectedRowsData, loading, showPaginationNavigat
           </tbody> 
         }
       </table>
-      {page.length === 0 ? <div style={{width: "100%", padding: "1rem 0rem", textAlign: "center", minHeight: "50vh", color: "black"}} >Data Not Found</div> : ""}
+      {page.length === 0 ? <div style={{width: "100%", padding: "1rem 0rem", textAlign: "center", height: "100%", color: "black"}} >{emptyDataText}</div> : ""}
       {/* 
         Pagination can be built however you'd like. 
         This is just a very basic UI implementation:
@@ -248,14 +251,14 @@ const Table = ({ columns, data, selectedRowsData, loading, showPaginationNavigat
   );
 };
 
-const TableComponent = ({columnsHeader, tableData, selectedRowsData, loading, showPaginationNavigation=true, showPaginationSummary=true, showPagination=true, showTableHeader=true, defaultPageSize=10 }) => {
+const TableComponent = ({columnsHeader, tableData, selectedRowsData, loading, showPaginationNavigation=true, showPaginationSummary=true, showPagination=true, showTableHeader=true, defaultPageSize=10, emptyDataText="No Data Found" }) => {
   const columns = useMemo(()=>columnsHeader, []);
   const data = useMemo(()=>tableData, []);
 
   return (
     <Styles>
       <div className="tableWrap">
-        <Table columns={columns} data={data} selectedRowsData={selectedRowsData} loading={loading} showPaginationNavigation={showPaginationNavigation} showPagination={showPagination} showPaginationSummary ={showPaginationSummary} showTableHeader={showTableHeader} defaultPageSize={defaultPageSize} />
+        <Table columns={columns} data={data} selectedRowsData={selectedRowsData} loading={loading} showPaginationNavigation={showPaginationNavigation} showPagination={showPagination} showPaginationSummary ={showPaginationSummary} showTableHeader={showTableHeader} defaultPageSize={defaultPageSize} emptyDataText={emptyDataText} />
       </div>
     </Styles>
   );

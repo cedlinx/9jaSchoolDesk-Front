@@ -152,7 +152,7 @@ const AllTasks = () => {
   };
 
   return (
-    <div>
+    <div style={{height: "100%", width: "100%"}}>
       {loading ? <TableSkeleton /> : <TableComponent loading={loading} columnsHeader={columnsHeader} tableData={getTableData(allTasksData)} />}
     </div>
   );

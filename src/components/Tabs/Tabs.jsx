@@ -9,6 +9,7 @@ const Tabs = ({ tabs, centralise, background, renderActionTab, formTab, leftHead
 
   const handleTabs = (index, name) => { 
     setActiveTab(index);
+    console.log(name);
     name === "Payment History" ? navigate("all-payments") : null;
   };
 

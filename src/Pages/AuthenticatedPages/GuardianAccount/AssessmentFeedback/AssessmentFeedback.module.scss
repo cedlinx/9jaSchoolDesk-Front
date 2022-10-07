@@ -2,6 +2,7 @@
     margin: 0rem;
     padding: 0.5rem;
     gap: 1.5rem;
+    height: 100%;
 
     .header{
         text-align: center;
@@ -68,6 +69,10 @@
                }                   
             }
         }
+    }
+
+    .tableDiv{
+        height: 100%;
     }
 
 }
