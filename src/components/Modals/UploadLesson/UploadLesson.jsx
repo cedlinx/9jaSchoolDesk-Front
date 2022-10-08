@@ -8,6 +8,7 @@ import Button from "@/components/Button/Button";
 import InputField from "@/components/Input/Input";
 import SelectField from "@/components/Select/Select";
 import TextArea from "@/components/TextInput/TextInput";
+import uploadIcon from "@/assets/icons/upload-cloud.svg";
 
 import AuthPageContainer from "@/components/AuthPageContainer/AuthPageContainer";
 import { ToastContainer } from "react-toastify";
@@ -85,14 +86,18 @@ const UploadLesson = () => {
     file: "",
     imagePreviewUrl: "",
     thumbnailFile: "",
-    thumbnailPreviewUrl: ""
+    thumbnailPreviewUrl: "",
+    type: ""
   });
 
   const onDrop = useCallback(acceptedFiles => {
     let file = (acceptedFiles[0]);
+    console.log(file);
+    console.log(file.type);
+    console.log(file.size);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setUploadedFile((prev) =>({...prev, file: file, imagePreviewUrl: reader.result}));
+      setUploadedFile((prev) =>({...prev, file: file, imagePreviewUrl: reader.result, type: file.type.split("/")[0]}));
     };
     reader.readAsDataURL(file);
   }, []);
@@ -107,7 +112,7 @@ const UploadLesson = () => {
   }, []);
 
   const { getInputProps, getRootProps } = useDropzone({ onDrop });
-  const { getRootProps : getThumbnailRootProps } = useDropzone({ onDrop: onThumbnailDrop });
+  const { getRootProps : getThumbnailRootProps } = useDropzone({ onDrop: onThumbnailDrop, accept: "image/*" });
 
   const getSubjectsOptions = () => {
     let options = [];
@@ -150,11 +155,40 @@ const UploadLesson = () => {
               </div> */}
 
               <div {...getRootProps()} {...register("attachment")} className={cx(styles.fileUploadDiv, "flexRow-fully-centered")}>
-                {uploadedFile.imagePreviewUrl ? <img src={uploadedFile.imagePreviewUrl} alt="preview" /> : <span>Drop your files here or click to upload</span>}
+                {/* {uploadedFile.imagePreviewUrl ? <img src={uploadedFile.imagePreviewUrl} alt="preview" /> : <span>Drop your files here or click to upload</span>} */}
+
+                {uploadedFile?.type === "image" ? 
+                  <div className={cx("flexCol")}>
+                    <div className={cx(styles.previewImageDiv)}>
+                      <img  src={uploadedFile?.imagePreviewUrl && uploadedFile?.imagePreviewUrl} alt=""/>
+                    </div>
+                    <p><small>{uploadedFile?.file?.name}</small>{" - "}<small>{`${(uploadedFile?.file?.size/1000000).toFixed(2)} MB`}</small></p>
+                  </div>
+                  : uploadedFile?.type === "video" ? 
+                    <div className={cx("flexCol")}>
+                      <Icon icon="dashicons:format-video" width={48} />
+                      <p><small>{uploadedFile?.file?.name}</small>{" - "}<small>{`${(uploadedFile?.file?.size/1000000).toFixed(2)} MB`}</small></p>
+                    </div>
+                    : uploadedFile?.type === "audio" ? 
+                      <div className={cx("flexCol")}>
+                        <Icon icon="dashicons:media-audio" width={48} />
+                        <p><small>{uploadedFile?.file?.name}</small>{" - "}<small>{`${(uploadedFile?.file?.size/1000000).toFixed(2)} MB`}</small></p>
+                      </div>
+                      : uploadedFile?.type === "application" ? 
+                        <div className={cx("flexCol")}>
+                          <Icon icon="bxs:file-doc" width={48} />
+                          <p><small>{uploadedFile?.file?.name}</small>{" - "}<small>{`${(uploadedFile?.file?.size/1000000).toFixed(2)} MB`}</small></p>
+                        </div>
+                        :
+                        <div className={cx(styles.defaultState, "flexRow")}>
+                          <span>Drop your files here or click to upload</span>
+                          <Icon  icon="bx:upload" color="#d25b5d" width="28" height="28"/>
+                        </div>
+                }  
               </div>
 
               <div className={cx(styles.thumbnailDiv, "flexCol")}>
-                <p>Upload Thumbnail image <Icon {...getThumbnailRootProps()} icon="bi:upload" color="#d25b5d" /></p>
+                <p>Upload Thumbnail image <img {...getThumbnailRootProps()} src={uploadIcon} alt="icon" /> </p>
                 {uploadedFile.thumbnailPreviewUrl ? <img {...getThumbnailRootProps()} {...register("thumbnail")} src={uploadedFile.thumbnailPreviewUrl} alt="preview" /> : null}
                 <small>png, jpg, svg 120x120</small>
               </div>

@@ -56,6 +56,30 @@
                             height: 100%;
                             object-fit: contain;
                         }
+
+                        div{
+                            align-items: center;
+                            height: 100%;
+                            justify-content: center;
+
+                            .previewImageDiv{
+                            height: 100%;
+                            overflow-y: hidden;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                object-position: center;
+                            }
+                         }
+
+                            svg{
+                                color: #D25B5D;
+                            }
+                        }
+                        .defaultState{
+                            gap: 1rem;
+                        }
                     }
 
                     .thumbnailDiv{
@@ -70,6 +94,12 @@
                             svg{
                                 cursor: pointer;
                                 margin-left: 2rem;
+                            }
+                            img{
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                object-fit: cover;
+                                margin-left: 0.5rem;
                             }
                         }
                         img{
