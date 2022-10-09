@@ -14,24 +14,24 @@ const Testimonials = props => {
 
   let testimonialData = [
     {
-      avatar: testimonialsAvatar,
-      name: "Edeh Funmi",
-      position: "Parent",
-      comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+      avatar: "",
+      name: "Rev. Fr. John Eze",
+      position: "Proprietor",
+      comment: "9JASCHOOLDESK has enhanced our ability to understand that students have different behaviors at home and a different behavior in school. We now have a single basic understanding of each student behavior which has helped us to help students at their weakness and improve their strength."
     },
 
     {
-      avatar: testimonialsAvatar,
-      name: "Charles Patterson",
-      position: "Clergy",
-      comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+      avatar: "",
+      name: "Mrs. Uba Mary Chika",
+      position: "School Administrator",
+      comment: "9JASCHOOLDESK has decrease the work load on our teachers and Admin, giving us more time to the students"
     },
 
     {
-      avatar: testimonialsAvatar,
-      name: "John Doe",
-      position: "Lawyer",
-      comment: "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+      avatar: "",
+      name: "Mr. Rufia Yusuf",
+      position: "Class Teacher",
+      comment: "With my tab or mobile phone, I can submit like ten lesson notes. Work out assessments and results after exams and test on the go and with ease. It was time saving and quick because the calculation was done automatically"
     }
   ]; 
 

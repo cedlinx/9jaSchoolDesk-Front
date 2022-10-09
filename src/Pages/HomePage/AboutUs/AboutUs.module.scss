@@ -1,0 +1,77 @@
+.aboutUsContainer{
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+
+    .heading{
+        h3{
+            color: #496690;
+            font-size: 1.25rem;
+        }
+    }
+
+    .body{
+        gap: 1.5rem;
+
+        section{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            h4{
+                font-size: 1.125rem;
+                color: rgb(210, 91, 93);
+                margin: 0rem;
+                line-height: 1;
+            }
+
+            p{
+                font-size: 0.875rem;
+            }
+
+            ul{
+                li{
+                    font-size: 0.875rem;
+                    list-style-type: disc;
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 768px) {
+    .aboutUsContainer{
+        gap: 1.5rem;
+        padding: 3rem 2rem;
+    
+        .heading{
+            h3{
+                font-size: 1.25rem;
+            }
+        }
+    
+        .body{
+            gap: 1.5rem;
+    
+            section{
+                gap: 1rem;
+    
+                h4{
+                    font-size: 1.125rem;
+                }
+    
+                p{
+                    font-size: 0.875rem;
+                }
+    
+                ul{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    li{
+                        font-size: 0.875rem;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -78,7 +78,9 @@
                flex-direction: column;
 
                small{
-                   font-weight: 600;
+                   font-weight: 450;
+                   font-size: 1.25rem;
+
                }
                h3{
                    z-index: 5;
@@ -93,11 +95,19 @@
                }
 
                .pointsWrapper {
-                   div{
-                       display: flex;
-                       flex-wrap: nowrap;
-                       gap: 0.75rem;
-                   }
+                gap: 1rem;
+                    div{
+                        gap: 0.5rem;
+                        img{
+                            width: 1rem;
+                            height: 1rem;
+                        }
+                        span{
+                            font-size: 1rem;
+                            font-weight: lighter;
+                            color: #496690;
+                        }
+                    }
                }
            }
        }
@@ -182,10 +192,6 @@
                     display: flex;
                     flex-direction: column;
      
-                    small{
-                        font-weight: 600;
-                    }
-     
                     .pointsWrapper {
                         div{
                             display: flex;
@@ -196,7 +202,7 @@
                 }            
             }
 
-            .guardiansSection{
+            .guardiansSection, .proprietorsSection{
                 .imageDiv{
                     order: 1;
                 }
@@ -267,10 +273,6 @@
                     display: flex;
                     flex-direction: column;
      
-                    small{
-                        font-weight: 600;
-                    }
-     
                     .pointsWrapper {
                         div{
                             display: flex;
@@ -338,10 +340,6 @@
      
                 .contentWrapper {
                     gap: 1rem;
-                   
-                    small{
-                        font-weight: 600;
-                    }
      
                     .pointsWrapper {
                         div{

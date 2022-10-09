@@ -4,7 +4,9 @@ import styles from "./RequestDemo.module.scss";
 import heroImage from "@/assets/images/request-demo.jpg";
 import InputField from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
-
+import "react-phone-number-input/style.css";
+import PhoneInput, {isValidPhoneNumber } from "react-phone-number-input";
+import "./PhoneInput.scss";
 // import MailingList from "@/components/MailingList/MailingList";
 
 import { useForm, Controller } from "react-hook-form";
@@ -31,8 +33,9 @@ const RequestDemo = () => {
   return (
     <div className={cx(styles.demoContainer, "flexRow", "row", "g-0")}>
       <div className={cx(styles.leftSection, "col-sm-6", "col-md-6")}>
-        <h3>School management Made Easy</h3>
-        <small>Get In Touch For A Demo Today</small>
+        <h3>START FOR FREE NOW</h3>
+        <span>Relieving you of the workload while you concentrate on students</span>
+        <small>Request our School Management Software Free Demo</small>
 
         <div className={cx(styles.formWrapper, "flexCol")}>
           <form
@@ -45,10 +48,46 @@ const RequestDemo = () => {
               render={({ field, ref }) => (
                 <InputField
                   {...field}
-                  label={"NAME"}
-                  placeholder="John Doe"
+                  label={"Your Name"}
+                  placeholder=""
                   error={errors?.name && errors?.name?.message}
-                  options={[{ label: "", value: "" }]}
+                />
+              )}
+            />
+
+            <Controller
+              name="schoolName"
+              control={control}
+              render={({ field, ref }) => (
+                <InputField
+                  {...field}
+                  label={"School Name"}
+                  placeholder=""
+                  error={errors?.schoolName && errors?.schoolName?.message}
+                />
+              )}
+            />
+
+            <Controller
+              name="location"
+              control={control}
+              render={({ field, ref }) => (
+                <InputField
+                  {...field}
+                  label={"Location"}
+                  error={errors?.location && errors?.location?.message}
+                />
+              )}
+            />
+
+            <Controller
+              name="role"
+              control={control}
+              render={({ field, ref }) => (
+                <InputField
+                  {...field}
+                  label={"Role in School"}
+                  error={errors?.role && errors?.role?.message}
                 />
               )}
             />
@@ -59,12 +98,29 @@ const RequestDemo = () => {
               render={({ field, ref }) => (
                 <InputField
                   {...field}
-                  label={"EMAIL"}
-                  placeholder="email@email.com"
+                  label={"Email"}
                   error={errors?.email && errors?.email?.message}
                 />
               )}
             />
+
+            <div className={cx(styles.inputWrapper, "PhoneInputWrapper")}>
+              <label htmlFor="phoneNumber">Phone Number</label>
+              <Controller
+                name="phone"
+                control={control}
+                render={({ field, ref }) => (
+                  <PhoneInput
+                    {...field}
+                    international
+                    countryCallingCodeEditable={false}
+                    defaultCountry="NG"
+                  />
+                )}
+              />
+              {errors?.phoneNumber && <small>{errors?.phoneNumber?.message}</small> }
+            </div>
+
 
             <div className={cx(styles.btnDiv, "flexRow")}>
               <Button onClick={handleSubmit((data) => sendRequest(data))} title="Submit" borderRadiusType="fullyRounded" textColor="#FFF" bgColor="#eb5757" hoverColor="#eb5757" hoverBg="#fff" />

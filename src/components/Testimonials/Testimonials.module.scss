@@ -2,7 +2,8 @@
     width: 100%;
     padding: 3rem 1rem;
     margin: 0rem 0rem 2rem 0rem;
-    color: #D25B5D;  
+    color: #496690;
+
 }
 
 .cardWrapper {
@@ -36,6 +37,10 @@
                     font-weight: bold;
                     padding: 0rem;
                     margin: 0rem;
+        // color: #496690;
+        color: rgb(210, 91, 93);
+
+
                 }
                 span:nth-child(2){
                     color: #4967907f;
@@ -63,7 +68,7 @@
 @media all and (min-width:768px){
     .testimonialsContainer{
         .header{
-            padding: 0rem 0rem 1rem 1rem;
+            padding: 0rem 0rem 0rem 1rem;
         }
 
         .cardWrapper {
@@ -96,11 +101,11 @@
 
     .testimonialsContainer{
         .header{
-            padding: 0rem 0rem 1rem 2rem;
+            padding: 0rem 0rem 0rem 2rem;
         }
         .cardWrapper {
             // margin-top: 2rem;
-        padding: 2.5rem 0rem;
+        padding: 1rem 0rem;
             .cardItem{
                 width: 21rem ;
             }

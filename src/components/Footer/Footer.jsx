@@ -42,17 +42,18 @@ const Footer = () => {
       <div className={cx(styles.socialsSection)}>
         <p className={cx(styles.header)}>Socials</p>
         <ul>
-          <li onClick={() => navigate("#")}> <span><img src={twitterLogo} alt="icon" /></span><span>Twitter</span>  </li>
-          <li onClick={() => navigate("#")}><span><img src={linkedinLogo} alt="icon" /></span><span>LinkedIn</span> </li>
-          <li onClick={() => navigate("#")}><span><img src={facebookLogo} alt="icon" /></span><span>Facebook</span> </li>
+          <li><a href="https://twitter.com/9jaschooldesk?t=p4um3STrb_5iNGexgkg4og&s=08" target="_blank" rel="noopener noreferrer"><span><img src={twitterLogo} alt="icon" /></span><span>Twitter</span></a> </li>
+
+          <li><a href="https://www.linkedin.com/company/9jaschooldesk/" target="_blank" rel="noopener noreferrer"><span><img src={linkedinLogo} alt="icon" /></span><span>LinkedIn</span></a> </li>
+          {/* <li onClick={() => navigate("#")}><span><img src={facebookLogo} alt="icon" /></span><span>Facebook</span> </li> */}
         </ul>
       </div>
       <div className={cx(styles.contactSection)}>
         <p className={cx(styles.header)}>Contact Us</p>
         <ul>
-
+          <li>Suite 302A, Philez 2, osolo Way, Ajao Estate Lagos.</li>
           <li>info@9jaschooldesk.com</li>
-          <li>+234 904 342 4455</li>
+          <li>+234 816 675 3133</li>
         </ul>
       </div>
     </div>

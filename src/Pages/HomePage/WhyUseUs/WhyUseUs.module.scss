@@ -1,0 +1,45 @@
+.whyUseUsContainer{
+    gap: 1rem;
+    padding: 2rem 1rem;
+
+    h3{
+        font-size: 1.25rem;
+        color: #496690;
+    }
+
+    section{
+        gap: 1.125rem;
+
+        .title{
+            font-weight: 450;
+            color: rgb(210, 91, 93);
+        }
+        .description{
+            color: black;
+            font-size: 0.875rem;
+        }
+    }
+}
+
+@media all and (min-width: 768px) {
+    .whyUseUsContainer{
+        gap: 1rem;
+        padding: 3rem 2rem;
+    
+        h3{
+            font-size: 1.25rem;
+        }
+    
+        section{
+            gap: 1.125rem;
+            
+            .title{
+                font-weight: 450;
+            }
+            .description{
+                color: black;
+                font-size: 0.875rem;
+            }
+        }
+    }
+}

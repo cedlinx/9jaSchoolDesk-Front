@@ -23,6 +23,7 @@ import Logo from "@/assets/images/logo.png";
 
 import studentImage from "@/assets/images/studentImage.png";
 import teacherImage from "@/assets/images/teacherImage.png";
+import proprietorImage from "@/assets/images/teacherImage.png";
 import guardiansImage from "@/assets/images/parentsImage.png";
 import ruler from "@/assets/images/ruler.png";
 import book from "@/assets/images/book.png";
@@ -35,12 +36,17 @@ import circleIcon from "@/assets/icons/circle_icon.svg";
 import PricingModule from "@/components/PricingModule/PricingModule";
 import RequestDemo from "./RequestDemo/RequestDemo";
 import FAQ from "./FAQ/FAQ";
+import Features from "./Features/Features";
+import AboutUs from "./AboutUs/AboutUs";
+import WhyUseUs from "./WhyUseUs/WhyUseUs";
+
 
 const HomePage = () => {
   const navigate = useNavigate();
   const studentsRef = useRef();
   const guardiansRef = useRef();
   const teachersRef = useRef();
+  const proprietorsRef = useRef();
   const [expanded, setExpanded] = useState(false);
 
   const gotoSection = (value) => {
@@ -54,11 +60,46 @@ const HomePage = () => {
     case "teacher":
       teachersRef.current.scrollIntoView({ behavior: "smooth" });
       break;
+    case "proprietor":
+      proprietorsRef.current.scrollIntoView({ behavior: "smooth" });
+      break;
     default:
       window.scrollTo({ top: 0, behavior: "smooth" });
       break;
     }
     setExpanded(false);
+  };
+
+  const categoryHighlights = {
+    student: [
+      "Access to video lesson", 
+      "Integrated Class gist", 
+      "Access attendance, homework and so much more"
+    ],
+
+    guardian: [
+      "Monitor your child’s school performance from anywhere.", 
+      "Track your children behavior.", 
+      "Get notified about your child’s school activities", 
+      "Remote access to your child’s teacher(s)", 
+      "Fast and painless fees payment over mobile or PC", 
+      "Improved child safety via attendance and pick-up updates"
+    ],
+
+    teacher: [
+      "Automated student attendance",
+      "Computerized management of marks and grade",
+      "Reduced workload",
+      "Create report cards with ease"
+    ],
+
+    proprietor: [
+      "Reduce the cost of running your school.",
+      "Manage your school from anywhere.",
+      "School cloud database",
+      "Reduced workload, resulting in massive time savings for entire staff.",
+      "Promotion of a technology-oriented culture"
+    ]
   };
 
 
@@ -76,6 +117,7 @@ const HomePage = () => {
             <Link onClick={(e) => gotoSection(e)} id="student" to="#">Student</Link>
             <Link onClick={(e) => gotoSection(e)} id="guardian" to="#">Guardian</Link>
             <Link onClick={(e) => gotoSection(e)} id="teacher" to="#">Teacher</Link>
+            <Link onClick={(e) => gotoSection(e)} id="proprietor" to="#">Proprietor</Link>
           </Nav>
 
         </Navbar.Collapse>
@@ -118,6 +160,8 @@ const HomePage = () => {
 
         </div>
 
+        <AboutUs />
+
         <div className={cx(styles.mainContentWrapper, "flexCol-align-center")}>
 
           <TopDivWave />
@@ -138,11 +182,16 @@ const HomePage = () => {
               <small>Students</small>
               <h3>Learning never <span className={cx(styles.wordBreak)}>got <img className={cx(styles.floatingIcon)} src={curvedHamburger} alt="icon" /></span> <br />  smoother</h3>
 
-              <div className={cx(styles.pointsWrapper)}>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
+              <div className={cx(styles.pointsWrapper, "flexCol")}>
+                {
+                  categoryHighlights.student.map((data, index) => {
+                    return(
+                      <div key={index}>
+                        <span><img src={circleIcon} /></span><span>	{data}</span> 
+                      </div>
+                    );
+                  })
+                }
               </div>
 
               <Button onClick={() => navigate("/login-with-class-code", { state: { category: "student" } })} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
@@ -167,11 +216,16 @@ const HomePage = () => {
               <small>Guardians</small>
               <h3><span className={cx(styles.wordBreak)}>Become <img className={cx(styles.floatingIcon)} src={curvedHamburgerFlipped} alt="icon" /></span> part of your kid's <br /> learning process</h3>
 
-              <div className={cx(styles.pointsWrapper)}>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
+              <div className={cx(styles.pointsWrapper, "flexCol")}>
+                {
+                  categoryHighlights.guardian.map((data, index) => {
+                    return(
+                      <div key={index}>
+                        <span><img src={circleIcon} /></span><span>	{data}</span> 
+                      </div>
+                    );
+                  })
+                }
               </div>
 
               <Button onClick={() => navigate("/login/guardian", { state: { category: "guardian" } })} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
@@ -196,11 +250,16 @@ const HomePage = () => {
               <small>Teachers</small>
               <h3>Cordinate and Manage <span className={cx(styles.wordBreak)}>your <img className={cx(styles.floatingIcon)} src={curvedHamburger} alt="icon" /></span> <br />  classroom efficiently</h3>
 
-              <div className={cx(styles.pointsWrapper)}>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
-                <div><span><img src={circleIcon} /></span><span>Lorem ipsum uspendisse habitant.</span> </div>
+              <div className={cx(styles.pointsWrapper, "flexCol")}>
+                {
+                  categoryHighlights.teacher.map((data, index) => {
+                    return(
+                      <div key={index}>
+                        <span><img src={circleIcon} /></span><span>	{data}</span> 
+                      </div>
+                    );
+                  })
+                }
               </div>
 
               <Button onClick={() => navigate("/login/teacher", { state: { category: "teacher" } })} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
@@ -209,11 +268,47 @@ const HomePage = () => {
 
           </div>
 
+          <div ref={proprietorsRef} className={cx(styles.proprietorsSection, styles.sectionWrapper, "row")}>
+            <div data-aos="zoom-in-left"
+              // data-aos-delay="1200"
+              className={cx(styles.imageDiv, "col-sm-6", "col-md-6")}
+            >
+              <img src={proprietorImage} alt="img" />
+            </div>
+
+            <div
+              data-aos="zoom-in-left"
+              // data-aos-delay="1000"
+              className={cx(styles.contentWrapper, "col-sm-6", "col-md-6")}
+            >
+              <small>Proprietors</small>
+              <h3>Cordinate and Manage <span className={cx(styles.wordBreak)}>your <img className={cx(styles.floatingIcon)} src={curvedHamburger} alt="icon" /></span> <br />  institution efficiently</h3>
+
+              <div className={cx(styles.pointsWrapper, "flexCol")}>
+                {
+                  categoryHighlights.proprietor.map((data, index) => {
+                    return(
+                      <div key={index}>
+                        <span><img src={circleIcon} /></span><span>	{data}</span> 
+                      </div>
+                    );
+                  })
+                }
+              </div>
+
+              <Button onClick={() => navigate("/login/proprietor", { state: { category: "proprietor" } })} title="Get Started" borderRadiusType="fullyRounded" textColor="#fff" bgColor="#D25B5D" hoverBg="#fff" hoverColor="#D25B5D" />
+
+            </div>
+
+          </div>
+
           <BottomDivWave />
 
-
-
         </div>
+
+        <Features />
+
+        <WhyUseUs />
 
         <Testimonials />
 
