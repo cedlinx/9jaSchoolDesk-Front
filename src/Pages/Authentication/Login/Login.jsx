@@ -140,7 +140,7 @@ const Login = () => {
                     <p className={cx(styles.formText)}>Don't have an account? <Link to="/guardian-signup">Sign Up</Link></p> } */}
 
  
-                    { user === "guardian" || user === "proprietor" ?  <p className={cx(styles.formText)}>Don&apos;t have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p> : null }
+                    { user === "guardian" || user === "proprietor" ?  <p className={cx(styles.formText)}>Don&apos;t have an account? <Link to={`/pre-signup/${user}`}>Sign Up</Link></p> : null}
 
                   </form>
                 </div>
