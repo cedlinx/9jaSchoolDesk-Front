@@ -125,7 +125,7 @@ const Header = (props) => {
     <section className={cx(styles.dashboardHeaderContainer, "flexRow", "")}>
 
       <Navbar expanded={expanded} collapseOnSelect expand="lg" className={cx(styles.navbarContainer, "flexRow")}>
-        {userCategory === "proprietor" && userCategory === "teacher" && 
+        {(userCategory === "proprietor" || userCategory === "teacher") && 
         <div
           className={cx(styles.dashboardToggler, "btn-toggle")}
           onClick={() => handleToggleSidebar(true)}

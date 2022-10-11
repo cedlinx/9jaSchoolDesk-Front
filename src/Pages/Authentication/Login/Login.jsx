@@ -30,7 +30,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const {user} = useParams();
 
-  const isOTPVerified = localStorage.getItem("userData")?.hasverifiedotp;
+  const isOTPVerified = JSON.parse(localStorage.getItem("userData"))?.hasverifiedotp;
   const loading = useSelector((state) => state?.auth?.loading);
 
   const checkIsAuthenticated = isAuthenticated();

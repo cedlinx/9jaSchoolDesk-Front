@@ -16,8 +16,11 @@
         height: 50px;
 
         .dashboardToggler{
-            margin-right: 0.5rem;
+            margin-left: 0.5rem;
+            padding: 0.25rem;
             display: flex;
+            background-color: #fff;
+            border-radius: 0.25rem;
         }
 
         .siteLogo{
@@ -78,6 +81,7 @@
                 .switcher{
                     gap: 1rem;
                     justify-content: center;
+                    flex-wrap: wrap;
                     
                     .infoDiv{
                         gap: 0.5rem;

@@ -15,7 +15,6 @@ const DashboardContainer = (props) => {
   const rootPath = location.pathname.split("/")[1];
   const actualPath = location.pathname.split("/").pop();
 
-
   const [toggled, setToggled] = useState(false);
   const handleToggleSidebar = (value) => {
     setToggled(value); 
