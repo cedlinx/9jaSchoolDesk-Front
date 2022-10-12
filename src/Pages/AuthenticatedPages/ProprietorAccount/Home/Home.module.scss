@@ -1,11 +1,13 @@
 .dashboardHomeContainer{
-    padding: 1rem 0.5rem;
+    padding: 0rem 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0rem;
     width: auto;
     background-color: #fff;
     // min-height: (100vh);
+    // height: 100%;
+    height: calc(100% - 40px);
     font-family: Jost;
 
     .heading{
@@ -34,6 +36,7 @@
 
     .body{
         gap: 1rem;
+        height: 100%;
 
        .summaryDiv{
             display: grid;
@@ -73,6 +76,8 @@
        }
 
        .tableSection{
+        height: 100%;
+
         .title{
             color: #22467B;
         }
@@ -109,9 +114,9 @@
 
 @media all and (min-width: 768px){
     .dashboardHomeContainer{
-        padding: 0rem 0rem 1rem 0rem;
+        padding: 0rem 0rem 0rem 0rem;
         width: auto;
-        min-height: (100vh);
+        // min-height: (100vh);
     
         .heading{
             padding: 1rem 1rem 1rem 1rem;

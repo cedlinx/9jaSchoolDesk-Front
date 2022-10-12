@@ -24,6 +24,7 @@ import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg"
 import siteLogo from "@/assets/images/logo.png";
 import { titleCase } from "@/helpers/textTransform";
 
+
 const Login = () => {
 
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const Login = () => {
   const {user} = useParams();
 
   const isOTPVerified = JSON.parse(localStorage.getItem("userData"))?.hasverifiedotp;
+  const userRole = JSON.parse(localStorage.getItem("userData"))?.role.toLowerCase();
   const loading = useSelector((state) => state?.auth?.loading);
 
   const checkIsAuthenticated = isAuthenticated();
@@ -40,8 +42,9 @@ const Login = () => {
       navigate("/");
       return;
     }
-    checkIsAuthenticated && isOTPVerified && navigate(`/${user}/dashboard`);
-  }, [checkIsAuthenticated, isOTPVerified, navigate, user]);
+    checkIsAuthenticated && userRole === user && navigate(`/${user}/dashboard`);
+    checkIsAuthenticated && !userRole === user && <Navigate to={`/login/${user}`} state={{ from: location }} />;
+  }, [checkIsAuthenticated, isOTPVerified, navigate, user, userRole]);
 
   const signIn = async (data) => {
  
@@ -71,7 +74,7 @@ const Login = () => {
 
   return (
     <>
-      {checkIsAuthenticated && isOTPVerified ? <Navigate replace to={`/${user}/dashboard`} /> :
+      {checkIsAuthenticated && userRole === user ? <Navigate replace to={`/${user}/dashboard`} /> :
         <>
           <AuthPageContainer>
 

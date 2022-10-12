@@ -15,6 +15,11 @@ const Page404 = () => {
     dispatch(logout());
   };
 
+  const handleLogin = () => {
+    navigate("/login");
+    dispatch(logout());
+  };
+
   return (
     <section className="error-page-container">
       <div className="error-card">
@@ -29,6 +34,7 @@ const Page404 = () => {
         </div>
         <div>
           <Button onClick={() => handleClick()} title="Go To The Homepage" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" />
+          {/* <Button onClick={() => handleLogin()} title="Login" textColor="#FFF" borderRadiusType="lowRounded" bordercolor="2C0085" bgColor="#D25B5D" /> */}
         </div>
       </div>
     </section>

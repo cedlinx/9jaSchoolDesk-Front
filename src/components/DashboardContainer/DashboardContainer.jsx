@@ -40,7 +40,6 @@ const DashboardContainer = (props) => {
           <div className={cx(styles.sidebar)}>
             {/* <ProprietorSideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} /> */}
             <GeneralSideBar toggled={toggled} handleToggleSidebar={handleToggleSidebar} />
-
           </div>
        
           <div className={cx(styles.contentArea, "flexCol")}>
