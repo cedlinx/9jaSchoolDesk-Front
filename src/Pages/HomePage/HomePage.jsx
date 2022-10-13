@@ -39,7 +39,9 @@ import FAQ from "./FAQ/FAQ";
 import Features from "./Features/Features";
 import AboutUs from "./AboutUs/AboutUs";
 import WhyUseUs from "./WhyUseUs/WhyUseUs";
-
+import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
+import demoVideo from "@/assets/demo-video.mp4";
+import demoVideoPoster from "@/assets/images/demo-video-poster.png";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -319,6 +321,11 @@ const HomePage = () => {
         <section className={cx(styles.requestDemoWrapper)}>
           <RequestDemo />
         </section>
+
+        <div className={cx(styles.videoPlayerWrapper)}>
+          <h3>Video Demo</h3>
+          <VideoPlayer url={demoVideo} poster={demoVideoPoster} />
+        </div>
 
         <FAQ />
 

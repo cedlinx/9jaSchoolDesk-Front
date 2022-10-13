@@ -78,6 +78,7 @@
     "shortid": "^2.2.16",
     "styled-components": "^5.3.3",
     "swiper": "^8.1.0",
+    "video-react": "^0.15.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
