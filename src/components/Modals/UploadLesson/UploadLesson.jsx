@@ -92,9 +92,6 @@ const UploadLesson = () => {
 
   const onDrop = useCallback(acceptedFiles => {
     let file = (acceptedFiles[0]);
-    console.log(file);
-    console.log(file.type);
-    console.log(file.size);
     const reader = new FileReader();
     reader.onloadend = () => {
       setUploadedFile((prev) =>({...prev, file: file, imagePreviewUrl: reader.result, type: file.type.split("/")[0]}));

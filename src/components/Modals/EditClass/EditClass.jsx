@@ -32,27 +32,25 @@ const EditClass = () => {
   let institution_id = useGetInstitutionID();
 
 
-  
-
   const sendRequest = async (data) => {
-    
-    let subjectArray = [];
-    data.subjects.map((subject) => {
-      data?.subject.map((teacher, index)=>{
-        if(subject.label === teacher.subject){
-          subjectArray.push({subject: subject?.value, teacher: teacher?.teacher?.value});
-        }
-      });
-    });
-    console.log(subjectArray);
+    console.log(data, "sendRequest");
+    // let subjectArray = [];
+    // data.subjects.map((subject) => {
+    //   data?.subject.map((teacher, index)=>{
+    //     if(subject.label === teacher.subject){
+    //       subjectArray.push({subject: subject?.value, teacher: teacher?.teacher?.value});
+    //     }
+    //   });
+    // });
+    // console.log(subjectArray);
 
-    let {subject, ...rest} = data;
+    // let {subject, ...rest} = data;
 
-    let response = await dispatch(modifyClass({ ...rest, subjects: subjectArray, id: modalData.id, institution_id: institution_id}));
-    if (response.payload.success) {
-      dispatch(showModal({ action: "hide", type: "editClass" }));
-      dispatch(getAllClasses());
-    }
+    // let response = await dispatch(modifyClass({ ...rest, subjects: subjectArray, id: modalData.id, institution_id: institution_id}));
+    // if (response.payload.success) {
+    //   dispatch(showModal({ action: "hide", type: "editClass" }));
+    //   dispatch(getAllClasses());
+    // }
   };
 
   const getSubjectsOptions = (data) => {
@@ -85,10 +83,41 @@ const EditClass = () => {
     subjects: getSubjectsOptions(modalData?.subjects),
     description: modalData?.description,
     teacher_id: modalData?.teacher_id,
-    subject: ""
+    subject: selectedSubjectTeachers
   };
 
+
   const { register, handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
+
+  useEffect(() =>{
+    let selectedSubjectTeachersArray = [];
+
+    selectedSubjectTeachers.map((element) => {
+      console.log(element);
+      selectedSubjectTeachersArray.push(
+        {
+          subject: {
+            value: element.id,
+            label: element.subject
+          },
+          teacher:{
+            value: element?.subject_teacher?.id,
+            label: element?.subject_teacher?.name
+          }   
+        });
+    });
+
+    console.log(selectedSubjectTeachersArray);
+    setSelectedSubjectTeachers(selectedSubjectTeachersArray);
+
+    reset({
+      name: modalData?.name,
+      subjects: getSubjectsOptions(modalData?.subjects),
+      description: modalData?.description,
+      teacher_id: modalData?.teacher_id,
+      subject: selectedSubjectTeachersArray
+    });
+  },[modalData, reset, selectedSubjectTeachers]);
 
   const handleSubjectChange = (e) => {
     let selectedSubjectsArray = [];
@@ -201,13 +230,17 @@ const EditClass = () => {
               return (
                 <div key={index} className={cx(styles.subjectTeacherItem, "flexRow")} >
                   <div className={cx(styles.labelDiv)}>
-                    <p>{subject.subject}</p>
-                    <input style={{display: "none"}} readOnly name={`subject[${index}]subject`} {...register(`subject.${index}.subject`)} value={subject.subject} />
+                    <p>{subject.subject.label}</p>
+                    <input style={{display: "none"}} readOnly 
+                      name={`subject[${index}]subject`} 
+                      {...register(`subject.${index}.subject`)} 
+                      value={subject.subject.label}
+                    />
                   </div>
                   <div className={cx(styles.selectDiv)}>
                     <Controller
                       // name="subject_teacher_id"
-                      name={`subject[${index}]teacher`} 
+                      // name={`subject[${index}]teacher`} 
                       {...register(`subject.${index}.teacher`)}
                       control={control}
                       render={({ field, ref }) => (
@@ -219,10 +252,10 @@ const EditClass = () => {
                           isCreatable={false}
                           marginbottom="0rem"
                           placeholder=""
-                          defaultValue={{value: subject?.subject_teacher?.id, label: subject?.subject_teacher?.name}}
-                          options={getTeacherOptions(allTeachersData)}
-                          onChange={(data, element) => handleSubjectTeacherChange(data, element,  subject)}
-                          error={errors?.subject?.[index]?.teacher && errors?.subject?.[index]?.teacher?.message}
+                          // defaultValue={{value: subject?.teacher?.value, label: subject?.teacher?.label}}
+                          // options={getTeacherOptions(allTeachersData)}
+                          // onChange={(data, element) => handleSubjectTeacherChange(data, element,  subject)}
+                          // error={errors?.subject?.[index]?.teacher && errors?.subject?.[index]?.teacher?.message}
                         />
                       )}
                     />

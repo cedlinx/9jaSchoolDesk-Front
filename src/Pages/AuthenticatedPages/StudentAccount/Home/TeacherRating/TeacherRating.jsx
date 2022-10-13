@@ -11,7 +11,6 @@ import { showModal } from "@/redux/ModalState/ModalSlice";
 
 const TeacherRating = ({teachersData, studentID}) => {
   const dispatch = useDispatch();
-  console.log(teachersData);
 
   const setRating = async (rating, teacherData) => {
     dispatch(showModal({action: "show", type: "rateTeacher", modalData: {rating, teacherData, studentID}}));

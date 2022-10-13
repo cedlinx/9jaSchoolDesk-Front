@@ -5,19 +5,55 @@
     h3{
         font-size: 1.25rem;
         color: #496690;
+        text-align: center;
     }
 
     section{
+        display: flex;
         gap: 1.125rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        gap: 2rem;
+        margin: 0rem;
+        padding: 0rem;
+        height: 100%;
 
-        .title{
-            font-weight: 450;
-            color: rgb(210, 91, 93);
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 2rem 1rem;
+            width: 18rem;
+            // height: 100%;
+            // flex-grow: 1;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            border: none;
+            background-color: #fff;
+            box-shadow: 0px 4px 12px rgba(29, 30, 36, 0.15);
+
+            &:hover{
+                background-color: #49679008;
+            }
+
+            .title{
+                font-weight: 450;
+                color: rgb(210, 91, 93);
+                font-size: 1rem;
+
+            }
+            .description{
+                font-size: 0.75rem;
+                text-align: justify;
+                line-height: 1.25rem;
+                height: 100%;
+                margin-bottom: auto;
+            }
         }
-        .description{
-            color: black;
-            font-size: 0.875rem;
-        }
+
+     
     }
 }
 
@@ -27,19 +63,42 @@
         padding: 3rem 2rem;
     
         h3{
-            font-size: 1.25rem;
+            font-size: 1.5rem;
         }
     
         section{
-            gap: 1.125rem;
+            gap: 2rem;
             
-            .title{
-                font-weight: 450;
+            div{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 1rem;
+                padding: 2rem 1rem;
+                width: 20rem;
+                // height: 100%;
+                // flex-grow: 1;
+                cursor: pointer;
+    
+                border: none;
+                background-color: #fff;
+                box-shadow: 0px 4px 12px rgba(29, 30, 36, 0.15);
+    
+                .title{
+                    font-weight: 450;
+                    color: rgb(210, 91, 93);
+                    font-size: 1rem;
+    
+                }
+                .description{
+                    font-size: 0.75rem;
+                    text-align: justify;
+                    line-height: 1.25rem;
+                    height: 100%;
+                    margin-bottom: auto;
+                }
             }
-            .description{
-                color: black;
-                font-size: 0.875rem;
-            }
+    
         }
     }
 }

@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Activities = ({selectedWard}) => {
   const navigate = useNavigate();
   const RenderCompletedTasks = () => <CompletedTasks completedTasks={Array.isArray(selectedWard?.completed_tasks) && selectedWard?.completed_tasks} />;
-  const RenderAllTasks = () => <AllTasks allTasks={Array.isArray(selectedWard?.tasks) && selectedWard?.tasks} />;
+  const RenderAllTasks = () => <AllTasks allTasks={Array.isArray(selectedWard?.current_tasks) && selectedWard?.current_tasks} />;
   const RenderPendingTasks = () => <PendingTasks pendingTasks={Array.isArray(selectedWard?.pending_tasks) && selectedWard?.pending_tasks} />;
 
   const tabsComponents = [

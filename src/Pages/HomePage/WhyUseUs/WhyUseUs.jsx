@@ -10,7 +10,7 @@ const WhyUseUs = () => {
       description: "You don’t have to worry about losing your students or school records and data. With 9JASCHOOLDESK your data and school records are safe and available from anywhere forever."
     },
     {
-      title: "Innovation & Artificial Intelligence(AI)",
+      title: "INNOVATION & ARTIFICIAL INTELLIGENCE(AI)",
       description: "9JASCHOOLDESK uses AI to deliver a top innovative product that solves all your school needs."
     },
     {
@@ -28,11 +28,16 @@ const WhyUseUs = () => {
     <div className={cx(styles.whyUseUsContainer, "flexCol")}>
       <h3>WHY USE 9JASCHOOLDESK?</h3>
        
-      <section className={cx("flexCol")}>
+      <section className={cx("flexRow")}>
         {
           dataArray.map((data, index) => {
             return(
-              <div key={index}>
+              <div 
+                data-aos="fade-up"
+                data-aos-anchor-placement="center-bottom"
+                data-aos-delay="600"
+                key={index}
+              >
                 <p className={cx(styles.title)}>{data.title}</p>
                 <span className={cx(styles.description)}>{data.description}</span>
               </div>

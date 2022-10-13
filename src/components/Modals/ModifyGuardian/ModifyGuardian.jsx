@@ -17,7 +17,6 @@ const ModifyGuardian = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.proprietor.loading);
   const modalData = useSelector((state) => state.modalState.modalData);
-  console.log(modalData);
 
   useEffect(() => {
     reset({
@@ -29,7 +28,6 @@ const ModifyGuardian = () => {
   }, [modalData]);
 
   const sendRequest = async (data) => {
-    console.log(data);
     let response = await dispatch(modifyGuardian(data));
     if(response.payload.success){
       dispatch(getNewGuardianSignups());
@@ -48,8 +46,6 @@ const ModifyGuardian = () => {
   };
 
   const { handleSubmit, formState: { errors }, control, reset } = useForm({ defaultValues, resolver, mode: "all" });
-
-  console.log(errors);
 
   return (
 
