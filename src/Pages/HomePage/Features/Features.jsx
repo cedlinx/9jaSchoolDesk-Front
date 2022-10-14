@@ -3,7 +3,7 @@ import cx from "classnames";
 import styles from "./Features.module.scss";
 import { titleCase } from "@/helpers/textTransform";
 import circleIcon from "@/assets/icons/circle_icon.svg";
-
+import { Icon } from "@iconify/react";
 
 const Features = () => {
 
@@ -31,21 +31,23 @@ const Features = () => {
     {
       guardians: [
         {
-          title: "Parent Dashboard",
-          description: "Parents have a personalized dashboard with secure login credentials to overseen only their child(ren) data(s)."
-        },
-        {
           title: "Academic Progress",
-          description: "Parents can view their child(Ren) academic activities and track performance across all subjects, class, level and school sections, including honest and robust teacher remarks and comments in order to know the student progress in real time."
-        },
-        {
-          title: "Behavioral Monitor – Assessment",
-          description: "With the behavior monitor module, you can easily monitor your child(Ren) behavior progress at school in real time."
+          description: "Parents can view their child(ren) academic activities and track performance across all subjects, class, level and school sections, including honest and robust teacher remarks and comments in order to know the student progress in real time."
         },
         {
           title: "Finance & Fees Payment",
           description: "With 9JASCHOOLDESK secure transaction solution, you can conveniently pay fees with your phone or computer using 9JASCHOOLDESK safe and secure transaction solution.  Student’s School fees and other expenses can be paid seamlessly with appropriate bill history through the 9JASCHOOLDESK Platform reducing stress and granting fast accessibility."
         },
+        {
+          title: "Parent Dashboard",
+          description: "Parents have a personalized dashboard with secure login credentials to overseen only their child(ren) data(s)."
+        },
+   
+        {
+          title: "Behavioral Monitor – Assessment",
+          description: "With the behavior monitor module, you can easily monitor your child(Ren) behavior progress at school in real time."
+        },
+  
         {
           title: "Results and Assessment Tracking",
           description: "Parents have fast access to and can track student reports anywhere and at any time."
@@ -117,20 +119,26 @@ const Features = () => {
         return (
           <div className={cx(styles.innerContainer, "flexCol")} key={index}>
             <p className={cx(styles.subCategory)}>{titleCase(Object.keys(element)[0])}</p>
-            {
-              Object.values(element)[0].map((feature, idx) =>{
-                return (
-                  <div key={idx} className={cx(styles.wrapper)}>
-                    <div className={cx(styles.heading, "flexRow")}>
-                      <span><img src={circleIcon} /></span><span>{feature.title}</span> 
+            <div className={cx(styles.pointsContainer, "flexRow")}>
+              {
+                Object.values(element)[0].map((feature, idx) =>{
+                  return (
+                    <div key={idx} className={cx(styles.wrapper, "flexCol")}>
+                      <div className={cx(styles.heading, "flexRow")}>
+                        <span>
+                          {/* <img src={circleIcon} /> */}
+                          <Icon icon="bi:list-check" color="#d25b5d" width={12} />
+                        </span>
+                        <span>{feature.title}</span> 
+                      </div>
+                      <div className={cx(styles.details)}>
+                        <span>{feature.description}</span>
+                      </div>
                     </div>
-                    <div className={cx(styles.details)}>
-                      <span>{feature.description}</span>
-                    </div>
-                  </div>
-                );
-              })
-            }
+                  );
+                })
+              } 
+            </div>
           </div>
         );
       }) }

@@ -1,6 +1,8 @@
 import React from "react";
 import cx from "classnames";
 import styles from "./WhyUseUs.module.scss";
+import { Icon } from "@iconify/react";
+
 
 const WhyUseUs = () => {
 
@@ -38,6 +40,9 @@ const WhyUseUs = () => {
                 data-aos-delay="600"
                 key={index}
               >
+                <span>
+                  <Icon icon="emojione:wrapped-gift" width={44} />
+                </span>
                 <p className={cx(styles.title)}>{data.title}</p>
                 <span className={cx(styles.description)}>{data.description}</span>
               </div>

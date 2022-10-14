@@ -12,7 +12,7 @@ const AboutUs = () => {
         <h3>About Us</h3>
       </div>
       <div className={cx(styles.body, "flexCol")}>
-        <section className={cx(styles.top, "row", "g-0")}>
+        <section className={cx(styles.top, "flexRow", "row", "g-0")}>
           <div className={cx(styles.leftSection, "col-md-6", "flexCol")} >
             <h4>Who We Are</h4>
             <p>
@@ -28,7 +28,9 @@ Our vision is to bridge the gap between demand for and access to quality educati
             </p> 
           </div>
           <div className={cx(styles.rightSection, "col-md-6")} >
-            <img src={aboutUs} alt="about-us" />
+            <div className={cx(styles.imageDiv)}>
+              <img src={aboutUs} alt="about-us" />
+            </div>
           </div>
       
    

@@ -130,9 +130,9 @@ const RequestDemo = () => {
         </div>    
                 
       </div>
-      <div className={cx(styles.rightSection, "col-sm-6", "col-md-6")}>
-        <div className={cx(styles.imageDiv)}>
-          <img src={heroImage} alt="img" />
+      <div className={cx(styles.rightSection, "flexCol", "col-sm-6", "col-md-6")}>
+        <div className={cx(styles.imageDiv, "flexRow")}>
+          <img src={heroImage} alt="img" className={cx("img-responsive")} />
         </div>
       </div>
     </div>
