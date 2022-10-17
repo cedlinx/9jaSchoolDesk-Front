@@ -34,23 +34,23 @@ const EditClass = () => {
 
   const sendRequest = async (data) => {
     console.log(data, "sendRequest");
-    // let subjectArray = [];
-    // data.subjects.map((subject) => {
-    //   data?.subject.map((teacher, index)=>{
-    //     if(subject.label === teacher.subject){
-    //       subjectArray.push({subject: subject?.value, teacher: teacher?.teacher?.value});
-    //     }
-    //   });
-    // });
-    // console.log(subjectArray);
+    let subjectArray = [];
+    data.subjects.map((subject) => {
+      data?.subject.map((teacher, index)=>{
+        if(subject.value === teacher.subject.value){
+          subjectArray.push({subject: subject?.value, teacher: teacher?.teacher?.value});
+        }
+      });
+    });
+    console.log(subjectArray);
 
-    // let {subject, ...rest} = data;
+    let {subject, ...rest} = data;
 
-    // let response = await dispatch(modifyClass({ ...rest, subjects: subjectArray, id: modalData.id, institution_id: institution_id}));
-    // if (response.payload.success) {
-    //   dispatch(showModal({ action: "hide", type: "editClass" }));
-    //   dispatch(getAllClasses());
-    // }
+    let response = await dispatch(modifyClass({ ...rest, subjects: subjectArray, id: modalData.id, institution_id: institution_id}));
+    if (response.payload.success) {
+      dispatch(showModal({ action: "hide", type: "editClass" }));
+      dispatch(getAllClasses());
+    }
   };
 
   const getSubjectsOptions = (data) => {
@@ -82,10 +82,12 @@ const EditClass = () => {
     name: modalData?.name,
     subjects: getSubjectsOptions(modalData?.subjects),
     description: modalData?.description,
-    teacher_id: modalData?.teacher_id,
+    // teacher_id: getTeacherOptions(allTeachersData).filter((teacher) => teacher.value === modalData?.teacher.id),
+    teacher_id: modalData?.teacher.id,
     subject: selectedSubjectTeachers
   };
 
+  console.log(modalData, "modaldata");
 
   const { register, handleSubmit, formState: { errors }, control, reset, setValue } = useForm({ defaultValues, resolver, mode: "all" });
 
@@ -114,24 +116,34 @@ const EditClass = () => {
       name: modalData?.name,
       subjects: getSubjectsOptions(modalData?.subjects),
       description: modalData?.description,
-      teacher_id: modalData?.teacher_id,
+      teacher_id: modalData?.teacher.id,
+      // teacher_id: getTeacherOptions(allTeachersData).filter((teacher) => teacher.value === modalData?.teacher.id),
       subject: selectedSubjectTeachersArray
     });
-  },[modalData, reset, selectedSubjectTeachers]);
+  },[modalData, reset]);
 
-  const handleSubjectChange = (e) => {
-    let selectedSubjectsArray = [];
+  const handleSubjectChange = (data) => {
+    console.log(data);
     let selectedSubjectTeachersArray = [];
-    let selectedSubjects = e.map((subject) => {
-      // return subject;
-      selectedSubjectsArray.push(subject);
-      selectedSubjectTeachersArray.push({subject: subject.label, id: subject.value});
-      return subject;
-
+    data.map((subject) => {
+      // selectedSubjectTeachersArray.push({subject: {label: subject.label, value: subject.value}});
+      // console.log(selectedSubjectTeachers);
+      let answer = selectedSubjectTeachers.find((element) => {
+        return element.subject.value === subject.value;
+      });
+      if(answer){
+        console.log(answer);
+        selectedSubjectTeachersArray.push(answer);
+      }else{
+        selectedSubjectTeachersArray.push({subject: {label: subject.label, value: subject.value}, teacher: {label: "", value: ""}});
+      }
     });
-    console.log(selectedSubjects);
-    setValue("subjects", selectedSubjects);
-    setSelectedSubjects(selectedSubjectsArray);
+
+    console.log(selectedSubjectTeachersArray);
+    setValue("subjects", data);
+    setSelectedSubjects(data);
+    setValue("subject", selectedSubjectTeachersArray);
+    setSelectedSubjectTeachers([]);
     setSelectedSubjectTeachers(selectedSubjectTeachersArray);
   };
 
@@ -139,12 +151,15 @@ const EditClass = () => {
     
     console.log(element);
     console.log(subject);
+    console.log(data);
+
     setValue(element.name, data);
   };
 
-  console.log(selectedSubjectTeachers);
+  console.log(selectedSubjectTeachers, "selectedSubjectTeachers");
 
-  console.log(defaultValues.subjects);
+  console.log(defaultValues.subject);
+  console.log(defaultValues);
 
   return (
 
@@ -171,6 +186,7 @@ const EditClass = () => {
                 {...field}
                 label={"CLASS TEACHER"}
                 defaultSelect="Select Teacher"
+
                 error={errors?.teacher_id && errors?.teacher_id?.message}
                 options={getTeacherOptions(allTeachersData)}
               />
@@ -230,11 +246,11 @@ const EditClass = () => {
               return (
                 <div key={index} className={cx(styles.subjectTeacherItem, "flexRow")} >
                   <div className={cx(styles.labelDiv)}>
-                    <p>{subject.subject.label}</p>
+                    {subject?.subject?.label && <p>{subject?.subject?.label}</p>}
                     <input style={{display: "none"}} readOnly 
                       name={`subject[${index}]subject`} 
                       {...register(`subject.${index}.subject`)} 
-                      value={subject.subject.label}
+                      value={"subject"}
                     />
                   </div>
                   <div className={cx(styles.selectDiv)}>
@@ -253,8 +269,8 @@ const EditClass = () => {
                           marginbottom="0rem"
                           placeholder=""
                           // defaultValue={{value: subject?.teacher?.value, label: subject?.teacher?.label}}
-                          // options={getTeacherOptions(allTeachersData)}
-                          // onChange={(data, element) => handleSubjectTeacherChange(data, element,  subject)}
+                          options={getTeacherOptions(allTeachersData)}
+                          onChange={(data, element) => handleSubjectTeacherChange(data, element,  subject)}
                           // error={errors?.subject?.[index]?.teacher && errors?.subject?.[index]?.teacher?.message}
                         />
                       )}
