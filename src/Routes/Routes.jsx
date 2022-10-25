@@ -94,7 +94,8 @@ const RoutesComponent = () => {
   return (
     <BrowserRouter className="App">
       <Routes>
-        <Route index path="" element={<HomePage />} />
+        {/* <Route index path="" element={<HomePage />} /> */}
+        <Route index path="" element={<PreSignUp />} />
         <Route path="login/:user" element={<Login />} />
         <Route path="login-with-class-code" element={<LoginWithClassCode />} />
         <Route path="pre-signup/:user" element={<PreSignUp />} />

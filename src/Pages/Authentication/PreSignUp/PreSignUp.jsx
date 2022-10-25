@@ -36,7 +36,7 @@ const PreSignUp = () => {
   const verifyOTPData = useSelector((state) => state?.auth?.verifyOTPData);
   const [emailValue, setEmailValue] = useState("");
   const params = useParams();
-  const user = params?.user;
+  const user = params?.user || "proprietor";
 
   useEffect(() => {
     if (verifyOTPData.success) {
