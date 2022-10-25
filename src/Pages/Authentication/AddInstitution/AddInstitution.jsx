@@ -85,7 +85,7 @@ const AddInstitution = () => {
           <div className={cx(styles.container, "row")}>
             <div className={cx(styles.leftCol, "col-md-6")}>
               <h3><span className={cx(styles.wordBreak)}>Add <img className={cx(styles.floatingIcon)} src={curvedHamburgerFlipped} alt="icon" /></span> Institution</h3>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis odio tempora cupiditate, iure consequatur molestias, nulla aut vel suscipit a ab dolore sunt quos minima ad alias ullam architecto aliquam?</p>
+              <p>Securely manage your schools from anywhere, automate, workload, and so much more!</p>
             </div>
 
             <section className={cx(styles.rightCol, "col-md-6", "flexCol")}>
