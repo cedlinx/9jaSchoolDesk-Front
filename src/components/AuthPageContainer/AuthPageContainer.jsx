@@ -16,15 +16,17 @@ const AuthPageContainer = (props) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    navigate("/");
     dispatch(logout());
+    // navigate("/");
   };
 
   return (
     <div className={cx(styles.authPageContainer, "flexCol")}>
       {/* <MenuBar /> */}
       <div className={cx(styles.header, "flexRow-fully-centered")}>
-        <img src={siteLogo} onClick={() => handleClick()} alt="" />
+        <a href="http://9jaschooldesk.com">
+          <img src={siteLogo} onClick={() => handleClick()} alt="" />
+        </a>
       </div>
       <div className={cx(styles.childrenContainer)}>
         {showTopDivWave && <TopDivWave />}
