@@ -47,7 +47,7 @@ const AddInstitution = () => {
     let response = await dispatch(addInstitution(data));
     
     if (response.payload.success) {
-      navigate("/select-institution/proprietor");
+      navigate("/proprietor/select-institution");
     }
   };
   let institutionsCategory = [
