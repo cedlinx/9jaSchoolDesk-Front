@@ -8,7 +8,8 @@ const instance = axios.create({
   // baseURL: "https://www.9jaschooldesk.com/api"
   // baseURL: "https://app.9jaschooldesk.com/api"
   // baseURL: "https://9jaschooldesk.com/app/api"
-  baseURL: "https://resource.9jaschooldesk.com/api"
+  baseURL: "https://resource.9jaschooldesk.com/api",
+  withCredentials: true
 });
 
 instance.interceptors.request.use(
