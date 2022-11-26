@@ -107,6 +107,7 @@ const RoutesComponent = () => {
         <Route path="/:user/reset/password/:token" element={<ResetPassword />} />
         <Route path="/:user/select-account" element={<SelectAccountStudent />} />
         <Route path="/:user/select-class" element={<SelectClassTeacher />} />
+        {/* <Route path="/:user/select-class" element={<AuthenticatedRoute roles={[Role.Teacher]}><SelectClassTeacher /></AuthenticatedRoute>} /> */}
         <Route path="/:user/select-institution" element={<SelectInstitutionProprietor />} />
         <Route path="/:user/select-ward" element={<SelectWardGuardian />} />
         <Route path=":user/add-institution" element={<AddInstitution />} />

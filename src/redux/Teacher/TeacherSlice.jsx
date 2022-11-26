@@ -634,7 +634,7 @@ export const getTeacherDetails = (data) => async (dispatch) => {
     const response = await getTeacherDetailsApi(data);
     return dispatch(getTeacherDetailsAction(response?.data));
   } catch (e) {
-    toast.error(e?.response?.data?.errors ? formatArrayList(e?.response?.data?.errors) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
+    toast.error(e?.response?.data?.error ? (e?.response?.data?.error) : Array.isArray(e?.response?.data?.message) ? formatArrayList(e?.response?.data?.message) : e?.response?.data?.message ? e?.response?.data?.message : e?.message);
     return dispatch(hasError(e?.response?.data ? e?.response?.data : e?.message));
   }
 };

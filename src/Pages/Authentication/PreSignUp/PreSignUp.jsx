@@ -25,6 +25,7 @@ import curvedHamburgerFlipped from "@/assets/icons/curved-hamburger-flipped.svg"
 import TopDivWave from "@/components/WaveSvg/TopDivWave";
 import sendOtpBtn from "@/assets/images/send-otp-btn.svg";
 import {getOTP, verifyOTP} from "@/redux/Auth/AuthSlice";
+import { titleCase } from "@/helpers/textTransform";
 
 
 
@@ -91,6 +92,7 @@ const PreSignUp = () => {
             <div>
               <img src={siteLogo} alt="" />
             </div>
+            <small style={{marginTop: "-1.75rem"}}>{titleCase(user)}</small>
             <div className={cx(styles.formWrapper, "flexCol")}>
               <form onSubmit={handleSubmit((data) => sendRequest(data))}>
                 <small>Let us verify your email</small>

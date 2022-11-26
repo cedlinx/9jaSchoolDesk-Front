@@ -21,8 +21,7 @@ const Notifications = () => {
   const loading = useSelector((state) => state?.guardian?.loading);
   // const userDetails = useGetLoggedInUser();
   const userDetails = useSelector((state) => state?.guardian?.getGuardianDetailsData?.user);
-  // console.log(guardianDetails, "guardian details");
-  console.log(userDetails, "guardian22 details");
+
   const resolver = yupResolver(saveNotificationsValidationSchema);
 
   const defaultValues = {

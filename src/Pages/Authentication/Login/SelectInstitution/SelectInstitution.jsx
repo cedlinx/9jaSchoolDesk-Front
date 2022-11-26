@@ -30,7 +30,6 @@ const SelectInstitution = () => {
   // let institutionsArray = proprietorDetails?.institutions;
 
   let institutionsArray = useSelector((state) => state?.proprietor?.getAllInstitutionsData?.institutions);
-
   
   useEffect(() => {
     dispatch(getAllInstitutions());
